@@ -1,12 +1,12 @@
 import { Award, Clock } from "lucide-react";
 
 const certs = [
-  { name: "CompTIA Security+", status: "completed", year: "2023" },
-  { name: "Certified SOC Analyst (CSA)", status: "completed", year: "2023" },
-  { name: "Splunk Core Certified User", status: "completed", year: "2024" },
-  { name: "CompTIA CySA+", status: "in-progress", year: "2024" },
-  { name: "GIAC Security Essentials (GSEC)", status: "in-progress", year: "2024" },
-  { name: "Certified Ethical Hacker (CEH)", status: "planned", year: "2025" },
+  { name: "CompTIA Security+", status: "in-progress", year: "2025" },
+  { name: "Certified SOC Analyst (CSA)", status: "in-progress", year: "2025" },
+  { name: "Splunk Core Certified User", status: "in-progress", year: "2025" },
+  { name: "CompTIA CySA+", status: "in-progress", year: "2025" },
+  { name: "GIAC Security Essentials (GSEC)", status: "in-progress", year: "2025" },
+  { name: "Certified Ethical Hacker (CEH)", status: "in-progress", year: "2025" },
 ];
 
 const CertificationsSection = () => {
