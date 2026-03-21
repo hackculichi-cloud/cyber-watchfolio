@@ -49,7 +49,7 @@ const ProjectsSection = () => {
             return (
               <div
                 key={inc.id}
-                className={`panel-glow border ${sev.border} transition-all duration-300`}
+                className={`panel-glow border ${sev.border} transition-all duration-300 hover:scale-[1.02]`}
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-3">

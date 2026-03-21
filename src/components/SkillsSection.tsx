@@ -29,7 +29,7 @@ const SkillsSection = () => {
 
         <div className="grid md:grid-cols-3 gap-4">
           {categories.map((cat) => (
-            <div key={cat.title} className="panel-glow p-5">
+            <div key={cat.title} className="panel-glow p-5 transition-transform duration-300 hover:scale-105">
               <div className="flex items-center gap-2 mb-4">
                 <cat.icon className="w-4 h-4 text-primary" />
                 <h3 className="font-display font-semibold text-sm text-foreground uppercase tracking-wider">
