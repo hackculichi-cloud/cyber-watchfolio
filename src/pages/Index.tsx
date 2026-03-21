@@ -10,7 +10,9 @@ import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background scanline">
+    <div className="min-h-screen bg-background scanline relative">
+      <MatrixRain />
+      <div className="relative z-10">
       <Navbar />
       <HeroSection />
       <AboutSection />
