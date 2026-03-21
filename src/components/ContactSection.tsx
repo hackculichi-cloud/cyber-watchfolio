@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 const commands = [
-  { cmd: 'contact --email', response: 'christian@culichi.lat' },
-  { cmd: 'contact --github', response: 'github.com/ByCulichi' },
-  { cmd: 'contact --linkedin', response: 'linkedin.com/in/culichi' },
-  { cmd: 'whoami', response: 'culichi@security-ops ~ $' },
+  { cmd: 'contact --email', response: 'christian@culichi.lat', href: 'mailto:christian@culichi.lat' },
+  { cmd: 'contact --github', response: 'github.com/ByCulichi', href: 'https://github.com/ByCulichi/ByCulichi' },
+  { cmd: 'contact --linkedin', response: 'linkedin.com/in/culichi', href: 'https://www.linkedin.com/in/culichi/?locale=es_ES' },
+  { cmd: 'whoami', response: 'culichi@security-ops ~ $', href: null },
 ];
 
 const ContactSection = () => {
@@ -55,7 +55,13 @@ const ContactSection = () => {
                 <div className="text-muted-foreground">
                   <span className="text-primary">$</span> {item.cmd}
                 </div>
-                <div className="text-foreground ml-4 mt-0.5">→ {item.response}</div>
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-foreground ml-4 mt-0.5 hover:text-primary transition-colors cursor-pointer underline underline-offset-4 decoration-primary/40 hover:decoration-primary">
+                    → {item.response}
+                  </a>
+                ) : (
+                  <div className="text-foreground ml-4 mt-0.5">→ {item.response}</div>
+                )}
               </div>
             ))}
             <div className="text-muted-foreground">
