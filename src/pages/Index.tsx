@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import MatrixRain from "@/components/MatrixRain";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -9,7 +10,9 @@ import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background scanline">
+    <div className="min-h-screen bg-background scanline relative">
+      <MatrixRain />
+      <div className="relative z-10">
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -23,6 +26,7 @@ const Index = () => {
           <span className="text-primary">©</span> 2024 SOC_ANALYST // All systems monitored
         </p>
       </footer>
+      </div>
     </div>
   );
 };
