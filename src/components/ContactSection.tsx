@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 const commands = [
-  { cmd: 'contact --email', response: 'christian@culichi.lat' },
-  { cmd: 'contact --github', response: 'github.com/ByCulichi' },
-  { cmd: 'contact --linkedin', response: 'linkedin.com/in/culichi' },
-  { cmd: 'whoami', response: 'culichi@security-ops ~ $' },
+  { cmd: 'contact --email', response: 'christian@culichi.lat', href: 'mailto:christian@culichi.lat' },
+  { cmd: 'contact --github', response: 'github.com/ByCulichi', href: 'https://github.com/ByCulichi/ByCulichi' },
+  { cmd: 'contact --linkedin', response: 'linkedin.com/in/culichi', href: 'https://www.linkedin.com/in/culichi/?locale=es_ES' },
+  { cmd: 'whoami', response: 'culichi@security-ops ~ $', href: null },
 ];
 
 const ContactSection = () => {
