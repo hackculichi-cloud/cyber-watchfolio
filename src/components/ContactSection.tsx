@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 const commands = [
-  { cmd: 'contact --email', response: 'your.email@example.com' },
-  { cmd: 'contact --github', response: 'github.com/yourusername' },
-  { cmd: 'contact --linkedin', response: 'linkedin.com/in/yourusername' },
-  { cmd: 'whoami', response: 'soc_analyst@security-ops ~ $' },
+  { cmd: 'contact --email', response: 'christian@culichi.lat' },
+  { cmd: 'contact --github', response: 'github.com/ByCulichi' },
+  { cmd: 'contact --linkedin', response: 'linkedin.com/in/culichi' },
+  { cmd: 'whoami', response: 'culichi@security-ops ~ $' },
 ];
 
 const ContactSection = () => {

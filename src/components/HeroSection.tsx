@@ -18,8 +18,8 @@ const HeroSection = () => {
         </p>
         
         <h1 className="font-display text-5xl md:text-7xl font-bold mb-4 animate-fade-in-up delay-100">
-          <span className="text-foreground">Your </span>
-          <span className="neon-text">Name</span>
+          <span className="text-foreground">Christian </span>
+          <span className="neon-text">Velasco</span>
         </h1>
         
         <h2 className="font-display text-xl md:text-2xl text-muted-foreground mb-6 animate-fade-in-up delay-200">
