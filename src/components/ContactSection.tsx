@@ -55,7 +55,13 @@ const ContactSection = () => {
                 <div className="text-muted-foreground">
                   <span className="text-primary">$</span> {item.cmd}
                 </div>
-                <div className="text-foreground ml-4 mt-0.5">→ {item.response}</div>
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-foreground ml-4 mt-0.5 hover:text-primary transition-colors cursor-pointer underline underline-offset-4 decoration-primary/40 hover:decoration-primary">
+                    → {item.response}
+                  </a>
+                ) : (
+                  <div className="text-foreground ml-4 mt-0.5">→ {item.response}</div>
+                )}
               </div>
             ))}
             <div className="text-muted-foreground">
