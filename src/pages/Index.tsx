@@ -26,6 +26,7 @@ const Index = () => {
           <span className="text-primary">©</span> 2024 SOC_ANALYST // All systems monitored
         </p>
       </footer>
+      </div>
     </div>
   );
 };
