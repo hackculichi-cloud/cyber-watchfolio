@@ -10,7 +10,7 @@ const certs = [
 
 const CertificationsSection = () => {
   return (
-    <section id="certifications" className="py-20 relative">
+    <section id="certifications" className="py-20 relative bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <h2 className="font-display text-3xl font-bold mb-2 neon-text">
           {">"} certifications
@@ -19,7 +19,7 @@ const CertificationsSection = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {certs.map((cert) => (
-            <div key={cert.name} className="panel-glow p-4 flex items-start gap-3">
+            <div key={cert.name} className="panel-glow p-4 flex items-start gap-3 transition-transform duration-300 hover:scale-105">
               {cert.status === "completed" ? (
                 <Award className="w-4 h-4 text-primary mt-0.5 shrink-0" />
               ) : (

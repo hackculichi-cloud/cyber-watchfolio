@@ -36,7 +36,7 @@ const severityConfig = {
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-20 relative">
+    <section id="projects" className="py-20 relative bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <h2 className="font-display text-3xl font-bold mb-2 neon-text">
           {">"} security_incidents
@@ -49,7 +49,7 @@ const ProjectsSection = () => {
             return (
               <div
                 key={inc.id}
-                className={`panel-glow border ${sev.border} transition-all duration-300`}
+                className={`panel-glow border ${sev.border} transition-all duration-300 hover:scale-[1.02]`}
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-3">

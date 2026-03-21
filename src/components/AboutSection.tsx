@@ -8,7 +8,7 @@ const highlights = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 relative">
+    <section id="about" className="py-20 relative bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <h2 className="font-display text-3xl font-bold mb-2 neon-text">
           {">"} about_me
@@ -25,7 +25,7 @@ const AboutSection = () => {
 
         <div className="grid md:grid-cols-3 gap-4">
           {highlights.map((item) => (
-            <div key={item.label} className="panel-glow flex items-start gap-3 p-5">
+            <div key={item.label} className="panel-glow flex items-start gap-3 p-5 transition-transform duration-300 hover:scale-105">
               <item.icon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
               <div>
                 <h3 className="font-display font-semibold text-foreground mb-1">{item.label}</h3>
