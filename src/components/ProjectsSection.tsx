@@ -2,40 +2,16 @@ import { AlertTriangle, CheckCircle, XCircle } from "lucide-react";
 
 const incidents = [
   {
-    id: "INC-2024-001",
-    severity: "critical",
-    title: "Ransomware Outbreak Containment",
-    tools: ["Splunk", "CrowdStrike", "Wireshark"],
-    description: "Detected lateral movement and ransomware deployment across 15 endpoints in the finance department.",
-    detection: "SIEM correlation rule triggered on multiple failed SMB auth attempts followed by rapid file encryption patterns.",
-    outcome: "Contained within 45 minutes. Zero data loss. Identified initial access vector via phishing email.",
-  },
-  {
     id: "INC-2024-002",
-    severity: "high",
-    title: "Insider Threat Data Exfiltration",
-    tools: ["ELK Stack", "DLP", "Python"],
-    description: "Anomalous data transfer detected — employee uploading sensitive files to unauthorized cloud storage.",
-    detection: "Custom Python script flagged DNS query volume anomaly. DLP alert confirmed sensitive document transfer.",
-    outcome: "User account suspended. Forensic image captured. Evidence preserved for HR/legal proceedings.",
-  },
-  {
-    id: "INC-2024-003",
     severity: "medium",
-    title: "Supply Chain Compromise Investigation",
-    tools: ["YARA", "VirusTotal", "Nmap"],
-    description: "Third-party software update contained a backdoor trojan. Investigated scope and impact across the network.",
-    detection: "Threat intel feed matched hash of updated binary. YARA rules confirmed presence on 3 systems.",
-    outcome: "Affected systems isolated and reimaged. Vendor notified. Detection rules deployed network-wide.",
-  },
-  {
-    id: "INC-2024-004",
-    severity: "low",
-    title: "Phishing Campaign Analysis",
-    tools: ["PhishTool", "Splunk", "Regex"],
-    description: "Coordinated spear-phishing targeting C-suite executives with credential harvesting links.",
-    detection: "Email gateway flagged suspicious sender domain. URL analysis revealed typosquatted login page.",
-    outcome: "Blocked sender domain. Deployed org-wide awareness alert. Updated email filtering rules.",
+    title: "VPN Unauthorized Access Attempt",
+    tools: ["SIEM", "Firewall", "VPN", "MFA"],
+    description:
+      "Multiple failed login attempts detected from an external IP triggering abnormal MFA (OTP) activity on a VPN account.",
+    detection:
+      "SIEM alert triggered due to login attempt from an unauthorized country. Analysis of authentication logs and firewall data revealed multiple OTP requests and repeated failed authentication attempts from the same IP address.",
+    outcome:
+      "No successful authentication was achieved. Activity was identified as an unauthorized access attempt (MFA abuse). No system impact observed.",
   },
 ];
 
