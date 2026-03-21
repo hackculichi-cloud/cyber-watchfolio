@@ -13,6 +13,18 @@ const incidents = [
     outcome:
       "No successful authentication was achieved. Activity was identified as an unauthorized access attempt (MFA abuse). No system impact observed.",
   },
+  {
+    id: "INC-2024-003",
+    severity: "high",
+    title: "RDP Brute Force Attack Detected",
+    tools: ["SIEM", "RDP", "Windows", "Brute Force", "Threat Intel"],
+    description:
+      "Multiple failed RDP login attempts detected from a malicious external IP targeting a Windows host using different usernames.",
+    detection:
+      "SIEM alert triggered due to repeated failed RDP authentication attempts from a single external IP. Log analysis revealed multiple login failures using different non-existent usernames, consistent with brute force behavior.",
+    outcome:
+      "No successful authentication was observed. Activity was identified as a brute force attack attempt from a known malicious IP. No system compromise detected.",
+  },
 ];
 
 const severityConfig = {
