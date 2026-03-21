@@ -6,7 +6,6 @@ const certs = [
   { name: "Splunk Core Certified User", status: "in-progress", year: "2025" },
   { name: "CompTIA CySA+", status: "in-progress", year: "2025" },
   { name: "GIAC Security Essentials (GSEC)", status: "in-progress", year: "2025" },
-  { name: "Certified Ethical Hacker (CEH)", status: "in-progress", year: "2025" },
 ];
 
 const CertificationsSection = () => {
