@@ -8,7 +8,7 @@ const highlights = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 relative">
+    <section id="about" className="py-20 relative bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <h2 className="font-display text-3xl font-bold mb-2 neon-text">
           {">"} about_me
