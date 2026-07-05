@@ -272,4 +272,194 @@ export const investigations: Investigation[] = [
       { label: "CISA — Guide to Securing Remote Access", url: "https://www.cisa.gov/news-events/cybersecurity-advisories" },
     ],
   },
+  {
+    id: "INC-2024-004",
+    title: "Phishing Email with Malicious Attachment",
+    severity: "high",
+    tools: ["Email Security", "SIEM", "EDR", "Proxy", "VirusTotal"],
+    difficulty: "Intermediate",
+    estimatedTime: "60 min",
+    shortDescription:
+      "User reported a suspicious email impersonating a vendor with a password-protected ZIP attachment containing a malicious loader.",
+    caseInfo: {
+      caseId: "INC-2024-004",
+      incidentName: "Phishing Email with Malicious Attachment",
+      alertId: "ALRT-PHISH-4471",
+      date: "2024-08-19",
+      analyst: "Christian Velasco",
+    },
+    executiveSummary: {
+      whatHappened:
+        "An employee received a spoofed invoice email from a lookalike vendor domain containing a password-protected ZIP. The ZIP held a JavaScript loader that, when executed, would reach out to a known malware C2 domain.",
+      whyImportant:
+        "Phishing with password-protected archives is a leading initial-access vector for infostealers and ransomware because the payload bypasses most inline AV scanning.",
+      finalVerdict: "True Positive",
+      businessImpact:
+        "User reported the email before opening the attachment. No execution, no C2 traffic, no compromise. Mailbox-wide purge removed 14 additional copies delivered to other users.",
+    },
+    alertInfo: {
+      alertName: "Suspicious Attachment — Password-Protected Archive from External Sender",
+      severity: "high",
+      detectionRule: "email_pw_protected_archive_external_lookalike",
+      eventTime: "2024-08-19 09:47 UTC",
+      source: "billing@vendor-support[.]co (external)",
+      destination: "m.gomez@corp.local",
+      user: "m.gomez",
+      host: "wks-mgomez-04",
+      detectionProduct: "Email Security Gateway + User Report (PhishAlert)",
+    },
+    triage: {
+      whyTriggered:
+        "Email gateway flagged a password-protected ZIP from an external sender using a domain lexically similar to an approved vendor. User also submitted a PhishAlert report.",
+      initialHypothesis: "Targeted phishing delivering a malware loader via encrypted archive.",
+      initialSeverity: "high",
+      priority: "P1",
+    },
+    steps: [
+      {
+        title: "Step 1 — Review Email",
+        objective: "Determine whether the email exhibits phishing characteristics.",
+        tool: "Email Security",
+        evidence: [
+          "Sender domain vendor-support[.]co is a lookalike of the legitimate vendor-support.com",
+          "Password-protected ZIP with the password included in the email body",
+          "Urgency language: 'overdue invoice — action required today'",
+        ],
+        conclusion: "Email is highly suspicious and consistent with phishing.",
+      },
+      {
+        title: "Step 2 — Header Analysis",
+        objective: "Validate authentication and true origin.",
+        tool: "Email headers / EOP",
+        evidence: [
+          "SPF: softfail",
+          "DKIM: none",
+          "DMARC: fail",
+          "Originating IP 185.220.101.42 — hosted in known bulletproof range",
+        ],
+        conclusion: "Authentication failures and hostile-hosted origin confirm spoofing.",
+      },
+      {
+        title: "Step 3 — Threat Intelligence",
+        objective: "Enrich sender, IPs, hashes, and URLs.",
+        tool: "VirusTotal, AbuseIPDB, URLScan",
+        query: "hash: 6f2c1a...9e / domain: vendor-support[.]co",
+        evidence: [
+          "Attachment JS loader hash flagged malicious by 41/68 engines",
+          "Callback domain cdn-metrics[.]top linked to known infostealer family",
+        ],
+        conclusion: "Payload and infrastructure tied to a known commodity malware campaign.",
+      },
+      {
+        title: "Step 4 — Attachment Sandbox Analysis",
+        objective: "Understand payload behavior without executing on endpoint.",
+        tool: "any.run / Cuckoo",
+        evidence: [
+          "JS spawns powershell.exe with base64 command",
+          "Downloads secondary stage from hxxps://cdn-metrics[.]top/upd",
+          "Persistence via Run key HKCU\\...\\Run\\SysUpd",
+        ],
+        conclusion: "Loader for infostealer with C2 beacon and registry persistence.",
+      },
+      {
+        title: "Step 5 — Log Correlation",
+        objective: "Verify whether any user opened the attachment.",
+        tool: "SIEM (proxy, EDR, DNS)",
+        evidence: [
+          "No DNS resolution for cdn-metrics[.]top from any internal host",
+          "No process execution of the ZIP or JS on wks-mgomez-04",
+          "Email gateway shows 15 total recipients, 0 clicks",
+        ],
+        conclusion: "Campaign delivered but not executed. No compromise.",
+      },
+      {
+        title: "Step 6 — Mailbox Sweep",
+        objective: "Identify and remove all copies across the org.",
+        tool: "Email Security / Message Trace",
+        evidence: ["14 additional recipients identified and purged"],
+        conclusion: "Full org-wide containment of the campaign.",
+      },
+    ],
+    evidence: [
+      { category: "Email", items: ["Spoofed sender billing@vendor-support[.]co", "Password-protected ZIP 'invoice_8842.zip'"] },
+      { category: "Headers", items: ["SPF softfail, DKIM none, DMARC fail", "Origin IP 185.220.101.42"] },
+      { category: "Attachments", items: ["invoice_8842.js — SHA256 6f2c1a...9e"] },
+      { category: "URLs", items: ["hxxps://cdn-metrics[.]top/upd (C2)"] },
+      { category: "Hashes", items: ["6f2c1a09b7...9e (JS loader)"] },
+      { category: "Domains", items: ["vendor-support[.]co", "cdn-metrics[.]top"] },
+      { category: "IPs", items: ["185.220.101.42 — malicious reputation"] },
+      { category: "Proxy Logs", items: ["No outbound traffic to C2 observed"] },
+      { category: "Authentication Logs", items: ["No anomalous logons for m.gomez"] },
+    ],
+    iocs: [
+      { type: "Domain", value: "vendor-support[.]co", description: "Lookalike sender domain" },
+      { type: "Domain", value: "cdn-metrics[.]top", description: "Malware C2" },
+      { type: "IP", value: "185.220.101.42", description: "Sending infrastructure" },
+      { type: "SHA256", value: "6f2c1a09b7...9e", description: "Malicious JS loader" },
+      { type: "Email", value: "billing@vendor-support[.]co", description: "Spoofed sender" },
+    ],
+    mitre: [
+      { tactic: "Initial Access", technique: "Phishing: Spearphishing Attachment", id: "T1566.001", evidence: "Password-protected ZIP with JS loader" },
+      { tactic: "Defense Evasion", technique: "Obfuscated Files or Information", id: "T1027", evidence: "Password-protected archive bypasses AV scanning" },
+      { tactic: "Execution", technique: "Command and Scripting Interpreter: JavaScript", id: "T1059.007", evidence: "JS loader designed to launch PowerShell" },
+      { tactic: "Command and Control", technique: "Application Layer Protocol: Web Protocols", id: "T1071.001", evidence: "HTTPS callback to cdn-metrics[.]top" },
+    ],
+    timeline: [
+      { time: "09:47", event: "Email delivered to 15 recipients" },
+      { time: "09:52", event: "m.gomez submits PhishAlert report" },
+      { time: "09:54", event: "Email gateway rule fires on password-protected archive" },
+      { time: "10:05", event: "Analyst triage begins" },
+      { time: "10:20", event: "Sandbox confirms malicious behavior" },
+      { time: "10:35", event: "Org-wide mailbox purge executed" },
+      { time: "10:45", event: "Domain + IP blocked at proxy and firewall" },
+      { time: "10:50", event: "Verdict: True Positive — no compromise" },
+    ],
+    analysis: {
+      facts: [
+        "15 recipients received the spoofed email",
+        "Attachment confirmed malicious via sandbox and multiple AV engines",
+        "No user executed the attachment; no C2 traffic observed",
+      ],
+      assumptions: ["Campaign is opportunistic commodity malware rather than targeted APT"],
+      supportingTP: ["DMARC failure", "Malicious hash", "Known-bad C2 domain", "Lookalike sender"],
+      against: ["No execution, no beacon, no lateral movement"],
+      confidence: "High",
+    },
+    responseActions: {
+      containment: [
+        "Purge all copies from mailboxes org-wide",
+        "Block vendor-support[.]co and cdn-metrics[.]top at proxy",
+        "Block sending IP at edge",
+      ],
+      eradication: ["Confirm no execution artifacts on any recipient endpoint via EDR sweep"],
+      recovery: ["Send user comms with sample screenshot and reporting reminder"],
+      monitoring: ["Add IOCs to watchlist for 60 days", "Hunt for related lookalike domains"],
+    },
+    additionalDataRequested: [
+      "EDR timeline for all 15 recipient endpoints",
+      "DNS logs for cdn-metrics[.]top across 30 days",
+      "Windows Event Logs and Sysmon for wks-mgomez-04",
+      "Full email headers for correlated campaigns",
+      "Firewall logs to hostile ASN",
+    ],
+    lessonsLearned: {
+      technical: ["Password-protected archives should be quarantined by default from external senders"],
+      operational: ["PhishAlert workflow worked as designed — reduce SLA from 15 to 5 min for high-severity reports"],
+      detectionImprovements: [
+        "Add rule: external sender + password-protected archive + password disclosed in body",
+        "Auto-detonate encrypted attachments in sandbox using body-extracted password",
+      ],
+    },
+    finalVerdict: {
+      verdict: "True Positive",
+      justification:
+        "Confirmed phishing campaign delivering a known malware loader via password-protected archive. Fully contained pre-execution through user report and mailbox purge.",
+    },
+    analystNotes:
+      "User awareness training paid off here — the report arrived before the gateway rule fired. Recommend spotlighting m.gomez in the monthly security newsletter.",
+    references: [
+      { label: "MITRE T1566.001 — Spearphishing Attachment", url: "https://attack.mitre.org/techniques/T1566/001/" },
+      { label: "CISA — Phishing Guidance", url: "https://www.cisa.gov/news-events/news/phishing-guidance-stopping-attack-cycle-phase-one" },
+    ],
+  },
 ];
