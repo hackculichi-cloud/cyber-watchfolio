@@ -36,9 +36,9 @@ export const navigation: NavItem[] = [
     children: [
       { label: "Electrical", href: "/electrical-electronics#electrical" },
       { label: "Electronics", href: "/electrical-electronics#electronics" },
-      { label: "Device Repair", href: "/electrical-electronics#repair" },
     ],
   },
+  { label: "Technical Repair", href: "/repair" },
   { label: "Experience", href: "/experience" },
   { label: "Journal", href: "/journal" },
   { label: "CV", href: "/cv" },

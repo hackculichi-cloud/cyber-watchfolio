@@ -1,19 +1,29 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import Seo from "@/components/shared/Seo";
-import PageHeader from "@/components/shared/PageHeader";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
 import DetailModal from "@/components/shared/DetailModal";
+import EmptyState from "@/components/shared/EmptyState";
+import Gallery from "@/components/shared/Gallery";
+import LabCard from "@/components/cards/LabCard";
 import InvestigationCard from "@/components/investigations/InvestigationCard";
 import InvestigationDetail from "@/components/investigations/InvestigationDetail";
 import PlaybookCard from "@/components/playbooks/PlaybookCard";
 import PlaybookDetail from "@/components/playbooks/PlaybookDetail";
+import ProfileHero from "@/components/profile/ProfileHero";
+import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
+import ProfileTools from "@/components/profile/ProfileTools";
+import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import { investigations } from "@/data/investigations";
 import { playbooks } from "@/data/playbooks";
+import { labs } from "@/data/labs";
 import { cybersecuritySkills } from "@/data/skills";
+import { profileBySlug } from "@/data/profiles";
+import { galleryFor } from "@/data/gallery";
+import { toolsByProfile } from "@/data/tools";
 import { site } from "@/data/site";
+
+const profile = profileBySlug("cybersecurity");
 
 const Cybersecurity = () => {
   const [incidentId, setIncidentId] = useState<string | null>(null);
@@ -29,60 +39,117 @@ const Cybersecurity = () => {
         description="Blue-team focused cybersecurity work: SOC fundamentals, detection playbooks and documented incident investigations."
         path="/cybersecurity"
       />
-      <PageHeader
-        eyebrow="Technology"
-        title="Cybersecurity"
-        description="Blue-team oriented work: security fundamentals, monitoring and detection, and structured investigations documented end to end."
-      />
+      <ProfileHero profile={profile} />
+      <ProfileSectionNav sections={profile.sections} />
 
-      <section className="container mx-auto px-4 py-16">
-        <SectionHeading eyebrow="Focus areas" title="What I am building competence in" />
+      <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading
+          eyebrow="Overview"
+          title="SOC / Blue Team direction"
+          description="Security fundamentals, networking and Linux, monitoring and detection, and investigations documented end to end."
+        />
         <div className="grid gap-4 md:grid-cols-3">
-          {cybersecuritySkills.map((group) => (
-            <div key={group.title} className="panel-glow hover:-translate-y-1">
-              <h3 className="text-sm font-semibold">{group.title}</h3>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {group.skills.map((s) => (
-                  <Tag key={s}>{s}</Tag>
-                ))}
-              </div>
+          {[
+            { title: "Detect", body: "Log sources, SIEM search and alert triage on realistic detection scenarios.", tag: "Focus" },
+            { title: "Investigate", body: "Structured analysis: evidence, IOCs, MITRE mapping and verdicts.", tag: "Focus" },
+            { title: "Document", body: "Repeatable playbooks and write-ups so the process is reproducible.", tag: "Focus" },
+          ].map((c) => (
+            <div key={c.title} className="panel-glow hover:-translate-y-1">
+              <Tag variant="primary">{c.tag}</Tag>
+              <h3 className="mt-3 text-base font-semibold">{c.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="border-y border-border bg-surface/40">
+      <section id="skills" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading
-            id="investigations"
-            eyebrow="Investigations"
-            title="Incident investigations"
-            description="Each case follows the same structure: summary, detection, analysis, evidence, outcome and lessons learned."
-          />
-          <div className="grid gap-4 md:grid-cols-2">
-            {investigations.map((inc) => (
-              <InvestigationCard key={inc.id} investigation={inc} onOpen={() => setIncidentId(inc.id)} />
+          <SectionHeading eyebrow="Skills" title="What I am building competence in" />
+          <div className="grid gap-4 md:grid-cols-3">
+            {cybersecuritySkills.map((group) => (
+              <div key={group.title} className="panel-glow hover:-translate-y-1">
+                <h3 className="text-sm font-semibold">{group.title}</h3>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {group.skills.map((s) => (
+                    <Tag key={s}>{s}</Tag>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-16">
+      <section id="investigations" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
-          id="playbooks"
-          eyebrow="Playbooks"
-          title="Detection playbooks"
-          description="Repeatable investigation workflows with objective, prerequisites, steps and expected outcomes."
+          eyebrow="Investigations"
+          title="Incident investigations"
+          description="Each case follows the same structure: summary, detection, analysis, evidence, outcome and lessons learned."
         />
         <div className="grid gap-4 md:grid-cols-2">
-          {playbooks.map((pb) => (
-            <PlaybookCard key={pb.id} playbook={pb} onOpen={() => setPlaybookId(pb.id)} />
+          {investigations.map((inc) => (
+            <InvestigationCard key={inc.id} investigation={inc} onOpen={() => setIncidentId(inc.id)} />
           ))}
         </div>
+      </section>
 
-        <Link to="/labs" className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
-          See security labs <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
+      <section id="playbooks" className="scroll-mt-32 border-y border-border bg-surface/40">
+        <div className="container mx-auto px-4 py-16">
+          <SectionHeading
+            eyebrow="Playbooks"
+            title="Detection playbooks"
+            description="Repeatable investigation workflows with objective, prerequisites, steps and expected outcomes."
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            {playbooks.map((pb) => (
+              <PlaybookCard key={pb.id} playbook={pb} onOpen={() => setPlaybookId(pb.id)} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="labs" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading
+          eyebrow="Labs"
+          title="Security labs & CTFs"
+          description="Hands-on practice environments with objective, tooling, difficulty and outcome."
+        />
+        {labs.length ? (
+          <div className="grid gap-4 md:grid-cols-2">
+            {labs.map((lab) => (
+              <LabCard key={lab.id} lab={lab} />
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            title="Labs are being documented"
+            description="Completed labs will be published here with objective, technologies, difficulty and results."
+          />
+        )}
+      </section>
+
+      <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
+        <div className="container mx-auto px-4 py-16">
+          <SectionHeading eyebrow="Gallery" title="Lab & tooling screenshots" />
+          <Gallery
+            items={galleryFor("cybersecurity")}
+            emptyTitle="No screenshots published yet"
+            emptyDescription="Add lab screenshots or dashboards to the gallery data file and they appear here."
+          />
+        </div>
+      </section>
+
+      <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading eyebrow="Tools" title="Tooling I work with" />
+        <ProfileTools groups={toolsByProfile.cybersecurity} />
+      </section>
+
+      <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
+        <div className="container mx-auto px-4 py-16">
+          <SectionHeading eyebrow="CV" title="CV for this profile" />
+          <ProfileCvBlock cvIds={profile.cvIds} />
+        </div>
       </section>
 
       <DetailModal
