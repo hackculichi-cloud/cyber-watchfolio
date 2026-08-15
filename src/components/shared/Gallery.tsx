@@ -61,7 +61,8 @@ const Gallery = ({
             <button
               type="button"
               onClick={() => setOpenId(item.id)}
-              className="panel-glow group w-full overflow-hidden p-0 text-left hover:-translate-y-1"
+              style={{ padding: 0 }}
+              className="panel-glow group w-full overflow-hidden text-left hover:-translate-y-1"
             >
               <span className="block aspect-[4/3] overflow-hidden rounded-t-xl bg-secondary">
                 <img
