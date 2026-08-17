@@ -10,7 +10,8 @@ import Cybersecurity from "./pages/Cybersecurity";
 import SoftwareDevelopment from "./pages/SoftwareDevelopment";
 import Labs from "./pages/Labs";
 import Projects from "./pages/Projects";
-import ElectricalElectronics from "./pages/ElectricalElectronics";
+import Electrical from "./pages/Electrical";
+import Electronics from "./pages/Electronics";
 import TechnicalRepair from "./pages/TechnicalRepair";
 import Experience from "./pages/Experience";
 import Journal from "./pages/Journal";
@@ -34,10 +35,11 @@ const App = () => (
             <Route path="/software-development" element={<SoftwareDevelopment />} />
             <Route path="/labs" element={<Labs />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/electrical-electronics" element={<ElectricalElectronics />} />
+            <Route path="/electrical-electronics" element={<Electrical />} />
             {/* Profile aliases */}
             <Route path="/development" element={<SoftwareDevelopment />} />
-            <Route path="/electrical" element={<ElectricalElectronics />} />
+            <Route path="/electrical" element={<Electrical />} />
+            <Route path="/electronics" element={<Electronics />} />
             <Route path="/repair" element={<TechnicalRepair />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/journal" element={<Journal />} />
