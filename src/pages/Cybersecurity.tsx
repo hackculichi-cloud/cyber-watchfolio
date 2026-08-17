@@ -21,6 +21,8 @@ import { cybersecuritySkills } from "@/data/skills";
 import { profileBySlug } from "@/data/profiles";
 import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
+import WorkGrid from "@/components/work/WorkGrid";
+import { worksFor } from "@/data/works";
 import { site } from "@/data/site";
 
 const profile = profileBySlug("cybersecurity");
