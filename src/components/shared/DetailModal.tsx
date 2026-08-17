@@ -11,13 +11,11 @@ interface DetailModalProps {
 
 const DetailModal = ({ open, onOpenChange, title, subtitle, children }: DetailModalProps) => (
   <Dialog open={open} onOpenChange={onOpenChange}>
-    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-background/95 backdrop-blur-md border-primary/30 shadow-[0_0_40px_hsl(120_100%_40%/0.15)]">
+    <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/25 bg-background/95 backdrop-blur-xl">
       <DialogHeader>
-        <DialogTitle className="font-display text-xl neon-text">
-          {">"} {title}
-        </DialogTitle>
+        <DialogTitle className="text-xl font-semibold tracking-tight">{title}</DialogTitle>
         {subtitle && (
-          <DialogDescription className="text-xs text-muted-foreground font-mono">
+          <DialogDescription className="text-xs uppercase tracking-[0.16em] text-muted-foreground">
             {subtitle}
           </DialogDescription>
         )}

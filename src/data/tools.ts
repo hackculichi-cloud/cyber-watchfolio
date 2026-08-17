@@ -17,10 +17,17 @@ export const toolsByProfile: Record<ProfileSlug, ToolGroup[]> = {
   electrical: [
     { title: "Measurement", items: ["Multimeter", "Add your equipment here"] },
     { title: "Installation", items: ["Hand tools", "Add your equipment here"] },
+    { title: "Safety", items: ["PPE", "Add your equipment here"] },
+  ],
+  electronics: [
+    { title: "Measurement", items: ["Multimeter", "Oscilloscope (learning)"] },
+    { title: "Rework", items: ["Soldering iron", "Add your equipment here"] },
+    { title: "Prototyping", items: ["Breadboard", "Add your components here"] },
   ],
   repair: [
     { title: "Diagnostics", items: ["Multimeter", "Add your equipment here"] },
     { title: "Rework", items: ["Soldering iron", "Add your equipment here"] },
+    { title: "Disassembly", items: ["Precision toolkit", "Add your equipment here"] },
   ],
 };
 
