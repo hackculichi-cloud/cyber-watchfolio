@@ -129,6 +129,21 @@ const Cybersecurity = () => {
         )}
       </section>
 
+      <section id="projects" className="scroll-mt-32 border-y border-border bg-surface/40">
+        <div className="container mx-auto px-4 py-16">
+          <SectionHeading
+            eyebrow="Projects"
+            title="Security projects & write-ups"
+            description="Visual project cards with objective, environment, tooling, evidence screenshots and results."
+          />
+          <WorkGrid
+            items={worksFor("cybersecurity")}
+            emptyTitle="Security projects coming soon"
+            emptyDescription="Each slot becomes a project card with lab screenshots, tooling, results and a write-up link."
+          />
+        </div>
+      </section>
+
       <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
           <SectionHeading eyebrow="Gallery" title="Lab & tooling screenshots" />

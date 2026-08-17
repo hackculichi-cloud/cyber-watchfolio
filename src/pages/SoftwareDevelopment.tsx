@@ -78,13 +78,28 @@ const SoftwareDevelopment = () => {
       </section>
 
       <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow="Projects" title="Development projects" />
+        <SectionHeading
+          eyebrow="Projects"
+          title="Development projects"
+          description="Image-first project cards: screenshots, stack, live demo, repository and what I learned."
+        />
+        <WorkGrid
+          items={worksFor("development")}
+          emptyTitle="Screenshots coming soon"
+          emptyDescription="Each slot becomes a project card with real screenshots, stack, demo link and takeaways."
+        />
+
         {projects.length ? (
-          <div className="grid gap-4 md:grid-cols-2">
-            {projects.map((p) => (
-              <ProjectCard key={p.id} project={p} />
-            ))}
-          </div>
+          <>
+            <h3 className="mb-4 mt-12 text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              Repositories
+            </h3>
+            <div className="grid gap-4 md:grid-cols-2">
+              {projects.map((p) => (
+                <ProjectCard key={p.id} project={p} />
+              ))}
+            </div>
+          </>
         ) : (
           <EmptyState
             title="No development projects published yet"
