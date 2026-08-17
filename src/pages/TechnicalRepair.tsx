@@ -1,3 +1,4 @@
+import { Smartphone, Laptop, Gamepad2 } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
@@ -7,7 +8,10 @@ import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
-import { practicalEntries, trainingTracks } from "@/data/electrical";
+import WorkGrid from "@/components/work/WorkGrid";
+import RepairCaseCard from "@/components/repair/RepairCaseCard";
+import { worksFor } from "@/data/works";
+import { repairCases, repairDeviceTypes, repairsFor, type RepairDeviceType } from "@/data/repairs";
 import { profileBySlug } from "@/data/profiles";
 import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
@@ -15,123 +19,136 @@ import { site } from "@/data/site";
 
 const profile = profileBySlug("repair");
 
-const TechnicalRepair = () => {
-  const tracks = trainingTracks.filter((t) => t.anchor === "repair");
-  const entries = practicalEntries.filter((e) => /repair/i.test(e.track));
+const icons = { Smartphones: Smartphone, Laptops: Laptop, Consoles: Gamepad2 } as const;
+const anchors: Record<RepairDeviceType, string> = {
+  Smartphones: "smartphones",
+  Laptops: "laptops",
+  Consoles: "consoles",
+};
+
+const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
+  const meta = repairDeviceTypes.find((d) => d.type === type)!;
+  const Icon = icons[type];
+  const cases = repairsFor(type);
 
   return (
-    <>
-      <Seo
-        title={`Technical Repair | ${site.shortName}`}
-        description="Device repair training: smartphone diagnostics, component-level work and testing, with console repair planned."
-        path="/repair"
-      />
-      <ProfileHero profile={profile} />
-      <ProfileSectionNav sections={profile.sections} />
+    <section id={anchors[type]} className="container mx-auto scroll-mt-32 px-4 py-16">
+      <div className="mb-8 flex items-start gap-4">
+        <span className="glow-ring grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
+          <Icon className="h-6 w-6" aria-hidden />
+        </span>
+        <div>
+          <div className="flex flex-wrap items-center gap-3">
+            <h2 className="text-2xl font-semibold md:text-3xl">{type}</h2>
+            <Tag variant="primary">{meta.status}</Tag>
+          </div>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">{meta.description}</p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {meta.scope.map((s) => (
+              <Tag key={s}>{s}</Tag>
+            ))}
+          </div>
+        </div>
+      </div>
 
-      <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow="Overview"
-          title="Hands-on device repair"
-          description="Practical repair training documented honestly as learning in progress — diagnostics, disassembly, component replacement and testing."
-        />
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            { title: "Smartphone repair", body: "Diagnostics, screens, batteries, boards and reassembly testing.", tag: "In training" },
-            { title: "Component-level work", body: "Inspection, measurement and soldering practice on real hardware.", tag: "Learning" },
-            { title: "Console repair", body: "Planned future learning track — not started yet.", tag: "Planned" },
-          ].map((c) => (
-            <div key={c.title} className="panel-glow hover:-translate-y-1">
-              <Tag variant="primary">{c.tag}</Tag>
-              <h3 className="mt-3 text-base font-semibold">{c.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-            </div>
+      {cases.length ? (
+        <div className="space-y-6">
+          {cases.map((r) => (
+            <RepairCaseCard key={r.id} repair={r} />
           ))}
         </div>
-      </section>
-
-      <section id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40">
-        <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow="Training" title="Repair learning tracks" />
-          <div className="grid gap-4 md:grid-cols-2">
-            {tracks.map((track) => (
-              <article key={track.id} className="panel-glow hover:-translate-y-1">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-base font-semibold">{track.title}</h3>
-                  <Tag variant={track.status === "Planned" ? "muted" : "primary"}>{track.status}</Tag>
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{track.description}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {track.topics.map((t) => (
-                    <Tag key={t}>{t}</Tag>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="work" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow="Repair log"
-          title="Documented repairs & diagnostics"
-          description="Each entry records the device, the fault, the diagnostic path and the result."
+      ) : (
+        <EmptyState
+          title={`No ${type.toLowerCase()} cases published yet`}
+          description="Each published case documents before, diagnosis, repair and after with real photos."
         />
-        {entries.length ? (
-          <div className="grid gap-4 md:grid-cols-2">
-            {entries.map((entry) => (
-              <article key={entry.id} className="panel-glow hover:-translate-y-1">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-base font-semibold">{entry.title}</h3>
-                  <Tag variant="primary">{entry.track}</Tag>
-                </div>
-                <p className="mt-1 text-xs text-muted-foreground">{entry.date}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{entry.summary}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {entry.skills.map((s) => (
-                    <Tag key={s}>{s}</Tag>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            title="Repair entries coming soon"
-            description="Add an entry to the practice log data file and it appears here automatically."
-          />
-        )}
-      </section>
-
-      <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
-        <div className="container mx-auto px-4 py-16">
-          <SectionHeading
-            eyebrow="Gallery"
-            title="Repair photos"
-            description="Before/after documentation of real repairs, components and workshop practice."
-          />
-          <Gallery
-            items={galleryFor("repair")}
-            emptyTitle="No repair photos published yet"
-            emptyDescription="Add photos to the gallery data file — before/after pairs are supported out of the box."
-          />
-        </div>
-      </section>
-
-      <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow="Tools" title="Equipment & tooling" />
-        <ProfileTools groups={toolsByProfile.repair} />
-      </section>
-
-      <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
-        <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow="CV" title="CV for this profile" />
-          <ProfileCvBlock cvIds={profile.cvIds} />
-        </div>
-      </section>
-    </>
+      )}
+    </section>
   );
 };
+
+const TechnicalRepair = () => (
+  <>
+    <Seo
+      title={`Technical Repair | ${site.shortName}`}
+      description="Device repair portfolio: smartphones, laptops and consoles documented as before, diagnosis, repair and after."
+      path="/repair"
+    />
+    <ProfileHero profile={profile} />
+    <ProfileSectionNav sections={profile.sections} />
+
+    <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
+      <SectionHeading
+        eyebrow="Overview"
+        title="A documented repair workshop"
+        description="Every repair follows the same visual structure so the process — not just the result — is visible."
+      />
+      <ol className="grid gap-3 md:grid-cols-4">
+        {[
+          { label: "Before", body: "Device received, reported problem and initial state." },
+          { label: "Diagnosis", body: "Tests, measurements and the confirmed fault." },
+          { label: "Repair", body: "Step-by-step work performed, tools and components." },
+          { label: "After", body: "Verification, final result and notes." },
+        ].map((s, i) => (
+          <li key={s.label} className="glass-panel p-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+              {String(i + 1).padStart(2, "0")} · {s.label}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <div className="border-y border-border bg-surface/40">
+      <DeviceSection type="Smartphones" />
+    </div>
+    <DeviceSection type="Laptops" />
+    <div className="border-y border-border bg-surface/40">
+      <DeviceSection type="Consoles" />
+    </div>
+
+    <section id="work" className="container mx-auto scroll-mt-32 px-4 py-16">
+      <SectionHeading
+        eyebrow="Repair log"
+        title="Repair projects"
+        description="Image-first repair projects with device, work performed, tools, components and results."
+      />
+      <WorkGrid
+        items={worksFor("repair")}
+        placeholderSlots={6}
+        emptyTitle="Real repair photos pending"
+        emptyDescription={`These slots are reserved for documented repairs${repairCases.length ? "" : " — before, during and after photos of my own work"}.`}
+      />
+    </section>
+
+    <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
+      <div className="container mx-auto px-4 py-16">
+        <SectionHeading
+          eyebrow="Gallery"
+          title="Workshop photos"
+          description="Before/after documentation of real repairs, components and workshop practice."
+        />
+        <Gallery
+          items={galleryFor("repair")}
+          emptyTitle="No repair photos published yet"
+          emptyDescription="Add photos to the gallery data file — before/after pairs are supported out of the box."
+        />
+      </div>
+    </section>
+
+    <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
+      <SectionHeading eyebrow="Tools" title="Equipment & tooling" />
+      <ProfileTools groups={toolsByProfile.repair} />
+    </section>
+
+    <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
+      <div className="container mx-auto px-4 py-16">
+        <SectionHeading eyebrow="CV" title="CV for this profile" />
+        <ProfileCvBlock cvIds={profile.cvIds} />
+      </div>
+    </section>
+  </>
+);
 
 export default TechnicalRepair;
