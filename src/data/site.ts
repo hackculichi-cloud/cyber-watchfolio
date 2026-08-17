@@ -32,13 +32,21 @@ export const navigation: NavItem[] = [
   },
   {
     label: "Electrical & Electronics",
-    href: "/electrical-electronics",
+    href: "/electrical",
     children: [
-      { label: "Electrical", href: "/electrical-electronics#electrical" },
-      { label: "Electronics", href: "/electrical-electronics#electronics" },
+      { label: "Electrical", href: "/electrical" },
+      { label: "Electronics", href: "/electronics" },
     ],
   },
-  { label: "Technical Repair", href: "/repair" },
+  {
+    label: "Technical Repair",
+    href: "/repair",
+    children: [
+      { label: "Smartphones", href: "/repair#smartphones" },
+      { label: "Laptops", href: "/repair#laptops" },
+      { label: "Consoles", href: "/repair#consoles" },
+    ],
+  },
   { label: "Experience", href: "/experience" },
   { label: "Journal", href: "/journal" },
   { label: "CV", href: "/cv" },
