@@ -41,7 +41,14 @@ const Cybersecurity = () => {
         description="Blue-team focused cybersecurity work: SOC fundamentals, detection playbooks and documented incident investigations."
         path="/cybersecurity"
       />
-      <ProfileHero profile={profile} />
+      <ProfileHero profile={profile}>
+        <Button asChild>
+          <a href="#investigations">View investigations</a>
+        </Button>
+        <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
+          <a href="#labs">Security labs</a>
+        </Button>
+      </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
