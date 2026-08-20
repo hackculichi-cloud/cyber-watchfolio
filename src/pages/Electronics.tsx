@@ -9,6 +9,7 @@ import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
+import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import { worksFor } from "@/data/works";
 import { practicalEntries, trainingTracks } from "@/data/electrical";
@@ -31,7 +32,13 @@ const Electronics = () => {
         path="/electronics"
       />
       <ProfileHero profile={profile}>
-        <div className="flex flex-wrap gap-4 text-sm">
+        <Button asChild>
+          <a href="#projects">View projects</a>
+        </Button>
+        <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
+          <a href="#tracks">My training</a>
+        </Button>
+        <div className="flex w-full flex-wrap gap-4 pt-2 text-sm">
           <Link to="/electrical" className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline">
             Electrical profile <ArrowRight className="h-3.5 w-3.5" />
           </Link>

@@ -8,6 +8,7 @@ import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
+import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import RepairCaseCard from "@/components/repair/RepairCaseCard";
 import { worksFor } from "@/data/works";
@@ -74,7 +75,14 @@ const TechnicalRepair = () => (
       description="Device repair portfolio: smartphones, laptops and consoles documented as before, diagnosis, repair and after."
       path="/repair"
     />
-    <ProfileHero profile={profile} />
+    <ProfileHero profile={profile}>
+      <Button asChild>
+        <a href="#work">Repair log</a>
+      </Button>
+      <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
+        <a href="#smartphones">Smartphone repairs</a>
+      </Button>
+    </ProfileHero>
     <ProfileSectionNav sections={profile.sections} />
 
     <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">

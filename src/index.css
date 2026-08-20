@@ -362,3 +362,11 @@ html { scroll-behavior: smooth; }
     );
   }
 }
+
+@layer utilities {
+  /* Slow cinematic push-in used by the profile hero photography. */
+  @keyframes hero-zoom {
+    from { transform: scale(1.12); }
+    to { transform: scale(1.02); }
+  }
+}
