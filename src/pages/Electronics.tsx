@@ -9,6 +9,7 @@ import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
+import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import { worksFor } from "@/data/works";
 import { practicalEntries, trainingTracks } from "@/data/electrical";
