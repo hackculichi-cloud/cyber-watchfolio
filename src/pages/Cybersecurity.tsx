@@ -14,6 +14,7 @@ import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
+import { Button } from "@/components/ui/button";
 import { investigations } from "@/data/investigations";
 import { playbooks } from "@/data/playbooks";
 import { labs } from "@/data/labs";
