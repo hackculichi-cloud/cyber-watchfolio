@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { navigation } from "@/data/site";
+import logoCv from "@/assets/logo-cv.png";
 import { cn } from "@/lib/utils";
 
 const SiteHeader = () => {
@@ -26,12 +27,13 @@ const SiteHeader = () => {
       )}
     >
       <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label="Main">
-        <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary/15 text-sm font-bold text-primary">
-            CV
+        <Link to="/" className="group flex items-center gap-2 font-semibold tracking-tight">
+          <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg border border-primary/25 bg-primary/10 transition-transform duration-300 group-hover:scale-110">
+            <img src={logoCv} alt="Logotipo CV de Christian Velasco" width={36} height={36} className="h-6 w-6 object-contain" />
           </span>
-          <span className="text-sm sm:text-base">Christian Velasco</span>
+          <span className="text-sm transition-colors group-hover:text-primary sm:text-base">Christian Velasco</span>
         </Link>
+
 
         <ul className="hidden items-center gap-1 lg:flex">
           {navigation.map((item) => (
