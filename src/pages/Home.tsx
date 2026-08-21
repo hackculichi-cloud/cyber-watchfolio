@@ -140,31 +140,35 @@ const Home = () => (
           { title: "Cybersecurity fundamentals", body: "Networking, Linux, hardening and SOC-oriented monitoring and detection practice.", tag: "In progress" },
           { title: "Software development", body: "Web development, APIs and automation, with everything version controlled on GitHub.", tag: "In progress" },
           { title: "Technical training", body: "Residential electrical maintenance, general electronics and smartphone repair.", tag: "Studying" },
-        ].map((c) => (
-          <div key={c.title} className="panel-glow hover:-translate-y-1">
-            <Tag variant="accent">{c.tag}</Tag>
-            <h3 className="mt-3 text-base font-semibold">{c.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-          </div>
+        ].map((c, i) => (
+          <Reveal key={c.title} delay={i * 90} className="h-full">
+            <div className="panel-glow lift h-full">
+              <Tag variant="accent">{c.tag}</Tag>
+              <h3 className="mt-3 text-base font-semibold">{c.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+            </div>
+          </Reveal>
         ))}
       </div>
     </section>
 
     {/* CTA */}
     <section className="container mx-auto px-4 pb-24">
-      <div className="panel flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-        <div>
-          <h2 className="text-xl font-semibold">Open to IT, cybersecurity and development opportunities</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Available for junior roles, internships and collaborative technical projects.
-          </p>
+      <Reveal from="scale">
+        <div className="panel lift flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+          <div>
+            <h2 className="text-xl font-semibold">Open to IT, cybersecurity and development opportunities</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Available for junior roles, internships and collaborative technical projects.
+            </p>
+          </div>
+          <Button asChild size="lg" className="group">
+            <Link to="/contact">
+              Get in touch <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Button>
         </div>
-        <Button asChild size="lg">
-          <Link to="/contact">
-            Get in touch <ArrowRight className="h-4 w-4" />
-          </Link>
-        </Button>
-      </div>
+      </Reveal>
     </section>
   </>
 );
