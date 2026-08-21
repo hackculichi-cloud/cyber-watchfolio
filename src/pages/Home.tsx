@@ -106,20 +106,23 @@ const Home = () => (
     {/* Experience strength */}
     <section className="border-y border-border bg-surface/40">
       <div className="container mx-auto grid gap-10 px-4 py-16 md:grid-cols-[1.2fr_1fr] md:items-center">
-        <div>
+        <Reveal from="left">
           <p className="eyebrow">Professional strength</p>
           <h2 className="mt-2 text-2xl font-semibold md:text-3xl">{experienceSummary.headline}</h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">{experienceSummary.statement}</p>
-          <Link to="/experience" className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
-            See how it transfers to tech <ArrowRight className="h-3.5 w-3.5" />
+          <Link to="/experience" className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
+            See how it transfers to tech{" "}
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-3 gap-3">
-          {experienceSummary.stats.map((s) => (
-            <div key={s.label} className="panel text-center">
-              <p className="text-2xl font-bold text-primary">{s.value}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
-            </div>
+          {experienceSummary.stats.map((s, i) => (
+            <Reveal key={s.label} from="right" delay={i * 90}>
+              <div className="panel lift text-center">
+                <p className="text-2xl font-bold text-primary">{s.value}</p>
+                <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
