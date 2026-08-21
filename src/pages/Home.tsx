@@ -8,6 +8,8 @@ import Tag from "@/components/shared/Tag";
 import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
 import { experienceSummary } from "@/data/experience";
+import Reveal from "@/components/shared/Reveal";
+import logoCv from "@/assets/logo-cv.png";
 
 const Home = () => (
   <>
@@ -93,8 +95,10 @@ const Home = () => (
         description={site.intro}
       />
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {professionalProfiles.map((p) => (
-          <ProfileCard key={p.title} data={p} />
+        {professionalProfiles.map((p, i) => (
+          <Reveal key={p.title} delay={i * 90} className="h-full">
+            <ProfileCard data={p} />
+          </Reveal>
         ))}
       </div>
     </section>
