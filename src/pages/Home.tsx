@@ -20,7 +20,7 @@ const Home = () => (
     {/* Hero */}
     <section className="grid-bg relative overflow-hidden border-b border-border">
       <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-      <div className="container relative mx-auto px-4 py-24 md:py-32">
+      <div className="container relative mx-auto grid gap-12 px-4 py-24 md:py-32 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
         <div className="max-w-3xl">
           <p className="eyebrow animate-fade-in-up">{site.role}</p>
           <h1 className="animate-fade-in-up delay-100 mt-4 text-4xl font-bold leading-[1.1] md:text-6xl">
@@ -32,12 +32,12 @@ const Home = () => (
           </p>
 
           <div className="animate-fade-in-up delay-300 mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="lift">
               <Link to="/cybersecurity">
-                Explore my work <ArrowRight className="h-4 w-4" />
+                Explore my work <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline">
+            <Button asChild size="lg" variant="outline" className="lift">
               <Link to="/cv">
                 <Download className="h-4 w-4" /> View CV
               </Link>
@@ -59,8 +59,31 @@ const Home = () => (
             </a>
           </div>
         </div>
+
+        {/* Brand / portrait slot — replace logo-cv.png with a real photo when available */}
+        <Reveal from="scale" delay={120} className="justify-self-center">
+          <div className="animate-float-slow relative">
+            <div
+              aria-hidden
+              className="absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(circle,hsl(var(--primary)/0.22),transparent_70%)] blur-2xl"
+            />
+            <div className="animate-ring-pulse grid h-56 w-56 place-items-center overflow-hidden rounded-full border border-primary/30 bg-surface/60 backdrop-blur-md transition-transform duration-500 hover:scale-105 md:h-72 md:w-72">
+              <img
+                src={logoCv}
+                alt="Logotipo personal CV de Christian Armando Velasco Estrada"
+                width={288}
+                height={288}
+                className="h-32 w-32 object-contain md:h-40 md:w-40"
+              />
+            </div>
+            <p className="mt-4 text-center text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              Personal brand · photo slot
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
+
 
     {/* Professional profile */}
     <section className="container mx-auto px-4 py-20">
