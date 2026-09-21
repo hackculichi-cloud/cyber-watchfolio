@@ -46,6 +46,7 @@ const WorkDetail = ({ item }: { item: WorkItem }) => (
     )}
 
     <div className="grid gap-6 md:grid-cols-2">
+      <List title="Skills practiced" items={item.skills} />
       <List title="What I did" items={item.did} />
       <List title="What I learned" items={item.learned} />
       <List title="Results" items={item.results} />
@@ -63,11 +64,11 @@ const WorkDetail = ({ item }: { item: WorkItem }) => (
     {item.images?.length ? (
       <div>
         <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">Gallery</h4>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="columns-1 gap-3 sm:columns-2">
           {item.images.map((img) =>
             img.src ? (
-              <figure key={img.alt}>
-                <img src={img.src} alt={img.alt} loading="lazy" className="w-full rounded-lg border border-border object-cover" />
+              <figure key={img.alt} className="mb-3 break-inside-avoid">
+                <img src={img.src} alt={img.alt} loading="lazy" className="h-auto w-full rounded-lg border border-border" />
                 {img.caption && <figcaption className="mt-1.5 text-xs text-muted-foreground">{img.caption}</figcaption>}
               </figure>
             ) : (

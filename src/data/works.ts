@@ -24,6 +24,7 @@ export type WorkItem = {
   /** Difficulty, environment and other optional metadata (labs, write-ups). */
   difficulty?: "Beginner" | "Intermediate" | "Advanced";
   environment?: string;
+  skills?: string[];
   tools?: string[];
   technologies?: string[];
   objective?: string;

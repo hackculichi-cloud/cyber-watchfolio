@@ -4,18 +4,23 @@ import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
 import EmptyState from "@/components/shared/EmptyState";
-import Gallery from "@/components/shared/Gallery";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
+import ElectricalCurriculum from "@/components/electrical/ElectricalCurriculum";
+import ElectricalEvidenceGallery from "@/components/electrical/ElectricalEvidenceGallery";
 import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
-import { worksFor } from "@/data/works";
-import { practicalEntries, trainingTracks } from "@/data/electrical";
+import {
+  electricalSkills,
+  electricalToolGroups,
+  electricalTraining,
+  practicalEntries,
+  trainingTracks,
+} from "@/data/electrical";
+import { electricalEvidence, electricalProjects } from "@/data/electricalProjects";
 import { profileBySlug } from "@/data/profiles";
-import { galleryFor } from "@/data/gallery";
-import { toolsByProfile } from "@/data/tools";
 import { site } from "@/data/site";
 
 const profile = profileBySlug("electrical");
@@ -72,7 +77,13 @@ const Electrical = () => {
 
       <section id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow="Training" title="Current training" />
+          <SectionHeading
+            eyebrow="Electrical training"
+            title="Electrical Fundamentals & Industrial Electricity"
+            description="Completed through RED CONOCER — a structured foundation spanning theory, installations, control, motors, maintenance, diagnostics and renewable energy."
+          />
+          <ElectricalCurriculum training={electricalTraining} />
+          <h3 className="mb-4 mt-10 text-sm font-semibold uppercase tracking-[0.16em] text-primary">Related learning tracks</h3>
           <div className="grid gap-4 md:grid-cols-2">
             {tracks.map((track) => (
               <article key={track.id} className="panel-glow hover:-translate-y-1">
@@ -92,18 +103,36 @@ const Electrical = () => {
         </div>
       </section>
 
-      <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-16">
+      <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
-          eyebrow="Projects"
-          title="Electrical work & practice projects"
-          description="Image-first documentation: what I did, tools used, what I learned and before/after evidence."
+          eyebrow="Practical skills"
+          title="Electrical skills studied and practiced"
+          description="Foundation-level measurement, analysis and diagnostic activities developed through training and hands-on exercises."
         />
-        <WorkGrid
-          items={worksFor("electrical")}
-          placeholderSlots={6}
-          emptyTitle="Real photographs pending"
-          emptyDescription="These slots are reserved for my own photos of installations, wiring, panels, measurements and practical exercises."
-        />
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {electricalSkills.map((skill, index) => (
+            <li key={skill} className="panel flex min-h-24 flex-col justify-between p-4">
+              <span className="font-mono text-xs text-primary">{String(index + 1).padStart(2, "0")}</span>
+              <span className="mt-4 text-sm font-medium">{skill}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="projects" className="scroll-mt-32 border-y border-border bg-surface/40">
+        <div className="container mx-auto px-4 py-16">
+          <SectionHeading
+            eyebrow="Projects"
+            title="Electrical work & practice projects"
+            description="Real, image-first documentation of the work performed, tools used, skills practiced and lessons learned."
+          />
+          <WorkGrid
+            items={electricalProjects}
+            placeholderSlots={0}
+            emptyTitle="Real photographs pending"
+            emptyDescription="Electrical projects will appear here when real photographs and documentation are available."
+          />
+        </div>
       </section>
 
       <section id="practice" className="scroll-mt-32 border-y border-border bg-surface/40">
@@ -140,42 +169,24 @@ const Electrical = () => {
         </div>
       </section>
 
-      <section id="measurements" className="container mx-auto scroll-mt-32 px-4 py-16">
+      <section id="evidence" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
-          eyebrow="Measurements"
-          title="Measurement practice"
-          description="Structured measurement work — recorded readings, conditions and conclusions will be published here."
+          eyebrow="Practical work / Evidence"
+          title="Installations, wiring & measurements"
+          description="Real photographs from practical electrical training. Select any image to inspect it at a larger size."
         />
-        <div className="grid gap-4 md:grid-cols-3">
-          {["Voltage & continuity", "Load and circuit checks", "Fault isolation"].map((m) => (
-            <div key={m} className="panel-glow hover:-translate-y-1">
-              <h3 className="text-sm font-semibold">{m}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Measurement records are added as the training progresses — no results are invented.
-              </p>
-            </div>
-          ))}
-        </div>
+        <ElectricalEvidenceGallery items={electricalEvidence} />
       </section>
 
-      <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
+      <section id="tools" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
           <SectionHeading
-            eyebrow="Gallery"
-            title="Installations, panels & measurements"
-            description="Real photos of practice: installations, wiring, panels, measurements and before/after work."
+            eyebrow="Tools & equipment"
+            title="Equipment used in training and practice"
+            description="Measurement, installation, workshop and safety equipment used while developing electrical fundamentals."
           />
-          <Gallery
-            items={galleryFor("electrical")}
-            emptyTitle="No photos published yet"
-            emptyDescription="Add photos to the gallery data file — title, description, date, category and before/after pairs are supported."
-          />
+          <ProfileTools groups={electricalToolGroups} />
         </div>
-      </section>
-
-      <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow="Tools" title="Equipment & tooling" />
-        <ProfileTools groups={toolsByProfile.electrical} />
       </section>
 
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">

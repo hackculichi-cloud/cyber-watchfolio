@@ -2,6 +2,7 @@ import { ArrowRight, Calendar, ExternalLink, Github } from "lucide-react";
 import type { WorkItem } from "@/data/works";
 import Tag from "@/components/shared/Tag";
 import PlaceholderImage from "@/components/shared/PlaceholderImage";
+import { Button } from "@/components/ui/button";
 
 /** Image-first project card: large visual area, metadata, and a detail entry point. */
 const WorkCard = ({ item, onOpen }: { item: WorkItem; onOpen: (id: string) => void }) => (
@@ -36,22 +37,23 @@ const WorkCard = ({ item, onOpen }: { item: WorkItem; onOpen: (id: string) => vo
       )}
       <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{item.summary}</p>
 
-      {(item.technologies?.length || item.tools?.length) && (
+      {(item.skills?.length || item.technologies?.length || item.tools?.length) && (
         <div className="mt-4 flex flex-wrap gap-1.5">
-          {(item.technologies ?? item.tools ?? []).slice(0, 5).map((t) => (
+          {(item.skills ?? item.technologies ?? item.tools ?? []).slice(0, 5).map((t) => (
             <Tag key={t}>{t}</Tag>
           ))}
         </div>
       )}
 
       <div className="mt-5 flex items-center justify-between gap-3 border-t border-border pt-4">
-        <button
+        <Button
           type="button"
+          variant="link"
           onClick={() => onOpen(item.id)}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+          className="h-auto p-0 text-sm"
         >
           View project <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </button>
+        </Button>
         <span className="flex items-center gap-3 text-muted-foreground">
           {item.repo && (
             <a href={item.repo} target="_blank" rel="noreferrer noopener" aria-label="Repository" className="hover:text-primary">
