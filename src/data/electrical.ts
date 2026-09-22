@@ -108,6 +108,30 @@ export const electricalTraining = {
   ] satisfies ElectricalModule[],
 };
 
+export type ElectricalCredential = {
+  title: string;
+  issuer: string;
+  status: string;
+  /** Only fill these when the printed document confirms them. */
+  issuedOn?: string;
+  credentialId?: string;
+  verifyUrl?: string;
+  highlights: string[];
+  /** Optional photo/scan of the certificate. */
+  image?: { src: string; alt: string };
+};
+
+export const electricalCredential: ElectricalCredential = {
+  title: "Electrical Fundamentals & Industrial Electricity",
+  issuer: "RED CONOCER",
+  status: "Completed",
+  highlights: [
+    "8-module program covering theory, installations, control, motors, maintenance and renewable energy",
+    "Final project: electrical design, drawings, calculations, assembly and commissioning",
+    "Practical work documented with real installation exercises",
+  ],
+};
+
 export const electricalSkills = [
   "Voltage measurement",
   "Current measurement",

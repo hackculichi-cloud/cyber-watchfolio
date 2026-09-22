@@ -9,10 +9,12 @@ import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import ElectricalCurriculum from "@/components/electrical/ElectricalCurriculum";
+import ElectricalCredential from "@/components/electrical/ElectricalCredential";
 import ElectricalEvidenceGallery from "@/components/electrical/ElectricalEvidenceGallery";
 import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import {
+  electricalCredential,
   electricalSkills,
   electricalToolGroups,
   electricalTraining,
@@ -102,6 +104,16 @@ const Electrical = () => {
           </div>
         </div>
       </section>
+
+      <section id="certificate" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading
+          eyebrow="Certificate"
+          title="RED CONOCER credential"
+          description="Formal recognition of the completed electrical training program."
+        />
+        <ElectricalCredential credential={electricalCredential} />
+      </section>
+
 
       <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading

@@ -15,7 +15,7 @@ const ElectricalEvidenceGallery = ({ items }: { items: EvidenceItem[] }) => {
       <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
         {items.map((item, index) => (
           <figure key={`${item.projectId}-${item.alt}`} className="group relative mb-4 break-inside-avoid overflow-hidden rounded-lg border border-border bg-surface">
-            <img src={item.src} alt={item.alt} loading="lazy" className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]" />
+            <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="h-auto w-full bg-secondary/40 transition-transform duration-500 group-hover:scale-[1.02]" />
             <Button
               type="button"
               variant="secondary"
