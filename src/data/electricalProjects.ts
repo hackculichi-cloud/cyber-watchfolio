@@ -1,7 +1,7 @@
-import boardWork from "@/assets/electrical-training-board-work.jpg.asset.json";
-import groupPhoto from "@/assets/electrical-training-group.jpg.asset.json";
-import wiringWork from "@/assets/electrical-training-wiring.jpg.asset.json";
-import installationDetail from "@/assets/electrical-training-installation.jpg.asset.json";
+import boardWork from "@/assets/electrical-training-board-work-opt.jpg.asset.json";
+import groupPhoto from "@/assets/electrical-training-group-opt.jpg.asset.json";
+import wiringWork from "@/assets/electrical-training-wiring-opt.jpg.asset.json";
+import installationDetail from "@/assets/electrical-training-installation-opt.jpg.asset.json";
 import type { WorkItem } from "@/data/works";
 
 export const electricalProjects: WorkItem[] = [
