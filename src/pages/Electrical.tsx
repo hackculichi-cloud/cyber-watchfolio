@@ -9,10 +9,12 @@ import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import ElectricalCurriculum from "@/components/electrical/ElectricalCurriculum";
+import ElectricalCredential from "@/components/electrical/ElectricalCredential";
 import ElectricalEvidenceGallery from "@/components/electrical/ElectricalEvidenceGallery";
 import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import {
+  electricalCredential,
   electricalSkills,
   electricalToolGroups,
   electricalTraining,
