@@ -105,6 +105,16 @@ const Electrical = () => {
         </div>
       </section>
 
+      <section id="certificate" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading
+          eyebrow="Certificate"
+          title="RED CONOCER credential"
+          description="Formal recognition of the completed electrical training program."
+        />
+        <ElectricalCredential credential={electricalCredential} />
+      </section>
+
+
       <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
           eyebrow="Practical skills"
