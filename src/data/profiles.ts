@@ -152,6 +152,7 @@ export const profileIdentities: ProfileIdentity[] = [
     sections: [
       { id: "overview", label: "Overview" },
       { id: "tracks", label: "Training" },
+      { id: "certificate", label: "Certificate" },
       { id: "skills", label: "Skills" },
       { id: "projects", label: "Projects" },
       { id: "practice", label: "Practice" },
