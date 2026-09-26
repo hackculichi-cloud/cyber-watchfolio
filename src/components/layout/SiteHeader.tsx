@@ -4,11 +4,14 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { navigation } from "@/data/site";
 import logoCv from "@/assets/logo-cv.png";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/i18n/LanguageProvider";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const SiteHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -26,7 +29,7 @@ const SiteHeader = () => {
         scrolled ? "border-b border-border bg-background/85 backdrop-blur-xl" : "border-b border-transparent",
       )}
     >
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label="Main">
+      <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label={t("Main")}>
         <Link to="/" className="group flex items-center gap-2 font-semibold tracking-tight">
           <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg border border-primary/25 bg-primary/10 transition-transform duration-300 group-hover:scale-110">
             <img src={logoCv} alt="Logotipo CV de Christian Velasco" width={36} height={36} className="h-6 w-6 object-contain" />
@@ -37,7 +40,7 @@ const SiteHeader = () => {
 
         <ul className="hidden items-center gap-1 lg:flex">
           {navigation.map((item) => (
-            <li key={item.label} className="group relative">
+            <li key={t(item.label)} className="group relative">
               <NavLink
                 to={item.href}
                 className={({ isActive }) =>
@@ -47,7 +50,7 @@ const SiteHeader = () => {
                   )
                 }
               >
-                {item.label}
+                {t(item.label)}
                 {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
               </NavLink>
 
@@ -59,7 +62,7 @@ const SiteHeader = () => {
                       to={child.href}
                       className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                     >
-                      {child.label}
+                      {t(child.label)}
                     </Link>
                   ))}
                 </div>
@@ -68,27 +71,31 @@ const SiteHeader = () => {
           ))}
         </ul>
 
+        <div className="flex items-center gap-2">
+        <LanguageSwitcher compact className="hidden sm:flex lg:ml-2" />
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           className="rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground lg:hidden"
           aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? t("Close menu") : t("Open menu")}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
+        </div>
       </nav>
 
       {open && (
         <div className="border-t border-border bg-background/98 backdrop-blur-xl lg:hidden">
+          <div className="container mx-auto px-4 pt-4 sm:hidden"><LanguageSwitcher /></div>
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map((item) => (
-              <li key={item.label}>
+              <li key={t(item.label)}>
                 <Link
                   to={item.href}
                   className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
                 {item.children && (
                   <ul className="ml-3 border-l border-border pl-3">
@@ -98,7 +105,7 @@ const SiteHeader = () => {
                           to={child.href}
                           className="block rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                         >
-                          {child.label}
+                          {t(child.label)}
                         </Link>
                       </li>
                     ))}

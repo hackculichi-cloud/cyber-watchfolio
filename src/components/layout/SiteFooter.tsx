@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { navigation, site } from "@/data/site";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
-const SiteFooter = () => (
+const SiteFooter = () => {
+  const { t } = useLanguage();
+  return (
   <footer className="border-t border-border bg-surface/40">
     <div className="container mx-auto grid gap-10 px-4 py-14 md:grid-cols-[1.4fr_1fr]">
       <div>
         <p className="text-lg font-semibold">{site.shortName}</p>
-        <p className="mt-1 text-sm text-primary">{site.role}</p>
-        <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{site.tagline}</p>
+        <p className="mt-1 text-sm text-primary">{t(site.role)}</p>
+        <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{t(site.tagline)}</p>
 
         <div className="mt-6 flex items-center gap-3">
           <a href={`mailto:${site.email}`} aria-label="Email" className="rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary">
@@ -23,13 +26,13 @@ const SiteFooter = () => (
         </div>
       </div>
 
-      <nav aria-label="Footer">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Navigate</p>
+      <nav aria-label={t("Footer")}>
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{t("Navigate")}</p>
         <ul className="mt-4 grid grid-cols-2 gap-2 text-sm">
           {navigation.map((item) => (
             <li key={item.href}>
               <Link to={item.href} className="text-muted-foreground transition-colors hover:text-foreground">
-                {item.label}
+                {t(item.label)}
               </Link>
             </li>
           ))}
@@ -38,9 +41,10 @@ const SiteFooter = () => (
     </div>
 
     <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-      © {new Date().getFullYear()} {site.shortName}. Built with React, TypeScript and Tailwind CSS.
+      © {new Date().getFullYear()} {site.shortName}. {t("Built with React, TypeScript and Tailwind CSS.")}
     </div>
   </footer>
-);
+  );
+};
 
 export default SiteFooter;
