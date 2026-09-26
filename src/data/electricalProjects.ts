@@ -1,7 +1,8 @@
-import boardWork from "@/assets/electrical-training-board-work-opt.jpg.asset.json";
-import groupPhoto from "@/assets/electrical-training-group-opt.jpg.asset.json";
-import wiringWork from "@/assets/electrical-training-wiring-opt.jpg.asset.json";
-import installationDetail from "@/assets/electrical-training-installation-opt.jpg.asset.json";
+/** Real training photographs live in public/images/electrical/ (root-relative, works in Vite and Vercel). */
+const boardWork = "/images/electrical/training-board-work.jpg";
+const groupPhoto = "/images/electrical/training-group.jpg";
+const wiringWork = "/images/electrical/training-wiring.jpg";
+const installationDetail = "/images/electrical/training-installation.jpg";
 import type { WorkItem } from "@/data/works";
 
 export const electricalProjects: WorkItem[] = [
@@ -26,28 +27,28 @@ export const electricalProjects: WorkItem[] = [
       "Installation workflow from assembly through functional testing",
     ],
     cover: {
-      src: boardWork.url,
+      src: boardWork,
       alt: "Residential electrical training board with conduit, outlets, switches and lighting points",
       caption: "Training board during practical installation work.",
     },
     images: [
       {
-        src: boardWork.url,
+        src: boardWork,
         alt: "Electrical training board during hands-on assembly",
         caption: "Hands-on assembly of devices and enclosures on the training board.",
       },
       {
-        src: groupPhoto.url,
+        src: groupPhoto,
         alt: "Training group beside the energized residential electrical practice board",
         caption: "Training group with the assembled board and lighting circuits energized.",
       },
       {
-        src: wiringWork.url,
+        src: wiringWork,
         alt: "Close view of conductors being organized in the electrical practice board",
         caption: "Conductor routing and device-box wiring during the practical exercise.",
       },
       {
-        src: installationDetail.url,
+        src: installationDetail,
         alt: "Detail of conduit, junction boxes, outlet and lighting points on the practice board",
         caption: "Installation detail showing conduit runs, boxes, an outlet and lighting points.",
       },

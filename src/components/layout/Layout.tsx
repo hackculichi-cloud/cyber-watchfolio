@@ -3,10 +3,12 @@ import { Outlet, useLocation } from "react-router-dom";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import { profileForPath } from "@/data/profiles";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 const Layout = () => {
   const { pathname, hash } = useLocation();
   const profile = profileForPath(pathname);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (hash) {
@@ -25,7 +27,7 @@ const Layout = () => {
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
       >
-        Skip to content
+        {t("Skip to content")}
       </a>
       <SiteHeader />
       <main id="main" key={profile?.slug ?? "base"} className="profile-fade flex-1 pt-16">
