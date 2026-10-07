@@ -1,9 +1,12 @@
+import { generatedEs } from "./es.generated";
+
 /**
  * Spanish dictionary. Keys are the canonical English strings used across the UI
  * and data files; any string missing here falls back to English automatically.
  * Technical security terms (SIEM, IOC, Playbook, Phishing, etc.) stay in English.
  */
 export const es: Record<string, string> = {
+  ...generatedEs,
   // Navigation
   Home: "Inicio",
   About: "Sobre mí",
@@ -103,4 +106,37 @@ export const es: Record<string, string> = {
     "Detalle de canalización, cajas de registro, contacto y puntos de iluminación en el tablero de práctica",
   "Installation detail showing conduit runs, boxes, an outlet and lighting points.":
     "Detalle de instalación con tramos de canalización, cajas, un contacto y puntos de iluminación.",
+  "IT & Cybersecurity": "TI y Ciberseguridad",
+  "Electrical & Electronics (training)": "Eléctrica y electrónica (formación)",
+  "Technical repair (training)": "Reparación técnica (formación)",
+  "SOC / Blue Team direction": "Orientación SOC / Blue Team",
+  "View investigations": "Ver investigaciones",
+  "Security labs": "Laboratorios de seguridad",
+  "View projects": "Ver proyectos",
+  "My training": "Mi formación",
+  "Electrical profile": "Perfil de eléctrica",
+  "Electronics profile": "Perfil de electrónica",
+  "Technical repair profile": "Perfil de reparación técnica",
+  "Repair log": "Registro de reparaciones",
+  "Smartphone repairs": "Reparaciones de smartphones",
+  "Explore Profile": "Explorar perfil",
+  "View full investigation": "Ver investigación completa",
+  "View full playbook": "Ver Playbook completo",
+  "CLOSED": "CERRADO",
+  "CRITICAL": "CRÍTICO",
+  "HIGH": "ALTO",
+  "MEDIUM": "MEDIO",
+  "LOW": "BAJO",
+  "Download PDF": "Descargar PDF",
+  "Available on request": "Disponible bajo solicitud",
+  "All CV versions": "Todas las versiones del CV",
+  "Not published yet": "Aún no publicado",
+  "View certificate": "Ver certificado",
+  "Hide training details": "Ocultar detalles de la formación",
+  "View training details": "Ver detalles de la formación",
+  "Profile sections": "Secciones del perfil",
+  "Personal brand · photo slot": "Marca personal · espacio para foto",
+  "Before → During → After": "Antes → Durante → Después",
+  "Before / After": "Antes / Después",
+  "Before → Diagnosis → Repair → After": "Antes → Diagnóstico → Reparación → Después",
 };
