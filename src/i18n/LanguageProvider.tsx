@@ -3,6 +3,7 @@ import { es } from "./es";
 
 export type Lang = "en" | "es";
 const dictionaries: Record<Lang, Record<string, string>> = { en: {}, es };
+const spanishToEnglish = Object.fromEntries(Object.entries(es).map(([english, spanish]) => [spanish, english]));
 const STORAGE_KEY = "portfolio-lang";
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (text?: string) => string };
@@ -36,7 +37,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     const translate = (text: string) => {
       const exact = dictionaries[lang][text];
       if (exact) return exact;
-      if (lang === "en") return text;
+      if (lang === "en") return spanishToEnglish[text] ?? text;
 
       const patterns: Array<[RegExp, (...parts: string[]) => string]> = [
         [/^Explore the (.+) profile$/, (_match, name) => `Explorar el perfil de ${translate(name)}`],
