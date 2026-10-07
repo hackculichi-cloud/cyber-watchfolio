@@ -9,7 +9,7 @@ import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
 import { experienceSummary } from "@/data/experience";
 import Reveal from "@/components/shared/Reveal";
-import logoCv from "@/assets/logo-cv.png";
+import logoCulichi from "@/assets/culichi-logo-zorro.png";
 
 const Home = () => (
   <>
@@ -62,7 +62,7 @@ const Home = () => (
           </div>
         </div>
 
-        {/* Brand / portrait slot — replace logo-cv.png with a real photo when available */}
+        {/* Personal brand logo */}
         <Reveal from="scale" delay={120} className="justify-self-center">
           <div className="animate-float-slow relative">
             <div
@@ -71,15 +71,15 @@ const Home = () => (
             />
             <div className="animate-ring-pulse grid h-56 w-56 place-items-center overflow-hidden rounded-full border border-primary/30 bg-surface/60 backdrop-blur-md transition-transform duration-500 hover:scale-105 md:h-72 md:w-72">
               <img
-                src={logoCv}
-                alt="Logotipo personal CV de Christian Armando Velasco Estrada"
+                src={logoCulichi}
+                alt="Culichi"
                 width={288}
                 height={288}
-                className="h-32 w-32 object-contain md:h-40 md:w-40"
+                className="h-44 w-44 object-contain md:h-56 md:w-56"
               />
             </div>
             <p className="mt-4 text-center text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              Personal brand · photo slot
+              Culichi
             </p>
           </div>
         </Reveal>
