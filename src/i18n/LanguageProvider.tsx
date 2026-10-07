@@ -33,7 +33,27 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   }, [lang]);
 
   useEffect(() => {
-    const translate = (text: string) => dictionaries[lang][text] ?? text;
+    const translate = (text: string) => {
+      const exact = dictionaries[lang][text];
+      if (exact) return exact;
+      if (lang === "en") return text;
+
+      const patterns: Array<[RegExp, (...parts: string[]) => string]> = [
+        [/^Explore the (.+) profile$/, (_match, name) => `Explorar el perfil de ${translate(name)}`],
+        [/^Open (.+) photo$/, (_match, name) => `Abrir foto de ${translate(name)}`],
+        [/^No (.+) cases published yet$/, (_match, name) => `Aún no hay casos de ${translate(name)} publicados`],
+        [/^Issued by (.+)$/, (_match, issuer) => `Emitido por ${issuer}`],
+        [/^ID (.+)$/, (_match, id) => `ID ${id}`],
+        [/^(.+) — pending documentation$/, (_match, label) => `${translate(label)} — documentación pendiente`],
+        [/^(.+) — photo pending$/, (_match, label) => `${translate(label)} — foto pendiente`],
+        [/^→ view full playbook \((\d+) steps\)$/, (_match, count) => `→ ver Playbook completo (${count} pasos)`],
+      ];
+      for (const [pattern, render] of patterns) {
+        const match = text.match(pattern);
+        if (match) return render(...match);
+      }
+      return text;
+    };
 
     const translateTextNode = (node: Text) => {
       const parent = node.parentElement;
@@ -50,7 +70,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const translateElement = (element: Element) => {
-      const names = ["aria-label", "title", "placeholder", "alt"];
+      const names = ["aria-label", "title", "placeholder", "alt", "content"];
       let originals = sourceAttributes.current.get(element);
       if (!originals) {
         originals = new Map<string, string>();
@@ -95,7 +115,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ["aria-label", "title", "placeholder", "alt"],
+      attributeFilter: ["aria-label", "title", "placeholder", "alt", "content"],
     });
     return () => observer.disconnect();
   }, [lang]);
