@@ -137,6 +137,5 @@ export const es: Record<string, string> = {
   "Profile sections": "Secciones del perfil",
   "Personal brand · photo slot": "Marca personal · espacio para foto",
   "Before → During → After": "Antes → Durante → Después",
-  "Before / After": "Antes / Después",
   "Before → Diagnosis → Repair → After": "Antes → Diagnóstico → Reparación → Después",
 };
