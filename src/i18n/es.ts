@@ -140,7 +140,6 @@ export const es: Record<string, string> = {
   "Before → Diagnosis → Repair → After": "Antes → Diagnóstico → Reparación → Después",
   "A technology career built on curiosity and hands-on practice": "Una carrera tecnológica construida con curiosidad y experiencia práctica",
   "Learning journal": "Bitácora de aprendizaje",
-  "Journal": "Bitácora",
   "Primary profile": "Perfil principal",
   "Technical profile": "Perfil técnico",
   "Practical profile": "Perfil práctico",
