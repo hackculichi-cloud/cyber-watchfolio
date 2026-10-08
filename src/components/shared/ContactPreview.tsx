@@ -28,26 +28,26 @@ const ContactPreview = ({ channel, href, external, className, children }: Props)
       </a>
       </HoverCardTrigger>
       <Portal>
-      <HoverCardContent id={id} role="tooltip" data-contact-preview={channel} sideOffset={12} collisionPadding={16}
-        className="z-[60] w-[min(25rem,calc(100vw-2rem))] overflow-hidden rounded-lg border-primary/30 p-0 shadow-xl">
-          <div className="flex items-center gap-2 border-b border-border bg-secondary/60 px-4 py-2.5 text-xs text-muted-foreground">
-            <Icon className="h-4 w-4 text-primary" />
+      <HoverCardContent id={id} role="tooltip" data-contact-preview={channel} sideOffset={10} collisionPadding={16}
+        className="z-[60] w-[min(16rem,calc(100vw-2rem))] overflow-hidden rounded-lg border-primary/30 p-0 shadow-xl">
+          <div className="flex items-center gap-1.5 border-b border-border bg-secondary/60 px-3 py-1.5 text-[11px] text-muted-foreground">
+            <Icon className="h-3 w-3 shrink-0 text-primary" />
             <span className="min-w-0 flex-1 truncate">{channel === "Email" ? site.email : channel === "GitHub" ? "github.com/ByCulichi" : "linkedin.com/in/culichi"}</span>
-            <ExternalLink className="h-3 w-3" />
+            <ExternalLink className="h-2.5 w-2.5 shrink-0" />
           </div>
           {channel === "Email" ? (
-            <div className="space-y-4 p-5">
-              <p className="text-sm font-semibold">{spanish ? "Nuevo mensaje" : "New message"}</p>
-              <div className="border-b border-border pb-2 text-xs"><span className="text-muted-foreground">{spanish ? "Para: " : "To: "}</span>{site.email}</div>
-              <div className="border-b border-border pb-2 text-xs text-muted-foreground">{spanish ? "Asunto" : "Subject"}</div>
-              <div className="min-h-28 pt-2 text-sm text-muted-foreground">{spanish ? "Hola Christian," : "Hi Christian,"}</div>
-              <div className="flex items-center gap-2 border-t border-border pt-3 text-sm text-primary"><Send className="h-4 w-4" />{spanish ? "Enviar" : "Send"}</div>
+            <div className="space-y-2 p-3">
+              <p className="text-xs font-semibold">{spanish ? "Nuevo mensaje" : "New message"}</p>
+              <div className="border-b border-border pb-1.5 text-[11px]"><span className="text-muted-foreground">{spanish ? "Para: " : "To: "}</span>{site.email}</div>
+              <div className="border-b border-border pb-1.5 text-[11px] text-muted-foreground">{spanish ? "Asunto" : "Subject"}</div>
+              <div className="min-h-14 pt-1.5 text-xs text-muted-foreground">{spanish ? "Hola Christian," : "Hi Christian,"}</div>
+              <div className="flex items-center gap-1.5 border-t border-border pt-2 text-xs text-primary"><Send className="h-3 w-3" />{spanish ? "Enviar" : "Send"}</div>
             </div>
           ) : (
-            <div className="max-h-[min(32rem,65vh)] overflow-y-auto overscroll-contain">
+            <div className="max-h-[min(17rem,42vh)] overflow-y-auto overscroll-contain">
               <SmartImage src={new URL(channel === "GitHub" ? githubPreview.url : linkedinPreview.url, site.url).href}
                 alt={spanish ? `Captura de ${channel}` : `${channel} screenshot`} eager
-                imgClassName="!h-auto" className="min-h-48" />
+                imgClassName="!h-auto" className="min-h-32" />
             </div>
           )}
       </HoverCardContent>
