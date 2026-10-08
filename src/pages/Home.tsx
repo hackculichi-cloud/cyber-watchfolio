@@ -9,6 +9,7 @@ import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
 import { experienceSummary } from "@/data/experience";
 import Reveal from "@/components/shared/Reveal";
+import ContactPreview from "@/components/shared/ContactPreview";
 import logoCulichi from "@/assets/culichi-logo-zorro.png";
 
 const Home = () => (
