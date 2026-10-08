@@ -7,7 +7,7 @@ export const site = {
   intro:
     "My professional focus is IT, cybersecurity and software development. Alongside that path I keep developing multidisciplinary technical skills, and I bring more than 5 years of bilingual customer service experience to every team I join.",
   email: "christian@culichi.lat",
-  github: "https://github.com/ByCulichi/ByCulichi",
+  github: "https://github.com/ByCulichi",
   githubHandle: "github.com/ByCulichi",
   linkedin: "https://www.linkedin.com/in/culichi/?locale=es_ES",
   linkedinHandle: "linkedin.com/in/culichi",
