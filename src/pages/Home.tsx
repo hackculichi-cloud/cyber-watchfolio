@@ -78,9 +78,6 @@ const Home = () => (
                 className="h-44 w-44 object-contain md:h-56 md:w-56"
               />
             </div>
-            <p className="mt-4 text-center text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              Culichi
-            </p>
           </div>
         </Reveal>
       </div>

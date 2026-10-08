@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { navigation } from "@/data/site";
-import logoCv from "@/assets/logo-cv.png";
+import logoCv from "@/assets/culichi-logo-zorro.png";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -32,7 +32,7 @@ const SiteHeader = () => {
       <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label={t("Main")}>
         <Link to="/" className="group flex items-center gap-2 font-semibold tracking-tight">
           <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg border border-primary/25 bg-primary/10 transition-transform duration-300 group-hover:scale-110">
-            <img src={logoCv} alt="Logotipo CV de Christian Velasco" width={36} height={36} className="h-6 w-6 object-contain" />
+            <img src={logoCv} alt="Culichi fox logo" width={36} height={36} className="h-8 w-8 object-contain" />
           </span>
           <span className="text-sm transition-colors group-hover:text-primary sm:text-base">Christian Velasco</span>
         </Link>

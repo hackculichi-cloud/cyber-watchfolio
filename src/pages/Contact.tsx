@@ -5,12 +5,13 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
+import ContactPreview from "@/components/shared/ContactPreview";
 
 const channels = [
   { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: Mail, external: false },
   { label: "GitHub", value: site.githubHandle, href: site.github, icon: Github, external: true },
   { label: "LinkedIn", value: site.linkedinHandle, href: site.linkedin, icon: Linkedin, external: true },
-];
+] as const;
 
 const Contact = () => {
   const activeServices = services.filter((s) => s.active);
@@ -31,17 +32,17 @@ const Contact = () => {
       <section className="container mx-auto px-4 py-16">
         <div className="grid gap-4 md:grid-cols-3">
           {channels.map((c) => (
-            <a
+            <ContactPreview
               key={c.label}
+              channel={c.label}
               href={c.href}
-              target={c.external ? "_blank" : undefined}
-              rel={c.external ? "noreferrer noopener" : undefined}
+              external={c.external}
               className="panel-glow flex flex-col gap-2 hover:-translate-y-1"
             >
               <c.icon className="h-5 w-5 text-primary" aria-hidden />
               <span className="text-sm font-semibold">{c.label}</span>
               <span className="break-all text-sm text-muted-foreground">{c.value}</span>
-            </a>
+            </ContactPreview>
           ))}
         </div>
 
