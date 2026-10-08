@@ -9,6 +9,7 @@ import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
 import { experienceSummary } from "@/data/experience";
 import Reveal from "@/components/shared/Reveal";
+import ContactPreview from "@/components/shared/ContactPreview";
 import logoCulichi from "@/assets/culichi-logo-zorro.png";
 
 const Home = () => (
@@ -50,15 +51,15 @@ const Home = () => (
           </div>
 
           <div className="animate-fade-in-up delay-400 mt-8 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-primary">
+            <ContactPreview channel="Email" href={`mailto:${site.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-primary">
               <Mail className="h-4 w-4" /> {site.email}
-            </a>
-            <a href={site.github} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 transition-colors hover:text-primary">
+            </ContactPreview>
+            <ContactPreview channel="GitHub" href={site.github} external className="inline-flex items-center gap-2 transition-colors hover:text-primary">
               <Github className="h-4 w-4" /> {site.githubHandle}
-            </a>
-            <a href={site.linkedin} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 transition-colors hover:text-primary">
+            </ContactPreview>
+            <ContactPreview channel="LinkedIn" href={site.linkedin} external className="inline-flex items-center gap-2 transition-colors hover:text-primary">
               <Linkedin className="h-4 w-4" /> {site.linkedinHandle}
-            </a>
+            </ContactPreview>
           </div>
         </div>
 
