@@ -26,7 +26,6 @@ const PlaceholderImage = ({ label = "Real photo pending", className, pattern = "
   >
     <div className="flex flex-col items-center gap-2 px-4 text-center">
       <ImageIcon className="h-6 w-6 text-primary/60" aria-hidden />
-      <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">{label}</span>
     </div>
   </div>
 );
