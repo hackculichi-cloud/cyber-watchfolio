@@ -27,6 +27,12 @@ export const es: Record<string, string> = {
   CV: "CV",
   Contact: "Contacto",
   // Chrome
+  "New message": "Nuevo mensaje",
+  "To:": "Para:",
+  Subject: "Asunto",
+  Repositories: "Repositorios",
+  "Illustrative mockup · Not a live page": "Maqueta ilustrativa · No es una página en vivo",
+  "Culichi fox logo": "Logo de zorro Culichi",
   "Skip to content": "Saltar al contenido",
   "Open menu": "Abrir menú",
   "Close menu": "Cerrar menú",
