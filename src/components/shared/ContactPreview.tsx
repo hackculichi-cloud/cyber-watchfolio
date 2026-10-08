@@ -45,7 +45,7 @@ const ContactPreview = ({ channel, href, external, className, children }: Props)
             </div>
           ) : (
             <div className="max-h-[min(32rem,65vh)] overflow-y-auto overscroll-contain">
-              <SmartImage src={channel === "GitHub" ? githubPreview.url : linkedinPreview.url}
+              <SmartImage src={new URL(channel === "GitHub" ? githubPreview.url : linkedinPreview.url, site.url).href}
                 alt={spanish ? `Captura de ${channel}` : `${channel} screenshot`} eager
                 imgClassName="!h-auto" className="min-h-48" />
             </div>
