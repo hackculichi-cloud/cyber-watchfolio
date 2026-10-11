@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ExternalLink, Github, FileText } from "lucide-react";
 import type { WorkItem } from "@/data/works";
 import Tag from "@/components/shared/Tag";
@@ -26,6 +27,7 @@ const List = ({ title, items }: { title: string; items?: string[] }) => {
 /** Full project detail: hero image, metadata, process, results and gallery. */
 const WorkDetail = ({ item }: { item: WorkItem }) => {
   const { t } = useLanguage();
+  const [videoError, setVideoError] = useState(false);
   return (
   <div className="space-y-8">
     {item.cover?.src ? (
@@ -39,7 +41,7 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
       <Tag>{t(item.status)}</Tag>
       {item.difficulty && <Tag variant="accent">{t(item.difficulty)}</Tag>}
       {item.date && <Tag>{item.date}</Tag>}
-      {item.environment && <Tag>{item.environment}</Tag>}
+       {item.environment && <Tag>{t(item.environment)}</Tag>}
     </div>
 
     <p className="text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
@@ -85,7 +87,30 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
       </div>
     ) : null}
 
-    {(item.repo || item.demo || item.writeup) && (
+     {item.video && (
+       <section className="space-y-3">
+         <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t(item.video.title)}</h4>
+         <video
+           key={item.video.src}
+           controls
+           playsInline
+           preload="metadata"
+           poster={item.video.poster}
+           aria-label={t(item.video.title)}
+           className="aspect-video w-full rounded-lg border border-border bg-background object-contain"
+           onError={() => setVideoError(true)}
+         >
+           <source src={item.video.src} type="video/mp4" onError={() => setVideoError(true)} />
+           {t("Your browser cannot play this video.")}
+         </video>
+         {videoError && <p role="status" className="text-sm text-muted-foreground">{t("Video unavailable")}</p>}
+         <a href={item.video.src} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
+           <ExternalLink className="h-4 w-4" aria-hidden />{t("Open video")}
+         </a>
+       </section>
+     )}
+
+     {(item.repo || item.demo || item.writeup) && (
       <div className="flex flex-wrap items-center gap-5 border-t border-border pt-5 text-sm">
         {item.repo && (
           <a href={item.repo} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-primary hover:underline">
