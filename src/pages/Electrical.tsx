@@ -30,12 +30,13 @@ const profile = profileBySlug("electrical");
 const Electrical = () => {
   const tracks = trainingTracks.filter((t) => t.anchor === "electrical");
   const entries = practicalEntries.filter((e) => /electric/i.test(e.track));
+  const documentedPractice = electricalProjects.filter((project) => project.id !== "residential-training-board");
 
   return (
     <>
       <Seo
-        title={`Electrical | ${site.shortName}`}
-        description="Residential electrical maintenance training: installations, wiring, panels, measurements and diagnostics documented as learning in progress."
+        title={`Industrial Electrical Maintenance | ${site.shortName}`}
+        description="Electrical maintenance training, float-switch course exercises and real residential client work: outlet, switch and ceiling luminaire replacement."
         path="/electrical"
       />
       <ProfileHero profile={profile}>
@@ -59,14 +60,14 @@ const Electrical = () => {
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
           eyebrow="Overview"
-          title="Entering the electrical environment"
-          description="Formal training in residential electrical maintenance — safe practices first, then installations, measurements and diagnostics."
+          title="Electrical maintenance: training & experience"
+          description="Industrial electrical maintenance training, course practice and documented residential client work — each activity identified by its actual setting."
         />
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            { title: "Installations & wiring", body: "Residential circuits, wiring runs, outlets, switches and panel work.", tag: "Currently studying" },
-            { title: "Measurements", body: "Voltage, continuity and load checks with a multimeter and safe procedures.", tag: "Practice" },
-            { title: "Diagnostics", body: "Fault-finding methodology: isolate, measure, verify, document.", tag: "Practice" },
+            { title: "Float-switch control", body: "Electronivel course exercise documented with a photograph and demonstration video.", tag: "Practical training" },
+            { title: "Outlets & switches", body: "Residential client outlet and switch replacement, documented alongside power strips.", tag: "Residential client work" },
+            { title: "Lighting maintenance", body: "Two ceiling luminaires replaced at a client's residence, with installation and operating photographs.", tag: "Residential client work" },
           ].map((c) => (
             <div key={c.title} className="glass-panel p-5 transition-transform duration-300 hover:-translate-y-1">
               <Tag variant="primary">{c.tag}</Tag>
@@ -135,8 +136,8 @@ const Electrical = () => {
         <div className="container mx-auto px-4 py-16">
           <SectionHeading
             eyebrow="Projects"
-            title="Electrical work & practice projects"
-            description="Real, image-first documentation of the work performed, tools used, skills practiced and lessons learned."
+             title="Course practice & residential client work"
+             description="Real photographs and video documenting float-switch training, outlet and switch replacement, and two replacement ceiling luminaires."
           />
           <WorkGrid
             items={electricalProjects}
@@ -151,9 +152,23 @@ const Electrical = () => {
         <div className="container mx-auto px-4 py-16">
           <SectionHeading
             eyebrow="Practical experience"
-            title="Practice log"
-            description="Documented exercises: what the exercise was, which skills it built and what the result was."
+            title="Electrical maintenance experience"
+            description="Course exercises and residential client maintenance, documented separately with their supporting evidence."
           />
+          <div className="mb-6 divide-y divide-border">
+            {documentedPractice.map((project) => (
+              <article key={project.id} className="py-5 first:pt-0">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <h3 className="text-base font-semibold">{project.title}</h3>
+                  <Tag variant="primary">{project.category}</Tag>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.summary}</p>
+                <Button asChild variant="link" className="mt-2 h-auto px-0">
+                  <a href="#projects">View project evidence <ArrowRight className="ml-1.5 h-3.5 w-3.5" /></a>
+                </Button>
+              </article>
+            ))}
+          </div>
           {entries.length ? (
             <div className="grid gap-4 md:grid-cols-2">
               {entries.map((entry) => (
@@ -172,12 +187,12 @@ const Electrical = () => {
                 </article>
               ))}
             </div>
-          ) : (
+          ) : !documentedPractice.length ? (
             <EmptyState
               title="Practice entries coming soon"
               description="Exercises and diagnostics will be published here as the training progresses."
             />
-          )}
+          ) : null}
         </div>
       </section>
 
@@ -185,7 +200,7 @@ const Electrical = () => {
         <SectionHeading
           eyebrow="Practical work / Evidence"
           title="Installations, wiring & measurements"
-          description="Real photographs from practical electrical training. Select any image to inspect it at a larger size."
+          description="Real photographs from course practice and residential client maintenance."
         />
         <ElectricalEvidenceGallery items={electricalEvidence} />
       </section>

@@ -39,14 +39,14 @@ export const professionalProfiles: ProfileCardData[] = [
   },
   {
     slug: "electrical",
-    title: "Electrical",
+    title: "Industrial Electrical Maintenance",
     summary:
-      "Residential electrical maintenance training: installations, wiring, measurements and diagnostics.",
+      "Electrical maintenance training, float-switch course practice and documented residential client work.",
     href: "/electrical",
     icon: Zap,
     emphasis: "secondary",
     focus: ["Installations", "Wiring", "Measurements", "Diagnostics"],
-    status: "Currently studying",
+    status: "Training & client practice",
   },
   {
     slug: "electronics",
@@ -142,13 +142,13 @@ export const profileIdentities: ProfileIdentity[] = [
     slug: "electrical",
     path: "/electrical",
     aliases: ["/electrical-electronics"],
-    label: "Electrical",
+    label: "Industrial Electrical Maintenance",
     eyebrow: "Technical profile",
-    status: "Currently studying",
+    status: "Training & client practice",
     description:
-      "Residential electrical maintenance training: safe practices, installations, wiring, panels, measurements and diagnostics — documented honestly as learning in progress.",
+      "Electrical maintenance training with float-switch course exercises and residential client work: outlet and switch replacement, power strips and the replacement of two ceiling luminaires.",
     icon: Zap,
-    highlights: ["Residential installations", "Wiring & panels", "Measurements", "Safety practices"],
+    highlights: ["Float-switch practice", "Residential client work", "Wiring & panels", "Measurements"],
     sections: [
       { id: "overview", label: "Overview" },
       { id: "tracks", label: "Training" },
