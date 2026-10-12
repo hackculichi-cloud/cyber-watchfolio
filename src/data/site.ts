@@ -34,7 +34,7 @@ export const navigation: NavItem[] = [
     label: "Electrical & Electronics",
     href: "/electrical",
     children: [
-      { label: "Industrial Electrical Maintenance", href: "/electrical" },
+      { label: "Residential & Industrial Electrical Maintenance", href: "/electrical" },
       { label: "Electronics", href: "/electronics" },
     ],
   },

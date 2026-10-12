@@ -4,6 +4,7 @@ import PageHeader from "@/components/shared/PageHeader";
 import { Button } from "@/components/ui/button";
 import { cvVariants } from "@/data/cvs";
 import { site } from "@/data/site";
+import CvPreview from "@/components/shared/CvPreview";
 
 const CV = () => (
   <>
@@ -28,11 +29,13 @@ const CV = () => (
 
             <div className="mt-5">
               {cv.available ? (
+                <CvPreview preview={cv.preview} title={cv.title}>
                 <Button asChild variant="outline" size="sm">
-                  <a href={cv.file} download>
+                  <a href={cv.file} download target="_blank" rel="noopener noreferrer">
                     <Download className="h-4 w-4" /> Download PDF
                   </a>
                 </Button>
+                </CvPreview>
               ) : (
                 <span className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-xs text-muted-foreground">
                   <Lock className="h-3.5 w-3.5" /> Available on request

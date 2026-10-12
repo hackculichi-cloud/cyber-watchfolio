@@ -1,5 +1,9 @@
 # Roadmap
 
+- [x] Add uploaded electrical CV with compact hover preview and download
+- [x] Correct residential/industrial electrical titles and course translation
+- [x] Replace main navigation text with accessible category icons and validate
+
 - [x] Add float-switch course practice with photo and video
 - [x] Add residential client outlet/switch and two-luminaire replacement documentation
 - [x] Rename Electrical profile to Industrial Electrical Maintenance in ES/EN and validate media/detail views
