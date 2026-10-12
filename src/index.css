@@ -42,6 +42,13 @@
     --input: 217 33% 17%;
     --ring: 199 89% 60%;
 
+    /* Per-profile navigation accents */
+    --nav-cybersecurity: 199 89% 60%;
+    --nav-software: 142 71% 45%;
+    --nav-electrical: 48 96% 53%;
+    --nav-electronics: 27 96% 58%;
+    --nav-repair: 255 92% 76%;
+
     --radius: 0.75rem;
 
     --shadow-soft: 0 1px 2px hsl(222 47% 2% / 0.4), 0 8px 24px -12px hsl(222 47% 2% / 0.6);
@@ -126,6 +133,19 @@
   .eyebrow {
     @apply text-xs font-medium uppercase tracking-[0.2em] text-primary;
   }
+
+  /* Per-profile navigation icon and dropdown-dot accents */
+  .nav-ico-cybersecurity { color: hsl(var(--nav-cybersecurity)); }
+  .nav-ico-software { color: hsl(var(--nav-software)); }
+  .nav-ico-electrical { color: hsl(var(--nav-electrical)); }
+  .nav-ico-electronics { color: hsl(var(--nav-electronics)); }
+  .nav-ico-repair { color: hsl(var(--nav-repair)); }
+
+  .nav-dot-cybersecurity { background-color: hsl(var(--nav-cybersecurity)); }
+  .nav-dot-software { background-color: hsl(var(--nav-software)); }
+  .nav-dot-electrical { background-color: hsl(var(--nav-electrical)); }
+  .nav-dot-electronics { background-color: hsl(var(--nav-electronics)); }
+  .nav-dot-repair { background-color: hsl(var(--nav-repair)); }
 
   @keyframes fade-in-up {
     from { opacity: 0; transform: translateY(14px); }
