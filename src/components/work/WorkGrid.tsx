@@ -5,6 +5,8 @@ import WorkDetail from "@/components/work/WorkDetail";
 import DetailModal from "@/components/shared/DetailModal";
 import PlaceholderImage from "@/components/shared/PlaceholderImage";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 interface WorkGridProps {
   items: WorkItem[];
@@ -24,6 +26,7 @@ const WorkGrid = ({
   emptyDescription = "These slots are reserved for documented work with real photos and screenshots.",
   placeholderSlots = 3,
 }: WorkGridProps) => {
+  const { t } = useLanguage();
   const [category, setCategory] = useState("All");
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -61,9 +64,11 @@ const WorkGrid = ({
       {categories.length > 2 && (
         <div className="mb-6 flex flex-wrap gap-2">
           {categories.map((c) => (
-            <button
+            <Button
               key={c}
               type="button"
+              variant="outline"
+              size="sm"
               onClick={() => setCategory(c)}
               aria-pressed={category === c}
               className={cn(
@@ -73,8 +78,8 @@ const WorkGrid = ({
                   : "border-border text-muted-foreground hover:text-foreground",
               )}
             >
-              {c}
-            </button>
+              {t(c)}
+            </Button>
           ))}
         </div>
       )}
@@ -88,8 +93,8 @@ const WorkGrid = ({
       <DetailModal
         open={Boolean(current)}
         onOpenChange={(o) => !o && setOpenId(null)}
-        title={current?.title ?? ""}
-        subtitle={current ? `${current.category} · ${current.status}` : undefined}
+        title={t(current?.title)}
+        subtitle={current ? `${t(current.category)} · ${t(current.status)}` : undefined}
       >
         {current && <WorkDetail item={current} />}
       </DetailModal>

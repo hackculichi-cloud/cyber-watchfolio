@@ -7,6 +7,7 @@ import type { WorkItem } from "@/data/works";
 import { site } from "@/data/site";
 import floatBoard from "@/assets/electrical-practices/float-switch-practice-board.png.asset.json";
 import floatVideo from "@/assets/electrical-practices/float-switch-functional-test.mp4.asset.json";
+import floatVideoWebm from "@/assets/electrical-practices/float-switch-functional-test.webm.asset.json";
 import outletAfter from "@/assets/electrical-practices/residential-outlet-switch-after.png.asset.json";
 import outletComparison from "@/assets/electrical-practices/residential-outlet-switch-comparison.png.asset.json";
 import oldDevice from "@/assets/electrical-practices/residential-old-device-and-power-strip.png.asset.json";
@@ -94,7 +95,7 @@ export const electricalProjects: WorkItem[] = [
     did: ["Practiced float-switch control on the course training board.", "Documented the exercise with a board photograph and a video demonstration."],
     cover: floatPhoto,
     images: [floatPhoto],
-    video: { src: assetUrl(floatVideo), title: "Float-switch practice demonstration", poster: floatPhoto.src },
+    video: { src: assetUrl(floatVideo), webmSrc: assetUrl(floatVideoWebm), title: "Float-switch practice demonstration", poster: floatPhoto.src },
   },
   {
     id: "residential-outlet-switch-replacement",

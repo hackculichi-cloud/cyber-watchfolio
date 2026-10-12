@@ -100,7 +100,8 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
            className="aspect-video w-full rounded-lg border border-border bg-background object-contain"
            onError={() => setVideoError(true)}
          >
-           <source src={item.video.src} type="video/mp4" onError={() => setVideoError(true)} />
+           {item.video.webmSrc && <source src={item.video.webmSrc} type="video/webm" />}
+           <source src={item.video.src} type="video/mp4" />
            {t("Your browser cannot play this video.")}
          </video>
          {videoError && <p role="status" className="text-sm text-muted-foreground">{t("Video unavailable")}</p>}

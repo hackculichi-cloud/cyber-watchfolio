@@ -36,7 +36,7 @@ export type WorkItem = {
   /** Additional images shown in the detail view gallery. */
   images?: WorkImage[];
   /** Real footage associated with this work; playback is opt-in. */
-  video?: { src: string; title: string; poster?: string };
+  video?: { src: string; title: string; poster?: string; webmSrc?: string };
   before?: WorkImage;
   after?: WorkImage;
   repo?: string;
