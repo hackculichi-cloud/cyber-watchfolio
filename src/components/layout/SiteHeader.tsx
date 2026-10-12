@@ -10,9 +10,26 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Technology: Shield, "Electrical & Electronics": Zap, "Technical Repair": Wrench, Experience: BriefcaseBusiness, Journal: NotebookPen, CV: FileText, Contact: Mail };
-const NavIcon = ({ label }: { label: string }) => {
+
+/** Per-profile accent color utilities (defined in index.css). */
+const navIconColor: Record<string, string> = {
+  Technology: "nav-ico-cybersecurity",
+  Cybersecurity: "nav-ico-cybersecurity",
+  Labs: "nav-ico-cybersecurity",
+  "Software Development": "nav-ico-software",
+  Projects: "nav-ico-software",
+  "Electrical & Electronics": "nav-ico-electrical",
+  "Residential & Industrial Electrical Maintenance": "nav-ico-electrical",
+  Electronics: "nav-ico-electronics",
+  "Technical Repair": "nav-ico-repair",
+  Smartphones: "nav-ico-repair",
+  Laptops: "nav-ico-repair",
+  Consoles: "nav-ico-repair",
+};
+
+const NavIcon = ({ label, className }: { label: string; className?: string }) => {
   const Icon = navIcons[label] ?? FileText;
-  return <Icon className="h-5 w-5 shrink-0" aria-hidden />;
+  return <Icon className={cn("h-5 w-5 shrink-0", className)} aria-hidden />;
 };
 
 const SiteHeader = () => {
