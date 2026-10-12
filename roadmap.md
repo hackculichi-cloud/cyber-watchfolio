@@ -1,8 +1,8 @@
 # Roadmap
 
-- [ ] Add uploaded electrical CV with compact hover preview and download
-- [ ] Correct residential/industrial electrical titles and course translation
-- [ ] Replace main navigation text with accessible category icons and validate
+- [x] Add uploaded electrical CV with compact hover preview and download
+- [x] Correct residential/industrial electrical titles and course translation
+- [x] Replace main navigation text with accessible category icons and validate
 
 - [x] Add float-switch course practice with photo and video
 - [x] Add residential client outlet/switch and two-luminaire replacement documentation
