@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, Wrench, BriefcaseBusiness, NotebookPen, FileText, Mail, type LucideIcon } from "lucide-react";
 import { navigation } from "@/data/site";
 import logoCv from "@/assets/culichi-logo-zorro.png";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+
+const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Technology: Shield, "Electrical & Electronics": Zap, "Technical Repair": Wrench, Experience: BriefcaseBusiness, Journal: NotebookPen, CV: FileText, Contact: Mail };
+const NavIcon = ({ label }: { label: string }) => {
+  const Icon = navIcons[label] ?? FileText;
+  return <Icon className="h-5 w-5 shrink-0" aria-hidden />;
+};
 
 const SiteHeader = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -40,9 +48,12 @@ const SiteHeader = () => {
 
         <ul className="hidden items-center gap-1 lg:flex">
           {navigation.map((item) => (
-            <li key={t(item.label)} className="group relative">
+            <li key={item.href} className="group relative">
+              <Tooltip>
+              <TooltipTrigger asChild>
               <NavLink
                 to={item.href}
+                aria-label={t(item.label)}
                 className={({ isActive }) =>
                   cn(
                     "flex items-center gap-1 rounded-md px-3 py-2 text-sm transition-colors",
@@ -50,9 +61,12 @@ const SiteHeader = () => {
                   )
                 }
               >
-                {t(item.label)}
+                <NavIcon label={item.label} />
                 {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
               </NavLink>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">{t(item.label)}</TooltipContent>
+              </Tooltip>
 
               {item.children && (
                 <div className="invisible absolute left-0 top-full w-60 translate-y-1 rounded-xl border border-border bg-popover p-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
@@ -73,7 +87,7 @@ const SiteHeader = () => {
 
         <div className="flex items-center gap-2">
         <LanguageSwitcher compact className="hidden sm:flex lg:ml-2" />
-        <button
+        <Button variant="ghost" size="icon"
           type="button"
           onClick={() => setOpen((v) => !v)}
           className="rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground lg:hidden"
@@ -81,7 +95,7 @@ const SiteHeader = () => {
           aria-label={open ? t("Close menu") : t("Open menu")}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        </Button>
         </div>
       </nav>
 
@@ -93,9 +107,11 @@ const SiteHeader = () => {
               <li key={t(item.label)}>
                 <Link
                   to={item.href}
-                  className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+                  aria-label={t(item.label)}
+                   title={t(item.label)}
+                   className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-secondary"
                 >
-                  {t(item.label)}
+                  <NavIcon label={item.label} />
                 </Link>
                 {item.children && (
                   <ul className="ml-3 border-l border-border pl-3">

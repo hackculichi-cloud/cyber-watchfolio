@@ -39,7 +39,7 @@ export const professionalProfiles: ProfileCardData[] = [
   },
   {
     slug: "electrical",
-    title: "Industrial Electrical Maintenance",
+    title: "Residential & Industrial Electrical Maintenance",
     summary:
       "Electrical maintenance training, float-switch course practice and documented residential client work.",
     href: "/electrical",
@@ -142,7 +142,7 @@ export const profileIdentities: ProfileIdentity[] = [
     slug: "electrical",
     path: "/electrical",
     aliases: ["/electrical-electronics"],
-    label: "Industrial Electrical Maintenance",
+    label: "Residential & Industrial Electrical Maintenance",
     eyebrow: "Technical profile",
     status: "Training & client practice",
     description:

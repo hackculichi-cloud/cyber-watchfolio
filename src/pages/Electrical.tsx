@@ -35,7 +35,7 @@ const Electrical = () => {
   return (
     <>
       <Seo
-        title={`Industrial Electrical Maintenance | ${site.shortName}`}
+        title={`Residential & Industrial Electrical Maintenance | ${site.shortName}`}
         description="Electrical maintenance training, float-switch course exercises and real residential client work: outlet, switch and ceiling luminaire replacement."
         path="/electrical"
       />
