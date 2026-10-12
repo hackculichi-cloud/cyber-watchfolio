@@ -1,3 +1,7 @@
+import electricalPdf from "@/assets/christian-velasco-electrical.pdf.asset.json";
+import electricalPreview from "@/assets/electrical-cv-preview.jpg.asset.json";
+import { site } from "@/data/site";
+
 export type CvVariant = {
   id: string;
   title: string;
@@ -5,6 +9,7 @@ export type CvVariant = {
   /** Place the PDF in /public and update the path to publish it. */
   file: string;
   available: boolean;
+  preview?: string;
 };
 
 export const cvVariants: CvVariant[] = [
@@ -31,9 +36,10 @@ export const cvVariants: CvVariant[] = [
   },
   {
     id: "electrical",
-    title: "Electrical / Technical CV",
-    description: "Focused on electrical maintenance, electronics and device repair training.",
-    file: "/cv/christian-velasco-electrical.pdf",
-    available: false,
+    title: "Residential & Industrial Electrical Maintenance CV",
+    description: "Electrical CV covering residential and industrial maintenance, installations and technical training.",
+    file: new URL(electricalPdf.url, site.url).href,
+    preview: new URL(electricalPreview.url, site.url).href,
+    available: true,
   },
 ];

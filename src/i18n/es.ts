@@ -18,6 +18,11 @@ export const es: Record<string, string> = {
   "Electrical & Electronics": "Eléctrica y electrónica",
   Electrical: "Eléctrica",
   "Industrial Electrical Maintenance": "Mantenimiento eléctrico industrial",
+  "Residential & Industrial Electrical Maintenance": "Mantenimiento eléctrico residencial e industrial",
+  "Electrical Fundamentals & Industrial Electricity": "Fundamentos eléctricos y electricidad industrial",
+  "Residential & Industrial Electrical Maintenance CV": "CV de mantenimiento eléctrico residencial e industrial",
+  "Electrical CV covering residential and industrial maintenance, installations and technical training.": "CV de mantenimiento eléctrico residencial e industrial, instalaciones y formación técnica.",
+  "Electrical CV preview": "Vista previa del CV de mantenimiento eléctrico",
   "Electrical maintenance training, float-switch course practice and documented residential client work.":
     "Formación en mantenimiento eléctrico, práctica de curso con electronivel y trabajos residenciales de clientes documentados.",
   "Training & client practice": "Formación y prácticas con clientes",
