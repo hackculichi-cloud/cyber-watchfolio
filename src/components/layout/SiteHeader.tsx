@@ -27,6 +27,18 @@ const navIconColor: Record<string, string> = {
   Consoles: "nav-ico-repair",
 };
 
+const navDotColor: Record<string, string> = {
+  Cybersecurity: "nav-dot-cybersecurity",
+  Labs: "nav-dot-cybersecurity",
+  "Software Development": "nav-dot-software",
+  Projects: "nav-dot-software",
+  "Residential & Industrial Electrical Maintenance": "nav-dot-electrical",
+  Electronics: "nav-dot-electronics",
+  Smartphones: "nav-dot-repair",
+  Laptops: "nav-dot-repair",
+  Consoles: "nav-dot-repair",
+};
+
 const NavIcon = ({ label, className }: { label: string; className?: string }) => {
   const Icon = navIcons[label] ?? FileText;
   return <Icon className={cn("h-5 w-5 shrink-0", className)} aria-hidden />;
@@ -78,11 +90,12 @@ const SiteHeader = () => {
                   )
                 }
               >
-                <NavIcon label={item.label} />
+                <NavIcon label={item.label} className={navIconColor[item.label]} />
                 {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
               </NavLink>
               </TooltipTrigger>
-              <TooltipContent side="bottom">{t(item.label)}</TooltipContent>
+              {/* Parents open a dropdown; the label there would cover it. */}
+              {!item.children && <TooltipContent side="bottom">{t(item.label)}</TooltipContent>}
               </Tooltip>
 
               {item.children && (
@@ -91,8 +104,9 @@ const SiteHeader = () => {
                     <Link
                       key={child.href}
                       to={child.href}
-                      className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                      className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                     >
+                      <span aria-hidden className={cn("h-1.5 w-1.5 shrink-0 rounded-full", navDotColor[child.label])} />
                       {t(child.label)}
                     </Link>
                   ))}
@@ -128,7 +142,7 @@ const SiteHeader = () => {
                    title={t(item.label)}
                    className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-secondary"
                 >
-                  <NavIcon label={item.label} />
+                  <NavIcon label={item.label} className={navIconColor[item.label]} />
                 </Link>
                 {item.children && (
                   <ul className="ml-3 border-l border-border pl-3">
