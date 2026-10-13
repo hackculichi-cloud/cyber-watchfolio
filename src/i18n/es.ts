@@ -37,7 +37,6 @@ export const es: Record<string, string> = {
   Laptops: "Laptops",
   Consoles: "Consolas",
   Experience: "Experiencia",
-  Journal: "Bitácora",
   CV: "CV",
   Contact: "Contacto",
   // Chrome
@@ -215,7 +214,6 @@ export const es: Record<string, string> = {
   "Before → During → After": "Antes → Durante → Después",
   "Before → Diagnosis → Repair → After": "Antes → Diagnóstico → Reparación → Después",
   "A technology career built on curiosity and hands-on practice": "Una carrera tecnológica construida con curiosidad y experiencia práctica",
-  "Learning journal": "Bitácora de aprendizaje",
   "Primary profile": "Perfil principal",
   "Technical profile": "Perfil técnico",
   "Practical profile": "Perfil práctico",
