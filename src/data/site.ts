@@ -64,7 +64,6 @@ export const navigation: NavItem[] = [
     ],
   },
   { label: "Experience", href: "/experience" },
-  { label: "Journal", href: "/journal" },
   { label: "CV", href: "/cv" },
   { label: "Contact", href: "/contact" },
 ];

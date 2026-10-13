@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
-import EmptyState from "@/components/shared/EmptyState";
 import Gallery from "@/components/shared/Gallery";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
@@ -12,7 +11,7 @@ import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import { worksFor } from "@/data/works";
-import { practicalEntries, trainingTracks } from "@/data/electrical";
+import { trainingTracks } from "@/data/electrical";
 import { profileBySlug } from "@/data/profiles";
 import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
@@ -22,7 +21,6 @@ const profile = profileBySlug("electronics");
 
 const Electronics = () => {
   const tracks = trainingTracks.filter((t) => t.anchor === "electronics");
-  const entries = practicalEntries.filter((e) => /electronic/i.test(e.track));
 
   return (
     <>
@@ -123,28 +121,6 @@ const Electronics = () => {
               </li>
             ))}
           </ol>
-
-          <div className="mt-8">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-              Learning journal
-            </h3>
-            {entries.length ? (
-              <div className="grid gap-4 md:grid-cols-2">
-                {entries.map((entry) => (
-                  <article key={entry.id} className="panel-glow hover:-translate-y-1">
-                    <h4 className="text-base font-semibold">{entry.title}</h4>
-                    <p className="mt-1 text-xs text-muted-foreground">{entry.date}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{entry.summary}</p>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <EmptyState
-                title="Journal entries coming soon"
-                description="Exercises, measurements and findings are published here as the training progresses."
-              />
-            )}
-          </div>
         </div>
       </section>
 

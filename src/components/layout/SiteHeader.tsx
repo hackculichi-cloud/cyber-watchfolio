@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, BriefcaseBusiness, NotebookPen, FileText, Mail, type LucideIcon } from "lucide-react";
+import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, BriefcaseBusiness, FileText, Mail, type LucideIcon } from "lucide-react";
 import { navigation } from "@/data/site";
 import logoCv from "@/assets/culichi-logo-zorro.png";
 import { cn } from "@/lib/utils";
@@ -8,7 +8,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 
-const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, Experience: BriefcaseBusiness, Journal: NotebookPen, CV: FileText, Contact: Mail };
+const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, Experience: BriefcaseBusiness, CV: FileText, Contact: Mail };
 
 /** Per-profile accent color utilities (defined in index.css). */
 const navIconColor: Record<string, string> = {

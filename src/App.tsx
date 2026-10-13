@@ -15,7 +15,6 @@ import Electrical from "./pages/Electrical";
 import Electronics from "./pages/Electronics";
 import TechnicalRepair from "./pages/TechnicalRepair";
 import Experience from "./pages/Experience";
-import Journal from "./pages/Journal";
 import CV from "./pages/CV";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -44,7 +43,6 @@ const App = () => (
             <Route path="/electronics" element={<Electronics />} />
             <Route path="/repair" element={<TechnicalRepair />} />
             <Route path="/experience" element={<Experience />} />
-            <Route path="/journal" element={<Journal />} />
             <Route path="/cv" element={<CV />} />
             <Route path="/contact" element={<Contact />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
