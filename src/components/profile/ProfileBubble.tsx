@@ -30,7 +30,7 @@ const ProfileBubble = ({ compact, profile, open, onSelect, onDismiss }: Props) =
   };
   useEffect(() => () => clearTimeout(closeTimer.current), []);
   const id = `profile-preview-${profile.slug}`;
-  return <Popover open={open} onOpenChange={(value) => { keepOpen(); value ? onSelect() : onDismiss(); }}>
+  return <Popover open={open} onOpenChange={(value) => { keepOpen(); if (value) onSelect(); else onDismiss(); }}>
     <PopoverTrigger asChild>
       <button ref={trigger} type="button" className="orbit-node" aria-label={t(profile.title)} aria-pressed={open} aria-controls={id}
         onPointerEnter={(event) => { if (event.pointerType !== "touch") { keepOpen(); onSelect(); } }} onPointerLeave={leave}
