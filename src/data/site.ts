@@ -36,8 +36,24 @@ export const navigation: NavItem[] = [
   {
     label: "Residential & Industrial Electrical Maintenance",
     href: "/electrical",
+    children: [
+      { label: "Residential & Industrial Electrical Maintenance", href: "/electrical" },
+      { label: "Training", href: "/electrical#tracks" },
+      { label: "Projects", href: "/electrical#projects" },
+      { label: "Practical experience", href: "/electrical#practice" },
+      { label: "CV", href: "/electrical#cv" },
+    ],
   },
-  { label: "Electronics", href: "/electronics" },
+  {
+    label: "Electronics", href: "/electronics",
+    children: [
+      { label: "Electronics", href: "/electronics" },
+      { label: "Training", href: "/electronics#tracks" },
+      { label: "Projects", href: "/electronics#projects" },
+      { label: "Diagnostics & measurements", href: "/electronics#diagnostics" },
+      { label: "Tools", href: "/electronics#tools" },
+    ],
+  },
   {
     label: "Technical Repair",
     href: "/repair",

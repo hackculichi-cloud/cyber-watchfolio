@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, Experience: BriefcaseBusiness, Journal: NotebookPen, CV: FileText, Contact: Mail };
 
@@ -78,25 +77,20 @@ const SiteHeader = () => {
         <ul className="hidden items-center gap-1 lg:flex">
           {navigation.map((item) => (
             <li key={item.href} className="group relative">
-              <Tooltip>
-              <TooltipTrigger asChild>
               <NavLink
                 to={item.href}
+                end={item.href === "/"}
                 aria-label={t(item.label)}
                 className={({ isActive }) =>
                   cn(
-                    "flex items-center gap-1 rounded-md px-3 py-2 text-sm transition-colors",
-                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                    "flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors xl:px-3",
+                    isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary",
                   )
                 }
               >
-                <NavIcon label={item.label} className={navIconColor[item.label]} />
+                {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
                 {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
               </NavLink>
-              </TooltipTrigger>
-              {/* Parents open a dropdown; the label there would cover it. */}
-              {!item.children && <TooltipContent side="bottom">{t(item.label)}</TooltipContent>}
-              </Tooltip>
 
               {item.children && (
                 <div className="invisible absolute left-0 top-full w-60 translate-y-1 rounded-xl border border-border bg-popover p-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
@@ -106,7 +100,7 @@ const SiteHeader = () => {
                       to={child.href}
                       className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                     >
-                      <span aria-hidden className={cn("h-1.5 w-1.5 shrink-0 rounded-full", navDotColor[child.label])} />
+                      <span aria-hidden className={cn("h-1.5 w-1.5 shrink-0 rounded-full", navDotColor[item.label] ?? navDotColor[child.label] ?? "bg-primary")} />
                       {t(child.label)}
                     </Link>
                   ))}
@@ -140,9 +134,10 @@ const SiteHeader = () => {
                   to={item.href}
                   aria-label={t(item.label)}
                    title={t(item.label)}
-                   className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-secondary"
+                   className="inline-flex min-h-10 items-center gap-2 rounded-lg px-3 font-semibold text-foreground transition-colors hover:bg-secondary hover:text-primary"
                 >
-                  <NavIcon label={item.label} className={navIconColor[item.label]} />
+                  {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
+                  {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
                 </Link>
                 {item.children && (
                   <ul className="ml-3 border-l border-border pl-3">
