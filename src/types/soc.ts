@@ -121,6 +121,7 @@ export interface Investigation extends SharedMeta {
   tools?: string[];
   shortDescription: string;
   caseInfo: CaseInfo;
+  context?: { kind: "Educational exercise"; platform: string; note?: string };
   executiveSummary: ExecutiveSummary;
   alertInfo?: AlertInfo;
   triage?: Triage;

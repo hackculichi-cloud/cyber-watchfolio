@@ -1,3 +1,4 @@
+import { useLanguage } from "@/i18n/LanguageProvider";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import type { TrainingModule } from "@/data/smartphoneRepair";
 
 /** Curriculum timeline with an expandable detailed topic list. */
 const TrainingCurriculum = ({ modules }: { modules: TrainingModule[] }) => {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
 
   return (
@@ -17,10 +19,10 @@ const TrainingCurriculum = ({ modules }: { modules: TrainingModule[] }) => {
             <span className="glow-ring absolute -left-[1.9rem] top-2 grid h-3 w-3 place-items-center rounded-full border border-primary/50 bg-primary/40" />
             <div className="panel-glow transition-transform duration-300 hover:-translate-y-1">
               <div className="flex flex-wrap items-center gap-3">
-                <Tag variant="primary">{m.day}</Tag>
-                <h3 className="text-base font-semibold">{m.title}</h3>
+                <Tag variant="primary">{t(m.day)}</Tag>
+                <h3 className="text-base font-semibold">{t(m.title)}</h3>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.summary}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(m.summary)}</p>
               <div
                 className={cn(
                   "grid transition-all duration-500",
@@ -28,9 +30,9 @@ const TrainingCurriculum = ({ modules }: { modules: TrainingModule[] }) => {
                 )}
               >
                 <ul className="flex flex-wrap gap-1.5 overflow-hidden">
-                  {m.topics.map((t) => (
-                    <li key={t}>
-                      <Tag>{t}</Tag>
+                  {m.topics.map((entry) => (
+                    <li key={entry}>
+                      <Tag>{t(entry)}</Tag>
                     </li>
                   ))}
                 </ul>
@@ -46,7 +48,7 @@ const TrainingCurriculum = ({ modules }: { modules: TrainingModule[] }) => {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
-        {open ? "Hide training details" : "View training details"}
+        {t(open ? "Hide training details" : "View training details")}
         <ChevronDown className={cn("ml-2 h-4 w-4 transition-transform", open && "rotate-180")} aria-hidden />
       </Button>
     </div>

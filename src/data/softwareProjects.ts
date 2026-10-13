@@ -22,7 +22,7 @@ export const softwareProjects: SoftwareProject[] = [
     description:
       "This website: a React + TypeScript + Tailwind personal brand platform with a reusable, data-driven content architecture for labs, projects and write-ups.",
     stack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    repo: "https://github.com/ByCulichi",
+    repo: "https://github.com/hackculichi-cloud/cyber-watchfolio",
     status: "In progress",
     category: "Software",
   },

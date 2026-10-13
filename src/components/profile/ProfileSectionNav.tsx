@@ -1,9 +1,11 @@
+import { useLanguage } from "@/i18n/LanguageProvider";
 import { useEffect, useState } from "react";
 import type { ProfileSection } from "@/data/profiles";
 import { cn } from "@/lib/utils";
 
 /** Sticky in-page navigation for a profile page. Scroll-spy driven, keyboard accessible. */
 const ProfileSectionNav = ({ sections }: { sections: ProfileSection[] }) => {
+  const { t } = useLanguage();
   const [active, setActive] = useState(sections[0]?.id);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const ProfileSectionNav = ({ sections }: { sections: ProfileSection[] }) => {
 
   return (
     <nav
-      aria-label="Profile sections"
+      aria-label={t("Profile sections")}
       className="sticky top-16 z-30 border-b border-border bg-background/85 backdrop-blur-xl"
     >
       <ul className="container mx-auto flex gap-1 overflow-x-auto px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -42,7 +44,7 @@ const ProfileSectionNav = ({ sections }: { sections: ProfileSection[] }) => {
                   : "text-muted-foreground hover:bg-secondary hover:text-foreground",
               )}
             >
-              {s.label}
+              {t(s.label)}
             </a>
           </li>
         ))}

@@ -4,6 +4,7 @@ import type { WorkItem } from "@/data/works";
 import Tag from "@/components/shared/Tag";
 import PlaceholderImage from "@/components/shared/PlaceholderImage";
 import BeforeAfter from "@/components/shared/BeforeAfter";
+import WorkImageGallery from "@/components/shared/WorkImageGallery";
 import SmartImage from "@/components/shared/SmartImage";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -29,108 +30,108 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
   const { t } = useLanguage();
   const [videoError, setVideoError] = useState(false);
   return (
-  <div className="space-y-8">
-    {item.cover?.src ? (
-      <SmartImage src={item.cover.src} alt={t(item.cover.alt)} eager className="aspect-[16/10] w-full rounded-lg border border-border" />
-    ) : (
-      <PlaceholderImage className="aspect-[16/9] w-full" label={t("Project image pending")} />
-    )}
+    <div className="space-y-8">
+      {item.cover?.src ? (
+        <SmartImage src={item.cover.src} alt={t(item.cover.alt)} eager className="aspect-[16/10] w-full rounded-lg border border-border" />
+      ) : (
+        <PlaceholderImage className="aspect-[16/9] w-full" label={t("Project image pending")} />
+      )}
 
-    <div className="flex flex-wrap gap-1.5">
-      <Tag variant="primary">{t(item.category)}</Tag>
-      <Tag>{t(item.status)}</Tag>
-      {item.difficulty && <Tag variant="accent">{t(item.difficulty)}</Tag>}
-      {item.date && <Tag>{item.date}</Tag>}
-       {item.environment && <Tag>{t(item.environment)}</Tag>}
-    </div>
-
-    <p className="text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
-
-    {item.objective && (
-      <div>
-        <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Objective")}</h4>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(item.objective)}</p>
+      <div className="flex flex-wrap gap-1.5">
+        <Tag variant="primary">{t(item.category)}</Tag>
+        <Tag>{t(item.status)}</Tag>
+        {item.difficulty && <Tag variant="accent">{t(item.difficulty)}</Tag>}
+        {item.date && <Tag>{t(item.date)}</Tag>}
+        {item.environment && <Tag>{t(item.environment)}</Tag>}
       </div>
-    )}
 
-    <div className="grid gap-6 md:grid-cols-2">
-      <List title="Skills practiced" items={item.skills} />
-      <List title="What I did" items={item.did} />
-      <List title="What I learned" items={item.learned} />
-      <List title="Results" items={item.results} />
-      <List title="Tools used" items={item.tools} />
-      <List title="Technologies" items={item.technologies} />
-    </div>
+      <p className="text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
 
-    {(item.before || item.after) && (
-      <div>
-        <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Before / After")}</h4>
-        <BeforeAfter before={item.before} after={item.after} />
+      {item.objective && (
+        <div>
+          <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Objective")}</h4>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(item.objective)}</p>
+        </div>
+      )}
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <List title={t("Skills practiced")} items={item.skills} />
+        <List title={t("What I did")} items={item.did} />
+        <List title={t("What I learned")} items={item.learned} />
+        <List title={t("Results")} items={item.results} />
+        <List title={t("Tools used")} items={item.tools} />
+        <List title={t("Technologies")} items={item.technologies} />
       </div>
-    )}
 
-    {item.images?.length ? (
-      <div>
-        <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Gallery")}</h4>
-        <div className="columns-1 gap-3 sm:columns-2">
-          {item.images.map((img) =>
-            img.src ? (
-              <figure key={img.alt} className="mb-3 break-inside-avoid">
-                <SmartImage src={img.src} alt={t(img.alt)} className="aspect-[4/3] w-full rounded-lg border border-border" />
-                {img.caption && <figcaption className="mt-1.5 text-xs text-muted-foreground">{t(img.caption)}</figcaption>}
-              </figure>
-            ) : (
-              <PlaceholderImage key={img.alt} className="aspect-[4/3] w-full" label={t(img.alt)} />
-            ),
+      {item.procedure?.length ? <section className="space-y-2">
+        <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Procedure")}</h4>
+        <ol className="list-decimal space-y-2 pl-5 text-sm text-muted-foreground">
+          {item.procedure.map((step, index) => <li key={index}>{t(step)}</li>)}
+        </ol>
+      </section> : null}
+      {item.technicalExplanation && <section className="space-y-2">
+        <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Technical explanation")}</h4>
+        <p className="text-sm leading-relaxed text-muted-foreground">{t(item.technicalExplanation)}</p>
+      </section>}
+
+      {(item.before || item.after) && (
+        <div>
+          <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Before / After")}</h4>
+          <BeforeAfter before={item.before} after={item.after} />
+        </div>
+      )}
+
+      {item.images?.length ? (
+        <div>
+          <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Gallery")}</h4>
+          <WorkImageGallery images={item.images} title={item.title} />
+        </div>
+      ) : null}
+
+      {item.video && (
+        <section className="space-y-3">
+          <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t(item.video.title)}</h4>
+          <video
+            key={item.video.src}
+            controls
+            playsInline
+            preload="metadata"
+            poster={item.video.poster}
+            aria-label={t(item.video.title)}
+            className="aspect-video w-full rounded-lg border border-border bg-background object-contain"
+            onError={() => setVideoError(true)}
+          >
+            {item.video.webmSrc && <source src={item.video.webmSrc} type="video/webm" />}
+            <source src={item.video.src} type="video/mp4" />
+            {t("Your browser cannot play this video.")}
+          </video>
+          {videoError && <p role="status" className="text-sm text-muted-foreground">{t("Video unavailable")}</p>}
+          <a href={item.video.src} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
+            <ExternalLink className="h-4 w-4" aria-hidden />{t("Open video")}
+          </a>
+        </section>
+      )}
+
+      {(item.repo || item.demo || item.writeup) && (
+        <div className="flex flex-wrap items-center gap-5 border-t border-border pt-5 text-sm">
+          {item.repo && (
+            <a href={item.repo} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-primary hover:underline">
+              <Github className="h-4 w-4" /> {t("Repository")}
+            </a>
+          )}
+          {item.demo && (
+            <a href={item.demo} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-primary hover:underline">
+              <ExternalLink className="h-4 w-4" /> {t("Live demo")}
+            </a>
+          )}
+          {item.writeup && (
+            <a href={item.writeup} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-primary hover:underline">
+              <FileText className="h-4 w-4" /> {t("Write-up")}
+            </a>
           )}
         </div>
-      </div>
-    ) : null}
-
-     {item.video && (
-       <section className="space-y-3">
-         <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t(item.video.title)}</h4>
-         <video
-           key={item.video.src}
-           controls
-           playsInline
-           preload="metadata"
-           poster={item.video.poster}
-           aria-label={t(item.video.title)}
-           className="aspect-video w-full rounded-lg border border-border bg-background object-contain"
-           onError={() => setVideoError(true)}
-         >
-           {item.video.webmSrc && <source src={item.video.webmSrc} type="video/webm" />}
-           <source src={item.video.src} type="video/mp4" />
-           {t("Your browser cannot play this video.")}
-         </video>
-         {videoError && <p role="status" className="text-sm text-muted-foreground">{t("Video unavailable")}</p>}
-         <a href={item.video.src} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
-           <ExternalLink className="h-4 w-4" aria-hidden />{t("Open video")}
-         </a>
-       </section>
-     )}
-
-     {(item.repo || item.demo || item.writeup) && (
-      <div className="flex flex-wrap items-center gap-5 border-t border-border pt-5 text-sm">
-        {item.repo && (
-          <a href={item.repo} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-primary hover:underline">
-            <Github className="h-4 w-4" /> {t("Repository")}
-          </a>
-        )}
-        {item.demo && (
-          <a href={item.demo} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-primary hover:underline">
-            <ExternalLink className="h-4 w-4" /> {t("Live demo")}
-          </a>
-        )}
-        {item.writeup && (
-          <a href={item.writeup} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-primary hover:underline">
-            <FileText className="h-4 w-4" /> {t("Write-up")}
-          </a>
-        )}
-      </div>
-    )}
-  </div>
+      )}
+    </div>
   );
 };
 

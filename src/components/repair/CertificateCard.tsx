@@ -1,3 +1,4 @@
+import { useLanguage } from "@/i18n/LanguageProvider";
 import { useState } from "react";
 import { Award, ZoomIn } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -9,6 +10,7 @@ const skills = ["Diagnostics", "Disassembly", "Soldering & hot air", "Microsolde
 
 /** Certificate preview card with a lightbox viewer. Only certificate-visible data is shown. */
 const CertificateCard = () => {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
 
   return (
@@ -18,11 +20,11 @@ const CertificateCard = () => {
         onClick={() => setOpen(true)}
         style={{ padding: 0 }}
         className="group relative overflow-hidden rounded-lg border border-border"
-        aria-label="View certificate"
+        aria-label={t("View certificate")}
       >
         <img
           src={trainingProvider.image}
-          alt={`${trainingProvider.course} certificate issued by ${trainingProvider.name}`}
+          alt={t(`${trainingProvider.course} certificate issued by ${trainingProvider.name}`)}
           loading="lazy"
           decoding="async"
           className="h-full max-h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -39,9 +41,9 @@ const CertificateCard = () => {
           </span>
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-              {trainingProvider.name}
+              {t(trainingProvider.name)}
             </p>
-            <h3 className="text-base font-semibold">{trainingProvider.course}</h3>
+            <h3 className="text-base font-semibold">{t(trainingProvider.course)}</h3>
           </div>
         </div>
 
@@ -53,8 +55,8 @@ const CertificateCard = () => {
             { k: "Instructor", v: trainingProvider.instructor },
           ].map((row) => (
             <div key={row.k} className="rounded-lg border border-border bg-surface-2/40 p-3">
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{row.k}</dt>
-              <dd className="mt-1 text-sm text-foreground/90">{row.v}</dd>
+              <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{t(row.k)}</dt>
+              <dd className="mt-1 text-sm text-foreground/90">{t(row.v)}</dd>
             </div>
           ))}
         </dl>
@@ -62,27 +64,24 @@ const CertificateCard = () => {
         <div className="flex flex-wrap gap-1.5">
           {skills.map((s) => (
             <Tag key={s} variant="accent">
-              {s}
+              {t(s)}
             </Tag>
           ))}
         </div>
 
-        <Button variant="outline" onClick={() => setOpen(true)}>
-          View certificate
-        </Button>
+        <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-3xl">
           <DialogTitle className="text-base">
-            {trainingProvider.course} — {trainingProvider.name}
+            {t(trainingProvider.course)} — {t(trainingProvider.name)}
           </DialogTitle>
-          <DialogDescription className="sr-only">
-            Certificate of participation issued by {trainingProvider.name}
+          <DialogDescription className="sr-only">{t("Certificate of participation issued by ")}{t(trainingProvider.name)}
           </DialogDescription>
           <img
             src={trainingProvider.image}
-            alt={`${trainingProvider.course} certificate issued by ${trainingProvider.name}`}
+            alt={t(`${trainingProvider.course} certificate issued by ${trainingProvider.name}`)}
             className="max-h-[75vh] w-full rounded-lg border border-border object-contain"
           />
         </DialogContent>

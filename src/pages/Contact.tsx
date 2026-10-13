@@ -1,3 +1,4 @@
+import { useLanguage } from "@/i18n/LanguageProvider";
 import { Github, Linkedin, Mail, MessageSquare } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import PageHeader from "@/components/shared/PageHeader";
@@ -14,19 +15,20 @@ const channels = [
 ] as const;
 
 const Contact = () => {
+  const { t } = useLanguage();
   const activeServices = services.filter((s) => s.active);
 
   return (
     <>
       <Seo
-        title={`Contact | ${site.shortName}`}
-        description="Get in touch with Christian Velasco about IT, cybersecurity and software development opportunities or collaborations."
+        title={t(`Contact | ${site.shortName}`)}
+        description={t("Get in touch with Christian Velasco about IT, cybersecurity and software development opportunities or collaborations.")}
         path="/contact"
       />
       <PageHeader
-        eyebrow="Contact"
-        title="Let's talk"
-        description="Open to junior roles, internships, collaborations and technical conversations. I reply in English or Spanish."
+        eyebrow={t("Contact")}
+        title={t("Let's talk")}
+        description={t("Open to junior roles, internships, collaborations and technical conversations. I reply in English or Spanish.")}
       />
 
       <section className="container mx-auto px-4 py-16">
@@ -40,8 +42,8 @@ const Contact = () => {
               className="panel-glow flex flex-col gap-2 hover:-translate-y-1"
             >
               <c.icon className="h-5 w-5 text-primary" aria-hidden />
-              <span className="text-sm font-semibold">{c.label}</span>
-              <span className="break-all text-sm text-muted-foreground">{c.value}</span>
+              <span className="text-sm font-semibold">{t(c.label)}</span>
+              <span className="break-all text-sm text-muted-foreground">{t(c.value)}</span>
             </ContactPreview>
           ))}
         </div>
@@ -50,27 +52,25 @@ const Contact = () => {
           <div className="flex items-start gap-3">
             <MessageSquare className="mt-0.5 h-5 w-5 text-accent" aria-hidden />
             <div>
-              <p className="text-sm font-medium">Currently available</p>
-              <p className="text-sm text-muted-foreground">
-                Looking for opportunities in IT, cybersecurity and software development.
-              </p>
+              <p className="text-sm font-medium">{t("Currently available")}</p>
+              <p className="text-sm text-muted-foreground">{t("Looking for opportunities in IT, cybersecurity and software development.")}</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-1.5">
             {site.languages.map((l) => (
-              <Tag key={l} variant="primary">{l}</Tag>
+              <Tag key={l} variant="primary">{t(l)}</Tag>
             ))}
           </div>
         </div>
 
         {activeServices.length > 0 && (
           <div className="mt-16">
-            <SectionHeading eyebrow="Services" title="Independent services" />
+            <SectionHeading eyebrow={t("Services")} title={t("Independent services")} />
             <div className="grid gap-4 md:grid-cols-2">
               {activeServices.map((s) => (
                 <div key={s.id} className="panel-glow hover:-translate-y-1">
-                  <h3 className="text-base font-semibold">{s.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
+                  <h3 className="text-base font-semibold">{t(s.title)}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{t(s.description)}</p>
                 </div>
               ))}
             </div>

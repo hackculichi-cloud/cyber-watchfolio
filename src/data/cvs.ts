@@ -38,8 +38,8 @@ export const cvVariants: CvVariant[] = [
     id: "electrical",
     title: "Residential & Industrial Electrical Maintenance CV",
     description: "Electrical CV covering residential and industrial maintenance, installations and technical training.",
-    file: new URL(electricalPdf.url, site.url).href,
-    preview: new URL(electricalPreview.url, site.url).href,
+    file: new URL(electricalPdf.url, site.assetOrigin).href,
+    preview: new URL(electricalPreview.url, site.assetOrigin).href,
     available: true,
   },
 ];

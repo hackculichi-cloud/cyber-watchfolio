@@ -1,4 +1,4 @@
-export type TrainingStatus = "Currently Studying" | "In Training" | "Learning" | "Planned";
+export type TrainingStatus = "Currently Studying" | "In Training" | "Learning" | "Planned" | "Completed";
 
 export type ElectricalModule = {
   id: string;
@@ -9,7 +9,7 @@ export type ElectricalModule = {
 export const electricalTraining = {
   title: "Electrical Fundamentals & Industrial Electricity",
   provider: "RED CONOCER",
-  status: "Completed",
+  status: "Currently Studying",
   summary:
     "Eight-module training covering electrical theory, measurement, circuits, installations, control, motors, maintenance, diagnostics and renewable energy.",
   modules: [
@@ -122,14 +122,10 @@ export type ElectricalCredential = {
 };
 
 export const electricalCredential: ElectricalCredential = {
-  title: "Electrical Fundamentals & Industrial Electricity",
-  issuer: "RED CONOCER",
+  title: "Electrical Systems: Reading Drawings and Schematics",
+  issuer: "LinkedIn Learning",
   status: "Completed",
-  highlights: [
-    "8-module program covering theory, installations, control, motors, maintenance and renewable energy",
-    "Final project: electrical design, drawings, calculations, assembly and commissioning",
-    "Practical work documented with real installation exercises",
-  ],
+  highlights: ["Completed course on reading electrical drawings and schematics."],
 };
 
 export const electricalSkills = [
@@ -164,11 +160,26 @@ export const trainingTracks: TrainingTrack[] = [
   {
     id: "electrical",
     anchor: "electrical",
-    title: "Residential Electrical Maintenance",
+    title: "Electrical Fundamentals & Industrial Electricity",
     status: "Currently Studying",
-    description:
-      "Formal training in residential electrical maintenance: safe practices, installations, diagnostics and repair fundamentals.",
+    description: "RED CONOCER electrical training in progress. Curriculum topics describe the program, not completed qualifications.",
     topics: ["Safety practices", "Residential installations", "Diagnostics", "Maintenance"],
+  },
+  {
+    id: "electrical-linkedin",
+    anchor: "electrical",
+    title: "Electrical Systems: Reading Drawings and Schematics",
+    status: "Completed",
+    description: "LinkedIn Learning course completed. Certificate image pending upload.",
+    topics: ["Electrical diagrams"],
+  },
+  {
+    id: "electrical-udemy",
+    anchor: "electrical",
+    title: "Basic Electrical Installations",
+    status: "Currently Studying",
+    description: "Udemy course in progress. Curriculum and certificate will be added when provided.",
+    topics: [],
   },
   {
     id: "electronics",

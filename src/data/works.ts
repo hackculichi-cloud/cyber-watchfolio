@@ -28,6 +28,10 @@ export type WorkItem = {
   tools?: string[];
   technologies?: string[];
   objective?: string;
+  components?: string[];
+  /** Only document steps actually performed; future work stays Planned. */
+  procedure?: string[];
+  technicalExplanation?: string;
   did?: string[];
   learned?: string[];
   results?: string[];

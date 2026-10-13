@@ -17,7 +17,7 @@ import lightDuring2 from "@/assets/electrical-practices/ceiling-light-installati
 import lightsCompleted from "@/assets/electrical-practices/two-ceiling-lights-completed.png.asset.json";
 
 // Use the public asset origin so the same media also resolves in plain Vite.
-const assetUrl = (asset: { url: string }) => new URL(asset.url, site.url).href;
+const assetUrl = (asset: { url: string }) => new URL(asset.url, site.assetOrigin).href;
 const floatPhoto = {
   src: assetUrl(floatBoard),
   alt: "Float-switch course practice on the electrical training board",
@@ -36,6 +36,15 @@ const lightPhotos = [
 ];
 
 export const electricalProjects: WorkItem[] = [
+  {
+    id: "start-stop-contactor-planned",
+    profile: "electrical",
+    title: "Electrical Control — START/STOP Contactor Practice",
+    summary: "Planned training practice with a contactor and START/STOP push buttons. Procedure, specifications and evidence will be documented after the exercise.",
+    category: "Practical training",
+    status: "Planned",
+    objective: "Document the operation of a START/STOP control circuit with a contactor, using the actual training setup.",
+  },
   {
     id: "residential-training-board",
     profile: "electrical",

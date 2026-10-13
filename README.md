@@ -1,240 +1,68 @@
-# 🛡️ Cyber Watchfolio
+# Cyber Watchfolio
 
-> Professional SOC Analyst Portfolio by **Christian Velasco**
+Portafolio de Christian Velasco, construido con React, TypeScript, Vite, Tailwind CSS y shadcn/ui.
 
-[🌐 Live Website](https://culichi.lat) • [💻 GitHub](https://github.com/hackculichi-cloud/cyber-watchfolio) • [LinkedIn](https://linkedin.com/in/culichi)
+Sitio principal: https://culichi.lat
 
----
+## Contenido documentado
 
-## About
+- Tres investigaciones educativas realizadas en **LetsDefend**: VPN, RDP y phishing.
+- Tres playbooks con procedimientos de investigación y respuesta.
+- Prácticas eléctricas de curso y trabajos residenciales documentados con fotografías y video.
+- Práctica futura de control con contactor y START/STOP, marcada como **planeada**.
+- Formación de RED CONOCER y de Udemy en curso.
+- Curso **Electrical Systems: Reading Drawings and Schematics**, de LinkedIn Learning, completado según confirmación del autor. Imagen del certificado pendiente.
 
-Cyber Watchfolio is my personal cybersecurity portfolio where I document my journey toward becoming a professional Security Operations Center (SOC) Analyst.
+Las investigaciones educativas no representan experiencia laboral en un SOC. Los laboratorios y proyectos SOC adicionales permanecen pendientes de documentación. El CV de ciberseguridad todavía se ofrece bajo solicitud; no se ha generado un PDF ni añadido certificaciones no confirmadas.
 
-This project showcases real-world security investigations, incident response methodologies, detection playbooks, home lab projects, and security automation tools that demonstrate practical Blue Team skills.
+## Desarrollo
 
-My goal is to continuously build evidence of my technical abilities through documented work rather than simply listing technologies or certifications.
-
----
-
-## Portfolio Highlights
-
-### 🔍 Incident Investigations
-
-Documented security investigations following a professional SOC workflow.
-
-Examples include:
-
-- VPN Unauthorized Access Attempt
-- RDP Brute Force Attack
-- Suspicious Authentication Activity
-- Threat Hunting Exercises
-- SIEM Alert Analysis
-
-Each investigation includes:
-
-- Alert overview
-- Evidence collection
-- Log analysis
-- MITRE ATT&CK mapping
-- Timeline
-- Root cause analysis
-- Final verdict
-- Recommended response
-
----
-
-### 📚 Detection Playbooks
-
-Step-by-step operational procedures for investigating common security alerts.
-
-Current topics include:
-
-- VPN Authentication Alerts
-- RDP Brute Force
-- Phishing Investigation
-- Suspicious PowerShell
-- Malware Execution
-- Privilege Escalation
-- Impossible Travel
-- DNS Tunneling
-
----
-
-### 🖥️ Home Lab
-
-A continuously evolving cybersecurity lab used to simulate enterprise attack scenarios.
-
-Current technologies include:
-
-- Windows
-- Linux
-- Active Directory
-- Splunk
-- Wireshark
-- Sysmon
-- Kali Linux
-- Networking
-
-Future additions:
-
-- Microsoft Sentinel
-- Wazuh
-- Elastic Stack
-- pfSense
-- Velociraptor
-
----
-
-### 🛠️ Security Projects
-
-Custom tools and scripts built to automate common SOC tasks.
-
-Planned projects include:
-
-- IOC Extractor
-- Log Parser
-- Hash Reputation Checker
-- Sigma Rule Tester
-- Windows Event ID Helper
-- Detection Utilities
-
----
-
-## Technical Skills
-
-### Security
-
-- SIEM Monitoring
-- Incident Response
-- Threat Hunting
-- Detection Engineering
-- Malware Analysis
-- Digital Forensics
-
-### Tools
-
-- Splunk
-- Wireshark
-- Nmap
-- Burp Suite
-- Metasploit
-- ELK Stack
-
-### Programming
-
-- Python
-- Bash
-- SQL
-- Regular Expressions
-
----
-
-## Current Certifications
-
-- CompTIA Security+ *(In Progress)*
-- Certified SOC Analyst (CSA) *(In Progress)*
-- Splunk Core Certified User *(In Progress)*
-- CompTIA CySA+ *(Planned)*
-- GIAC GSEC *(Planned)*
-
----
-
-## Technology Stack
-
-Built with:
-
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- shadcn/ui
-
-Infrastructure:
-
-- GitHub
-- Vercel
-- Cloudflare
-- Custom Domain (culichi.lat)
-
----
-
-## Development
-
-Clone the repository
+Node.js 20, 22 o 24+ y npm son necesarios. La validación cloud y el workflow de CI utilizan Node 24. **npm es el gestor de referencia**; `package-lock.json` controla la instalación reproducible. Los lockfiles de Bun existentes se conservan como archivos históricos y no se usan en este flujo.
 
 ```bash
-git clone https://github.com/hackculichi-cloud/cyber-watchfolio.git
-```
-
-Install dependencies
-
-```bash
-npm install
-```
-
-Run locally
-
-```bash
+npm ci
 npm run dev
 ```
 
-Build production
+Vite utiliza el puerto 8080 y escucha en 127.0.0.1 por defecto. Si el entorno controlado de Lovable necesita acceso desde su proxy, puede pasar `npm run dev -- --host 0.0.0.0`; no exponer ese servidor de desarrollo públicamente. Trabajar sobre el checkout existente: cada tarea cloud ya está aislada; no es necesario crear un worktree.
+
+## Validación
 
 ```bash
+npm run lint
+npm run test
 npm run build
 ```
 
----
+`build` incluye comprobación de tipos de la aplicación y de la configuración de Vite. Lint mantiene advertencias de Fast Refresh de los componentes compartidos de shadcn/ui.
 
-## Roadmap
+Para pruebas de navegador:
 
-### Platform
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
 
-- [x] Custom Domain
-- [x] Cloudflare
-- [x] Vercel Deployment
-- [x] SEO Optimization
-- [x] Open Graph
-- [x] Professional Branding
+Si el entorno ya proporciona Chromium, se puede reutilizar:
 
-### Portfolio
+```bash
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:e2e -- --workers=2
+```
 
-- [ ] 10 Incident Investigations
-- [ ] 15 Detection Playbooks
-- [ ] Home Lab Documentation
-- [ ] Python Security Tools
-- [ ] Detection Engineering Projects
-- [ ] Security Blog
-- [ ] Downloadable Resume
+No se necesita instalar navegadores de nuevo si ya están disponibles. Las pruebas cubren cambios de idioma, los seis detalles SOC, galerías, estados de formación, tamaños móviles/tablet/escritorio y navegación con enlaces, historial y hashes.
 
----
+## Idiomas y medios
 
-## Mission
+Las páginas traducen desde React con `useLanguage().t()`; no se modifica el DOM con observadores. Las cadenas inglesas existentes permanecen como claves por compatibilidad. Las correcciones revisadas están en `src/i18n/es.reviewed.ts`. Nuevos textos necesitan entradas en español; consultas, comandos, IDs e indicadores técnicos conservan su valor exacto.
 
-My objective is to become a professional SOC Analyst by demonstrating practical cybersecurity skills through real investigations, structured documentation, and continuous technical learning.
+`site.url` es el dominio público usado en SEO. `site.assetOrigin` es el origen independiente de los archivos subidos a Lovable. No cambiar ambos a la vez: los descriptores `.asset.json` no contienen los archivos multimedia y requieren su origen disponible. Las fotografías locales de entrenamiento están en `public/images/electrical/`.
 
-Every investigation and project published in this repository represents hands-on practice focused on real-world security operations.
+`vercel.json` incluye el fallback de rutas SPA y cabeceras básicas. Esto solo prepara configuración: no despliega el sitio ni verifica el comportamiento en producción. Los metadatos por ruta continúan siendo generados en el cliente.
 
----
+La migración controlada a Vite 6.4.3, Vitest 4.1.11 y React Router 7.18.4 redujo los avisos de seguridad de 37 a 9; quedan 5 altos y 4 moderados de herramientas CSS, sin avisos críticos. Ver [auditoría de seguridad](docs/security-audit.md) para el alcance y las migraciones pendientes.
 
-## Contact
+Ver [guía de contenido](docs/portfolio-content.md) para añadir evidencia real y completar Electrical sin duplicar componentes.
 
-🌐 Website
+## Integración continua
 
-https://culichi.lat
-
-📧 Email
-
-christian@culichi.lat
-
-💻 GitHub
-
-https://github.com/hackculichi-cloud
-
-💼 LinkedIn
-
-https://linkedin.com/in/culichi
-
----
-
-⭐ If you found this project interesting, feel free to explore the investigations, playbooks, and future security projects.
+`.github/workflows/validate.yml` valida push y PR hacia main con npm ci, TypeScript, ESLint, pruebas, build y Chromium. La auditoría bloquea nuevos avisos críticos y muestra los avisos pendientes. No fusiona cambios ni despliega.
