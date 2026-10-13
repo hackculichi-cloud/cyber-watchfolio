@@ -4,6 +4,9 @@ import { navigation, site } from "@/data/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ContactPreview from "@/components/shared/ContactPreview";
 
+const iconButton = "rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary";
+
+
 const SiteFooter = () => {
   const { t } = useLanguage();
   return (
