@@ -4,9 +4,8 @@ import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
-import ProfileCard from "@/components/cards/ProfileCard";
+import SkillOrbit from "@/components/profile/SkillOrbit";
 import Tag from "@/components/shared/Tag";
-import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
 import { experienceSummary } from "@/data/experience";
 import Reveal from "@/components/shared/Reveal";
@@ -93,13 +92,7 @@ const Home = () => {
           title={t("One profile, several technical fields")}
           description={t(site.intro)}
         />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {professionalProfiles.map((p, i) => (
-            <Reveal key={p.title} delay={i * 90} className="h-full">
-              <ProfileCard data={p} />
-            </Reveal>
-          ))}
-        </div>
+        <SkillOrbit />
       </section>
 
       {/* Experience strength */}

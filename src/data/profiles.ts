@@ -1,4 +1,4 @@
-import { Cpu, Shield, Code2, Wrench, Zap, type LucideIcon } from "lucide-react";
+import { CircuitBoard, Shield, Code2, Wrench, Zap, type LucideIcon } from "lucide-react";
 
 /** Slugs used for the per-profile visual identity (see `[data-profile]` in index.css). */
 export type ProfileSlug = "cybersecurity" | "development" | "electrical" | "electronics" | "repair";
@@ -54,7 +54,7 @@ export const professionalProfiles: ProfileCardData[] = [
     summary:
       "General electronics: components, circuits, PCB work, soldering practice and instrument-based diagnostics.",
     href: "/electronics",
-    icon: Cpu,
+    icon: CircuitBoard,
     emphasis: "secondary",
     focus: ["Components", "Circuits", "Soldering", "Measurements"],
     status: "Currently studying",
@@ -171,7 +171,7 @@ export const profileIdentities: ProfileIdentity[] = [
     status: "Currently studying",
     description:
       "General electronics training: components, circuits, PCB work, soldering practice, measurement instruments and structured troubleshooting.",
-    icon: Cpu,
+    icon: CircuitBoard,
     highlights: ["Components & circuits", "PCB work", "Soldering", "Oscilloscope / multimeter"],
     sections: [
       { id: "overview", label: "Overview" },

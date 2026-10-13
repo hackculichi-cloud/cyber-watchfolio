@@ -1,3 +1,7 @@
+import type { LucideIcon } from "lucide-react";
+import type { ProfileSlug } from "./profiles";
+import { specialtiesFor, specialtyPath } from "./specialties";
+
 export const site = {
   name: "Christian Armando Velasco Estrada",
   shortName: "Christian Velasco",
@@ -17,29 +21,35 @@ export const site = {
   languages: ["English", "Spanish"],
 };
 
-export type NavItem = { label: string; href: string; children?: NavItem[] };
+export type NavItem = { label: string; href: string; profile?: ProfileSlug; icon?: LucideIcon; description?: string; children?: NavItem[] };
+const specialtyLinks = (profile: ProfileSlug): NavItem[] => specialtiesFor(profile).map((item) => ({ label: item.title, href: specialtyPath(item), icon: item.icon, description: item.status }));
 
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   {
+    profile: "cybersecurity",
     label: "Cybersecurity",
     href: "/cybersecurity",
     children: [
       { label: "Cybersecurity", href: "/cybersecurity" },
+      ...specialtyLinks("cybersecurity"),
       { label: "Labs", href: "/labs" },
     ],
   },
   {
+    profile: "development",
     label: "Software Development",
     href: "/software-development",
     children: [{ label: "Projects", href: "/projects" }],
   },
   {
+    profile: "electrical",
     label: "Residential & Industrial Electrical Maintenance",
     href: "/electrical",
     children: [
-      { label: "Residential & Industrial Electrical Maintenance", href: "/electrical" },
+      ...specialtyLinks("electrical"),
+      { label: "Overview", href: "/electrical" },
       { label: "Training", href: "/electrical#tracks" },
       { label: "Projects", href: "/electrical#projects" },
       { label: "Practical experience", href: "/electrical#practice" },
@@ -47,9 +57,11 @@ export const navigation: NavItem[] = [
     ],
   },
   {
+    profile: "electronics",
     label: "Electronics", href: "/electronics",
     children: [
-      { label: "Electronics", href: "/electronics" },
+      ...specialtyLinks("electronics"),
+      { label: "Overview", href: "/electronics" },
       { label: "Training", href: "/electronics#tracks" },
       { label: "Projects", href: "/electronics#projects" },
       { label: "Diagnostics & measurements", href: "/electronics#diagnostics" },
@@ -57,6 +69,7 @@ export const navigation: NavItem[] = [
     ],
   },
   {
+    profile: "repair",
     label: "Technical Repair",
     href: "/repair",
     children: [
