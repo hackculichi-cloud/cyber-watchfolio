@@ -78,11 +78,12 @@ const SiteHeader = () => {
                   )
                 }
               >
-                <NavIcon label={item.label} />
+                <NavIcon label={item.label} className={navIconColor[item.label]} />
                 {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
               </NavLink>
               </TooltipTrigger>
-              <TooltipContent side="bottom">{t(item.label)}</TooltipContent>
+              {/* Parents open a dropdown; the label there would cover it. */}
+              {!item.children && <TooltipContent side="bottom">{t(item.label)}</TooltipContent>}
               </Tooltip>
 
               {item.children && (
@@ -91,8 +92,9 @@ const SiteHeader = () => {
                     <Link
                       key={child.href}
                       to={child.href}
-                      className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                      className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                     >
+                      <span aria-hidden className={cn("h-1.5 w-1.5 shrink-0 rounded-full", navDotColor[child.label])} />
                       {t(child.label)}
                     </Link>
                   ))}
