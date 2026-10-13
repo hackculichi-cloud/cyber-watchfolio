@@ -1,5 +1,8 @@
 # Roadmap
 
+- [x] Add hover previews to the footer contact buttons on the contact page and site-wide
+
+
 - [x] Add uploaded electrical CV with compact hover preview and download
 - [x] Correct residential/industrial electrical titles and course translation
 - [x] Replace main navigation text with accessible category icons and validate

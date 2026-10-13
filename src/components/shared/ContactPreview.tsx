@@ -9,9 +9,9 @@ import { Portal } from "@radix-ui/react-hover-card";
 import SmartImage from "./SmartImage";
 
 type Channel = "Email" | "GitHub" | "LinkedIn";
-type Props = { channel: Channel; href: string; external?: boolean; className?: string; children: ReactNode };
+type Props = { channel: Channel; href: string; external?: boolean; className?: string; ariaLabel?: string; children: ReactNode };
 
-const ContactPreview = ({ channel, href, external, className, children }: Props) => {
+const ContactPreview = ({ channel, href, external, className, ariaLabel, children }: Props) => {
   const id = useId();
   const [open, setOpen] = useState(false);
   const { lang } = useLanguage();
@@ -20,7 +20,7 @@ const ContactPreview = ({ channel, href, external, className, children }: Props)
   return (
     <HoverCard open={open} onOpenChange={setOpen} openDelay={150} closeDelay={150}>
       <HoverCardTrigger asChild>
-      <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer noopener" : undefined}
+      <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer noopener" : undefined} aria-label={ariaLabel}
         onFocus={() => setOpen(true)} onBlur={() => setOpen(false)}
         onKeyDown={(event) => { if (event.key === "Escape") setOpen(false); }}
         aria-describedby={open ? id : undefined} className={className}>

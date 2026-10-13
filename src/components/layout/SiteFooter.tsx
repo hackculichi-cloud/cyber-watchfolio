@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { navigation, site } from "@/data/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import ContactPreview from "@/components/shared/ContactPreview";
+
+const iconButton = "rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary";
+
 
 const SiteFooter = () => {
   const { t } = useLanguage();
@@ -14,15 +18,15 @@ const SiteFooter = () => {
         <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{t(site.tagline)}</p>
 
         <div className="mt-6 flex items-center gap-3">
-          <a href={`mailto:${site.email}`} aria-label="Email" className="rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary">
+          <ContactPreview channel="Email" href={`mailto:${site.email}`} ariaLabel="Email" className={iconButton}>
             <Mail className="h-4 w-4" />
-          </a>
-          <a href={site.github} target="_blank" rel="noreferrer noopener" aria-label="GitHub" className="rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary">
+          </ContactPreview>
+          <ContactPreview channel="GitHub" href={site.github} external ariaLabel="GitHub" className={iconButton}>
             <Github className="h-4 w-4" />
-          </a>
-          <a href={site.linkedin} target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary">
+          </ContactPreview>
+          <ContactPreview channel="LinkedIn" href={site.linkedin} external ariaLabel="LinkedIn" className={iconButton}>
             <Linkedin className="h-4 w-4" />
-          </a>
+          </ContactPreview>
         </div>
       </div>
 
