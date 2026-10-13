@@ -10,6 +10,7 @@ export const investigations: Investigation[] = [
     estimatedTime: "45 min",
     shortDescription:
       "Multiple failed login attempts detected from an external IP triggering abnormal MFA (OTP) activity on a VPN account.",
+    context: { kind: "Educational exercise", platform: "LetsDefend", note: "Educational investigation completed on LetsDefend. Response actions describe the exercise workflow." },
     caseInfo: {
       caseId: "INC-2024-002",
       incidentName: "VPN Unauthorized Access Attempt",
@@ -98,7 +99,7 @@ export const investigations: Investigation[] = [
       { type: "User", value: "j.perez", description: "Targeted account" },
     ],
     mitre: [
-      { tactic: "Credential Access", technique: "Brute Force: Password Spraying", id: "T1110.003", evidence: "Repeated failed VPN logins" },
+      { tactic: "Credential Access", technique: "Brute Force", id: "T1110", evidence: "Repeated failed VPN logins against one account; the documented evidence does not establish password spraying" },
       { tactic: "Credential Access", technique: "Multi-Factor Authentication Request Generation", id: "T1621", evidence: "OTP flood against target user" },
     ],
     timeline: [
@@ -157,6 +158,7 @@ export const investigations: Investigation[] = [
     estimatedTime: "40 min",
     shortDescription:
       "Multiple failed RDP login attempts detected from a malicious external IP targeting a Windows host using different usernames.",
+    context: { kind: "Educational exercise", platform: "LetsDefend", note: "Educational investigation completed on LetsDefend. Response actions describe the exercise workflow." },
     caseInfo: {
       caseId: "INC-2024-003",
       incidentName: "RDP Brute Force Attack",
@@ -281,6 +283,7 @@ export const investigations: Investigation[] = [
     estimatedTime: "60 min",
     shortDescription:
       "User reported a suspicious email impersonating a vendor with a password-protected ZIP attachment containing a malicious loader.",
+    context: { kind: "Educational exercise", platform: "LetsDefend", note: "Educational investigation completed on LetsDefend. Response actions describe the exercise workflow." },
     caseInfo: {
       caseId: "INC-2024-004",
       incidentName: "Phishing Email with Malicious Attachment",

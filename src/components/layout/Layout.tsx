@@ -12,9 +12,11 @@ const Layout = () => {
 
   useEffect(() => {
     if (hash) {
-      const el = document.querySelector(hash);
+      let id: string;
+      try { id = decodeURIComponent(hash.slice(1)); } catch { id = hash.slice(1); }
+      const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
         return;
       }
     }

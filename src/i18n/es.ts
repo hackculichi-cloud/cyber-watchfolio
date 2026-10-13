@@ -1,3 +1,4 @@
+import { reviewedEs } from "./es.reviewed";
 import { generatedEs } from "./es.generated";
 
 /**
@@ -297,4 +298,5 @@ export const es: Record<string, string> = {
   "operational": "operativo",
   "detectionImprovements": "mejoras de detección",
   "References": "Referencias",
+  ...reviewedEs,
 };

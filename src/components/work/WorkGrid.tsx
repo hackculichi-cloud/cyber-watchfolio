@@ -53,7 +53,7 @@ const WorkGrid = ({
           ))}
         </div>
         <p className="mt-4 text-sm text-muted-foreground">
-          <span className="font-medium text-foreground">{emptyTitle}.</span> {emptyDescription}
+          <span className="font-medium text-foreground">{t(emptyTitle)}.</span> {t(emptyDescription)}
         </p>
       </div>
     );
@@ -94,7 +94,7 @@ const WorkGrid = ({
         open={Boolean(current)}
         onOpenChange={(o) => !o && setOpenId(null)}
         title={t(current?.title)}
-        subtitle={current ? `${t(current.category)} · ${t(current.status)}` : undefined}
+        subtitle={t(current ? `${t(current.category)} · ${t(current.status)}` : undefined)}
       >
         {current && <WorkDetail item={current} />}
       </DetailModal>

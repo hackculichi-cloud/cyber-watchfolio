@@ -1,3 +1,4 @@
+import { useLanguage } from "@/i18n/LanguageProvider";
 import { useMemo, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import Tag from "@/components/shared/Tag";
@@ -20,6 +21,7 @@ const Gallery = ({
   emptyTitle = "No photos published yet",
   emptyDescription = "Add entries to the gallery data file and they appear here automatically.",
 }: GalleryProps) => {
+  const { t } = useLanguage();
   const [category, setCategory] = useState<string>("All");
   const [openId, setOpenId] = useState<string | null>(null);
 
@@ -30,7 +32,7 @@ const Gallery = ({
   const filtered = category === "All" ? items : items.filter((i) => i.category === category);
   const current = items.find((i) => i.id === openId) ?? null;
 
-  if (!items.length) return <EmptyState title={emptyTitle} description={emptyDescription} />;
+  if (!items.length) return <EmptyState title={t(emptyTitle)} description={t(emptyDescription)} />;
 
   return (
     <>
@@ -49,7 +51,7 @@ const Gallery = ({
                   : "border-border text-muted-foreground hover:text-foreground",
               )}
             >
-              {c}
+              {t(c)}
             </button>
           ))}
         </div>
@@ -67,7 +69,7 @@ const Gallery = ({
               <span className="block aspect-[4/3] overflow-hidden rounded-t-xl bg-secondary">
                 <img
                   src={item.src}
-                  alt={item.alt}
+                  alt={t(item.alt)}
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -75,12 +77,12 @@ const Gallery = ({
               </span>
               <span className="block p-4">
                 <span className="flex items-start justify-between gap-2">
-                  <span className="text-sm font-semibold">{item.title}</span>
-                  <Tag variant="primary">{item.category}</Tag>
+                  <span className="text-sm font-semibold">{t(item.title)}</span>
+                  <Tag variant="primary">{t(item.category)}</Tag>
                 </span>
-                {item.date && <span className="mt-1 block text-xs text-muted-foreground">{item.date}</span>}
+                {item.date && <span className="mt-1 block text-xs text-muted-foreground">{t(item.date)}</span>}
                 {item.description && (
-                  <span className="mt-2 line-clamp-2 block text-sm text-muted-foreground">{item.description}</span>
+                  <span className="mt-2 line-clamp-2 block text-sm text-muted-foreground">{t(item.description)}</span>
                 )}
               </span>
             </button>
@@ -92,27 +94,27 @@ const Gallery = ({
         <DialogContent className="max-w-3xl">
           {current && (
             <>
-              <DialogTitle className="text-base">{current.title}</DialogTitle>
-              <DialogDescription className="sr-only">{current.alt}</DialogDescription>
+              <DialogTitle className="text-base">{t(current.title)}</DialogTitle>
+              <DialogDescription className="sr-only">{t(current.alt)}</DialogDescription>
               <div className={cn("grid gap-3", current.beforeSrc && "sm:grid-cols-2")}>
                 {current.beforeSrc && (
                   <figure>
-                    <img src={current.beforeSrc} alt={`Before — ${current.alt}`} className="rounded-lg border border-border" />
-                    <figcaption className="mt-1 text-xs text-muted-foreground">Before</figcaption>
+                    <img src={current.beforeSrc} alt={t(`Before — ${current.alt}`)} className="rounded-lg border border-border" />
+                    <figcaption className="mt-1 text-xs text-muted-foreground">{t("Before")}</figcaption>
                   </figure>
                 )}
                 <figure>
-                  <img src={current.src} alt={current.alt} className="rounded-lg border border-border" />
-                  {current.beforeSrc && <figcaption className="mt-1 text-xs text-muted-foreground">After</figcaption>}
+                  <img src={current.src} alt={t(current.alt)} className="rounded-lg border border-border" />
+                  {current.beforeSrc && <figcaption className="mt-1 text-xs text-muted-foreground">{t("After")}</figcaption>}
                 </figure>
               </div>
               {current.description && (
-                <p className="text-sm leading-relaxed text-muted-foreground">{current.description}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(current.description)}</p>
               )}
               <div className="flex flex-wrap gap-1.5">
-                {current.project && <Tag variant="accent">{current.project}</Tag>}
-                {current.date && <Tag>{current.date}</Tag>}
-                {current.tags?.map((t) => <Tag key={t}>{t}</Tag>)}
+                {current.project && <Tag variant="accent">{t(current.project)}</Tag>}
+                {current.date && <Tag>{t(current.date)}</Tag>}
+                {current.tags?.map((entry) => <Tag key={entry}>{t(entry)}</Tag>)}
               </div>
             </>
           )}

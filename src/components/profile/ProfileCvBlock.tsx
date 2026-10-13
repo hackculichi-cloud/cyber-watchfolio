@@ -24,7 +24,7 @@ const ProfileCvBlock = ({ cvIds }: { cvIds: string[] }) => {
           <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(cv.description)}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {cv.available ? (
-              <CvPreview preview={cv.preview} title={cv.title}>
+              <CvPreview preview={cv.preview} title={t(cv.title)}>
                 <Button asChild size="sm">
                   <a href={cv.file} download target="_blank" rel="noopener noreferrer"><Download className="h-4 w-4" /> {t("Download PDF")}</a>
                 </Button>

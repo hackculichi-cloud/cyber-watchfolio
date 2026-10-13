@@ -68,9 +68,9 @@ const SiteHeader = () => {
       <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label={t("Main")}>
         <Link to="/" className="group flex items-center gap-2 font-semibold tracking-tight">
           <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg border border-primary/25 bg-primary/10 transition-transform duration-300 group-hover:scale-110">
-            <img src={logoCv} alt="Culichi fox logo" width={36} height={36} className="h-8 w-8 object-contain" />
+            <img src={logoCv} alt={t("Culichi fox logo")} width={36} height={36} className="h-8 w-8 object-contain" />
           </span>
-          <span className="text-sm transition-colors group-hover:text-primary sm:text-base">Christian Velasco</span>
+          <span className="text-sm transition-colors group-hover:text-primary sm:text-base">{t("Christian Velasco")}</span>
         </Link>
 
 
@@ -111,16 +111,16 @@ const SiteHeader = () => {
         </ul>
 
         <div className="flex items-center gap-2">
-        <LanguageSwitcher compact className="hidden sm:flex lg:ml-2" />
-        <Button variant="ghost" size="icon"
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground lg:hidden"
-          aria-expanded={open}
-          aria-label={open ? t("Close menu") : t("Open menu")}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </Button>
+          <LanguageSwitcher compact className="hidden sm:flex lg:ml-2" />
+          <Button variant="ghost" size="icon"
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground lg:hidden"
+            aria-expanded={open}
+            aria-label={t(open ? t("Close menu") : t("Open menu"))}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
       </nav>
 
@@ -133,8 +133,8 @@ const SiteHeader = () => {
                 <Link
                   to={item.href}
                   aria-label={t(item.label)}
-                   title={t(item.label)}
-                   className="inline-flex min-h-10 items-center gap-2 rounded-lg px-3 font-semibold text-foreground transition-colors hover:bg-secondary hover:text-primary"
+                  title={t(item.label)}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-lg px-3 font-semibold text-foreground transition-colors hover:bg-secondary hover:text-primary"
                 >
                   {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
                   {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}

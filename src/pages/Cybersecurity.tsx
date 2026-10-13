@@ -1,3 +1,4 @@
+import { useLanguage } from "@/i18n/LanguageProvider";
 import { useState } from "react";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -29,6 +30,7 @@ import { site } from "@/data/site";
 const profile = profileBySlug("cybersecurity");
 
 const Cybersecurity = () => {
+  const { t } = useLanguage();
   const [incidentId, setIncidentId] = useState<string | null>(null);
   const [playbookId, setPlaybookId] = useState<string | null>(null);
 
@@ -38,25 +40,25 @@ const Cybersecurity = () => {
   return (
     <>
       <Seo
-        title={`Cybersecurity | ${site.shortName}`}
-        description="Blue-team focused cybersecurity work: SOC fundamentals, detection playbooks and documented incident investigations."
+        title={t(`Cybersecurity | ${site.shortName}`)}
+        description={t("Blue-team focused cybersecurity work: SOC fundamentals, detection playbooks and documented incident investigations.")}
         path="/cybersecurity"
       />
       <ProfileHero profile={profile}>
         <Button asChild>
-          <a href="#investigations">View investigations</a>
+          <a href="#investigations">{t("View investigations")}</a>
         </Button>
         <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
-          <a href="#labs">Security labs</a>
+          <a href="#labs">{t("Security labs")}</a>
         </Button>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
-          eyebrow="Overview"
-          title="SOC / Blue Team direction"
-          description="Security fundamentals, networking and Linux, monitoring and detection, and investigations documented end to end."
+          eyebrow={t("Overview")}
+          title={t("SOC / Blue Team direction")}
+          description={t("Security fundamentals, networking and Linux, monitoring and detection, and investigations documented end to end.")}
         />
         <div className="grid gap-4 md:grid-cols-3">
           {[
@@ -65,9 +67,9 @@ const Cybersecurity = () => {
             { title: "Document", body: "Repeatable playbooks and write-ups so the process is reproducible.", tag: "Focus" },
           ].map((c) => (
             <div key={c.title} className="panel-glow hover:-translate-y-1">
-              <Tag variant="primary">{c.tag}</Tag>
-              <h3 className="mt-3 text-base font-semibold">{c.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+              <Tag variant="primary">{t(c.tag)}</Tag>
+              <h3 className="mt-3 text-base font-semibold">{t(c.title)}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(c.body)}</p>
             </div>
           ))}
         </div>
@@ -75,14 +77,14 @@ const Cybersecurity = () => {
 
       <section id="skills" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow="Skills" title="What I am building competence in" />
+          <SectionHeading eyebrow={t("Skills")} title={t("What I am building competence in")} />
           <div className="grid gap-4 md:grid-cols-3">
             {cybersecuritySkills.map((group) => (
               <div key={group.title} className="panel-glow hover:-translate-y-1">
-                <h3 className="text-sm font-semibold">{group.title}</h3>
+                <h3 className="text-sm font-semibold">{t(group.title)}</h3>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {group.skills.map((s) => (
-                    <Tag key={s}>{s}</Tag>
+                    <Tag key={s}>{t(s)}</Tag>
                   ))}
                 </div>
               </div>
@@ -93,9 +95,9 @@ const Cybersecurity = () => {
 
       <section id="investigations" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
-          eyebrow="Investigations"
-          title="Incident investigations"
-          description="Each case follows the same structure: summary, detection, analysis, evidence, outcome and lessons learned."
+          eyebrow={t("Investigations")}
+          title={t("Incident investigations")}
+          description={t("Each case follows the same structure: summary, detection, analysis, evidence, outcome and lessons learned.")}
         />
         <div className="grid gap-4 md:grid-cols-2">
           {investigations.map((inc) => (
@@ -107,9 +109,9 @@ const Cybersecurity = () => {
       <section id="playbooks" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
           <SectionHeading
-            eyebrow="Playbooks"
-            title="Detection playbooks"
-            description="Repeatable investigation workflows with objective, prerequisites, steps and expected outcomes."
+            eyebrow={t("Playbooks")}
+            title={t("Detection playbooks")}
+            description={t("Repeatable investigation workflows with objective, prerequisites, steps and expected outcomes.")}
           />
           <div className="grid gap-4 md:grid-cols-2">
             {playbooks.map((pb) => (
@@ -121,9 +123,9 @@ const Cybersecurity = () => {
 
       <section id="labs" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
-          eyebrow="Labs"
-          title="Security labs & CTFs"
-          description="Hands-on practice environments with objective, tooling, difficulty and outcome."
+          eyebrow={t("Labs")}
+          title={t("Security labs & CTFs")}
+          description={t("Hands-on practice environments with objective, tooling, difficulty and outcome.")}
         />
         {labs.length ? (
           <div className="grid gap-4 md:grid-cols-2">
@@ -133,8 +135,8 @@ const Cybersecurity = () => {
           </div>
         ) : (
           <EmptyState
-            title="Labs are being documented"
-            description="Completed labs will be published here with objective, technologies, difficulty and results."
+            title={t("Labs are being documented")}
+            description={t("Completed labs will be published here with objective, technologies, difficulty and results.")}
           />
         )}
       </section>
@@ -142,37 +144,37 @@ const Cybersecurity = () => {
       <section id="projects" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
           <SectionHeading
-            eyebrow="Projects"
-            title="Security projects & write-ups"
-            description="Visual project cards with objective, environment, tooling, evidence screenshots and results."
+            eyebrow={t("Projects")}
+            title={t("Security projects & write-ups")}
+            description={t("Visual project cards with objective, environment, tooling, evidence screenshots and results.")}
           />
           <WorkGrid
             items={worksFor("cybersecurity")}
-            emptyTitle="Security projects coming soon"
-            emptyDescription="Each slot becomes a project card with lab screenshots, tooling, results and a write-up link."
+            emptyTitle={t("Security projects coming soon")}
+            emptyDescription={t("Each slot becomes a project card with lab screenshots, tooling, results and a write-up link.")}
           />
         </div>
       </section>
 
       <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow="Gallery" title="Lab & tooling screenshots" />
+          <SectionHeading eyebrow={t("Gallery")} title={t("Lab & tooling screenshots")} />
           <Gallery
             items={galleryFor("cybersecurity")}
-            emptyTitle="No screenshots published yet"
-            emptyDescription="Add lab screenshots or dashboards to the gallery data file and they appear here."
+            emptyTitle={t("No screenshots published yet")}
+            emptyDescription={t("Add lab screenshots or dashboards to the gallery data file and they appear here.")}
           />
         </div>
       </section>
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow="Tools" title="Tooling I work with" />
+        <SectionHeading eyebrow={t("Tools")} title={t("Tooling I work with")} />
         <ProfileTools groups={toolsByProfile.cybersecurity} />
       </section>
 
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow="CV" title="CV for this profile" />
+          <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
           <ProfileCvBlock cvIds={profile.cvIds} />
         </div>
       </section>
@@ -180,8 +182,8 @@ const Cybersecurity = () => {
       <DetailModal
         open={!!incident}
         onOpenChange={(o) => !o && setIncidentId(null)}
-        title={incident?.title ?? ""}
-        subtitle={incident ? `${incident.caseInfo.caseId} · ${incident.caseInfo.date ?? ""}` : ""}
+        title={t(incident?.title ?? "")}
+        subtitle={t(incident ? `${incident.caseInfo.caseId} · ${incident.caseInfo.date ?? ""}` : "")}
       >
         {incident && <InvestigationDetail data={incident} />}
       </DetailModal>
@@ -189,8 +191,8 @@ const Cybersecurity = () => {
       <DetailModal
         open={!!playbook}
         onOpenChange={(o) => !o && setPlaybookId(null)}
-        title={playbook?.name ?? ""}
-        subtitle={playbook?.tags?.join(" · ")}
+        title={t(playbook?.name ?? "")}
+        subtitle={t(playbook?.tags?.join(" · "))}
       >
         {playbook && <PlaybookDetail data={playbook} />}
       </DetailModal>

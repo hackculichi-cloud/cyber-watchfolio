@@ -25,7 +25,7 @@ const LanguageSwitcher = ({ className, compact = false }: { className?: string; 
               active ? "bg-primary/15 text-primary" : "text-muted-foreground hover:text-foreground",
             )}
           >
-            <span aria-hidden>{o.flag}</span>
+            <span aria-hidden>{t(o.flag)}</span>
             <span>{compact ? o.short : o.label}</span>
           </button>
         );

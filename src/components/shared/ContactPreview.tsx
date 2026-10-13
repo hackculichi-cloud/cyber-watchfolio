@@ -14,43 +14,43 @@ type Props = { channel: Channel; href: string; external?: boolean; className?: s
 const ContactPreview = ({ channel, href, external, className, ariaLabel, children }: Props) => {
   const id = useId();
   const [open, setOpen] = useState(false);
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
   const spanish = lang === "es";
   const Icon = channel === "Email" ? Mail : channel === "GitHub" ? Github : Linkedin;
   return (
     <HoverCard open={open} onOpenChange={setOpen} openDelay={150} closeDelay={150}>
       <HoverCardTrigger asChild>
-      <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer noopener" : undefined} aria-label={ariaLabel}
-        onFocus={() => setOpen(true)} onBlur={() => setOpen(false)}
-        onKeyDown={(event) => { if (event.key === "Escape") setOpen(false); }}
-        aria-describedby={open ? id : undefined} className={className}>
-        {children}
-      </a>
+        <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer noopener" : undefined} aria-label={t(ariaLabel)}
+          onFocus={() => setOpen(true)} onBlur={() => setOpen(false)}
+          onKeyDown={(event) => { if (event.key === "Escape") setOpen(false); }}
+          aria-describedby={open ? id : undefined} className={className}>
+          {children}
+        </a>
       </HoverCardTrigger>
       <Portal>
-      <HoverCardContent id={id} role="tooltip" data-contact-preview={channel} sideOffset={10} collisionPadding={16}
-        className="z-[60] w-[min(16rem,calc(100vw-2rem))] overflow-hidden rounded-lg border-primary/30 p-0 shadow-xl">
+        <HoverCardContent id={id} role="tooltip" data-contact-preview={channel} sideOffset={10} collisionPadding={16}
+          className="z-[60] w-[min(16rem,calc(100vw-2rem))] overflow-hidden rounded-lg border-primary/30 p-0 shadow-xl">
           <div className="flex items-center gap-1.5 border-b border-border bg-secondary/60 px-3 py-1.5 text-[11px] text-muted-foreground">
             <Icon className="h-3 w-3 shrink-0 text-primary" />
-            <span className="min-w-0 flex-1 truncate">{channel === "Email" ? site.email : channel === "GitHub" ? "github.com/ByCulichi" : "linkedin.com/in/culichi"}</span>
+            <span className="min-w-0 flex-1 truncate">{t(channel === "Email" ? site.email : channel === "GitHub" ? "github.com/ByCulichi" : "linkedin.com/in/culichi")}</span>
             <ExternalLink className="h-2.5 w-2.5 shrink-0" />
           </div>
           {channel === "Email" ? (
             <div className="space-y-2 p-3">
-              <p className="text-xs font-semibold">{spanish ? "Nuevo mensaje" : "New message"}</p>
-              <div className="border-b border-border pb-1.5 text-[11px]"><span className="text-muted-foreground">{spanish ? "Para: " : "To: "}</span>{site.email}</div>
-              <div className="border-b border-border pb-1.5 text-[11px] text-muted-foreground">{spanish ? "Asunto" : "Subject"}</div>
-              <div className="min-h-14 pt-1.5 text-xs text-muted-foreground">{spanish ? "Hola Christian," : "Hi Christian,"}</div>
-              <div className="flex items-center gap-1.5 border-t border-border pt-2 text-xs text-primary"><Send className="h-3 w-3" />{spanish ? "Enviar" : "Send"}</div>
+              <p className="text-xs font-semibold">{t(spanish ? "Nuevo mensaje" : "New message")}</p>
+              <div className="border-b border-border pb-1.5 text-[11px]"><span className="text-muted-foreground">{t(spanish ? "Para: " : "To: ")}</span>{t(site.email)}</div>
+              <div className="border-b border-border pb-1.5 text-[11px] text-muted-foreground">{t(spanish ? "Asunto" : "Subject")}</div>
+              <div className="min-h-14 pt-1.5 text-xs text-muted-foreground">{t(spanish ? "Hola Christian," : "Hi Christian,")}</div>
+              <div className="flex items-center gap-1.5 border-t border-border pt-2 text-xs text-primary"><Send className="h-3 w-3" />{t(spanish ? "Enviar" : "Send")}</div>
             </div>
           ) : (
             <div className="max-h-[min(17rem,42vh)] overflow-y-auto overscroll-contain">
-              <SmartImage src={new URL(channel === "GitHub" ? githubPreview.url : linkedinPreview.url, site.url).href}
-                alt={spanish ? `Captura de ${channel}` : `${channel} screenshot`} eager
+              <SmartImage src={new URL(channel === "GitHub" ? githubPreview.url : linkedinPreview.url, site.assetOrigin).href}
+                alt={t(spanish ? `Captura de ${channel}` : `${channel} screenshot`)} eager
                 imgClassName="!h-auto" className="min-h-32" />
             </div>
           )}
-      </HoverCardContent>
+        </HoverCardContent>
       </Portal>
     </HoverCard>
   );

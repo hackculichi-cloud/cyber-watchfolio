@@ -1,3 +1,4 @@
+import { useLanguage } from "@/i18n/LanguageProvider";
 import { ReactNode } from "react";
 
 interface SectionBlockProps {
@@ -8,11 +9,12 @@ interface SectionBlockProps {
 }
 
 const SectionBlock = ({ title, children, show = true }: SectionBlockProps) => {
+  const { t } = useLanguage();
   if (!show) return null;
   return (
     <section className="space-y-2">
       <h3 className="font-display text-sm font-bold text-primary uppercase tracking-wider">
-        {">"} {title}
+        {t(">")} {t(title)}
       </h3>
       <div className="w-8 h-px bg-primary/40 mb-2" />
       <div className="text-sm text-muted-foreground leading-relaxed space-y-2">{children}</div>
