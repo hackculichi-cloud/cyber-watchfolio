@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { navigation, site } from "@/data/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import ContactPreview from "@/components/shared/ContactPreview";
 
 const SiteFooter = () => {
   const { t } = useLanguage();
