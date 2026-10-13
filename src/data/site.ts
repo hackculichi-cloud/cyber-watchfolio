@@ -21,23 +21,23 @@ export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   {
-    label: "Technology",
+    label: "Cybersecurity",
     href: "/cybersecurity",
     children: [
       { label: "Cybersecurity", href: "/cybersecurity" },
-      { label: "Software Development", href: "/software-development" },
       { label: "Labs", href: "/labs" },
-      { label: "Projects", href: "/projects" },
     ],
   },
   {
-    label: "Electrical & Electronics",
-    href: "/electrical",
-    children: [
-      { label: "Residential & Industrial Electrical Maintenance", href: "/electrical" },
-      { label: "Electronics", href: "/electronics" },
-    ],
+    label: "Software Development",
+    href: "/software-development",
+    children: [{ label: "Projects", href: "/projects" }],
   },
+  {
+    label: "Residential & Industrial Electrical Maintenance",
+    href: "/electrical",
+  },
+  { label: "Electronics", href: "/electronics" },
   {
     label: "Technical Repair",
     href: "/repair",
