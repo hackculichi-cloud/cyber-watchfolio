@@ -170,7 +170,7 @@ const TechnicalRepair = () => {
       </section>
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("Tools")} title={t("Equipment & tooling")} />
+        <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Equipment & tooling")} />
         <ProfileTools groups={toolsByProfile.repair} />
       </section>
 

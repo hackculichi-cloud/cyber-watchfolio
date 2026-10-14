@@ -156,18 +156,17 @@ test("electronics has seven training routes with only basic electronics in progr
 });
 
 test("Culichi changes costume on all six profile pages without overflowing", async ({ page }) => {
-  const positions = new Set<string>();
+  const outfits = new Set<string>();
   for (const [, path] of areas) {
     await page.goto(path);
-    const mascot = page.locator("main [data-mascot]").first();
+    const mascot = page.locator("main canvas[data-mascot]").first();
     await expect(mascot).toBeVisible();
-    const style = await mascot.evaluate(el => ({ background: getComputedStyle(el).backgroundImage, position: getComputedStyle(el).backgroundPosition }));
-    positions.add(style.position);
-    const src = style.background.match(/url\(["']?(.*?)["']?\)/)![1];
-    expect(await page.evaluate(async src => { const image = new Image(); image.src = src; await image.decode(); return image.naturalWidth > 0; }, src)).toBe(true);
-    await expect(page.locator('header [data-mascot]')).toHaveAttribute("data-mascot", (await mascot.getAttribute("data-mascot"))!);
+    const outfit = (await mascot.getAttribute("data-mascot"))!;
+    await expect(mascot).toHaveAttribute("data-model-outfit", outfit);
+    outfits.add(outfit);
+    await expect(page.locator('header [data-mascot]')).toHaveAttribute("data-mascot", outfit);
   }
-  expect(positions.size).toBe(6);
+  expect(outfits.size).toBe(6);
   await page.setViewportSize({ width: 390, height: 844 });
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

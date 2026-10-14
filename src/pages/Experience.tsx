@@ -54,7 +54,7 @@ const Experience = () => {
       </section>
 
       <section id="transferable" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("Transferable value")} title={t("How customer service strengthens my technical work")} />
+        <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Transferable value")} title={t("How customer service strengthens my technical work")} />
         <div className="grid gap-4 md:grid-cols-3">
           {transferableImpact.map((item) => (
             <div key={item.area} className="panel-glow hover:-translate-y-1">

@@ -1,40 +1,40 @@
 # Mascota Culichi
 
-Las ilustraciones del zorro se generaron a partir de la identidad existente y se guardan localmente. Son arte de marca; las fotografías reales de prácticas y reparaciones se mantienen como evidencias independientes.
+Las ilustraciones del zorro son arte de marca local. Las fotos reales de prácticas y reparaciones mantienen su función de evidencia, separada de estas ilustraciones.
 
-## Interacción
+## Modelo 3D interactivo
 
-`InteractiveMascot` reproduce un saludo breve mediante fotogramas de distintas posiciones del brazo. Después se queda en reposo, sin una animación infinita. En Home, acercar el cursor, enfocar o pulsar al personaje muestra seis opciones en semicírculo con icono y nombre. El primer toque en móvil abre el selector.
+`components/mascot/createFox.ts` construye un primer modelo 3D estilizado con mallas, materiales y articulaciones. `Fox3D.tsx` lo muestra mediante Three.js/WebGL. El brazo, antebrazo, mano, cabeza y cola tienen movimientos continuos; el cambio de atuendo utiliza un giro completo y un efecto de energía antes de navegar. Los seis atuendos modifican colores y accesorios, como casco, visor, gafas, auriculares y ropa de taller.
 
-Solo elegir expresamente un área inicia la transformación: la ilustración cambia de atuendo mediante fundido y un halo durante 900 ms, y después se navega. Pasar el cursor no cambia de página. Ctrl/Cmd/clic y los enlaces mantienen su comportamiento de abrir otra pestaña. Al salir por otra navegación se cancela el temporizador. Los controles admiten Tab, Enter y Escape; Escape devuelve el foco al personaje.
+Es un modelo procedural inicial. Para alcanzar el acabado y semejanza de las ilustraciones detalladas, la siguiente etapa artística es esculpir y texturizar el personaje en Blender y preparar su rig para exportarlo en GLB. En esta versión se usa el modelo construido en código; no se ha producido un archivo de Blender ni un modelo fotorrealista.
 
-En el destino, el saludo utiliza los fotogramas del atuendo correspondiente. Se puede repetir con el cursor o al pulsar. Con movimiento reducido se muestran poses estáticas y la selección navega sin el efecto de transformación. No se añaden librerías de animación, rastreo ni servicios externos.
+La escena se carga en un módulo independiente. El lienzo admite densidad de píxel hasta 2× y antialiasing. El renderizado se detiene en reposo, fuera de la pantalla y cuando la pestaña está oculta. Al cambiar de ruta se liberan geometrías, materiales, observadores y contexto WebGL. Si WebGL no está disponible o se pierde su contexto, se muestra una ilustración local y la navegación sigue funcionando. Movimiento reducido evita el saludo, el seguimiento del cursor y el giro de transformación.
 
-## Escenas de cada área
+## Selector de atuendos
 
-Cada perfil tiene tres ilustraciones en el flujo del documento: bienvenida junto al título, una actividad vinculada al contenido y una pose de cierre junto al CV. Las dos últimas tienen una entrada suave al desplazarse, respetando movimiento reducido. No son elementos flotantes ni paneles independientes de la mascota.
+Home y las seis páginas comparten el selector en semicírculo con icono y nombre. Cada enlace usa el color de su área, no el de la página actual: cian, verde, amarillo, naranja, violeta y turquesa. El atuendo activo se indica visualmente y con `aria-current`.
 
-- Ciberseguridad: revisión de registros en monitor.
-- Software: programación con portátil.
-- Electricidad: medición de un circuito didáctico junto al curso de Mediciones Eléctricas.
-- Electrónica: diagnóstico de componentes en una mesa de trabajo.
-- Reparaciones: intervención de un teléfono.
-- Atención al cliente: auriculares y notas de soporte.
+El cursor, el foco o el primer toque muestran las opciones. Solo elegir expresamente otro atuendo inicia la transformación y la navegación después de 1100 ms; el movimiento reducido navega inmediatamente. Elegir el atuendo actual no bloquea las siguientes opciones. Tab, Enter y Escape funcionan, y Escape devuelve el foco al personaje. Las combinaciones Ctrl/Cmd conservan la apertura de enlaces en otra pestaña.
 
-## Archivos
+## Cuatro escenas por área
 
-- `culichi-mascot-atlas.webp`: versiones pequeñas para el encabezado. El logotipo cambia según la ruta; el favicon SVG contiene arte local.
-- `culichi-full-body-atlas.webp`: poses completas de presentación y figuras para los PDF (3 × 3).
-- `culichi-greeting-frames.webp`: seis fotogramas del saludo principal (3 × 2).
-- `culichi-outfit-greetings.webp`: seis atuendos, uno por fila, con seis fotogramas por saludo (6 × 6).
-- `culichi-action-scenes.webp`: seis actividades distintas (3 × 2).
-- `culichi-closing-scenes.webp`: seis poses de cierre (3 × 2, celdas verticales).
-- `culichi-home-background.webp`: composición general de las seis áreas, elevada en escritorio para dejar más visible el grupo junto al texto.
+Cada perfil presenta:
 
-Las regiones de las escenas están descritas en `mascotScenes.json` para mostrar orejas, colas y botas completas sin incluir fragmentos vecinos. Las celdas se muestran mediante fondos CSS, sin descargar una imagen independiente por fotograma. `Reveal` solo anima la entrada en pantalla, sin movimiento continuo entre bloques.
+1. Personaje 3D interactivo junto al título, con alternativa estática local.
+2. Una ilustración realizando una actividad dentro del contenido.
+3. Otra ilustración completa, independiente y de alta resolución, junto a herramientas o habilidades transferibles.
+4. Una pose distinta de cierre junto al CV.
 
-## PDF
+Las escenas de contenido usan `Reveal` para una entrada suave al desplazarse; no flotan sobre la página y no tienen paneles propios. Las seis nuevas ilustraciones están en `src/assets/mascot-scenes/`, con al menos 1024 píxeles de ancho, y se cargan de forma diferida. Representan revisión de red, programación junto a un servidor, medición eléctrica, uso de osciloscopio, inspección de un teléfono y atención con auriculares y notas.
 
-El generador incrusta ilustraciones y fondos por perfil dentro de los PDF. Los seis CV principales tienen variantes ES/EN, una página y texto seleccionable. Los datos proceden de `resumes.json`: no se inventan empleos, métricas ni certificaciones. El eléctrico incluye los dos cursos Udemy y RED CONOCER en curso; la constancia LinkedIn Learning figura completada. El original subido por el usuario permanece idéntico y descargable por separado.
+`culichi-action-scenes.webp` y `culichi-closing-scenes.webp` mantienen las actividades y cierres anteriores. Sus regiones CSS están registradas en `mascotScenes.json`, para mostrar personajes completos sin fragmentos vecinos. `culichi-full-body-atlas.webp` sirve para las alternativas estáticas y los PDF. Los sprites de saludo anteriores se conservan como recursos históricos; la interfaz activa utiliza el modelo 3D.
 
-Las previsualizaciones PNG se obtienen de la primera página del PDF real. Generar requiere Chromium, Poppler y Python/pypdf; Vercel sirve los archivos guardados sin necesitar esas herramientas. La página del catálogo CV mantiene su diseño anterior.
+El logotipo pequeño del encabezado sigue usando el arte local y cambia por ruta. La composición general de Home y el favicon conservan la identidad existente.
+
+## CV y evidencias
+
+El catálogo, los doce PDF ES/EN y sus previsualizaciones mantienen el diseño aprobado. Los seis CV incluyen contenido confirmado y mascota con el atuendo del perfil. El eléctrico original permanece intacto y descargable. Las fotografías del autor, galerías, reparaciones, certificados y estados de formación no se modifican al añadir el 3D.
+
+## Verificación
+
+Las pruebas comprueban colores distintos, navegación repetida entre perfiles, selección del atuendo activo, teclado, móvil, movimiento reducido, WebGL, parada en reposo, pérdida y ausencia de contexto e imágenes adicionales. Los resultados de renderizado por software del navegador de pruebas no equivalen a una medición de FPS en los dispositivos de los visitantes.

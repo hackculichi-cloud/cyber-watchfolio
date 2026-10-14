@@ -127,7 +127,7 @@ const SoftwareDevelopment = () => {
       </section>
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("Tools")} title={t("Tooling I work with")} />
+        <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Tooling I work with")} />
         <ProfileTools groups={toolsByProfile.development} />
       </section>
 

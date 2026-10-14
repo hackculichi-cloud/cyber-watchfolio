@@ -6,17 +6,17 @@ test("profile mascots appear between content blocks, never as floating overlays"
   for (const path of ["/cybersecurity", "/software-development", "/electrical", "/electronics", "/repair", "/experience"]) {
     await page.goto(path);
     const scenes = page.locator("main [data-mascot-scene]");
-    await expect(scenes).toHaveCount(3);
+    await expect(scenes).toHaveCount(4);
     const sources = new Set<string>();
-    for (const kind of ["entry", "action", "closing"]) {
+    for (const kind of ["entry", "action", "detail", "closing"]) {
       const scene = page.locator(`main [data-mascot-scene="${kind}"]`);
       await scene.scrollIntoViewIfNeeded();
       await expect(scene).toBeVisible();
-      await expect(scene).toHaveCSS("position", "static");
+      if (kind !== "entry") await expect(scene).toHaveCSS("position", "static");
       await expect(scene).toHaveCSS("border-top-width", "0px");
-      sources.add(await scene.evaluate(el => getComputedStyle(el).backgroundImage));
+      sources.add(await scene.evaluate(el => el.tagName === "CANVAS" ? "3D" : el.getAttribute("src") ?? getComputedStyle(el).backgroundImage));
     }
-    expect(sources.size).toBe(3);
+    expect(sources.size).toBe(4);
     await page.locator("#cv").scrollIntoViewIfNeeded();
     await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).click();
     await expect(page.getByRole("dialog").locator("[data-mascot]")).toBeVisible();
@@ -68,25 +68,30 @@ test("home mascot greets, rests, reveals six outfits and transforms before navig
   const mascot = page.locator("[data-home-mascot]");
   const box = (await mascot.boundingBox())!;
   expect(box.x + box.width).toBeLessThan(1440 / 2);
-  await expect(mascot).toHaveAttribute("data-phase", "greeting");
-  const frames = new Set<string>();
-  for (let i = 0; i < 8; i++) {
-    frames.add((await mascot.locator("[data-greeting-frame]").getAttribute("data-greeting-frame"))!);
-    await page.waitForTimeout(130);
-  }
-  expect(frames.size).toBeGreaterThan(2);
+  const model = mascot.locator('canvas[data-mascot]');
+  await expect(mascot.locator('[data-fox-renderer]')).toHaveAttribute("data-fox-renderer", "webgl");
   await expect(mascot).toHaveAttribute("data-phase", "standby");
+  const angles = await model.evaluate(el => new Promise<string[]>(resolve => {
+    (el.closest("button") as HTMLButtonElement).click();
+    const values: string[] = [];
+    const timer = setInterval(() => { values.push((el as HTMLElement).dataset.waveAngle ?? ""); if (values.length === 60) { clearInterval(timer);resolve(values); } }, 30);
+  }));
+  const values = angles.map(Number);
+  expect(Math.min(...values)).toBeLessThan(-1.5);
+  expect(Math.max(...values)).toBeGreaterThan(-.2);
+  expect(values.some(angle => angle < -.3 && angle > -2.2)).toBe(true);
+  await expect(mascot).toHaveAttribute("data-phase", /standby|ready/);
   await mascot.getByRole("button").hover();
   await expect(mascot.locator("[data-outfit]")).toHaveCount(6);
   await expect(page).toHaveURL(/\/$/);
   await mascot.locator('[data-outfit="electrical"]').click();
   await expect(mascot).toHaveAttribute("data-phase", "transforming");
   await expect(page).toHaveURL(/\/$/);
-  await expect(mascot.locator('.mascot-target [data-mascot]')).toHaveAttribute("data-mascot", "electrical");
+  await expect(model).toHaveAttribute("data-model-outfit", "electrical");
   await expect(page).toHaveURL(/\/electrical$/);
   const destination = page.locator('[data-interactive-mascot="electrical"]');
   await expect(destination).toBeVisible();
-  await expect(destination).toHaveAttribute("data-phase", "standby");
+  await expect(destination).toHaveAttribute("data-phase", /standby|ready/);
   await destination.getByRole("button").click();
   await expect(destination).toHaveAttribute("data-phase", "greeting");
 });
@@ -107,7 +112,7 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   await mascot.locator('[data-outfit="electronics"]').focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/electronics$/);
-  await expect(page.locator('[data-greeting-frame]')).toHaveAttribute("data-greeting-frame", "0");
+  await expect(page.locator('canvas[data-mascot]')).toHaveAttribute("data-wave-angle", "-0.1");
   const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true });
   const mobile = await context.newPage();
   await mobile.goto("/");

@@ -144,7 +144,7 @@ const Electronics = () => {
 
       <section id="tools" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("Tools")} title={t("Instruments & tooling")} />
+          <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Instruments & tooling")} />
           <ProfileTools groups={toolsByProfile.electronics} />
         </div>
       </section>

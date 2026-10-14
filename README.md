@@ -72,3 +72,7 @@ Ver [guía de contenido](docs/portfolio-content.md) para añadir evidencia real 
 El desarrollo usa GitHub y Vercel. Se han eliminado los plugins, planes y fixture exclusivos de la plataforma anterior. Eliminar archivos no revoca una integración de GitHub: en GitHub → Settings → Applications → Installed GitHub Apps → Lovable → Configure, retira solamente este repositorio de su acceso. Revisa también la conexión GitHub dentro del proyecto anterior. La cuenta actual de automatización no puede consultar los webhooks del repositorio (HTTP 403), por lo que no se afirma que la integración esté desconectada.
 
 Para regenerar los CV se usa Chromium, Poppler y Python con pypdf; `npm run generate:cvs`. Los archivos generados se guardan en Git, por lo que Vercel no necesita esas herramientas. Los seis CV se actualizan en español e inglés con mascota y diseño por perfil; el original eléctrico se conserva por separado, sin modificaciones.
+
+## Mascota interactiva
+
+La mascota utiliza Three.js con un primer modelo 3D estilizado, cargado por separado y con renderizado bajo demanda. El selector de seis colores funciona en Home y dentro de cada perfil. Cada área incorpora cuatro escenas, incluida una ilustración completa adicional. El modo de movimiento reducido y la alternativa estática sin WebGL conservan la navegación. Ver [modelo, recursos y límites actuales](docs/culichi-mascot.md).
