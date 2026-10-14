@@ -73,9 +73,8 @@ test("each area preview is momentary with pointer and keyboard", async ({ page }
 for (const [label, path, id] of areas) test(`${label} has its own ES/EN CV download and actual PDF preview`, async ({ page, request }) => {
   await page.goto(`${path}#cv`);
   const block = page.locator("#cv");
-  const original = id === "electrical";
-  const enStem = original ? "electrical-mascot" : `${id}-en`;
-  const esStem = original ? "electrical-mascot" : `${id}-es`;
+  const enStem = `${id}-en`;
+  const esStem = `${id}-es`;
   const link = block.locator(`a[href="/cv/christian-velasco-${enStem}.pdf"]`);
   await expect(link).toBeVisible();
   await link.hover();
@@ -94,7 +93,7 @@ for (const [label, path, id] of areas) test(`${label} has its own ES/EN CV downl
   await expect(dialog.locator("output")).toHaveText("125%");
   await dialog.getByRole("button", { name: "Fit width", exact: true }).click();
   await expect(dialog.locator("output")).toHaveText("100%");
-  if (!original) await dialog.locator('button[lang="es"]').click();
+  await dialog.locator('button[lang="es"]').click();
   await expect(dialog.locator("img")).toHaveAttribute("src", `/cv/previews/christian-velasco-${esStem}.png`);
   await expect(dialog.locator('a[download]')).toHaveAttribute("href", `/cv/christian-velasco-${esStem}.pdf`);
   await page.keyboard.press("Escape");

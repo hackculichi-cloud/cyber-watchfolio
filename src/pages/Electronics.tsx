@@ -53,7 +53,7 @@ const Electronics = () => {
       <SpecialtyExplorer profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug}
+        <SectionHeading
           eyebrow={t("Overview")}
           title={t("General electronics training")}
           description={t("Components, circuits and measurement instruments — building a methodical troubleshooting approach on real hardware.")}
@@ -111,7 +111,7 @@ const Electronics = () => {
 
       <section id="diagnostics" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading
+          <SectionHeading mascot={profile.slug} mascotScene="action"
             eyebrow={t("Diagnostics & measurements")}
             title={t("How I troubleshoot")}
             description={t("A consistent method applied to every board: observe, measure, isolate, repair, verify.")}

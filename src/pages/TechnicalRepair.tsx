@@ -1,3 +1,4 @@
+import MascotScene from "@/components/shared/MascotScene";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -46,7 +47,7 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
         <span className="glow-ring grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
           <Icon className="h-6 w-6" aria-hidden />
         </span>
-        <div>
+        <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-3">
             <h2 className="text-2xl font-semibold md:text-3xl">{t(type)}</h2>
             <Tag variant="primary">{t(meta.status)}</Tag>
@@ -58,6 +59,7 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
             ))}
           </div>
         </div>
+        {type === "Smartphones" && <MascotScene profile="repair" scene="action" className="w-24 sm:w-44" />}
       </div>
 
       {type === "Smartphones" && (
@@ -110,7 +112,7 @@ const TechnicalRepair = () => {
       <SpecialtyExplorer profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug}
+        <SectionHeading
           eyebrow={t("Overview")}
           title={t("A documented repair workshop")}
           description={t("Every repair follows the same visual structure so the process — not just the result — is visible.")}

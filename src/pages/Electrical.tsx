@@ -1,3 +1,4 @@
+import MascotScene from "@/components/shared/MascotScene";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -59,7 +60,7 @@ const Electrical = () => {
       <SpecialtyExplorer profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug}
+        <SectionHeading
           eyebrow={t("Overview")}
           title={t("Electrical maintenance: training & experience")}
           description={t("Industrial electrical maintenance training, course practice and documented residential client work — each activity identified by its actual setting.")}
@@ -95,7 +96,10 @@ const Electrical = () => {
                   <h3 className="text-base font-semibold">{t(track.title)}</h3>
                   <Tag variant={track.status === "Planned" ? "muted" : "primary"}>{t(track.status)}</Tag>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(track.description)}</p>
+                <div className="mt-2 flex items-center gap-3">
+                  <p className="min-w-0 flex-1 text-sm leading-relaxed text-muted-foreground">{t(track.description)}</p>
+                  {track.id === "electrical-udemy-measurements" && <MascotScene profile="electrical" scene="action" className="w-28 sm:w-40" />}
+                </div>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {track.topics.map((entry) => (
                     <Tag key={entry}>{t(entry)}</Tag>

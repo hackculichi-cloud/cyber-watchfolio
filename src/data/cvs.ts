@@ -17,7 +17,7 @@ const generatedCvVariants: CvVariant[] = manifests.map(resume => {
 });
 export const cvAssets = (cv: CvVariant, lang: Lang) => cv.localized?.[lang] ?? { file: cv.file, preview: cv.preview };
 
-/** Keep the user-provided electrical document as the primary electrical CV. */
+/** Preserve the uploaded electrical document separately from the updated ES/EN CVs. */
 export const originalElectricalCv: CvVariant = {
   id: "electrical", title: titles.electrical, description: "Original user-provided electrical CV.",
   file: "/cv/christian-velasco-electrical-mascot.pdf",
@@ -25,4 +25,4 @@ export const originalElectricalCv: CvVariant = {
   preview: "/cv/previews/christian-velasco-electrical-mascot.png", available: true,
 };
 
-export const cvVariants = generatedCvVariants.map(cv => cv.id === "electrical" ? originalElectricalCv : cv);
+export const cvVariants = generatedCvVariants.map(cv => cv.id === "electrical" ? { ...cv, originalFile: originalElectricalCv.originalFile } : cv);

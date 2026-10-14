@@ -58,7 +58,7 @@ const Cybersecurity = () => {
       <SpecialtyExplorer profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug}
+        <SectionHeading
           eyebrow={t("Overview")}
           title={t("SOC / Blue Team direction")}
           description={t("Security fundamentals, networking and Linux, monitoring and detection, and investigations documented end to end.")}
@@ -97,7 +97,7 @@ const Cybersecurity = () => {
       </section>
 
       <section id="investigations" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
+        <SectionHeading mascot={profile.slug} mascotScene="action"
           eyebrow={t("Investigations")}
           title={t("Incident investigations")}
           description={t("Each case follows the same structure: summary, detection, analysis, evidence, outcome and lessons learned.")}

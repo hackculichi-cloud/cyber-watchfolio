@@ -28,7 +28,7 @@ const Experience = () => {
       <SpecialtyExplorer profile={profile.slug} />
 
       <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug} eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
+        <SectionHeading mascot={profile.slug} mascotScene="action" eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
         <div className="grid gap-4 sm:grid-cols-2">
           {customerServiceSkills.map(skill => {
             const Icon = skillIcons[skill.icon];

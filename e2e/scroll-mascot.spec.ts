@@ -5,14 +5,18 @@ import { test, expect } from "@playwright/test";
 test("profile mascots appear between content blocks, never as floating overlays", async ({ page }) => {
   for (const path of ["/cybersecurity", "/software-development", "/electrical", "/electronics", "/repair", "/experience"]) {
     await page.goto(path);
-    const interludes = page.locator("main [data-mascot-interlude]");
-    await expect(interludes).toHaveCount(2);
-    await interludes.first().scrollIntoViewIfNeeded();
-    await expect(interludes.first()).toBeVisible();
-    await expect(interludes.first()).toHaveCSS("position", "static");
-    await expect(interludes.first()).toHaveCSS("border-top-width", "0px");
-    await expect(interludes.first().locator("[data-full-body]")).toBeVisible();
-    await interludes.last().scrollIntoViewIfNeeded();
+    const scenes = page.locator("main [data-mascot-scene]");
+    await expect(scenes).toHaveCount(3);
+    const sources = new Set<string>();
+    for (const kind of ["entry", "action", "closing"]) {
+      const scene = page.locator(`main [data-mascot-scene="${kind}"]`);
+      await scene.scrollIntoViewIfNeeded();
+      await expect(scene).toBeVisible();
+      await expect(scene).toHaveCSS("position", "static");
+      await expect(scene).toHaveCSS("border-top-width", "0px");
+      sources.add(await scene.evaluate(el => getComputedStyle(el).backgroundImage));
+    }
+    expect(sources.size).toBe(3);
     await page.locator("#cv").scrollIntoViewIfNeeded();
     await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).click();
     await expect(page.getByRole("dialog").locator("[data-mascot]")).toBeVisible();
@@ -33,7 +37,7 @@ test("mobile interludes fit the page with reduced motion and preserve the electr
   await expect(original).toBeVisible();
   const result = await request.get((await original.getAttribute("href"))!);
   expect(result.ok()).toBe(true);
-  await expect(page.locator('#cv a[href="/cv/christian-velasco-electrical-mascot.pdf"]')).toBeVisible();
+  await expect(page.locator('#cv a[href="/cv/christian-velasco-electrical-en.pdf"]')).toBeVisible();
 });
 
 test("home loads the local code font and general mascot background", async ({ page }) => {
@@ -58,16 +62,68 @@ test("Udemy electrical measurements is in progress with ten bilingual learning o
   await expect(course.getByText("Medición de continuidad en circuitos sin energía.", { exact: true })).toBeVisible();
 });
 
-test("home mascot stays out of the team background and responds to a greeting", async ({ page }) => {
+test("home mascot greets, rests, reveals six outfits and transforms before navigating", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   const mascot = page.locator("[data-home-mascot]");
   const box = (await mascot.boundingBox())!;
   expect(box.x + box.width).toBeLessThan(1440 / 2);
-  await mascot.click();
-  await expect(mascot.locator("[data-full-body]")).toHaveClass(/culichi-greet/);
+  await expect(mascot).toHaveAttribute("data-phase", "greeting");
+  const frames = new Set<string>();
+  for (let i = 0; i < 8; i++) {
+    frames.add((await mascot.locator("[data-greeting-frame]").getAttribute("data-greeting-frame"))!);
+    await page.waitForTimeout(130);
+  }
+  expect(frames.size).toBeGreaterThan(2);
+  await expect(mascot).toHaveAttribute("data-phase", "standby");
+  await mascot.getByRole("button").hover();
+  await expect(mascot.locator("[data-outfit]")).toHaveCount(6);
+  await expect(page).toHaveURL(/\/$/);
+  await mascot.locator('[data-outfit="electrical"]').click();
+  await expect(mascot).toHaveAttribute("data-phase", "transforming");
+  await expect(page).toHaveURL(/\/$/);
+  await expect(mascot.locator('.mascot-target [data-mascot]')).toHaveAttribute("data-mascot", "electrical");
+  await expect(page).toHaveURL(/\/electrical$/);
+  const destination = page.locator('[data-interactive-mascot="electrical"]');
+  await expect(destination).toBeVisible();
+  await expect(destination).toHaveAttribute("data-phase", "standby");
+  await destination.getByRole("button").click();
+  await expect(destination).toHaveAttribute("data-phase", "greeting");
+});
+
+test("outfit selector supports keyboard, touch and reduced motion", async ({ page, browser }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(mascot.locator("[data-full-body]")).toHaveCSS("animation-name", "none");
+  await page.goto("/");
+  const mascot = page.locator("[data-home-mascot]");
+  const greet = mascot.getByRole("button");
+  await greet.focus();
+  await expect(mascot.locator("[data-outfit]")).toHaveCount(6);
+  await page.keyboard.press("Tab");
+  await expect(mascot.locator("[data-outfit]").first()).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(mascot.locator("[data-outfit]")).toHaveCount(0);
+  await expect(greet).toBeFocused();
+  await greet.press("Enter");
+  await mascot.locator('[data-outfit="electronics"]').focus();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/electronics$/);
+  await expect(page.locator('[data-greeting-frame]')).toHaveAttribute("data-greeting-frame", "0");
+  const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true });
+  const mobile = await context.newPage();
+  await mobile.goto("/");
+  const selector = mobile.locator("[data-home-mascot]");
+  await expect(selector.locator("[data-outfit]")).toHaveCount(0);
+  await selector.getByRole("button").tap();
+  await expect(selector.locator("[data-outfit]")).toHaveCount(6);
+  for (const link of await selector.locator("[data-outfit]").all()) {
+    const rect = (await link.boundingBox())!;
+    expect(rect.x).toBeGreaterThanOrEqual(0);
+    expect(rect.x + rect.width).toBeLessThanOrEqual(360);
+  }
+  await selector.locator('[data-outfit="repair"]').tap();
+  await expect(mobile).toHaveURL(/\/repair$/);
+  await expect.poll(() => mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await context.close();
 });
 
 test("certificate inventories distinguish missing files from unfinished courses", async ({ page }) => {

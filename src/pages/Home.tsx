@@ -11,7 +11,7 @@ import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
 import Reveal from "@/components/shared/Reveal";
 import ContactPreview from "@/components/shared/ContactPreview";
-import CulichiBody from "@/components/shared/CulichiBody";
+import InteractiveMascot from "@/components/shared/InteractiveMascot";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -25,7 +25,7 @@ const Home = () => {
 
       {/* Hero */}
       <section className="grid-bg relative isolate overflow-hidden border-b border-border">
-        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-contain object-bottom opacity-90 md:object-cover md:object-right" />
+        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-contain object-bottom opacity-90 md:-translate-y-12 md:object-cover md:object-right-top" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.98)_0%,hsl(var(--background)/0.88)_42%,hsl(var(--background)/0.32)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
@@ -65,9 +65,8 @@ const Home = () => {
                 <Linkedin className="h-4 w-4" /> {t(site.linkedinHandle)}
               </ContactPreview>
             </div>
-            <div className="mt-5 flex items-center gap-2" data-home-mascot-zone>
-              <CulichiBody profile="home" interactive className="w-28 sm:w-32" />
-              <span className="text-xs text-primary">{t("Greet Culichi")}</span>
+            <div className="mt-5" data-home-mascot-zone>
+              <InteractiveMascot />
             </div>
           </div>
 

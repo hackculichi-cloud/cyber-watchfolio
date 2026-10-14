@@ -1,4 +1,4 @@
-import CulichiBody from "@/components/shared/CulichiBody";
+import InteractiveMascot from "@/components/shared/InteractiveMascot";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { ReactNode } from "react";
 import type { ProfileIdentity } from "@/data/profiles";
@@ -50,7 +50,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
 
       <div className="container relative mx-auto px-4 py-20 md:py-28">
         <div className="mb-6 flex justify-start md:absolute md:right-6 md:top-20 md:mb-0">
-          <CulichiBody profile={profile.slug} className="w-32 drop-shadow-[0_0_25px_hsl(var(--primary)/0.2)] md:w-44 lg:w-56" />
+          <InteractiveMascot key={profile.slug} profile={profile.slug} className="w-32 drop-shadow-[0_0_25px_hsl(var(--primary)/0.2)] md:w-44 lg:w-56" />
         </div>
         <div className="md:max-w-[calc(100%-13rem)] lg:max-w-[calc(100%-16rem)]">
         <div className="animate-fade-in-up flex items-center gap-3">

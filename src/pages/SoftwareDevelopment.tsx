@@ -48,7 +48,7 @@ const SoftwareDevelopment = () => {
       <SpecialtyExplorer profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug}
+        <SectionHeading
           eyebrow={t("Overview")}
           title={t("How I build")}
           description={t("Readable code, small reusable components, and everything version controlled on GitHub.")}
@@ -87,7 +87,7 @@ const SoftwareDevelopment = () => {
       </section>
 
       <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
+        <SectionHeading mascot={profile.slug} mascotScene="action"
           eyebrow={t("Projects")}
           title={t("Development projects")}
           description={t("Image-first project cards: screenshots, stack, live demo, repository and what I learned.")}

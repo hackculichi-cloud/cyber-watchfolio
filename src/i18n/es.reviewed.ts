@@ -514,4 +514,11 @@ export const reviewedEs: Record<string, string> = {
   "Learning laptop diagnostics, maintenance and component inspection.": "Aprendizaje de diagnóstico, mantenimiento e inspección de componentes de laptops.",
   "Future training in console repair and component handling.": "Formación futura en reparación de consolas y manipulación de componentes.",
   "Cybersecurity / IT CV": "CV de ciberseguridad / TI",
+  "Choose Culichi's outfit": "Elige el atuendo de Culichi",
+  "Greet Culichi and choose an outfit": "Saluda a Culichi y elige un atuendo",
+  "Changing outfit…": "Cambiando de atuendo…",
+  "Meet Culichi · choose your area": "Conoce a Culichi · elige tu área",
+  "Electricity": "Electricidad",
+  "Repair": "Reparación",
+  "Customer service": "Atención al cliente",
 };
