@@ -1,5 +1,7 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Visit LIDETEC website": "Visitar sitio de LIDETEC",
+  "(opens in a new tab)": "(se abre en una pestaña nueva)",
   Focus: "Enfoque",
   Languages: "Idiomas",
   timeline: "cronología",

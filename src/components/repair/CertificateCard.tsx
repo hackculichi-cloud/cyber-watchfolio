@@ -1,6 +1,6 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { useState } from "react";
-import { Award, ZoomIn } from "lucide-react";
+import { Award, ExternalLink, ZoomIn } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import Tag from "@/components/shared/Tag";
@@ -63,7 +63,15 @@ const CertificateCard = () => {
 
         <Tag variant="accent">{t("Certificate of participation")}</Tag>
 
-        {trainingProvider.image && <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>}
+        <div className="flex flex-wrap gap-3">
+          {trainingProvider.image && <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>}
+          <Button asChild variant="outline">
+            <a href={trainingProvider.website} target="_blank" rel="noopener noreferrer">
+              {t("Visit LIDETEC website")}<ExternalLink className="h-4 w-4" aria-hidden />
+              <span className="sr-only">{t(" (opens in a new tab)")}</span>
+            </a>
+          </Button>
+        </div>
       </div>
 
       <div className="md:col-span-2">

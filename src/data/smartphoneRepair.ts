@@ -18,6 +18,7 @@ export type TrainingModule = {
 };
 
 export const trainingProvider = {
+  website: "https://www.lidetec.mx/",
   name: "LIDETEC",
   fullName: "Liceo de Tecnología",
   course: "Curso de Reparación de Celulares",
