@@ -227,4 +227,8 @@ export const reviewedEs: Record<string, string> = {
   "Repair date, battery brand and test measurements are not documented.": "La fecha de reparación, la marca de la batería y las mediciones de las pruebas no están documentadas.",
   "Repair date, screen brand and test measurements are not documented.": "La fecha de reparación, la marca de la pantalla y las mediciones de las pruebas no están documentadas.",
   "These are the repair photos supplied by the portfolio owner. The light-blue device photos are linked to the iPhone XR case; assignment of the remaining photos is awaiting confirmation.": "Estas son las fotografías de reparación proporcionadas por el titular del portafolio. Las del teléfono azul claro están vinculadas al caso del iPhone XR; la asignación de las demás fotografías está pendiente de confirmación.",
+  "Workshop photos": "Fotos del taller",
+  "View photos": "Ver fotografías",
+  "Hide photos": "Ocultar fotografías",
+  "Photos are organized inside each repair case. This optional gallery contains all 18 photos, including connector close-ups not assigned to a specific device.": "Las fotografías están organizadas dentro de cada caso de reparación. Esta galería opcional contiene las 18 fotos, incluidos los detalles de conectores sin asignación a un dispositivo específico.",
 };

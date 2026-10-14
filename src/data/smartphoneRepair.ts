@@ -187,6 +187,7 @@ export type SmartphoneRepair = {
   after?: WorkImage;
   /** Extra evidence photos (screenshots, part references, tests). */
   evidence?: WorkImage[];
+  photos?: WorkImage[];
 };
 
 /**
@@ -198,6 +199,7 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "id": "sr-001",
     "ref": "SMARTPHONE REPAIR #001",
     "device": "iPhone 12 Pro",
+    "photos": repairPhotos.filter((photo) => ["/images/repair/repair-photo-01.jpg", "/images/repair/repair-photo-02.jpg", "/images/repair/repair-photo-05.jpg", "/images/repair/repair-photo-11.jpg", "/images/repair/repair-photo-13.jpg", "/images/repair/repair-photo-14.jpg", "/images/repair/repair-photo-15.jpg", "/images/repair/repair-photo-17.jpg", "/images/repair/repair-photo-18.jpg"].includes(photo.src ?? "")),
     "repairType": "Battery replacement",
     "work": [
       "Battery replacement performed by the portfolio owner"
@@ -218,6 +220,7 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "id": "sr-002",
     "ref": "SMARTPHONE REPAIR #002",
     "device": "iPhone 14 Pro",
+    "photos": repairPhotos.filter((photo) => ["/images/repair/repair-photo-03.jpg", "/images/repair/repair-photo-06.jpg", "/images/repair/repair-photo-07.jpg", "/images/repair/repair-photo-08.jpg", "/images/repair/repair-photo-12.jpg"].includes(photo.src ?? "")),
     "repairType": "Battery replacement",
     "work": [
       "Battery replacement performed by the portfolio owner"
@@ -244,9 +247,7 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "id": "sr-003",
     "ref": "SMARTPHONE REPAIR #003",
     "device": "iPhone XR",
-    // The owner identifies the light-blue phone as the XR.
-    "during": repairPhotos.find((photo) => photo.src === "/images/repair/repair-photo-10.jpg"),
-    "evidence": repairPhotos.filter((photo) => photo.src === "/images/repair/repair-photo-09.jpg"),
+    "photos": repairPhotos.filter((photo) => ["/images/repair/repair-photo-09.jpg", "/images/repair/repair-photo-10.jpg"].includes(photo.src ?? "")),
     "repairType": "Screen replacement",
     "work": [
       "Screen replacement performed by the portfolio owner"

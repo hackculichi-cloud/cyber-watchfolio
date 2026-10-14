@@ -6,6 +6,7 @@ import Tag from "@/components/shared/Tag";
 import EmptyState from "@/components/shared/EmptyState";
 import Gallery from "@/components/shared/Gallery";
 import WorkImageGallery from "@/components/shared/WorkImageGallery";
+import PhotoDisclosure from "@/components/shared/PhotoDisclosure";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
@@ -159,16 +160,11 @@ const TechnicalRepair = () => {
             title={t("Workshop photos")}
             description={t("Before/after documentation of real repairs, components and workshop practice.")}
           />
-          <p className="mb-6 text-sm text-muted-foreground">{t("These are the repair photos supplied by the portfolio owner. The light-blue device photos are linked to the iPhone XR case; assignment of the remaining photos is awaiting confirmation.")}</p>
-          <WorkImageGallery
-            title="Workshop photos"
-            images={repairPhotos}
-          />
-          {galleryFor("repair").length > 0 && <Gallery
-            items={galleryFor("repair")}
-            emptyTitle={t("No repair photos published yet")}
-            emptyDescription={t("Add photos to the gallery data file — before/after pairs are supported out of the box.")}
-          />}
+          <p className="mb-6 text-sm text-muted-foreground">{t("Photos are organized inside each repair case. This optional gallery contains all 18 photos, including connector close-ups not assigned to a specific device.")}</p>
+          <PhotoDisclosure title="Workshop photos" count={repairPhotos.length + galleryFor("repair").length}>
+            <WorkImageGallery title="Workshop photos" images={repairPhotos} />
+            {galleryFor("repair").length > 0 && <Gallery items={galleryFor("repair")} />}
+          </PhotoDisclosure>
         </div>
       </section>
 
