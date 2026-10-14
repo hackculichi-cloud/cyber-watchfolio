@@ -4,7 +4,8 @@ import { Award, ZoomIn } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import Tag from "@/components/shared/Tag";
-import { trainingProvider } from "@/data/smartphoneRepair";
+import TrainingCurriculum from "./TrainingCurriculum";
+import { trainingProvider, trainingModules, smartphoneSkills } from "@/data/smartphoneRepair";
 
 /** Certificate preview card with a lightbox viewer. Only certificate-visible data is shown. */
 const CertificateCard = () => {
@@ -12,7 +13,7 @@ const CertificateCard = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="panel-glow grid gap-6 md:grid-cols-[minmax(0,320px)_1fr]">
+    <div id="repair-certification" className="panel-glow grid gap-6 md:grid-cols-[minmax(0,320px)_1fr]">
       {trainingProvider.image ? <button
         type="button"
         onClick={() => setOpen(true)}
@@ -63,6 +64,23 @@ const CertificateCard = () => {
         <Tag variant="accent">{t("Certificate of participation")}</Tag>
 
         {trainingProvider.image && <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>}
+      </div>
+
+      <div className="md:col-span-2">
+        <details id="repair-training" className="panel-glow mt-6">
+          <summary className="cursor-pointer rounded text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>
+          <p className="my-4 text-sm text-muted-foreground">{t("Topics studied in the LIDETEC course. Practical repair evidence is documented separately below.")}</p>
+          <TrainingCurriculum modules={trainingModules} />
+        </details>
+        <div id="repair-training-skills" className="mt-6 space-y-4">
+          <h4 className="text-lg font-semibold">{t("Skills developed in training")}</h4>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {smartphoneSkills.map(group => <div key={group.group} className="rounded-lg border border-border bg-surface-2/40 p-4">
+              <h5 className="mb-3 text-sm font-semibold text-primary">{t(group.group)}</h5>
+              <ul className="flex flex-wrap gap-2">{group.items.map(skill => <li key={skill}><Tag>{t(skill)}</Tag></li>)}</ul>
+            </div>)}
+          </div>
+        </div>
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>

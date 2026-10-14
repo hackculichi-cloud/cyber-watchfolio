@@ -1,55 +1,12 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { useState } from "react";
-import { ArrowRight, ZoomIn } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import Tag from "@/components/shared/Tag";
-import PlaceholderImage from "@/components/shared/PlaceholderImage";
-import type { WorkImage } from "@/data/works";
+import WorkImageGallery from "@/components/shared/WorkImageGallery";
 import type { SmartphoneRepair } from "@/data/smartphoneRepair";
 
 const Pending = ({ label }: { label: string }) => {
   const { t } = useLanguage();
   return (
     <span className="text-muted-foreground/70">{t(label)}{t(" — pending documentation")}</span>
-  );
-};
-
-interface FrameProps {
-  image?: WorkImage;
-  caption: string;
-  onOpen: (image: WorkImage) => void;
-}
-
-const Frame = ({ image, caption, onOpen }: FrameProps) => {
-  const { t } = useLanguage();
-  return (
-    <figure className="min-w-0 flex-1">
-      {image?.src ? (
-        <button
-          type="button"
-          onClick={() => onOpen(image)}
-          style={{ padding: 0 }}
-          className="group relative block w-full overflow-hidden rounded-lg border border-border"
-          aria-label={t(`Open ${caption} photo`)}
-        >
-          <img
-            src={image.src}
-            alt={t(image.alt)}
-            loading="lazy"
-            decoding="async"
-            className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          <span className="absolute inset-0 grid place-items-center bg-background/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <ZoomIn className="h-5 w-5 text-primary" aria-hidden />
-          </span>
-        </button>
-      ) : (
-        <PlaceholderImage className="aspect-[4/3] w-full" label={t(`${caption} — photo pending`)} pattern="circuit" />
-      )}
-      <figcaption className="mt-2 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-        {t(image?.caption ?? caption)}
-      </figcaption>
-    </figure>
   );
 };
 
@@ -60,7 +17,7 @@ const Frame = ({ image, caption, onOpen }: FrameProps) => {
  */
 const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
   const { t } = useLanguage();
-  const [lightbox, setLightbox] = useState<WorkImage | null>(null);
+  const photos = repair.photos ?? [repair.before, repair.during, repair.after, ...(repair.evidence ?? [])].filter((image) => image !== undefined);
 
   const facts: { label: string; value?: string | string[] }[] = [
     { label: "Issue", value: repair.issue },
@@ -113,26 +70,7 @@ const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
       </dl>
       {repair.notes && <p className="text-sm leading-relaxed text-muted-foreground">{t(repair.notes)}</p>}
 
-      <div>
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{t("Before ")}<ArrowRight className="inline h-3 w-3" aria-hidden />{t(" During")}{t(" ")}
-          <ArrowRight className="inline h-3 w-3" aria-hidden />{t(" After")}</p>
-        <div className="flex flex-col items-stretch gap-4 sm:flex-row">
-          <Frame image={repair.before} caption="Before" onOpen={setLightbox} />
-          <Frame image={repair.during} caption="During" onOpen={setLightbox} />
-          <Frame image={repair.after} caption="After" onOpen={setLightbox} />
-        </div>
-      </div>
-
-      {repair.evidence?.length ? (
-        <div>
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{t("Verification evidence")}</p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {repair.evidence.map((e) => (
-              <Frame key={e.src} image={e} caption="Evidence" onOpen={setLightbox} />
-            ))}
-          </div>
-        </div>
-      ) : null}
+      <WorkImageGallery images={photos} title={repair.device} compact />
 
       {repair.learned?.length ? (
         <div className="border-t border-border pt-4">
@@ -145,21 +83,6 @@ const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
         </div>
       ) : null}
 
-      <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
-        <DialogContent className="max-w-3xl">
-          {lightbox && (
-            <>
-              <DialogTitle className="text-base">{t(lightbox.caption ?? repair.device)}</DialogTitle>
-              <DialogDescription className="sr-only">{t(lightbox.alt)}</DialogDescription>
-              <img
-                src={lightbox.src}
-                alt={t(lightbox.alt)}
-                className="max-h-[70vh] w-full rounded-lg border border-border object-contain"
-              />
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </article>
   );
 };
