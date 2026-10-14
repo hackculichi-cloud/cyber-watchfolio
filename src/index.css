@@ -277,6 +277,14 @@ html { scroll-behavior: smooth; }
   --shadow-lift: 0 2px 4px hsl(222 47% 2% / 0.4), 0 18px 40px -18px hsl(255 92% 76% / 0.35);
 }
 
+[data-profile="customer-service"] {
+  --primary: 173 70% 60%;
+  --accent: 187 80% 60%;
+  --ring: 173 70% 60%;
+  --gradient-primary: linear-gradient(135deg, hsl(173 70% 68%), hsl(187 80% 55%));
+  --shadow-lift: 0 2px 4px hsl(222 47% 2% / 0.4), 0 18px 40px -18px hsl(173 70% 60% / 0.3);
+}
+
 @layer utilities {
   /* Subtle atmospheric backdrop, tinted by the active profile accent. */
   .profile-atmosphere {

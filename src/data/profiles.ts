@@ -1,7 +1,7 @@
-import { Cpu, Shield, Code2, Wrench, Zap, type LucideIcon } from "lucide-react";
+import { PhoneCall, Cpu, Shield, Code2, Wrench, Zap, type LucideIcon } from "lucide-react";
 
 /** Slugs used for the per-profile visual identity (see `[data-profile]` in index.css). */
-export type ProfileSlug = "cybersecurity" | "development" | "electrical" | "electronics" | "repair";
+export type ProfileSlug = "cybersecurity" | "development" | "electrical" | "electronics" | "repair" | "customer-service";
 
 export type ProfileCardData = {
   slug: ProfileSlug;
@@ -69,6 +69,16 @@ export const professionalProfiles: ProfileCardData[] = [
     emphasis: "secondary",
     focus: ["Smartphones", "Laptops", "Consoles (planned)", "Diagnostics"],
     status: "In training",
+  },
+  {
+    slug: "customer-service",
+    title: "Call Center & Customer Service",
+    summary: "5+ years of bilingual customer service, communication, user support and conflict resolution.",
+    href: "/experience",
+    icon: PhoneCall,
+    emphasis: "secondary",
+    focus: ["English / Spanish", "Communication", "Customer support", "Problem solving"],
+    status: "Professional experience",
   },
 ];
 
@@ -206,6 +216,23 @@ export const profileIdentities: ProfileIdentity[] = [
       { id: "cv", label: "CV" },
     ],
     cvIds: ["electrical", "general"],
+  },
+  {
+    slug: "customer-service",
+    path: "/experience",
+    aliases: [],
+    label: "Call Center & Customer Service",
+    eyebrow: "Professional skills",
+    status: "Professional experience",
+    description: "More than 5 years of bilingual customer service experience, developing strong communication, problem-solving, user support, and conflict-resolution skills.",
+    icon: PhoneCall,
+    highlights: ["English / Spanish", "Communication", "Customer support", "Conflict resolution"],
+    sections: [
+      { id: "skills", label: "Skills" },
+      { id: "background", label: "Experience" },
+      { id: "transferable", label: "Transferable value" },
+    ],
+    cvIds: ["general"],
   },
 ];
 

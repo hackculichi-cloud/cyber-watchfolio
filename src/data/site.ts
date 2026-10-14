@@ -65,7 +65,14 @@ export const navigation: NavItem[] = [
       { label: "Consoles", href: "/repair#consoles" },
     ],
   },
-  { label: "Experience", href: "/experience" },
+  {
+    label: "Call Center & Customer Service", href: "/experience",
+    children: [
+      { label: "Skills", href: "/experience#skills" },
+      { label: "Experience", href: "/experience#background" },
+      { label: "Transferable value", href: "/experience#transferable" },
+    ],
+  },
   { label: "CV", href: "/cv" },
   { label: "Contact", href: "/contact" },
 ];

@@ -38,3 +38,11 @@ export const transferableImpact = [
  * Left empty on purpose — nothing is invented.
  */
 export const experienceEntries: ExperienceEntry[] = [];
+
+/** Derived from the existing experience summary; no employers or performance metrics are inferred. */
+export const customerServiceSkills = [
+  { title: "Bilingual communication", icon: "phone", description: "Customer service in English and Spanish, with clear explanations adapted to each user." },
+  { title: "User support", icon: "support", description: "Listening to user needs, clarifying the issue and guiding the next steps." },
+  { title: "Problem solving", icon: "problem", description: "Understanding the problem and explaining practical options clearly." },
+  { title: "Conflict resolution", icon: "conflict", description: "Patient communication with frustrated users and clear expectation management." },
+] as const;

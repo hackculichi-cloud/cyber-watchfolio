@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, BriefcaseBusiness, FileText, Mail, type LucideIcon } from "lucide-react";
+import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, PhoneCall, FileText, Mail, type LucideIcon } from "lucide-react";
 import { navigation } from "@/data/site";
 import logoCv from "@/assets/culichi-logo-zorro.png";
 import { cn } from "@/lib/utils";
@@ -8,10 +8,11 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 
-const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, Experience: BriefcaseBusiness, CV: FileText, Contact: Mail };
+const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, "Call Center & Customer Service": PhoneCall, CV: FileText, Contact: Mail };
 
 /** Per-profile accent color utilities (defined in index.css). */
 const navIconColor: Record<string, string> = {
+  "Call Center & Customer Service": "text-teal-300",
   Technology: "nav-ico-cybersecurity",
   Cybersecurity: "nav-ico-cybersecurity",
   Labs: "nav-ico-cybersecurity",
@@ -27,6 +28,7 @@ const navIconColor: Record<string, string> = {
 };
 
 const navDotColor: Record<string, string> = {
+  "Call Center & Customer Service": "bg-teal-300",
   Cybersecurity: "nav-dot-cybersecurity",
   Labs: "nav-dot-cybersecurity",
   "Software Development": "nav-dot-software",
@@ -56,7 +58,7 @@ const SiteHeader = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [location.pathname]);
+  useEffect(() => setOpen(false), [location.pathname, location.hash]);
 
   return (
     <header
@@ -125,7 +127,7 @@ const SiteHeader = () => {
       </nav>
 
       {open && (
-        <div className="border-t border-border bg-background/98 backdrop-blur-xl lg:hidden">
+        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background/98 backdrop-blur-xl lg:hidden">
           <div className="container mx-auto px-4 pt-4 sm:hidden"><LanguageSwitcher /></div>
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map((item) => (

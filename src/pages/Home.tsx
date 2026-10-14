@@ -8,7 +8,6 @@ import ProfileCard from "@/components/cards/ProfileCard";
 import Tag from "@/components/shared/Tag";
 import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
-import { experienceSummary } from "@/data/experience";
 import Reveal from "@/components/shared/Reveal";
 import ContactPreview from "@/components/shared/ContactPreview";
 import logoCulichi from "@/assets/culichi-logo-zorro.png";
@@ -90,7 +89,7 @@ const Home = () => {
       <section className="container mx-auto px-4 py-20">
         <SectionHeading
           eyebrow={t("Professional profile")}
-          title={t("One profile, several technical fields")}
+          title={t("Skills and professional areas")}
           description={t(site.intro)}
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -99,30 +98,6 @@ const Home = () => {
               <ProfileCard data={p} />
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* Experience strength */}
-      <section className="border-y border-border bg-surface/40">
-        <div className="container mx-auto grid gap-10 px-4 py-16 md:grid-cols-[1.2fr_1fr] md:items-center">
-          <Reveal from="left">
-            <p className="eyebrow">{t("Professional strength")}</p>
-            <h2 className="mt-2 text-2xl font-semibold md:text-3xl">{t(experienceSummary.headline)}</h2>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">{t(experienceSummary.statement)}</p>
-            <Link to="/experience" className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">{t("See how it transfers to tech")}{t(" ")}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </Reveal>
-          <div className="grid grid-cols-3 gap-3">
-            {experienceSummary.stats.map((s, i) => (
-              <Reveal key={s.label} from="right" delay={i * 90}>
-                <div className="panel lift text-center">
-                  <p className="text-2xl font-bold text-primary">{t(s.value)}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{t(s.label)}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
