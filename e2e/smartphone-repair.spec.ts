@@ -2,8 +2,8 @@ import { test, expect } from "@playwright/test";
 
 const openRepair = async (page: import("@playwright/test").Page, id: string) => {
   for (const group of ["iPhone", id === "sr-003" ? "iPhone-screen" : "iPhone-battery", id]) {
-    const details = page.locator(`[data-repair-group="${group}"]`);
-    if (!(await details.evaluate((node: HTMLDetailsElement) => node.open))) await details.locator(":scope > summary").click();
+    const tile = page.locator(`[data-repair-group="${group}"]`);
+    if (await tile.getAttribute("aria-expanded") !== "true") await tile.click();
   }
 };
 
@@ -11,9 +11,7 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
   await page.goto("/repair#smartphones");
   const section = page.locator("#smartphones");
   await expect(page.locator("#smartphone-repair-groups article")).toHaveCount(0);
-  for (const id of ["sr-001", "sr-002", "sr-003"]) await openRepair(page, id);
-  await expect(section.getByRole("heading", { name: "iPhone 12 Pro", exact: true })).toBeVisible();
-  await expect(section.getByRole("heading", { name: "iPhone XR", exact: true })).toBeVisible();
+  await openRepair(page, "sr-002");
   const iphone14 = section.locator("article").filter({ has: page.getByRole("heading", { name: "iPhone 14 Pro", exact: true }) });
   await expect(iphone14.getByText("Aftermarket self-programming battery", { exact: true })).toBeVisible();
   await expect(iphone14.getByText("Face ID", { exact: true })).toBeVisible();
@@ -25,10 +23,12 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
   await page.locator('button[lang="es"]:visible').first().click();
   await expect(iphone14.getByText("Batería aftermarket autoprogramable", { exact: true })).toBeVisible();
   await expect(iphone14.getByText(/comprobaciones finales enumeradas/)).toBeVisible();
+  await openRepair(page, "sr-003");
   const xr = section.locator("article").filter({ has: page.getByRole("heading", { name: "iPhone XR", exact: true }) });
   await expect(xr.getByText("Cambio de pantalla realizado por el titular del portafolio", { exact: true })).toBeVisible();
 
   for (const [model, count] of [["iPhone 12 Pro", 9], ["iPhone 14 Pro", 5], ["iPhone XR", 2]] as const) {
+    await openRepair(page, model === "iPhone 12 Pro" ? "sr-001" : model === "iPhone 14 Pro" ? "sr-002" : "sr-003");
     const card = section.locator("article").filter({ has: page.getByRole("heading", { name: model, exact: true }) });
     await expect(card.locator("figure")).toHaveCount(count);
     await expect(card.getByRole("button", { name: /^Ver fotografías:/ })).toHaveCount(0);
@@ -86,7 +86,7 @@ test("electrical evidence shows one preview and expands only when requested", as
 
 test("LIDETEC syllabus expands in both languages and training skills remain distinct from repair cases", async ({ page }) => {
   await page.goto("/repair#smartphones");
-  const curriculum = page.locator("#repair-training");
+  const curriculum = page.locator("#repair-certification #repair-training");
   await expect(curriculum).not.toHaveAttribute("open", "");
   await curriculum.locator("summary").click();
   await expect(curriculum.locator("ol > li")).toHaveCount(5);
@@ -102,29 +102,34 @@ test("LIDETEC syllabus expands in both languages and training skills remain dist
   await expect(curriculum.getByText("Uso del multímetro: bocinas, auriculares, buzzer y baterías", { exact: true })).not.toBeVisible();
 });
 
-test("brand and repair-type groups expose documented jobs and keep Samsung work planned", async ({ page }) => {
+test("visual brand and model tiles expose repairs and preserve Samsung planned status", async ({ page }) => {
   await page.goto("/repair#smartphones");
   const groups = page.locator("#smartphone-repair-groups");
   await expect(groups.locator("article")).toHaveCount(0);
   const iphone = groups.locator('[data-repair-group="iPhone"]');
-  await iphone.locator(":scope > summary").focus();
+  await expect(iphone.locator("img")).toHaveCount(2);
+  await expect.poll(() => iphone.locator("img").first().evaluate((node: HTMLImageElement) => node.complete && node.naturalWidth > 0)).toBe(true);
+  await iphone.focus();
   await page.keyboard.press("Enter");
-  await expect(iphone.locator('[data-repair-group="iPhone-screen"] > summary')).toContainText("Display / Screen");
+  await expect(groups.locator('[data-repair-group="iPhone-screen"]')).toContainText("Display / Screen");
   await openRepair(page, "sr-001");
-  await expect(iphone.locator('[data-repair-group="sr-001"] img')).toHaveCount(9);
-  await iphone.locator(":scope > summary").click();
+  await expect(groups.locator('#repair-panel-sr-001 img')).toHaveCount(9);
+  await expect(groups.locator('[data-repair-group="sr-001"] img')).toHaveAttribute("src", "/images/devices/iphone-12-pro.svg");
+  await iphone.click();
   await expect(groups.locator("article")).toHaveCount(0);
 
   await page.locator('button[lang="es"]:visible').first().click();
   const samsung = groups.locator('[data-repair-group="Samsung"]');
-  await expect(samsung.locator(":scope > summary")).toContainText("Planeadas: 2");
-  await samsung.locator(":scope > summary").click();
-  for (const [type, model] of [["screen", "Samsung Galaxy S21 Ultra"], ["battery", "Samsung Galaxy A35"]]) {
-    const category = samsung.locator(`[data-repair-group="Samsung-${type}"]`);
-    await category.locator(":scope > summary").click();
-    await expect(category.getByText(model, { exact: true })).toBeVisible();
-    await expect(category.getByText("Planeado", { exact: true })).toBeVisible();
-    await expect(category.locator("img")).toHaveCount(0);
-    await expect(category.locator("article")).toHaveCount(0);
+  await expect(samsung).toContainText("Planeadas: 2");
+  await samsung.click();
+  for (const [type, id, model] of [["screen", "planned-s21-ultra-screen", "Samsung Galaxy S21 Ultra"], ["battery", "planned-a35-battery", "Samsung Galaxy A35"]]) {
+    const category = groups.locator(`[data-repair-group="Samsung-${type}"]`);
+    await category.click();
+    const tile = groups.locator(`[data-repair-group="${id}"]`);
+    await expect(tile).toContainText(model);
+    await tile.click();
+    await expect(groups.locator(`#repair-panel-${id}`).getByText(/ · Planeado$/)).toBeVisible();
+    await expect(groups.locator('img[src^="/images/repair/"]')).toHaveCount(0);
+    await expect(groups.locator("article")).toHaveCount(0);
   }
 });

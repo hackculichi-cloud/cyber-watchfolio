@@ -13,9 +13,8 @@ import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import RepairCaseCard from "@/components/repair/RepairCaseCard";
 import CertificateCard from "@/components/repair/CertificateCard";
-import TrainingCurriculum from "@/components/repair/TrainingCurriculum";
 import SmartphoneRepairGroups from "@/components/repair/SmartphoneRepairGroups";
-import { smartphoneRepairs, trainingModules, smartphoneSkills } from "@/data/smartphoneRepair";
+import { smartphoneRepairs } from "@/data/smartphoneRepair";
 import { repairPhotos } from "@/data/repairPhotos";
 import { worksFor } from "@/data/works";
 import { repairCases, repairDeviceTypes, repairsFor, type RepairDeviceType } from "@/data/repairs";
@@ -64,20 +63,6 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
           <div>
             <h3 className="mb-4 text-xl font-semibold">{t("Smartphone repair training")}</h3>
             <CertificateCard />
-            <details id="repair-training" className="panel-glow mt-6">
-              <summary className="cursor-pointer rounded text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>
-              <p className="my-4 text-sm text-muted-foreground">{t("Topics studied in the LIDETEC course. Practical repair evidence is documented separately below.")}</p>
-              <TrainingCurriculum modules={trainingModules} />
-            </details>
-            <div id="repair-training-skills" className="mt-6 space-y-4">
-              <h4 className="text-lg font-semibold">{t("Skills developed in training")}</h4>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {smartphoneSkills.map(group => <div key={group.group} className="rounded-lg border border-border bg-surface-2/40 p-4">
-                  <h5 className="mb-3 text-sm font-semibold text-primary">{t(group.group)}</h5>
-                  <ul className="flex flex-wrap gap-2">{group.items.map(skill => <li key={skill}><Tag>{t(skill)}</Tag></li>)}</ul>
-                </div>)}
-              </div>
-            </div>
           </div>
           <div className="space-y-6">
             <h3 className="text-xl font-semibold">{t("Repairs by brand and type")}</h3>
