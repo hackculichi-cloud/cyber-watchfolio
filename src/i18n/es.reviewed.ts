@@ -304,4 +304,11 @@ export const reviewedEs: Record<string, string> = {
   "Diagnostics": "Diagnóstico",
   "Hide training details": "Ocultar detalles del curso",
   "View training details": "Ver detalles del curso",
+  "Documented: {count}": "Documentadas: {count}",
+  "Planned: {count}": "Planeadas: {count}",
+  "Display / Screen": "Display / Pantalla",
+  "Battery": "Batería",
+  "Upcoming repair. Results and photographic evidence will be added after the work is completed.": "Reparación pendiente. Los resultados y la evidencia fotográfica se añadirán después de realizar el trabajo.",
+  "No repairs recorded in this category yet.": "Todavía no hay reparaciones registradas en esta categoría.",
+  "Repairs by brand and type": "Reparaciones por marca y tipo",
 };

@@ -14,7 +14,7 @@ import WorkGrid from "@/components/work/WorkGrid";
 import RepairCaseCard from "@/components/repair/RepairCaseCard";
 import CertificateCard from "@/components/repair/CertificateCard";
 import TrainingCurriculum from "@/components/repair/TrainingCurriculum";
-import SmartphoneRepairCard from "@/components/repair/SmartphoneRepairCard";
+import SmartphoneRepairGroups from "@/components/repair/SmartphoneRepairGroups";
 import { smartphoneRepairs, trainingModules, smartphoneSkills } from "@/data/smartphoneRepair";
 import { repairPhotos } from "@/data/repairPhotos";
 import { worksFor } from "@/data/works";
@@ -80,8 +80,8 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
             </div>
           </div>
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold">{t("Documented smartphone repairs")}</h3>
-            {smartphoneRepairs.map((repair) => <SmartphoneRepairCard key={repair.id} repair={repair} />)}
+            <h3 className="text-xl font-semibold">{t("Repairs by brand and type")}</h3>
+            <SmartphoneRepairGroups />
           </div>
         </div>
       )}

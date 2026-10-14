@@ -164,12 +164,16 @@ export const learningNext: string[] = [
   "Documenting every future repair with before / during / after photos",
 ];
 
+export type SmartphoneBrand = "iPhone" | "Samsung";
+export type SmartphoneRepairType = "Battery replacement" | "Screen replacement";
+
 /** Individual documented smartphone repair. */
 export type SmartphoneRepair = {
   id: string;
   ref: string;
   device: string;
-  repairType: string;
+  brand: SmartphoneBrand;
+  repairType: SmartphoneRepairType;
   issue?: string;
   diagnosis?: string;
   work?: string[];
@@ -198,6 +202,7 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "id": "sr-001",
     "ref": "SMARTPHONE REPAIR #001",
     "device": "iPhone 12 Pro",
+    "brand": "iPhone",
     "photos": repairPhotos.filter((photo) => ["/images/repair/repair-photo-01.jpg", "/images/repair/repair-photo-02.jpg", "/images/repair/repair-photo-05.jpg", "/images/repair/repair-photo-11.jpg", "/images/repair/repair-photo-13.jpg", "/images/repair/repair-photo-14.jpg", "/images/repair/repair-photo-15.jpg", "/images/repair/repair-photo-17.jpg", "/images/repair/repair-photo-18.jpg"].includes(photo.src ?? "")),
     "repairType": "Battery replacement",
     "work": [
@@ -219,6 +224,7 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "id": "sr-002",
     "ref": "SMARTPHONE REPAIR #002",
     "device": "iPhone 14 Pro",
+    "brand": "iPhone",
     "photos": repairPhotos.filter((photo) => ["/images/repair/repair-photo-03.jpg", "/images/repair/repair-photo-06.jpg", "/images/repair/repair-photo-07.jpg", "/images/repair/repair-photo-08.jpg", "/images/repair/repair-photo-12.jpg"].includes(photo.src ?? "")),
     "repairType": "Battery replacement",
     "work": [
@@ -246,6 +252,7 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "id": "sr-003",
     "ref": "SMARTPHONE REPAIR #003",
     "device": "iPhone XR",
+    "brand": "iPhone",
     "photos": repairPhotos.filter((photo) => ["/images/repair/repair-photo-09.jpg", "/images/repair/repair-photo-10.jpg"].includes(photo.src ?? "")),
     "repairType": "Screen replacement",
     "work": [
@@ -263,4 +270,10 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "result": "Screen replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
     "notes": "Repair date, screen brand and test measurements are not documented."
   }
+];
+
+/** User-confirmed future work. Never included in completed repair counts. */
+export const plannedSmartphoneRepairs: { id: string; brand: SmartphoneBrand; device: string; repairType: SmartphoneRepairType }[] = [
+  { id: "planned-s21-ultra-screen", brand: "Samsung", device: "Samsung Galaxy S21 Ultra", repairType: "Screen replacement" },
+  { id: "planned-a35-battery", brand: "Samsung", device: "Samsung Galaxy A35", repairType: "Battery replacement" },
 ];

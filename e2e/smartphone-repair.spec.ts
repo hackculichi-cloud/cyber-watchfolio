@@ -1,8 +1,17 @@
 import { test, expect } from "@playwright/test";
 
+const openRepair = async (page: import("@playwright/test").Page, id: string) => {
+  for (const group of ["iPhone", id === "sr-003" ? "iPhone-screen" : "iPhone-battery", id]) {
+    const details = page.locator(`[data-repair-group="${group}"]`);
+    if (!(await details.evaluate((node: HTMLDetailsElement) => node.open))) await details.locator(":scope > summary").click();
+  }
+};
+
 test("three confirmed repairs have bilingual facts without unrelated evidence", async ({ page }) => {
   await page.goto("/repair#smartphones");
   const section = page.locator("#smartphones");
+  await expect(page.locator("#smartphone-repair-groups article")).toHaveCount(0);
+  for (const id of ["sr-001", "sr-002", "sr-003"]) await openRepair(page, id);
   await expect(section.getByRole("heading", { name: "iPhone 12 Pro", exact: true })).toBeVisible();
   await expect(section.getByRole("heading", { name: "iPhone XR", exact: true })).toBeVisible();
   const iphone14 = section.locator("article").filter({ has: page.getByRole("heading", { name: "iPhone 14 Pro", exact: true }) });
@@ -54,6 +63,7 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
 test("repair section remains usable on mobile without horizontal overflow", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/repair#smartphones");
+  await openRepair(page, "sr-002");
   await expect(page.getByRole("heading", { name: "iPhone 14 Pro", exact: true })).toBeVisible();
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
@@ -90,4 +100,31 @@ test("LIDETEC syllabus expands in both languages and training skills remain dist
   await expect(page.locator("#repair-training-skills").getByText("UnlockTool (formación)", { exact: true })).toBeVisible();
   await curriculum.getByRole("button", { name: "Ocultar detalles del curso", exact: true }).click();
   await expect(curriculum.getByText("Uso del multímetro: bocinas, auriculares, buzzer y baterías", { exact: true })).not.toBeVisible();
+});
+
+test("brand and repair-type groups expose documented jobs and keep Samsung work planned", async ({ page }) => {
+  await page.goto("/repair#smartphones");
+  const groups = page.locator("#smartphone-repair-groups");
+  await expect(groups.locator("article")).toHaveCount(0);
+  const iphone = groups.locator('[data-repair-group="iPhone"]');
+  await iphone.locator(":scope > summary").focus();
+  await page.keyboard.press("Enter");
+  await expect(iphone.locator('[data-repair-group="iPhone-screen"] > summary')).toContainText("Display / Screen");
+  await openRepair(page, "sr-001");
+  await expect(iphone.locator('[data-repair-group="sr-001"] img')).toHaveCount(9);
+  await iphone.locator(":scope > summary").click();
+  await expect(groups.locator("article")).toHaveCount(0);
+
+  await page.locator('button[lang="es"]:visible').first().click();
+  const samsung = groups.locator('[data-repair-group="Samsung"]');
+  await expect(samsung.locator(":scope > summary")).toContainText("Planeadas: 2");
+  await samsung.locator(":scope > summary").click();
+  for (const [type, model] of [["screen", "Samsung Galaxy S21 Ultra"], ["battery", "Samsung Galaxy A35"]]) {
+    const category = samsung.locator(`[data-repair-group="Samsung-${type}"]`);
+    await category.locator(":scope > summary").click();
+    await expect(category.getByText(model, { exact: true })).toBeVisible();
+    await expect(category.getByText("Planeado", { exact: true })).toBeVisible();
+    await expect(category.locator("img")).toHaveCount(0);
+    await expect(category.locator("article")).toHaveCount(0);
+  }
 });
