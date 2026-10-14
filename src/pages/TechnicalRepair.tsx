@@ -16,6 +16,7 @@ import RepairCaseCard from "@/components/repair/RepairCaseCard";
 import CertificateCard from "@/components/repair/CertificateCard";
 import SmartphoneRepairCard from "@/components/repair/SmartphoneRepairCard";
 import { smartphoneRepairs } from "@/data/smartphoneRepair";
+import { repairPhotos } from "@/data/repairPhotos";
 import { worksFor } from "@/data/works";
 import { repairCases, repairDeviceTypes, repairsFor, type RepairDeviceType } from "@/data/repairs";
 import { profileBySlug } from "@/data/profiles";
@@ -158,11 +159,12 @@ const TechnicalRepair = () => {
             title={t("Workshop photos")}
             description={t("Before/after documentation of real repairs, components and workshop practice.")}
           />
+          <p className="mb-6 text-sm text-muted-foreground">{t("These are the repair photos supplied by the portfolio owner. Assignment to individual device cases is awaiting confirmation.")}</p>
           <WorkImageGallery
             title="Workshop photos"
-            images={smartphoneRepairs.flatMap((repair) => [repair.before, repair.during, repair.after, ...(repair.evidence ?? [])]
+            images={[...repairPhotos, ...smartphoneRepairs.flatMap((repair) => [repair.before, repair.during, repair.after, ...(repair.evidence ?? [])]
               .filter((image) => image !== undefined)
-              .map((image) => ({ ...image, projectTitle: repair.device })))}
+              .map((image) => ({ ...image, projectTitle: repair.device })))]}
           />
           {galleryFor("repair").length > 0 && <Gallery
             items={galleryFor("repair")}

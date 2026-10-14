@@ -27,7 +27,7 @@ export const trainingProvider = {
   certificateDate: "01 de agosto de 2026",
   instructor: "Francisco Eduardo Villaseñor",
   document: "Constancia (certificate of participation)",
-  image: "/images/repair/cert-lidetec.jpg",
+  image: null,
   imageRotation: 180,
 };
 
@@ -194,43 +194,69 @@ export type SmartphoneRepair = {
  */
 export const smartphoneRepairs: SmartphoneRepair[] = [
   {
-    id: "sr-001",
-    ref: "SMARTPHONE REPAIR #001",
-    device: "iPhone 12 / 12 Pro",
-    repairType: "Battery replacement",
-    work: ["Device opened on the repair mat", "Battery service performed", "Reassembly and functional verification"],
-    tools: ["Smartphone repair toolkit", "Anti-static repair mat"],
-    result:
-      "Device reports 100% maximum battery capacity, and the iOS repair log lists the battery part with status Original.",
-    date: "Repair finished 21 August (per the device repair log)",
-    during: {
-      src: "/images/repair/iphone12-open.jpg",
-      alt: "iPhone 12 opened on a blue anti-static repair mat, display detached and battery visible",
-      caption: "During — device opened, battery and logic board exposed",
-    },
-    evidence: [
-      {
-        src: "/images/repair/iphone12-battery-health.jpg",
-        alt: "iOS Battery Health screen showing 100% maximum capacity",
-        caption: "Post-repair test — 100% maximum capacity",
-      },
-      {
-        src: "/images/repair/iphone12-repair-log.jpg",
-        alt: "iOS repair log showing the battery part with status Original",
-        caption: "Repair log — battery, status Original",
-      },
+    "id": "sr-001",
+    "ref": "SMARTPHONE REPAIR #001",
+    "device": "iPhone 12 Pro",
+    "repairType": "Battery replacement",
+    "work": [
+      "Battery replacement performed by the portfolio owner"
     ],
+    "tests": [
+      "Power-on",
+      "Charging",
+      "Touchscreen",
+      "Cameras",
+      "Audio",
+      "Face ID",
+      "Battery settings review"
+    ],
+    "result": "Battery replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
+    "notes": "Repair date, battery brand and test measurements are not documented."
   },
   {
-    id: "sr-002",
-    ref: "SMARTPHONE REPAIR #002",
-    device: "iPhone 14 Pro",
-    repairType: "Battery replacement",
-    work: ["Battery replacement performed by the portfolio owner"],
-    precautions: ["Appropriate repair tools used"],
-    components: ["Aftermarket self-programming battery"],
-    tests: ["Power-on", "Charging", "Touchscreen", "Cameras", "Audio", "Face ID", "Battery settings review"],
-    result: "Battery replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
-    notes: "Repair date, battery brand and test measurements are not documented. Additional repair photos are pending file upload.",
+    "id": "sr-002",
+    "ref": "SMARTPHONE REPAIR #002",
+    "device": "iPhone 14 Pro",
+    "repairType": "Battery replacement",
+    "work": [
+      "Battery replacement performed by the portfolio owner"
+    ],
+    "precautions": [
+      "Appropriate repair tools used"
+    ],
+    "components": [
+      "Aftermarket self-programming battery"
+    ],
+    "tests": [
+      "Power-on",
+      "Charging",
+      "Touchscreen",
+      "Cameras",
+      "Audio",
+      "Face ID",
+      "Battery settings review"
+    ],
+    "result": "Battery replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
+    "notes": "Repair date, battery brand and test measurements are not documented."
   },
+  {
+    "id": "sr-003",
+    "ref": "SMARTPHONE REPAIR #003",
+    "device": "iPhone XR",
+    "repairType": "Screen replacement",
+    "work": [
+      "Screen replacement performed by the portfolio owner"
+    ],
+    "tests": [
+      "Power-on",
+      "Charging",
+      "Touchscreen",
+      "Cameras",
+      "Audio",
+      "Face ID",
+      "Battery settings review"
+    ],
+    "result": "Screen replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
+    "notes": "Repair date, screen brand and test measurements are not documented."
+  }
 ];

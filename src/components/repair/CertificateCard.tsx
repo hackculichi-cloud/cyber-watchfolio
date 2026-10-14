@@ -13,7 +13,7 @@ const CertificateCard = () => {
 
   return (
     <div className="panel-glow grid gap-6 md:grid-cols-[minmax(0,320px)_1fr]">
-      <button
+      {trainingProvider.image ? <button
         type="button"
         onClick={() => setOpen(true)}
         style={{ padding: 0 }}
@@ -31,7 +31,7 @@ const CertificateCard = () => {
         <span className="absolute inset-0 grid place-items-center bg-background/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <ZoomIn className="h-5 w-5 text-primary" aria-hidden />
         </span>
-      </button>
+      </button> : <div className="grid min-h-48 place-items-center rounded-lg border border-border p-6 text-center text-sm text-muted-foreground">{t("Certificate photo pending upload")}</div>}
 
       <div className="space-y-4">
         <div className="flex items-center gap-3">
@@ -62,7 +62,7 @@ const CertificateCard = () => {
 
         <Tag variant="accent">{t("Certificate of participation")}</Tag>
 
-        <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>
+        {trainingProvider.image && <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>}
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
@@ -72,12 +72,12 @@ const CertificateCard = () => {
           </DialogTitle>
           <DialogDescription className="sr-only">{t("Certificate of participation issued by ")}{t(trainingProvider.name)}
           </DialogDescription>
-          <img
+          {trainingProvider.image && <img
             src={trainingProvider.image}
             alt={t(`${trainingProvider.course} certificate issued by ${trainingProvider.name}`)}
             style={{ rotate: `${trainingProvider.imageRotation}deg` }}
             className="max-h-[75vh] w-full rounded-lg border border-border object-contain"
-          />
+          />}
         </DialogContent>
       </Dialog>
     </div>

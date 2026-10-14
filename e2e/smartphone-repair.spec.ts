@@ -1,33 +1,35 @@
 import { test, expect } from "@playwright/test";
 
-test("smartphone training and separate repair cases show bilingual facts and local evidence", async ({ page }) => {
+test("three confirmed repairs have bilingual facts without unrelated evidence", async ({ page }) => {
   await page.goto("/repair#smartphones");
   const section = page.locator("#smartphones");
-  await expect(section.getByText("Aftermarket self-programming battery", { exact: true })).toBeVisible();
+  await expect(section.getByRole("heading", { name: "iPhone 12 Pro", exact: true })).toBeVisible();
+  await expect(section.getByRole("heading", { name: "iPhone XR", exact: true })).toBeVisible();
   const iphone14 = section.locator("article").filter({ has: page.getByRole("heading", { name: "iPhone 14 Pro", exact: true }) });
+  await expect(iphone14.getByText("Aftermarket self-programming battery", { exact: true })).toBeVisible();
   await expect(iphone14.getByText("Face ID", { exact: true })).toBeVisible();
-  await expect(iphone14.getByText(/100%|status Original/)).toHaveCount(0);
-  await section.getByRole("button", { name: "View certificate", exact: true }).last().click();
-  let dialog = page.getByRole("dialog");
-  await expect(dialog).toBeVisible();
-  await expect(dialog.locator("img")).toHaveJSProperty("naturalWidth", 1600);
-  await page.keyboard.press("Escape");
+  await expect(section.getByText(/100%|status Original/)).toHaveCount(0);
+  await expect(section.getByText("Certificate photo pending upload", { exact: true })).toBeVisible();
+  await expect(section.getByRole("button", { name: "View certificate", exact: true })).toHaveCount(0);
   await page.locator('button[lang="es"]:visible').first().click();
   await expect(iphone14.getByText("Batería aftermarket autoprogramable", { exact: true })).toBeVisible();
-  await expect(iphone14.getByText("Encendido", { exact: true })).toBeVisible();
   await expect(iphone14.getByText(/comprobaciones finales enumeradas/)).toBeVisible();
-  await section.getByRole("button", { name: "Ampliar fotografía del proceso", exact: true }).click();
-  dialog = page.getByRole("dialog");
-  await expect(dialog.locator("img")).toHaveJSProperty("naturalWidth", 900);
-  await expect(dialog.getByRole("heading")).toHaveText("Durante: dispositivo abierto, batería y placa lógica expuestas");
+  const xr = section.locator("article").filter({ has: page.getByRole("heading", { name: "iPhone XR", exact: true }) });
+  await expect(xr.getByText("Cambio de pantalla realizado por el titular del portafolio", { exact: true })).toBeVisible();
+
+  const gallery = page.locator("#gallery");
+  await expect(gallery.locator("figure")).toHaveCount(18);
+  await gallery.locator("button").first().click();
+  const dialog = page.getByRole("dialog");
+  for (let index = 1; index <= 18; index++) {
+    const img = dialog.locator("img");
+    await expect(img).toHaveAttribute("src", `/images/repair/repair-photo-${String(index).padStart(2, "0")}.jpg`);
+    await expect.poll(() => img.evaluate((node: HTMLImageElement) => node.complete && node.naturalWidth > 0)).toBe(true);
+    await expect(dialog.getByRole("status")).toHaveText(`Foto ${index} de 18`);
+    if (index < 18) await dialog.getByRole("button", { name: "Foto siguiente", exact: true }).click();
+  }
   await page.keyboard.press("Escape");
   await expect(dialog).not.toBeVisible();
-  await page.locator('#gallery button').first().click();
-  dialog = page.getByRole("dialog");
-  await expect(dialog.locator("img")).toHaveJSProperty("naturalWidth", 900);
-  await dialog.getByRole("button", { name: "Foto siguiente", exact: true }).click();
-  await expect(dialog.getByRole("status")).toHaveText("Foto 2 de 3");
-  await page.keyboard.press("Escape");
 });
 
 test("repair section remains usable on mobile without horizontal overflow", async ({ page }) => {
