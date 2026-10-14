@@ -1,8 +1,4 @@
 import type { WorkImage } from "./works";
-import certAsset from "@/assets/cert-lidetec.jpg.asset.json";
-import openAsset from "@/assets/iphone12-open.jpg.asset.json";
-import healthAsset from "@/assets/iphone12-battery-health.jpg.asset.json";
-import logAsset from "@/assets/iphone12-repair-log.jpg.asset.json";
 
 /** ---------------------------------------------------------------
  * Smartphone repair profile data.
@@ -31,7 +27,8 @@ export const trainingProvider = {
   certificateDate: "01 de agosto de 2026",
   instructor: "Francisco Eduardo Villaseñor",
   document: "Constancia (certificate of participation)",
-  image: certAsset.url,
+  image: "/images/repair/cert-lidetec.jpg",
+  imageRotation: 180,
 };
 
 export const trainingModules: TrainingModule[] = [
@@ -180,6 +177,10 @@ export type SmartphoneRepair = {
   result?: string;
   date?: string;
   learned?: string[];
+  precautions?: string[];
+  components?: string[];
+  tests?: string[];
+  notes?: string;
   before?: WorkImage;
   during?: WorkImage;
   after?: WorkImage;
@@ -203,21 +204,33 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
       "Device reports 100% maximum battery capacity, and the iOS repair log lists the battery part with status Original.",
     date: "Repair finished 21 August (per the device repair log)",
     during: {
-      src: openAsset.url,
+      src: "/images/repair/iphone12-open.jpg",
       alt: "iPhone 12 opened on a blue anti-static repair mat, display detached and battery visible",
       caption: "During — device opened, battery and logic board exposed",
     },
     evidence: [
       {
-        src: healthAsset.url,
+        src: "/images/repair/iphone12-battery-health.jpg",
         alt: "iOS Battery Health screen showing 100% maximum capacity",
         caption: "Post-repair test — 100% maximum capacity",
       },
       {
-        src: logAsset.url,
+        src: "/images/repair/iphone12-repair-log.jpg",
         alt: "iOS repair log showing the battery part with status Original",
         caption: "Repair log — battery, status Original",
       },
     ],
+  },
+  {
+    id: "sr-002",
+    ref: "SMARTPHONE REPAIR #002",
+    device: "iPhone 14 Pro",
+    repairType: "Battery replacement",
+    work: ["Battery replacement performed by the portfolio owner"],
+    precautions: ["Appropriate repair tools used"],
+    components: ["Aftermarket self-programming battery"],
+    tests: ["Power-on", "Charging", "Touchscreen", "Cameras", "Audio", "Face ID", "Battery settings review"],
+    result: "Battery replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
+    notes: "Repair date, battery brand and test measurements are not documented. Additional repair photos are pending file upload.",
   },
 ];

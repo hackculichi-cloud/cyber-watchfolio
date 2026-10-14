@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button";
 import Tag from "@/components/shared/Tag";
 import { trainingProvider } from "@/data/smartphoneRepair";
 
-const skills = ["Diagnostics", "Disassembly", "Soldering & hot air", "Microsoldering fundamentals", "Software servicing"];
-
 /** Certificate preview card with a lightbox viewer. Only certificate-visible data is shown. */
 const CertificateCard = () => {
   const { t } = useLanguage();
@@ -27,7 +25,8 @@ const CertificateCard = () => {
           alt={t(`${trainingProvider.course} certificate issued by ${trainingProvider.name}`)}
           loading="lazy"
           decoding="async"
-          className="h-full max-h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          style={{ rotate: `${trainingProvider.imageRotation}deg` }}
+          className="h-full max-h-72 w-full object-contain transition-transform duration-500 group-hover:scale-105"
         />
         <span className="absolute inset-0 grid place-items-center bg-background/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <ZoomIn className="h-5 w-5 text-primary" aria-hidden />
@@ -61,13 +60,7 @@ const CertificateCard = () => {
           ))}
         </dl>
 
-        <div className="flex flex-wrap gap-1.5">
-          {skills.map((s) => (
-            <Tag key={s} variant="accent">
-              {t(s)}
-            </Tag>
-          ))}
-        </div>
+        <Tag variant="accent">{t("Certificate of participation")}</Tag>
 
         <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>
       </div>
@@ -82,6 +75,7 @@ const CertificateCard = () => {
           <img
             src={trainingProvider.image}
             alt={t(`${trainingProvider.course} certificate issued by ${trainingProvider.name}`)}
+            style={{ rotate: `${trainingProvider.imageRotation}deg` }}
             className="max-h-[75vh] w-full rounded-lg border border-border object-contain"
           />
         </DialogContent>

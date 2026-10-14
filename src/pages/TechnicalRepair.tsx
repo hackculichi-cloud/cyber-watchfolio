@@ -5,6 +5,7 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
 import EmptyState from "@/components/shared/EmptyState";
 import Gallery from "@/components/shared/Gallery";
+import WorkImageGallery from "@/components/shared/WorkImageGallery";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
@@ -12,6 +13,9 @@ import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import RepairCaseCard from "@/components/repair/RepairCaseCard";
+import CertificateCard from "@/components/repair/CertificateCard";
+import SmartphoneRepairCard from "@/components/repair/SmartphoneRepairCard";
+import { smartphoneRepairs } from "@/data/smartphoneRepair";
 import { worksFor } from "@/data/works";
 import { repairCases, repairDeviceTypes, repairsFor, type RepairDeviceType } from "@/data/repairs";
 import { profileBySlug } from "@/data/profiles";
@@ -54,18 +58,31 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
         </div>
       </div>
 
+      {type === "Smartphones" && (
+        <div className="mb-8 space-y-8">
+          <div>
+            <h3 className="mb-4 text-xl font-semibold">{t("Smartphone repair training")}</h3>
+            <CertificateCard />
+          </div>
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold">{t("Documented smartphone repairs")}</h3>
+            {smartphoneRepairs.map((repair) => <SmartphoneRepairCard key={repair.id} repair={repair} />)}
+          </div>
+        </div>
+      )}
+
       {cases.length ? (
         <div className="space-y-6">
           {cases.map((r) => (
             <RepairCaseCard key={r.id} repair={r} />
           ))}
         </div>
-      ) : (
+      ) : type !== "Smartphones" || !smartphoneRepairs.length ? (
         <EmptyState
           title={t(`No ${type.toLowerCase()} cases published yet`)}
           description={t("Each published case documents before, diagnosis, repair and after with real photos.")}
         />
-      )}
+      ) : null}
     </section>
   );
 };
@@ -141,11 +158,17 @@ const TechnicalRepair = () => {
             title={t("Workshop photos")}
             description={t("Before/after documentation of real repairs, components and workshop practice.")}
           />
-          <Gallery
+          <WorkImageGallery
+            title="Workshop photos"
+            images={smartphoneRepairs.flatMap((repair) => [repair.before, repair.during, repair.after, ...(repair.evidence ?? [])]
+              .filter((image) => image !== undefined)
+              .map((image) => ({ ...image, projectTitle: repair.device })))}
+          />
+          {galleryFor("repair").length > 0 && <Gallery
             items={galleryFor("repair")}
             emptyTitle={t("No repair photos published yet")}
             emptyDescription={t("Add photos to the gallery data file — before/after pairs are supported out of the box.")}
-          />
+          />}
         </div>
       </section>
 

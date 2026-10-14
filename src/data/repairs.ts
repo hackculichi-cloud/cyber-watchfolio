@@ -30,7 +30,7 @@ export const repairDeviceTypes: {
     type: "Smartphones",
     description: "Hands-on training: diagnostics, screen and battery replacement, charging ports and reassembly testing.",
     scope: ["Diagnostics", "Screen replacement", "Battery replacement", "Charging ports", "Reassembly & testing"],
-    status: "In training",
+    status: "Training completed · Practical development",
   },
   {
     type: "Laptops",

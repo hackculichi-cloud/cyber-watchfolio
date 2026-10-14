@@ -67,6 +67,9 @@ const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
     { label: "Diagnosis", value: repair.diagnosis },
     { label: "Work performed", value: repair.work },
     { label: "Tools", value: repair.tools },
+    { label: "Components", value: repair.components },
+    { label: "Confirmed precautions", value: repair.precautions },
+    { label: "Post-repair checks performed", value: repair.tests },
     { label: "Result", value: repair.result },
   ];
 
@@ -100,7 +103,7 @@ const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
                   <Pending label={t(f.label)} />
                 )
               ) : f.value ? (
-                f.value
+                t(f.value)
               ) : (
                 <Pending label={t(f.label)} />
               )}
@@ -108,6 +111,7 @@ const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
           </div>
         ))}
       </dl>
+      {repair.notes && <p className="text-sm leading-relaxed text-muted-foreground">{t(repair.notes)}</p>}
 
       <div>
         <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{t("Before ")}<ArrowRight className="inline h-3 w-3" aria-hidden />{t(" During")}{t(" ")}
