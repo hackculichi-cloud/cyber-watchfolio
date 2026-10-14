@@ -1,3 +1,4 @@
+import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { useState } from "react";
 import Seo from "@/components/shared/Seo";
@@ -53,6 +54,7 @@ const Cybersecurity = () => {
         </Button>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
+      <SpecialtyExplorer profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading

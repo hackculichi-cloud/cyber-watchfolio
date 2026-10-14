@@ -1,11 +1,10 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { Download, FileText, Lock } from "lucide-react";
+import { FileText } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import PageHeader from "@/components/shared/PageHeader";
-import { Button } from "@/components/ui/button";
-import { cvVariants } from "@/data/cvs";
+import { cvVariants, originalElectricalCv } from "@/data/cvs";
 import { site } from "@/data/site";
-import CvPreview from "@/components/shared/CvPreview";
+import CvActions from "@/components/shared/CvActions";
 
 const CV = () => {
   const { t } = useLanguage();
@@ -31,20 +30,15 @@ const CV = () => {
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(cv.description)}</p>
 
               <div className="mt-5">
-                {cv.available ? (
-                  <CvPreview preview={cv.preview} title={t(cv.title)}>
-                    <Button asChild variant="outline" size="sm">
-                      <a href={cv.file} download target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4" />{t(" Download PDF")}</a>
-                    </Button>
-                  </CvPreview>
-                ) : (
-                  <span className="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-xs text-muted-foreground">
-                    <Lock className="h-3.5 w-3.5" />{t(" Available on request")}</span>
-                )}
+                <CvActions cv={cv} />
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-8 border-t border-border pt-6">
+          <h2 className="mb-3 text-sm font-semibold">{t("Previous electrical CV")}</h2>
+          <CvActions cv={originalElectricalCv} />
         </div>
 
         <p className="mt-8 text-sm text-muted-foreground">{t("Need a specific version now? Email")}{t(" ")}

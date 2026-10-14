@@ -1,45 +1,27 @@
 import electricalPdf from "@/assets/christian-velasco-electrical.pdf.asset.json";
 import electricalPreview from "@/assets/electrical-cv-preview.jpg.asset.json";
-import { site } from "@/data/site";
+import manifests from "./cvManifest.json";
+import { site } from "./site";
+import type { Lang } from "@/i18n/translate";
 
 export type CvVariant = {
-  id: string;
-  title: string;
-  description: string;
-  /** Place the PDF in /public and update the path to publish it. */
-  file: string;
-  available: boolean;
-  preview?: string;
+  id: string; title: string; description: string; file: string; available: boolean; preview?: string;
+  localized?: Record<Lang, { file: string; preview: string }>;
 };
+const titles: Record<string, string> = {
+  cybersecurity: "Cybersecurity / IT CV", software: "Software Development CV",
+  electrical: "Residential & Industrial Electrical Maintenance CV", electronics: "Electronics CV",
+  repair: "Technical Repair CV", "customer-service": "Call Center & Customer Service CV",
+};
+export const cvVariants: CvVariant[] = manifests.map(resume => {
+  const assets = (lang: Lang) => ({ file: `/cv/christian-velasco-${resume.id}-${lang}.pdf`, preview: `/cv/previews/christian-velasco-${resume.id}-${lang}.png` });
+  return { id: resume.id, title: titles[resume.id], description: resume.summary, available: true, ...assets("en"), localized: { en: assets("en"), es: assets("es") } };
+});
+export const cvAssets = (cv: CvVariant, lang: Lang) => cv.localized?.[lang] ?? { file: cv.file, preview: cv.preview };
 
-export const cvVariants: CvVariant[] = [
-  {
-    id: "general",
-    title: "General CV",
-    description: "Complete overview of technical training, customer service experience and current focus.",
-    file: "/cv/christian-velasco-general.pdf",
-    available: false,
-  },
-  {
-    id: "cybersecurity",
-    title: "Cybersecurity / IT CV",
-    description: "Tailored for SOC, blue team, IT support and cybersecurity roles.",
-    file: "/cv/christian-velasco-cybersecurity.pdf",
-    available: false,
-  },
-  {
-    id: "software",
-    title: "Software Development CV",
-    description: "Focused on web development, APIs, automation and software projects.",
-    file: "/cv/christian-velasco-software.pdf",
-    available: false,
-  },
-  {
-    id: "electrical",
-    title: "Residential & Industrial Electrical Maintenance CV",
-    description: "Electrical CV covering residential and industrial maintenance, installations and technical training.",
-    file: new URL(electricalPdf.url, site.assetOrigin).href,
-    preview: new URL(electricalPreview.url, site.assetOrigin).href,
-    available: true,
-  },
-];
+/** Preserve the original user-provided electrical document as an additional reference. */
+export const originalElectricalCv: CvVariant = {
+  id: "electrical-original", title: "Previous electrical CV", description: "Original user-provided electrical CV.",
+  file: new URL(electricalPdf.url, site.assetOrigin).href,
+  preview: new URL(electricalPreview.url, site.assetOrigin).href, available: true,
+};

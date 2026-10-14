@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cybersecurity",
+    "profile": "cybersecurity",
+    "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Seeking a first SOC Analyst Tier 1 opportunity."
+  },
+  {
+    "id": "software",
+    "profile": "development",
+    "summary": "University studies in frontend, backend and full-stack development at UNISITE. Practical portfolio project built with React, TypeScript, Vite and Tailwind CSS."
+  },
+  {
+    "id": "electrical",
+    "profile": "electrical",
+    "summary": "Electrical training in residential and industrial topics, with documented course practice and residential client maintenance work."
+  },
+  {
+    "id": "electronics",
+    "profile": "electronics",
+    "summary": "Currently studying basic electronics at Escuela Tecnológica de Occidente, with additional smartphone repair coursework at LIDETEC."
+  },
+  {
+    "id": "repair",
+    "profile": "repair",
+    "summary": "LIDETEC smartphone repair course participation with three documented iPhone interventions and confirmed post-repair checks."
+  },
+  {
+    "id": "customer-service",
+    "profile": "customer-service",
+    "summary": "More than five years of customer service experience in English and Spanish, with clear communication, user support and conflict resolution."
+  }
+]

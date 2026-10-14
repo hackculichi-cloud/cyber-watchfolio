@@ -1,0 +1,429 @@
+{
+  "name": "Christian Armando Velasco Estrada",
+  "email": "christian@culichi.lat",
+  "website": "https://culichi.lat",
+  "github": "https://github.com/ByCulichi",
+  "linkedin": "https://www.linkedin.com/in/culichi/",
+  "languages": {
+    "en": "English / Spanish — bilingual customer service experience",
+    "es": "Inglés / español — experiencia de atención bilingüe al cliente"
+  },
+  "resumes": [
+    {
+      "id": "cybersecurity",
+      "profile": "cybersecurity",
+      "en": {
+        "role": "SOC Analyst Tier 1 Candidate",
+        "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Seeking a first SOC Analyst Tier 1 opportunity.",
+        "sections": [
+          {
+            "title": "Practical portfolio — educational labs",
+            "items": [
+              "LetsDefend: documented VPN authentication, RDP brute-force and phishing investigations.",
+              "Investigation steps, log analysis, conclusions and incident-response playbooks published in the portfolio."
+            ]
+          },
+          {
+            "title": "Technical foundations",
+            "items": [
+              "Alert triage, authentication logs, Windows events, RDP, VPN and incident documentation in educational exercises.",
+              "Networking and TCP/IP fundamentals; Linux command-line and hardening learning path."
+            ]
+          },
+          {
+            "title": "Current training",
+            "items": [
+              "Linux diploma program — in progress."
+            ]
+          },
+          {
+            "title": "Transferable experience",
+            "items": [
+              "5+ years of bilingual customer service in English and Spanish.",
+              "Clear communication, user support, problem solving and conflict resolution."
+            ]
+          }
+        ]
+      },
+      "es": {
+        "role": "Candidato a analista SOC nivel 1",
+        "summary": "Candidato a un puesto inicial en ciberseguridad, con investigaciones educativas de LetsDefend, playbooks documentados y formación de Linux en curso. Busca su primera oportunidad como analista SOC nivel 1.",
+        "sections": [
+          {
+            "title": "Portafolio práctico — laboratorios educativos",
+            "items": [
+              "LetsDefend: investigaciones documentadas de autenticación VPN, fuerza bruta por RDP y phishing.",
+              "Pasos de investigación, análisis de registros, conclusiones y playbooks de respuesta publicados en el portafolio."
+            ]
+          },
+          {
+            "title": "Fundamentos técnicos",
+            "items": [
+              "Triaje de alertas, registros de autenticación, eventos de Windows, RDP, VPN y documentación de incidentes en ejercicios educativos.",
+              "Fundamentos de redes y TCP/IP; ruta de aprendizaje de terminal y hardening de Linux."
+            ]
+          },
+          {
+            "title": "Formación en curso",
+            "items": [
+              "Diplomado de Linux — en curso."
+            ]
+          },
+          {
+            "title": "Experiencia transferible",
+            "items": [
+              "Más de 5 años de atención bilingüe al cliente en inglés y español.",
+              "Comunicación clara, apoyo a usuarios, resolución de problemas y de conflictos."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "software",
+      "profile": "development",
+      "en": {
+        "role": "Software Development Student",
+        "summary": "University studies in frontend, backend and full-stack development at UNISITE. Practical portfolio project built with React, TypeScript, Vite and Tailwind CSS.",
+        "sections": [
+          {
+            "title": "Education",
+            "items": [
+              "UNISITE — frontend, backend and full-stack studies in progress."
+            ]
+          },
+          {
+            "title": "Documented project",
+            "items": [
+              "Cyber Watchfolio (culichi.lat): reusable React components, ES/EN content, specialty pages and photo evidence galleries.",
+              "Workflow: Lovable, GitHub and Vercel; TypeScript checking, production builds, ESLint and component/browser validation."
+            ]
+          },
+          {
+            "title": "Project technologies",
+            "items": [
+              "React, TypeScript, Vite, Tailwind CSS, shadcn/ui and Git/GitHub.",
+              "Reusable components, bilingual interfaces, accessibility and Git-based version control."
+            ]
+          },
+          {
+            "title": "Transferable experience",
+            "items": [
+              "5+ years of bilingual customer service in English and Spanish.",
+              "Clear communication, user support, problem solving and conflict resolution."
+            ]
+          }
+        ]
+      },
+      "es": {
+        "role": "Estudiante de desarrollo de software",
+        "summary": "Estudios universitarios de frontend, backend y full stack en UNISITE. Proyecto práctico de portafolio construido con React, TypeScript, Vite y Tailwind CSS.",
+        "sections": [
+          {
+            "title": "Formación",
+            "items": [
+              "UNISITE — estudios de frontend, backend y full stack en curso."
+            ]
+          },
+          {
+            "title": "Proyecto documentado",
+            "items": [
+              "Cyber Watchfolio (culichi.lat): componentes reutilizables de React, contenido ES/EN, páginas por especialidad y galerías de evidencia fotográfica.",
+              "Flujo de trabajo: Lovable, GitHub y Vercel; revisión de TypeScript, build de producción, ESLint y validación de componentes y navegador."
+            ]
+          },
+          {
+            "title": "Tecnologías del proyecto",
+            "items": [
+              "React, TypeScript, Vite, Tailwind CSS, shadcn/ui y Git/GitHub.",
+              "Componentes reutilizables, interfaces bilingües, accesibilidad y control de versiones con Git."
+            ]
+          },
+          {
+            "title": "Experiencia transferible",
+            "items": [
+              "Más de 5 años de atención bilingüe al cliente en inglés y español.",
+              "Comunicación clara, apoyo a usuarios, resolución de problemas y de conflictos."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "electrical",
+      "profile": "electrical",
+      "en": {
+        "role": "Electrical Maintenance Trainee",
+        "summary": "Electrical training in residential and industrial topics, with documented course practice and residential client maintenance work.",
+        "sections": [
+          {
+            "title": "Documented practical work",
+            "items": [
+              "Residential installation practice board and float-switch course exercise.",
+              "Residential client work: outlet and switch replacement and replacement of two ceiling luminaires.",
+              "Photographic evidence and technical explanations available in the electrical portfolio."
+            ]
+          },
+          {
+            "title": "Training",
+            "items": [
+              "LinkedIn Learning: Electrical Systems: Reading Drawings and Schematics — completed.",
+              "RED CONOCER electrical training — in progress.",
+              "Udemy: Basic Electrical Installations — in progress."
+            ]
+          },
+          {
+            "title": "Learning focus",
+            "items": [
+              "Residential wiring, electrical drawings, measurement, industrial electricity and control fundamentals.",
+              "START/STOP contactor practice is planned; results are not yet published."
+            ]
+          },
+          {
+            "title": "Transferable experience",
+            "items": [
+              "5+ years of bilingual customer service in English and Spanish.",
+              "Clear communication, user support, problem solving and conflict resolution."
+            ]
+          }
+        ]
+      },
+      "es": {
+        "role": "En formación en mantenimiento eléctrico",
+        "summary": "Formación eléctrica en temas residenciales e industriales, con prácticas de curso y trabajos de mantenimiento residencial para clientes documentados.",
+        "sections": [
+          {
+            "title": "Trabajo práctico documentado",
+            "items": [
+              "Tablero de práctica de instalación residencial y ejercicio de curso con electronivel.",
+              "Trabajo residencial para clientes: cambio de contacto y apagador, y reemplazo de dos luminarias de techo.",
+              "Evidencia fotográfica y explicaciones técnicas disponibles en el portafolio eléctrico."
+            ]
+          },
+          {
+            "title": "Formación",
+            "items": [
+              "LinkedIn Learning: Electrical Systems: Reading Drawings and Schematics — completado.",
+              "Formación eléctrica RED CONOCER — en curso.",
+              "Udemy: Instalaciones eléctricas básicas — en curso."
+            ]
+          },
+          {
+            "title": "Enfoque de aprendizaje",
+            "items": [
+              "Cableado residencial, planos eléctricos, medición y fundamentos de electricidad industrial y control.",
+              "La práctica START/STOP con contactor está planeada; todavía no se publican resultados."
+            ]
+          },
+          {
+            "title": "Experiencia transferible",
+            "items": [
+              "Más de 5 años de atención bilingüe al cliente en inglés y español.",
+              "Comunicación clara, apoyo a usuarios, resolución de problemas y de conflictos."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "electronics",
+      "profile": "electronics",
+      "en": {
+        "role": "Basic Electronics Student",
+        "summary": "Currently studying basic electronics at Escuela Tecnológica de Occidente, with additional smartphone repair coursework at LIDETEC.",
+        "sections": [
+          {
+            "title": "Education and training",
+            "items": [
+              "Escuela Tecnológica de Occidente — basic electronics, in progress.",
+              "LIDETEC — smartphone repair course participation certificate, issued 1 August 2026."
+            ]
+          },
+          {
+            "title": "Training topics",
+            "items": [
+              "Electronic components, circuit fundamentals, multimeter measurements and board handling.",
+              "LIDETEC coursework: soldering, hot-air handling, component and connector work, and introductory microsoldering."
+            ]
+          },
+          {
+            "title": "Learning plan",
+            "items": [
+              "Audio/radio, television/video and digital systems are future training tracks."
+            ]
+          },
+          {
+            "title": "Transferable experience",
+            "items": [
+              "5+ years of bilingual customer service in English and Spanish.",
+              "Clear communication, user support, problem solving and conflict resolution."
+            ]
+          }
+        ]
+      },
+      "es": {
+        "role": "Estudiante de electrónica básica",
+        "summary": "Estudia electrónica básica en la Escuela Tecnológica de Occidente, con formación adicional de reparación de celulares en LIDETEC.",
+        "sections": [
+          {
+            "title": "Formación",
+            "items": [
+              "Escuela Tecnológica de Occidente — electrónica básica, en curso.",
+              "LIDETEC — constancia de participación en el curso de reparación de celulares, emitida el 1 de agosto de 2026."
+            ]
+          },
+          {
+            "title": "Temas de formación",
+            "items": [
+              "Componentes electrónicos, fundamentos de circuitos, medición con multímetro y manipulación de tarjetas.",
+              "Temario de LIDETEC: soldadura, uso de aire caliente, trabajo con componentes y conectores e introducción a la microsoldadura."
+            ]
+          },
+          {
+            "title": "Plan de aprendizaje",
+            "items": [
+              "Audio/radio, televisión/video y sistemas digitales son áreas de formación futura."
+            ]
+          },
+          {
+            "title": "Experiencia transferible",
+            "items": [
+              "Más de 5 años de atención bilingüe al cliente en inglés y español.",
+              "Comunicación clara, apoyo a usuarios, resolución de problemas y de conflictos."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "repair",
+      "profile": "repair",
+      "en": {
+        "role": "Smartphone Repair — Training and Practice",
+        "summary": "LIDETEC smartphone repair course participation with three documented iPhone interventions and confirmed post-repair checks.",
+        "sections": [
+          {
+            "title": "Documented repairs",
+            "items": [
+              "iPhone 12 Pro — battery replacement.",
+              "iPhone 14 Pro — aftermarket self-programming battery replacement.",
+              "iPhone XR — screen replacement.",
+              "Post-repair checks confirmed by the owner: power, charging, touch, cameras, audio, Face ID and battery settings."
+            ]
+          },
+          {
+            "title": "Training",
+            "items": [
+              "LIDETEC / Liceo de Tecnología, Guadalajara — smartphone repair course participation certificate, 1 August 2026.",
+              "Course topics: service records, disassembly, diagnosis, multimeter, soldering, hot air and introductory microsoldering."
+            ]
+          },
+          {
+            "title": "Portfolio evidence",
+            "items": [
+              "Real repair photographs and case details available at culichi.lat/repair."
+            ]
+          },
+          {
+            "title": "Transferable experience",
+            "items": [
+              "5+ years of bilingual customer service in English and Spanish.",
+              "Clear communication, user support, problem solving and conflict resolution."
+            ]
+          }
+        ]
+      },
+      "es": {
+        "role": "Reparación de celulares — formación y práctica",
+        "summary": "Participación en el curso de reparación de celulares de LIDETEC, con tres intervenciones de iPhone documentadas y comprobaciones finales confirmadas.",
+        "sections": [
+          {
+            "title": "Reparaciones documentadas",
+            "items": [
+              "iPhone 12 Pro — cambio de batería.",
+              "iPhone 14 Pro — cambio de batería aftermarket autoprogramable.",
+              "iPhone XR — cambio de pantalla.",
+              "Pruebas finales confirmadas por el titular: encendido, carga, touch, cámaras, audio, Face ID y revisión de batería en Ajustes."
+            ]
+          },
+          {
+            "title": "Formación",
+            "items": [
+              "LIDETEC / Liceo de Tecnología, Guadalajara — constancia de participación en reparación de celulares, 1 de agosto de 2026.",
+              "Temas del curso: fichas de servicio, desensamble, diagnóstico, multímetro, soldadura, aire caliente e introducción a la microsoldadura."
+            ]
+          },
+          {
+            "title": "Evidencia de portafolio",
+            "items": [
+              "Fotografías reales y detalles de los casos disponibles en culichi.lat/repair."
+            ]
+          },
+          {
+            "title": "Experiencia transferible",
+            "items": [
+              "Más de 5 años de atención bilingüe al cliente en inglés y español.",
+              "Comunicación clara, apoyo a usuarios, resolución de problemas y de conflictos."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "customer-service",
+      "profile": "customer-service",
+      "en": {
+        "role": "Bilingual Customer Service / Call Center",
+        "summary": "More than five years of customer service experience in English and Spanish, with clear communication, user support and conflict resolution.",
+        "sections": [
+          {
+            "title": "Experience",
+            "items": [
+              "5+ years of bilingual customer service and direct user support.",
+              "Clear explanations adapted to each user and patient communication in challenging conversations."
+            ]
+          },
+          {
+            "title": "Professional skills",
+            "items": [
+              "English/Spanish communication, listening, issue clarification and guidance on next steps.",
+              "Problem solving, conflict resolution and expectation management."
+            ]
+          },
+          {
+            "title": "Transferable value for technology roles",
+            "items": [
+              "User-focused support, communication of technical information and structured problem understanding."
+            ]
+          }
+        ]
+      },
+      "es": {
+        "role": "Atención bilingüe al cliente / Call Center",
+        "summary": "Más de cinco años de experiencia de atención al cliente en inglés y español, con comunicación clara, apoyo a usuarios y resolución de conflictos.",
+        "sections": [
+          {
+            "title": "Experiencia",
+            "items": [
+              "Más de 5 años de atención bilingüe al cliente y apoyo directo a usuarios.",
+              "Explicaciones claras adaptadas a cada usuario y comunicación paciente en conversaciones difíciles."
+            ]
+          },
+          {
+            "title": "Habilidades profesionales",
+            "items": [
+              "Comunicación en inglés/español, escucha, aclaración de problemas y orientación de siguientes pasos.",
+              "Resolución de problemas y conflictos, y gestión de expectativas."
+            ]
+          },
+          {
+            "title": "Valor transferible a puestos de tecnología",
+            "items": [
+              "Apoyo centrado en el usuario, comunicación de información técnica y comprensión estructurada de problemas."
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

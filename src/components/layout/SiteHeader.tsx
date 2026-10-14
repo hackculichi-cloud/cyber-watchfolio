@@ -5,6 +5,8 @@ import { navigation } from "@/data/site";
 import logoCv from "@/assets/culichi-logo-zorro.png";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import ProfileDropdown from "./ProfileDropdown";
+import Tag from "@/components/shared/Tag";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 
@@ -27,18 +29,6 @@ const navIconColor: Record<string, string> = {
   Consoles: "nav-ico-repair",
 };
 
-const navDotColor: Record<string, string> = {
-  "Call Center & Customer Service": "bg-teal-300",
-  Cybersecurity: "nav-dot-cybersecurity",
-  Labs: "nav-dot-cybersecurity",
-  "Software Development": "nav-dot-software",
-  Projects: "nav-dot-software",
-  "Residential & Industrial Electrical Maintenance": "nav-dot-electrical",
-  Electronics: "nav-dot-electronics",
-  Smartphones: "nav-dot-repair",
-  Laptops: "nav-dot-repair",
-  Consoles: "nav-dot-repair",
-};
 
 const NavIcon = ({ label, className }: { label: string; className?: string }) => {
   const Icon = navIcons[label] ?? FileText;
@@ -48,6 +38,7 @@ const NavIcon = ({ label, className }: { label: string; className?: string }) =>
 const SiteHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [mobileProfile, setMobileProfile] = useState<string | null>(null);
   const location = useLocation();
   const { t } = useLanguage();
 
@@ -58,7 +49,7 @@ const SiteHeader = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [location.pathname, location.hash]);
+  useEffect(() => { setOpen(false); setMobileProfile(null); }, [location.pathname, location.hash]);
 
   return (
     <header
@@ -77,39 +68,12 @@ const SiteHeader = () => {
 
 
         <ul className="hidden items-center gap-1 lg:flex">
-          {navigation.map((item) => (
-            <li key={item.href} className="group relative">
-              <NavLink
-                to={item.href}
-                end={item.href === "/"}
-                aria-label={t(item.label)}
-                className={({ isActive }) =>
-                  cn(
-                    "flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors xl:px-3",
-                    isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary",
-                  )
-                }
-              >
-                {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
-                {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
-              </NavLink>
-
-              {item.children && (
-                <div className="invisible absolute left-0 top-full w-60 translate-y-1 rounded-xl border border-border bg-popover p-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      to={child.href}
-                      className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                    >
-                      <span aria-hidden className={cn("h-1.5 w-1.5 shrink-0 rounded-full", navDotColor[item.label] ?? navDotColor[child.label] ?? "bg-primary")} />
-                      {t(child.label)}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
+          {navigation.map(item => {
+            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} className={({ isActive }) => cn("flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors xl:px-3", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
+              {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
+            </NavLink>;
+            return <li key={item.href} className="relative">{item.children ? <ProfileDropdown item={item}>{link}</ProfileDropdown> : link}</li>;
+          })}
         </ul>
 
         <div className="flex items-center gap-2">
@@ -130,33 +94,20 @@ const SiteHeader = () => {
         <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background/98 backdrop-blur-xl lg:hidden">
           <div className="container mx-auto px-4 pt-4 sm:hidden"><LanguageSwitcher /></div>
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
-            {navigation.map((item) => (
-              <li key={t(item.label)}>
-                <Link
-                  to={item.href}
-                  aria-label={t(item.label)}
-                  title={t(item.label)}
-                  className="inline-flex min-h-10 items-center gap-2 rounded-lg px-3 font-semibold text-foreground transition-colors hover:bg-secondary hover:text-primary"
-                >
-                  {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
-                  {item.children && <ChevronDown className="h-3.5 w-3.5 opacity-60" />}
+            {navigation.map(item => <li key={item.href}>
+              <div className="flex items-center justify-between gap-2">
+                <Link to={item.href} aria-label={t(item.label)} className="inline-flex min-h-11 min-w-0 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary">
+                  {navIconColor[item.label] && <NavIcon label={item.label} className={navIconColor[item.label]} />}{t(item.label)}
                 </Link>
-                {item.children && (
-                  <ul className="ml-3 border-l border-border pl-3">
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        <Link
-                          to={child.href}
-                          className="block rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                        >
-                          {t(child.label)}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
+                {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => setMobileProfile(mobileProfile === item.href ? null : item.href)}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}
+              </div>
+              {item.children && mobileProfile === item.href && <ul id={`mobile-specialties-${item.profile}`} className="my-2 ml-5 space-y-1 border-l border-border pl-3">
+                {item.children.map(child => <li key={child.href}><Link to={child.href} onClick={() => { setOpen(false); setMobileProfile(null); }} className="flex items-start gap-3 rounded-lg p-3 text-sm hover:bg-secondary">
+                  {child.icon && <child.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />}
+                  <span className="min-w-0"><span className="block font-medium">{t(child.label)}</span>{child.status && <span className="mt-1 block"><Tag>{t(child.status)}</Tag></span>}</span>
+                </Link></li>)}
+              </ul>}
+            </li>)}
           </ul>
         </div>
       )}

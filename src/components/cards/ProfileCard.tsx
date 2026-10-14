@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import type { ProfileCardData, ProfileSlug } from "@/data/profiles";
 import { profileHeroImage, profileHeroAlt } from "@/data/profileMedia";
 import Tag from "@/components/shared/Tag";
+import ProfileSectionPreview from "@/components/profile/ProfileSectionPreview";
 import { cn } from "@/lib/utils";
 
 const atmosphere: Record<ProfileSlug, string> = {
@@ -23,6 +24,7 @@ const atmosphere: Record<ProfileSlug, string> = {
 const ProfileCard = ({ data }: { data: ProfileCardData }) => {
   const { t } = useLanguage();
   return (
+    <ProfileSectionPreview data={data}>
     <Link
       to={data.href}
       data-profile={data.slug}
@@ -76,6 +78,7 @@ const ProfileCard = ({ data }: { data: ProfileCardData }) => {
         </span>
       </div>
     </Link>
+    </ProfileSectionPreview>
   );
 };
 

@@ -21,9 +21,9 @@ test("home replaces the text experience block with a phone profile and bilingual
   const link = page.locator('header a[href="/experience"]:visible').first();
   await expect(link).toHaveAttribute("aria-label", "Call Center y atención al cliente");
   await expect(link.locator("svg.lucide-phone-call")).toBeVisible();
-  await link.focus();
-  await page.locator('header a[href="/experience#skills"]:visible').click();
-  await expect(page).toHaveURL(/\/experience#skills$/);
+  await page.getByRole("button", { name: "Abrir menú de especialidades: Call Center y atención al cliente", exact: true }).click();
+  await page.getByRole("dialog", { name: "Especialidades: Call Center y atención al cliente", exact: true }).locator('a[href="/experience#bilingual-support"]').click();
+  await expect(page).toHaveURL(/\/experience#bilingual-support$/);
 });
 
 test("phone menu and customer-service skills remain usable on mobile", async ({ page }) => {
