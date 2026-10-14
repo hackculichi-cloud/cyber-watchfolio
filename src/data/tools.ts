@@ -4,6 +4,7 @@ export type ToolGroup = { title: string; items: string[] };
 
 /** Tools, software, hardware and equipment used in each profile. */
 export const toolsByProfile: Record<ProfileSlug, ToolGroup[]> = {
+  "customer-service": [],
   cybersecurity: [
     { title: "Analysis", items: ["Wireshark", "Nmap", "Linux CLI"] },
     { title: "Monitoring", items: ["SIEM (learning)", "Log analysis"] },

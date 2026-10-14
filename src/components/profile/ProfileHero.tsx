@@ -11,6 +11,7 @@ const atmosphere: Record<ProfileIdentity["slug"], string> = {
   electrical: "atmos-energy",
   electronics: "atmos-pcb",
   repair: "atmos-circuit",
+  "customer-service": "atmos-grid",
 };
 
 interface ProfileHeroProps {

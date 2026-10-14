@@ -1,33 +1,55 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Seo from "@/components/shared/Seo";
-import PageHeader from "@/components/shared/PageHeader";
+import { PhoneCall, Headset, ListChecks, Handshake } from "lucide-react";
+import ProfileHero from "@/components/profile/ProfileHero";
+import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
+import { profileBySlug } from "@/data/profiles";
 import SectionHeading from "@/components/shared/SectionHeading";
-import Tag from "@/components/shared/Tag";
-import { experienceEntries, experienceSummary, transferableImpact } from "@/data/experience";
-import { transferableSkills } from "@/data/skills";
+import { experienceEntries, experienceSummary, transferableImpact, customerServiceSkills } from "@/data/experience";
 import { site } from "@/data/site";
+
+const profile = profileBySlug("customer-service");
+const skillIcons = { phone: PhoneCall, support: Headset, problem: ListChecks, conflict: Handshake };
 
 const Experience = () => {
   const { t } = useLanguage();
   return (
     <>
       <Seo
-        title={t(`Experience | ${site.shortName}`)}
+        title={t(`Call Center & Customer Service | ${site.shortName}`)}
         description={t("5+ years of bilingual customer service experience and how those skills transfer into IT, cybersecurity and software development.")}
         path="/experience"
       />
-      <PageHeader eyebrow={t("Experience")} title={t(experienceSummary.headline)} description={t(experienceSummary.statement)}>
-        <div className="grid max-w-lg grid-cols-3 gap-3">
-          {experienceSummary.stats.map((s) => (
-            <div key={s.label} className="panel text-center">
-              <p className="text-2xl font-bold text-primary">{t(s.value)}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{t(s.label)}</p>
-            </div>
-          ))}
-        </div>
-      </PageHeader>
+      <ProfileHero profile={profile} />
+      <ProfileSectionNav sections={profile.sections} />
 
-      <section className="container mx-auto px-4 py-16">
+      <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
+        <div className="grid gap-4 sm:grid-cols-2">
+          {customerServiceSkills.map(skill => {
+            const Icon = skillIcons[skill.icon];
+            return <article key={skill.title} className="panel-glow">
+              <span className="glow-ring mb-4 grid h-12 w-12 place-items-center rounded-xl border border-primary/30 bg-primary/10 text-primary"><Icon className="h-6 w-6" aria-hidden /></span>
+              <h3 className="text-lg font-semibold">{t(skill.title)}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(skill.description)}</p>
+            </article>;
+          })}
+        </div>
+      </section>
+
+      <section id="background" className="scroll-mt-32 border-y border-border bg-surface/40">
+        <div className="container mx-auto px-4 py-16">
+          <SectionHeading eyebrow={t("Experience")} title={t(experienceSummary.headline)} description={t(experienceSummary.statement)} />
+          <div className="grid max-w-2xl grid-cols-3 gap-3">
+            {experienceSummary.stats.map(stat => <div key={stat.label} className="panel text-center">
+              <p className="text-2xl font-bold text-primary">{t(stat.value)}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{t(stat.label)}</p>
+            </div>)}
+          </div>
+        </div>
+      </section>
+
+      <section id="transferable" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading eyebrow={t("Transferable value")} title={t("How customer service strengthens my technical work")} />
         <div className="grid gap-4 md:grid-cols-3">
           {transferableImpact.map((item) => (
@@ -36,15 +58,6 @@ const Experience = () => {
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(item.detail)}</p>
             </div>
           ))}
-        </div>
-
-        <div className="panel mt-4">
-          <h3 className="text-sm font-semibold">{t("Core professional skills")}</h3>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {transferableSkills.map((s) => (
-              <Tag key={s} variant="accent">{t(s)}</Tag>
-            ))}
-          </div>
         </div>
       </section>
 

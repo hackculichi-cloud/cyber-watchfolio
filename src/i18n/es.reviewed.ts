@@ -1,5 +1,7 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Visit LIDETEC website": "Visitar sitio de LIDETEC",
+  "(opens in a new tab)": "(se abre en una pestaña nueva)",
   Focus: "Enfoque",
   Languages: "Idiomas",
   timeline: "cronología",
@@ -311,4 +313,18 @@ export const reviewedEs: Record<string, string> = {
   "Upcoming repair. Results and photographic evidence will be added after the work is completed.": "Reparación pendiente. Los resultados y la evidencia fotográfica se añadirán después de realizar el trabajo.",
   "No repairs recorded in this category yet.": "Todavía no hay reparaciones registradas en esta categoría.",
   "Repairs by brand and type": "Reparaciones por marca y tipo",
+  "Call Center & Customer Service": "Call Center y atención al cliente",
+  "5+ years of bilingual customer service, communication, user support and conflict resolution.": "Más de 5 años de atención bilingüe al cliente, comunicación, apoyo a usuarios y resolución de conflictos.",
+  "Professional experience": "Experiencia profesional",
+  "Professional skills": "Habilidades profesionales",
+  "Skills and professional areas": "Habilidades y áreas profesionales",
+  "Illustration of a headset and communication connections": "Ilustración de auriculares y conexiones de comunicación",
+  "Bilingual communication": "Comunicación bilingüe",
+  "Customer service skills": "Habilidades de atención al cliente",
+  "Skills developed through bilingual customer service experience.": "Habilidades desarrolladas mediante la experiencia de atención bilingüe al cliente.",
+  "Customer service in English and Spanish, with clear explanations adapted to each user.": "Atención al cliente en inglés y español, con explicaciones claras adaptadas a cada usuario.",
+  "User support": "Apoyo a usuarios",
+  "Listening to user needs, clarifying the issue and guiding the next steps.": "Escuchar las necesidades del usuario, aclarar el problema y orientar los siguientes pasos.",
+  "Understanding the problem and explaining practical options clearly.": "Comprender el problema y explicar con claridad las opciones disponibles.",
+  "Patient communication with frustrated users and clear expectation management.": "Comunicación paciente con usuarios frustrados y gestión clara de expectativas.",
 };
