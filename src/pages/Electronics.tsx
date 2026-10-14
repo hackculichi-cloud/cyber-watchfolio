@@ -1,3 +1,4 @@
+import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
@@ -46,6 +47,7 @@ const Electronics = () => {
         </div>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
+      <SpecialtyExplorer profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading

@@ -184,10 +184,10 @@ export const trainingTracks: TrainingTrack[] = [
   {
     id: "electronics",
     anchor: "electronics",
-    title: "General Electronics",
+    title: "Basic Electronics",
     status: "Currently Studying",
     description:
-      "General electronics fundamentals: components, circuits, measurement and troubleshooting methodology.",
+      "Basic electronics studies in progress at Escuela Tecnológica de Occidente: components, circuits, measurement and troubleshooting methodology.",
     topics: ["Components", "Circuits", "Measurement", "Troubleshooting"],
   },
   {

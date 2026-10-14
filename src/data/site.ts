@@ -1,3 +1,7 @@
+import { specialtiesFor } from "./specialties";
+import type { ProfileSlug } from "./profiles";
+import type { LucideIcon } from "lucide-react";
+
 export const site = {
   name: "Christian Armando Velasco Estrada",
   shortName: "Christian Velasco",
@@ -17,7 +21,8 @@ export const site = {
   languages: ["English", "Spanish"],
 };
 
-export type NavItem = { label: string; href: string; children?: NavItem[] };
+export type NavItem = { label: string; href: string; profile?: ProfileSlug; icon?: LucideIcon; description?: string; status?: string; children?: NavItem[] };
+const specialtyLinks = (profile: ProfileSlug, path: string): NavItem[] => specialtiesFor(profile).map(item => ({ label: item.title, href: `${path}#${item.id}`, icon: item.icon, description: item.summary, status: item.status }));
 
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
@@ -25,53 +30,36 @@ export const navigation: NavItem[] = [
   {
     label: "Cybersecurity",
     href: "/cybersecurity",
-    children: [
-      { label: "Cybersecurity", href: "/cybersecurity" },
-      { label: "Labs", href: "/labs" },
-    ],
+    profile: "cybersecurity",
+    children: specialtyLinks("cybersecurity", "/cybersecurity"),
   },
   {
     label: "Software Development",
     href: "/software-development",
-    children: [{ label: "Projects", href: "/projects" }],
+    profile: "development",
+    children: specialtyLinks("development", "/software-development"),
   },
   {
     label: "Residential & Industrial Electrical Maintenance",
     href: "/electrical",
-    children: [
-      { label: "Residential & Industrial Electrical Maintenance", href: "/electrical" },
-      { label: "Training", href: "/electrical#tracks" },
-      { label: "Projects", href: "/electrical#projects" },
-      { label: "Practical experience", href: "/electrical#practice" },
-      { label: "CV", href: "/electrical#cv" },
-    ],
+    profile: "electrical",
+    children: specialtyLinks("electrical", "/electrical"),
   },
   {
     label: "Electronics", href: "/electronics",
-    children: [
-      { label: "Electronics", href: "/electronics" },
-      { label: "Training", href: "/electronics#tracks" },
-      { label: "Projects", href: "/electronics#projects" },
-      { label: "Diagnostics & measurements", href: "/electronics#diagnostics" },
-      { label: "Tools", href: "/electronics#tools" },
-    ],
+    profile: "electronics",
+    children: specialtyLinks("electronics", "/electronics"),
   },
   {
     label: "Technical Repair",
     href: "/repair",
-    children: [
-      { label: "Smartphones", href: "/repair#smartphones" },
-      { label: "Laptops", href: "/repair#laptops" },
-      { label: "Consoles", href: "/repair#consoles" },
-    ],
+    profile: "repair",
+    children: specialtyLinks("repair", "/repair"),
   },
   {
     label: "Call Center & Customer Service", href: "/experience",
-    children: [
-      { label: "Skills", href: "/experience#skills" },
-      { label: "Experience", href: "/experience#background" },
-      { label: "Transferable value", href: "/experience#transferable" },
-    ],
+    profile: "customer-service",
+    children: specialtyLinks("customer-service", "/experience"),
   },
   { label: "CV", href: "/cv" },
   { label: "Contact", href: "/contact" },

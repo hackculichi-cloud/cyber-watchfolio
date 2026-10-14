@@ -115,6 +115,7 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: Shield,
     highlights: ["SOC / Blue Team", "SIEM & log analysis", "Networking", "Linux hardening"],
     sections: [
+      { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
       { id: "skills", label: "Skills" },
       { id: "investigations", label: "Investigations" },
@@ -125,7 +126,7 @@ export const profileIdentities: ProfileIdentity[] = [
       { id: "tools", label: "Tools" },
       { id: "cv", label: "CV" },
     ],
-    cvIds: ["cybersecurity", "general"],
+    cvIds: ["cybersecurity"],
   },
   {
     slug: "development",
@@ -139,6 +140,7 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: Code2,
     highlights: ["Web apps", "APIs & backend", "Automation", "Git / GitHub"],
     sections: [
+      { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
       { id: "skills", label: "Technologies" },
       { id: "projects", label: "Projects" },
@@ -146,7 +148,7 @@ export const profileIdentities: ProfileIdentity[] = [
       { id: "tools", label: "Tools" },
       { id: "cv", label: "CV" },
     ],
-    cvIds: ["software", "general"],
+    cvIds: ["software"],
   },
   {
     slug: "electrical",
@@ -160,6 +162,7 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: Zap,
     highlights: ["Float-switch practice", "Residential client work", "Wiring & panels", "Measurements"],
     sections: [
+      { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
       { id: "tracks", label: "Training" },
       { id: "certificate", label: "Certificate" },
@@ -170,7 +173,7 @@ export const profileIdentities: ProfileIdentity[] = [
       { id: "tools", label: "Tools" },
       { id: "cv", label: "CV" },
     ],
-    cvIds: ["electrical", "general"],
+    cvIds: ["electrical"],
   },
   {
     slug: "electronics",
@@ -184,6 +187,7 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: Cpu,
     highlights: ["Components & circuits", "PCB work", "Soldering", "Oscilloscope / multimeter"],
     sections: [
+      { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
       { id: "tracks", label: "Training" },
       { id: "projects", label: "Projects" },
@@ -192,7 +196,7 @@ export const profileIdentities: ProfileIdentity[] = [
       { id: "tools", label: "Tools" },
       { id: "cv", label: "CV" },
     ],
-    cvIds: ["electrical", "general"],
+    cvIds: ["electronics"],
   },
   {
     slug: "repair",
@@ -206,6 +210,7 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: Wrench,
     highlights: ["Smartphones", "Laptops", "Consoles (planned)", "Component-level work"],
     sections: [
+      { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
       { id: "smartphones", label: "Smartphones" },
       { id: "laptops", label: "Laptops" },
@@ -215,7 +220,7 @@ export const profileIdentities: ProfileIdentity[] = [
       { id: "tools", label: "Tools" },
       { id: "cv", label: "CV" },
     ],
-    cvIds: ["electrical", "general"],
+    cvIds: ["repair"],
   },
   {
     slug: "customer-service",
@@ -228,11 +233,13 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: PhoneCall,
     highlights: ["English / Spanish", "Communication", "Customer support", "Conflict resolution"],
     sections: [
+      { id: "specialties", label: "Specialties" },
       { id: "skills", label: "Skills" },
       { id: "background", label: "Experience" },
       { id: "transferable", label: "Transferable value" },
+      { id: "cv", label: "CV" },
     ],
-    cvIds: ["general"],
+    cvIds: ["customer-service"],
   },
 ];
 

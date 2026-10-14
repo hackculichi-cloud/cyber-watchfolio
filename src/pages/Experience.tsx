@@ -1,3 +1,5 @@
+import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
+import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Seo from "@/components/shared/Seo";
 import { PhoneCall, Headset, ListChecks, Handshake } from "lucide-react";
@@ -22,6 +24,7 @@ const Experience = () => {
       />
       <ProfileHero profile={profile} />
       <ProfileSectionNav sections={profile.sections} />
+      <SpecialtyExplorer profile={profile.slug} />
 
       <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
@@ -59,6 +62,11 @@ const Experience = () => {
             </div>
           ))}
         </div>
+      </section>
+
+      <section id="cv" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
+        <ProfileCvBlock cvIds={profile.cvIds} />
       </section>
 
       {experienceEntries.length > 0 && (

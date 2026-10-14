@@ -1,9 +1,9 @@
-import { Download, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Tag from "@/components/shared/Tag";
 import { cvVariants } from "@/data/cvs";
-import CvPreview from "@/components/shared/CvPreview";
+import CvActions from "@/components/shared/CvActions";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 /** Profile-scoped CV block: shows the most relevant CV variants for this profile. */
@@ -23,15 +23,7 @@ const ProfileCvBlock = ({ cvIds }: { cvIds: string[] }) => {
           </div>
           <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(cv.description)}</p>
           <div className="mt-4 flex flex-wrap gap-2">
-            {cv.available ? (
-              <CvPreview preview={cv.preview} title={t(cv.title)}>
-                <Button asChild size="sm">
-                  <a href={cv.file} download target="_blank" rel="noopener noreferrer"><Download className="h-4 w-4" /> {t("Download PDF")}</a>
-                </Button>
-              </CvPreview>
-            ) : (
-              <Button size="sm" disabled variant="secondary">{t("Not published yet")}</Button>
-            )}
+            <CvActions cv={cv} />
             <Button asChild size="sm" variant="ghost">
               <Link to="/cv">{t("All CV versions")}</Link>
             </Button>

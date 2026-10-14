@@ -1,0 +1,1 @@
+Six role-specific CVs, each in ES/EN. Generated from src/data/resumes.json with scripts/generate-profile-cvs.mjs. Preview PNGs are rasterizations of the actual PDF first page. No employers, dates of employment, degrees or performance metrics are inferred.

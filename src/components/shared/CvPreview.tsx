@@ -22,7 +22,7 @@ const CvPreview = ({ preview, title, children }: { preview?: string; title: stri
             <span>{t(title)}</span>
           </div>
           <div className="max-h-[min(22rem,55vh)] overflow-y-auto overscroll-contain">
-            <SmartImage src={preview} alt={t("Electrical CV preview")} eager className="min-h-32" imgClassName="!h-auto" />
+            <SmartImage src={preview} alt={`${t("CV preview")}: ${title}`} eager className="min-h-32" imgClassName="!h-auto" />
           </div>
         </HoverCardContent>
       </Portal>
