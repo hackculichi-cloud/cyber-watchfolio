@@ -74,8 +74,8 @@ for (const [label, path, id] of areas) test(`${label} has its own ES/EN CV downl
   await page.goto(`${path}#cv`);
   const block = page.locator("#cv");
   const original = id === "electrical";
-  const enStem = original ? "electrical-original" : `${id}-en`;
-  const esStem = original ? "electrical-original" : `${id}-es`;
+  const enStem = original ? "electrical-mascot" : `${id}-en`;
+  const esStem = original ? "electrical-mascot" : `${id}-es`;
   const link = block.locator(`a[href="/cv/christian-velasco-${enStem}.pdf"]`);
   await expect(link).toBeVisible();
   await link.hover();

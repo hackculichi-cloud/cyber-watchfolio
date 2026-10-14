@@ -154,6 +154,7 @@ export type TrainingTrack = {
   description: string;
   topics: string[];
   anchor: string;
+  learningObjectives?: string[];
 };
 
 export const trainingTracks: TrainingTrack[] = [
@@ -180,6 +181,15 @@ export const trainingTracks: TrainingTrack[] = [
     status: "Currently Studying",
     description: "Udemy course in progress. Curriculum and certificate will be added when provided.",
     topics: [],
+  },
+  {
+    id: "electrical-udemy-measurements",
+    anchor: "electrical",
+    title: "Electrical Measurements",
+    status: "Currently Studying",
+    description: "Udemy course in progress: AC/DC voltage, current, resistance and continuity measurements. Certificate pending course completion.",
+    topics: ["AC / DC", "Digital multimeter", "Clamp multimeter", "Resistance", "Continuity"],
+    learningObjectives: ["Main electrical quantities present in electrical circuits.", "How an elementary electrical circuit works.", "Differences between series and parallel circuits.", "Measuring AC and DC voltage.", "Measuring AC current with a clamp multimeter.", "Measuring the electrical resistance of components.", "Testing continuity in de-energized circuits.", "Detecting short circuits using continuity testing on de-energized circuits.", "Checking protection devices with a multimeter.", "Understanding multimeter protection ratings and voltage limits."],
   },
   {
     id: "electronics",

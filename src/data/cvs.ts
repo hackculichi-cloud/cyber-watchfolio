@@ -3,6 +3,7 @@ import type { Lang } from "@/i18n/translate";
 
 export type CvVariant = {
   id: string; title: string; description: string; file: string; available: boolean; preview?: string;
+  originalFile?: string;
   localized?: Record<Lang, { file: string; preview: string }>;
 };
 const titles: Record<string, string> = {
@@ -19,8 +20,9 @@ export const cvAssets = (cv: CvVariant, lang: Lang) => cv.localized?.[lang] ?? {
 /** Keep the user-provided electrical document as the primary electrical CV. */
 export const originalElectricalCv: CvVariant = {
   id: "electrical", title: titles.electrical, description: "Original user-provided electrical CV.",
-  file: "/cv/christian-velasco-electrical-original.pdf",
-  preview: "/cv/previews/christian-velasco-electrical-original.png", available: true,
+  file: "/cv/christian-velasco-electrical-mascot.pdf",
+  originalFile: "/cv/christian-velasco-electrical-original.pdf",
+  preview: "/cv/previews/christian-velasco-electrical-mascot.png", available: true,
 };
 
 export const cvVariants = generatedCvVariants.map(cv => cv.id === "electrical" ? originalElectricalCv : cv);

@@ -1,3 +1,5 @@
+import CulichiMascot from "./CulichiMascot";
+import type { ProfileSlug } from "@/data/profiles";
 import { useState } from "react";
 import { Download, Eye, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,15 +14,20 @@ const CvActions = ({ cv }: { cv: CvVariant }) => {
   const [open, setOpen] = useState(false);
   const [zoom, setZoom] = useState(100);
   const assets = cvAssets(cv, lang);
+  const mascotProfiles: Record<string, ProfileSlug> = { cybersecurity: "cybersecurity", software: "development", electrical: "electrical", electronics: "electronics", repair: "repair", "customer-service": "customer-service" };
   if (!cv.available) return <Button size="sm" disabled variant="secondary">{t("Not published yet")}</Button>;
   return <>
     <div className="flex flex-wrap gap-2">
       <Button asChild size="sm"><a href={assets.file} download target="_blank" rel="noopener noreferrer" aria-label={`${t("Download PDF")}: ${t(cv.title)}`}><Download className="h-4 w-4" aria-hidden />{t("Download PDF")}{cv.localized && ` · ${lang.toUpperCase()}`}</a></Button>
       {assets.preview && <Button type="button" size="sm" variant="outline" onClick={() => { setZoom(100); setOpen(true); }} aria-label={`${t("Preview CV")}: ${t(cv.title)}`}><Eye className="h-4 w-4" aria-hidden />{t("Preview CV")}</Button>}
+      {cv.originalFile && <a href={cv.originalFile} download className="self-center rounded text-xs text-muted-foreground underline focus-visible:ring-2 focus-visible:ring-primary">{t("Original PDF")}</a>}
     </div>
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="flex max-h-[94dvh] w-[96vw] max-w-5xl flex-col gap-3 overflow-hidden">
-        <DialogTitle>{t(cv.title)}</DialogTitle>
+        <div className="flex items-center gap-3 pr-6">
+          {mascotProfiles[cv.id] && <CulichiMascot variant={mascotProfiles[cv.id]} className="h-12 w-12" decorative />}
+          <DialogTitle>{t(cv.title)}</DialogTitle>
+        </div>
         <DialogDescription>{t("First page of the downloadable CV")}{cv.localized && ` · ${lang.toUpperCase()}`}</DialogDescription>
         {cv.localized && <LanguageSwitcher compact />}
         <div className="flex flex-wrap items-center gap-2" role="group" aria-label={t("CV zoom")}>

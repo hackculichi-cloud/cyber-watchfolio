@@ -1,3 +1,4 @@
+import homeBackground from "@/assets/culichi-home-background.webp";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
@@ -23,7 +24,10 @@ const Home = () => {
       />
 
       {/* Hero */}
-      <section className="grid-bg relative overflow-hidden border-b border-border">
+      <section className="grid-bg relative isolate overflow-hidden border-b border-border">
+        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-right opacity-70 md:opacity-90" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.98)_0%,hsl(var(--background)/0.88)_42%,hsl(var(--background)/0.32)_100%)]" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
         <div className="container relative mx-auto grid gap-12 px-4 py-24 md:py-32 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
           <div className="max-w-3xl">

@@ -1,3 +1,4 @@
+import MascotInterlude from "@/components/profile/MascotInterlude";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -25,6 +26,7 @@ const Experience = () => {
       <ProfileHero profile={profile} />
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
+      <MascotInterlude profile={profile.slug} />
 
       <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
@@ -64,6 +66,7 @@ const Experience = () => {
         </div>
       </section>
 
+      <MascotInterlude profile={profile.slug} cv />
       <section id="cv" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
         <ProfileCvBlock cvIds={profile.cvIds} />

@@ -1,3 +1,4 @@
+import MascotInterlude from "@/components/profile/MascotInterlude";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -58,6 +59,7 @@ const Electrical = () => {
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
+      <MascotInterlude profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
@@ -102,6 +104,11 @@ const Electrical = () => {
                     <Tag key={entry}>{t(entry)}</Tag>
                   ))}
                 </div>
+                {track.learningObjectives && <details className="mt-4" data-course-objectives={track.id}>
+                  <summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course learning objectives")}</summary>
+                  <p className="mt-3 text-xs text-muted-foreground">{t("Topics being studied; certificate pending completion.")}</p>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">{track.learningObjectives.map(item => <li key={item}>{t(item)}</li>)}</ul>
+                </details>}
               </article>
             ))}
           </div>
@@ -218,6 +225,7 @@ const Electrical = () => {
         </div>
       </section>
 
+      <MascotInterlude profile={profile.slug} cv />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
           <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />

@@ -1,3 +1,4 @@
+import MascotInterlude from "@/components/profile/MascotInterlude";
 import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -45,6 +46,7 @@ const SoftwareDevelopment = () => {
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
+      <MascotInterlude profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
@@ -130,6 +132,7 @@ const SoftwareDevelopment = () => {
         <ProfileTools groups={toolsByProfile.development} />
       </section>
 
+      <MascotInterlude profile={profile.slug} cv />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
           <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
