@@ -17,6 +17,12 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
   const xr = section.locator("article").filter({ has: page.getByRole("heading", { name: "iPhone XR", exact: true }) });
   await expect(xr.getByText("Cambio de pantalla realizado por el titular del portafolio", { exact: true })).toBeVisible();
 
+  await expect(xr.locator('img[src="/images/repair/repair-photo-10.jpg"]')).toBeVisible();
+  await expect(xr.locator('img[src="/images/repair/repair-photo-09.jpg"]')).toBeVisible();
+  await xr.getByRole("button", { name: "Ampliar fotografía del proceso", exact: true }).click();
+  await expect(page.getByRole("dialog").locator("img")).toHaveAttribute("src", "/images/repair/repair-photo-10.jpg");
+  await page.keyboard.press("Escape");
+
   const gallery = page.locator("#gallery");
   await expect(gallery.locator("figure")).toHaveCount(18);
   await gallery.locator("button").first().click();

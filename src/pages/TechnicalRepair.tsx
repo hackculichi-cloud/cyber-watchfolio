@@ -159,12 +159,10 @@ const TechnicalRepair = () => {
             title={t("Workshop photos")}
             description={t("Before/after documentation of real repairs, components and workshop practice.")}
           />
-          <p className="mb-6 text-sm text-muted-foreground">{t("These are the repair photos supplied by the portfolio owner. Assignment to individual device cases is awaiting confirmation.")}</p>
+          <p className="mb-6 text-sm text-muted-foreground">{t("These are the repair photos supplied by the portfolio owner. The light-blue device photos are linked to the iPhone XR case; assignment of the remaining photos is awaiting confirmation.")}</p>
           <WorkImageGallery
             title="Workshop photos"
-            images={[...repairPhotos, ...smartphoneRepairs.flatMap((repair) => [repair.before, repair.during, repair.after, ...(repair.evidence ?? [])]
-              .filter((image) => image !== undefined)
-              .map((image) => ({ ...image, projectTitle: repair.device })))]}
+            images={repairPhotos}
           />
           {galleryFor("repair").length > 0 && <Gallery
             items={galleryFor("repair")}

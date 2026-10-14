@@ -226,4 +226,5 @@ export const reviewedEs: Record<string, string> = {
   "Screen replaced. The portfolio owner confirms that all listed post-repair checks were performed.": "Pantalla reemplazada. El titular del portafolio confirma que realizó todas las comprobaciones finales enumeradas.",
   "Repair date, battery brand and test measurements are not documented.": "La fecha de reparación, la marca de la batería y las mediciones de las pruebas no están documentadas.",
   "Repair date, screen brand and test measurements are not documented.": "La fecha de reparación, la marca de la pantalla y las mediciones de las pruebas no están documentadas.",
+  "These are the repair photos supplied by the portfolio owner. The light-blue device photos are linked to the iPhone XR case; assignment of the remaining photos is awaiting confirmation.": "Estas son las fotografías de reparación proporcionadas por el titular del portafolio. Las del teléfono azul claro están vinculadas al caso del iPhone XR; la asignación de las demás fotografías está pendiente de confirmación.",
 };

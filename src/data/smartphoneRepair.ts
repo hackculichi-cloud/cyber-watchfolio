@@ -1,4 +1,5 @@
 import type { WorkImage } from "./works";
+import { repairPhotos } from "./repairPhotos";
 
 /** ---------------------------------------------------------------
  * Smartphone repair profile data.
@@ -243,6 +244,9 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "id": "sr-003",
     "ref": "SMARTPHONE REPAIR #003",
     "device": "iPhone XR",
+    // The owner identifies the light-blue phone as the XR.
+    "during": repairPhotos.find((photo) => photo.src === "/images/repair/repair-photo-10.jpg"),
+    "evidence": repairPhotos.filter((photo) => photo.src === "/images/repair/repair-photo-09.jpg"),
     "repairType": "Screen replacement",
     "work": [
       "Screen replacement performed by the portfolio owner"

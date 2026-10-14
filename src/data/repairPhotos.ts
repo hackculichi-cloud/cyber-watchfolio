@@ -1,6 +1,6 @@
 import type { WorkImage } from "./works";
 
-/** Exact photos supplied in the user ZIP. Model assignment awaits confirmation. */
+/** Exact photos supplied in the user ZIP. Light-blue device photos are assigned to the XR; other model assignments await confirmation. */
 export const repairPhotos: WorkImage[] = [
   {
     "src": "/images/repair/repair-photo-01.jpg",

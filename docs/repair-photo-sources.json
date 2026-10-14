@@ -51,13 +51,19 @@
     "photo": 9,
     "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (5).jpeg",
     "asset": "repair-photo-09.jpg",
-    "sha256": "db28efedb07f10b2f60cc951f889486da74a7a20e50d11d7ed49ceb33ed8695b"
+    "sha256": "db28efedb07f10b2f60cc951f889486da74a7a20e50d11d7ed49ceb33ed8695b",
+    "case": "sr-003",
+    "model": "iPhone XR",
+    "assignmentBasis": "Owner identifies the light-blue device as the iPhone XR."
   },
   {
     "photo": 10,
     "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (6).jpeg",
     "asset": "repair-photo-10.jpg",
-    "sha256": "a763b8f913a991f1f4bd800b53103aa93a607f00a75ec97d4c1f114b16b7f6de"
+    "sha256": "a763b8f913a991f1f4bd800b53103aa93a607f00a75ec97d4c1f114b16b7f6de",
+    "case": "sr-003",
+    "model": "iPhone XR",
+    "assignmentBasis": "Owner identifies the light-blue device as the iPhone XR."
   },
   {
     "photo": 11,
