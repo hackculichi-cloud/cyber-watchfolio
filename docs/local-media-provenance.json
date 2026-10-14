@@ -1,0 +1,74 @@
+[
+  {
+    "path": "/media/portfolio/float-switch-practice-board.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/4e3a84cd-1271-48f4-9e38-0feb18ccd917/float-switch-practice-board.png",
+    "bytes": 2401135,
+    "sha256": "00a347d29c2561b94fe406d264ea61c10942d07a0fd736d73483868a8643f462"
+  },
+  {
+    "path": "/media/portfolio/float-switch-functional-test.mp4",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/0400cf2f-41cd-47d3-be0f-0cc2631b1adb/float-switch-functional-test.mp4",
+    "bytes": 2792212,
+    "sha256": "0a26c63810cf710f0bebd33f6791ff353f5999ad416430a1744306374d33c3c7"
+  },
+  {
+    "path": "/media/portfolio/float-switch-functional-test.webm",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/617699e2-9775-4335-854f-2aa050c91531/float-switch-functional-test.webm",
+    "bytes": 1990993,
+    "sha256": "d25f81dfe2d3b689f689a1296b130e2d260368e0f6bc0e66cc0a639d2895f191"
+  },
+  {
+    "path": "/media/portfolio/residential-outlet-switch-after.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/6245201f-8562-4a5d-9e41-cc0203c55898/residential-outlet-switch-after.png",
+    "bytes": 1281492,
+    "sha256": "751a4e70cb54a1845fa907c93a47917e04040c877c2a2561efbaba1321c402ba"
+  },
+  {
+    "path": "/media/portfolio/residential-outlet-switch-comparison.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/eafef0d5-6287-4093-af8c-1a759c7bbca0/residential-outlet-switch-comparison.png",
+    "bytes": 1630771,
+    "sha256": "de25ef6c593bd0b4fc52a5fc687f7cb60232d05efe0e2e6f996451694cac743b"
+  },
+  {
+    "path": "/media/portfolio/residential-old-device-and-power-strip.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/2e3fbc7f-047c-41f4-ba8f-eaf114f4bd31/residential-old-device-and-power-strip.png",
+    "bytes": 1641720,
+    "sha256": "68b17ad5cb450a9ff46d4cc28ac1f5003f97c33d1d7d5e863b9324594a070742"
+  },
+  {
+    "path": "/media/portfolio/ceiling-light-installation-1.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/f1e0a6ff-add5-4d43-a547-7d5db28c8741/ceiling-light-installation-1.png",
+    "bytes": 1442274,
+    "sha256": "e84554b230f6e6706c34ba25496015a2d347ef1b0d64aa84520a57f5676f3b7a"
+  },
+  {
+    "path": "/media/portfolio/ceiling-light-operational.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/8e2e1a34-2cee-40e6-b043-f4847ac20aa9/ceiling-light-operational.png",
+    "bytes": 534583,
+    "sha256": "c23c22cfe7fbb8ea8d6870ecdd49a9d7edb98db72ac8c6b480e80f20258523a1"
+  },
+  {
+    "path": "/media/portfolio/ceiling-light-installation-2.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/b2a1757b-9887-4062-92cb-84fda82c392e/ceiling-light-installation-2.png",
+    "bytes": 1462920,
+    "sha256": "9c3e41ca4db3248675ef548996a124a636d270bbb335a23701b8ba5fa4f32cf2"
+  },
+  {
+    "path": "/media/portfolio/two-ceiling-lights-completed.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/563b591f-96c5-4573-b203-73852b2c09b0/two-ceiling-lights-completed.png",
+    "bytes": 943060,
+    "sha256": "042238a553b3d85de3e221980bc88884a145b370e98fe00b01aafb057cf2acd5"
+  },
+  {
+    "path": "/media/portfolio/contact-github-preview.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/66ebb136-6c0d-48ae-b14a-0c0b58d9e26a/contact-github-preview.png",
+    "bytes": 225637,
+    "sha256": "acae9133eecf15634b5f2dbf259c1e5181e8d03848fab4e6eb6fdb556b168e00"
+  },
+  {
+    "path": "/media/portfolio/contact-linkedin-preview.png",
+    "source": "https://culichi.lovable.app/__l5e/assets-v1/b226c94d-4f61-4a7e-bf93-ee98922a9c7a/contact-linkedin-preview.png",
+    "bytes": 211499,
+    "sha256": "7257d64dacca6d89a754acab306843d1f64ae0d8fa3f2cf10b713216ceab9e7c"
+  }
+]

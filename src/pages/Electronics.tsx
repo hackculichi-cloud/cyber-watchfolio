@@ -1,4 +1,4 @@
-import MascotInterlude from "@/components/profile/MascotInterlude";
+import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -51,10 +51,9 @@ const Electronics = () => {
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
-      <MascotInterlude profile={profile.slug} />
 
       <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
+        <SectionHeading mascot={profile.slug}
           eyebrow={t("Overview")}
           title={t("General electronics training")}
           description={t("Components, circuits and measurement instruments — building a methodical troubleshooting approach on real hardware.")}
@@ -150,9 +149,9 @@ const Electronics = () => {
         </div>
       </section>
 
-      <MascotInterlude profile={profile.slug} cv />
+      <ProfileCertificates profile={profile.slug} />
       <section id="cv" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
+        <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")} />
         <ProfileCvBlock cvIds={profile.cvIds} />
       </section>
     </>

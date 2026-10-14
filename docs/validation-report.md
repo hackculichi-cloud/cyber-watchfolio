@@ -20,7 +20,7 @@ Los fallos iniciales por instalación concurrente y reinicio del servidor se dia
 Limitaciones:
 
 - El build advierte un chunk principal de aproximadamente 506 kB minificado (160 kB gzip). No impide compilar y no se ocultó elevando el límite.
-- Las fotografías locales se verificaron; el acceso a medios externos de Lovable y fuentes depende de la red y confianza TLS del entorno. No se garantiza disponibilidad de todos los archivos remotos con estas pruebas.
+- Los medios necesarios de la plataforma anterior se migraron a rutas locales, conservando bytes y hashes. Las fuentes también se sirven localmente. La validación actual bloquea las peticiones al origen anterior y comprueba las rutas locales.
 - El workflow de CI se añadió pero estos resultados corresponden a ejecución local, no a una ejecución confirmada en GitHub Actions.
 - No se fusionaron cambios ni se ejecutó un despliegue de producción. El comportamento de Vercel/Cloudflare en producción no se certifica con una ejecución local.
 

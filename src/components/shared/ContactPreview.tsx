@@ -2,8 +2,6 @@ import { useId, useState, type ReactNode } from "react";
 import { ExternalLink, Github, Linkedin, Mail, Send } from "lucide-react";
 import { site } from "@/data/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import githubPreview from "@/assets/contact-github-preview.png.asset.json";
-import linkedinPreview from "@/assets/contact-linkedin-preview.png.asset.json";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Portal } from "@radix-ui/react-hover-card";
 import SmartImage from "./SmartImage";
@@ -45,7 +43,7 @@ const ContactPreview = ({ channel, href, external, className, ariaLabel, childre
             </div>
           ) : (
             <div className="max-h-[min(17rem,42vh)] overflow-y-auto overscroll-contain">
-              <SmartImage src={new URL(channel === "GitHub" ? githubPreview.url : linkedinPreview.url, site.assetOrigin).href}
+              <SmartImage src={channel === "GitHub" ? "/media/portfolio/contact-github-preview.png" : "/media/portfolio/contact-linkedin-preview.png"}
                 alt={t(spanish ? `Captura de ${channel}` : `${channel} screenshot`)} eager
                 imgClassName="!h-auto" className="min-h-32" />
             </div>

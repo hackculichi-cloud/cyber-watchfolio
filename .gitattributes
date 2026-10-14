@@ -1,0 +1,2 @@
+# PDF streams must be treated as binary, not normalized or checked as source text.
+*.pdf binary

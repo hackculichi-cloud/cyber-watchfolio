@@ -4,35 +4,22 @@ const groupPhoto = "/images/electrical/training-group.jpg";
 const wiringWork = "/images/electrical/training-wiring.jpg";
 const installationDetail = "/images/electrical/training-installation.jpg";
 import type { WorkItem } from "@/data/works";
-import { site } from "@/data/site";
-import floatBoard from "@/assets/electrical-practices/float-switch-practice-board.png.asset.json";
-import floatVideo from "@/assets/electrical-practices/float-switch-functional-test.mp4.asset.json";
-import floatVideoWebm from "@/assets/electrical-practices/float-switch-functional-test.webm.asset.json";
-import outletAfter from "@/assets/electrical-practices/residential-outlet-switch-after.png.asset.json";
-import outletComparison from "@/assets/electrical-practices/residential-outlet-switch-comparison.png.asset.json";
-import oldDevice from "@/assets/electrical-practices/residential-old-device-and-power-strip.png.asset.json";
-import lightDuring1 from "@/assets/electrical-practices/ceiling-light-installation-1.png.asset.json";
-import lightAfter from "@/assets/electrical-practices/ceiling-light-operational.png.asset.json";
-import lightDuring2 from "@/assets/electrical-practices/ceiling-light-installation-2.png.asset.json";
-import lightsCompleted from "@/assets/electrical-practices/two-ceiling-lights-completed.png.asset.json";
 
-// Use the public asset origin so the same media also resolves in plain Vite.
-const assetUrl = (asset: { url: string }) => new URL(asset.url, site.assetOrigin).href;
 const floatPhoto = {
-  src: assetUrl(floatBoard),
+  src: "/media/portfolio/float-switch-practice-board.png",
   alt: "Float-switch course practice on the electrical training board",
   caption: "Course practice: training board with control devices and lighting points.",
 };
 const outletPhotos = [
-  { src: assetUrl(outletAfter), alt: "Replacement outlet and switch beside a power strip", caption: "Residential client work: installed outlet and switch beside the power strip." },
-  { src: assetUrl(outletComparison), alt: "Removed outlet and switch compared with the replacement", caption: "Comparison of the removed device and the installed replacement." },
-  { src: assetUrl(oldDevice), alt: "Removed outlet and switch with a power strip", caption: "Removed outlet and switch alongside a power strip." },
+  { src: "/media/portfolio/residential-outlet-switch-after.png", alt: "Replacement outlet and switch beside a power strip", caption: "Residential client work: installed outlet and switch beside the power strip." },
+  { src: "/media/portfolio/residential-outlet-switch-comparison.png", alt: "Removed outlet and switch compared with the replacement", caption: "Comparison of the removed device and the installed replacement." },
+  { src: "/media/portfolio/residential-old-device-and-power-strip.png", alt: "Removed outlet and switch with a power strip", caption: "Removed outlet and switch alongside a power strip." },
 ];
 const lightPhotos = [
-  { src: assetUrl(lightDuring1), alt: "Ceiling luminaire during connection and mounting", caption: "Residential client work: luminaire connection and mounting in progress." },
-  { src: assetUrl(lightAfter), alt: "Replacement ceiling luminaire illuminated", caption: "Replacement luminaire installed and illuminated." },
-  { src: assetUrl(lightDuring2), alt: "Close view of luminaire wiring and mounting bracket", caption: "Detail of the luminaire wiring, driver and ceiling mounting bracket." },
-  { src: assetUrl(lightsCompleted), alt: "Two replacement ceiling luminaires illuminated in the room", caption: "Completed client work: both replacement luminaires illuminated." },
+  { src: "/media/portfolio/ceiling-light-installation-1.png", alt: "Ceiling luminaire during connection and mounting", caption: "Residential client work: luminaire connection and mounting in progress." },
+  { src: "/media/portfolio/ceiling-light-operational.png", alt: "Replacement ceiling luminaire illuminated", caption: "Replacement luminaire installed and illuminated." },
+  { src: "/media/portfolio/ceiling-light-installation-2.png", alt: "Close view of luminaire wiring and mounting bracket", caption: "Detail of the luminaire wiring, driver and ceiling mounting bracket." },
+  { src: "/media/portfolio/two-ceiling-lights-completed.png", alt: "Two replacement ceiling luminaires illuminated in the room", caption: "Completed client work: both replacement luminaires illuminated." },
 ];
 
 export const electricalProjects: WorkItem[] = [
@@ -104,7 +91,7 @@ export const electricalProjects: WorkItem[] = [
     did: ["Practiced float-switch control on the course training board.", "Documented the exercise with a board photograph and a video demonstration."],
     cover: floatPhoto,
     images: [floatPhoto],
-    video: { src: assetUrl(floatVideo), webmSrc: assetUrl(floatVideoWebm), title: "Float-switch practice demonstration", poster: floatPhoto.src },
+    video: { src: "/media/portfolio/float-switch-functional-test.mp4", webmSrc: "/media/portfolio/float-switch-functional-test.webm", title: "Float-switch practice demonstration", poster: floatPhoto.src },
   },
   {
     id: "residential-outlet-switch-replacement",

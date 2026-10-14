@@ -1,5 +1,12 @@
 # Auditoría de dependencias — 13 de octubre de 2026
 
+## Actualización: retirada de herramientas de la plataforma anterior
+
+Se retiraron los tres paquetes exclusivos de esa integración y se verificó `npm ci` con el lockfile de npm. La auditoría actual devuelve **8 avisos: 5 altos y 3 moderados; 0 críticos**. Pertenecen a Tailwind 3 y su cadena CSS (`braces`, `chokidar`, `fast-glob`, `micromatch`, `postcss-nested`, `postcss-selector-parser` y `@tailwindcss/typography`). No se ejecutó ninguna corrección forzada ni migración a Tailwind 4.
+
+La sección siguiente conserva los resultados históricos previos a esta retirada; sus referencias a herramientas eliminadas no describen la configuración actual.
+
+
 ## Resultado de la actualización controlada
 
 - Base inicial: 37 avisos (7 moderados, 28 altos, 2 críticos).

@@ -230,6 +230,7 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
@@ -453,4 +454,18 @@ html { scroll-behavior: smooth; }
     from { transform: scale(1.12); }
     to { transform: scale(1.02); }
   }
+}
+
+@keyframes culichi-idle {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-7px) rotate(2deg); }
+}
+@keyframes culichi-greet {
+  0%,100% { transform: translateY(0) rotate(0); }
+  30% { transform: translateY(-18px) rotate(-8deg); }
+  65% { transform: translateY(-9px) rotate(8deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .culichi-idle { animation: culichi-idle 4s ease-in-out infinite; transform-origin: bottom center; }
+  .culichi-idle.culichi-greet { animation: culichi-greet 700ms ease-in-out; }
 }

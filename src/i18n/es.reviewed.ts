@@ -1,5 +1,18 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "View document": "Ver documento",
+  "No certificates provided for this area yet.": "Todavía no se han proporcionado certificados para esta área.",
+  "Participation certificate available.": "Constancia de participación disponible.",
+  "Course participation": "Participación en el curso",
+  "Incomplete studies; no graduation certificate claimed.": "Estudios inconclusos; no se presenta un certificado de egreso.",
+  "Linux diploma program": "Diplomado de Linux",
+  "Institution not specified": "Institución no especificada",
+  "Training in progress; certificate pending completion.": "Formación en curso; certificado pendiente de finalizar.",
+  "Certificate confirmed; file pending upload.": "Certificado confirmado; archivo pendiente de subir.",
+  "Confirmed training and the documents still to be added. In-progress courses are not completed certifications.": "Formación confirmada y documentos que faltan por añadir. Los cursos en progreso no son certificaciones completadas.",
+  "Certificates and pending documents": "Certificados y documentos pendientes",
+  "Certifications": "Certificaciones",
+  "Greet Culichi": "Saludar a Culichi",
   "Main electrical quantities present in electrical circuits.": "Principales magnitudes eléctricas presentes en los circuitos.",
   "How an elementary electrical circuit works.": "Funcionamiento de un circuito eléctrico elemental.",
   "Differences between series and parallel circuits.": "Diferencias entre circuitos en serie y en paralelo.",
