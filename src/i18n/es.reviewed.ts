@@ -1,5 +1,23 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Basic Electronics in Guadalajara — in progress": "Electrónica Básica en Guadalajara — en curso",
+  "Expected completion: February.": "Finalización prevista: febrero.",
+  "View learning objectives and syllabus": "Ver objetivos de aprendizaje y temario",
+  "Course learning objectives; training is still in progress.": "Objetivos del curso; la formación sigue en curso.",
+  "What I am learning": "Lo que estoy aprendiendo",
+  "Measurement, power supply, diagnosis and repair instruments: multimeter, oscilloscope, thermometer, logic probe, power supply, soldering iron and heat gun.": "Uso de instrumentos de medición, alimentación, diagnóstico y reparación: multímetro, osciloscopio, termómetro, punta lógica, fuente de alimentación, cautín y pistola de calor.",
+  "Understanding, reading and drawing electronic diagrams and symbols.": "Comprensión, lectura y escritura de diagramas y símbolos electrónicos.",
+  "Diagnostic techniques for electronic circuits.": "Técnicas de diagnóstico para circuitos electrónicos.",
+  "Physical identification of electronic components, their behavior and validation individually and within a circuit.": "Identificación física de componentes electrónicos, su comportamiento y validación individual y dentro de un circuito.",
+  "Electricity Technology": "Tecnología de la Electricidad",
+  "Electricity Technology II": "Tecnología de la Electricidad II",
+  "Laboratory I": "Laboratorio I",
+  "Laboratory II": "Laboratorio II",
+  "Metrology I": "Metrología I",
+  "Metrology II": "Metrología II",
+  "Applied Mathematics I": "Matemáticas Aplicadas I",
+  "Applied Mathematics II": "Matemáticas Aplicadas II",
+
   "Upcoming": "Próximamente",
   "Television Technician": "Técnico en Televisión",
   "Radio Reception & Amplifiers Technician": "Técnico en Radio Recepción y Amplificadores",

@@ -1,3 +1,4 @@
+import BasicElectronicsSyllabus from "./BasicElectronicsSyllabus";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
@@ -34,6 +35,7 @@ const SpecialtyExplorer = ({ profile }: { profile: ProfileSlug }) => {
     {items.filter(item => item.id === active).map(item => <article key={item.id} id={`specialty-details-${profile}`} className="panel-glow mt-5">
       <div className="flex flex-wrap items-center justify-between gap-3"><h3 className="text-xl font-semibold">{t(item.title)}</h3><Tag variant={item.status === "Upcoming" ? "muted" : "primary"}>{t(item.status)}</Tag></div>
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
+      {item.id === "basic-electronics" && <BasicElectronicsSyllabus />}
       <ul className="my-4 flex flex-wrap gap-2">{item.topics.map(topic => <li key={topic}><Tag>{t(topic)}</Tag></li>)}</ul>
       <div className="flex flex-wrap gap-4">{item.related.map(link => <a key={link.anchor} href={`#${link.anchor}`} className="inline-flex items-center gap-2 rounded text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t(link.label)}<ArrowRight className="h-4 w-4" aria-hidden /></a>)}</div>
     </article>)}

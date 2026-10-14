@@ -172,3 +172,21 @@ test("Culichi changes costume on all six profile pages without overflowing", asy
   await page.setViewportSize({ width: 390, height: 844 });
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test("ETO syllabus stays inside basic electronics and expands in both languages", async ({ page }) => {
+  await page.goto("/electronics#basic-electronics");
+  const syllabus = page.locator("[data-electronics-syllabus]");
+  await expect(syllabus.getByText("Expected completion: February.", { exact: true })).toBeVisible();
+  await expect(syllabus.getByText("Applied Mathematics II", { exact: true })).not.toBeVisible();
+  await syllabus.locator("summary").click();
+  await expect(syllabus.locator("li")).toHaveCount(12);
+  await expect(syllabus.getByText("Applied Mathematics II", { exact: true })).toBeVisible();
+  await page.locator('button[lang="es"]:visible').first().click();
+  await expect(syllabus.getByText("Finalización prevista: febrero.", { exact: true })).toBeVisible();
+  await expect(syllabus.getByText("Matemáticas Aplicadas II", { exact: true })).toBeVisible();
+  await expect(syllabus.getByText(/punta lógica/)).toBeVisible();
+  await syllabus.locator("summary").click();
+  await expect(syllabus.getByText("Matemáticas Aplicadas II", { exact: true })).not.toBeVisible();
+  await page.locator('[data-specialty="microcontrollers"]').click();
+  await expect(syllabus).toHaveCount(0);
+});
