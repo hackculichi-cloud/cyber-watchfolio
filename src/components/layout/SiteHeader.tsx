@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, PhoneCall, FileText, Mail, type LucideIcon } from "lucide-react";
 import { navigation } from "@/data/site";
-import logoCv from "@/assets/culichi-logo-zorro.png";
+import CulichiMascot, { type MascotVariant } from "@/components/shared/CulichiMascot";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ProfileDropdown from "./ProfileDropdown";
@@ -41,6 +41,8 @@ const SiteHeader = () => {
   const [mobileProfile, setMobileProfile] = useState<string | null>(null);
   const location = useLocation();
   const { t } = useLanguage();
+  const mascotRoutes: Record<string, MascotVariant> = { "/cybersecurity": "cybersecurity", "/software-development": "development", "/electrical": "electrical", "/electronics": "electronics", "/repair": "repair", "/experience": "customer-service" };
+  const mascot = mascotRoutes[location.pathname] ?? "emblem";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -61,7 +63,7 @@ const SiteHeader = () => {
       <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label={t("Main")}>
         <Link to="/" className="group flex items-center gap-2 font-semibold tracking-tight">
           <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg border border-primary/25 bg-primary/10 transition-transform duration-300 group-hover:scale-110">
-            <img src={logoCv} alt={t("Culichi fox logo")} width={36} height={36} className="h-8 w-8 object-contain" />
+            <CulichiMascot variant={mascot} className="h-9 w-9" />
           </span>
           <span className="text-sm transition-colors group-hover:text-primary sm:text-base">{t("Christian Velasco")}</span>
         </Link>

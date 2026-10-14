@@ -1,3 +1,4 @@
+import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Seo from "@/components/shared/Seo";
@@ -35,6 +36,7 @@ const SoftwareDevelopment = () => {
         path="/software-development"
       />
       <ProfileHero profile={profile}>
+        <InstitutionLink profile="development" />
         <Button asChild variant="outline">
           <a href={site.github} target="_blank" rel="noreferrer noopener">
             <Github className="h-4 w-4" /> {t(site.githubHandle)}

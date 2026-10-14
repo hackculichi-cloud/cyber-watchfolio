@@ -83,13 +83,13 @@
       "id": "software",
       "profile": "development",
       "en": {
-        "role": "Software Development Student",
-        "summary": "University studies in frontend, backend and full-stack development at UNISITE. Practical portfolio project built with React, TypeScript, Vite and Tailwind CSS.",
+        "role": "Software Development — Partial Studies",
+        "summary": "Incomplete frontend, backend and full-stack training at Academlo. Practical portfolio project built with React, TypeScript, Vite and Tailwind CSS.",
         "sections": [
           {
             "title": "Education",
             "items": [
-              "UNISITE — frontend, backend and full-stack studies in progress."
+              "Academlo — frontend, backend and full-stack studies, not completed."
             ]
           },
           {
@@ -116,13 +116,13 @@
         ]
       },
       "es": {
-        "role": "Estudiante de desarrollo de software",
-        "summary": "Estudios universitarios de frontend, backend y full stack en UNISITE. Proyecto práctico de portafolio construido con React, TypeScript, Vite y Tailwind CSS.",
+        "role": "Desarrollo de software — estudios inconclusos",
+        "summary": "Estudios inconclusos de frontend, backend y full stack en Academlo. Proyecto práctico de portafolio construido con React, TypeScript, Vite y Tailwind CSS.",
         "sections": [
           {
             "title": "Formación",
             "items": [
-              "UNISITE — estudios de frontend, backend y full stack en curso."
+              "Academlo — estudios de frontend, backend y full stack inconclusos."
             ]
           },
           {
@@ -249,7 +249,7 @@
           {
             "title": "Learning plan",
             "items": [
-              "Audio/radio, television/video and digital systems are future training tracks."
+              "Planned training: television; radio reception and amplifiers; digital systems; microcontrollers; microcomputers; industrial electronics. Not started yet."
             ]
           },
           {
@@ -282,7 +282,7 @@
           {
             "title": "Plan de aprendizaje",
             "items": [
-              "Audio/radio, televisión/video y sistemas digitales son áreas de formación futura."
+              "Próximas áreas: televisión; radio recepción y amplificadores; sistemas digitales; microcontroladores; microcomputadoras; electrónica industrial. Aún no iniciadas."
             ]
           },
           {

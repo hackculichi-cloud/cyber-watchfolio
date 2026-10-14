@@ -27,14 +27,14 @@ test("top dropdowns use specialties, support keyboard/Escape and navigate to a r
   const menu = page.getByRole("dialog", { name: "Specialties: Electronics", exact: true });
   await menu.locator('a[href="/electronics#audio-radio"]').click();
   await expect(page.locator('[data-specialty="audio-radio"]')).toHaveAttribute("aria-expanded", "true");
-  await expect(page.locator('#specialty-details-electronics').getByText("Planned", { exact: true })).toBeVisible();
+  await expect(page.locator('#specialty-details-electronics').getByText("Upcoming", { exact: true })).toBeVisible();
   await page.locator('button[lang="es"]:visible').first().click();
-  await expect(page.locator('#specialty-details-electronics').getByRole("heading", { name: "Audio y radio", exact: true })).toBeVisible();
+  await expect(page.locator('#specialty-details-electronics').getByRole("heading", { name: "Técnico en Radio Recepción y Amplificadores", exact: true })).toBeVisible();
   await page.locator('[data-specialty="basic-electronics"]').click();
   await expect(page.locator('#specialty-details-electronics').getByText(/Escuela Tecnológica de Occidente/).first()).toBeVisible();
 });
 
-test("each of the six home cards has a small usable preview without navigating", async ({ page }) => {
+test("each area preview is momentary with pointer and keyboard", async ({ page }) => {
   await page.goto("/");
   for (const [label] of areas) {
     const eye = page.getByRole("button", { name: `Preview area: ${label}`, exact: true });
@@ -43,13 +43,29 @@ test("each of the six home cards has a small usable preview without navigating",
     await expect(page.locator('[data-section-preview][data-state="open"]')).toHaveCount(0);
     await eye.focus();
     await expect(page.locator('[data-section-preview][data-state="open"]')).toHaveCount(0);
-    await eye.click();
+    await eye.hover();
+    await page.mouse.down();
     const preview = page.locator('[data-section-preview][data-state="open"]');
     await expect(preview.getByRole("heading", { name: label, exact: true })).toBeVisible();
     expect(await preview.locator("li").count()).toBeGreaterThan(1);
+    await expect.poll(async () => {
+      const last = await preview.locator("li").last().boundingBox();
+      const panel = await preview.boundingBox();
+      return Boolean(last && panel && last.y + last.height <= panel.y + panel.height);
+    }).toBe(true);
     await expect(page).toHaveURL(/\/$/);
     await page.mouse.move(0, 400);
-    await page.keyboard.press("Escape");
+    await expect(preview).toHaveCount(1);
+    await page.mouse.up();
+    await expect(preview).toHaveCount(0);
+    await eye.focus();
+    await page.keyboard.down("Space");
+    await expect(preview).toHaveCount(1);
+    await page.keyboard.up("Space");
+    await expect(preview).toHaveCount(0);
+    await page.keyboard.down("Enter");
+    await expect(preview).toHaveCount(1);
+    await page.keyboard.up("Enter");
     await expect(preview).toHaveCount(0);
   }
 });
@@ -89,15 +105,20 @@ test("mobile specialty controls and card preview work by touch without overflowi
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
   await page.goto("/");
-  await page.getByRole("button", { name: "Preview area: Electronics", exact: true }).tap();
+  const eye = page.getByRole("button", { name: "Preview area: Electronics", exact: true });
+  await eye.scrollIntoViewIfNeeded();
+  const box = (await eye.boundingBox())!;
+  const touch = await context.newCDPSession(page);
+  await touch.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
   const preview = page.locator('[data-section-preview][data-state="open"]');
-  await preview.locator('a[href="/electronics#digital-systems"]').tap();
-  await expect(page.locator('[data-specialty="digital-systems"]')).toHaveAttribute("aria-expanded", "true");
+  await expect(preview.getByRole("heading", { name: "Electronics", exact: true })).toBeVisible();
+  await touch.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+  await expect(preview).toHaveCount(0);
   await page.getByRole("button", { name: "Open menu", exact: true }).tap();
   await page.getByRole("button", { name: "Open profile menu: Software Development", exact: true }).tap();
   await page.locator('header a[href="/software-development#backend"]:visible').tap();
   await expect(page.locator('[data-specialty="backend"]')).toHaveAttribute("aria-expanded", "true");
-  await expect(page.locator('#specialty-details-development').getByText(/UNISITE/)).toBeVisible();
+  await expect(page.locator('#specialty-details-development').getByText(/Academlo/)).toBeVisible();
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.goto("/repair#cv");
   await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).tap();
@@ -108,4 +129,46 @@ test("mobile specialty controls and card preview work by touch without overflowi
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await cvDialog.getByRole("button", { name: "Close", exact: true }).tap();
   await context.close();
+});
+
+test("school links and CV catalog reflect confirmed institutions", async ({ page }) => {
+  for (const [path, name, href] of [["/electronics", "Escuela Tecnológica de Occidente", "https://www.eto-edu.mx/"], ["/software-development", "Academlo", "https://www.academlo.com/"]]) {
+    await page.goto(path);
+    await expect(page.getByRole("link", { name: new RegExp(`View institution: ${name}`) })).toHaveAttribute("href", href);
+    await expect(page.getByText(/UNISITE/)).toHaveCount(0);
+  }
+  await page.goto("/cv");
+  await expect(page.locator("main article")).toHaveCount(6);
+  await expect(page.getByText("Updated electrical CV · ES/EN", { exact: true })).toHaveCount(0);
+});
+
+test("electronics has seven training routes with only basic electronics in progress", async ({ page }) => {
+  await page.goto("/electronics");
+  await page.locator('button[lang="es"]:visible').first().click();
+  const routes = page.locator("#specialties");
+  await expect(routes.locator("button[data-specialty]")).toHaveCount(7);
+  await expect(routes.getByText("Próximamente", { exact: true })).toHaveCount(6);
+  for (const id of ["microcontrollers", "microcomputers", "industrial-electronics"]) {
+    await routes.locator(`[data-specialty="${id}"]`).click();
+    await expect(page.locator("#specialty-details-electronics").getByText("Próximamente", { exact: true })).toBeVisible();
+  }
+  await routes.locator('[data-specialty="basic-electronics"]').click();
+  await expect(page.locator("#specialty-details-electronics").getByText(/Escuela Tecnológica de Occidente/)).toBeVisible();
+});
+
+test("Culichi changes costume on all six profile pages without overflowing", async ({ page }) => {
+  const positions = new Set<string>();
+  for (const [, path] of areas) {
+    await page.goto(path);
+    const mascot = page.locator("main [data-mascot]").first();
+    await expect(mascot).toBeVisible();
+    const style = await mascot.evaluate(el => ({ background: getComputedStyle(el).backgroundImage, position: getComputedStyle(el).backgroundPosition }));
+    positions.add(style.position);
+    const src = style.background.match(/url\(["']?(.*?)["']?\)/)![1];
+    expect(await page.evaluate(async src => { const image = new Image(); image.src = src; await image.decode(); return image.naturalWidth > 0; }, src)).toBe(true);
+    await expect(page.locator('header [data-mascot]')).toHaveAttribute("data-mascot", (await mascot.getAttribute("data-mascot"))!);
+  }
+  expect(positions.size).toBe(6);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

@@ -1,3 +1,4 @@
+import CulichiMascot from "@/components/shared/CulichiMascot";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { ReactNode } from "react";
 import type { ProfileIdentity } from "@/data/profiles";
@@ -48,6 +49,10 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
       />
 
       <div className="container relative mx-auto px-4 py-20 md:py-28">
+        <div className="mb-6 flex justify-start md:absolute md:right-6 md:top-20 md:mb-0">
+          <CulichiMascot variant={profile.slug} className="w-32 drop-shadow-[0_0_25px_hsl(var(--primary)/0.2)] md:w-44 lg:w-56" />
+        </div>
+        <div className="md:max-w-[calc(100%-13rem)] lg:max-w-[calc(100%-16rem)]">
         <div className="animate-fade-in-up flex items-center gap-3">
           <span className="glow-ring grid h-14 w-14 place-items-center rounded-2xl border border-primary/35 bg-background/60 text-primary backdrop-blur-md">
             <profile.icon className="h-7 w-7" aria-hidden />
@@ -81,6 +86,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         ) : null}
 
         {children && <div className="animate-fade-in-up delay-400 mt-8 flex flex-wrap gap-3">{children}</div>}
+        </div>
       </div>
     </section>
   );

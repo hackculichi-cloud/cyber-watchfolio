@@ -1,3 +1,4 @@
+import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -33,6 +34,7 @@ const Electronics = () => {
         path="/electronics"
       />
       <ProfileHero profile={profile}>
+        <InstitutionLink profile="electronics" />
         <Button asChild>
           <a href="#projects">{t("View projects")}</a>
         </Button>

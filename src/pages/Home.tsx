@@ -10,7 +10,7 @@ import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
 import Reveal from "@/components/shared/Reveal";
 import ContactPreview from "@/components/shared/ContactPreview";
-import logoCulichi from "@/assets/culichi-logo-zorro.png";
+import CulichiMascot from "@/components/shared/CulichiMascot";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -71,13 +71,7 @@ const Home = () => {
                 className="absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(circle,hsl(var(--primary)/0.22),transparent_70%)] blur-2xl"
               />
               <div className="animate-ring-pulse grid h-56 w-56 place-items-center overflow-hidden rounded-full border border-primary/30 bg-surface/60 backdrop-blur-md transition-transform duration-500 hover:scale-105 md:h-72 md:w-72">
-                <img
-                  src={logoCulichi}
-                  alt={t("Culichi")}
-                  width={288}
-                  height={288}
-                  className="h-44 w-44 object-contain md:h-56 md:w-56"
-                />
+                <div className="flex flex-col items-center"><CulichiMascot variant="home" className="h-44 w-44 md:h-56 md:w-56" /><span className="-mt-1 text-2xl font-black italic tracking-wide text-primary md:text-3xl">Culichi</span></div>
               </div>
             </div>
           </Reveal>

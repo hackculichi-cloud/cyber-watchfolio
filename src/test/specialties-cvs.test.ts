@@ -24,7 +24,9 @@ describe("specialty and CV publishing integrity", () => {
     }
     const electronic = specialtiesFor("electronics");
     expect(electronic.find(item => item.id === "basic-electronics")?.summary).toContain("Escuela Tecnológica de Occidente");
-    for (const id of ["audio-radio", "television-video", "digital-systems"]) expect(electronic.find(item => item.id === id)?.status).toBe("Planned");
-    for (const item of specialtiesFor("development")) expect(item.summary).toContain("UNISITE");
+    expect(electronic).toHaveLength(7);
+    expect(electronic.filter(item => item.status === "Currently studying")).toHaveLength(1);
+    for (const id of ["audio-radio", "television-video", "digital-systems", "microcontrollers", "microcomputers", "industrial-electronics"]) expect(electronic.find(item => item.id === id)?.status).toBe("Upcoming");
+    for (const item of specialtiesFor("development")) expect(item.summary).toContain("Academlo");
   });
 });

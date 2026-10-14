@@ -23,5 +23,4 @@ export const originalElectricalCv: CvVariant = {
   preview: "/cv/previews/christian-velasco-electrical-original.png", available: true,
 };
 
-export const updatedElectricalCv = generatedCvVariants.find(cv => cv.id === "electrical")!;
 export const cvVariants = generatedCvVariants.map(cv => cv.id === "electrical" ? originalElectricalCv : cv);
