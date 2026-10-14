@@ -1,5 +1,10 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "CV zoom": "Ampliación del CV",
+  "Zoom in": "Acercar",
+  "Zoom out": "Alejar",
+  "Fit width": "Ajustar al ancho",
+  "Updated electrical CV · ES/EN": "CV eléctrico actualizado · ES/EN",
   "Visit LIDETEC website": "Visitar sitio de LIDETEC",
   "(opens in a new tab)": "(se abre en una pestaña nueva)",
   Focus: "Enfoque",

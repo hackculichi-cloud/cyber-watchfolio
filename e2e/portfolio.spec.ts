@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 const selectLanguage = async (page: import("@playwright/test").Page, lang: "en" | "es") => {
-  const root = await page.getByRole("dialog").count() ? page.getByRole("dialog").last() : page;
+  const modal = page.getByRole("dialog").filter({ has: page.locator(`button[lang="${lang}"]`) });
+  const root = await modal.count() ? modal.last() : page;
   await root.locator(`button[lang="${lang}"]:visible`).first().click();
   await expect(page.locator("html")).toHaveAttribute("lang", lang);
 };

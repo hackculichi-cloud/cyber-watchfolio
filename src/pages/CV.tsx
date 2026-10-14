@@ -2,7 +2,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { FileText } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import PageHeader from "@/components/shared/PageHeader";
-import { cvVariants, originalElectricalCv } from "@/data/cvs";
+import { cvVariants, updatedElectricalCv } from "@/data/cvs";
 import { site } from "@/data/site";
 import CvActions from "@/components/shared/CvActions";
 
@@ -37,8 +37,8 @@ const CV = () => {
         </div>
 
         <div className="mt-8 border-t border-border pt-6">
-          <h2 className="mb-3 text-sm font-semibold">{t("Previous electrical CV")}</h2>
-          <CvActions cv={originalElectricalCv} />
+          <h2 className="mb-3 text-sm font-semibold">{t("Updated electrical CV · ES/EN")}</h2>
+          <CvActions cv={updatedElectricalCv} />
         </div>
 
         <p className="mt-8 text-sm text-muted-foreground">{t("Need a specific version now? Email")}{t(" ")}
