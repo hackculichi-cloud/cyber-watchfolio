@@ -4,9 +4,7 @@ import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
 import EmptyState from "@/components/shared/EmptyState";
-import Gallery from "@/components/shared/Gallery";
 import WorkImageGallery from "@/components/shared/WorkImageGallery";
-import PhotoDisclosure from "@/components/shared/PhotoDisclosure";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
@@ -15,8 +13,9 @@ import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import RepairCaseCard from "@/components/repair/RepairCaseCard";
 import CertificateCard from "@/components/repair/CertificateCard";
+import TrainingCurriculum from "@/components/repair/TrainingCurriculum";
 import SmartphoneRepairCard from "@/components/repair/SmartphoneRepairCard";
-import { smartphoneRepairs } from "@/data/smartphoneRepair";
+import { smartphoneRepairs, trainingModules, smartphoneSkills } from "@/data/smartphoneRepair";
 import { repairPhotos } from "@/data/repairPhotos";
 import { worksFor } from "@/data/works";
 import { repairCases, repairDeviceTypes, repairsFor, type RepairDeviceType } from "@/data/repairs";
@@ -65,6 +64,20 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
           <div>
             <h3 className="mb-4 text-xl font-semibold">{t("Smartphone repair training")}</h3>
             <CertificateCard />
+            <details id="repair-training" className="panel-glow mt-6">
+              <summary className="cursor-pointer rounded text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>
+              <p className="my-4 text-sm text-muted-foreground">{t("Topics studied in the LIDETEC course. Practical repair evidence is documented separately below.")}</p>
+              <TrainingCurriculum modules={trainingModules} />
+            </details>
+            <div id="repair-training-skills" className="mt-6 space-y-4">
+              <h4 className="text-lg font-semibold">{t("Skills developed in training")}</h4>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {smartphoneSkills.map(group => <div key={group.group} className="rounded-lg border border-border bg-surface-2/40 p-4">
+                  <h5 className="mb-3 text-sm font-semibold text-primary">{t(group.group)}</h5>
+                  <ul className="flex flex-wrap gap-2">{group.items.map(skill => <li key={skill}><Tag>{t(skill)}</Tag></li>)}</ul>
+                </div>)}
+              </div>
+            </div>
           </div>
           <div className="space-y-6">
             <h3 className="text-xl font-semibold">{t("Documented smartphone repairs")}</h3>
@@ -161,10 +174,8 @@ const TechnicalRepair = () => {
             description={t("Before/after documentation of real repairs, components and workshop practice.")}
           />
           <p className="mb-6 text-sm text-muted-foreground">{t("Photos are organized inside each repair case. This optional gallery contains all 18 photos, including connector close-ups not assigned to a specific device.")}</p>
-          <PhotoDisclosure title="Workshop photos" count={repairPhotos.length + galleryFor("repair").length}>
-            <WorkImageGallery title="Workshop photos" images={repairPhotos} />
-            {galleryFor("repair").length > 0 && <Gallery items={galleryFor("repair")} />}
-          </PhotoDisclosure>
+          <WorkImageGallery title="Workshop photos" images={[...repairPhotos, ...galleryFor("repair")]} compact collapsible />
+
         </div>
       </section>
 

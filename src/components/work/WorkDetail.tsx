@@ -84,7 +84,7 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
       {item.images?.length ? (
         <div>
           <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Gallery")}</h4>
-          <WorkImageGallery images={item.images} title={item.title} />
+          <WorkImageGallery images={item.images} title={item.title} compact />
         </div>
       ) : null}
 

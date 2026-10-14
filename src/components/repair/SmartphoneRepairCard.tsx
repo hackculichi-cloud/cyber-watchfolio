@@ -1,7 +1,6 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Tag from "@/components/shared/Tag";
 import WorkImageGallery from "@/components/shared/WorkImageGallery";
-import PhotoDisclosure from "@/components/shared/PhotoDisclosure";
 import type { SmartphoneRepair } from "@/data/smartphoneRepair";
 
 const Pending = ({ label }: { label: string }) => {
@@ -71,9 +70,7 @@ const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
       </dl>
       {repair.notes && <p className="text-sm leading-relaxed text-muted-foreground">{t(repair.notes)}</p>}
 
-      <PhotoDisclosure title={repair.device} count={photos.length}>
-        <WorkImageGallery images={photos} title={repair.device} />
-      </PhotoDisclosure>
+      <WorkImageGallery images={photos} title={repair.device} compact />
 
       {repair.learned?.length ? (
         <div className="border-t border-border pt-4">

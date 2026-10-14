@@ -28,83 +28,82 @@ export const trainingProvider = {
   certificateDate: "01 de agosto de 2026",
   instructor: "Francisco Eduardo Villaseñor",
   document: "Constancia (certificate of participation)",
-  image: null,
+  image: "/images/repair/cert-lidetec.jpg",
   imageRotation: 180,
 };
 
+/** Syllabus supplied by the course participant; topics are training, not claimed expertise. */
 export const trainingModules: TrainingModule[] = [
   {
-    day: "Day 01",
-    title: "Tools & Fundamentals",
-    summary: "Workshop setup, service documentation and how a smartphone is built and measured.",
-    topics: [
-      "Professional repair tools",
-      "Technical service forms",
-      "Smartphone components",
-      "Smartphone architecture",
-      "Multimeter fundamentals",
-      "Component testing",
-      "Safe handling of logic boards",
-    ],
+    "day": "Day 01",
+    "title": "Tools, Service Records & Fundamentals",
+    "summary": "Repair workshop tools, service records, component recognition and basic measurements.",
+    "topics": [
+      "Repair workshop tools and business setup",
+      "Technical service forms and repair notes",
+      "Smartphone parts and internal architecture",
+      "Multimeter use: speakers, earpieces, buzzers and batteries",
+      "Logic board handling and short-circuit prevention"
+    ]
   },
   {
-    day: "Day 02",
-    title: "Disassembly & Diagnostics",
-    summary: "Opening devices safely and identifying the most common hardware failures.",
-    topics: [
-      "Smartphone assembly and disassembly",
-      "Common smartphone failures",
-      "Battery diagnostics and service",
-      "Water / sulfation damage",
-      "Display diagnostics and replacement",
-      "Microphone diagnostics and replacement",
-      "Flex cable diagnostics and recovery",
-      "Logic board maintenance and diagnostics",
-    ],
+    "day": "Day 02",
+    "title": "Disassembly, Diagnostics & Component Recovery",
+    "summary": "Assembly practice, common faults, battery service and diagnostics of displays, microphones and flex cables.",
+    "topics": [
+      "Smartphone assembly and disassembly practice",
+      "Common smartphone faults and repair approaches",
+      "Battery calibration and rehabilitation concepts",
+      "Water damage and sulfation",
+      "Membrane-mounted and universal microphone installation",
+      "Logic board inspection and maintenance",
+      "Display diagnosis, recovery and replacement",
+      "Microphone recovery",
+      "Interconnection flex cable recovery"
+    ]
   },
   {
-    day: "Day 03",
-    title: "Components, Soldering & Charging Systems",
-    summary: "Hands-on electronics: rework stations, discrete components and charging hardware.",
-    topics: [
-      "Soldering iron techniques",
-      "Hot air station",
-      "Component removal and installation",
-      "Diodes, resistors, capacitors and coils",
-      "Connectors",
-      "Charging port installation",
-      "Volume button installation",
-    ],
+    "day": "Day 03",
+    "title": "Hardware Faults, Soldering & Charging Systems",
+    "summary": "Camera, audio, charging and touch faults, battery adaptation and soldering practice.",
+    "topics": [
+      "Camera and audio jack troubleshooting",
+      "Charging filter troubleshooting",
+      "Battery adaptation concepts",
+      "Touch system and battery holder repair",
+      "Soldering iron use and soldering practice",
+      "RF connector practice",
+      "Charging port jumper concepts across device brands"
+    ]
   },
   {
-    day: "Day 04",
-    title: "Advanced Hardware & Microsoldering",
-    summary: "Board-level work: fine rework, connector repair and shielding.",
-    topics: [
-      "Microsoldering fundamentals",
-      "Connector repair",
-      "Shielding",
-      "Cameras",
-      "Audio jack",
-      "Charging circuits",
-      "Touch / display systems",
-      "Battery connectors",
-      "RF-related connectors",
-      "Practical board work",
-    ],
+    "day": "Day 04",
+    "title": "Hot Air, Components & Microsoldering",
+    "summary": "Hot air handling, component removal and installation, charging ports, connectors and introductory microsoldering.",
+    "topics": [
+      "Correct use of the hot air station",
+      "Removal and installation of diodes, resistors, capacitors and coils",
+      "Hands-on practice with course materials",
+      "Charging port and volume button installation",
+      "Introduction to microsoldering",
+      "Connector repair and shielding"
+    ]
   },
   {
-    day: "Day 05",
-    title: "Software Servicing & Device Maintenance",
-    summary: "Software-side servicing: diagnostics, maintenance and manufacturer-supported workflows.",
-    topics: [
-      "Smartphone software fundamentals",
-      "Operating system diagnostics",
-      "Software-related troubleshooting",
-      "Device servicing tools",
-      "Software installation and maintenance",
-    ],
-  },
+    "day": "Day 05",
+    "title": "Software Diagnostics & Device Recovery",
+    "summary": "Software fundamentals, operating system faults, firmware servicing and recovery concepts covered in the course.",
+    "topics": [
+      "Rear housing and device components",
+      "Heat-assisted fault-recovery concepts",
+      "Firmware flashing and unlocking fundamentals",
+      "Smartphone software and operating system diagnostics",
+      "UnlockTool setup and software servicing (coursework)",
+      "Android screen lock and Google account recovery concepts",
+      "Factory reset, connectivity settings and malware troubleshooting",
+      "NCK and server-based unlocking concepts"
+    ]
+  }
 ];
 
 export const practicalExperience = {
@@ -149,7 +148,7 @@ export const smartphoneSkills: { group: string; items: string[] }[] = [
     ],
   },
   { group: "Electronics", items: ["Soldering", "Hot air", "Microsoldering fundamentals", "Components", "PCB handling"] },
-  { group: "Software", items: ["Smartphone software diagnostics", "Device servicing", "Software maintenance"] },
+  { group: "Software", items: ["Smartphone software diagnostics", "Device servicing", "Software maintenance", "Firmware flashing fundamentals", "UnlockTool (coursework)", "Device recovery concepts"] },
 ];
 
 export const smartphoneTools: { group: string; items: string[] }[] = [
