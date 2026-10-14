@@ -1,0 +1,116 @@
+[
+  {
+    "photo": 1,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.08 PM (1).jpeg",
+    "asset": "repair-photo-01.jpg",
+    "sha256": "ed6a0e981b1aa26affb9f1263a67214871e195a295e994e0d155b08582aff546"
+  },
+  {
+    "photo": 2,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.08 PM.jpeg",
+    "asset": "repair-photo-02.jpg",
+    "sha256": "cd2271878513fa39e1328b65ad0f4f44d4a41541e245179ee5a8943bfc153522"
+  },
+  {
+    "photo": 3,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (1).jpeg",
+    "asset": "repair-photo-03.jpg",
+    "sha256": "da701a30106b03bc4fa8820ade8ca0899ff0debe54b7d5266d1fb0bbfeadbbbe"
+  },
+  {
+    "photo": 4,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (10).jpeg",
+    "asset": "repair-photo-04.jpg",
+    "sha256": "8202654666f05bab75d9065a467d83e797b9eb7a418f5ecce02e43759613668c"
+  },
+  {
+    "photo": 5,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (11).jpeg",
+    "asset": "repair-photo-05.jpg",
+    "sha256": "30299fa37712229b08234c7579f5adbbf666cf0184477904761c4c383a59aad8"
+  },
+  {
+    "photo": 6,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (2).jpeg",
+    "asset": "repair-photo-06.jpg",
+    "sha256": "86b91544731285c3b82a93ec0afe5dc9a1cc412946e2f8e1a752b78aa16009f8"
+  },
+  {
+    "photo": 7,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (3).jpeg",
+    "asset": "repair-photo-07.jpg",
+    "sha256": "119994fe42b80ab340c15aeb76cde59cd57d5452b25dc5e3f2fc17c8a4227b77"
+  },
+  {
+    "photo": 8,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (4).jpeg",
+    "asset": "repair-photo-08.jpg",
+    "sha256": "44c0ef8c4277f12c773e3238f42ce454d8336a16fc20ae667607e37dc40948fd"
+  },
+  {
+    "photo": 9,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (5).jpeg",
+    "asset": "repair-photo-09.jpg",
+    "sha256": "db28efedb07f10b2f60cc951f889486da74a7a20e50d11d7ed49ceb33ed8695b",
+    "case": "sr-003",
+    "model": "iPhone XR",
+    "assignmentBasis": "Owner identifies the light-blue device as the iPhone XR."
+  },
+  {
+    "photo": 10,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (6).jpeg",
+    "asset": "repair-photo-10.jpg",
+    "sha256": "a763b8f913a991f1f4bd800b53103aa93a607f00a75ec97d4c1f114b16b7f6de",
+    "case": "sr-003",
+    "model": "iPhone XR",
+    "assignmentBasis": "Owner identifies the light-blue device as the iPhone XR."
+  },
+  {
+    "photo": 11,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (7).jpeg",
+    "asset": "repair-photo-11.jpg",
+    "sha256": "02ee3430b5ecb40eb5a0563c92d58ebb9eea1dc3acabdbb06fc0841ee68a9477"
+  },
+  {
+    "photo": 12,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (8).jpeg",
+    "asset": "repair-photo-12.jpg",
+    "sha256": "0ffbe6527830946a65b5928eb9f5e35e16ca5604a61985ee1d6979f5f982e6d9"
+  },
+  {
+    "photo": 13,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM (9).jpeg",
+    "asset": "repair-photo-13.jpg",
+    "sha256": "1496c4138c63fe398c5188831473fe29d6b6c9f15b8dc95ce91834dc690d9e35"
+  },
+  {
+    "photo": 14,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.09 PM.jpeg",
+    "asset": "repair-photo-14.jpg",
+    "sha256": "cf8d0bf4f9b1794ddbc1752cba15820d45ab203074194cb5f7aad208dc52d7aa"
+  },
+  {
+    "photo": 15,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.10 PM (1).jpeg",
+    "asset": "repair-photo-15.jpg",
+    "sha256": "c88d9a14907aedff45f2b7d3bfa567f48794ff9745fff5f28b092756014a03cf"
+  },
+  {
+    "photo": 16,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.10 PM (2).jpeg",
+    "asset": "repair-photo-16.jpg",
+    "sha256": "84a1c375b94cf2af31ef1a7825944d3966c62a13b12e4b6b44350bd1c05d2bdd"
+  },
+  {
+    "photo": 17,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.10 PM (3).jpeg",
+    "asset": "repair-photo-17.jpg",
+    "sha256": "97ea5f99a7db6e1c40864f38e372b1218b2a38dbd99513d57a9c912858b1c8a1"
+  },
+  {
+    "photo": 18,
+    "original": "WhatsApp Image 2026-10-13 at 8.25.10 PM.jpeg",
+    "asset": "repair-photo-18.jpg",
+    "sha256": "3ea68e20a87c4447b85288537f0e1a99549304882b0f4819888d8f6c79a1be20"
+  }
+]

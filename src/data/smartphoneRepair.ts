@@ -1,8 +1,5 @@
 import type { WorkImage } from "./works";
-import certAsset from "@/assets/cert-lidetec.jpg.asset.json";
-import openAsset from "@/assets/iphone12-open.jpg.asset.json";
-import healthAsset from "@/assets/iphone12-battery-health.jpg.asset.json";
-import logAsset from "@/assets/iphone12-repair-log.jpg.asset.json";
+import { repairPhotos } from "./repairPhotos";
 
 /** ---------------------------------------------------------------
  * Smartphone repair profile data.
@@ -31,7 +28,8 @@ export const trainingProvider = {
   certificateDate: "01 de agosto de 2026",
   instructor: "Francisco Eduardo Villaseñor",
   document: "Constancia (certificate of participation)",
-  image: certAsset.url,
+  image: null,
+  imageRotation: 180,
 };
 
 export const trainingModules: TrainingModule[] = [
@@ -180,6 +178,10 @@ export type SmartphoneRepair = {
   result?: string;
   date?: string;
   learned?: string[];
+  precautions?: string[];
+  components?: string[];
+  tests?: string[];
+  notes?: string;
   before?: WorkImage;
   during?: WorkImage;
   after?: WorkImage;
@@ -193,31 +195,72 @@ export type SmartphoneRepair = {
  */
 export const smartphoneRepairs: SmartphoneRepair[] = [
   {
-    id: "sr-001",
-    ref: "SMARTPHONE REPAIR #001",
-    device: "iPhone 12 / 12 Pro",
-    repairType: "Battery replacement",
-    work: ["Device opened on the repair mat", "Battery service performed", "Reassembly and functional verification"],
-    tools: ["Smartphone repair toolkit", "Anti-static repair mat"],
-    result:
-      "Device reports 100% maximum battery capacity, and the iOS repair log lists the battery part with status Original.",
-    date: "Repair finished 21 August (per the device repair log)",
-    during: {
-      src: openAsset.url,
-      alt: "iPhone 12 opened on a blue anti-static repair mat, display detached and battery visible",
-      caption: "During — device opened, battery and logic board exposed",
-    },
-    evidence: [
-      {
-        src: healthAsset.url,
-        alt: "iOS Battery Health screen showing 100% maximum capacity",
-        caption: "Post-repair test — 100% maximum capacity",
-      },
-      {
-        src: logAsset.url,
-        alt: "iOS repair log showing the battery part with status Original",
-        caption: "Repair log — battery, status Original",
-      },
+    "id": "sr-001",
+    "ref": "SMARTPHONE REPAIR #001",
+    "device": "iPhone 12 Pro",
+    "repairType": "Battery replacement",
+    "work": [
+      "Battery replacement performed by the portfolio owner"
     ],
+    "tests": [
+      "Power-on",
+      "Charging",
+      "Touchscreen",
+      "Cameras",
+      "Audio",
+      "Face ID",
+      "Battery settings review"
+    ],
+    "result": "Battery replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
+    "notes": "Repair date, battery brand and test measurements are not documented."
   },
+  {
+    "id": "sr-002",
+    "ref": "SMARTPHONE REPAIR #002",
+    "device": "iPhone 14 Pro",
+    "repairType": "Battery replacement",
+    "work": [
+      "Battery replacement performed by the portfolio owner"
+    ],
+    "precautions": [
+      "Appropriate repair tools used"
+    ],
+    "components": [
+      "Aftermarket self-programming battery"
+    ],
+    "tests": [
+      "Power-on",
+      "Charging",
+      "Touchscreen",
+      "Cameras",
+      "Audio",
+      "Face ID",
+      "Battery settings review"
+    ],
+    "result": "Battery replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
+    "notes": "Repair date, battery brand and test measurements are not documented."
+  },
+  {
+    "id": "sr-003",
+    "ref": "SMARTPHONE REPAIR #003",
+    "device": "iPhone XR",
+    // The owner identifies the light-blue phone as the XR.
+    "during": repairPhotos.find((photo) => photo.src === "/images/repair/repair-photo-10.jpg"),
+    "evidence": repairPhotos.filter((photo) => photo.src === "/images/repair/repair-photo-09.jpg"),
+    "repairType": "Screen replacement",
+    "work": [
+      "Screen replacement performed by the portfolio owner"
+    ],
+    "tests": [
+      "Power-on",
+      "Charging",
+      "Touchscreen",
+      "Cameras",
+      "Audio",
+      "Face ID",
+      "Battery settings review"
+    ],
+    "result": "Screen replaced. The portfolio owner confirms that all listed post-repair checks were performed.",
+    "notes": "Repair date, screen brand and test measurements are not documented."
+  }
 ];
