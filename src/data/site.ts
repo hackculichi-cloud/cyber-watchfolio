@@ -16,8 +16,6 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/culichi/?locale=es_ES",
   linkedinHandle: "linkedin.com/in/culichi",
   url: "https://culichi.lat",
-  // Uploaded Lovable assets have a separate origin from the public canonical domain.
-  assetOrigin: "https://culichi.lovable.app",
   languages: ["English", "Spanish"],
 };
 

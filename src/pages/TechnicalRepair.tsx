@@ -1,3 +1,5 @@
+import MascotScene from "@/components/shared/MascotScene";
+import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Smartphone, Laptop, Gamepad2 } from "lucide-react";
@@ -45,7 +47,7 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
         <span className="glow-ring grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
           <Icon className="h-6 w-6" aria-hidden />
         </span>
-        <div>
+        <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-3">
             <h2 className="text-2xl font-semibold md:text-3xl">{t(type)}</h2>
             <Tag variant="primary">{t(meta.status)}</Tag>
@@ -57,6 +59,7 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
             ))}
           </div>
         </div>
+        {type === "Smartphones" && <MascotScene profile="repair" scene="action" className="w-24 sm:w-44" />}
       </div>
 
       {type === "Smartphones" && (
@@ -167,13 +170,14 @@ const TechnicalRepair = () => {
       </section>
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("Tools")} title={t("Equipment & tooling")} />
+        <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Equipment & tooling")} />
         <ProfileTools groups={toolsByProfile.repair} />
       </section>
 
+      <ProfileCertificates profile={profile.slug} />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
+          <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")} />
           <ProfileCvBlock cvIds={profile.cvIds} />
         </div>
       </section>

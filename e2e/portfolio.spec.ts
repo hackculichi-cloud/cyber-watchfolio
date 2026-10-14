@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 const selectLanguage = async (page: import("@playwright/test").Page, lang: "en" | "es") => {
-  const root = await page.getByRole("dialog").count() ? page.getByRole("dialog").last() : page;
+  const modal = page.getByRole("dialog").filter({ has: page.locator(`button[lang="${lang}"]`) });
+  const root = await modal.count() ? modal.last() : page;
   await root.locator(`button[lang="${lang}"]:visible`).first().click();
   await expect(page.locator("html")).toHaveAttribute("lang", lang);
 };
@@ -66,7 +67,7 @@ test("confirmed electrical course states and future practice are honest", async 
   await page.goto("/electrical");
   const tracks = page.locator("#tracks");
   await expect(tracks.getByText("Completed through RED CONOCER", { exact: false })).toHaveCount(0);
-  await expect(tracks.getByText("Currently Studying", { exact: true })).toHaveCount(3);
+  await expect(tracks.getByText("Currently Studying", { exact: true })).toHaveCount(4);
   await expect(tracks.getByText("Electrical Systems: Reading Drawings and Schematics", { exact: true })).toBeVisible();
   const card = page.locator("#projects article").filter({ hasText: "Electrical Control — START/STOP Contactor Practice" });
   await expect(card.getByText("Planned", { exact: true })).toBeVisible();

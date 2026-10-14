@@ -15,9 +15,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
         mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
         surface: {

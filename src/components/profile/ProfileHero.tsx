@@ -1,3 +1,4 @@
+import InteractiveMascot from "@/components/shared/InteractiveMascot";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { ReactNode } from "react";
 import type { ProfileIdentity } from "@/data/profiles";
@@ -47,7 +48,11 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         className="absolute inset-0 -z-10 bg-[radial-gradient(75rem_38rem_at_15%_110%,hsl(var(--primary)/0.22),transparent_65%)]"
       />
 
-      <div className="container relative mx-auto px-4 py-20 md:py-28">
+      <div className="container relative mx-auto flex flex-col-reverse gap-8 px-4 py-16 lg:flex-row-reverse lg:items-center lg:justify-between lg:py-24">
+        <div className="w-full shrink-0 lg:w-[23rem] xl:w-[26rem]">
+          <InteractiveMascot key={profile.slug} profile={profile.slug} className="drop-shadow-[0_0_25px_hsl(var(--primary)/0.2)]" />
+        </div>
+        <div className="min-w-0 flex-1">
         <div className="animate-fade-in-up flex items-center gap-3">
           <span className="glow-ring grid h-14 w-14 place-items-center rounded-2xl border border-primary/35 bg-background/60 text-primary backdrop-blur-md">
             <profile.icon className="h-7 w-7" aria-hidden />
@@ -60,7 +65,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
           </div>
         </div>
 
-        <h1 className="animate-fade-in-up delay-100 mt-8 max-w-4xl text-4xl font-bold leading-[1.05] md:text-7xl">
+        <h1 className="animate-fade-in-up delay-100 mt-8 max-w-4xl break-words text-4xl font-bold leading-[1.05] sm:text-5xl xl:text-6xl">
           <span className="gradient-text">{t(profile.label)}</span>
         </h1>
         <p className="animate-fade-in-up delay-200 mt-5 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
@@ -81,6 +86,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         ) : null}
 
         {children && <div className="animate-fade-in-up delay-400 mt-8 flex flex-wrap gap-3">{children}</div>}
+        </div>
       </div>
     </section>
   );

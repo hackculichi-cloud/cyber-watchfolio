@@ -1,3 +1,4 @@
+import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { useState } from "react";
@@ -96,7 +97,7 @@ const Cybersecurity = () => {
       </section>
 
       <section id="investigations" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
+        <SectionHeading mascot={profile.slug} mascotScene="action"
           eyebrow={t("Investigations")}
           title={t("Incident investigations")}
           description={t("Each case follows the same structure: summary, detection, analysis, evidence, outcome and lessons learned.")}
@@ -170,13 +171,14 @@ const Cybersecurity = () => {
       </section>
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("Tools")} title={t("Tooling I work with")} />
+        <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Tooling I work with")} />
         <ProfileTools groups={toolsByProfile.cybersecurity} />
       </section>
 
+      <ProfileCertificates profile={profile.slug} />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
+          <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")} />
           <ProfileCvBlock cvIds={profile.cvIds} />
         </div>
       </section>

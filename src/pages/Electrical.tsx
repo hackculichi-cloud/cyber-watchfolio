@@ -1,3 +1,5 @@
+import MascotScene from "@/components/shared/MascotScene";
+import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -11,12 +13,10 @@ import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import ElectricalCurriculum from "@/components/electrical/ElectricalCurriculum";
-import ElectricalCredential from "@/components/electrical/ElectricalCredential";
 import ElectricalEvidenceGallery from "@/components/electrical/ElectricalEvidenceGallery";
 import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import {
-  electricalCredential,
   electricalSkills,
   electricalToolGroups,
   electricalTraining,
@@ -96,26 +96,27 @@ const Electrical = () => {
                   <h3 className="text-base font-semibold">{t(track.title)}</h3>
                   <Tag variant={track.status === "Planned" ? "muted" : "primary"}>{t(track.status)}</Tag>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(track.description)}</p>
+                <div className="mt-2 flex items-center gap-3">
+                  <p className="min-w-0 flex-1 text-sm leading-relaxed text-muted-foreground">{t(track.description)}</p>
+                  {track.id === "electrical-udemy-measurements" && <MascotScene profile="electrical" scene="action" className="w-28 sm:w-40" />}
+                </div>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {track.topics.map((entry) => (
                     <Tag key={entry}>{t(entry)}</Tag>
                   ))}
                 </div>
+                {track.learningObjectives && <details className="mt-4" data-course-objectives={track.id}>
+                  <summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course learning objectives")}</summary>
+                  <p className="mt-3 text-xs text-muted-foreground">{t("Topics being studied; certificate pending completion.")}</p>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">{track.learningObjectives.map(item => <li key={item}>{t(item)}</li>)}</ul>
+                </details>}
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="certificate" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow={t("Certificate")}
-          title={t("Completed training certificate")}
-          description={t("Completed LinkedIn Learning course. Certificate image pending upload.")}
-        />
-        <ElectricalCredential credential={electricalCredential} />
-      </section>
+      <ProfileCertificates profile={profile.slug} />
 
 
       <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
@@ -209,7 +210,7 @@ const Electrical = () => {
 
       <section id="tools" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading
+          <SectionHeading mascot={profile.slug} mascotScene="detail"
             eyebrow={t("Tools & equipment")}
             title={t("Equipment used in training and practice")}
             description={t("Measurement, installation, workshop and safety equipment used while developing electrical fundamentals.")}
@@ -220,7 +221,7 @@ const Electrical = () => {
 
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
+          <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")} />
           <ProfileCvBlock cvIds={profile.cvIds} />
         </div>
       </section>

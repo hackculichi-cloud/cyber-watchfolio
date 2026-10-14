@@ -27,14 +27,15 @@ describe("portfolio localization", () => {
     expect(screen.getByText("12 VPN auth failures for j.perez from 203.0.113.44")).toBeInTheDocument();
   });
 
-  it("translates metadata with the public domain while preserving the asset origin", () => {
+  it("translates metadata and serves practical evidence from the portfolio domain", () => {
     render(<LanguageProvider><LanguageButtons /><Seo title="Cybersecurity | Christian Velasco" description="View investigations" path="/cybersecurity" /></LanguageProvider>);
     fireEvent.click(screen.getByText("ES"));
     expect(document.title).toBe("Ciberseguridad | Christian Velasco");
     expect(document.querySelector('meta[name="description"]')).toHaveAttribute("content", "Ver investigaciones");
     expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute("href", "https://culichi.lat/cybersecurity");
     expect(document.querySelector('meta[property="og:locale"]')).toHaveAttribute("content", "es_MX");
-    expect(new URL(electricalProjects.find(item => item.video)?.video.src ?? "").origin).toBe(site.assetOrigin);
+    expect(electricalProjects.find(item => item.video)?.video.src).toMatch(/^\/media\/portfolio\//);
+    expect(new URL(electricalProjects.find(item => item.video)?.video.src ?? "", site.url).origin).toBe(site.url);
   });
 
   it("handles whitespace, interpolation and technical identifiers", () => {

@@ -1,3 +1,4 @@
+import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -27,7 +28,7 @@ const Experience = () => {
       <SpecialtyExplorer profile={profile.slug} />
 
       <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
+        <SectionHeading mascot={profile.slug} mascotScene="action" eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
         <div className="grid gap-4 sm:grid-cols-2">
           {customerServiceSkills.map(skill => {
             const Icon = skillIcons[skill.icon];
@@ -53,7 +54,7 @@ const Experience = () => {
       </section>
 
       <section id="transferable" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("Transferable value")} title={t("How customer service strengthens my technical work")} />
+        <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Transferable value")} title={t("How customer service strengthens my technical work")} />
         <div className="grid gap-4 md:grid-cols-3">
           {transferableImpact.map((item) => (
             <div key={item.area} className="panel-glow hover:-translate-y-1">
@@ -64,8 +65,9 @@ const Experience = () => {
         </div>
       </section>
 
+      <ProfileCertificates profile={profile.slug} />
       <section id="cv" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
+        <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")} />
         <ProfileCvBlock cvIds={profile.cvIds} />
       </section>
 

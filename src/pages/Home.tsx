@@ -1,3 +1,4 @@
+import homeBackground from "@/assets/culichi-home-background.webp";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
@@ -10,7 +11,7 @@ import { professionalProfiles } from "@/data/profiles";
 import { site } from "@/data/site";
 import Reveal from "@/components/shared/Reveal";
 import ContactPreview from "@/components/shared/ContactPreview";
-import logoCulichi from "@/assets/culichi-logo-zorro.png";
+import InteractiveMascot from "@/components/shared/InteractiveMascot";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -23,9 +24,12 @@ const Home = () => {
       />
 
       {/* Hero */}
-      <section className="grid-bg relative overflow-hidden border-b border-border">
+      <section className="grid-bg relative isolate overflow-hidden border-b border-border">
+        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-contain object-bottom opacity-90 md:-translate-y-12 md:object-cover md:object-right-top" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.98)_0%,hsl(var(--background)/0.88)_42%,hsl(var(--background)/0.32)_100%)]" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-        <div className="container relative mx-auto grid gap-12 px-4 py-24 md:py-32 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
+        <div className="container relative mx-auto grid gap-12 px-4 py-20 md:py-24 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
           <div className="max-w-3xl">
             <p className="eyebrow animate-fade-in-up">{t(site.role)}</p>
             <h1 className="animate-fade-in-up delay-100 mt-4 text-4xl font-bold leading-[1.1] md:text-6xl">
@@ -61,26 +65,11 @@ const Home = () => {
                 <Linkedin className="h-4 w-4" /> {t(site.linkedinHandle)}
               </ContactPreview>
             </div>
+            <div className="mt-5" data-home-mascot-zone>
+              <InteractiveMascot />
+            </div>
           </div>
 
-          {/* Personal brand logo */}
-          <Reveal from="scale" delay={120} className="justify-self-center">
-            <div className="animate-float-slow relative">
-              <div
-                aria-hidden
-                className="absolute -inset-6 -z-10 rounded-full bg-[radial-gradient(circle,hsl(var(--primary)/0.22),transparent_70%)] blur-2xl"
-              />
-              <div className="animate-ring-pulse grid h-56 w-56 place-items-center overflow-hidden rounded-full border border-primary/30 bg-surface/60 backdrop-blur-md transition-transform duration-500 hover:scale-105 md:h-72 md:w-72">
-                <img
-                  src={logoCulichi}
-                  alt={t("Culichi")}
-                  width={288}
-                  height={288}
-                  className="h-44 w-44 object-contain md:h-56 md:w-56"
-                />
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 

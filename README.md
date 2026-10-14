@@ -13,18 +13,18 @@ Sitio principal: https://culichi.lat
 - Formación de RED CONOCER y de Udemy en curso.
 - Curso **Electrical Systems: Reading Drawings and Schematics**, de LinkedIn Learning, completado según confirmación del autor. Imagen del certificado pendiente.
 
-Las investigaciones educativas no representan experiencia laboral en un SOC. Los laboratorios y proyectos SOC adicionales permanecen pendientes de documentación. El CV de ciberseguridad todavía se ofrece bajo solicitud; no se ha generado un PDF ni añadido certificaciones no confirmadas.
+Las investigaciones educativas no representan experiencia laboral en un SOC. Los laboratorios y proyectos SOC adicionales permanecen pendientes de documentación. Cada área dispone de su CV, una sección de certificaciones y estados explícitos para formación y documentos pendientes. No se añaden certificaciones no confirmadas.
 
 ## Desarrollo
 
-Node.js 20, 22 o 24+ y npm son necesarios. La validación cloud y el workflow de CI utilizan Node 24. **npm es el gestor de referencia**; `package-lock.json` controla la instalación reproducible. Los lockfiles de Bun existentes se conservan como archivos históricos y no se usan en este flujo.
+Node.js 20, 22 o 24+ y npm son necesarios. La validación cloud y el workflow de CI utilizan Node 24. **npm es el gestor de referencia**; `package-lock.json` controla la instalación reproducible. No se mantienen lockfiles de otros gestores.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Vite utiliza el puerto 8080 y escucha en 127.0.0.1 por defecto. Si el entorno controlado de Lovable necesita acceso desde su proxy, puede pasar `npm run dev -- --host 0.0.0.0`; no exponer ese servidor de desarrollo públicamente. Trabajar sobre el checkout existente: cada tarea cloud ya está aislada; no es necesario crear un worktree.
+Vite utiliza el puerto 8080 y escucha en 127.0.0.1 por defecto. Trabajar sobre el checkout existente: cada tarea cloud ya está aislada; no es necesario crear un worktree.
 
 ## Validación
 
@@ -55,14 +55,24 @@ No se necesita instalar navegadores de nuevo si ya están disponibles. Las prueb
 
 Las páginas traducen desde React con `useLanguage().t()`; no se modifica el DOM con observadores. Las cadenas inglesas existentes permanecen como claves por compatibilidad. Las correcciones revisadas están en `src/i18n/es.reviewed.ts`. Nuevos textos necesitan entradas en español; consultas, comandos, IDs e indicadores técnicos conservan su valor exacto.
 
-`site.url` es el dominio público usado en SEO. `site.assetOrigin` es el origen independiente de los archivos subidos a Lovable. No cambiar ambos a la vez: los descriptores `.asset.json` no contienen los archivos multimedia y requieren su origen disponible. Las fotografías locales de entrenamiento están en `public/images/electrical/`.
+`site.url` es el dominio público usado en SEO. Las fotografías, videos y capturas se sirven localmente desde `public/images/` y `public/media/portfolio/`. La procedencia y hashes de los medios migrados están en `docs/local-media-provenance.json`; no se requieren servicios de la plataforma anterior para mostrarlos.
 
 `vercel.json` incluye el fallback de rutas SPA y cabeceras básicas. Esto solo prepara configuración: no despliega el sitio ni verifica el comportamiento en producción. Los metadatos por ruta continúan siendo generados en el cliente.
 
-La migración controlada a Vite 6.4.3, Vitest 4.1.11 y React Router 7.18.4 redujo los avisos de seguridad de 37 a 9; quedan 5 altos y 4 moderados de herramientas CSS, sin avisos críticos. Ver [auditoría de seguridad](docs/security-audit.md) para el alcance y las migraciones pendientes.
+La migración controlada a Vite 6.4.3, Vitest 4.1.11 y React Router 7.18.4 y la retirada de los plugins de la plataforma anterior dejaron 8 avisos de seguridad: 5 altos y 3 moderados de herramientas CSS, sin avisos críticos. Ver [auditoría de seguridad](docs/security-audit.md) para el alcance y las migraciones pendientes.
 
 Ver [guía de contenido](docs/portfolio-content.md) para añadir evidencia real y completar Electrical sin duplicar componentes.
 
 ## Integración continua
 
 `.github/workflows/validate.yml` valida push y PR hacia main con npm ci, TypeScript, ESLint, pruebas, build y Chromium. La auditoría bloquea nuevos avisos críticos y muestra los avisos pendientes. No fusiona cambios ni despliega.
+
+## Control del repositorio
+
+El desarrollo usa GitHub y Vercel. Se han eliminado los plugins, planes y fixture exclusivos de la plataforma anterior. Eliminar archivos no revoca una integración de GitHub: en GitHub → Settings → Applications → Installed GitHub Apps → Lovable → Configure, retira solamente este repositorio de su acceso. Revisa también la conexión GitHub dentro del proyecto anterior. La cuenta actual de automatización no puede consultar los webhooks del repositorio (HTTP 403), por lo que no se afirma que la integración esté desconectada.
+
+Para regenerar los CV se usa Chromium, Poppler y Python con pypdf; `npm run generate:cvs`. Los archivos generados se guardan en Git, por lo que Vercel no necesita esas herramientas. Los seis CV se actualizan en español e inglés con mascota y diseño por perfil; el original eléctrico se conserva por separado, sin modificaciones.
+
+## Mascota interactiva
+
+La mascota utiliza Three.js con un primer modelo 3D estilizado, cargado por separado y con renderizado bajo demanda. El selector de seis colores funciona en Home y dentro de cada perfil. Cada área incorpora cuatro escenas, incluida una ilustración completa adicional. El modo de movimiento reducido y la alternativa estática sin WebGL conservan la navegación. Ver [modelo, recursos y límites actuales](docs/culichi-mascot.md).

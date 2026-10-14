@@ -1,3 +1,5 @@
+import ProfileCertificates from "@/components/profile/ProfileCertificates";
+import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Seo from "@/components/shared/Seo";
@@ -35,6 +37,7 @@ const SoftwareDevelopment = () => {
         path="/software-development"
       />
       <ProfileHero profile={profile}>
+        <InstitutionLink profile="development" />
         <Button asChild variant="outline">
           <a href={site.github} target="_blank" rel="noreferrer noopener">
             <Github className="h-4 w-4" /> {t(site.githubHandle)}
@@ -84,7 +87,7 @@ const SoftwareDevelopment = () => {
       </section>
 
       <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
+        <SectionHeading mascot={profile.slug} mascotScene="action"
           eyebrow={t("Projects")}
           title={t("Development projects")}
           description={t("Image-first project cards: screenshots, stack, live demo, repository and what I learned.")}
@@ -124,13 +127,14 @@ const SoftwareDevelopment = () => {
       </section>
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("Tools")} title={t("Tooling I work with")} />
+        <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Tooling I work with")} />
         <ProfileTools groups={toolsByProfile.development} />
       </section>
 
+      <ProfileCertificates profile={profile.slug} />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
+          <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")} />
           <ProfileCvBlock cvIds={profile.cvIds} />
         </div>
       </section>

@@ -83,20 +83,20 @@
       "id": "software",
       "profile": "development",
       "en": {
-        "role": "Software Development Student",
-        "summary": "University studies in frontend, backend and full-stack development at UNISITE. Practical portfolio project built with React, TypeScript, Vite and Tailwind CSS.",
+        "role": "Software Development — Partial Studies",
+        "summary": "Incomplete frontend, backend and full-stack training at Academlo. Practical portfolio project built with React, TypeScript, Vite and Tailwind CSS.",
         "sections": [
           {
             "title": "Education",
             "items": [
-              "UNISITE — frontend, backend and full-stack studies in progress."
+              "Academlo — frontend, backend and full-stack studies, not completed."
             ]
           },
           {
             "title": "Documented project",
             "items": [
               "Cyber Watchfolio (culichi.lat): reusable React components, ES/EN content, specialty pages and photo evidence galleries.",
-              "Workflow: Lovable, GitHub and Vercel; TypeScript checking, production builds, ESLint and component/browser validation."
+              "Workflow: GitHub and Vercel; TypeScript checking, production builds, ESLint and component/browser validation."
             ]
           },
           {
@@ -116,20 +116,20 @@
         ]
       },
       "es": {
-        "role": "Estudiante de desarrollo de software",
-        "summary": "Estudios universitarios de frontend, backend y full stack en UNISITE. Proyecto práctico de portafolio construido con React, TypeScript, Vite y Tailwind CSS.",
+        "role": "Desarrollo de software — estudios inconclusos",
+        "summary": "Estudios inconclusos de frontend, backend y full stack en Academlo. Proyecto práctico de portafolio construido con React, TypeScript, Vite y Tailwind CSS.",
         "sections": [
           {
             "title": "Formación",
             "items": [
-              "UNISITE — estudios de frontend, backend y full stack en curso."
+              "Academlo — estudios de frontend, backend y full stack inconclusos."
             ]
           },
           {
             "title": "Proyecto documentado",
             "items": [
               "Cyber Watchfolio (culichi.lat): componentes reutilizables de React, contenido ES/EN, páginas por especialidad y galerías de evidencia fotográfica.",
-              "Flujo de trabajo: Lovable, GitHub y Vercel; revisión de TypeScript, build de producción, ESLint y validación de componentes y navegador."
+              "Flujo de trabajo: GitHub y Vercel; revisión de TypeScript, build de producción, ESLint y validación de componentes y navegador."
             ]
           },
           {
@@ -169,7 +169,8 @@
             "items": [
               "LinkedIn Learning: Electrical Systems: Reading Drawings and Schematics — completed.",
               "RED CONOCER electrical training — in progress.",
-              "Udemy: Basic Electrical Installations — in progress."
+              "Udemy: Basic Electrical Installations — in progress.",
+              "Udemy: Electrical Measurements — in progress (AC/DC voltage, clamp current, resistance and de-energized continuity)."
             ]
           },
           {
@@ -205,7 +206,8 @@
             "items": [
               "LinkedIn Learning: Electrical Systems: Reading Drawings and Schematics — completado.",
               "Formación eléctrica RED CONOCER — en curso.",
-              "Udemy: Instalaciones eléctricas básicas — en curso."
+              "Udemy: Instalaciones eléctricas básicas — en curso.",
+              "Udemy: Mediciones Eléctricas — en curso (voltaje CA/CC, corriente con gancho, resistencia y continuidad sin energía)."
             ]
           },
           {
@@ -235,21 +237,21 @@
           {
             "title": "Education and training",
             "items": [
-              "Escuela Tecnológica de Occidente — basic electronics, in progress.",
+              "Escuela Tecnológica de Occidente — basic electronics in Guadalajara, in progress. Expected completion: February.",
               "LIDETEC — smartphone repair course participation certificate, issued 1 August 2026."
             ]
           },
           {
             "title": "Training topics",
             "items": [
-              "Electronic components, circuit fundamentals, multimeter measurements and board handling.",
+              "ETO coursework: electricity technology, laboratory, metrology and applied mathematics; instruments, diagrams, circuit diagnosis and component validation.",
               "LIDETEC coursework: soldering, hot-air handling, component and connector work, and introductory microsoldering."
             ]
           },
           {
             "title": "Learning plan",
             "items": [
-              "Audio/radio, television/video and digital systems are future training tracks."
+              "Planned training: television; radio reception and amplifiers; digital systems; microcontrollers; microcomputers; industrial electronics. Not started yet."
             ]
           },
           {
@@ -268,21 +270,21 @@
           {
             "title": "Formación",
             "items": [
-              "Escuela Tecnológica de Occidente — electrónica básica, en curso.",
+              "Escuela Tecnológica de Occidente — electrónica básica en Guadalajara, en curso. Finalización prevista: febrero.",
               "LIDETEC — constancia de participación en el curso de reparación de celulares, emitida el 1 de agosto de 2026."
             ]
           },
           {
             "title": "Temas de formación",
             "items": [
-              "Componentes electrónicos, fundamentos de circuitos, medición con multímetro y manipulación de tarjetas.",
+              "Temario de ETO: tecnología de la electricidad, laboratorio, metrología y matemáticas aplicadas; instrumentos, diagramas, diagnóstico de circuitos y validación de componentes.",
               "Temario de LIDETEC: soldadura, uso de aire caliente, trabajo con componentes y conectores e introducción a la microsoldadura."
             ]
           },
           {
             "title": "Plan de aprendizaje",
             "items": [
-              "Audio/radio, televisión/video y sistemas digitales son áreas de formación futura."
+              "Próximas áreas: televisión; radio recepción y amplificadores; sistemas digitales; microcontroladores; microcomputadoras; electrónica industrial. Aún no iniciadas."
             ]
           },
           {

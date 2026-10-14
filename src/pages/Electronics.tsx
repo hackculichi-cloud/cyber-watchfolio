@@ -1,3 +1,5 @@
+import ProfileCertificates from "@/components/profile/ProfileCertificates";
+import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -33,6 +35,7 @@ const Electronics = () => {
         path="/electronics"
       />
       <ProfileHero profile={profile}>
+        <InstitutionLink profile="electronics" />
         <Button asChild>
           <a href="#projects">{t("View projects")}</a>
         </Button>
@@ -108,7 +111,7 @@ const Electronics = () => {
 
       <section id="diagnostics" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading
+          <SectionHeading mascot={profile.slug} mascotScene="action"
             eyebrow={t("Diagnostics & measurements")}
             title={t("How I troubleshoot")}
             description={t("A consistent method applied to every board: observe, measure, isolate, repair, verify.")}
@@ -141,13 +144,14 @@ const Electronics = () => {
 
       <section id="tools" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("Tools")} title={t("Instruments & tooling")} />
+          <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Instruments & tooling")} />
           <ProfileTools groups={toolsByProfile.electronics} />
         </div>
       </section>
 
+      <ProfileCertificates profile={profile.slug} />
       <section id="cv" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading eyebrow={t("CV")} title={t("CV for this profile")} />
+        <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")} />
         <ProfileCvBlock cvIds={profile.cvIds} />
       </section>
     </>
