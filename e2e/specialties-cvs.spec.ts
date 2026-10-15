@@ -159,10 +159,9 @@ test("Culichi changes costume on all six profile pages without overflowing", asy
   const outfits = new Set<string>();
   for (const [, path] of areas) {
     await page.goto(path);
-    const mascot = page.locator("main canvas[data-mascot]").first();
+    const mascot = page.locator("main [data-mascot-scene=entry]").first();
     await expect(mascot).toBeVisible();
     const outfit = (await mascot.getAttribute("data-mascot"))!;
-    await expect(mascot).toHaveAttribute("data-model-outfit", outfit);
     outfits.add(outfit);
     await expect(page.locator('header [data-mascot]')).toHaveAttribute("data-mascot", outfit);
   }

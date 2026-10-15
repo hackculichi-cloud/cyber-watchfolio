@@ -1,13 +1,12 @@
-import { lazy, Suspense, useEffect, useId, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useId, useRef, useState, type MouseEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { professionalProfiles, type ProfileSlug } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import CulichiBody from "./CulichiBody";
 import { cn } from "@/lib/utils";
-import type { FoxPhase } from "@/components/mascot/Fox3D";
-const Fox3D = lazy(() => import("@/components/mascot/Fox3D"));
+type MascotPhase = "standby" | "ready" | "transforming";
 const shortNames = ["Cybersecurity", "Software", "Electricity", "Electronics", "Repair", "Customer service"];
-const positions = [[11, 69], [19, 39], [38, 17], [62, 17], [81, 39], [89, 69]];
+const positions = [[8, 69], [8, 30], [38, 17], [62, 17], [92, 30], [92, 69]];
 const transformDuration = 1100;
 /** Shared outfit navigation on Home and all six profiles; never navigate on hover. */
 const InteractiveMascot = ({ profile = "home", className }: {
@@ -20,12 +19,11 @@ const InteractiveMascot = ({ profile = "home", className }: {
     const root = useRef<HTMLDivElement>(null);
     const button = useRef<HTMLButtonElement>(null);
     const navigationTimer = useRef<ReturnType<typeof setTimeout>>();
+    const closeTimer = useRef<ReturnType<typeof setTimeout>>();
     const locked = useRef(false);
     const skipFocusOpen = useRef(false);
-    const [wave, setWave] = useState(0);
-    const [renderMode, setRenderMode] = useState("loading");
     const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-    const [phase, setPhase] = useState<FoxPhase>("standby");
+    const [phase, setPhase] = useState<MascotPhase>("standby");
     const [open, setOpen] = useState(false);
     const [target, setTarget] = useState<ProfileSlug | null>(null);
     useEffect(() => {
@@ -34,21 +32,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         query.addEventListener("change", change);
         return () => query.removeEventListener("change", change);
     }, []);
-    useEffect(() => {
-        if (locked.current)
-            return;
-        if (reduced || renderMode !== "3d") {
-            setPhase("standby");
-            return;
-        }
-        setPhase("greeting");
-        const timer = setTimeout(() => {
-            if (!locked.current)
-                setPhase(root.current?.matches(":hover") || root.current?.contains(document.activeElement) ? "ready" : "standby");
-        }, 1350);
-        return () => clearTimeout(timer);
-    }, [renderMode, wave, reduced, profile]);
-    useEffect(() => () => clearTimeout(navigationTimer.current), []);
+    useEffect(() => () => { clearTimeout(navigationTimer.current); clearTimeout(closeTimer.current); }, []);
     useEffect(() => {
         if (!open)
             return;
@@ -59,18 +43,10 @@ const InteractiveMascot = ({ profile = "home", className }: {
         document.addEventListener("pointerdown", outside);
         return () => document.removeEventListener("pointerdown", outside);
     }, [open]);
-    const greet = () => {
-        if (locked.current || phase === "greeting")
-            return;
-        if (reduced || renderMode !== "3d") {
-            setPhase("ready");
-            return;
-        }
-        setWave(value => value + 1);
-    };
+    const greet = () => { if (!locked.current) setPhase("ready"); };
     const close = () => { if (!locked.current) {
         setOpen(false);
-        setPhase(current => current === "greeting" ? current : "standby");
+        setPhase("standby");
     } };
     const choose = (event: MouseEvent<HTMLAnchorElement>, slug: ProfileSlug, href: string) => {
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0)
@@ -91,11 +67,16 @@ const InteractiveMascot = ({ profile = "home", className }: {
         else
             navigationTimer.current = setTimeout(() => navigate(href), transformDuration);
     };
-    return <div ref={root} data-interactive-mascot={profile} data-phase={phase} data-home-mascot={profile === "home" || undefined} className={cn("mascot-selector relative h-80 w-full max-w-[26rem] sm:h-96", className)} onPointerEnter={event => { if (event.pointerType === "mouse" && !locked.current) {
+    return <div ref={root} data-interactive-mascot={profile} data-phase={phase} data-mascot-renderer="illustration" data-home-mascot={profile === "home" || undefined} className={cn("mascot-selector relative h-[28rem] w-full max-w-[30rem] sm:h-[32rem]", className)} onFocusCapture={() => clearTimeout(closeTimer.current)} onPointerEnter={event => { clearTimeout(closeTimer.current); if (event.pointerType === "mouse" && !locked.current) {
         setOpen(true);
         greet();
-    } }} onPointerLeave={() => { if (!root.current?.contains(document.activeElement))
-        close(); }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node))
+    } }} onPointerLeave={() => {
+        // Leave time to reach a selector after scrolling a tall mascot into view.
+        clearTimeout(closeTimer.current);
+        closeTimer.current = setTimeout(() => {
+            if (!root.current?.matches(":hover") && !root.current?.contains(document.activeElement)) close();
+        }, 200);
+    }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node))
         close(); }} onKeyDown={event => { if (event.key === "Escape" && !locked.current) {
         event.preventDefault();
         event.stopPropagation();
@@ -111,14 +92,12 @@ const InteractiveMascot = ({ profile = "home", className }: {
         setOpen(true); }} onClick={() => { if (!locked.current) {
         setOpen(true);
         greet();
-    } }} className="absolute bottom-6 left-1/2 w-64 -translate-x-1/2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-72">
-      <span className={cn("relative block", renderMode !== "3d" && phase === "transforming" && "mascot-transform")}>
+    } }} className="absolute bottom-0 left-1/2 w-80 -translate-x-1/2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-96">
+      <span className={cn("relative block", phase === "transforming" && "mascot-transform")}>
         <span className="mascot-source block w-full">
-          <Suspense fallback={<CulichiBody profile={profile} className="w-full"/>}>
-            <Fox3D profile={profile} phase={phase} target={target} wave={wave} reduced={reduced} onReady={() => setRenderMode("3d")} onUnavailable={() => setRenderMode("fallback")}/>
-          </Suspense>
+          <CulichiBody profile={profile} className="w-full" />
         </span>
-        {target && renderMode !== "3d" && <span aria-hidden className="mascot-target absolute inset-0"><CulichiBody profile={target} className="w-full"/></span>}
+        {target && <span aria-hidden className="mascot-target absolute inset-0"><CulichiBody profile={target} className="w-full"/></span>}
       </span>
     </button>
     {open && <nav id={id} aria-label={t("Choose Culichi's outfit")} data-outfit-selector>
@@ -127,9 +106,9 @@ const InteractiveMascot = ({ profile = "home", className }: {
         {t(shortNames[i])}
       </Link>)}
     </nav>}
-    <p role="status" aria-live="polite" className="absolute bottom-0 left-0 w-full text-center text-[10px] text-primary sm:text-xs">
-      {phase === "transforming" ? t("Changing outfit…") : t("Meet Culichi · choose your area")}
-    </p>
+    <span role="status" aria-live="polite" className="sr-only">
+      {phase === "transforming" ? t("Changing outfit…") : ""}
+    </span>
   </div>;
 };
 export default InteractiveMascot;

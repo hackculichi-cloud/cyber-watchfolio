@@ -78,9 +78,9 @@ const Electrical = () => {
                   <h3 className="text-base font-semibold">{t(track.title)}</h3>
                   <Tag variant={track.status === "Planned" ? "muted" : "primary"}>{t(track.status)}</Tag>
                 </div>
-                <div className="mt-2 flex items-center gap-3">
+                <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
                   <p className="min-w-0 flex-1 text-sm leading-relaxed text-muted-foreground">{t(track.description)}</p>
-                  {track.id === "electrical-udemy-measurements" && <MascotScene profile="electrical" scene="action" className="w-28 sm:w-40" />}
+                  {track.id === "electrical-udemy-measurements" && <MascotScene profile="electrical" scene="action" className="w-40 sm:w-52" />}
                 </div>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {track.topics.map((entry) => (

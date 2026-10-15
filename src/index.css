@@ -456,7 +456,7 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* Finite outfit transition; greeting motion uses distinct arm poses, not a bobbing image. */
+/* Finite illustrated outfit transition; no canvas or WebGL needed. */
 .mascot-target { opacity: 0; }
 @keyframes mascot-out { 0%,15% { opacity:1; transform:scale(1); } 55%,100% { opacity:0; transform:scale(.82); } }
 @keyframes mascot-in { 0%,35% { opacity:0; transform:scale(.82); } 80%,100% { opacity:1; transform:scale(1); } }

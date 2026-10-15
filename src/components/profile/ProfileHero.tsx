@@ -49,7 +49,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
       />
 
       <div className="container relative mx-auto flex flex-col-reverse gap-8 px-4 py-16 lg:flex-row-reverse lg:items-center lg:justify-between lg:py-24">
-        <div className="w-full shrink-0 lg:w-[23rem] xl:w-[26rem]">
+        <div className="w-full shrink-0 lg:w-[27rem] xl:w-[30rem]">
           <InteractiveMascot key={profile.slug} profile={profile.slug} className="drop-shadow-[0_0_25px_hsl(var(--primary)/0.2)]" />
         </div>
         <div className="min-w-0 flex-1">

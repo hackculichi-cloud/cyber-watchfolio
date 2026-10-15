@@ -61,11 +61,14 @@ const SiteHeader = () => {
       )}
     >
       <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label={t("Main")}>
-        <Link to="/" className="group flex items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg border border-primary/25 bg-primary/10 transition-transform duration-300 group-hover:scale-110">
-            <CulichiMascot variant={mascot} className="h-9 w-9" />
+        <Link to="/" className="group flex min-w-0 items-center gap-2 font-semibold tracking-tight">
+          <span className="grid h-14 w-14 shrink-0 place-items-center transition-transform duration-300 group-hover:scale-105">
+            <CulichiMascot variant={mascot} className="h-14 w-14" />
           </span>
-          <span className="text-sm transition-colors group-hover:text-primary sm:text-base">{t("Christian Velasco")}</span>
+          <span className="flex min-w-0 flex-col leading-tight">
+            <span className="text-sm transition-colors group-hover:text-primary sm:text-base">{t("Christian Velasco")}</span>
+            <span className="mt-0.5 text-xs font-medium tracking-wide text-primary">aka Culichi</span>
+          </span>
         </Link>
 
 
