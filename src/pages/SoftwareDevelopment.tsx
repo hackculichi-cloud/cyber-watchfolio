@@ -1,3 +1,4 @@
+import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
@@ -47,26 +48,7 @@ const SoftwareDevelopment = () => {
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
 
-      <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow={t("Overview")}
-          title={t("How I build")}
-          description={t("Readable code, small reusable components, and everything version controlled on GitHub.")}
-        />
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            { title: "Web", body: "React and TypeScript interfaces with a consistent design system.", tag: "Focus" },
-            { title: "APIs & backend", body: "Practical API and backend work with clear data models.", tag: "Focus" },
-            { title: "Automation", body: "Scripts and tooling that remove repetitive manual work.", tag: "Focus" },
-          ].map((c) => (
-            <div key={c.title} className="panel-glow hover:-translate-y-1">
-              <Tag variant="primary">{t(c.tag)}</Tag>
-              <h3 className="mt-3 text-base font-semibold">{t(c.title)}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(c.body)}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ProfileCapabilities profile={profile.slug} />
 
       <section id="skills" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">

@@ -1,3 +1,4 @@
+import { profileCapabilities } from "@/data/profileCapabilities";
 import { describe, expect, it } from "vitest";
 import { cvVariants } from "@/data/cvs";
 import { profileIdentities } from "@/data/profiles";
@@ -5,6 +6,13 @@ import { specialtiesFor } from "@/data/specialties";
 import { translate } from "@/i18n/translate";
 
 describe("specialty and CV publishing integrity", () => {
+  it("publishes course knowledge in both languages with an explicit training context", () => {
+    for (const cards of Object.values(profileCapabilities)) for (const card of cards) {
+      expect(translate(card.title, "es")).not.toBe(card.title);
+      expect(translate(card.body, "es")).not.toBe(card.body);
+      expect(translate(card.status, "es")).not.toBe(card.status);
+    }
+  });
   it("gives each of the six profiles its own CV instead of reusing unrelated profiles", () => {
     expect(cvVariants).toHaveLength(6);
     const ids = new Set<string>();

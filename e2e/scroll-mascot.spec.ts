@@ -5,6 +5,8 @@ import { test, expect } from "@playwright/test";
 test("profile mascots appear between content blocks, never as floating overlays", async ({ page }) => {
   for (const path of ["/cybersecurity", "/software-development", "/electrical", "/electronics", "/repair", "/experience"]) {
     await page.goto(path);
+    // Wait for the async model to replace its illustration before inspecting its DOM node.
+    await expect(page.locator('canvas[data-mascot-scene="entry"]')).toBeVisible();
     const scenes = page.locator("main [data-mascot-scene]");
     await expect(scenes).toHaveCount(4);
     const sources = new Set<string>();

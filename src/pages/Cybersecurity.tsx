@@ -1,3 +1,4 @@
+import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -57,26 +58,7 @@ const Cybersecurity = () => {
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
 
-      <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow={t("Overview")}
-          title={t("SOC / Blue Team direction")}
-          description={t("Security fundamentals, networking and Linux, monitoring and detection, and investigations documented end to end.")}
-        />
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            { title: "Detect", body: "Log sources, SIEM search and alert triage on realistic detection scenarios.", tag: "Focus" },
-            { title: "Investigate", body: "Structured analysis: evidence, IOCs, MITRE mapping and verdicts.", tag: "Focus" },
-            { title: "Document", body: "Repeatable playbooks and write-ups so the process is reproducible.", tag: "Focus" },
-          ].map((c) => (
-            <div key={c.title} className="panel-glow hover:-translate-y-1">
-              <Tag variant="primary">{t(c.tag)}</Tag>
-              <h3 className="mt-3 text-base font-semibold">{t(c.title)}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(c.body)}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ProfileCapabilities profile={profile.slug} />
 
       <section id="skills" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">

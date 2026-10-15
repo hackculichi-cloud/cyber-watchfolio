@@ -20,7 +20,7 @@
             "title": "Practical portfolio — educational labs",
             "items": [
               "LetsDefend: documented VPN authentication, RDP brute-force and phishing investigations.",
-              "Investigation steps, log analysis, conclusions and incident-response playbooks published in the portfolio."
+              "Evidence correlation, suspicious-email indicators, investigation timelines, conclusions and reusable incident-response playbooks."
             ]
           },
           {
@@ -53,7 +53,7 @@
             "title": "Portafolio práctico — laboratorios educativos",
             "items": [
               "LetsDefend: investigaciones documentadas de autenticación VPN, fuerza bruta por RDP y phishing.",
-              "Pasos de investigación, análisis de registros, conclusiones y playbooks de respuesta publicados en el portafolio."
+              "Correlación de evidencias, indicadores de correo sospechoso, secuencias de investigación, conclusiones y playbooks reutilizables de respuesta."
             ]
           },
           {
@@ -89,7 +89,8 @@
           {
             "title": "Education",
             "items": [
-              "Academlo — frontend, backend and full-stack studies, not completed."
+              "Academlo — frontend, backend and full-stack studies, not completed.",
+              "Knowledge foundation: API concepts, server logic, data flow and frontend/backend integration."
             ]
           },
           {
@@ -122,7 +123,8 @@
           {
             "title": "Formación",
             "items": [
-              "Academlo — estudios de frontend, backend y full stack inconclusos."
+              "Academlo — estudios de frontend, backend y full stack inconclusos.",
+              "Base de conocimientos: conceptos de API, lógica del servidor, flujo de datos e integración frontend/backend."
             ]
           },
           {
@@ -174,10 +176,12 @@
             ]
           },
           {
-            "title": "Learning focus",
+            "title": "Applied knowledge in training",
             "items": [
-              "Residential wiring, electrical drawings, measurement, industrial electricity and control fundamentals.",
-              "START/STOP contactor practice is planned; results are not yet published."
+              "Electrical drawings and symbols; Ohm’s/Kirchhoff’s laws, circuit analysis, cable selection, residential loads and installation standards.",
+              "AC/DC voltage, clamp current, resistance, de-energized continuity, protective devices and multimeter safety ratings.",
+              "Industrial training: three-phase systems, motor starting/protection, control/power circuits, contactors and introductory VFDs.",
+              "Fault diagnosis, maintenance planning, project calculations and photovoltaic/energy-efficiency foundations. START/STOP contactor practice remains planned."
             ]
           },
           {
@@ -211,10 +215,12 @@
             ]
           },
           {
-            "title": "Enfoque de aprendizaje",
+            "title": "Conocimientos aplicados en formación",
             "items": [
-              "Cableado residencial, planos eléctricos, medición y fundamentos de electricidad industrial y control.",
-              "La práctica START/STOP con contactor está planeada; todavía no se publican resultados."
+              "Planos y simbología eléctrica; leyes de Ohm/Kirchhoff, análisis de circuitos, selección de cables, cargas residenciales y normas de instalación.",
+              "Voltaje CA/CC, corriente con gancho, resistencia, continuidad sin energía, protecciones y categorías de seguridad del multímetro.",
+              "Formación industrial: sistemas trifásicos, arranque/protección de motores, circuitos de mando/fuerza, contactores e introducción a variadores.",
+              "Diagnóstico, planeación de mantenimiento, cálculos de proyectos y bases fotovoltaicas/eficiencia energética. Práctica START/STOP aún planeada."
             ]
           },
           {
@@ -242,10 +248,11 @@
             ]
           },
           {
-            "title": "Training topics",
+            "title": "Knowledge & course practice",
             "items": [
-              "ETO coursework: electricity technology, laboratory, metrology and applied mathematics; instruments, diagrams, circuit diagnosis and component validation.",
-              "LIDETEC coursework: soldering, hot-air handling, component and connector work, and introductory microsoldering."
+              "ETO: component identification/validation, circuit behavior, electronic drawings and structured fault diagnosis.",
+              "Measurement and laboratory training: multimeter, oscilloscope, power supply, logic probe and thermometer; metrology and applied mathematics.",
+              "LIDETEC: soldering iron and hot air, board care, component/connector handling, shielding and introductory microsoldering."
             ]
           },
           {
@@ -275,10 +282,11 @@
             ]
           },
           {
-            "title": "Temas de formación",
+            "title": "Conocimientos y prácticas de curso",
             "items": [
-              "Temario de ETO: tecnología de la electricidad, laboratorio, metrología y matemáticas aplicadas; instrumentos, diagramas, diagnóstico de circuitos y validación de componentes.",
-              "Temario de LIDETEC: soldadura, uso de aire caliente, trabajo con componentes y conectores e introducción a la microsoldadura."
+              "ETO: identificación/validación de componentes, comportamiento de circuitos, diagramas electrónicos y diagnóstico estructurado de fallas.",
+              "Medición y laboratorio: multímetro, osciloscopio, fuente, punta lógica y termómetro; metrología y matemáticas aplicadas.",
+              "LIDETEC: cautín y aire caliente, cuidado de tarjetas, manejo de componentes/conectores, blindajes e introducción a la microsoldadura."
             ]
           },
           {
@@ -317,13 +325,14 @@
             "title": "Training",
             "items": [
               "LIDETEC / Liceo de Tecnología, Guadalajara — smartphone repair course participation certificate, 1 August 2026.",
-              "Course topics: service records, disassembly, diagnosis, multimeter, soldering, hot air and introductory microsoldering."
+              "Course practice: service records, assembly/disassembly, multimeter checks, charging/audio/touch/flex diagnosis, board inspection and liquid-damage maintenance."
             ]
           },
           {
-            "title": "Portfolio evidence",
+            "title": "Additional course knowledge",
             "items": [
-              "Real repair photographs and case details available at culichi.lat/repair."
+              "Soldering/hot air, passive components, charging ports, buttons, connectors and introductory microsoldering.",
+              "Operating-system fault recognition and software restoration foundations. Real photographs and case details at culichi.lat/repair."
             ]
           },
           {
@@ -352,13 +361,14 @@
             "title": "Formación",
             "items": [
               "LIDETEC / Liceo de Tecnología, Guadalajara — constancia de participación en reparación de celulares, 1 de agosto de 2026.",
-              "Temas del curso: fichas de servicio, desensamble, diagnóstico, multímetro, soldadura, aire caliente e introducción a la microsoldadura."
+              "Prácticas de curso: fichas de servicio, ensamble/desensamble, multímetro, diagnóstico de carga/audio/touch/flex e inspección de tarjetas y equipos con humedad."
             ]
           },
           {
-            "title": "Evidencia de portafolio",
+            "title": "Conocimientos adicionales del curso",
             "items": [
-              "Fotografías reales y detalles de los casos disponibles en culichi.lat/repair."
+              "Soldadura/aire caliente, componentes pasivos, centros de carga, botones, conectores e introducción a la microsoldadura.",
+              "Identificación de fallas del sistema operativo y bases de restauración de software. Fotografías reales y casos en culichi.lat/repair."
             ]
           },
           {
@@ -389,7 +399,8 @@
             "title": "Professional skills",
             "items": [
               "English/Spanish communication, listening, issue clarification and guidance on next steps.",
-              "Problem solving, conflict resolution and expectation management."
+              "Problem solving, conflict resolution and expectation management.",
+              "Guiding users through next steps and confirming understanding; calm communication in difficult conversations."
             ]
           },
           {
@@ -415,7 +426,8 @@
             "title": "Habilidades profesionales",
             "items": [
               "Comunicación en inglés/español, escucha, aclaración de problemas y orientación de siguientes pasos.",
-              "Resolución de problemas y conflictos, y gestión de expectativas."
+              "Resolución de problemas y conflictos, y gestión de expectativas.",
+              "Orientación de siguientes pasos y comprobación de comprensión; comunicación tranquila en conversaciones difíciles."
             ]
           },
           {

@@ -41,8 +41,8 @@ export const experienceEntries: ExperienceEntry[] = [];
 
 /** Derived from the existing experience summary; no employers or performance metrics are inferred. */
 export const customerServiceSkills = [
-  { title: "Bilingual communication", icon: "phone", description: "Customer service in English and Spanish, with clear explanations adapted to each user." },
-  { title: "User support", icon: "support", description: "Listening to user needs, clarifying the issue and guiding the next steps." },
-  { title: "Problem solving", icon: "problem", description: "Understanding the problem and explaining practical options clearly." },
-  { title: "Conflict resolution", icon: "conflict", description: "Patient communication with frustrated users and clear expectation management." },
+  { title: "Bilingual communication", icon: "phone", description: "I provide customer service in English and Spanish, adapting the explanation to each user and confirming that the next steps are understood." },
+  { title: "User support", icon: "support", description: "I listen to the reported issue, ask clarifying questions and guide the user through practical next steps with patient, clear communication." },
+  { title: "Problem solving", icon: "problem", description: "I break down the problem, identify the user’s needs and explain the available options so they can make an informed decision." },
+  { title: "Conflict resolution", icon: "conflict", description: "I handle difficult conversations calmly, acknowledge the user’s concern and set clear expectations about the available solution and next steps." },
 ] as const;

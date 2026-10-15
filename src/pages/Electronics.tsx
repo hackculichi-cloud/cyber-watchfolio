@@ -1,3 +1,4 @@
+import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
@@ -52,26 +53,7 @@ const Electronics = () => {
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
 
-      <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow={t("Overview")}
-          title={t("General electronics training")}
-          description={t("Components, circuits and measurement instruments — building a methodical troubleshooting approach on real hardware.")}
-        />
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            { title: "Components & circuits", body: "Resistors, capacitors, semiconductors and how circuits behave under load.", tag: "Currently studying" },
-            { title: "PCB & soldering", body: "Board inspection, soldering and desoldering practice on training boards.", tag: "Practice" },
-            { title: "Instruments", body: "Multimeter and oscilloscope practice for measurement-driven diagnostics.", tag: "Practice" },
-          ].map((c) => (
-            <div key={c.title} className="glass-panel p-5 transition-transform duration-300 hover:-translate-y-1">
-              <Tag variant="primary">{t(c.tag)}</Tag>
-              <h3 className="mt-3 text-base font-semibold">{t(c.title)}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(c.body)}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ProfileCapabilities profile={profile.slug} />
 
       <section id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
