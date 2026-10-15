@@ -34,9 +34,9 @@ test("mobile interludes fit the page with reduced motion and preserve the electr
   await expect(interlude).toBeVisible();
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.locator("#cv").scrollIntoViewIfNeeded();
-  const original = page.locator('#cv a[href="/cv/christian-velasco-electrical-original.pdf"]');
-  await expect(original).toBeVisible();
-  const result = await request.get((await original.getAttribute("href"))!);
+  await expect(page.locator('#cv a[href="/cv/christian-velasco-electrical-original.pdf"]')).toHaveCount(0);
+  await expect(page.locator("#cv").getByRole("link", { name: "All CV versions", exact: true })).toHaveCount(0);
+  const result = await request.get("/cv/christian-velasco-electrical-original.pdf");
   expect(result.ok()).toBe(true);
   await expect(page.locator('#cv a[href="/cv/christian-velasco-electrical-en.pdf"]')).toBeVisible();
 });
@@ -147,6 +147,8 @@ test("practical media and contact screenshots load with external asset requests 
   expect(video.ok()).toBe(true);
   expect(video.headers()["content-type"]).toContain("video/mp4");
   await page.goto("/electrical#projects");
+  await page.locator('[data-electrical-group="control"]').click();
+  await page.locator('[data-electrical-group="control-level-control"]').click();
   await page.locator("#projects article").filter({ hasText: "Float-switch Control — Course Practice" }).getByRole("button", { name: "View project", exact: true }).first().click();
   const dialog = page.getByRole("dialog").first();
   const photos = dialog.locator('img[src^="/media/portfolio/"]');

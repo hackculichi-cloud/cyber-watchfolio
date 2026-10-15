@@ -10,7 +10,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 const WorkCard = ({ item, onOpen }: { item: WorkItem; onOpen: (id: string) => void }) => {
   const { t } = useLanguage();
   return (
-    <article className="group panel-glow flex h-full flex-col overflow-hidden p-0 hover:-translate-y-1">
+    <article data-work={item.id} className="group panel-glow flex h-full flex-col overflow-hidden p-0 hover:-translate-y-1">
       <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border">
         {item.cover?.src ? (
           <button type="button" onClick={() => onOpen(item.id)} className="block h-full w-full" aria-label={t("View project")}>
@@ -37,6 +37,7 @@ const WorkCard = ({ item, onOpen }: { item: WorkItem; onOpen: (id: string) => vo
           </p>
         )}
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
+        {item.reviewRequired && <p className="mt-3 text-sm font-semibold text-primary">{t("Electrical review required")}</p>}
 
         {(item.skills?.length || item.technologies?.length || item.tools?.length) && (
           <div className="mt-4 flex flex-wrap gap-1.5">

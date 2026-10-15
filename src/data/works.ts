@@ -31,6 +31,10 @@ export type WorkItem = {
   components?: string[];
   /** Only document steps actually performed; future work stays Planned. */
   procedure?: string[];
+  /** Photo-backed stages, distinct from any checks still awaiting confirmation. */
+  documentedSteps?: { title: string; description: string; images?: WorkImage[] }[];
+  reviewNotes?: string[];
+  reviewRequired?: boolean;
   technicalExplanation?: string;
   did?: string[];
   learned?: string[];

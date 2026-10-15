@@ -22,7 +22,62 @@ const lightPhotos = [
   { src: "/media/portfolio/two-ceiling-lights-completed.png", alt: "Two replacement ceiling luminaires illuminated in the room", caption: "Completed client work: both replacement luminaires illuminated." },
 ];
 
+const contactPhoto = (number: number, caption: string) => ({
+  src: `/images/electrical/outlet-october-2026/${String(number).padStart(2, "0")}.jpeg`,
+  alt: caption,
+  caption,
+});
+const contactPhotos = [
+  contactPhoto(1, "Original duplex outlet before replacement."),
+  contactPhoto(2, "Original outlet and adjacent switch with their wall plates."),
+  contactPhoto(3, "Conductors exposed after removing the original outlet."),
+  contactPhoto(4, "Device box and conductors during disassembly."),
+  contactPhoto(5, "Close-up of conductor insulation and identification tape."),
+  contactPhoto(6, "Replacement duplex outlet and wall plate before mounting."),
+  contactPhoto(7, "Replacement outlet being connected outside the box."),
+  contactPhoto(8, "Rear terminal connections on the replacement outlet."),
+  contactPhoto(9, "Conductor routing before closing the device box."),
+  contactPhoto(10, "Replacement outlet secured to the device box before fitting the plate."),
+  contactPhoto(11, "Removed outlet beside the newly installed device."),
+  contactPhoto(12, "Plug-in outlet tester connected to the replacement."),
+  contactPhoto(13, "Outlet tester and completed wall plate."),
+  contactPhoto(14, "Digital multimeter displaying 119.3 V AC at the outlet."),
+  contactPhoto(15, "Close-up of terminal connections and green conductors."),
+  contactPhoto(16, "Completed replacement outlet with its wall plate."),
+];
+
+export const outletPhotoPractice: WorkItem = {
+  id: "residential-outlet-october-2026", profile: "electrical",
+  title: "Residential Outlet Replacement — Photo Record",
+  summary: "Replacement of a residential duplex outlet, documented with 16 original photographs: initial condition, conductors, replacement connections, mounting and final instrument checks.",
+  category: "Residential practice", status: "Completed", reviewRequired: true,
+  skills: ["Device replacement", "Photographic documentation", "Voltage measurement", "Multimeter operation"],
+  tools: ["Digital multimeter", "Plug-in outlet tester", "Screwdrivers and hand tools"],
+  objective: "Record the replacement process and distinguish visible evidence from electrical checks still to be confirmed.",
+  did: ["Documented the original outlet, removal, replacement connections and final mounting.", "Photographed a plug-in tester and a multimeter connected to the installed outlet.", "Confirmed checking polarity and protective earth, and identifying the conductors with colored tape. Also reported working without disconnecting the circuit because the client did not allow an outage."],
+  results: ["Replacement outlet shown mounted with its wall plate.", "A photograph records 119.3 V AC between the outlet slots. This reading alone does not establish polarity or an effective protective earth.", "Reported ratings: 15 A outlet and 30 A circuit breaker. Electrical compatibility requires correction or assessment by a qualified electrician before further use."],
+  technicalExplanation: "The sequence is reconstructed from photographs and the owner's confirmation. The intervention was carried out with the circuit energized; it is not presented as a safe working method or a validated installation. The owner confirmed polarity and protective-earth checks; the earth-test method and result have not yet been recorded.",
+  documentedSteps: [
+    { title: "Initial condition", description: "Recorded the old duplex outlet and the adjacent switch before replacement.", images: contactPhotos.slice(0, 2) },
+    { title: "Removal and conductor inspection", description: "Recorded the open box, exposed conductors and identification tape. The owner confirmed that the circuit was not disconnected; this is a safety deficiency to correct in future work, not a recommended step.", images: [contactPhotos[2], contactPhotos[4]] },
+    { title: "Replacement and terminal connections", description: "Recorded the new device and its rear connections, with conductor identification confirmed by the owner. Terminal suitability and tightening torque still need documenting.", images: [contactPhotos[5], contactPhotos[7], contactPhotos[14]] },
+    { title: "Mounting and wall plate", description: "Recorded the device secured to the box and the finished wall plate.", images: [contactPhotos[9], contactPhotos[15]] },
+    { title: "Instrument checks", description: "Recorded the plug-in outlet tester and a 119.3 V AC multimeter reading. The owner confirmed polarity and protective-earth checks; the earth-test method and measured result remain to be recorded.", images: [contactPhotos[11], contactPhotos[13]] },
+  ],
+  reviewNotes: [
+    "The circuit was not disconnected. Future replacement work must be postponed if isolation is refused: disconnect, prevent reconnection and verify absence of voltage, checking the tester on a known live source before and after.",
+    "A 15 A outlet was reported on a circuit protected at 30 A. Do not treat this as a compatible arrangement. A qualified electrician must assess the outlet, conductor ampacity and circuit protection before further use; do not simply change one component without checking the circuit.",
+    "Polarity, protective-earth verification and color identification were reported. Record the earth-test method and result; green conductors must be protective earth, and a neutral-to-earth bridge at the outlet is not a substitute.",
+    "Document the confirmed protective-earth check and any required metal-box bonding. A three-light plug-in tester alone cannot certify an effective earth.",
+    "Check the outlet rating, conductor gauge and material, circuit protection, strip length and manufacturer-specified tightening torque. Confirm the terminal accepts the number of conductors shown and that no bare copper remains outside the terminal.",
+    "Inspect the marked or discolored insulation and any taped joints. Confirm sound insulation and approved connections inside the box before closing it.",
+    "Record final polarity and earth-test results, secure mounting and any required protective-device tests. Resolve the circuit protection and outlet-rating mismatch with a qualified electrician before treating the installation as verified.",
+  ],
+  cover: contactPhotos[15], before: contactPhotos[0], after: contactPhotos[15], images: contactPhotos,
+};
+
 export const electricalProjects: WorkItem[] = [
+  outletPhotoPractice,
   {
     id: "start-stop-contactor-planned",
     profile: "electrical",

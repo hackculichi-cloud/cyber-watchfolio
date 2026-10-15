@@ -49,7 +49,9 @@ test("all SOC cases and playbooks have translated details", async ({ page }) => 
 test("electrical project photos enlarge and navigate with keyboard", async ({ page }) => {
   await page.goto("/electrical");
   await selectLanguage(page, "es");
-  await page.locator("#projects").getByRole("button", { name: "Ver proyecto", exact: true }).nth(1).click();
+  await page.locator('[data-electrical-group="residential"]').click();
+  await page.locator('[data-electrical-group="residential-training-boards"]').click();
+  await page.locator('[data-work="residential-training-board"]').getByRole("button", { name: "Ver proyecto", exact: true }).last().click();
   const details = page.getByRole("dialog").first();
   await details.getByRole("button", { name: /^Abrir vista ampliada:/ }).first().click();
   const viewer = page.getByRole("dialog").last();
@@ -67,8 +69,10 @@ test("confirmed electrical course states and future practice are honest", async 
   await page.goto("/electrical");
   const tracks = page.locator("#tracks");
   await expect(tracks.getByText("Completed through RED CONOCER", { exact: false })).toHaveCount(0);
-  await expect(tracks.getByText("Currently Studying", { exact: true })).toHaveCount(4);
-  await expect(tracks.getByText("Electrical Systems: Reading Drawings and Schematics", { exact: true })).toBeVisible();
+  await expect(tracks.getByText("Currently Studying", { exact: true })).toHaveCount(3);
+  await expect(tracks.getByRole("heading", { name: "Electrical Systems: Reading Drawings and Schematics", exact: true })).toBeVisible();
+  await page.locator('[data-electrical-group="control"]').click();
+  await page.locator('[data-electrical-group="control-contactors"]').click();
   const card = page.locator("#projects article").filter({ hasText: "Electrical Control — START/STOP Contactor Practice" });
   await expect(card.getByText("Planned", { exact: true })).toBeVisible();
 });
