@@ -76,12 +76,12 @@ const Home = () => {
 
 
       {/* Professional profile */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="mb-10 flex flex-col items-center gap-6 lg:flex-row">
-          <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Professional profile")} title={t("Skills and professional areas")} description={t(site.intro)} /></div>
-          <HomeCharacter profile="cybersecurity" scene="hanging" className="-mb-10 self-end border-t border-primary/30 lg:-mt-16" />
+      <section id="areas" className="container mx-auto scroll-mt-28 px-4 py-16">
+        <div className="mb-8 flex items-center gap-4 lg:gap-6">
+          <div className="min-w-0 flex-1 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl"><SectionHeading eyebrow="Christian Velasco · aka Culichi" title={t("These are my skills")} description={t("Practical work, study and experience in six areas. Choose what you need and see the examples behind each skill.")} /></div>
+          <HomeCharacter profile="cybersecurity" scene="hanging" className="w-24 border-t border-primary/30 sm:w-32 lg:-mb-10 lg:-mt-16 lg:w-44" />
         </div>
-        <div id="areas" className="grid scroll-mt-28 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {professionalProfiles.map((p, i) => (
             <Reveal key={p.title} delay={i * 90} className="h-full">
               <ProfileCard data={p} />

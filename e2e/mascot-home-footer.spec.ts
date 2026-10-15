@@ -10,7 +10,7 @@ test("hover and keyboard preview outfits without navigating; leaving restores th
   await stage.locator('[data-outfit="development"]').hover();
   await expect(stage).toHaveAttribute("data-preview-outfit", "development");
   const preview = stage.locator('[data-outfit-preview="development"]');
-  await expect(preview).toHaveCSS("animation-name", "mascot-ready-in");
+  await expect(preview).toHaveCSS("animation-name", "outfit-reveal-new");
   await expect(page).toHaveURL(/\/$/);
   await stage.locator('[data-outfit="electrical"]').focus();
   await expect(stage).toHaveAttribute("data-preview-outfit", "electrical");
