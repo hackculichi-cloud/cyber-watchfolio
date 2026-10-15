@@ -512,14 +512,16 @@ html { scroll-behavior: smooth; }
   :focus-visible { outline-offset:4px; }
 }
 .reading-copy { font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; text-wrap:pretty; letter-spacing:.005em; }
+.tool-wall { background-color:hsl(var(--surface)); background-image:radial-gradient(hsl(var(--primary)/.22) 1px,transparent 1px); background-size:12px 12px; box-shadow:inset 0 1px 0 hsl(var(--primary)/.1); }
 .eyebrow { display:flex; align-items:center; gap:.6rem; letter-spacing:.16em; line-height:1.6; }
 .eyebrow::before { content:""; flex-shrink:0; width:1.15rem; height:2px; background:linear-gradient(90deg,hsl(var(--primary)),hsl(var(--primary)/.15)); }
 .panel, .glass-panel { border-color:hsl(var(--border)/.85); }
 .mobile-quicknav { padding-bottom:max(.35rem,env(safe-area-inset-bottom)); }
+[data-profile] > main [id] { scroll-margin-top:10.5rem; }
 @media (max-width:639px) {
   .site-layout { padding-bottom:calc(4.5rem + env(safe-area-inset-bottom)); }
   html { scroll-padding-bottom:calc(5rem + env(safe-area-inset-bottom)); }
-  [data-profile] > main [id] { scroll-margin-top:9.5rem; }
+  [data-profile] > main [id] { scroll-margin-top:10.75rem; }
   .reading-copy { line-height:1.75; }
 }
 

@@ -33,7 +33,7 @@ const ProfileSectionNav = ({ sections }: { sections: ProfileSection[] }) => {
   return (
     <nav
       aria-label={t("Profile sections")}
-      className="sticky top-20 z-30 border-b border-border bg-background/85 backdrop-blur-xl"
+      className="sticky top-24 z-30 border-b border-border bg-background/85 backdrop-blur-xl"
     >
       <div className="container mx-auto flex items-center gap-3 px-4 py-2 sm:hidden">
         <label htmlFor={selectId} className="shrink-0 text-[11px] font-medium text-muted-foreground">{t("On this page")}</label>

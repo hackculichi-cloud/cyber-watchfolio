@@ -1,5 +1,15 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Swipe to browse equipment": "Desliza para explorar el equipo",
+  "Equipment catalog": "Catálogo de equipo",
+  "Installations, wiring & measurements": "Instalación, cableado y mediciones",
+  "Wire stripping/crimping tools": "Pinzas pelacables y de crimpado",
+  "Workshop & safety": "Taller y seguridad",
+  "Digital multimeter": "Multímetro digital",
+  "Photo gallery": "Galería de fotos",
+  "Showing {shown} of {total} photos": "Mostrando {shown} de {total} fotos",
+  "Tap a photo to enlarge": "Toca una foto para ampliarla",
+  "Illustrated equipment. Original tool photos will be added as they are documented.": "Equipo ilustrado. Las fotos originales de las herramientas se añadirán conforme se documenten.",
   "Areas": "Áreas",
   "Quick navigation": "Navegación rápida",
   "Choose an area": "Elige un área",
