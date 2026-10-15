@@ -1,3 +1,4 @@
+import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import MascotScene from "@/components/shared/MascotScene";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
@@ -111,28 +112,7 @@ const TechnicalRepair = () => {
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
 
-      <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow={t("Overview")}
-          title={t("A documented repair workshop")}
-          description={t("Every repair follows the same visual structure so the process — not just the result — is visible.")}
-        />
-        <ol className="grid gap-3 md:grid-cols-4">
-          {[
-            { label: "Before", body: "Device received, reported problem and initial state." },
-            { label: "Diagnosis", body: "Tests, measurements and the confirmed fault." },
-            { label: "Repair", body: "Step-by-step work performed, tools and components." },
-            { label: "After", body: "Verification, final result and notes." },
-          ].map((s, i) => (
-            <li key={s.label} className="glass-panel p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
-                {t(String(i + 1).padStart(2, "0"))} · {t(s.label)}
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(s.body)}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <ProfileCapabilities profile={profile.slug} />
 
       <div className="border-y border-border bg-surface/40">
         <DeviceSection type="Smartphones" />

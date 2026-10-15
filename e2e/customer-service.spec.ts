@@ -17,7 +17,7 @@ test("home replaces the text experience block with a phone profile and bilingual
   await page.locator('button[lang="es"]:visible').first().click();
   await expect(page.getByRole("heading", { name: "Call Center y atención al cliente", exact: true })).toBeVisible();
   await expect(page.locator("#skills").getByRole("heading", { name: "Comunicación bilingüe", exact: true })).toBeVisible();
-  await expect(page.locator("#skills").getByText("Escuchar las necesidades del usuario, aclarar el problema y orientar los siguientes pasos.", { exact: true })).toBeVisible();
+  await expect(page.locator("#skills").getByText("Escucho el problema, hago preguntas para aclararlo y guío al usuario en los siguientes pasos con comunicación clara y paciente.", { exact: true })).toBeVisible();
   const link = page.locator('header a[href="/experience"]:visible').first();
   await expect(link).toHaveAttribute("aria-label", "Call Center y atención al cliente");
   await expect(link.locator("svg.lucide-phone-call")).toBeVisible();

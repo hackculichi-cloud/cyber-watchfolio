@@ -1,3 +1,4 @@
+import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import MascotScene from "@/components/shared/MascotScene";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
@@ -59,26 +60,7 @@ const Electrical = () => {
       <ProfileSectionNav sections={profile.sections} />
       <SpecialtyExplorer profile={profile.slug} />
 
-      <section id="overview" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow={t("Overview")}
-          title={t("Electrical maintenance: training & experience")}
-          description={t("Industrial electrical maintenance training, course practice and documented residential client work — each activity identified by its actual setting.")}
-        />
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            { title: "Float-switch control", body: "Electronivel course exercise documented with a photograph and demonstration video.", tag: "Practical training" },
-            { title: "Outlets & switches", body: "Residential client outlet and switch replacement, documented alongside power strips.", tag: "Residential client work" },
-            { title: "Lighting maintenance", body: "Two ceiling luminaires replaced at a client's residence, with installation and operating photographs.", tag: "Residential client work" },
-          ].map((c) => (
-            <div key={c.title} className="glass-panel p-5 transition-transform duration-300 hover:-translate-y-1">
-              <Tag variant="primary">{t(c.tag)}</Tag>
-              <h3 className="mt-3 text-base font-semibold">{t(c.title)}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(c.body)}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ProfileCapabilities profile={profile.slug} />
 
       <section id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import CulichiBody from "@/components/shared/CulichiBody";
-import { createFox, type FoxOutfit } from "./createFox";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { createFox, type FoxController, type FoxOutfit } from "./createFox";
 export type FoxPhase = "greeting" | "standby" | "ready" | "transforming";
 type Props = {
     profile: FoxOutfit;
@@ -34,23 +35,29 @@ export default function Fox3D(props: Props) {
         renderer.setClearColor(0x000000, 0);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.12;
+        renderer.toneMappingExposure = 1.05;
         const scene = new THREE.Scene();
-        scene.add(new THREE.HemisphereLight(0xd9efff, 0x4b3020, 2.5));
-        const key = new THREE.DirectionalLight(0xffeedb, 3.4);
+        const pmrem = new THREE.PMREMGenerator(renderer);
+        const room = new RoomEnvironment();
+        const environment = pmrem.fromScene(room, .04, .1, 100, { size: 64 });
+        scene.environment = environment.texture;
+        scene.environmentIntensity = .65;
+        room.dispose();
+        pmrem.dispose();
+        scene.add(new THREE.HemisphereLight(0xd9efff, 0x4b3020, 1.5));
+        const key = new THREE.DirectionalLight(0xffeedb, 2.7);
         key.position.set(-3, 6, 6);
         scene.add(key);
-        const rim = new THREE.DirectionalLight(0x82dbff, 2.3);
+        const rim = new THREE.DirectionalLight(0x82dbff, 2.0);
         rim.position.set(3, 4, -4);
         scene.add(rim);
         const fill = new THREE.DirectionalLight(0xffffff, .8);
         fill.position.set(4, 1, 4);
         scene.add(fill);
         const camera = new THREE.OrthographicCamera(-2.05, 2.05, 2.05, -2.05, .1, 40);
-        camera.position.set(3, 2.8, 8);
+        camera.position.set(1.5, 2.5, 8);
         camera.lookAt(.1, 1.84, 0);
-        const fox = createFox(latest.current.profile);
-        scene.add(fox.root);
+        let fox: FoxController | null = null;
         const energyMaterial = new THREE.MeshBasicMaterial({ color: 0x66ddeb, transparent: true, opacity: 0, depthWrite: false });
         const energy = new THREE.Mesh(new THREE.TorusGeometry(.95, .012, 8, 80), energyMaterial);
         energy.position.y = 1.75;
@@ -63,7 +70,7 @@ export default function Fox3D(props: Props) {
             raf = requestAnimationFrame(render); };
         function render(now: number) {
             raf = 0;
-            if (stopped || !visible || document.hidden)
+            if (stopped || !visible || document.hidden || !fox)
                 return;
             const state = latest.current, t = now / 1000;
             if (state.phase === "greeting" && (lastPhase !== "greeting" || lastWave !== state.wave)) {
@@ -122,10 +129,18 @@ export default function Fox3D(props: Props) {
         element.addEventListener("pointerleave", leave);
         document.addEventListener("visibilitychange", visibility);
         surface.addEventListener("webglcontextlost", lost);
-        setReady(true);
-        latest.current.onReady();
-        schedule();
-        return () => { stopped = true; cancelAnimationFrame(raf); refresh.current = () => { }; resize.disconnect(); observer.disconnect(); element.removeEventListener("pointermove", move); element.removeEventListener("pointerleave", leave); document.removeEventListener("visibilitychange", visibility); surface.removeEventListener("webglcontextlost", lost); fox.dispose(); energy.geometry.dispose(); energyMaterial.dispose(); renderer.dispose(); renderer.forceContextLoss(); };
+        createFox(latest.current.profile).then(model => {
+            if (stopped) { model.dispose(); return; }
+            fox = model;
+            scene.add(model.root);
+            surface.dataset.modelSource = "blender-gltf";
+            setReady(true);
+            latest.current.onReady();
+            schedule();
+        }).catch(() => {
+            if (!stopped) { setReady(false); latest.current.onUnavailable(); }
+        });
+        return () => { stopped = true; cancelAnimationFrame(raf); refresh.current = () => { }; resize.disconnect(); observer.disconnect(); element.removeEventListener("pointermove", move); element.removeEventListener("pointerleave", leave); document.removeEventListener("visibilitychange", visibility); surface.removeEventListener("webglcontextlost", lost); fox?.dispose(); environment.dispose(); energy.geometry.dispose(); energyMaterial.dispose(); renderer.dispose(); renderer.forceContextLoss(); };
     }, []);
     useEffect(() => { refresh.current(); }, [props.profile, props.phase, props.target, props.wave, props.reduced]);
     return <span ref={mount} data-fox-renderer={ready ? "webgl" : "fallback"} className="relative block aspect-square w-full">

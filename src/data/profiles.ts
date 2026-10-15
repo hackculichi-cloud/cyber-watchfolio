@@ -19,7 +19,7 @@ export const professionalProfiles: ProfileCardData[] = [
     slug: "cybersecurity",
     title: "Cybersecurity",
     summary:
-      "Blue-team oriented: monitoring, detection, alert triage and structured incident investigation with documented playbooks.",
+      "Educational VPN, RDP and phishing investigations, log analysis and response playbooks, supported by Linux training and bilingual communication.",
     href: "/cybersecurity",
     icon: Shield,
     emphasis: "primary",
@@ -30,7 +30,7 @@ export const professionalProfiles: ProfileCardData[] = [
     slug: "development",
     title: "Software Development",
     summary:
-      "Web development, APIs and automation with a maintainable, version-controlled workflow.",
+      "Frontend, backend and full-stack foundations from partial Academlo studies, applied to a bilingual React/TypeScript portfolio with Git/GitHub.",
     href: "/software-development",
     icon: Code2,
     emphasis: "primary",
@@ -41,7 +41,7 @@ export const professionalProfiles: ProfileCardData[] = [
     slug: "electrical",
     title: "Residential & Industrial Electrical Maintenance",
     summary:
-      "Electrical maintenance training, float-switch course practice and documented residential client work.",
+      "Electrical foundations, drawings, AC/DC measurement and residential/industrial training, with documented installations and maintenance practice.",
     href: "/electrical",
     icon: Zap,
     emphasis: "secondary",
@@ -52,7 +52,7 @@ export const professionalProfiles: ProfileCardData[] = [
     slug: "electronics",
     title: "Electronics",
     summary:
-      "General electronics: components, circuits, PCB work, soldering practice and instrument-based diagnostics.",
+      "Basic electronics at ETO: components, circuit behavior, diagrams, metrology and laboratory diagnosis, supported by soldering and repair coursework.",
     href: "/electronics",
     icon: Cpu,
     emphasis: "secondary",
@@ -63,7 +63,7 @@ export const professionalProfiles: ProfileCardData[] = [
     slug: "repair",
     title: "Technical Repair",
     summary:
-      "Device repair workshop: smartphones and laptops today, consoles planned — documented before, diagnosis, repair and after.",
+      "LIDETEC phone-repair training: diagnosis, disassembly, measurement, soldering and software foundations, with documented iPhone battery and display replacements.",
     href: "/repair",
     icon: Wrench,
     emphasis: "secondary",
@@ -111,7 +111,7 @@ export const profileIdentities: ProfileIdentity[] = [
     eyebrow: "Primary profile",
     status: "Primary focus",
     description:
-      "Blue-team oriented work: security fundamentals, monitoring and detection, and structured investigations documented end to end.",
+      "I investigate VPN authentication, RDP brute force and phishing in LetsDefend labs, document evidence and write response playbooks. I am also taking a Linux diploma program and seeking my first SOC Tier 1 opportunity.",
     icon: Shield,
     highlights: ["SOC / Blue Team", "SIEM & log analysis", "Networking", "Linux hardening"],
     sections: [
@@ -137,7 +137,7 @@ export const profileIdentities: ProfileIdentity[] = [
     eyebrow: "Primary profile",
     status: "Primary focus",
     description:
-      "Web development, APIs, backend logic and automation — built to be readable, maintainable and version controlled.",
+      "My partial Academlo studies provide frontend, backend and full-stack foundations. This portfolio brings together React, TypeScript, reusable interfaces, bilingual content and a Git/GitHub workflow as a published practical project.",
     icon: Code2,
     highlights: ["Web apps", "APIs & backend", "Automation", "Git / GitHub"],
     sections: [
@@ -160,7 +160,7 @@ export const profileIdentities: ProfileIdentity[] = [
     eyebrow: "Technical profile",
     status: "Training & client practice",
     description:
-      "Electrical maintenance training with float-switch course exercises and residential client work: outlet and switch replacement, power strips and the replacement of two ceiling luminaires.",
+      "I combine electrical drawings, circuit analysis, measurement and installation knowledge with residential client maintenance and course practice. My RED CONOCER and Udemy studies also cover industrial systems, control, motors and diagnostics.",
     icon: Zap,
     highlights: ["Float-switch practice", "Residential client work", "Wiring & panels", "Measurements"],
     sections: [
@@ -185,7 +185,7 @@ export const profileIdentities: ProfileIdentity[] = [
     eyebrow: "Technical profile",
     status: "Currently studying",
     description:
-      "General electronics training: components, circuits, PCB work, soldering practice, measurement instruments and structured troubleshooting.",
+      "I study basic electronics at Escuela Tecnológica de Occidente, applying components, electronic diagrams, instruments and circuit diagnosis in laboratory training. My LIDETEC course adds soldering, hot air and board-care foundations.",
     icon: Cpu,
     highlights: ["Components & circuits", "PCB work", "Soldering", "Oscilloscope / multimeter"],
     sections: [
@@ -209,7 +209,7 @@ export const profileIdentities: ProfileIdentity[] = [
     eyebrow: "Practical profile",
     status: "In training",
     description:
-      "A repair workshop portfolio: smartphones, laptops and (planned) consoles — every case documented as before, diagnosis, repair and after.",
+      "I combine LIDETEC service, diagnosis and board-repair training with completed iPhone 12 Pro and 14 Pro battery replacements and an iPhone XR display replacement. Each case includes its own real photographs and final checks.",
     icon: Wrench,
     highlights: ["Smartphones", "Laptops", "Consoles (planned)", "Component-level work"],
     sections: [

@@ -32,6 +32,7 @@ test("WebGL has retina resolution and stops rendering in standby", async ({ brow
     await page.goto("/");
     const model = page.locator('canvas[data-mascot="home"]');
     await expect(model).toBeVisible();
+    await expect(model).toHaveAttribute("data-model-source", "blender-gltf");
     await expect(page.locator('[data-home-mascot]')).toHaveAttribute("data-phase", "standby");
     expect(await model.evaluate((el: HTMLCanvasElement) => el.width === el.clientWidth * 2 && el.height === el.clientHeight * 2 && !!el.getContext('webgl2'))).toBe(true);
     await page.waitForTimeout(150);
@@ -74,4 +75,16 @@ test("each area includes a fourth, full standalone activity illustration", async
         await expect(illustration).toHaveAttribute('alt', '');
         await expect(page.locator('main [data-mascot-scene]')).toHaveCount(4);
     }
+});
+
+test("a failed model download keeps the illustration and section navigation usable", async ({ page }) => {
+    await page.route("**/models/culichi.glb", route => route.abort("failed"));
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    const home = page.locator("[data-home-mascot]");
+    await expect(home.locator('[data-fox-renderer="fallback"] [data-body-mascot="home"]')).toBeVisible();
+    await home.getByRole("button").click();
+    await home.locator('[data-outfit="electrical"]').click();
+    await expect(page).toHaveURL(/\/electrical$/);
+    await expect(page.locator('[data-interactive-mascot="electrical"] [data-body-mascot="electrical"]')).toBeVisible();
 });

@@ -111,7 +111,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         setOpen(true); }} onClick={() => { if (!locked.current) {
         setOpen(true);
         greet();
-    } }} className="absolute bottom-6 left-1/2 w-48 -translate-x-1/2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-60">
+    } }} className="absolute bottom-6 left-1/2 w-64 -translate-x-1/2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-72">
       <span className={cn("relative block", renderMode !== "3d" && phase === "transforming" && "mascot-transform")}>
         <span className="mascot-source block w-full">
           <Suspense fallback={<CulichiBody profile={profile} className="w-full"/>}>

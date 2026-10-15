@@ -4,11 +4,13 @@ Las ilustraciones del zorro son arte de marca local. Las fotos reales de prácti
 
 ## Modelo 3D interactivo
 
-`components/mascot/createFox.ts` construye un primer modelo 3D estilizado con mallas, materiales y articulaciones. `Fox3D.tsx` lo muestra mediante Three.js/WebGL. El brazo, antebrazo, mano, cabeza y cola tienen movimientos continuos; el cambio de atuendo utiliza un giro completo y un efecto de energía antes de navegar. Los seis atuendos modifican colores y accesorios, como casco, visor, gafas, auriculares y ropa de taller.
+`scripts/build-culichi-model.py` crea el personaje en Blender 4.3.2 y exporta `public/models/culichi.glb`. El archivo editable y la referencia están en `art/culichi/`. El rostro es más serio, con ojos verdes, una cola y detalles de ropa, calzado, guantes y seis conjuntos de accesorios. El GLB contiene geometría y texturas locales; no depende de un servicio externo.
 
-Es un modelo procedural inicial. Para alcanzar el acabado y semejanza de las ilustraciones detalladas, la siguiente etapa artística es esculpir y texturizar el personaje en Blender y preparar su rig para exportarlo en GLB. En esta versión se usa el modelo construido en código; no se ha producido un archivo de Blender ni un modelo fotorrealista.
+`components/mascot/createFox.ts` carga el GLB mediante GLTFLoader. `Fox3D.tsx` añade iluminación de estudio y reflejos de entorno. Cabeza, hombro, codo, muñeca y cola se articulan; el cambio de atuendo mantiene el giro antes de navegar. La descarga es asíncrona y la ilustración permanece disponible si falla. Se liberan materiales de instancia, entorno y contexto al salir. Una plantilla inmutable conserva la geometría y las imágenes decodificadas durante la sesión para evitar descargarlas y analizarlas al navegar.
 
-La escena se carga en un módulo independiente. El lienzo admite densidad de píxel hasta 2× y antialiasing. El renderizado se detiene en reposo, fuera de la pantalla y cuando la pestaña está oculta. Al cambiar de ruta se liberan geometrías, materiales, observadores y contexto WebGL. Si WebGL no está disponible o se pierde su contexto, se muestra una ilustración local y la navegación sigue funcionando. Movimiento reducido evita el saludo, el seguimiento del cursor y el giro de transformación.
+Es una nueva interpretación estilizada en 3D, no una reproducción exacta del render de referencia: no tiene su pelaje denso ni su acabado cinematográfico. La referencia 2D no se usa como si fuera la malla animada. El procedimiento y límites artísticos están documentados en `art/culichi/README.md`.
+
+La escena se carga en un módulo independiente. El lienzo admite densidad de píxel hasta 2× y antialiasing. El renderizado se detiene en reposo, fuera de la pantalla y cuando la pestaña está oculta. Al cambiar de ruta se liberan los materiales de instancia, observadores y contexto WebGL; la plantilla del modelo se reutiliza durante la sesión. Si WebGL no está disponible o se pierde su contexto, se muestra una ilustración local y la navegación sigue funcionando. Movimiento reducido evita el saludo, el seguimiento del cursor y el giro de transformación.
 
 ## Selector de atuendos
 
@@ -38,3 +40,8 @@ El catálogo, los doce PDF ES/EN y sus previsualizaciones mantienen el diseño a
 ## Verificación
 
 Las pruebas comprueban colores distintos, navegación repetida entre perfiles, selección del atuendo activo, teclado, móvil, movimiento reducido, WebGL, parada en reposo, pérdida y ausencia de contexto e imágenes adicionales. Los resultados de renderizado por software del navegador de pruebas no equivalen a una medición de FPS en los dispositivos de los visitantes.
+
+
+## Conocimientos y práctica
+
+`profileCapabilities.ts` organiza las descripciones por habilidades: conocimientos de los temarios, prácticas de formación y trabajos documentados. Electricidad incluye fundamentos/planos, instalaciones, medición, control/motores, mantenimiento y energía; electrónica integra ETO y LIDETEC. Reparación, software y ciberseguridad conservan el contexto de curso, proyecto o laboratorio. Atención al cliente mantiene la experiencia bilingüe confirmada. Los doce PDF ES/EN se regeneran desde `resumes.json` con versiones resumidas; no se completan automáticamente cursos pendientes ni se inventan intervenciones.
