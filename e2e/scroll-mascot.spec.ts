@@ -7,9 +7,9 @@ test("profile mascots appear between content blocks, never as floating overlays"
     await page.goto(path);
     await expect(page.locator('[data-body-mascot] [data-mascot-scene="entry"]')).toBeVisible();
     const scenes = page.locator("main [data-mascot-scene]");
-    await expect(scenes).toHaveCount(4);
+    await expect(scenes).toHaveCount(5);
     const sources = new Set<string>();
-    for (const kind of ["entry", "action", "detail", "closing"]) {
+    for (const kind of ["entry", "practice", "action", "detail", "closing"]) {
       const scene = page.locator(`main [data-mascot-scene="${kind}"]`);
       await scene.scrollIntoViewIfNeeded();
       await expect(scene).toBeVisible();
@@ -17,7 +17,7 @@ test("profile mascots appear between content blocks, never as floating overlays"
       await expect(scene).toHaveCSS("border-top-width", "0px");
       sources.add(await scene.evaluate(el => el.tagName === "CANVAS" ? "3D" : el.getAttribute("src") ?? getComputedStyle(el).backgroundImage));
     }
-    expect(sources.size).toBe(4);
+    expect(sources.size).toBe(5);
     await page.locator("#cv").scrollIntoViewIfNeeded();
     await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).click();
     await expect(page.getByRole("dialog").locator("[data-mascot]")).toBeVisible();

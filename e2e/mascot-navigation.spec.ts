@@ -49,7 +49,7 @@ test("navigation works without WebGL and never requests the archived 3D model", 
     await expect(page.locator('[data-interactive-mascot="development"] [data-body-mascot="development"]')).toBeVisible();
     expect(requested3D).toEqual([]);
 });
-test("each area includes a fourth, full standalone activity illustration", async ({ page }) => {
+test("each area includes a fifth scene and a full standalone activity illustration", async ({ page }) => {
     for (const path of ['/cybersecurity', '/software-development', '/electrical', '/electronics', '/repair', '/experience']) {
         await page.goto(path);
         const illustration = page.locator('img[data-mascot-scene="detail"]');
@@ -57,6 +57,6 @@ test("each area includes a fourth, full standalone activity illustration", async
         await expect(illustration).toBeVisible();
         await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth >= 1024 && img.naturalHeight >= 1300)).toBe(true);
         await expect(illustration).toHaveAttribute('alt', '');
-        await expect(page.locator('main [data-mascot-scene]')).toHaveCount(4);
+        await expect(page.locator('main [data-mascot-scene]')).toHaveCount(5);
     }
 });

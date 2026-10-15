@@ -60,10 +60,10 @@ const SiteHeader = () => {
         scrolled ? "border-b border-border bg-background/85 backdrop-blur-xl" : "border-b border-transparent",
       )}
     >
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4" aria-label={t("Main")}>
+      <nav className="container mx-auto flex h-20 items-center justify-between px-4" aria-label={t("Main")}>
         <Link to="/" className="group flex min-w-0 items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-14 w-14 shrink-0 place-items-center transition-transform duration-300 group-hover:scale-105">
-            <CulichiMascot variant={mascot} className="h-14 w-14" />
+          <span className="grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center transition-transform duration-300 group-hover:scale-105">
+            <CulichiMascot variant={mascot} className="h-[4.5rem] w-[4.5rem]" />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="text-sm transition-colors group-hover:text-primary sm:text-base">{t("Christian Velasco")}</span>
@@ -96,7 +96,7 @@ const SiteHeader = () => {
       </nav>
 
       {open && (
-        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background/98 backdrop-blur-xl lg:hidden">
+        <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-border bg-background/98 backdrop-blur-xl lg:hidden">
           <div className="container mx-auto px-4 pt-4 sm:hidden"><LanguageSwitcher /></div>
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map(item => <li key={item.href}>

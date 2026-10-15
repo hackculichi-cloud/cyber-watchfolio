@@ -25,6 +25,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
     const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
     const [phase, setPhase] = useState<MascotPhase>("standby");
     const [open, setOpen] = useState(false);
+    const [preview, setPreview] = useState<ProfileSlug | null>(null);
     const [target, setTarget] = useState<ProfileSlug | null>(null);
     useEffect(() => {
         const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -37,8 +38,11 @@ const InteractiveMascot = ({ profile = "home", className }: {
         if (!open)
             return;
         const outside = (event: PointerEvent) => {
-            if (!root.current?.contains(event.target as Node) && !locked.current)
+            if (!root.current?.contains(event.target as Node) && !locked.current) {
                 setOpen(false);
+                setPreview(null);
+                setPhase("standby");
+            }
         };
         document.addEventListener("pointerdown", outside);
         return () => document.removeEventListener("pointerdown", outside);
@@ -46,8 +50,12 @@ const InteractiveMascot = ({ profile = "home", className }: {
     const greet = () => { if (!locked.current) setPhase("ready"); };
     const close = () => { if (!locked.current) {
         setOpen(false);
+        setPreview(null);
         setPhase("standby");
     } };
+    const prepare = (slug: ProfileSlug) => {
+        if (!locked.current) { setPreview(slug); setPhase("ready"); }
+    };
     const choose = (event: MouseEvent<HTMLAnchorElement>, slug: ProfileSlug, href: string) => {
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0)
             return;
@@ -67,7 +75,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         else
             navigationTimer.current = setTimeout(() => navigate(href), transformDuration);
     };
-    return <div ref={root} data-interactive-mascot={profile} data-phase={phase} data-mascot-renderer="illustration" data-home-mascot={profile === "home" || undefined} className={cn("mascot-selector relative h-[28rem] w-full max-w-[30rem] sm:h-[32rem]", className)} onFocusCapture={() => clearTimeout(closeTimer.current)} onPointerEnter={event => { clearTimeout(closeTimer.current); if (event.pointerType === "mouse" && !locked.current) {
+    return <div ref={root} data-interactive-mascot={profile} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className={cn("mascot-selector relative h-[30rem] w-full max-w-[30rem] sm:h-[34rem]", className)} onFocusCapture={() => clearTimeout(closeTimer.current)} onPointerEnter={event => { clearTimeout(closeTimer.current); if (event.pointerType === "mouse" && !locked.current) {
         setOpen(true);
         greet();
     } }} onPointerLeave={() => {
@@ -92,16 +100,17 @@ const InteractiveMascot = ({ profile = "home", className }: {
         setOpen(true); }} onClick={() => { if (!locked.current) {
         setOpen(true);
         greet();
-    } }} className="absolute bottom-0 left-1/2 w-80 -translate-x-1/2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-96">
-      <span className={cn("relative block", phase === "transforming" && "mascot-transform")}>
+    } }} className="absolute bottom-0 left-1/2 w-[min(22rem,100%)] -translate-x-1/2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary sm:w-[26rem]">
+      <span data-profile={target ?? preview ?? (profile === "home" ? undefined : profile)} className={cn("relative block", phase === "transforming" && "mascot-transform", preview && !target && "mascot-preparing")}>
+        <span aria-hidden className="mascot-aura pointer-events-none absolute inset-6 rounded-full border border-primary/50" />
         <span className="mascot-source block w-full">
           <CulichiBody profile={profile} className="w-full" />
         </span>
-        {target && <span aria-hidden className="mascot-target absolute inset-0"><CulichiBody profile={target} className="w-full"/></span>}
+        {(target ?? preview) && <span key={target ?? preview} aria-hidden data-outfit-preview={target ?? preview} className={cn("pointer-events-none absolute inset-0", target ? "mascot-target" : "mascot-preview")}><CulichiBody profile={(target ?? preview)!} scene={false} className="w-full" /></span>}
       </span>
     </button>
     {open && <nav id={id} aria-label={t("Choose Culichi's outfit")} data-outfit-selector>
-      {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onClick={event => choose(event, area.slug, area.href)} aria-disabled={phase === "transforming"} data-profile={area.slug} data-outfit={area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex w-[4.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 rounded-xl px-1 py-2 text-center text-[10px] leading-tight text-primary outline-none hover:bg-primary/15 focus-visible:ring-2 focus-visible:ring-primary sm:w-[5.6rem] sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
+      {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onPointerLeave={event => { if (!locked.current && document.activeElement !== event.currentTarget) setPreview(null); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current) setPreview(null); }} aria-disabled={phase === "transforming"} data-profile={area.slug} data-outfit={area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex w-[4.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 rounded-xl px-1 py-2 text-center text-[10px] leading-tight text-primary outline-none hover:bg-primary/15 focus-visible:ring-2 focus-visible:ring-primary sm:w-[5.6rem] sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
         <span className={cn("grid h-9 w-9 place-items-center rounded-full border border-primary/60 bg-background/90 shadow-[0_0_12px_hsl(var(--primary)/0.2)]", profile === area.slug && "bg-primary/20 ring-2 ring-primary/40")}><area.icon className="h-4 w-4" aria-hidden/></span>
         {t(shortNames[i])}
       </Link>)}

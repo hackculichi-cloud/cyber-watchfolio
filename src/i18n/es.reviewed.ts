@@ -582,4 +582,10 @@ export const reviewedEs: Record<string, string> = {
   "Course knowledge, training exercises and completed work, with the context of each skill.": "Conocimientos de los cursos, ejercicios de formación y trabajos realizados, con el contexto de cada habilidad.",
   "Training & practice": "Formación y práctica",
   "Course practice": "Prácticas de curso",
+  "Let’s connect": "Conectemos",
+  "Ideas become projects.": "Las ideas se vuelven proyectos.",
+  "Let’s talk.": "Hablemos.",
+  "Learning, building and solving across technology and technical trades.": "Aprender, construir y resolver entre tecnología y oficios técnicos.",
+  "Explore my areas": "Explora mis áreas",
+  "Back to top": "Volver arriba",
 };

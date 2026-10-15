@@ -80,7 +80,7 @@ const Electrical = () => {
                 </div>
                 <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
                   <p className="min-w-0 flex-1 text-sm leading-relaxed text-muted-foreground">{t(track.description)}</p>
-                  {track.id === "electrical-udemy-measurements" && <MascotScene profile="electrical" scene="action" className="w-40 sm:w-52" />}
+                  {track.id === "electrical-udemy-measurements" && <MascotScene profile="electrical" scene="action" className="w-52 sm:w-60" />}
                 </div>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {track.topics.map((entry) => (

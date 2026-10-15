@@ -8,7 +8,7 @@ import Tag from "@/components/shared/Tag";
 export default function ProfileCapabilities({ profile }: { profile: ProfileSlug }) {
   const { t } = useLanguage();
   return <section id="overview" data-profile-capabilities={profile} className="container mx-auto scroll-mt-32 px-4 py-16">
-    <SectionHeading eyebrow={t("Knowledge & applied practice")} title={t("What I know and how I apply it")} description={t("Course knowledge, training exercises and completed work, with the context of each skill.")} />
+    <SectionHeading mascot={profile} mascotScene="practice" eyebrow={t("Knowledge & applied practice")} title={t("What I know and how I apply it")} description={t("Course knowledge, training exercises and completed work, with the context of each skill.")} />
     <div className="grid gap-4 md:grid-cols-2">
       {profileCapabilities[profile]?.map(item => <article key={item.title} className="glass-panel p-5">
         <Tag variant="primary">{t(item.status)}</Tag>

@@ -1,24 +1,128 @@
 {
   "action": {
-    "width": 1536, "height": 1024,
+    "width": 1536,
+    "height": 1024,
     "regions": {
-      "cybersecurity": [0, 0, 515, 493],
-      "development": [528, 0, 499, 493],
-      "electrical": [1034, 0, 502, 493],
-      "electronics": [0, 493, 515, 531],
-      "repair": [528, 493, 499, 531],
-      "customer-service": [1034, 493, 502, 531]
+      "cybersecurity": [
+        0,
+        0,
+        515,
+        493
+      ],
+      "development": [
+        528,
+        0,
+        499,
+        493
+      ],
+      "electrical": [
+        1034,
+        0,
+        502,
+        493
+      ],
+      "electronics": [
+        0,
+        493,
+        515,
+        531
+      ],
+      "repair": [
+        528,
+        493,
+        499,
+        531
+      ],
+      "customer-service": [
+        1034,
+        493,
+        502,
+        531
+      ]
     }
   },
   "closing": {
-    "width": 1254, "height": 1254,
+    "width": 1254,
+    "height": 1254,
     "regions": {
-      "cybersecurity": [0, 0, 440, 618],
-      "development": [444, 0, 370, 618],
-      "electrical": [815, 0, 439, 610],
-      "electronics": [0, 618, 430, 636],
-      "repair": [430, 618, 410, 636],
-      "customer-service": [840, 618, 414, 636]
+      "cybersecurity": [
+        0,
+        0,
+        440,
+        618
+      ],
+      "development": [
+        444,
+        0,
+        370,
+        618
+      ],
+      "electrical": [
+        815,
+        0,
+        439,
+        610
+      ],
+      "electronics": [
+        0,
+        618,
+        430,
+        636
+      ],
+      "repair": [
+        430,
+        618,
+        410,
+        636
+      ],
+      "customer-service": [
+        840,
+        618,
+        414,
+        636
+      ]
+    }
+  },
+  "practice": {
+    "width": 1536,
+    "height": 1024,
+    "regions": {
+      "cybersecurity": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "development": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "electrical": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "electronics": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "repair": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "customer-service": [
+        1024,
+        512,
+        512,
+        512
+      ]
     }
   }
 }
