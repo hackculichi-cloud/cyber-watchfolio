@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("home replaces the text experience block with a phone profile and bilingual skills page", async ({ page }) => {
   await page.goto("/");
-  const card = page.locator('[data-profile="customer-service"][href="/experience"]');
+  const card = page.getByRole("link", { name: "Explore the Call Center & Customer Service profile", exact: true });
   await expect(card.getByRole("heading", { name: "Call Center & Customer Service", exact: true })).toBeVisible();
   await expect(card.locator("svg.lucide-phone-call")).toBeVisible();
   await expect(page.getByText("Professional strength", { exact: true })).toHaveCount(0);

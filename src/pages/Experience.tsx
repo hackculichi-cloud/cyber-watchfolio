@@ -43,7 +43,7 @@ const Experience = () => {
 
       <section id="background" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("Experience")} title={t(experienceSummary.headline)} description={t(experienceSummary.statement)} />
+          <SectionHeading mascot={profile.slug} mascotScene="practice" eyebrow={t("Experience")} title={t(experienceSummary.headline)} description={t(experienceSummary.statement)} />
           <div className="grid max-w-2xl grid-cols-3 gap-3">
             {experienceSummary.stats.map(stat => <div key={stat.label} className="panel text-center">
               <p className="text-2xl font-bold text-primary">{t(stat.value)}</p>

@@ -29,7 +29,7 @@ const ProfileSectionNav = ({ sections }: { sections: ProfileSection[] }) => {
   return (
     <nav
       aria-label={t("Profile sections")}
-      className="sticky top-16 z-30 border-b border-border bg-background/85 backdrop-blur-xl"
+      className="sticky top-20 z-30 border-b border-border bg-background/85 backdrop-blur-xl"
     >
       <ul className="container mx-auto flex gap-1 overflow-x-auto px-4 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {sections.map((s) => (

@@ -1,54 +1,57 @@
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail } from "lucide-react";
-import { navigation, site } from "@/data/site";
+import { ArrowUp, ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { site } from "@/data/site";
+import { professionalProfiles } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ContactPreview from "@/components/shared/ContactPreview";
+import CulichiMascot from "@/components/shared/CulichiMascot";
 
-const iconButton = "rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary";
-
+const areaNames = ["Cybersecurity", "Software", "Electricity", "Electronics", "Repair", "Customer service"];
+const contactLink = "inline-flex min-h-11 items-center gap-2 rounded-lg border border-border/70 bg-background/50 px-3 py-2 text-sm text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
 const SiteFooter = () => {
   const { t } = useLanguage();
-  return (
-    <footer className="border-t border-border bg-surface/40">
-      <div className="container mx-auto grid gap-10 px-4 py-14 md:grid-cols-[1.4fr_1fr]">
+  return <footer className="site-footer relative isolate overflow-hidden border-t border-border bg-[#080f1b]">
+    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_15%_20%,hsl(var(--primary)/0.12),transparent_60%)]" />
+    <div aria-hidden className="flex h-0.5">{professionalProfiles.map(area => <span key={area.slug} data-profile={area.slug} className="flex-1 bg-primary/80" />)}</div>
+    <div className="container mx-auto px-4">
+      <div className="flex flex-col justify-between gap-7 border-b border-border/70 py-12 sm:py-16 lg:flex-row lg:items-center">
+        <div className="max-w-2xl">
+          <p className="eyebrow">{t("Let’s connect")}</p>
+          <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">{t("Ideas become projects.")}<br /><span className="text-primary">{t("Let’s talk.")}</span></h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
+        </div>
+        <ContactPreview channel="Email" href={`mailto:${site.email}`} className="group inline-flex min-h-14 w-fit max-w-full items-center gap-3 rounded-xl border border-primary/40 bg-primary/10 px-5 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <Mail className="h-5 w-5 shrink-0" aria-hidden /><span className="break-all">{site.email}</span><ArrowUpRight className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+        </ContactPreview>
+      </div>
+      <div className="grid gap-10 py-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
         <div>
-          <p className="text-lg font-semibold">{t(site.shortName)}</p>
-          <p className="mt-1 text-sm text-primary">{t(site.role)}</p>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">{t(site.tagline)}</p>
-
-          <div className="mt-6 flex items-center gap-3">
-            <ContactPreview channel="Email" href={`mailto:${site.email}`} ariaLabel={t("Email")} className={iconButton}>
-              <Mail className="h-4 w-4" />
-            </ContactPreview>
-            <ContactPreview channel="GitHub" href={site.github} external ariaLabel={t("GitHub")} className={iconButton}>
-              <Github className="h-4 w-4" />
-            </ContactPreview>
-            <ContactPreview channel="LinkedIn" href={site.linkedin} external ariaLabel={t("LinkedIn")} className={iconButton}>
-              <Linkedin className="h-4 w-4" />
-            </ContactPreview>
+          <Link to="/" className="inline-flex items-center gap-4 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <CulichiMascot variant="emblem" decorative className="h-24 w-24 sm:h-28 sm:w-28" />
+            <span><span className="block text-3xl font-bold tracking-tight sm:text-4xl">Culichi<span className="text-primary">.</span></span><span className="mt-1 block text-sm text-muted-foreground">{site.shortName}</span></span>
+          </Link>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <ContactPreview channel="GitHub" href={site.github} external className={contactLink}><Github className="h-4 w-4" aria-hidden />GitHub<ArrowUpRight className="h-3 w-3" aria-hidden /></ContactPreview>
+            <ContactPreview channel="LinkedIn" href={site.linkedin} external className={contactLink}><Linkedin className="h-4 w-4" aria-hidden />LinkedIn<ArrowUpRight className="h-3 w-3" aria-hidden /></ContactPreview>
           </div>
         </div>
-
         <nav aria-label={t("Footer")}>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">{t("Navigate")}</p>
-          <ul className="mt-4 grid grid-cols-2 gap-2 text-sm">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link to={item.href} className="text-muted-foreground transition-colors hover:text-foreground">
-                  {t(item.label)}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p className="text-xs font-semibold uppercase tracking-[.18em] text-muted-foreground">{t("Explore my areas")}</p>
+          <ul className="mt-5 grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:grid-cols-3">{professionalProfiles.map((area, i) => <li key={area.slug}>
+            <Link to={area.href} data-profile={area.slug} className="group flex h-full min-h-16 items-center gap-2 rounded-xl sm:gap-2.5 border border-border/60 bg-background/40 px-3 py-3 text-xs transition-colors sm:text-sm hover:border-primary/50 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              <area.icon className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" aria-hidden /><span className="min-w-0 break-words text-foreground/90 group-hover:text-primary">{t(areaNames[i])}</span>
+            </Link>
+          </li>)}</ul>
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">{[["About", "/about"], ["CV", "/cv"], ["Contact", "/contact"]].map(([label, href]) => <li key={href}><Link to={href} className="rounded transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t(label)}</Link></li>)}</ul>
         </nav>
       </div>
-
-      <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {t(site.shortName)}. {t("Built with React, TypeScript and Tailwind CSS.")}
+      <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border/70 py-6 text-xs text-muted-foreground">
+        <p>© {new Date().getFullYear()} {site.shortName} <span className="text-primary/70">/ aka Culichi</span></p>
+        <a href="#main" className="inline-flex min-h-10 items-center gap-2 rounded px-2 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t("Back to top")}<ArrowUp className="h-4 w-4" aria-hidden /></a>
       </div>
-    </footer>
-  );
+    </div>
+  </footer>;
 };
-
 export default SiteFooter;

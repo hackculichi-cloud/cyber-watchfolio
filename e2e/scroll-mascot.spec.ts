@@ -5,12 +5,11 @@ import { test, expect } from "@playwright/test";
 test("profile mascots appear between content blocks, never as floating overlays", async ({ page }) => {
   for (const path of ["/cybersecurity", "/software-development", "/electrical", "/electronics", "/repair", "/experience"]) {
     await page.goto(path);
-    // Wait for the async model to replace its illustration before inspecting its DOM node.
-    await expect(page.locator('canvas[data-mascot-scene="entry"]')).toBeVisible();
+    await expect(page.locator('[data-body-mascot] [data-mascot-scene="entry"]')).toBeVisible();
     const scenes = page.locator("main [data-mascot-scene]");
-    await expect(scenes).toHaveCount(4);
+    await expect(scenes).toHaveCount(5);
     const sources = new Set<string>();
-    for (const kind of ["entry", "action", "detail", "closing"]) {
+    for (const kind of ["entry", "practice", "action", "detail", "closing"]) {
       const scene = page.locator(`main [data-mascot-scene="${kind}"]`);
       await scene.scrollIntoViewIfNeeded();
       await expect(scene).toBeVisible();
@@ -18,7 +17,7 @@ test("profile mascots appear between content blocks, never as floating overlays"
       await expect(scene).toHaveCSS("border-top-width", "0px");
       sources.add(await scene.evaluate(el => el.tagName === "CANVAS" ? "3D" : el.getAttribute("src") ?? getComputedStyle(el).backgroundImage));
     }
-    expect(sources.size).toBe(4);
+    expect(sources.size).toBe(5);
     await page.locator("#cv").scrollIntoViewIfNeeded();
     await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).click();
     await expect(page.getByRole("dialog").locator("[data-mascot]")).toBeVisible();
@@ -64,38 +63,26 @@ test("Udemy electrical measurements is in progress with ten bilingual learning o
   await expect(course.getByText("Medición de continuidad en circuitos sin energía.", { exact: true })).toBeVisible();
 });
 
-test("home mascot greets, rests, reveals six outfits and transforms before navigating", async ({ page }) => {
+test("illustrated mascot reveals six outfits and transitions before navigating", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   const mascot = page.locator("[data-home-mascot]");
   const box = (await mascot.boundingBox())!;
   expect(box.x + box.width).toBeLessThan(1440 / 2);
-  const model = mascot.locator('canvas[data-mascot]');
-  await expect(mascot.locator('[data-fox-renderer]')).toHaveAttribute("data-fox-renderer", "webgl");
+  await expect(mascot).toHaveAttribute("data-mascot-renderer", "illustration");
   await expect(mascot).toHaveAttribute("data-phase", "standby");
-  const angles = await model.evaluate(el => new Promise<string[]>(resolve => {
-    (el.closest("button") as HTMLButtonElement).click();
-    const values: string[] = [];
-    const timer = setInterval(() => { values.push((el as HTMLElement).dataset.waveAngle ?? ""); if (values.length === 60) { clearInterval(timer);resolve(values); } }, 30);
-  }));
-  const values = angles.map(Number);
-  expect(Math.min(...values)).toBeLessThan(-1.5);
-  expect(Math.max(...values)).toBeGreaterThan(-.2);
-  expect(values.some(angle => angle < -.3 && angle > -2.2)).toBe(true);
-  await expect(mascot).toHaveAttribute("data-phase", /standby|ready/);
   await mascot.getByRole("button").hover();
   await expect(mascot.locator("[data-outfit]")).toHaveCount(6);
   await expect(page).toHaveURL(/\/$/);
   await mascot.locator('[data-outfit="electrical"]').click();
   await expect(mascot).toHaveAttribute("data-phase", "transforming");
   await expect(page).toHaveURL(/\/$/);
-  await expect(model).toHaveAttribute("data-model-outfit", "electrical");
+  await expect(mascot.locator('.mascot-target [data-body-mascot="electrical"]')).toBeVisible();
   await expect(page).toHaveURL(/\/electrical$/);
   const destination = page.locator('[data-interactive-mascot="electrical"]');
   await expect(destination).toBeVisible();
-  await expect(destination).toHaveAttribute("data-phase", /standby|ready/);
   await destination.getByRole("button").click();
-  await expect(destination).toHaveAttribute("data-phase", "greeting");
+  await expect(destination).toHaveAttribute("data-phase", "ready");
 });
 
 test("outfit selector supports keyboard, touch and reduced motion", async ({ page, browser }) => {
@@ -114,7 +101,8 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   await mascot.locator('[data-outfit="electronics"]').focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/electronics$/);
-  await expect(page.locator('canvas[data-mascot]')).toHaveAttribute("data-wave-angle", "-0.1");
+  await expect(page.locator('[data-interactive-mascot="electronics"] [data-body-mascot="electronics"]')).toBeVisible();
+  await expect(page.locator("main canvas")).toHaveCount(0);
   const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true });
   const mobile = await context.newPage();
   await mobile.goto("/");

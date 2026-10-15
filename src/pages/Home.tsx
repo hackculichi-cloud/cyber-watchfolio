@@ -1,3 +1,4 @@
+import HomeCharacters from "@/components/shared/HomeCharacters";
 import homeBackground from "@/assets/culichi-home-background.webp";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -76,11 +77,10 @@ const Home = () => {
 
       {/* Professional profile */}
       <section className="container mx-auto px-4 py-20">
-        <SectionHeading
-          eyebrow={t("Professional profile")}
-          title={t("Skills and professional areas")}
-          description={t(site.intro)}
-        />
+        <div className="mb-10 flex flex-col items-center gap-6 lg:flex-row">
+          <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Professional profile")} title={t("Skills and professional areas")} description={t(site.intro)} /></div>
+          <HomeCharacters profiles={["cybersecurity", "development"]} scene="detail" />
+        </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {professionalProfiles.map((p, i) => (
             <Reveal key={p.title} delay={i * 90} className="h-full">
@@ -92,11 +92,10 @@ const Home = () => {
 
       {/* Current focus */}
       <section className="container mx-auto px-4 py-20">
-        <SectionHeading
-          eyebrow={t("Current focus")}
-          title={t("What I am working on right now")}
-          description={t("An honest snapshot of my learning path — updated as I progress.")}
-        />
+        <div className="mb-10 flex flex-col items-center gap-6 lg:flex-row">
+          <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Current focus")} title={t("What I am working on right now")} description={t("An honest snapshot of my learning path — updated as I progress.")} /></div>
+          <HomeCharacters profiles={["electrical", "electronics"]} scene="action" />
+        </div>
         <div className="grid gap-4 md:grid-cols-3">
           {[
             { title: "Cybersecurity fundamentals", body: "Networking, Linux, hardening and SOC-oriented monitoring and detection practice.", tag: "In progress" },
@@ -117,15 +116,13 @@ const Home = () => {
       {/* CTA */}
       <section className="container mx-auto px-4 pb-24">
         <Reveal from="scale">
-          <div className="panel lift flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+          <div className="flex flex-col items-start justify-between gap-8 border-t border-border/60 pt-12 lg:flex-row lg:items-center">
             <div>
               <h2 className="text-xl font-semibold">{t("Open to IT, cybersecurity and development opportunities")}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
+              <Button asChild size="lg" className="group mt-6"><Link to="/contact">{t("Get in touch ")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></Link></Button>
             </div>
-            <Button asChild size="lg" className="group">
-              <Link to="/contact">{t("Get in touch ")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </Button>
+            <HomeCharacters profiles={["repair", "customer-service"]} scene="practice" />
           </div>
         </Reveal>
       </section>
