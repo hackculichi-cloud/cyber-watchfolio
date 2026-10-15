@@ -37,7 +37,6 @@ const WorkCard = ({ item, onOpen }: { item: WorkItem; onOpen: (id: string) => vo
           </p>
         )}
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
-        {item.reviewRequired && <p className="mt-3 text-sm font-semibold text-primary">{t("Electrical review required")}</p>}
 
         {(item.skills?.length || item.technologies?.length || item.tools?.length) && (
           <div className="mt-4 flex flex-wrap gap-1.5">

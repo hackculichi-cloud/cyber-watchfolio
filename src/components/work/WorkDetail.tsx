@@ -40,7 +40,6 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
       <div className="flex flex-wrap gap-1.5">
         <Tag variant="primary">{t(item.category)}</Tag>
         <Tag>{t(item.status)}</Tag>
-        {item.reviewRequired && <Tag variant="accent">{t("Electrical review required")}</Tag>}
         {item.difficulty && <Tag variant="accent">{t(item.difficulty)}</Tag>}
         {item.date && <Tag>{t(item.date)}</Tag>}
         {item.environment && <Tag>{t(item.environment)}</Tag>}
@@ -80,8 +79,9 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
           </li>)}
         </ol>
       </section> : null}
-      {item.reviewNotes?.length ? <section data-practice-review className="rounded-lg border border-primary/30 bg-primary/5 p-4">
-        <List title="Checks to document or review" items={item.reviewNotes} />
+      {item.protocol?.length ? <section data-work-protocol className="rounded-lg border border-primary/30 bg-primary/5 p-4">
+        <p className="mb-3 text-xs leading-relaxed text-muted-foreground">{t("Reference checklist. Performed actions and recorded results are described in the process above.")}</p>
+        <List title="Work protocol" items={item.protocol} />
       </section> : null}
       {item.technicalExplanation && <section className="space-y-2">
         <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Technical explanation")}</h4>

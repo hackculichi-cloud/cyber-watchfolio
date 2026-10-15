@@ -33,8 +33,8 @@ export type WorkItem = {
   procedure?: string[];
   /** Photo-backed stages, distinct from any checks still awaiting confirmation. */
   documentedSteps?: { title: string; description: string; images?: WorkImage[] }[];
-  reviewNotes?: string[];
-  reviewRequired?: boolean;
+  /** Reference checklist; does not assert unrecorded steps were performed. */
+  protocol?: string[];
   technicalExplanation?: string;
   did?: string[];
   learned?: string[];

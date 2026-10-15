@@ -21,9 +21,15 @@ const SiteFooter = () => {
           <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">{t("Ideas become projects.")}<br /><span className="text-primary">{t("Let’s talk.")}</span></h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
         </div>
+        <div data-footer-contact className="min-w-0">
         <ContactPreview channel="Email" href={`mailto:${site.email}`} className="group inline-flex min-h-14 w-fit max-w-full items-center gap-3 rounded-xl border border-primary/40 bg-primary/10 px-5 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <Mail className="h-5 w-5 shrink-0" aria-hidden /><span className="break-all">{site.email}</span><ArrowUpRight className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
         </ContactPreview>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <ContactPreview channel="GitHub" href={site.github} external className={contactLink}><Github className="h-4 w-4" aria-hidden />GitHub<ArrowUpRight className="h-3 w-3" aria-hidden /></ContactPreview>
+            <ContactPreview channel="LinkedIn" href={site.linkedin} external className={contactLink}><Linkedin className="h-4 w-4" aria-hidden />LinkedIn<ArrowUpRight className="h-3 w-3" aria-hidden /></ContactPreview>
+          </div>
+        </div>
       </div>
       <div className="grid gap-10 py-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
         <div>
@@ -32,10 +38,7 @@ const SiteFooter = () => {
             <span><span className="block text-3xl font-bold tracking-tight sm:text-4xl">Culichi<span className="text-primary">.</span></span><span className="mt-1 block text-sm text-muted-foreground">{site.shortName}</span></span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            <ContactPreview channel="GitHub" href={site.github} external className={contactLink}><Github className="h-4 w-4" aria-hidden />GitHub<ArrowUpRight className="h-3 w-3" aria-hidden /></ContactPreview>
-            <ContactPreview channel="LinkedIn" href={site.linkedin} external className={contactLink}><Linkedin className="h-4 w-4" aria-hidden />LinkedIn<ArrowUpRight className="h-3 w-3" aria-hidden /></ContactPreview>
-          </div>
+
         </div>
         <nav aria-label={t("Footer")}>
           <p className="text-xs font-semibold uppercase tracking-[.18em] text-muted-foreground">{t("Explore my areas")}</p>

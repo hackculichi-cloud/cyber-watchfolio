@@ -1,8 +1,8 @@
-import HomeCharacters from "@/components/shared/HomeCharacters";
+import HomeCharacter from "@/components/shared/HomeCharacter";
 import homeBackground from "@/assets/culichi-home-background.webp";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -59,15 +59,9 @@ const Home = () => {
               <ContactPreview channel="Email" href={`mailto:${site.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-primary">
                 <Mail className="h-4 w-4" /> {t(site.email)}
               </ContactPreview>
-              <ContactPreview channel="GitHub" href={site.github} external className="inline-flex items-center gap-2 transition-colors hover:text-primary">
-                <Github className="h-4 w-4" /> {t(site.githubHandle)}
-              </ContactPreview>
-              <ContactPreview channel="LinkedIn" href={site.linkedin} external className="inline-flex items-center gap-2 transition-colors hover:text-primary">
-                <Linkedin className="h-4 w-4" /> {t(site.linkedinHandle)}
-              </ContactPreview>
             </div>
             <div className="mt-2 sm:mt-5" data-home-mascot-zone>
-              <InteractiveMascot className="mx-auto h-[22rem] data-[selector-open=true]:h-[27rem] sm:mx-0 sm:h-[34rem] sm:data-[selector-open=true]:h-[34rem] [&>button]:w-[min(20rem,90%)] sm:[&>button]:w-[26rem]" />
+              <InteractiveMascot className="mx-auto sm:mx-0" />
             </div>
           </div>
 
@@ -84,7 +78,7 @@ const Home = () => {
       <section className="container mx-auto px-4 py-20">
         <div className="mb-10 flex flex-col items-center gap-6 lg:flex-row">
           <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Professional profile")} title={t("Skills and professional areas")} description={t(site.intro)} /></div>
-          <HomeCharacters profiles={["cybersecurity", "development"]} scene="detail" />
+          <HomeCharacter profile="cybersecurity" scene="hanging" className="-mb-10 self-end border-t border-primary/30 lg:-mt-16" />
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {professionalProfiles.map((p, i) => (
@@ -93,13 +87,21 @@ const Home = () => {
             </Reveal>
           ))}
         </div>
+        <div className="relative mt-8 flex flex-col items-start gap-3 border-b border-primary/30 pb-4 sm:flex-row sm:items-end sm:gap-8" data-home-workbench>
+          <HomeCharacter profile="development" scene="practice" className="-mb-6 self-start" />
+          <div className="relative z-10 max-w-xl py-4 sm:pb-8">
+            <p className="eyebrow">{t("Built through practice")}</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t("This portfolio is one of my software projects: React, TypeScript and a documented workflow, improved one change at a time.")}</p>
+            <Link to="/software-development" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">{t("Explore software development")}<ArrowRight className="h-4 w-4" aria-hidden /></Link>
+          </div>
+        </div>
       </section>
 
       {/* Current focus */}
       <section className="container mx-auto px-4 py-20">
         <div className="mb-10 flex flex-col items-center gap-6 lg:flex-row">
           <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Current focus")} title={t("What I am working on right now")} description={t("An honest snapshot of my learning path — updated as I progress.")} /></div>
-          <HomeCharacters profiles={["electrical", "electronics"]} scene="action" />
+          <HomeCharacter profile="electrical" scene="action" className="-mb-12 self-start lg:order-first" />
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {[
@@ -112,6 +114,7 @@ const Home = () => {
                 <Tag variant="accent">{t(c.tag)}</Tag>
                 <h3 className="mt-3 text-base font-semibold">{t(c.title)}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(c.body)}</p>
+                {i === 2 && <HomeCharacter profile="electronics" scene="practice" className="-mb-7 ml-auto mt-3 w-40 sm:w-44" />}
               </div>
             </Reveal>
           ))}
@@ -127,9 +130,17 @@ const Home = () => {
               <p className="mt-2 text-sm text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
               <Button asChild size="lg" className="group mt-6"><Link to="/contact">{t("Get in touch ")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></Link></Button>
             </div>
-            <HomeCharacters profiles={["repair", "customer-service"]} scene="practice" />
+            <HomeCharacter profile="repair" scene="practice" className="-mb-5 self-end" />
           </div>
         </Reveal>
+        <div className="relative mt-14 flex flex-col items-start gap-2 border-t border-primary/25 pt-5 sm:flex-row sm:items-center sm:justify-between" data-home-service>
+          <HomeCharacter profile="customer-service" scene="closing" className="-mt-8 self-start sm:order-last" />
+          <div className="max-w-2xl">
+            <p className="eyebrow">{t("People behind technology")}</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t("Operations supervision, Tier 2 support and technical training connect my customer-service background with the way I investigate problems and explain solutions.")}</p>
+            <Link to="/experience#background" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">{t("Explore my professional experience")}<ArrowRight className="h-4 w-4" aria-hidden /></Link>
+          </div>
+        </div>
       </section>
     </>
   );

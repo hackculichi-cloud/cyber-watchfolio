@@ -9,7 +9,7 @@ Source: user upload `cambio de contacto.zip`, 16 electrical JPEGs preserved byte
 - The owner confirms checking polarity and protective earth, and identifying conductors with colored tape.
 - A photograph shows a multimeter displaying **119.3 V AC** between the outlet slots. Another shows a three-light plug-in tester. This does not independently establish an effective protective-earth path or exclude a neutral-to-earth bridge.
 - The owner reports **not disconnecting the circuit because the client refused an outage** and reports a **15 A outlet with a 30 A circuit breaker**.
-- Completion refers to the physical replacement, not electrical approval. The published case is explicitly marked **Electrical review required**.
+- Completion refers to the physical replacement, not electrical approval. The public case records these facts and separates the reference work protocol from actions actually documented. At the owner’s request the review badge and Before/During/After comparison were removed; the original photographs remain in the process record and gallery.
 
 ## Assessment and missing documentation
 
