@@ -98,7 +98,7 @@ test("mobile home gives the mascot and group artwork separate space", async ({ b
     const closed = (await selector.boundingBox())!;
     expect(closed.height).toBeCloseTo(closed.width, 1);
     await assertSeparate();
-    await selector.getByRole("button").tap();
+    await selector.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).tap();
     await expect(selector.locator('[data-outfit]')).toHaveCount(6);
     for (const link of await selector.locator('[data-outfit]').all()) {
       await expect.poll(async () => {

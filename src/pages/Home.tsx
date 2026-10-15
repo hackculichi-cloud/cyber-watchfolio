@@ -1,4 +1,5 @@
 import HomeCharacter from "@/components/shared/HomeCharacter";
+import CulichiOrigins from "@/components/shared/CulichiOrigins";
 import homeBackground from "@/assets/culichi-home-background.webp";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -25,7 +26,7 @@ const Home = () => {
       />
 
       {/* Hero */}
-      <section className="grid-bg relative isolate overflow-hidden border-b border-border">
+      <section className="grid-bg relative isolate overflow-clip border-b border-border">
         <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 hidden h-full w-full -translate-y-12 object-cover object-right-top opacity-90 md:block" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.98)_0%,hsl(var(--background)/0.88)_42%,hsl(var(--background)/0.32)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
@@ -43,8 +44,7 @@ const Home = () => {
 
             <div className="animate-fade-in-up delay-300 mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="lift">
-                <Link to="/cybersecurity">{t("Explore my work ")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
+                <Link to="/#areas">{t("Choose an area")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="lift">
                 <Link to="/cv">
@@ -62,6 +62,7 @@ const Home = () => {
             </div>
             <div className="mt-2 sm:mt-5" data-home-mascot-zone>
               <InteractiveMascot className="mx-auto sm:mx-0" />
+              <CulichiOrigins />
             </div>
           </div>
 
@@ -80,7 +81,7 @@ const Home = () => {
           <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Professional profile")} title={t("Skills and professional areas")} description={t(site.intro)} /></div>
           <HomeCharacter profile="cybersecurity" scene="hanging" className="-mb-10 self-end border-t border-primary/30 lg:-mt-16" />
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div id="areas" className="grid scroll-mt-28 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {professionalProfiles.map((p, i) => (
             <Reveal key={p.title} delay={i * 90} className="h-full">
               <ProfileCard data={p} />

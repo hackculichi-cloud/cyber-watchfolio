@@ -59,7 +59,7 @@ const Experience = () => {
                 <h3 className="mt-2 text-lg font-semibold">{t(entry.title)}</h3>
                 <p className="mt-2 text-xs font-medium text-foreground/80">{t(entry.period)}</p>
                 {entry.location && <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{t(entry.location)}</p>}
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{t(entry.summary)}</p>
+                <p className="reading-copy mt-4 text-sm leading-relaxed text-muted-foreground">{t(entry.summary)}</p>
                 <ul className="mt-4 flex flex-wrap gap-2">{entry.highlights.map(item => <li key={item}><Tag>{t(item)}</Tag></li>)}</ul>
               </article>
             </li>)}

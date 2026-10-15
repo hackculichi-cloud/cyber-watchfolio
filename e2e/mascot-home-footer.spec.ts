@@ -6,7 +6,7 @@ test("hover and keyboard preview outfits without navigating; leaving restores th
   await page.goto("/");
   const stage = page.locator("[data-home-mascot]");
   await stage.scrollIntoViewIfNeeded();
-  await stage.getByRole("button").click();
+  await stage.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
   await stage.locator('[data-outfit="development"]').hover();
   await expect(stage).toHaveAttribute("data-preview-outfit", "development");
   const preview = stage.locator('[data-outfit-preview="development"]');
@@ -19,7 +19,7 @@ test("hover and keyboard preview outfits without navigating; leaving restores th
   await expect(stage.locator("[data-outfit-preview]")).toHaveCount(0);
   await expect(stage.locator('[data-body-mascot="home"]')).toBeVisible();
   await expect(page).toHaveURL(/\/$/);
-  await stage.getByRole("button").click();
+  await stage.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
   await stage.locator('[data-outfit="repair"]').click();
   await expect(page).toHaveURL(/\/repair$/);
 });

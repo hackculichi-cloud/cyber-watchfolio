@@ -21,7 +21,7 @@ const LanguageSwitcher = ({ className, compact = false }: { className?: string; 
             lang={o.value}
             title={o.label}
             className={cn(
-              "flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-colors",
+              "flex min-h-9 min-w-11 items-center justify-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-colors",
               active ? "bg-primary/15 text-primary" : "text-muted-foreground hover:text-foreground",
             )}
           >

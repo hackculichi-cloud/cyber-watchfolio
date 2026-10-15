@@ -4,7 +4,7 @@ test("all six selectors have distinct section colors, and work again inside a pr
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
     const home = page.locator('[data-home-mascot]');
-    await home.getByRole("button").click();
+    await home.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
     const colors = new Set<string>();
     for (const area of areas) {
         const option = home.locator(`[data-outfit="${area}"]`);
@@ -15,13 +15,13 @@ test("all six selectors have distinct section colors, and work again inside a pr
     await home.locator('[data-outfit="electrical"]').click();
     await expect(page).toHaveURL(/\/electrical$/);
     const inside = page.locator('[data-interactive-mascot="electrical"]');
-    await inside.getByRole("button").click();
+    await inside.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
     await expect(inside.locator('[data-outfit]')).toHaveCount(6);
     await expect(inside.locator('[data-outfit="electrical"]')).toHaveAttribute("aria-current", "page");
     // Choosing the current outfit must not lock subsequent choices.
     await inside.locator('[data-outfit="electrical"]').click();
     await expect(page).toHaveURL(/\/electrical$/);
-    await inside.getByRole("button").click();
+    await inside.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
     await inside.locator('[data-outfit="repair"]').click();
     await expect(page).toHaveURL(/\/repair$/);
     await expect(page.locator('[data-interactive-mascot="repair"] [data-body-mascot="repair"]')).toBeVisible();
@@ -43,7 +43,7 @@ test("navigation works without WebGL and never requests the archived 3D model", 
     await expect(home.locator('[data-body-mascot="home"]')).toBeVisible();
     await expect(home.locator("canvas")).toHaveCount(0);
     await expect(home).not.toContainText("Meet Culichi");
-    await home.getByRole("button").click();
+    await home.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
     await home.locator('[data-outfit="development"]').click();
     await expect(page).toHaveURL(/\/software-development$/);
     await expect(page.locator('[data-interactive-mascot="development"] [data-body-mascot="development"]')).toBeVisible();

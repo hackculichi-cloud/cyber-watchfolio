@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, PhoneCall, FileText, Mail, type LucideIcon } from "lucide-react";
 import { navigation } from "@/data/site";
@@ -39,6 +39,8 @@ const SiteHeader = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [mobileProfile, setMobileProfile] = useState<string | null>(null);
+  const header = useRef<HTMLElement>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const location = useLocation();
   const { t } = useLanguage();
   const mascotRoutes: Record<string, MascotVariant> = { "/cybersecurity": "cybersecurity", "/software-development": "development", "/electrical": "electrical", "/electronics": "electronics", "/repair": "repair", "/experience": "customer-service" };
@@ -59,9 +61,34 @@ const SiteHeader = () => {
   }, []);
 
   useEffect(() => { setOpen(false); setMobileProfile(null); }, [location.pathname, location.hash]);
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const closeWithEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { setOpen(false); menuButton.current?.focus(); }
+      if (event.key === "Tab") {
+        const controls = [...(header.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), select') ?? [])].filter(el => el.getClientRects().length > 0);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
+    };
+    const outside = (event: PointerEvent) => { if (!header.current?.contains(event.target as Node)) setOpen(false); };
+    document.addEventListener("keydown", closeWithEscape);
+    document.addEventListener("pointerdown", outside);
+    return () => { document.body.style.overflow = previousOverflow; document.removeEventListener("keydown", closeWithEscape); document.removeEventListener("pointerdown", outside); };
+  }, [open]);
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   return (
     <header
+      ref={header}
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
         scrolled ? "border-b border-border bg-background/85 backdrop-blur-xl" : "border-b border-transparent",
@@ -91,10 +118,12 @@ const SiteHeader = () => {
         <div className="flex items-center gap-2">
           <LanguageSwitcher compact className="hidden sm:flex lg:ml-2" />
           <Button variant="ghost" size="icon"
+            ref={menuButton}
             type="button"
             onClick={() => setOpen((v) => !v)}
             className="rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground lg:hidden"
             aria-expanded={open}
+            aria-controls="mobile-navigation"
             aria-label={t(open ? t("Close menu") : t("Open menu"))}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -103,12 +132,12 @@ const SiteHeader = () => {
       </nav>
 
       {open && (
-        <div className="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-border bg-background/98 backdrop-blur-xl lg:hidden">
+        <div id="mobile-navigation" className="max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-border bg-background/95 backdrop-blur-xl lg:hidden">
           <div className="container mx-auto px-4 pt-4 sm:hidden"><LanguageSwitcher /></div>
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map(item => <li key={item.href}>
               <div className="flex items-center justify-between gap-2">
-                <Link to={item.href} aria-label={t(item.label)} className="inline-flex min-h-11 min-w-0 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary">
+                <Link to={item.href} onClick={() => setOpen(false)} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
                   {navIconColor[item.label] && <NavIcon label={item.label} className={navIconColor[item.label]} />}{t(item.label)}
                 </Link>
                 {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => setMobileProfile(mobileProfile === item.href ? null : item.href)}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}

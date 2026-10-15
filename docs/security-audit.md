@@ -1,3 +1,33 @@
+# Revisión de seguridad — 15 de octubre de 2026
+
+## Resultado actual
+
+- Auditoría de dependencias de producción (`npm audit --omit=dev`): **0 avisos reportados**.
+- Auditoría completa: **8 avisos, 5 altos y 3 moderados; 0 críticos**. Corresponden al procesamiento de CSS durante desarrollo/compilación, no a un formulario público que acepte CSS o patrones.
+- `tailwindcss-animate` solo se importa desde la configuración de Tailwind. Se trasladó a `devDependencies`; no cambió ninguna versión de paquete. El cambio clasifica correctamente el árbol de compilación y no se presenta como una corrección de los avisos transitivos pendientes.
+- Se verificó instalación congelada con `npm ci`. `braces` 3.0.3 sigue siendo la versión publicada consultada y continúa afectada. El parser corregido 7.1.6 cruza las restricciones de los consumidores de la rama 6, incluida `@tailwindcss/typography` 0.5.20. No se aplicaron overrides entre versiones mayores ni una migración forzada a Tailwind 4 en este cambio de diseño.
+
+## Protección del sitio estático
+
+`vercel.json` añade una Content Security Policy: scripts y recursos locales, bloqueo de objetos/frames, de incrustación por otros sitios, de formularios y de cambios de base a otros orígenes. No permite JavaScript inline ni `eval`. Los estilos inline permanecen permitidos porque las posiciones de las ilustraciones y los componentes Radix los utilizan. También se aplican `X-Frame-Options: DENY` y `Cross-Origin-Opener-Policy: same-origin`; se conservan `nosniff`, Referrer-Policy y Permissions-Policy.
+
+El build de producción local utiliza exactamente esas cabeceras en `vite preview`. Las pruebas de navegador se ejecutan ahora en un servidor de producción dedicado en el puerto local 4173, con un build nuevo y la política real. El servidor de desarrollo permanece en 127.0.0.1:8080. El workflow realiza el build dentro de las pruebas de navegador, evitando duplicarlo.
+
+La prueba de seguridad comprueba que el sitio y las previsualizaciones de CV carguen y que el navegador bloquee un script inline de prueba. Las nuevas cabeceras no se declaran activas en producción hasta fusionar y desplegar el PR. El dominio público ya devuelve HSTS del proveedor (`max-age=63072000`); no se cambia esa configuración.
+
+## Exposición revisada
+
+- Aplicación estática, sin backend, inicio de sesión, API de escritura ni formulario que reciba datos. Contacto usa enlaces de correo/GitHub/LinkedIn; las vistas previas son locales.
+- No se encontraron archivos de formato secreto rastreados (`.env`, `.pem`, `.key`) ni coincidencias en la revisión acotada de patrones de claves privadas/tokens sobre fuentes y configuración. Nunca se imprimen posibles valores. No se publica ningún ZIP de trabajo ni source map en `public`.
+- Los contenidos se renderizan como texto React. El helper de estilos de gráficos usa configuración local y no recibe entradas públicas. Las rutas/hash se prueban con valores inválidos; el idioma continúa funcionando si el almacenamiento del navegador está bloqueado.
+- Fuentes, imágenes, mascotas y certificados se mantienen locales. No se añade un chat de IA, un servicio de generación, analítica ni un recurso remoto nuevo. La identidad de ríos/circuitos es una ilustración decorativa, no una declaración de competencia o integración de IA.
+
+La revisión cubre el árbol instalado, las fuentes actuales, la política del navegador y los flujos locales. No incluye una auditoría de las cuentas de GitHub/Vercel ni una prueba de penetración de infraestructura. Los avisos de herramientas pendientes continúan visibles en CI.
+
+---
+
+# Historial de revisiones anteriores
+
 # Auditoría de dependencias — 13 de octubre de 2026
 
 ## Actualización: retirada de herramientas de la plataforma anterior

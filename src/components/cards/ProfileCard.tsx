@@ -66,7 +66,7 @@ const ProfileCard = ({ data }: { data: ProfileCardData }) => {
 
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-lg font-semibold">{t(data.title)}</h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(data.summary)}</p>
+        <p className="reading-copy mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(data.summary)}</p>
 
         <div className="mt-4 flex flex-wrap gap-1.5">
           {data.focus.map((f) => (
