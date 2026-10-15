@@ -12,7 +12,7 @@ export const profileCapabilities: Partial<Record<ProfileSlug, ProfileCapability[
     },
     {
       "title": "Residential installations & planning",
-      "status": "Training & client practice",
+      "status": "Training & practice",
       "body": "I study conductors, cable selection, load calculations, distribution, conduit and installation standards. My practical work includes an installation board, outlet and switch replacement, and two ceiling luminaires for a residential client."
     },
     {

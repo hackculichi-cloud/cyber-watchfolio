@@ -74,7 +74,7 @@ const Electrical = () => {
         <div className="container mx-auto px-4 py-16">
           <SectionHeading
             eyebrow={t("Projects")}
-            title={t("Course practice & residential client work")}
+            title={t("Course practice & residential work")}
             description={t("Real photographs and video documenting float-switch training, outlet and switch replacement, and two replacement ceiling luminaires.")}
           />
           <span id="practice" className="scroll-mt-32" />

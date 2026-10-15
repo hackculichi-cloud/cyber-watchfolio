@@ -11,7 +11,7 @@ test("home replaces the text experience block with a phone profile and bilingual
   await expect(page).toHaveURL(/\/experience$/);
   await expect(page.locator('main[data-profile="customer-service"], [data-profile="customer-service"] main')).toHaveCount(1);
   await expect(page.getByRole("heading", { name: "Call Center & Customer Service", exact: true })).toBeVisible();
-  await expect(page.locator("#skills article")).toHaveCount(4);
+  await expect(page.locator("#skills article")).toHaveCount(8);
   await expect(page.locator("#background").getByText("5+", { exact: true })).toBeVisible();
   await expect(page.locator("#background").getByText("Languages (EN / ES)", { exact: true })).toBeVisible();
   await page.locator('button[lang="es"]:visible').first().click();
@@ -34,6 +34,6 @@ test("phone menu and customer-service skills remain usable on mobile", async ({ 
   await expect(link.locator("svg.lucide-phone-call")).toBeVisible();
   await link.click();
   await expect(page.getByRole("heading", { name: "Call Center & Customer Service", exact: true })).toBeVisible();
-  await expect(page.locator("#skills article")).toHaveCount(4);
+  await expect(page.locator("#skills article")).toHaveCount(8);
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

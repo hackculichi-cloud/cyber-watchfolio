@@ -46,7 +46,7 @@ export const professionalProfiles: ProfileCardData[] = [
     icon: Zap,
     emphasis: "secondary",
     focus: ["Installations", "Wiring", "Measurements", "Diagnostics"],
-    status: "Training & client practice",
+    status: "Training & practice",
   },
   {
     slug: "electronics",
@@ -158,11 +158,11 @@ export const profileIdentities: ProfileIdentity[] = [
     aliases: ["/electrical-electronics"],
     label: "Residential & Industrial Electrical Maintenance",
     eyebrow: "Technical profile",
-    status: "Training & client practice",
+    status: "Training & practice",
     description:
       "I combine electrical drawings, circuit analysis, measurement and installation knowledge with residential client maintenance and course practice. My RED CONOCER and Udemy studies also cover industrial systems, control, motors and diagnostics.",
     icon: Zap,
-    highlights: ["Float-switch practice", "Residential client work", "Wiring & panels", "Measurements"],
+    highlights: ["Float-switch practice", "Residential work", "Wiring & panels", "Measurements"],
     sections: [
       { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
@@ -231,9 +231,9 @@ export const profileIdentities: ProfileIdentity[] = [
     label: "Call Center & Customer Service",
     eyebrow: "Professional skills",
     status: "Professional experience",
-    description: "More than 5 years of bilingual customer service experience, developing strong communication, problem-solving, user support, and conflict-resolution skills.",
+    description: "Bilingual customer service, operations supervision and technical support experience at TCS, TTEC, Alorica and TP, including SLA follow-up, incident escalation, training and logistics coordination.",
     icon: PhoneCall,
-    highlights: ["English / Spanish", "Communication", "Customer support", "Conflict resolution"],
+    highlights: ["English / Spanish", "Operations supervision", "Tier 2 support", "Technical training"],
     sections: [
       { id: "specialties", label: "Specialties" },
       { id: "skills", label: "Skills" },

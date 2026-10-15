@@ -3,7 +3,8 @@ import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Seo from "@/components/shared/Seo";
-import { PhoneCall, Headset, ListChecks, Handshake } from "lucide-react";
+import { PhoneCall, Headset, ListChecks, Handshake, Users, Wrench, GraduationCap, Truck } from "lucide-react";
+import Tag from "@/components/shared/Tag";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
 import { profileBySlug } from "@/data/profiles";
@@ -12,7 +13,7 @@ import { experienceEntries, experienceSummary, transferableImpact, customerServi
 import { site } from "@/data/site";
 
 const profile = profileBySlug("customer-service");
-const skillIcons = { phone: PhoneCall, support: Headset, problem: ListChecks, conflict: Handshake };
+const skillIcons = { phone: PhoneCall, support: Headset, problem: ListChecks, conflict: Handshake, operations: Users, technical: Wrench, training: GraduationCap, logistics: Truck };
 
 const Experience = () => {
   const { t } = useLanguage();
@@ -50,6 +51,19 @@ const Experience = () => {
               <p className="mt-1 text-xs text-muted-foreground">{t(stat.label)}</p>
             </div>)}
           </div>
+          <ol data-career-timeline className="mt-10 space-y-0 border-l border-primary/30 pl-5 sm:pl-8">
+            {experienceEntries.map(entry => <li key={entry.id} data-career-role={entry.id} className="relative pb-9 last:pb-0">
+              <span aria-hidden className="absolute -left-[1.56rem] top-2 h-2.5 w-2.5 rounded-full border border-primary bg-background ring-4 ring-background sm:-left-[2.31rem]" />
+              <article className="rounded-xl border border-border bg-background/50 p-5">
+                <div className="flex flex-wrap items-center justify-between gap-3"><p className="text-sm font-semibold text-primary">{entry.organization}</p>{entry.current && <Tag variant="primary">{t("Current role")}</Tag>}</div>
+                <h3 className="mt-2 text-lg font-semibold">{t(entry.title)}</h3>
+                <p className="mt-2 text-xs font-medium text-foreground/80">{t(entry.period)}</p>
+                {entry.location && <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{t(entry.location)}</p>}
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{t(entry.summary)}</p>
+                <ul className="mt-4 flex flex-wrap gap-2">{entry.highlights.map(item => <li key={item}><Tag>{t(item)}</Tag></li>)}</ul>
+              </article>
+            </li>)}
+          </ol>
         </div>
       </section>
 
@@ -71,33 +85,6 @@ const Experience = () => {
         <ProfileCvBlock cvIds={profile.cvIds} />
       </section>
 
-      {experienceEntries.length > 0 && (
-        <section className="border-t border-border bg-surface/40">
-          <div className="container mx-auto px-4 py-16">
-            <SectionHeading eyebrow={t("Timeline")} title={t("Roles")} />
-            <div className="space-y-4">
-              {experienceEntries.map((entry) => (
-                <article key={entry.id} className="panel-glow">
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <h3 className="text-base font-semibold">{t(entry.title)}</h3>
-                    {entry.period && <span className="text-xs text-muted-foreground">{t(entry.period)}</span>}
-                  </div>
-                  {entry.organization && <p className="text-sm text-primary">{t(entry.organization)}</p>}
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(entry.summary)}</p>
-                  <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-                    {entry.highlights.map((h) => (
-                      <li key={h} className="flex gap-2">
-                        <span className="text-primary">•</span>
-                        {t(h)}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </>
   );
 };

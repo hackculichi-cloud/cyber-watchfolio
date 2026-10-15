@@ -7,7 +7,7 @@ import { chromium } from "@playwright/test";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(await readFile(resolve(root, "src/data/resumes.json"), "utf8"));
-const mascotAtlas = (await readFile(resolve(root, "src/assets/culichi-full-body-atlas.webp"))).toString("base64");
+const mascotAtlas = (await readFile(resolve(root, "src/assets/culichi-athletic-body-atlas.webp"))).toString("base64");
 const actionAtlas = (await readFile(resolve(root, "src/assets/culichi-action-scenes.webp"))).toString("base64");
 const scenes = JSON.parse(await readFile(resolve(root, "src/data/mascotScenes.json"), "utf8"));
 const mascotCells = { cybersecurity: 1, software: 2, electrical: 3, electronics: 4, repair: 5, "customer-service": 6 };

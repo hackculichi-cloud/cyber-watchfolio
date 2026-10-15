@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("electrical cases stay grouped, preserve original photos and disclose review findings", async ({ page, request }) => {
+test("electrical cases stay grouped, preserve original photos and keep protocol and intervention facts distinct", async ({ page, request }) => {
   await page.goto("/electrical#projects");
   const groups = page.locator("[data-electrical-practices]");
   await expect(groups.locator("article")).toHaveCount(0);
@@ -8,14 +8,17 @@ test("electrical cases stay grouped, preserve original photos and disclose revie
   await groups.locator('[data-electrical-group="residential-outlets"]').click();
   await expect(groups.locator("article")).toHaveCount(2);
   const record = groups.locator('[data-work="residential-outlet-october-2026"]');
-  await expect(record).toContainText("Electrical review required");
+  await expect(record).not.toContainText("Electrical review required");
+  await expect(record).toContainText("Residential");
   await record.getByRole("button", { name: "View project", exact: true }).last().click();
   const detail = page.getByRole("dialog");
   await expect(detail.locator("[data-documented-steps] ol > li")).toHaveCount(5);
   await expect(detail).toContainText("119.3 V AC");
   await expect(detail).toContainText("15 A outlet and 30 A circuit breaker");
   await expect(detail).toContainText("Confirmed checking polarity and protective earth");
-  await expect(detail.locator("[data-practice-review]")).toContainText("circuit was not disconnected");
+  await expect(detail.locator("[data-work-protocol]")).toContainText("Disconnect the circuit");
+  await expect(detail).toContainText("circuit energized");
+  await expect(detail.getByRole("heading", { name: "Before / After", exact: true })).toHaveCount(0);
   await expect(detail.locator('img[src*="/images/repair/"]')).toHaveCount(0);
   const expand = detail.getByRole("button", { name: /^View more photos:/ });
   await expect(expand).toHaveAttribute("aria-expanded", "false");
@@ -93,7 +96,7 @@ test("mobile home gives the mascot and group artwork separate space", async ({ b
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     };
     const closed = (await selector.boundingBox())!;
-    expect(closed.height).toBeLessThan(353);
+    expect(closed.height).toBeCloseTo(closed.width, 1);
     await assertSeparate();
     await selector.getByRole("button").tap();
     await expect(selector.locator('[data-outfit]')).toHaveCount(6);

@@ -43,6 +43,13 @@ const SiteHeader = () => {
   const { t } = useLanguage();
   const mascotRoutes: Record<string, MascotVariant> = { "/cybersecurity": "cybersecurity", "/software-development": "development", "/electrical": "electrical", "/electronics": "electronics", "/repair": "repair", "/experience": "customer-service" };
   const mascot = mascotRoutes[location.pathname] ?? "emblem";
+  const [previewMascot, setPreviewMascot] = useState<MascotVariant | null>(null);
+  const displayedMascot = previewMascot ?? mascot;
+  useEffect(() => {
+    const preview = (event: Event) => setPreviewMascot((event as CustomEvent<{ profile: MascotVariant | null }>).detail.profile);
+    window.addEventListener("culichi:outfit-preview", preview);
+    return () => window.removeEventListener("culichi:outfit-preview", preview);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -62,8 +69,8 @@ const SiteHeader = () => {
     >
       <nav className="container mx-auto flex h-20 items-center justify-between px-4" aria-label={t("Main")}>
         <Link to="/" className="group flex min-w-0 items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center transition-transform duration-300 group-hover:scale-105">
-            <CulichiMascot variant={mascot} className="h-[4.5rem] w-[4.5rem]" />
+          <span data-header-mascot={displayedMascot} className="grid h-20 w-20 shrink-0 place-items-center transition-transform duration-300 group-hover:scale-105">
+            <span key={displayedMascot} className="header-mascot-change"><CulichiMascot variant={displayedMascot} className="h-20 w-20" /></span>
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="text-sm transition-colors group-hover:text-primary sm:text-base">{t("Christian Velasco")}</span>
