@@ -16,7 +16,7 @@ const PageHeader = ({ eyebrow, title, description, children }: PageHeaderProps) 
         {eyebrow && <p className="eyebrow animate-fade-in-up">{t(eyebrow)}</p>}
         <h1 className="animate-fade-in-up delay-100 mt-3 max-w-3xl text-3xl font-bold md:text-4xl">{t(title)}</h1>
         {description && (
-          <p className="animate-fade-in-up delay-200 mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p className="reading-copy animate-fade-in-up delay-200 mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
             {t(description)}
           </p>
         )}

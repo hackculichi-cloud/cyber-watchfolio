@@ -31,11 +31,9 @@ jobs:
         run: npm run lint
       - name: Component tests
         run: npm run test
-      - name: Production build
-        run: npm run build
       - name: Install browser
         run: npx --no-install playwright install --with-deps chromium
-      - name: Browser regression tests
+      - name: Production build and browser regression tests
         run: npm run test:e2e -- --workers=2
       - name: Dependency audit (block critical regressions)
         # Known CSS tooling advisories remain documented in docs/security-audit.md.

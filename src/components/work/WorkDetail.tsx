@@ -30,7 +30,7 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
   const { t } = useLanguage();
   const [videoError, setVideoError] = useState(false);
   return (
-    <div className="space-y-8">
+    <div className="reading-copy space-y-8">
       {item.cover?.src ? (
         <SmartImage src={item.cover.src} alt={t(item.cover.alt)} eager className="aspect-[16/10] w-full rounded-lg border border-border" />
       ) : (

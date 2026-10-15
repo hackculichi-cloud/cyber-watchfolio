@@ -1,5 +1,17 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Areas": "Áreas",
+  "Quick navigation": "Navegación rápida",
+  "Choose an area": "Elige un área",
+  "On this page": "En esta página",
+  "Jump to section": "Ir a una sección",
+  "Pause orbital motion": "Pausar el movimiento orbital",
+  "Resume orbital motion": "Reanudar el movimiento orbital",
+  "Technology": "Tecnología",
+  "Local roots. A curious mind for technology.": "Raíces locales. Curiosidad por la tecnología.",
+  "Why Culichi and a fox?": "¿Por qué Culichi y un zorro?",
+  "Culichi comes from Culiacán. The fox is my personal mascot: curiosity, adaptability and problem solving connect its six technical outfits. The rivers-and-circuits mark adds a reference to the Humaya and Tamazula joining to form the Culiacán River.": "Culichi viene de Culiacán. El zorro es mi mascota personal: la curiosidad, la adaptación y la resolución de problemas conectan sus seis atuendos técnicos. El símbolo de ríos y circuitos hace referencia a la unión del Humaya y el Tamazula que forma el río Culiacán.",
+
   "Residential work": "Trabajo residencial",
   "Reference checklist. Performed actions and recorded results are described in the process above.": "Lista de referencia. Las acciones realizadas y los resultados registrados se describen en el proceso anterior.",
   "Work protocol": "Protocolo de trabajo",

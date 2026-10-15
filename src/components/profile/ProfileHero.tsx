@@ -26,7 +26,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
   return (
     <section
       className={cn(
-        "profile-atmosphere relative isolate flex min-h-[62vh] items-end overflow-hidden border-b border-border md:min-h-[72vh]",
+        "profile-atmosphere relative isolate flex min-h-[62vh] items-end overflow-clip border-b border-border md:min-h-[72vh]",
         atmosphere[profile.slug],
       )}
     >
@@ -68,7 +68,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         <h1 className="animate-fade-in-up delay-100 mt-8 max-w-4xl break-words text-4xl font-bold leading-[1.05] sm:text-5xl xl:text-6xl">
           <span className="gradient-text">{t(profile.label)}</span>
         </h1>
-        <p className="animate-fade-in-up delay-200 mt-5 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
+        <p className="reading-copy animate-fade-in-up delay-200 mt-5 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
           {t(profile.description)}
         </p>
 

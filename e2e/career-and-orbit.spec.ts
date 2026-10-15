@@ -6,7 +6,7 @@ test("six outfit circles have equal radii and spacing, and preview the larger he
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     const stage = page.locator('[data-home-mascot]');
-    await stage.getByRole('button').click();
+    await stage.getByRole('button', { name: 'Greet Culichi and choose an outfit', exact: true }).click();
     await expect(stage.locator('[data-outfit]')).toHaveCount(6);
     const geometry = await stage.evaluate(el => {
       const box = el.getBoundingClientRect();

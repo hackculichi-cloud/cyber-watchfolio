@@ -28,7 +28,7 @@ const ProfileSectionPreview = ({ data, children }: { data: ProfileCardData; chil
         onKeyDown={event => { if (event.key === " " || event.key === "Enter") { event.preventDefault(); setOpen(true); } if (event.key === "Escape") setOpen(false); }}
         onKeyUp={event => { if (event.key === " " || event.key === "Enter") { event.preventDefault(); setOpen(false); } }}
         onContextMenu={event => event.preventDefault()}
-        className="absolute right-3 top-3 grid h-9 w-9 touch-none select-none place-items-center rounded-lg border border-primary/30 bg-background/80 text-primary backdrop-blur-sm transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"><Eye className="h-4 w-4" aria-hidden /></button></Anchor>
+        className="absolute right-3 top-3 grid h-11 w-11 touch-none select-none place-items-center rounded-lg border border-primary/30 bg-background/80 text-primary backdrop-blur-sm transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"><Eye className="h-4 w-4" aria-hidden /></button></Anchor>
     </div>
     <PopoverContent id={id} role="tooltip" data-profile={data.slug} data-section-preview align="end" side="right" sideOffset={12} collisionPadding={16}
       onOpenAutoFocus={event => event.preventDefault()} onCloseAutoFocus={event => event.preventDefault()}

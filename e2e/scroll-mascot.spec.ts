@@ -71,7 +71,7 @@ test("illustrated mascot reveals six outfits and transitions before navigating",
   expect(box.x + box.width).toBeLessThan(1440 / 2);
   await expect(mascot).toHaveAttribute("data-mascot-renderer", "illustration");
   await expect(mascot).toHaveAttribute("data-phase", "standby");
-  await mascot.getByRole("button").hover();
+  await mascot.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).hover();
   await expect(mascot.locator("[data-outfit]")).toHaveCount(6);
   await expect(page).toHaveURL(/\/$/);
   await mascot.locator('[data-outfit="electrical"]').click();
@@ -81,7 +81,7 @@ test("illustrated mascot reveals six outfits and transitions before navigating",
   await expect(page).toHaveURL(/\/electrical$/);
   const destination = page.locator('[data-interactive-mascot="electrical"]');
   await expect(destination).toBeVisible();
-  await destination.getByRole("button").click();
+  await destination.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
   await expect(destination).toHaveAttribute("data-phase", "ready");
 });
 
@@ -89,7 +89,7 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   const mascot = page.locator("[data-home-mascot]");
-  const greet = mascot.getByRole("button");
+  const greet = mascot.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true });
   await greet.focus();
   await expect(mascot.locator("[data-outfit]")).toHaveCount(6);
   await page.keyboard.press("Tab");
@@ -107,8 +107,8 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   const mobile = await context.newPage();
   await mobile.goto("/");
   const selector = mobile.locator("[data-home-mascot]");
-  await expect(selector.locator("[data-outfit]")).toHaveCount(0);
-  await selector.getByRole("button").tap();
+  await expect(selector.locator("[data-outfit]")).toHaveCount(6);
+  await selector.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).tap();
   await expect(selector.locator("[data-outfit]")).toHaveCount(6);
   for (const link of await selector.locator("[data-outfit]").all()) {
     const rect = (await link.boundingBox())!;

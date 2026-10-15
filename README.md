@@ -49,7 +49,7 @@ Si el entorno ya proporciona Chromium, se puede reutilizar:
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:e2e -- --workers=2
 ```
 
-No se necesita instalar navegadores de nuevo si ya están disponibles. Las pruebas cubren cambios de idioma, los seis detalles SOC, galerías, estados de formación, tamaños móviles/tablet/escritorio y navegación con enlaces, historial y hashes.
+No se necesita instalar navegadores de nuevo si ya están disponibles. `test:e2e` compila la aplicación y sirve el resultado en el puerto **4173**, con las mismas cabeceras de seguridad de Vercel; el servidor de desarrollo sigue usando 8080. Las pruebas cubren cambios de idioma, los seis detalles SOC, galerías, estados de formación, tamaños móviles/tablet/escritorio, navegación con enlaces, historial y hashes, accesos móviles, movimiento reducido y bloqueo de scripts inline por CSP.
 
 ## Idiomas y medios
 
@@ -57,9 +57,9 @@ Las páginas traducen desde React con `useLanguage().t()`; no se modifica el DOM
 
 `site.url` es el dominio público usado en SEO. Las fotografías, videos y capturas se sirven localmente desde `public/images/` y `public/media/portfolio/`. La procedencia y hashes de los medios migrados están en `docs/local-media-provenance.json`; no se requieren servicios de la plataforma anterior para mostrarlos.
 
-`vercel.json` incluye el fallback de rutas SPA y cabeceras básicas. Esto solo prepara configuración: no despliega el sitio ni verifica el comportamiento en producción. Los metadatos por ruta continúan siendo generados en el cliente.
+`vercel.json` incluye el fallback de rutas SPA y las cabeceras de seguridad: CSP con scripts y recursos locales, prohibición de incrustar el sitio en frames, aislamiento de ventanas, política de referencias y restricciones de permisos del navegador. `vite preview` reutiliza esas cabeceras para poder comprobarlas con la aplicación compilada. Esto prepara configuración; el despliegue público depende de Vercel. Los metadatos por ruta continúan siendo generados en el cliente.
 
-La migración controlada a Vite 6.4.3, Vitest 4.1.11 y React Router 7.18.4 y la retirada de los plugins de la plataforma anterior dejaron 8 avisos de seguridad: 5 altos y 3 moderados de herramientas CSS, sin avisos críticos. Ver [auditoría de seguridad](docs/security-audit.md) para el alcance y las migraciones pendientes.
+La auditoría del 15 de octubre de 2026 reporta **cero avisos en dependencias de producción** (`npm audit --omit=dev`). La auditoría completa conserva **8 avisos: 5 altos y 3 moderados**, en herramientas CSS utilizadas al desarrollar y compilar. Reclasificar `tailwindcss-animate` como herramienta de desarrollo no corrige esas vulnerabilidades transitivas. Ver [auditoría de seguridad](docs/security-audit.md) para el alcance y las migraciones pendientes.
 
 Ver [guía de contenido](docs/portfolio-content.md) para añadir evidencia real y completar Electrical sin duplicar componentes.
 
@@ -76,3 +76,5 @@ Para regenerar los CV se usa Chromium, Poppler y Python con pypdf; `npm run gene
 ## Mascota interactiva
 
 La interfaz activa usa ilustraciones locales, sin canvas ni WebGL, para funcionar también con las restricciones de LibreWolf/Mullvad. El selector de seis atuendos conserva los colores por área, teclado y navegación. Hay cinco escenas por perfil y los seis personajes se distribuyen también por Home. Hover o foco sobre cada selector preparan su atuendo con una transición ilustrada, sin navegar hasta el clic. Los personajes y el logo del encabezado se ampliaron, el nombre incluye «aka Culichi» y el footer reúne contacto y enlaces por área. El modelo 3D, su fuente Blender, las texturas y el código Three.js permanecen guardados para una futura versión, sin cargarse en la página. Ver [modelo y recursos conservados](docs/culichi-mascot.md).
+
+Los seis accesos rodean al personaje en una órbita lenta, con etiquetas que permanecen derechas. El movimiento se detiene al interactuar, al salir de pantalla o con la preferencia de movimiento reducido; también tiene un control de pausa. Un motivo de ríos y circuitos y una explicación desplegable relacionan la identidad de Culichi con Culiacán. En celular, la barra inferior y el selector de secciones ofrecen accesos directos sin ocultar el final del contenido.

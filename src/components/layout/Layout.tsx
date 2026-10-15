@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
+import MobileQuickNav from "./MobileQuickNav";
 import { profileForPath } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -24,7 +25,7 @@ const Layout = () => {
   }, [pathname, hash]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background" data-profile={profile?.slug}>
+    <div className="site-layout flex min-h-screen flex-col bg-background" data-profile={profile?.slug}>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
@@ -36,6 +37,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <SiteFooter />
+      <MobileQuickNav />
     </div>
   );
 };

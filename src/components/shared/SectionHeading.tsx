@@ -17,7 +17,7 @@ const SectionHeading = ({ eyebrow, title, description, id, mascot, mascotScene =
       <div className="min-w-0 flex-1">
       {eyebrow && <p className="eyebrow">{t(eyebrow)}</p>}
       <h2 className="mt-2 text-2xl font-semibold md:text-3xl">{t(title)}</h2>
-      {description && <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">{t(description)}</p>}
+      {description && <p className="reading-copy mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">{t(description)}</p>}
       </div>
       {mascot && <MascotScene profile={mascot} scene={mascotScene} className={mascotScene === "closing" ? "w-52 self-center sm:w-64 sm:self-auto lg:w-72" : "w-60 self-center sm:w-72 sm:self-auto lg:w-80"} />}
     </div>
