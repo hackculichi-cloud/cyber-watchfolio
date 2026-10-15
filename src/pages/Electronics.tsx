@@ -125,16 +125,14 @@ const Electronics = () => {
       </section>
 
       <section id="tools" className="scroll-mt-32 border-y border-border bg-surface/40">
-        <div className="container mx-auto px-4 py-16">
-          <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Instruments & tooling")} />
-          <ProfileTools groups={toolsByProfile.electronics} />
+        <div className="container mx-auto px-4 py-10">
+          <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Instruments & tooling")}><ProfileTools groups={toolsByProfile.electronics} profile={profile.slug} /></SectionHeading>
         </div>
       </section>
 
       <ProfileCertificates profile={profile.slug} />
-      <section id="cv" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")} />
-        <ProfileCvBlock cvIds={profile.cvIds} />
+      <section id="cv" className="container mx-auto scroll-mt-32 px-4 py-10">
+        <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")}><ProfileCvBlock cvIds={profile.cvIds} /></SectionHeading>
       </section>
     </>
   );

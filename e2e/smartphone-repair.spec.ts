@@ -40,7 +40,7 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
   await page.keyboard.press("Escape");
 
   const gallery = page.locator("#gallery");
-  await expect(gallery.locator("img")).toHaveCount(1);
+  await expect(gallery.locator("img")).toHaveCount(4);
   const expand = gallery.getByRole("button", { name: "Ver más fotografías: Fotos del taller", exact: true });
   await expand.focus();
   await page.keyboard.press("Enter");
@@ -57,7 +57,7 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
   await page.keyboard.press("Escape");
   await expect(dialog).not.toBeVisible();
   await gallery.getByRole("button", { name: "Mostrar menos fotografías: Fotos del taller", exact: true }).click();
-  await expect(gallery.locator("img")).toHaveCount(1);
+  await expect(gallery.locator("img")).toHaveCount(4);
 });
 
 test("repair section remains usable on mobile without horizontal overflow", async ({ page }) => {
@@ -68,10 +68,10 @@ test("repair section remains usable on mobile without horizontal overflow", asyn
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 
-test("electrical evidence shows one preview and expands only when requested", async ({ page }) => {
+test("electrical evidence shows four previews and expands only when requested", async ({ page }) => {
   await page.goto("/electrical#evidence");
   const evidence = page.locator("#evidence");
-  await expect(evidence.locator("img")).toHaveCount(1);
+  await expect(evidence.locator("img")).toHaveCount(4);
   const toggle = evidence.getByRole("button", { name: /^View more photos:/ });
   await toggle.focus();
   await page.keyboard.press("Space");
@@ -81,7 +81,7 @@ test("electrical evidence shows one preview and expands only when requested", as
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.keyboard.press("Escape");
   await evidence.getByRole("button", { name: /^Show fewer photos:/ }).click();
-  await expect(evidence.locator("img")).toHaveCount(1);
+  await expect(evidence.locator("img")).toHaveCount(4);
 });
 
 test("LIDETEC syllabus expands in both languages and training skills remain distinct from repair cases", async ({ page }) => {

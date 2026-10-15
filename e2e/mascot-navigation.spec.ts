@@ -55,7 +55,7 @@ test("each area includes a fifth scene and a full standalone activity illustrati
         const illustration = page.locator('img[data-mascot-scene="detail"]');
         await illustration.scrollIntoViewIfNeeded();
         await expect(illustration).toBeVisible();
-        await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth >= 1024 && img.naturalHeight >= 1300)).toBe(true);
+        await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth >= 1024 && img.naturalHeight >= 1024)).toBe(true);
         await expect(illustration).toHaveAttribute('alt', '');
         await expect(page.locator('main [data-mascot-scene]')).toHaveCount(5);
     }

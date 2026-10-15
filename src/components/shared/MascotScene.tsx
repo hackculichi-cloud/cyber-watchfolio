@@ -7,14 +7,14 @@ import { cn } from "@/lib/utils";
 import scenes from "@/data/mascotScenes.json";
 import cyberDetail from "@/assets/mascot-scenes/cybersecurity.webp";
 import softwareDetail from "@/assets/mascot-scenes/development.webp";
-import electricalDetail from "@/assets/mascot-scenes/electrical.webp";
+import electricalDetail from "@/assets/mascot-scenes/electrical-tool-wall.webp";
 import electronicsDetail from "@/assets/mascot-scenes/electronics.webp";
 import repairDetail from "@/assets/mascot-scenes/repair.webp";
 import serviceDetail from "@/assets/mascot-scenes/customer-service.webp";
 
 export type MascotSceneKind = "action" | "closing" | "detail" | "practice";
 const details: Record<ProfileSlug, [string, number, number]> = {
-  cybersecurity: [cyberDetail, 1024, 1536], development: [softwareDetail, 1024, 1536], electrical: [electricalDetail, 1024, 1536],
+  cybersecurity: [cyberDetail, 1024, 1536], development: [softwareDetail, 1024, 1536], electrical: [electricalDetail, 1536, 1024],
   electronics: [electronicsDetail, 1147, 1371], repair: [repairDetail, 1145, 1374], "customer-service": [serviceDetail, 1024, 1536],
 };
 /** Decorative illustrations, separate from real project evidence and measurements. */

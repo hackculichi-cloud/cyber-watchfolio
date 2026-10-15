@@ -94,10 +94,10 @@ const SiteHeader = () => {
         scrolled ? "border-b border-border bg-background/85 backdrop-blur-xl" : "border-b border-transparent",
       )}
     >
-      <nav className="container mx-auto flex h-20 items-center justify-between px-4" aria-label={t("Main")}>
+      <nav className="container mx-auto flex h-24 items-center justify-between px-4" aria-label={t("Main")}>
         <Link to="/" className="group flex min-w-0 items-center gap-2 font-semibold tracking-tight">
-          <span data-header-mascot={displayedMascot} className="grid h-20 w-20 shrink-0 place-items-center transition-transform duration-300 group-hover:scale-105">
-            <span key={displayedMascot} className="header-mascot-change"><CulichiMascot variant={displayedMascot} className="h-20 w-20" /></span>
+          <span data-header-mascot={displayedMascot} className="grid h-24 w-24 shrink-0 place-items-center transition-transform duration-300 group-hover:scale-105">
+            <span key={displayedMascot} className="header-mascot-change"><CulichiMascot variant={displayedMascot} className="h-24 w-24" /></span>
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="text-sm transition-colors group-hover:text-primary sm:text-base">{t("Christian Velasco")}</span>
@@ -132,7 +132,7 @@ const SiteHeader = () => {
       </nav>
 
       {open && (
-        <div id="mobile-navigation" className="max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-border bg-background/95 backdrop-blur-xl lg:hidden">
+        <div id="mobile-navigation" className="max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain border-t border-border bg-background/95 backdrop-blur-xl lg:hidden">
           <div className="container mx-auto px-4 pt-4 sm:hidden"><LanguageSwitcher /></div>
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map(item => <li key={item.href}>
