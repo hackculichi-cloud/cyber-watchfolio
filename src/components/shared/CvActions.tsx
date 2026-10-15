@@ -20,7 +20,6 @@ const CvActions = ({ cv }: { cv: CvVariant }) => {
     <div className="flex flex-wrap gap-2">
       <Button asChild size="sm"><a href={assets.file} download target="_blank" rel="noopener noreferrer" aria-label={`${t("Download PDF")}: ${t(cv.title)}`}><Download className="h-4 w-4" aria-hidden />{t("Download PDF")}{cv.localized && ` · ${lang.toUpperCase()}`}</a></Button>
       {assets.preview && <Button type="button" size="sm" variant="outline" onClick={() => { setZoom(100); setOpen(true); }} aria-label={`${t("Preview CV")}: ${t(cv.title)}`}><Eye className="h-4 w-4" aria-hidden />{t("Preview CV")}</Button>}
-      {cv.originalFile && <a href={cv.originalFile} download className="self-center rounded text-xs text-muted-foreground underline focus-visible:ring-2 focus-visible:ring-primary">{t("Original PDF")}</a>}
     </div>
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="flex max-h-[94dvh] w-[96vw] max-w-5xl flex-col gap-3 overflow-hidden">

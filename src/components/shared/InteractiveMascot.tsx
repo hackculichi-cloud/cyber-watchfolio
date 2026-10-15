@@ -75,7 +75,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         else
             navigationTimer.current = setTimeout(() => navigate(href), transformDuration);
     };
-    return <div ref={root} data-interactive-mascot={profile} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className={cn("mascot-selector relative h-[30rem] w-full max-w-[30rem] sm:h-[34rem]", className)} onFocusCapture={() => clearTimeout(closeTimer.current)} onPointerEnter={event => { clearTimeout(closeTimer.current); if (event.pointerType === "mouse" && !locked.current) {
+    return <div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className={cn("mascot-selector relative h-[30rem] w-full max-w-[30rem] sm:h-[34rem]", className)} onFocusCapture={() => clearTimeout(closeTimer.current)} onPointerEnter={event => { clearTimeout(closeTimer.current); if (event.pointerType === "mouse" && !locked.current) {
         setOpen(true);
         greet();
     } }} onPointerLeave={() => {

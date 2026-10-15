@@ -1,6 +1,4 @@
 import { FileText } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import Tag from "@/components/shared/Tag";
 import { cvVariants } from "@/data/cvs";
 import CvActions from "@/components/shared/CvActions";
@@ -24,9 +22,6 @@ const ProfileCvBlock = ({ cvIds }: { cvIds: string[] }) => {
           <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(cv.description)}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <CvActions cv={cv} />
-            <Button asChild size="sm" variant="ghost">
-              <Link to="/cv">{t("All CV versions")}</Link>
-            </Button>
           </div>
         </div>
       ))}

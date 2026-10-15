@@ -26,11 +26,11 @@ const Home = () => {
 
       {/* Hero */}
       <section className="grid-bg relative isolate overflow-hidden border-b border-border">
-        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-contain object-bottom opacity-90 md:-translate-y-12 md:object-cover md:object-right-top" />
+        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 hidden h-full w-full -translate-y-12 object-cover object-right-top opacity-90 md:block" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.98)_0%,hsl(var(--background)/0.88)_42%,hsl(var(--background)/0.32)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-        <div className="container relative mx-auto grid gap-12 px-4 py-20 md:py-24 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
+        <div className="container relative mx-auto grid gap-6 px-4 py-12 sm:py-20 md:py-24 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
           <div className="max-w-3xl">
             <p className="eyebrow animate-fade-in-up">{t(site.role)}</p>
             <h1 className="animate-fade-in-up delay-100 mt-4 text-4xl font-bold leading-[1.1] md:text-6xl">
@@ -66,11 +66,16 @@ const Home = () => {
                 <Linkedin className="h-4 w-4" /> {t(site.linkedinHandle)}
               </ContactPreview>
             </div>
-            <div className="mt-5" data-home-mascot-zone>
-              <InteractiveMascot />
+            <div className="mt-2 sm:mt-5" data-home-mascot-zone>
+              <InteractiveMascot className="mx-auto h-[22rem] data-[selector-open=true]:h-[27rem] sm:mx-0 sm:h-[34rem] sm:data-[selector-open=true]:h-[34rem] [&>button]:w-[min(20rem,90%)] sm:[&>button]:w-[26rem]" />
             </div>
           </div>
 
+        </div>
+        {/* On phones the group artwork has its own space, never behind the selector. */}
+        <div data-home-mobile-art className="relative mx-auto max-w-xl md:hidden">
+          <img src={homeBackground} alt="" aria-hidden width={1536} height={1024} className="block h-auto w-full" />
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-background to-transparent" />
         </div>
       </section>
 

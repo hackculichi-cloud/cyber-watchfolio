@@ -25,4 +25,5 @@ export const originalElectricalCv: CvVariant = {
   preview: "/cv/previews/christian-velasco-electrical-mascot.png", available: true,
 };
 
-export const cvVariants = generatedCvVariants.map(cv => cv.id === "electrical" ? { ...cv, originalFile: originalElectricalCv.originalFile } : cv);
+/** Only the current localized CV is published for each area. Uploaded originals stay archived. */
+export const cvVariants = generatedCvVariants;

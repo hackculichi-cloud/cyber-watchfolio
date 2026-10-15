@@ -40,6 +40,7 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
       <div className="flex flex-wrap gap-1.5">
         <Tag variant="primary">{t(item.category)}</Tag>
         <Tag>{t(item.status)}</Tag>
+        {item.reviewRequired && <Tag variant="accent">{t("Electrical review required")}</Tag>}
         {item.difficulty && <Tag variant="accent">{t(item.difficulty)}</Tag>}
         {item.date && <Tag>{t(item.date)}</Tag>}
         {item.environment && <Tag>{t(item.environment)}</Tag>}
@@ -69,6 +70,19 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
           {item.procedure.map((step, index) => <li key={index}>{t(step)}</li>)}
         </ol>
       </section> : null}
+      {item.documentedSteps?.length ? <section data-documented-steps className="space-y-5">
+        <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Photographic process record")}</h4>
+        <ol className="space-y-6">
+          {item.documentedSteps.map((step, index) => <li key={step.title} className="border-l border-primary/30 pl-4">
+            <h5 className="text-sm font-semibold"><span className="mr-2 font-mono text-primary">{String(index + 1).padStart(2, "0")}</span>{t(step.title)}</h5>
+            <p className="mb-3 mt-2 text-sm leading-relaxed text-muted-foreground">{t(step.description)}</p>
+            {step.images?.length ? <WorkImageGallery images={step.images} title={step.title} compact /> : null}
+          </li>)}
+        </ol>
+      </section> : null}
+      {item.reviewNotes?.length ? <section data-practice-review className="rounded-lg border border-primary/30 bg-primary/5 p-4">
+        <List title="Checks to document or review" items={item.reviewNotes} />
+      </section> : null}
       {item.technicalExplanation && <section className="space-y-2">
         <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Technical explanation")}</h4>
         <p className="text-sm leading-relaxed text-muted-foreground">{t(item.technicalExplanation)}</p>
@@ -84,7 +98,7 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
       {item.images?.length ? (
         <div>
           <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Gallery")}</h4>
-          <WorkImageGallery images={item.images} title={item.title} compact />
+          <WorkImageGallery images={item.images} title={item.title} compact collapsible />
         </div>
       ) : null}
 

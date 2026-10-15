@@ -1,6 +1,4 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { BookOpen, CheckCircle2, Layers3 } from "lucide-react";
-import Tag from "@/components/shared/Tag";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import type { ElectricalModule } from "@/data/electrical";
 
@@ -17,24 +15,8 @@ type ElectricalCurriculumProps = {
 const ElectricalCurriculum = ({ training }: ElectricalCurriculumProps) => {
   const { t } = useLanguage();
   return (
-    <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-      <div className="panel-glow h-fit">
-        <div className="flex items-center gap-2 text-primary">
-          <BookOpen className="h-5 w-5" aria-hidden />
-          <span className="text-xs font-semibold uppercase tracking-[0.16em]">{t("Course summary")}</span>
-        </div>
-        <h3 className="mt-4 text-xl font-semibold">{t(training.title)}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t(training.summary)}</p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          <Tag variant="primary">{t(training.provider)}</Tag>
-          <Tag variant="accent">
-            <CheckCircle2 className="mr-1 h-3 w-3" aria-hidden /> {t(training.status)}
-          </Tag>
-          <Tag>
-            <Layers3 className="mr-1 h-3 w-3" aria-hidden /> {training.modules.length}{t(" modules")}</Tag>
-        </div>
-      </div>
-
+    <div className="grid gap-6">
+      <p className="text-sm leading-relaxed text-muted-foreground">{t(training.summary)}</p>
       <div className="panel overflow-hidden p-0">
         <Accordion type="multiple" className="w-full">
           {training.modules.map((module, index) => (

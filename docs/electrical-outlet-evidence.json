@@ -1,0 +1,86 @@
+{
+  "upload": "cambio de contacto.zip",
+  "note": "Only the 16 electrical photographs are used here. The first 18 ZIP entries are unrelated smartphone photographs. Files are unchanged originals. Numbering follows ZIP entry order, not verified capture chronology.",
+  "files": [
+    {
+      "file": "01.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.34 PM (1).jpeg",
+      "sha256": "2aaaed0381bd9ae12b20522a75e93f09fa72b61d51b78154dd0fa4b71cdf700d"
+    },
+    {
+      "file": "02.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.34 PM.jpeg",
+      "sha256": "88ff24860608cd3dbb847b2a6e255cf646e636e67d28134ad83517dccdf46c53"
+    },
+    {
+      "file": "03.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.35 PM (1).jpeg",
+      "sha256": "0fa31fe4a14576adcfde60b9dac1a1b1282373224d75dca173a478280dd8c6b3"
+    },
+    {
+      "file": "04.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.35 PM (2).jpeg",
+      "sha256": "3d137143eecf722ba9b738b11a1e4ddd839eeef1a457621d8e370b716487efbf"
+    },
+    {
+      "file": "05.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.35 PM (3).jpeg",
+      "sha256": "39a06e914bddd708a902a577a119b954d5ad8c3f858d2f7661f12c6f2a7fa5ab"
+    },
+    {
+      "file": "06.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.35 PM (4).jpeg",
+      "sha256": "73932eb97735689be71c5caee7adcea1a12654eea9d2de7f1fc96205613d0ba0"
+    },
+    {
+      "file": "07.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.35 PM (5).jpeg",
+      "sha256": "990d437d559c29d41bc616970b5bb5bfcea839423fbe221de801ce941f913144"
+    },
+    {
+      "file": "08.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.35 PM (6).jpeg",
+      "sha256": "b2515ae39ec4b12172e564511a5687ef942397574c9284ac49a1e72c407a4f7b"
+    },
+    {
+      "file": "09.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.35 PM.jpeg",
+      "sha256": "bca474e0d2e04f49fdab9c79e98cbcbd035a2b5b23622cf8790e55733d4a2164"
+    },
+    {
+      "file": "10.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.36 PM (1).jpeg",
+      "sha256": "4cd6d8b5317311acd883b008332483d2e8f2faf5030f0b7068e10fbc3bf93e31"
+    },
+    {
+      "file": "11.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.36 PM (2).jpeg",
+      "sha256": "2c4417cdf75ec5aeff8305213475e303833e52e6c42a1437afa57880f6eb95f9"
+    },
+    {
+      "file": "12.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.36 PM (3).jpeg",
+      "sha256": "b5d36a2bddca32b7c14045c1d80d7c4e81c1f79efbd075177334b7268dd139f0"
+    },
+    {
+      "file": "13.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.36 PM (4).jpeg",
+      "sha256": "0ceee579c60276416b095c1d3bef19c42eda937ed2ac9250a6f64d164a3bb899"
+    },
+    {
+      "file": "14.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.36 PM (5).jpeg",
+      "sha256": "577a5f9fd82d3bc63a3c05bc04faf4805b1f8d50975fe7570bf1bddf152a4383"
+    },
+    {
+      "file": "15.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.36 PM.jpeg",
+      "sha256": "6dfdcbab434fcc35f7e5308d04a943c52615db04763618c55f3b98226ccebd11"
+    },
+    {
+      "file": "16.jpeg",
+      "source": "New folder/WhatsApp Image 2026-10-14 at 11.12.37 PM.jpeg",
+      "sha256": "351ed11509258c0b17a05888afc4c4e1c8fd2b28a90f3befb3b64a9a621dccf9"
+    }
+  ]
+}
