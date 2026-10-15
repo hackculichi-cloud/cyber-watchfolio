@@ -60,4 +60,3 @@ test("each area includes a fourth, full standalone activity illustration", async
         await expect(page.locator('main [data-mascot-scene]')).toHaveCount(4);
     }
 });
-
