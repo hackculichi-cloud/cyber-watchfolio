@@ -18,6 +18,7 @@ function LanguageButtons() {
 
 describe("portfolio localization", () => {
   it("updates mounted investigation content and returns to English without stale nodes", () => {
+    localStorage.setItem("portfolio-lang", "en");
     render(<LanguageProvider><LanguageButtons /><InvestigationDetail data={investigations[0]} /></LanguageProvider>);
     expect(screen.getByText("12 VPN auth failures for j.perez from 203.0.113.44")).toBeInTheDocument();
     fireEvent.click(screen.getByText("ES"));
@@ -47,6 +48,7 @@ describe("portfolio localization", () => {
 });
 
 it("recovers from an image error when the source changes", () => {
+  localStorage.setItem("portfolio-lang", "en");
   const { rerender } = render(<LanguageProvider><SmartImage src="/broken.jpg" alt="First photo" /></LanguageProvider>);
   fireEvent.error(screen.getByAltText("First photo"));
   expect(screen.getByText("Image unavailable")).toBeInTheDocument();

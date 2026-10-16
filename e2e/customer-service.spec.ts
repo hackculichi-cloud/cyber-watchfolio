@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { test, expect } from "@playwright/test";
 
 test("home replaces the text experience block with a phone profile and bilingual skills page", async ({ page }) => {
@@ -14,7 +15,7 @@ test("home replaces the text experience block with a phone profile and bilingual
   await expect(page.locator("#skills article")).toHaveCount(8);
   await expect(page.locator("#background").getByText("7", { exact: true })).toBeVisible();
   await expect(page.locator("#background").getByText("Languages (EN / ES)", { exact: true })).toBeVisible();
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(page.getByRole("heading", { name: "Call Center y atención al cliente", exact: true })).toBeVisible();
   await expect(page.locator("#skills").getByRole("heading", { name: "Comunicación bilingüe", exact: true })).toBeVisible();
   await expect(page.locator("#skills").getByText("Escucho el problema, hago preguntas para aclararlo y guío al usuario en los siguientes pasos con comunicación clara y paciente.", { exact: true })).toBeVisible();

@@ -1,3 +1,6 @@
+import { openElectricalArea } from "./support/electricalArea";
+import { selectLanguage } from "./support/selectLanguage";
+import { englishStorageState } from "./support/language";
 import { readFileSync } from "node:fs";
 const localMedia: { path: string; bytes: number }[] = JSON.parse(readFileSync(new URL("../docs/local-media-provenance.json", import.meta.url), "utf8"));
 import { test, expect } from "@playwright/test";
@@ -5,11 +8,15 @@ import { test, expect } from "@playwright/test";
 test("profile mascots appear between content blocks, never as floating overlays", async ({ page }) => {
   for (const path of ["/cybersecurity", "/software-development", "/electrical", "/electronics", "/repair", "/experience"]) {
     await page.goto(path);
-    await expect(page.locator('[data-body-mascot] [data-mascot-scene="entry"]')).toBeVisible();
+    await expect(page.locator('[data-profile-workspace] [data-mascot-scene="entry"]')).toBeVisible();
     const scenes = page.locator("main [data-mascot-scene]");
-    await expect(scenes).toHaveCount(5);
+    await expect(scenes).toHaveCount(path === "/electrical" ? 2 : 5);
     const sources = new Set<string>();
     for (const kind of ["entry", "practice", "action", "detail", "closing"]) {
+      if (path === "/electrical" && ["practice", "action", "detail"].includes(kind)) {
+        const target = kind === "practice" ? "overview" : kind === "action" ? "certificate" : "tools";
+        await page.goto(`/electrical#${target}`);
+      }
       const scene = page.locator(`main [data-mascot-scene="${kind}"]`);
       await scene.scrollIntoViewIfNeeded();
       await expect(scene).toBeVisible();
@@ -59,7 +66,7 @@ test("Udemy electrical measurements is in progress with ten bilingual learning o
   await expect(course.getByText(/Certificate pending course completion/)).toBeVisible();
   await course.locator("summary").click();
   await expect(course.locator("li")).toHaveCount(10);
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(course.getByRole("heading", { name: "Mediciones Eléctricas", exact: true })).toBeVisible();
   await expect(course.getByText("Medición de continuidad en circuitos sin energía.", { exact: true })).toBeVisible();
 });
@@ -104,7 +111,7 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   await expect(page).toHaveURL(/\/electronics$/);
   await expect(page.locator('[data-profile-workspace="electronics"] [data-body-mascot="electronics"]')).toBeVisible();
   await expect(page.locator("main canvas")).toHaveCount(0);
-  const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true });
+  const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true });
   const mobile = await context.newPage();
   await mobile.goto("/");
   const selector = mobile.locator("[data-home-mascot]");
@@ -129,7 +136,7 @@ test("certificate inventories distinguish missing files from unfinished courses"
   await expect(inventory.getByText("Completed", { exact: true })).toHaveCount(1);
   await expect(inventory.getByText("Currently Studying", { exact: true })).toHaveCount(3);
   await expect(inventory.getByText("Certificate confirmed; file pending upload.", { exact: true })).toBeVisible();
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(inventory.getByText("Certificado confirmado; archivo pendiente de subir.", { exact: true })).toBeVisible();
   for (const path of ["/cybersecurity", "/software-development", "/electronics", "/repair", "/experience"]) {
     await page.goto(path);
@@ -148,7 +155,7 @@ test("practical media and contact screenshots load with external asset requests 
   expect(video.ok()).toBe(true);
   expect(video.headers()["content-type"]).toContain("video/mp4");
   await page.goto("/electrical#projects");
-  await page.locator('[data-electrical-group="control"]').click();
+  await openElectricalArea(page, "control");
   await page.locator('[data-electrical-group="control-level-control"]').click();
   await page.locator("#projects article").filter({ hasText: "Float-switch Control — Course Practice" }).getByRole("button", { name: "View project", exact: true }).first().click();
   const dialog = page.getByRole("dialog").first();

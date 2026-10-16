@@ -5,14 +5,14 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { FileText } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import PageHeader from "@/components/shared/PageHeader";
-import { cvVariants } from "@/data/cvs";
+import { cvAssets, cvVariants } from "@/data/cvs";
 import { site } from "@/data/site";
 import CvActions from "@/components/shared/CvActions";
 
 const CV = () => {
-  const { t } = useLanguage();
-  const profiles: Record<string, ProfileSlug> = { cybersecurity: "cybersecurity", software: "development", electrical: "electrical", electronics: "electronics", repair: "repair", "customer-service": "customer-service" };
-  const colors: Record<string, string> = { cybersecurity: "#0891b2", software: "#15803d", electrical: "#ca8a04", electronics: "#c2410c", repair: "#7c3aed", "customer-service": "#0f766e" };
+  const { t, lang } = useLanguage();
+  const profiles: Record<string, ProfileSlug | "home"> = { general: "home", cybersecurity: "cybersecurity", software: "development", electrical: "electrical", electronics: "electronics", repair: "repair", "customer-service": "customer-service" };
+  const colors: Record<string, string> = { general: "#38bdf8", cybersecurity: "#0891b2", software: "#15803d", electrical: "#ca8a04", electronics: "#c2410c", repair: "#7c3aed", "customer-service": "#0f766e" };
   return (
     <>
       <Seo
@@ -26,7 +26,7 @@ const CV = () => {
       <PageHeader
         eyebrow={t("CV")}
         title={t("Curriculum Vitae")}
-        description={t("Role-specific versions of my CV so recruiters can read the profile that matches their opening.")}
+        description={t("A complete CV with my experience, projects and training, plus focused versions for each professional area.")}
       />
 
       </div>
@@ -34,11 +34,11 @@ const CV = () => {
       <section className="container mx-auto px-4 py-16">
         <div className="grid gap-4 md:grid-cols-2">
           {cvVariants.map((cv) => (
-            <article key={cv.id} className="panel-glow relative isolate flex h-full flex-col overflow-hidden hover:-translate-y-1" data-cv-theme={cv.id} style={{ borderTopColor: colors[cv.id], borderTopWidth: 3, backgroundImage: `radial-gradient(ellipse at top right,${colors[cv.id]}28,transparent 75%),linear-gradient(135deg,#101827,#0b1120)` }}>
-              <div className="pointer-events-none absolute right-2 top-4 -z-10 opacity-25"><CulichiBody profile={profiles[cv.id]} className="w-24 sm:w-28" /></div>
+            <article key={cv.id} className={`panel-glow relative isolate flex h-full flex-col overflow-hidden hover:-translate-y-1 ${cv.id === "general" ? "md:col-span-2" : ""}`} data-cv-theme={cv.id} style={{ borderTopColor: colors[cv.id], borderTopWidth: 3, backgroundImage: `radial-gradient(ellipse at top right,${colors[cv.id]}28,transparent 75%),linear-gradient(135deg,#101827,#0b1120)` }}>
+              {cv.id === "general" ? <img src={cvAssets(cv, lang).preview} alt={t("First page of the general CV")} width={1132} height={1600} loading="lazy" className="absolute right-4 top-4 h-auto w-16 rounded border border-primary/30 sm:w-20" /> : <div className="pointer-events-none absolute right-2 top-4 -z-10 opacity-25"><CulichiBody profile={profiles[cv.id]} className="w-24 sm:w-28" /></div>}
               <FileText className="h-5 w-5 text-primary" aria-hidden />
               <h2 className="mt-3 max-w-[80%] text-base font-semibold">{t(cv.title)}</h2>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(cv.description)}</p>
+              <p className={`mt-2 flex-1 text-sm leading-relaxed text-muted-foreground ${cv.id === "general" ? "pr-20 sm:pr-28" : ""}`}>{t(cv.description)}</p>
 
               <div className="mt-5">
                 <CvActions cv={cv} />

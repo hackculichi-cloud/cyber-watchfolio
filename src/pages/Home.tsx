@@ -1,5 +1,4 @@
 import HomeCharacter from "@/components/shared/HomeCharacter";
-import CulichiOrigins from "@/components/shared/CulichiOrigins";
 import homeBackground from "@/assets/culichi-home-background.webp";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -31,7 +30,7 @@ const Home = () => {
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.94)_0%,hsl(var(--background)/0.78)_40%,hsl(var(--background)/0.45)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-        <div data-home-introduction className="container relative mx-auto grid gap-8 px-4 py-10 sm:py-16 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-10">
+        <div data-home-introduction className="container relative mx-auto grid gap-8 px-4 py-10 sm:py-12 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-10">
           <div data-home-intro-copy className="min-w-0 max-w-3xl">
             <p className="eyebrow animate-fade-in-up">{t(site.role)}</p>
             <h1 className="animate-fade-in-up delay-100 mt-4 text-4xl font-bold leading-[1.1] md:text-6xl">
@@ -63,7 +62,6 @@ const Home = () => {
           </div>
           <div data-home-mascot-zone className="min-w-0 lg:justify-self-end lg:w-full">
             <InteractiveMascot className="mx-auto lg:ml-auto lg:mr-0" />
-            <CulichiOrigins />
           </div>
         </div>
         {/* On phones the group artwork has its own space, never behind the selector. */}
@@ -75,10 +73,10 @@ const Home = () => {
 
 
       {/* Professional profile */}
-      <section id="areas" className="container mx-auto scroll-mt-28 px-4 py-16">
-        <div className="mb-8 flex items-center gap-4 lg:gap-6">
+      <section id="areas" className="relative container mx-auto scroll-mt-28 px-4 py-16">
+        <div className="relative mb-8 flex items-center gap-4 pl-20 sm:pl-28 lg:gap-6">
           <div className="min-w-0 flex-1 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl"><SectionHeading eyebrow="Christian Velasco · aka Culichi" title={t("These are my skills")} description={t("Practical work, study and experience in six areas. Choose what you need and see the examples behind each skill.")} /></div>
-          <HomeCharacter profile="cybersecurity" scene="hanging" className="w-24 border-t border-primary/30 sm:w-32 lg:-mb-10 lg:-mt-16 lg:w-44" />
+          <HomeCharacter profile="cybersecurity" scene="hanging" className="absolute left-0 top-0 -mt-8 w-20 border-t border-primary/30 sm:w-24" />
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {professionalProfiles.map((p, i) => (
@@ -87,21 +85,13 @@ const Home = () => {
             </Reveal>
           ))}
         </div>
-        <div className="relative mt-8 flex flex-col items-start gap-3 border-b border-primary/30 pb-4 sm:flex-row sm:items-end sm:gap-8" data-home-workbench>
-          <HomeCharacter profile="development" scene="practice" className="-mb-6 self-start" />
-          <div className="relative z-10 max-w-xl py-4 sm:pb-8">
-            <p className="eyebrow">{t("Built through practice")}</p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t("This portfolio is one of my software projects: React, TypeScript and a documented workflow, improved one change at a time.")}</p>
-            <Link to="/software-development" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">{t("Explore software development")}<ArrowRight className="h-4 w-4" aria-hidden /></Link>
-          </div>
-        </div>
       </section>
 
       {/* Current focus */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="mb-10 flex flex-col items-center gap-6 lg:flex-row">
+      <section className="relative container mx-auto px-4 py-14">
+        <div className="relative mb-10 border-t border-primary/25 pl-24 pt-8 sm:pl-32">
           <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Current focus")} title={t("What I am working on right now")} description={t("An honest snapshot of my learning path — updated as I progress.")} /></div>
-          <HomeCharacter profile="electrical" scene="action" className="-mb-12 self-start lg:order-first" />
+          <HomeCharacter profile="electrical" scene="action" className="absolute left-0 top-0 -mt-6 w-24 sm:w-28" />
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {[
@@ -109,12 +99,12 @@ const Home = () => {
             { title: "Software development", body: "Web development, APIs and automation, with everything version controlled on GitHub.", tag: "In progress" },
             { title: "Technical training", body: "Residential electrical maintenance, general electronics and smartphone repair.", tag: "Studying" },
           ].map((c, i) => (
-            <Reveal key={c.title} delay={i * 90} className="h-full">
-              <div className="panel-glow lift h-full">
+            <Reveal key={c.title} delay={i * 90} className={`relative isolate h-full ${i === 2 ? "pt-20 md:pt-0" : ""}`}>
+              {i === 2 && <HomeCharacter profile="electronics" scene="electronics-back" className="absolute right-1 top-0 z-0 w-28 md:-top-20 sm:w-32" />}
+              <div className="panel-glow lift relative z-10 h-full bg-background">
                 <Tag variant="accent">{t(c.tag)}</Tag>
                 <h3 className="mt-3 text-base font-semibold">{t(c.title)}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(c.body)}</p>
-                {i === 2 && <HomeCharacter profile="electronics" scene="practice" className="-mb-7 ml-auto mt-3 w-40 sm:w-44" />}
               </div>
             </Reveal>
           ))}
@@ -123,24 +113,14 @@ const Home = () => {
 
       {/* CTA */}
       <section className="container mx-auto px-4 pb-24">
-        <Reveal from="scale">
-          <div className="flex flex-col items-start justify-between gap-8 border-t border-border/60 pt-12 lg:flex-row lg:items-center">
-            <div>
-              <h2 className="text-xl font-semibold">{t("Open to IT, cybersecurity and development opportunities")}</h2>
-              <p className="mt-2 text-sm text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
-              <Button asChild size="lg" className="group mt-6"><Link to="/contact">{t("Get in touch ")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></Link></Button>
-            </div>
-            <HomeCharacter profile="repair" scene="practice" className="-mb-5 self-end" />
+        <Reveal from="scale" className="relative isolate">
+          <HomeCharacter profile="repair" scene="repair-peeking" className="absolute right-0 top-6 z-0 w-32 sm:w-36" />
+          <div className="relative z-10 mr-16 rounded-xl border border-primary/25 bg-background p-5 sm:mr-24 sm:p-8">
+            <h2 className="text-xl font-semibold">{t("Open to IT, cybersecurity and development opportunities")}</h2>
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
+            <Button asChild size="lg" className="group mt-6"><Link to="/contact">{t("Get in touch ")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></Link></Button>
           </div>
         </Reveal>
-        <div className="relative mt-14 flex flex-col items-start gap-2 border-t border-primary/25 pt-5 sm:flex-row sm:items-center sm:justify-between" data-home-service>
-          <HomeCharacter profile="customer-service" scene="closing" className="-mt-8 self-start sm:order-last" />
-          <div className="max-w-2xl">
-            <p className="eyebrow">{t("People behind technology")}</p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t("Operations supervision, Tier 2 support and technical training connect my customer-service background with the way I investigate problems and explain solutions.")}</p>
-            <Link to="/experience#background" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">{t("Explore my professional experience")}<ArrowRight className="h-4 w-4" aria-hidden /></Link>
-          </div>
-        </div>
       </section>
     </>
   );

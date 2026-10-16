@@ -1,32 +1,44 @@
 [
   {
+    "id": "general",
+    "profile": "home",
+    "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. I build web interfaces and automate reports, document educational cybersecurity investigations, and develop practical electrical, electronics and smartphone-repair skills.",
+    "pageCount": 2
+  },
+  {
     "id": "cybersecurity",
     "profile": "cybersecurity",
-    "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Python reporting projects and AWS Cloud Practitioner preparation complement the SOC Tier 1 learning path."
+    "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Python reporting projects and AWS Cloud Practitioner preparation complement the SOC Tier 1 learning path.",
+    "pageCount": 1
   },
   {
     "id": "software",
     "profile": "development",
-    "summary": "Frontend development with React, Next.js and TypeScript, supported by public GitHub projects and Python automation for Excel reports. Partial software development studies at Academlo."
+    "summary": "Frontend development with React, Next.js and TypeScript, supported by public GitHub projects and Python automation for Excel reports. Partial software development studies at Academlo.",
+    "pageCount": 1
   },
   {
     "id": "electrical",
     "profile": "electrical",
-    "summary": "Electrical training in residential and industrial topics, with documented course practice and residential client maintenance work."
+    "summary": "Residential electrical maintenance with documented outlet, switch and ceiling-light replacements, polarity and protective-earth checks. Complementary training in AC/DC measurement, industrial electricity and control.",
+    "pageCount": 1
   },
   {
     "id": "electronics",
     "profile": "electronics",
-    "summary": "Currently studying basic electronics at Escuela Tecnológica de Occidente, with additional smartphone repair coursework at LIDETEC."
+    "summary": "Currently studying basic electronics at Escuela Tecnológica de Occidente, with additional smartphone repair coursework at LIDETEC.",
+    "pageCount": 1
   },
   {
     "id": "repair",
     "profile": "repair",
-    "summary": "LIDETEC smartphone repair course participation with three documented iPhone interventions and confirmed post-repair checks."
+    "summary": "LIDETEC smartphone repair course participation with three documented iPhone interventions and confirmed post-repair checks.",
+    "pageCount": 1
   },
   {
     "id": "customer-service",
     "profile": "customer-service",
-    "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. Experience at Tata Consultancy Services, TTEC, Alorica and TP, including SLA follow-up, incident escalation and mobile-device troubleshooting."
+    "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. Experience at Tata Consultancy Services, TTEC, Alorica and TP, including SLA follow-up, incident escalation and mobile-device troubleshooting.",
+    "pageCount": 1
   }
 ]

@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { test, expect } from "@playwright/test";
 
 const areas = ["cybersecurity", "development", "electrical", "electronics", "repair", "customer-service"];
@@ -34,13 +35,16 @@ test("home distributes all six full characters and the footer offers real profil
     await expect(figure).toBeVisible();
     await expect(figure.locator("[data-full-body], [data-mascot-scene]")).toHaveCount(1);
   }
+  for (const area of ['repair', 'customer-service']) {
+    expect((await page.locator(`[data-home-character="${area}"]`).boundingBox())!.width).toBeLessThanOrEqual(144);
+  }
   const footer = page.locator("footer");
   await footer.scrollIntoViewIfNeeded();
   await expect(footer.getByRole("heading", { name: "Ideas become projects. Let’s talk." })).toBeVisible();
-  for (const area of areas) await expect(footer.locator(`a[data-profile="${area}"]`)).toBeVisible();
+  for (const area of areas) await expect(footer.getByRole("navigation", { name: "Footer", exact: true }).locator(`a[data-profile="${area}"]`)).toBeVisible();
   await expect(footer.locator('a[href="mailto:christian@culichi.lat"]')).toBeVisible();
   await expect(footer.getByRole("link", { name: "Back to top" })).toHaveAttribute("href", "#main");
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await footer.scrollIntoViewIfNeeded();
   await expect(footer.getByRole("heading", { name: "Las ideas se vuelven proyectos. Hablemos." })).toBeVisible();
 });

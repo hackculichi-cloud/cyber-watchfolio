@@ -11,7 +11,7 @@ const initial = (): Lang => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "en" || saved === "es") return saved;
   } catch { /* Storage can be unavailable in private browsing. */ }
-  return "en";
+  return "es";
 };
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {

@@ -1,11 +1,7 @@
+import { openElectricalArea } from "./support/electricalArea";
+import { selectLanguage } from "./support/selectLanguage";
 import { test, expect } from "@playwright/test";
 
-const selectLanguage = async (page: import("@playwright/test").Page, lang: "en" | "es") => {
-  const modal = page.getByRole("dialog").filter({ has: page.locator(`button[lang="${lang}"]`) });
-  const root = await modal.count() ? modal.last() : page;
-  await root.locator(`button[lang="${lang}"]:visible`).first().click();
-  await expect(page.locator("html")).toHaveAttribute("lang", lang);
-};
 
 test("language switches while a SOC investigation is open, preserving React updates", async ({ page }) => {
   const errors: string[] = [];
@@ -49,7 +45,7 @@ test("all SOC cases and playbooks have translated details", async ({ page }) => 
 test("electrical project photos enlarge and navigate with keyboard", async ({ page }) => {
   await page.goto("/electrical");
   await selectLanguage(page, "es");
-  await page.locator('[data-electrical-group="residential"]').click();
+  await openElectricalArea(page, "residential");
   await page.locator('[data-electrical-group="residential-training-boards"]').click();
   await page.locator('[data-work="residential-training-board"]').getByRole("button", { name: "Ver proyecto", exact: true }).last().click();
   const details = page.getByRole("dialog").first();
@@ -66,12 +62,12 @@ test("electrical project photos enlarge and navigate with keyboard", async ({ pa
 });
 
 test("confirmed electrical course states and future practice are honest", async ({ page }) => {
-  await page.goto("/electrical");
+  await page.goto("/electrical#certificate");
   const tracks = page.locator("#tracks");
   await expect(tracks.getByText("Completed through RED CONOCER", { exact: false })).toHaveCount(0);
   await expect(tracks.getByText("Currently Studying", { exact: true })).toHaveCount(3);
   await expect(tracks.getByRole("heading", { name: "Electrical Systems: Reading Drawings and Schematics", exact: true })).toBeVisible();
-  await page.locator('[data-electrical-group="control"]').click();
+  await openElectricalArea(page, "control");
   await page.locator('[data-electrical-group="control-contactors"]').click();
   const card = page.locator("#projects article").filter({ hasText: "Electrical Control — START/STOP Contactor Practice" });
   await expect(card.getByText("Planned", { exact: true })).toBeVisible();

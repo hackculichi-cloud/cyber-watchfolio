@@ -1,3 +1,5 @@
+import { selectLanguage } from "./support/selectLanguage";
+import { englishStorageState } from "./support/language";
 import { test, expect } from '@playwright/test';
 
 test('previewing the top menus does not move the hero or reset the intervening outfit', async ({ page }) => {
@@ -26,7 +28,7 @@ test('previewing the top menus does not move the hero or reset the intervening o
 });
 
 test('the fox stays in front of decorative props and all six controls remain reachable on a narrow phone', async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+  const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
   const page = await context.newPage();
   await page.goto('/');
   const stage = page.locator('[data-home-mascot]');
@@ -81,9 +83,10 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await expect(dialog).toContainText('Universidad Internacional · RED CONOCER');
   await expect(dialog).toContainText('MOCKUP · Original pending');
   await expect(dialog.locator('a[download]')).toHaveCount(0);
-  await dialog.locator('button[lang="es"]').click();
+  await selectLanguage(dialog, "es");
   await expect(dialog).toContainText('MOCKUP · Original pendiente');
   await page.keyboard.press('Escape');
   await expect(conocer).toContainText('Actualmente está estudiando');
+  await page.locator('[data-area-tab="overview"]').click();
   expect(await page.locator('#overview [data-training-provider]').count()).toBeGreaterThan(0);
 });

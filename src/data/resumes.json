@@ -10,6 +10,162 @@
   },
   "resumes": [
     {
+      "id": "general",
+      "profile": "home",
+      "en": {
+        "role": "Bilingual Technical Professional | Development, Support & Operations",
+        "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. I build web interfaces and automate reports, document educational cybersecurity investigations, and develop practical electrical, electronics and smartphone-repair skills.",
+        "sections": [
+          {
+            "title": "Professional experience",
+            "page": 1,
+            "items": [
+              "TCS — Operations Supervisor | Oct 2025–present. Daily operations, SLA compliance, incident response times, escalation protocols, quality metrics and time management.",
+              "TCS — Technical Support Analyst (Energy Operations) | Nov 2023–Oct 2025. Monitored network, service-outage and system-impact queues; billing services and telecommunications billing.",
+              "Alorica — Logistics Operations Analyst | Dec 2022–Aug 2023. Coordinated business-critical deliveries using internal ticketing and tracking systems.",
+              "TTEC — Training Technician / Tier 2 Technical Support | Apr 2019–Oct 2022. Mobile-device support, root-cause analysis of hardware/software incidents and technical training.",
+              "TP — Customer Support & Sales Representative | Aug 2017–May 2018. Bilingual customer and billing support in high-volume environments; new-hire and sales training."
+            ]
+          },
+          {
+            "title": "Professional strengths",
+            "page": 1,
+            "items": [
+              "Operations supervision, SLA follow-up, incident escalation, quality metrics and time management.",
+              "Tier 2 troubleshooting, root-cause analysis, technical training, ticketing and logistics coordination.",
+              "English/Spanish communication, user guidance, conflict resolution and technical documentation."
+            ]
+          },
+          {
+            "title": "Technical profile",
+            "page": 1,
+            "items": [
+              "Software development · cybersecurity learning · electrical maintenance · electronics · smartphone repair. Projects, original work photographs and training details: culichi.lat."
+            ]
+          },
+          {
+            "title": "Software & automation",
+            "page": 2,
+            "items": [
+              "Nine public projects: culichi.lat, Mirror, RonnysPage, Calculator-Culichi, Todo-Culichi, WeatherApp-Culichi, Journey_blog, Portfolio-Culichi and Culichi-Metrics.",
+              "React, Next.js, TypeScript, JavaScript, HTML/CSS and Tailwind; Git/GitHub and Vercel. Culichi-Metrics uses Python, pandas and XlsxWriter to generate Excel KPI reports and charts."
+            ]
+          },
+          {
+            "title": "Cybersecurity — educational practice",
+            "page": 2,
+            "items": [
+              "Three LetsDefend investigations: VPN authentication, RDP brute force and phishing; log analysis, evidence correlation, investigation steps and response playbooks.",
+              "Linux diploma in progress. AWS Cloud Practitioner exam preparation; credential not yet obtained. Seeking a first SOC Tier 1 opportunity."
+            ]
+          },
+          {
+            "title": "Electrical maintenance & electronics",
+            "page": 2,
+            "items": [
+              "Residential outlet/switch replacements and two ceiling luminaires; confirmed polarity/earth checks and photographed measurements. Course practice: installation board and float-switch control.",
+              "AC/DC measurement, drawings and circuit diagnosis in training. Component validation, oscilloscope, power supply, metrology and soldering foundations. Industrial/control studies ongoing; START/STOP practice planned."
+            ]
+          },
+          {
+            "title": "Smartphone repair",
+            "page": 2,
+            "items": [
+              "iPhone 12 Pro and 14 Pro battery replacements; iPhone XR screen replacement. Final function checks confirmed; case-specific original photos at culichi.lat/repair.",
+              "LIDETEC course practice: intake, disassembly, multimeter diagnosis, board care, soldering/hot air and connectors."
+            ]
+          },
+          {
+            "title": "Education & training status",
+            "page": 2,
+            "items": [
+              "Academlo: incomplete frontend, backend and full-stack studies.",
+              "Escuela Tecnológica de Occidente: Basic Electronics in progress; expected finish in February. Six advanced electronics tracks remain planned.",
+              "Universidad Internacional / RED CONOCER electrical training and Udemy installations/measurements courses: in progress.",
+              "LinkedIn Learning — Electrical Systems: Reading Drawings and Schematics: completed; document pending upload.",
+              "LIDETEC / Liceo de Tecnología: smartphone repair course participation certificate, 1 August 2026."
+            ]
+          }
+        ]
+      },
+      "es": {
+        "role": "Profesional técnico bilingüe | Desarrollo, soporte y operaciones",
+        "summary": "Profesional bilingüe con 7 años en atención al cliente, soporte técnico, capacitación y operaciones. Desarrollo interfaces web y automatizo reportes, documento investigaciones educativas de ciberseguridad y aplico conocimientos de electricidad, electrónica y reparación de celulares.",
+        "sections": [
+          {
+            "title": "Experiencia profesional",
+            "page": 1,
+            "items": [
+              "TCS — Supervisor de operaciones | oct 2025–actualidad. Operación diaria, cumplimiento de SLA, tiempos de respuesta a incidentes, protocolos de escalamiento, métricas de calidad y gestión del tiempo.",
+              "TCS — Analista de soporte técnico (operaciones de energía) | nov 2023–oct 2025. Monitoreo de colas de red, interrupciones de servicio e incidentes de sistemas; servicios de facturación y facturación de telecomunicaciones.",
+              "Alorica — Analista de operaciones logísticas | dic 2022–ago 2023. Coordinación de entregas críticas mediante sistemas internos de tickets y seguimiento.",
+              "TTEC — Técnico de capacitación / Soporte técnico nivel 2 | abr 2019–oct 2022. Soporte a dispositivos móviles, análisis de causa raíz de incidentes de hardware/software y capacitación técnica.",
+              "TP — Representante de atención al cliente y ventas | ago 2017–may 2018. Atención bilingüe al cliente y facturación en entornos de alto volumen; capacitación de nuevos ingresos y ventas."
+            ]
+          },
+          {
+            "title": "Fortalezas profesionales",
+            "page": 1,
+            "items": [
+              "Supervisión de operaciones, seguimiento de SLA, escalamiento de incidentes, métricas de calidad y gestión del tiempo.",
+              "Diagnóstico de nivel 2, causa raíz, capacitación técnica, tickets y coordinación logística.",
+              "Comunicación inglés/español, orientación al usuario, resolución de conflictos y documentación técnica."
+            ]
+          },
+          {
+            "title": "Perfil técnico",
+            "page": 1,
+            "items": [
+              "Desarrollo de software · aprendizaje de ciberseguridad · mantenimiento eléctrico · electrónica · reparación de celulares. Proyectos, fotografías originales y formación: culichi.lat."
+            ]
+          },
+          {
+            "title": "Software y automatización",
+            "page": 2,
+            "items": [
+              "Nueve proyectos públicos: culichi.lat, Mirror, RonnysPage, Calculator-Culichi, Todo-Culichi, WeatherApp-Culichi, Journey_blog, Portfolio-Culichi y Culichi-Metrics.",
+              "React, Next.js, TypeScript, JavaScript, HTML/CSS y Tailwind; Git/GitHub y Vercel. Culichi-Metrics genera reportes de KPI, formato y gráficas de Excel con Python, pandas y XlsxWriter."
+            ]
+          },
+          {
+            "title": "Ciberseguridad — práctica educativa",
+            "page": 2,
+            "items": [
+              "Tres investigaciones de LetsDefend: autenticación VPN, fuerza bruta por RDP y phishing; análisis de registros, correlación de evidencias, pasos de investigación y playbooks de respuesta.",
+              "Diplomado de Linux en curso. Preparación para el examen AWS Cloud Practitioner; certificación aún no obtenida. Busco mi primera oportunidad en SOC nivel 1."
+            ]
+          },
+          {
+            "title": "Mantenimiento eléctrico y electrónica",
+            "page": 2,
+            "items": [
+              "Cambios residenciales de contactos/apagador y dos luminarias; pruebas de polaridad/tierra confirmadas y mediciones fotografiadas. Prácticas de curso: tablero de instalación y control con electronivel.",
+              "Mediciones CA/CC, planos y diagnóstico de circuitos en formación. Validación de componentes, osciloscopio, fuente, metrología y bases de soldadura. Estudios industriales/control en curso; práctica START/STOP planeada."
+            ]
+          },
+          {
+            "title": "Reparación de celulares",
+            "page": 2,
+            "items": [
+              "Cambio de batería de iPhone 12 Pro y 14 Pro; pantalla de iPhone XR. Pruebas finales confirmadas y fotos originales de cada caso en culichi.lat/repair.",
+              "Prácticas LIDETEC: recepción, desensamble, diagnóstico con multímetro, cuidado de tarjetas, soldadura/aire caliente y conectores."
+            ]
+          },
+          {
+            "title": "Formación y estado de estudios",
+            "page": 2,
+            "items": [
+              "Academlo: estudios inconclusos de frontend, backend y full stack.",
+              "Escuela Tecnológica de Occidente: Electrónica Básica en curso; finalización prevista en febrero. Seis áreas avanzadas de electrónica aún planeadas.",
+              "Universidad Internacional / RED CONOCER y cursos Udemy de instalaciones/mediciones eléctricas: en curso.",
+              "LinkedIn Learning — Sistemas eléctricos: lectura de planos y esquemas: completado; archivo pendiente de subir.",
+              "LIDETEC / Liceo de Tecnología: constancia de participación en reparación de celulares, 1 de agosto de 2026."
+            ]
+          }
+        ]
+      }
+    },
+    {
       "id": "cybersecurity",
       "profile": "cybersecurity",
       "en": {
@@ -94,14 +250,14 @@
             "title": "Selected GitHub projects",
             "items": [
               "Mirror and RonnysPage: responsive interfaces with React, Next.js, TypeScript and Tailwind CSS.",
-              "Calculator-Culichi, Todo-Culichi and WeatherApp-Culichi: arithmetic logic, task management and OpenWeatherMap REST API queries."
+              "Calculator-Culichi (React/TypeScript), Todo-Culichi and WeatherApp-Culichi: interface logic, task management, browser storage and OpenWeatherMap API queries."
             ]
           },
           {
             "title": "Automation & practical delivery",
             "items": [
               "Culichi-Metrics: Python, pandas and XlsxWriter for Excel KPI reports, conditional formatting and charts.",
-              "Cyber Watchfolio (culichi.lat): bilingual React/TypeScript portfolio, reusable components, GitHub/Vercel workflow and browser validation."
+              "culichi.lat: bilingual React/TypeScript portfolio with reusable components, accessibility, localized PDFs and a GitHub/Vercel workflow. Nine public projects, including Journey_blog and Portfolio-Culichi."
             ]
           },
           {
@@ -128,14 +284,14 @@
             "title": "Proyectos seleccionados de GitHub",
             "items": [
               "Mirror y RonnysPage: interfaces adaptables con React, Next.js, TypeScript y Tailwind CSS.",
-              "Calculator-Culichi, Todo-Culichi y WeatherApp-Culichi: lógica aritmética, gestión de tareas y consultas a la API REST de OpenWeatherMap."
+              "Calculator-Culichi (React/TypeScript), Todo-Culichi y WeatherApp-Culichi: lógica de interfaces, tareas, almacenamiento del navegador y consultas a OpenWeatherMap."
             ]
           },
           {
             "title": "Automatización y entrega práctica",
             "items": [
               "Culichi-Metrics: Python, pandas y XlsxWriter para reportes de KPI en Excel, formato condicional y gráficas.",
-              "Cyber Watchfolio (culichi.lat): portafolio bilingüe en React/TypeScript, componentes reutilizables, flujo GitHub/Vercel y validación en navegador."
+              "culichi.lat: portafolio bilingüe React/TypeScript con componentes reutilizables, accesibilidad, PDF por idioma y flujo GitHub/Vercel. Nueve proyectos públicos, incluidos Journey_blog y Portfolio-Culichi."
             ]
           },
           {
@@ -159,22 +315,22 @@
       "id": "electrical",
       "profile": "electrical",
       "en": {
-        "role": "Electrical Maintenance Trainee",
-        "summary": "Electrical training in residential and industrial topics, with documented course practice and residential client maintenance work.",
+        "role": "Residential Electrical Maintenance & Industrial Training",
+        "summary": "Residential electrical maintenance with documented outlet, switch and ceiling-light replacements, polarity and protective-earth checks. Complementary training in AC/DC measurement, industrial electricity and control.",
         "sections": [
           {
             "title": "Documented practical work",
             "items": [
-              "Residential installation practice board and float-switch course exercise.",
-              "Residential client work: outlet and switch replacement and replacement of two ceiling luminaires.",
-              "Photographic evidence and technical explanations available in the electrical portfolio."
+              "Residential installation practice board and float-switch control exercise completed during training.",
+              "Residential work: two documented outlet-replacement cases, switch replacement and replacement of two ceiling luminaires.",
+              "Polarity and protective-earth checks confirmed; a recorded multimeter reading of 119.3 V AC and a 16-photo outlet service record. Original evidence: culichi.lat/electrical."
             ]
           },
           {
             "title": "Training",
             "items": [
               "LinkedIn Learning: Electrical Systems: Reading Drawings and Schematics — completed.",
-              "RED CONOCER electrical training — in progress.",
+              "Universidad Internacional / RED CONOCER: residential and industrial electrical training — in progress.",
               "Udemy: Basic Electrical Installations — in progress.",
               "Udemy: Electrical Measurements — in progress (AC/DC voltage, clamp current, resistance and de-energized continuity)."
             ]
@@ -191,29 +347,29 @@
           {
             "title": "Transferable experience",
             "items": [
-              "TCS: operations supervision, SLA follow-up and incident escalation.",
+              "7 years of bilingual service/support; TCS operations supervision, SLA follow-up and incident escalation.",
               "TTEC: Tier 2 mobile support, root-cause analysis and technical training. Bilingual English/Spanish."
             ]
           }
         ]
       },
       "es": {
-        "role": "En formación en mantenimiento eléctrico",
-        "summary": "Formación eléctrica en temas residenciales e industriales, con prácticas de curso y trabajos de mantenimiento residencial para clientes documentados.",
+        "role": "Mantenimiento eléctrico residencial y formación industrial",
+        "summary": "Mantenimiento eléctrico residencial con cambios documentados de contactos, apagador y luminarias, y comprobaciones de polaridad y tierra. Formación complementaria en mediciones CA/CC, electricidad industrial y control.",
         "sections": [
           {
             "title": "Trabajo práctico documentado",
             "items": [
-              "Tablero de práctica de instalación residencial y ejercicio de curso con electronivel.",
-              "Trabajo residencial para clientes: cambio de contacto y apagador, y reemplazo de dos luminarias de techo.",
-              "Evidencia fotográfica y explicaciones técnicas disponibles en el portafolio eléctrico."
+              "Tablero de instalación residencial y ejercicio de control con electronivel realizados en formación.",
+              "Trabajo residencial: dos casos documentados de cambio de contacto, reemplazo de apagador y cambio de dos luminarias de techo.",
+              "Pruebas de polaridad y tierra confirmadas; lectura registrada de 119.3 V CA y un caso de contacto con 16 fotos. Evidencia original: culichi.lat/electrical."
             ]
           },
           {
             "title": "Formación",
             "items": [
               "LinkedIn Learning: Electrical Systems: Reading Drawings and Schematics — completado.",
-              "Formación eléctrica RED CONOCER — en curso.",
+              "Universidad Internacional / RED CONOCER: formación eléctrica residencial e industrial — en curso.",
               "Udemy: Instalaciones eléctricas básicas — en curso.",
               "Udemy: Mediciones Eléctricas — en curso (voltaje CA/CC, corriente con gancho, resistencia y continuidad sin energía)."
             ]
@@ -230,7 +386,7 @@
           {
             "title": "Experiencia transferible",
             "items": [
-              "TCS: supervisión de operaciones, seguimiento de SLA y escalamiento de incidentes.",
+              "7 años de atención y soporte bilingüe; supervisión de operaciones en TCS, seguimiento de SLA y escalamiento de incidentes.",
               "TTEC: soporte móvil nivel 2, causa raíz y capacitación técnica. Atención bilingüe inglés/español."
             ]
           }
@@ -268,7 +424,7 @@
           {
             "title": "Transferable experience",
             "items": [
-              "TCS: operations supervision, SLA follow-up and incident escalation.",
+              "7 years of bilingual service/support; TCS operations supervision, SLA follow-up and incident escalation.",
               "TTEC: Tier 2 mobile support, root-cause analysis and technical training. Bilingual English/Spanish."
             ]
           }
@@ -302,7 +458,7 @@
           {
             "title": "Experiencia transferible",
             "items": [
-              "TCS: supervisión de operaciones, seguimiento de SLA y escalamiento de incidentes.",
+              "7 años de atención y soporte bilingüe; supervisión de operaciones en TCS, seguimiento de SLA y escalamiento de incidentes.",
               "TTEC: soporte móvil nivel 2, causa raíz y capacitación técnica. Atención bilingüe inglés/español."
             ]
           }
@@ -342,7 +498,7 @@
           {
             "title": "Transferable experience",
             "items": [
-              "TCS: operations supervision, SLA follow-up and incident escalation.",
+              "7 years of bilingual service/support; TCS operations supervision, SLA follow-up and incident escalation.",
               "TTEC: Tier 2 mobile support, root-cause analysis and technical training. Bilingual English/Spanish."
             ]
           }
@@ -378,7 +534,7 @@
           {
             "title": "Experiencia transferible",
             "items": [
-              "TCS: supervisión de operaciones, seguimiento de SLA y escalamiento de incidentes.",
+              "7 años de atención y soporte bilingüe; supervisión de operaciones en TCS, seguimiento de SLA y escalamiento de incidentes.",
               "TTEC: soporte móvil nivel 2, causa raíz y capacitación técnica. Atención bilingüe inglés/español."
             ]
           }

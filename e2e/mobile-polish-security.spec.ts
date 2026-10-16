@@ -1,3 +1,4 @@
+import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
 test("production CSP allows the app and blocks injected inline scripts", async ({ page, request }) => {
@@ -25,12 +26,12 @@ test("production CSP allows the app and blocks injected inline scripts", async (
   expect(await page.evaluate(() => (window as typeof window & { inlineProbe?: boolean }).inlineProbe)).toBeUndefined();
   await page.goto('/repair#cv');
   await page.locator('#cv').getByRole('button', { name: /^Preview CV:/ }).click();
-  await expect.poll(() => page.getByRole('dialog').locator('img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  await expect.poll(() => page.getByRole('dialog').locator('img:not([data-language-flag])').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   expect(appErrors).toEqual([]);
 });
 
 test("phone shortcuts and native section jump work without covering the last footer link", async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+  const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
   const page = await context.newPage();
   await page.goto('/');
   const quick = page.getByRole('navigation', { name: 'Quick navigation', exact: true });
@@ -39,7 +40,7 @@ test("phone shortcuts and native section jump work without covering the last foo
   await expect(page.locator('#areas')).toBeInViewport();
   await quick.getByRole('link', { name: 'CV', exact: true }).tap();
   await expect(page).toHaveURL(/\/cv$/);
-  await expect(page.locator('[data-cv-theme]')).toHaveCount(6);
+  await expect(page.locator('[data-cv-theme]')).toHaveCount(7);
   await quick.getByRole('link', { name: 'Contact', exact: true }).tap();
   await expect(quick.getByRole('link', { name: 'Contact', exact: true })).toHaveAttribute('aria-current', 'page');
   const menu = page.getByRole('button', { name: 'Open menu', exact: true });
@@ -88,19 +89,8 @@ test("orbit moves with upright labels, pauses manually and respects reduced moti
   await expect(stage.locator('[data-outfit]')).toHaveCount(6);
 });
 
-test("Culiacán story is concise, bilingual and expanded only on request", async ({ page }) => {
-  await page.goto('/');
-  const story = page.locator('[data-culichi-origins]');
-  await expect(story.locator('details')).not.toHaveAttribute('open', '');
-  await story.locator('summary').click();
-  await expect(story).toContainText('Humaya and Tamazula');
-  await page.locator('button[lang="es"]:visible').first().click();
-  await expect(story).toContainText('¿Por qué Culichi y un zorro?');
-  await expect(story).toContainText('río Culiacán');
-});
-
 test("rotating phone targets stay inside the screen and accept a direct touch", async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'no-preference' });
+  const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'no-preference' });
   const page = await context.newPage();
   await page.goto('/');
   const stage = page.locator('[data-home-mascot]');

@@ -5,12 +5,10 @@ import { navigation } from "@/data/site";
 import { profileForPath } from "@/data/profiles";
 import type { MascotVariant } from "@/components/shared/CulichiMascot";
 import MascotMorph from "@/components/shared/MascotMorph";
-import MascotGearPreview from "@/components/shared/MascotGearPreview";
 import { previewMascotArea, type MascotIntent } from "@/lib/mascotIntent";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ProfileDropdown from "./ProfileDropdown";
-import Tag from "@/components/shared/Tag";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 
@@ -166,15 +164,14 @@ const SiteHeader = () => {
             {navigation.map(item => <li key={item.href}>
               <div className="flex items-center justify-between gap-2">
                 <Link to={item.href} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={() => { if (item.profile) previewMascotArea(item.profile, true); setOpen(false); }} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
-                  {navIconColor[item.label] && <NavIcon label={item.label} className={navIconColor[item.label]} />}{t(item.label)}
+                  {navIconColor[item.label] && <NavIcon label={item.label} className={navIconColor[item.label]} />}{t(item.shortLabel ?? item.label)}
                 </Link>
                 {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => { const next = mobileProfile === item.href ? null : item.href; setMobileProfile(next); previewMascotArea(next ? item.profile ?? null : null); }}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}
               </div>
               {item.children && mobileProfile === item.href && <ul id={`mobile-specialties-${item.profile}`} className="my-2 ml-5 space-y-1 border-l border-border pl-3">
-                {isHome && item.profile && <li className="mb-3"><MascotGearPreview profile={item.profile} /></li>}
-                {item.children.map(child => <li key={child.href}><Link to={child.href} onClick={() => { setOpen(false); setMobileProfile(null); }} className="flex items-start gap-3 rounded-lg p-3 text-sm hover:bg-secondary">
-                  {child.icon && <child.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />}
-                  <span className="min-w-0"><span className="block font-medium">{t(child.label)}</span>{child.status && <span className="mt-1 block"><Tag>{t(child.status)}</Tag></span>}</span>
+                {item.children.map(child => <li key={child.href}><Link to={child.href} aria-label={t(child.label)} onClick={() => { setOpen(false); setMobileProfile(null); }} className="flex min-h-11 items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-secondary">
+                  {child.icon && <child.icon className="h-4 w-4 shrink-0 text-primary" aria-hidden />}
+                  <span className="min-w-0 font-medium">{t(child.shortLabel ?? child.label)}</span>
                 </Link></li>)}
               </ul>}
             </li>)}
