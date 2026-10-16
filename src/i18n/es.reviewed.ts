@@ -1,5 +1,15 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Bilingual professional with 7 years in customer service, technical support, training and operations. I build web interfaces and automate reports, document educational cybersecurity investigations, and develop practical electrical, electronics and smartphone-repair skills.": "Profesional bilingüe con 7 años en atención al cliente, soporte técnico, capacitación y operaciones. Desarrollo interfaces web y automatizo reportes, documento investigaciones educativas de ciberseguridad y aplico conocimientos de electricidad, electrónica y reparación de celulares.",
+  "Residential electrical maintenance with documented outlet, switch and ceiling-light replacements, polarity and protective-earth checks. Complementary training in AC/DC measurement, industrial electricity and control.": "Mantenimiento eléctrico residencial con cambios documentados de contactos, apagador y luminarias, y comprobaciones de polaridad y tierra. Formación complementaria en mediciones CA/CC, electricidad industrial y control.",
+  "General CV — experience, projects & training": "CV general — experiencia, proyectos y formación",
+  "A complete CV with my experience, projects and training, plus focused versions for each professional area.": "Un CV completo con mi experiencia, proyectos y formación, además de versiones enfocadas en cada área profesional.",
+  "Complete CV — browse all pages": "CV completo — consulta todas las páginas",
+  "CV pages": "Páginas del CV",
+  "Next page": "Página siguiente",
+  "Previous page": "Página anterior",
+  "Page {page} of {count}": "Página {page} de {count}",
+  "First page of the general CV": "Primera página del CV general",
   "Open to IT, cybersecurity and development opportunities": "Abierto a oportunidades en TI, ciberseguridad y desarrollo",
   "Illustrative reference: residential outlets, switches and measurement tools": "Imagen de referencia: contactos residenciales, apagadores y herramientas de medición",
   "Choose a work type to explore its practices and original photographs.": "Elige un tipo de trabajo para ver sus prácticas y fotografías originales.",

@@ -139,7 +139,7 @@ test("school links and CV catalog reflect confirmed institutions", async ({ page
     await expect(page.getByText(/UNISITE/)).toHaveCount(0);
   }
   await page.goto("/cv");
-  await expect(page.locator("main article")).toHaveCount(6);
+  await expect(page.locator("main article")).toHaveCount(7);
   await expect(page.getByText("Updated electrical CV · ES/EN", { exact: true })).toHaveCount(0);
 });
 

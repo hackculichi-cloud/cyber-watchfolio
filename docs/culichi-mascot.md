@@ -62,7 +62,7 @@ Home integra personajes de menor tamaño en puntos distintos del contenido: cibe
 
 ## CV y evidencias
 
-El catálogo, los doce PDF ES/EN y sus previsualizaciones mantienen el diseño aprobado. Los seis CV incluyen contenido confirmado y mascota con el atuendo del perfil. El eléctrico original permanece intacto y descargable. Las fotografías del autor, galerías, reparaciones, certificados y estados de formación no se modifican al añadir el 3D.
+El catálogo ofrece un CV general de dos páginas y seis CV por perfil de una página, todos en ES/EN: catorce PDF y dieciséis previsualizaciones fieles de sus páginas. Cada PDF incorpora el fondo original de su área, color propio, texto seleccionable y una mascota de cuerpo completo con el atuendo correspondiente; el general usa la identidad de Home. El visor permite recorrer las dos páginas, ampliar y cambiar de idioma. El eléctrico original y su copia anterior con mascota se conservan intactos. El contenido, las fuentes y la generación reproducible se describen en `cv-design.md`.
 
 ## Verificación
 
@@ -71,7 +71,7 @@ Las pruebas comprueban colores distintos, navegación repetida entre perfiles, s
 
 ## Conocimientos y práctica
 
-`profileCapabilities.ts` organiza las descripciones por habilidades: conocimientos de los temarios, prácticas de formación y trabajos documentados. Electricidad incluye fundamentos/planos, instalaciones, medición, control/motores, mantenimiento y energía; electrónica integra ETO y LIDETEC. Reparación, software y ciberseguridad conservan el contexto de curso, proyecto o laboratorio. Atención al cliente mantiene la experiencia bilingüe confirmada. Los doce PDF ES/EN se regeneran desde `resumes.json` con versiones resumidas; no se completan automáticamente cursos pendientes ni se inventan intervenciones.
+`profileCapabilities.ts` organiza las descripciones por habilidades: conocimientos de los temarios, prácticas de formación y trabajos documentados. Electricidad incluye fundamentos/planos, instalaciones, medición, control/motores, mantenimiento y energía; electrónica integra ETO y LIDETEC. Reparación, software y ciberseguridad conservan el contexto de curso, proyecto o laboratorio. Atención al cliente mantiene los siete años de experiencia bilingüe confirmada. Los catorce PDF ES/EN se regeneran desde `resumes.json`; el general reúne los cinco puestos, proyectos, prácticas y formación de las seis áreas. No se completan automáticamente cursos pendientes ni se inventan intervenciones.
 
 ## Inicio y pie de página
 
@@ -83,7 +83,7 @@ El footer usa los seis colores de las áreas, la marca Culichi, contacto por cor
 
 ## Idioma y navegación compacta
 
-Las visitas sin preferencia guardada abren en español (`html lang="es"`). La elección explícita ES/EN se conserva con `portfolio-lang`. El selector es un solo botón: muestra la bandera y sigla activas, flechas de cambio y una pequeña pista de la otra bandera. Al pulsarlo cambia al otro idioma, anuncia la etiqueta de la acción y anima la bandera entrante; respeta movimiento reducido. No depende de emojis ni servicios externos. La licencia MIT de flag-icons acompaña los archivos.
+Las visitas sin preferencia guardada abren en español (`html lang="es"`). La elección explícita ES/EN se conserva con `portfolio-lang`. El selector es un solo botón: muestra la bandera y sigla activas, flechas de cambio y el nombre completo del idioma de destino. Cuando está en inglés, «Español» queda visible; en español aparece «English». Al pulsarlo cambia al otro idioma, anuncia la etiqueta de la acción y anima la bandera entrante; respeta movimiento reducido. No depende de emojis ni servicios externos. La licencia MIT de flag-icons acompaña los archivos.
 
 Los desplegables superiores usan títulos breves, iconos y enlaces de 44 px, sin fotografías, listas de equipo ni descripciones largas. Mantienen los destinos de todas las especialidades, nombres accesibles completos, navegación por teclado y cierre con Escape. Solo la flecha de cada área abre el desplegable por hover; el logo mantiene su enlace y la vista temporal del atuendo sin desplegar contenido. La flecha también funciona con clic, tacto y teclado. Las herramientas del selector de Home siguen funcionando.
 

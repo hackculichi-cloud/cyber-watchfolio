@@ -40,7 +40,7 @@ test("phone shortcuts and native section jump work without covering the last foo
   await expect(page.locator('#areas')).toBeInViewport();
   await quick.getByRole('link', { name: 'CV', exact: true }).tap();
   await expect(page).toHaveURL(/\/cv$/);
-  await expect(page.locator('[data-cv-theme]')).toHaveCount(6);
+  await expect(page.locator('[data-cv-theme]')).toHaveCount(7);
   await quick.getByRole('link', { name: 'Contact', exact: true }).tap();
   await expect(quick.getByRole('link', { name: 'Contact', exact: true })).toHaveAttribute('aria-current', 'page');
   const menu = page.getByRole('button', { name: 'Open menu', exact: true });

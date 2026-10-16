@@ -14,7 +14,10 @@ describe("specialty and CV publishing integrity", () => {
     }
   });
   it("gives each of the six profiles its own CV instead of reusing unrelated profiles", () => {
-    expect(cvVariants).toHaveLength(6);
+    expect(cvVariants).toHaveLength(7);
+    const general = cvVariants.find(item => item.id === "general");
+    expect(general?.pageCount).toBe(2);
+    expect(general?.localized?.es.previews).toHaveLength(2);
     const ids = new Set<string>();
     for (const profile of profileIdentities) {
       expect(profile.cvIds).toHaveLength(1);
