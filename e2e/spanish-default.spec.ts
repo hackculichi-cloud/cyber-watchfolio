@@ -11,8 +11,8 @@ test('one language control starts in Spanish, transitions flags and persists the
   await expect(selector.getByRole('button')).toHaveCount(1);
   const toggle = selector.locator('[data-language-toggle]');
   await expect(toggle).toHaveAttribute('aria-label', 'Cambiar a inglés');
-  await expect(toggle).toContainText('ES');
-  await expect(toggle.locator('[data-language-destination]')).toHaveText('English');
+  await expect(toggle).toHaveText('');
+  await expect(toggle.locator('[data-language-flag]')).toHaveAttribute('data-language-flag', 'es');
   for (const flag of await selector.locator('img').all()) {
     await expect.poll(() => flag.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     expect(await flag.getAttribute('src')).toMatch(/^\/images\/flags\//);
@@ -21,8 +21,8 @@ test('one language control starts in Spanish, transitions flags and persists the
   await selectLanguage(page, 'en');
   await expect(toggle.locator('.language-flag-in')).toHaveCSS('animation-name', 'language-flag-in');
   await expect(toggle.locator('.language-flag-in img')).toHaveAttribute('src', '/images/flags/gb.svg');
-  await expect(toggle).toContainText('EN');
-  await expect(toggle.locator('[data-language-destination]')).toHaveText('Español');
+  await expect(toggle).toHaveText('');
+  await expect(toggle.locator('[data-language-flag]')).toHaveAttribute('data-language-flag', 'en');
   await expect(toggle).toHaveAttribute('aria-label', 'Switch to Spanish');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');

@@ -38,22 +38,27 @@ test('the general CV exposes both real PDF pages, preserves language on page two
   expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
 });
 
-test('the return to Spanish is explicitly visible and the larger language control fits the desktop header', async ({ page }) => {
+test('the flag-only language control retains its accessible action and fits the desktop header', async ({ page }) => {
   for (const width of [1280, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto('/');
     await selectLanguage(page, 'en');
     const toggle = page.locator('header [data-language-toggle]:visible');
-    await expect(toggle.locator('[data-language-destination]')).toHaveText('Español');
+    await expect(toggle).toHaveText('');
+    await expect(toggle).toHaveAttribute('aria-label', 'Switch to Spanish');
+    await expect(toggle.locator('[data-language-flag]')).toHaveAttribute('data-language-flag', 'en');
     const brand = (await page.locator('[data-header-brand]').boundingBox())!;
     const first = (await page.locator('header nav > ul a').first().boundingBox())!;
     const control = (await toggle.boundingBox())!;
+    expect(control.width).toBeLessThanOrEqual(88);
+    expect(control.height).toBeGreaterThanOrEqual(44);
     const last = (await page.locator('header nav > ul a').last().boundingBox())!;
     expect(first.x).toBeGreaterThanOrEqual(brand.x + brand.width);
     expect(control.x).toBeGreaterThanOrEqual(last.x + last.width);
     expect(control.x + control.width).toBeLessThanOrEqual(width);
     await toggle.click();
     await expect(page.locator('html')).toHaveAttribute('lang', 'es');
-    await expect(toggle.locator('[data-language-destination]')).toHaveText('English');
+    await expect(toggle).toHaveAttribute('aria-label', 'Cambiar a inglés');
+    await expect(toggle.locator('[data-language-flag]')).toHaveAttribute('data-language-flag', 'es');
   }
 });
