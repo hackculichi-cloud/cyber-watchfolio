@@ -88,17 +88,6 @@ test("orbit moves with upright labels, pauses manually and respects reduced moti
   await expect(stage.locator('[data-outfit]')).toHaveCount(6);
 });
 
-test("Culiacán story is concise, bilingual and expanded only on request", async ({ page }) => {
-  await page.goto('/');
-  const story = page.locator('[data-culichi-origins]');
-  await expect(story.locator('details')).not.toHaveAttribute('open', '');
-  await story.locator('summary').click();
-  await expect(story).toContainText('Humaya and Tamazula');
-  await page.locator('button[lang="es"]:visible').first().click();
-  await expect(story).toContainText('¿Por qué Culichi y un zorro?');
-  await expect(story).toContainText('río Culiacán');
-});
-
 test("rotating phone targets stay inside the screen and accept a direct touch", async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'no-preference' });
   const page = await context.newPage();

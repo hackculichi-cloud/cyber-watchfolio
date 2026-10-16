@@ -41,9 +41,10 @@ test('the home fox sits beside the introduction on desktop and follows it on pho
     await page.goto('/');
     const copy = (await page.locator('[data-home-intro-copy]').boundingBox())!;
     const character = (await page.locator('[data-home-mascot]').boundingBox())!;
+    await expect(page.locator('[data-culichi-origins]')).toHaveCount(0);
     if (width >= 1024) {
       expect(character.x).toBeGreaterThanOrEqual(copy.x + copy.width);
-      expect(character.y).toBeLessThan(copy.y + copy.height);
+      expect(character.y).toBeCloseTo(copy.y, 0);
     } else {
       expect(character.y).toBeGreaterThanOrEqual(copy.y + copy.height);
     }

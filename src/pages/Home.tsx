@@ -1,5 +1,4 @@
 import HomeCharacter from "@/components/shared/HomeCharacter";
-import CulichiOrigins from "@/components/shared/CulichiOrigins";
 import homeBackground from "@/assets/culichi-home-background.webp";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -31,7 +30,7 @@ const Home = () => {
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.94)_0%,hsl(var(--background)/0.78)_40%,hsl(var(--background)/0.45)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-        <div data-home-introduction className="container relative mx-auto grid gap-8 px-4 py-10 sm:py-16 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-10">
+        <div data-home-introduction className="container relative mx-auto grid gap-8 px-4 py-10 sm:py-12 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-10">
           <div data-home-intro-copy className="min-w-0 max-w-3xl">
             <p className="eyebrow animate-fade-in-up">{t(site.role)}</p>
             <h1 className="animate-fade-in-up delay-100 mt-4 text-4xl font-bold leading-[1.1] md:text-6xl">
@@ -63,7 +62,6 @@ const Home = () => {
           </div>
           <div data-home-mascot-zone className="min-w-0 lg:justify-self-end lg:w-full">
             <InteractiveMascot className="mx-auto lg:ml-auto lg:mr-0" />
-            <CulichiOrigins />
           </div>
         </div>
         {/* On phones the group artwork has its own space, never behind the selector. */}
