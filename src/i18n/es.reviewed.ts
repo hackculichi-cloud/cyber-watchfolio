@@ -1,5 +1,7 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Enlarge workspace illustration": "Ampliar ilustración del espacio de trabajo",
+  "Illustrated workspace · Culichi": "Espacio de trabajo ilustrado · Culichi",
   "SIEM & log analysis": "SIEM y análisis de registros",
   "Completed work": "Trabajos realizados",
   "Work & practical experience": "Trabajos realizados y experiencia práctica",

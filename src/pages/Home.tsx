@@ -99,7 +99,7 @@ const Home = () => {
       <section className="container mx-auto px-4 py-20">
         <div className="mb-10 flex flex-col items-center gap-6 lg:flex-row">
           <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Current focus")} title={t("What I am working on right now")} description={t("An honest snapshot of my learning path — updated as I progress.")} /></div>
-          <HomeCharacter profile="electrical" scene="action" className="-mb-12 self-start lg:order-first" />
+          <HomeCharacter profile="electrical" scene="action" className="-mb-5 self-start lg:order-first" />
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {[
@@ -112,7 +112,7 @@ const Home = () => {
                 <Tag variant="accent">{t(c.tag)}</Tag>
                 <h3 className="mt-3 text-base font-semibold">{t(c.title)}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(c.body)}</p>
-                {i === 2 && <HomeCharacter profile="electronics" scene="practice" className="-mb-7 ml-auto mt-3 w-40 sm:w-44" />}
+                {i === 2 && <HomeCharacter profile="electronics" scene="practice" className="-mb-3 ml-auto mt-3 w-28 sm:w-32" />}
               </div>
             </Reveal>
           ))}
@@ -122,22 +122,22 @@ const Home = () => {
       {/* CTA */}
       <section className="container mx-auto px-4 pb-24">
         <Reveal from="scale">
-          <div className="flex flex-col items-start justify-between gap-8 border-t border-border/60 pt-12 lg:flex-row lg:items-center">
+          <div className="flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-10 lg:flex-row lg:items-center">
             <div>
               <h2 className="text-xl font-semibold">{t("Open to IT, cybersecurity and development opportunities")}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
               <Button asChild size="lg" className="group mt-6"><Link to="/contact">{t("Get in touch ")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></Link></Button>
             </div>
-            <HomeCharacter profile="repair" scene="practice" className="-mb-5 self-end" />
+            <HomeCharacter profile="repair" scene="practice" className="-mb-2 -mt-14 w-24 self-end sm:w-32 lg:mt-0 lg:w-36" />
           </div>
         </Reveal>
-        <div className="relative mt-14 flex flex-col items-start gap-2 border-t border-primary/25 pt-5 sm:flex-row sm:items-center sm:justify-between" data-home-service>
-          <HomeCharacter profile="customer-service" scene="closing" className="-mt-8 self-start sm:order-last" />
-          <div className="max-w-2xl">
+        <div className="relative mt-10 grid grid-cols-[minmax(0,1fr)_6rem] items-center gap-4 border-t border-primary/25 pt-5 sm:grid-cols-[minmax(0,1fr)_8rem]" data-home-service>
+          <div className="min-w-0 max-w-2xl">
             <p className="eyebrow">{t("People behind technology")}</p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t("Operations supervision, Tier 2 support and technical training connect my customer-service background with the way I investigate problems and explain solutions.")}</p>
             <Link to="/experience#background" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">{t("Explore my professional experience")}<ArrowRight className="h-4 w-4" aria-hidden /></Link>
           </div>
+          <HomeCharacter profile="customer-service" scene="closing" className="w-24 self-end sm:w-32" />
         </div>
       </section>
     </>

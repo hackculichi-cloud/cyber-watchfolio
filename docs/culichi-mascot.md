@@ -48,11 +48,15 @@ El logotipo ampliado del encabezado sigue usando el arte local y cambia por ruta
 
 ## Lugares de trabajo y fluidez
 
-`ProfileWorkspace` combina la pose de entrada existente con una escena SVG local: racks y pantallas de redes, estudio de programación, pared de herramientas y tablero eléctrico, laboratorio de electrónica, microscopio y mesa de reparación, o escritorio de atención al cliente. Las escenas son decorativas, sin canvas, filtros, eventos de hover ni animaciones continuas; incluyen descripciones accesibles traducidas y no se presentan como fotografías de instalaciones reales. Conservan las cinco poses distintas de cada perfil sin descargar nuevos mapas de imagen.
+`ProfileWorkspace` muestra seis ilustraciones completas del zorro dentro de una habitación amueblada: redes y servidores, estudio de desarrollo, taller eléctrico, laboratorio electrónico, reparación y atención al cliente. Cada escena tiene superficies, equipo, herramientas e iluminación a color. La pared de herramientas original se conserva como parte del taller eléctrico terminado. No se superpone otro personaje al escenario ni se usan siluetas o diagramas SVG como sustitutos del taller.
+
+Las imágenes WebP locales tienen versiones de 768 y 1536 px, seleccionadas mediante `srcset` y `sizes`. El espacio se reserva con dimensiones 1536×1024. El visitante puede ampliar la escena en el diálogo compartido; solo al abrirlo se requiere la imagen completa si el navegador había elegido la pequeña. Los textos y las descripciones accesibles mantienen ES/EN. Son ilustraciones de marca, no fotografías de instalaciones reales. Los originales generados y las referencias se documentan en `workspace-illustrations.md`.
 
 Se retiraron el zoom de 18 segundos del fondo de las áreas, la animación del patrón eléctrico y el desenfoque de todas las tarjetas. La entrada de la página usa solo opacidad durante 180 ms, sin desplazar todo el contenido. El encabezado y la navegación de sección en celular usan superficies de fondo sin desenfoque, y el listener de scroll es pasivo. Son reducciones concretas de trabajo de renderizado, no un benchmark de rendimiento en todos los navegadores.
 
 En escritorio Home coloca presentación y nombre a la izquierda y selector a la derecha, con el fondo distribuido en todo el hero. En celular se apilan en orden de lectura y la composición de fondo mantiene su propio espacio. «Trabajos realizados» reemplaza «Evidence» como etiqueta de navegación eléctrica, conservando el hash `#evidence` y las fotografías originales.
+
+Los personajes que acompañan el contenido de Home se muestran a menor tamaño. Los dos del cierre usan entre 96 y 144 px según el ancho disponible; atención al cliente queda junto a su texto y reparación acompaña la acción de contacto. El zorro principal y su selector conservan su tamaño.
 
 ## CV y evidencias
 

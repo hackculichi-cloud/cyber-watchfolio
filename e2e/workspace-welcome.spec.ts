@@ -16,6 +16,10 @@ test('each profile has its own static workplace, footer outfit and brand color',
     const workspace = page.locator(`[data-profile-workspace="${outfit}"]`);
     await expect(workspace).toContainText(title);
     await expect(workspace.getByRole('img')).toBeVisible();
+    const artwork = workspace.locator('img[data-workspace-art]');
+    await expect(artwork).toHaveAttribute('srcset', /768w, .*1536w/);
+    // Width-descriptor srcsets report density-corrected naturalWidth (for example 640 for a 768 px file).
+    await expect.poll(() => artwork.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     await expect(workspace.locator('[data-body-mascot]')).toHaveAttribute('data-body-mascot', outfit);
     expect(await workspace.evaluate(element => element.getAnimations({ subtree:true }).length)).toBe(0);
     await expect(page.locator('[data-interactive-mascot], [data-outfit], [data-tool-field]')).toHaveCount(0);
@@ -31,6 +35,20 @@ test('each profile has its own static workplace, footer outfit and brand color',
   await page.goto('/electrical#evidence');
   await expect(page.getByRole('navigation', { name:'Profile sections' }).getByRole('link', {name:'Completed work', exact:true})).toHaveAttribute('href', '#evidence');
   await expect(page.locator('#evidence')).toContainText('Work & practical experience');
+});
+
+test('complete workspace illustrations enlarge without leaving the profile', async ({ page }) => {
+  await page.goto('/electrical');
+  await page.locator('[data-profile-workspace]').getByRole('button', {name:'Enlarge workspace illustration: Electrical workshop',exact:true}).click();
+  const dialog = page.getByRole('dialog', {name:/^(Electrical workshop|Taller de electricidad)$/});
+  const image = dialog.locator('img');
+  await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth === 1536)).toBe(true);
+  await expect(dialog).toContainText('Illustrated workspace · Culichi');
+  await dialog.locator('button[lang="es"]').click();
+  await expect(dialog).toContainText('Espacio de trabajo ilustrado · Culichi');
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(page).toHaveURL(/\/electrical$/);
 });
 
 test('the home fox sits beside the introduction on desktop and follows it on phones', async ({ browser }) => {

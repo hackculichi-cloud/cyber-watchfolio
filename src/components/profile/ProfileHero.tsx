@@ -49,7 +49,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
       />
 
       <div className="container relative mx-auto flex flex-col-reverse gap-8 px-4 py-16 lg:flex-row-reverse lg:items-center lg:justify-between lg:py-24">
-        <div className="w-full shrink-0 lg:w-[28rem] xl:w-[35rem]">
+        <div className="w-full shrink-0 lg:w-[48%] xl:w-[40rem]">
           <ProfileWorkspace profile={profile.slug} />
         </div>
         <div className="min-w-0 flex-1">

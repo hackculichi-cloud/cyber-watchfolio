@@ -34,6 +34,9 @@ test("home distributes all six full characters and the footer offers real profil
     await expect(figure).toBeVisible();
     await expect(figure.locator("[data-full-body], [data-mascot-scene]")).toHaveCount(1);
   }
+  for (const area of ['repair', 'customer-service']) {
+    expect((await page.locator(`[data-home-character="${area}"]`).boundingBox())!.width).toBeLessThanOrEqual(144);
+  }
   const footer = page.locator("footer");
   await footer.scrollIntoViewIfNeeded();
   await expect(footer.getByRole("heading", { name: "Ideas become projects. Let’s talk." })).toBeVisible();
