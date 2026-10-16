@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 const areas = ["cybersecurity", "development", "electrical", "electronics", "repair", "customer-service"];
-test("all six selectors have distinct section colors, and work again inside a profile", async ({ page }) => {
+test("all six home selectors have distinct colors, while profiles welcome visitors without outfit controls", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
     const home = page.locator('[data-home-mascot]');
@@ -14,17 +14,14 @@ test("all six selectors have distinct section colors, and work again inside a pr
     expect(colors.size).toBe(6);
     await home.locator('[data-outfit="electrical"]').click();
     await expect(page).toHaveURL(/\/electrical$/);
-    const inside = page.locator('[data-interactive-mascot="electrical"]');
-    await inside.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
-    await expect(inside.locator('[data-outfit]')).toHaveCount(6);
-    await expect(inside.locator('[data-outfit="electrical"]')).toHaveAttribute("aria-current", "page");
-    // Choosing the current outfit must not lock subsequent choices.
-    await inside.locator('[data-outfit="electrical"]').click();
-    await expect(page).toHaveURL(/\/electrical$/);
-    await inside.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
-    await inside.locator('[data-outfit="repair"]').click();
+    await expect(page.locator('[data-profile-workspace="electrical"] [data-body-mascot="electrical"]')).toBeVisible();
+    await expect(page.locator('[data-interactive-mascot], [data-outfit]')).toHaveCount(0);
+    const repair = page.locator('header nav a[href="/repair"]');
+    await repair.hover();
+    await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electrical');
+    await repair.click();
     await expect(page).toHaveURL(/\/repair$/);
-    await expect(page.locator('[data-interactive-mascot="repair"] [data-body-mascot="repair"]')).toBeVisible();
+    await expect(page.locator('[data-profile-workspace="repair"] [data-body-mascot="repair"]')).toBeVisible();
 });
 test("navigation works without WebGL and never requests the archived 3D model", async ({ page }) => {
     const requested3D: string[] = [];
@@ -46,7 +43,7 @@ test("navigation works without WebGL and never requests the archived 3D model", 
     await home.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
     await home.locator('[data-outfit="development"]').click();
     await expect(page).toHaveURL(/\/software-development$/);
-    await expect(page.locator('[data-interactive-mascot="development"] [data-body-mascot="development"]')).toBeVisible();
+    await expect(page.locator('[data-profile-workspace="development"] [data-body-mascot="development"]')).toBeVisible();
     expect(requested3D).toEqual([]);
 });
 test("each area includes a fifth scene and a full standalone activity illustration", async ({ page }) => {

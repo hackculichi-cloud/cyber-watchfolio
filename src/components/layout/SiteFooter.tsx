@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowUp, ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { site } from "@/data/site";
-import { professionalProfiles } from "@/data/profiles";
+import { professionalProfiles, profileForPath } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ContactPreview from "@/components/shared/ContactPreview";
 import CulichiMascot from "@/components/shared/CulichiMascot";
@@ -11,6 +11,8 @@ const contactLink = "inline-flex min-h-11 items-center gap-2 rounded-lg border b
 
 const SiteFooter = () => {
   const { t } = useLanguage();
+  const { pathname } = useLocation();
+  const mascot = profileForPath(pathname)?.slug ?? "emblem";
   return <footer className="site-footer relative isolate overflow-hidden border-t border-border bg-[#080f1b]">
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_15%_20%,hsl(var(--primary)/0.12),transparent_60%)]" />
     <div aria-hidden className="flex h-0.5">{professionalProfiles.map(area => <span key={area.slug} data-profile={area.slug} className="flex-1 bg-primary/80" />)}</div>
@@ -34,8 +36,8 @@ const SiteFooter = () => {
       <div className="grid gap-10 py-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
         <div>
           <Link to="/" className="inline-flex items-center gap-4 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-            <CulichiMascot variant="emblem" decorative className="h-24 w-24 sm:h-28 sm:w-28" />
-            <span><span className="block text-3xl font-bold tracking-tight sm:text-4xl">Culichi<span className="text-primary">.</span></span><span className="mt-1 block text-sm text-muted-foreground">{site.shortName}</span></span>
+            <span data-footer-mascot={mascot}><CulichiMascot variant={mascot} portrait decorative className="h-24 w-24 sm:h-28 sm:w-28" /></span>
+            <span data-footer-brand className="min-w-0"><span className="block text-xl font-semibold tracking-tight sm:text-2xl">{site.shortName}</span><span className="mt-1 block text-sm font-medium text-primary">aka Culichi</span></span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
 

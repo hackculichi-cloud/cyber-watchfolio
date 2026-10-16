@@ -8,7 +8,7 @@ export type ElectricalModule = {
 
 export const electricalTraining = {
   title: "Electrical Fundamentals & Industrial Electricity",
-  provider: "RED CONOCER",
+  provider: "Universidad Internacional · RED CONOCER",
   status: "Currently Studying",
   summary:
     "Eight-module training covering electrical theory, measurement, circuits, installations, control, motors, maintenance, diagnostics and renewable energy.",
@@ -163,7 +163,7 @@ export const trainingTracks: TrainingTrack[] = [
     anchor: "electrical",
     title: "Electrical Fundamentals & Industrial Electricity",
     status: "Currently Studying",
-    description: "RED CONOCER electrical training in progress. Curriculum topics describe the program, not completed qualifications.",
+    description: "Electrical training with Universidad Internacional through RED CONOCER. Curriculum topics describe the program; the original certificate is pending.",
     topics: ["Safety practices", "Residential installations", "Diagnostics", "Maintenance"],
   },
   {

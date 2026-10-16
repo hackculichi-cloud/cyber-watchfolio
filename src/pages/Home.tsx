@@ -21,24 +21,24 @@ const Home = () => {
     <>
       <Seo
         title={t(`${site.shortName} | IT, Cybersecurity & Software Development`)}
-        description={t("Personal portfolio of Christian Velasco: cybersecurity, software development, electronics and technical training, backed by 5+ years of bilingual customer service.")}
+        description={t("Personal portfolio of Christian Velasco: cybersecurity, software development, electronics and technical training, backed by 7 years of bilingual customer service.")}
         path="/"
       />
 
       {/* Hero */}
       <section className="grid-bg relative isolate overflow-clip border-b border-border">
-        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 hidden h-full w-full -translate-y-12 object-cover object-right-top opacity-90 md:block" />
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.98)_0%,hsl(var(--background)/0.88)_42%,hsl(var(--background)/0.32)_100%)]" />
+        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 hidden h-full w-full object-cover object-center opacity-30 md:block" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.94)_0%,hsl(var(--background)/0.78)_40%,hsl(var(--background)/0.45)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
-        <div className="container relative mx-auto grid gap-6 px-4 py-12 sm:py-20 md:py-24 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
-          <div className="max-w-3xl">
+        <div data-home-introduction className="container relative mx-auto grid gap-8 px-4 py-10 sm:py-16 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-10">
+          <div data-home-intro-copy className="min-w-0 max-w-3xl">
             <p className="eyebrow animate-fade-in-up">{t(site.role)}</p>
             <h1 className="animate-fade-in-up delay-100 mt-4 text-4xl font-bold leading-[1.1] md:text-6xl">
               {t(site.name.split(" ").slice(0, 2).join(" "))}{t(" ")}
               <span className="gradient-text">{t(site.name.split(" ").slice(2).join(" "))}</span>
             </h1>
-            <p className="animate-fade-in-up delay-200 mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="reading-copy animate-fade-in-up delay-200 mt-6 max-w-2xl text-lg leading-relaxed text-foreground/90">
               {t(site.tagline)}
             </p>
 
@@ -60,12 +60,11 @@ const Home = () => {
                 <Mail className="h-4 w-4" /> {t(site.email)}
               </ContactPreview>
             </div>
-            <div className="mt-2 sm:mt-5" data-home-mascot-zone>
-              <InteractiveMascot className="mx-auto sm:mx-0" />
-              <CulichiOrigins />
-            </div>
           </div>
-
+          <div data-home-mascot-zone className="min-w-0 lg:justify-self-end lg:w-full">
+            <InteractiveMascot className="mx-auto lg:ml-auto lg:mr-0" />
+            <CulichiOrigins />
+          </div>
         </div>
         {/* On phones the group artwork has its own space, never behind the selector. */}
         <div data-home-mobile-art className="relative mx-auto max-w-xl md:hidden">
@@ -76,12 +75,12 @@ const Home = () => {
 
 
       {/* Professional profile */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="mb-10 flex flex-col items-center gap-6 lg:flex-row">
-          <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Professional profile")} title={t("Skills and professional areas")} description={t(site.intro)} /></div>
-          <HomeCharacter profile="cybersecurity" scene="hanging" className="-mb-10 self-end border-t border-primary/30 lg:-mt-16" />
+      <section id="areas" className="container mx-auto scroll-mt-28 px-4 py-16">
+        <div className="mb-8 flex items-center gap-4 lg:gap-6">
+          <div className="min-w-0 flex-1 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl"><SectionHeading eyebrow="Christian Velasco · aka Culichi" title={t("These are my skills")} description={t("Practical work, study and experience in six areas. Choose what you need and see the examples behind each skill.")} /></div>
+          <HomeCharacter profile="cybersecurity" scene="hanging" className="w-24 border-t border-primary/30 sm:w-32 lg:-mb-10 lg:-mt-16 lg:w-44" />
         </div>
-        <div id="areas" className="grid scroll-mt-28 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {professionalProfiles.map((p, i) => (
             <Reveal key={p.title} delay={i * 90} className="h-full">
               <ProfileCard data={p} />

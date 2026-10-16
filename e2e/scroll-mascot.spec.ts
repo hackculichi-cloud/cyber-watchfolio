@@ -45,7 +45,8 @@ test("home loads the local code font and general mascot background", async ({ pa
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   await expect.poll(() => page.evaluate(() => document.fonts.check('16px "JetBrains Mono"'))).toBe(true);
-  await expect(page.locator("body")).toHaveCSS("font-family", /JetBrains Mono/);
+  await expect(page.locator("body")).toHaveCSS("font-family", /sans-serif/);
+  await expect(page.locator(".eyebrow").first()).toHaveCSS("font-family", /JetBrains Mono/);
   const backdrop = page.locator("[data-home-background]");
   await expect.poll(() => backdrop.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   await expect(backdrop).toHaveAttribute("aria-hidden", "true");
@@ -68,7 +69,7 @@ test("illustrated mascot reveals six outfits and transitions before navigating",
   await page.goto("/");
   const mascot = page.locator("[data-home-mascot]");
   const box = (await mascot.boundingBox())!;
-  expect(box.x + box.width).toBeLessThan(1440 / 2);
+  expect(box.x).toBeGreaterThanOrEqual(1440 / 2);
   await expect(mascot).toHaveAttribute("data-mascot-renderer", "illustration");
   await expect(mascot).toHaveAttribute("data-phase", "standby");
   await mascot.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).hover();
@@ -79,10 +80,10 @@ test("illustrated mascot reveals six outfits and transitions before navigating",
   await expect(page).toHaveURL(/\/$/);
   await expect(mascot.locator('.mascot-target [data-body-mascot="electrical"]')).toBeVisible();
   await expect(page).toHaveURL(/\/electrical$/);
-  const destination = page.locator('[data-interactive-mascot="electrical"]');
+  const destination = page.locator('[data-profile-workspace="electrical"]');
   await expect(destination).toBeVisible();
-  await destination.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).click();
-  await expect(destination).toHaveAttribute("data-phase", "ready");
+  await expect(destination.locator('[data-body-mascot="electrical"]')).toBeVisible();
+  await expect(page.locator('[data-outfit]')).toHaveCount(0);
 });
 
 test("outfit selector supports keyboard, touch and reduced motion", async ({ page, browser }) => {
@@ -101,7 +102,7 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   await mascot.locator('[data-outfit="electronics"]').focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/electronics$/);
-  await expect(page.locator('[data-interactive-mascot="electronics"] [data-body-mascot="electronics"]')).toBeVisible();
+  await expect(page.locator('[data-profile-workspace="electronics"] [data-body-mascot="electronics"]')).toBeVisible();
   await expect(page.locator("main canvas")).toHaveCount(0);
   const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true });
   const mobile = await context.newPage();

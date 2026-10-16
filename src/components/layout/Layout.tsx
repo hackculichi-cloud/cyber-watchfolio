@@ -33,7 +33,7 @@ const Layout = () => {
         {t("Skip to content")}
       </a>
       <SiteHeader />
-      <main id="main" key={profile?.slug ?? "base"} className="profile-fade flex-1 pt-24">
+      <main id="main" key={profile?.slug ?? "base"} className="profile-fade flex-1 pt-28">
         <Outlet />
       </main>
       <SiteFooter />

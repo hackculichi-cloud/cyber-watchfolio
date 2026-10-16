@@ -2,7 +2,11 @@ import { useEffect, useId, useRef, useState, type MouseEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { professionalProfiles, type ProfileSlug } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import CulichiBody from "./CulichiBody";
+import MascotMorph from "./MascotMorph";
+import MascotGearPreview from "./MascotGearPreview";
+import MascotToolField from "./MascotToolField";
+import toolAtlas from "@/assets/culichi-tool-props.png";
+import type { MascotIntent } from "@/lib/mascotIntent";
 import { cn } from "@/lib/utils";
 import { Pause, Play } from "lucide-react";
 type MascotPhase = "standby" | "ready" | "transforming";
@@ -12,8 +16,8 @@ const positions = Array.from({ length: 6 }, (_, i) => {
     const angle = (-150 + i * 60) * Math.PI / 180;
     return [50 + 35 * Math.cos(angle), 50 + 35 * Math.sin(angle)];
 });
-const transformDuration = 1100;
-/** Shared outfit navigation on Home and all six profiles; never navigate on hover. */
+const transformDuration = 720;
+/** Home outfit navigation; profiles welcome visitors in their own static workspace. */
 const InteractiveMascot = ({ profile = "home", className }: {
     profile?: ProfileSlug | "home";
     className?: string;
@@ -35,15 +39,35 @@ const InteractiveMascot = ({ profile = "home", className }: {
     const [keyboardFocus, setKeyboardFocus] = useState(false);
     const [preview, setPreview] = useState<ProfileSlug | null>(null);
     const [target, setTarget] = useState<ProfileSlug | null>(null);
+    const selected = target ?? preview;
+    const gearId = `${id}-gear`;
+    useEffect(() => {
+        if (!inView) return;
+        const artwork = new Image();
+        artwork.decoding = "async";
+        artwork.fetchPriority = "low";
+        artwork.src = toolAtlas;
+    }, [inView]);
+    useEffect(() => {
+        const intent = (event: Event) => {
+            if (locked.current) return;
+            const { profile: area } = (event as CustomEvent<MascotIntent>).detail;
+            setPreview(area);
+            setPhase(area ? "ready" : "standby");
+            if (area) setOpen(true);
+        };
+        window.addEventListener("culichi:area-intent", intent);
+        return () => window.removeEventListener("culichi:area-intent", intent);
+    }, []);
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: .1 });
         if (root.current) observer.observe(root.current);
         return () => observer.disconnect();
     }, []);
     useEffect(() => {
-        window.dispatchEvent(new CustomEvent("culichi:outfit-preview", { detail: { profile: target ?? preview } }));
-        return () => { window.dispatchEvent(new CustomEvent("culichi:outfit-preview", { detail: { profile: null } })); };
-    }, [preview, target]);
+        window.dispatchEvent(new CustomEvent("culichi:outfit-preview", { detail: { profile: target ?? preview, committing: phase === "transforming" } }));
+    }, [preview, target, phase]);
+    useEffect(() => () => { window.dispatchEvent(new CustomEvent("culichi:outfit-preview", { detail: { profile: null } })); }, []);
     useEffect(() => {
         const query = window.matchMedia("(prefers-reduced-motion: reduce)");
         const change = () => setReduced(query.matches);
@@ -92,7 +116,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         else
             navigationTimer.current = setTimeout(() => navigate(href), transformDuration);
     };
-    return <div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-motion-paused={motionPaused || reduced || !inView || keyboardFocus || phase === "transforming"} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className={cn("mascot-selector mascot-orbit relative aspect-square w-full max-w-[30rem]", className)} onFocusCapture={event => { clearTimeout(closeTimer.current); if (event.target.matches(":focus-visible")) setKeyboardFocus(true); }} onPointerDownCapture={event => {
+    return <div className={cn("w-full max-w-[35rem]", className)}><div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-motion-paused={motionPaused || reduced || !inView || keyboardFocus || !!preview || phase === "transforming"} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className="mascot-selector mascot-orbit relative aspect-square w-full" onFocusCapture={event => { clearTimeout(closeTimer.current); if (event.target.matches(":focus-visible")) setKeyboardFocus(true); }} onPointerDownCapture={event => {
         setKeyboardFocus(false);
         // Touch freezes the choices immediately so the next selection stays put.
         if (event.pointerType === "touch" && !(event.target as Element).closest("[data-orbit-toggle]")) setMotionPaused(true);
@@ -118,6 +142,11 @@ const InteractiveMascot = ({ profile = "home", className }: {
       <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth=".25" strokeDasharray="1 2" />
       <circle cx="50" cy="50" r="27" stroke="currentColor" strokeWidth=".15" />
     </svg>}
+    <span aria-hidden className="mascot-orbit-body pointer-events-none absolute left-1/2 top-1/2 z-20 w-[86%] -translate-x-1/2 -translate-y-1/2">
+      <span data-profile={target ?? preview ?? (profile === "home" ? undefined : profile)} className={cn("relative block", phase === "transforming" && "mascot-transform", preview && !target && "mascot-preparing")}>
+        <MascotMorph outfit={selected ?? profile} committing={phase === "transforming"} preview={!!preview} entryScene />
+      </span>
+    </span>
     <button ref={button} type="button" aria-label={t("Greet Culichi and choose an outfit")} aria-expanded={open} aria-controls={open ? id : undefined} aria-disabled={phase === "transforming"} onFocus={() => { if (skipFocusOpen.current) {
         skipFocusOpen.current = false;
         return;
@@ -125,20 +154,12 @@ const InteractiveMascot = ({ profile = "home", className }: {
         setOpen(true); }} onClick={() => { if (!locked.current) {
         setOpen(true);
         greet();
-    } }} className="mascot-orbit-body absolute left-1/2 top-1/2 w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-primary">
-      <span data-profile={target ?? preview ?? (profile === "home" ? undefined : profile)} className={cn("relative block", phase === "transforming" && "mascot-transform", preview && !target && "mascot-preparing")}>
-        <span aria-hidden className="mascot-aura pointer-events-none absolute inset-6 rounded-full border border-primary/50" />
-        <span className="mascot-source block w-full">
-          <CulichiBody profile={profile} className="w-full" />
-        </span>
-        {(target ?? preview) && <span key={target ?? preview} aria-hidden data-outfit-preview={target ?? preview} className={cn("pointer-events-none absolute inset-0", target ? "mascot-target" : "mascot-preview")}><CulichiBody profile={(target ?? preview)!} scene={false} className="w-full" /></span>}
-      </span>
-    </button>
-    {open && <nav id={id} aria-label={t("Choose Culichi's outfit")} data-outfit-selector>
-      {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onPointerLeave={event => { if (!locked.current && document.activeElement !== event.currentTarget) setPreview(null); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current) setPreview(null); }} aria-disabled={phase === "transforming"} data-profile={area.slug} data-outfit={area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center text-[10px] leading-tight text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
+    } }} className="absolute left-1/2 top-1/2 z-30 aspect-square w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-full [clip-path:circle(50%)] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" />
+    {selected && <MascotToolField key={selected} profile={selected} committing={phase === "transforming"} stage={root} />}
+    {open && <nav id={id} className="z-10" aria-label={t("Choose Culichi's outfit")} data-outfit-selector>
+      {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onPointerLeave={event => { if (!locked.current && document.activeElement !== event.currentTarget) setPreview(null); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current) setPreview(null); }} aria-disabled={phase === "transforming"} aria-describedby={selected === area.slug ? gearId : undefined} data-profile={area.slug} data-outfit={area.slug} data-active={selected === area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center text-[11px] leading-tight text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
         <span data-orbit-node className="relative grid h-20 w-20 place-items-center">
-          <span className={cn("grid h-11 w-11 place-items-center rounded-full border border-primary/60 bg-background/90 shadow-[0_0_12px_hsl(var(--primary)/0.2)]", profile === area.slug && "bg-primary/20 ring-2 ring-primary/40")}><area.icon className="h-4 w-4" aria-hidden/></span>
-          <span className="mascot-orbit-label">{t(shortNames[i])}</span>
+          <span className={cn("mascot-neon-orb flex h-20 w-20 flex-col items-center justify-center gap-1 rounded-full border border-primary/80 bg-background/95", profile === area.slug && "bg-primary/20 ring-2 ring-primary/40")}><area.icon className="h-6 w-6 shrink-0" aria-hidden/><span className="mascot-orbit-label">{t(shortNames[i])}</span></span>
         </span>
       </Link>)}
     </nav>}
@@ -148,6 +169,6 @@ const InteractiveMascot = ({ profile = "home", className }: {
     <span role="status" aria-live="polite" className="sr-only">
       {phase === "transforming" ? t("Changing outfit…") : ""}
     </span>
-  </div>;
+  </div><div id={gearId} data-mascot-legend className="mt-2 h-16">{selected && <MascotGearPreview profile={selected} compact />}</div></div>;
 };
 export default InteractiveMascot;

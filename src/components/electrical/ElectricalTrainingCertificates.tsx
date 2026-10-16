@@ -4,6 +4,7 @@ import MascotScene from "@/components/shared/MascotScene";
 import Tag from "@/components/shared/Tag";
 import { electricalTraining, trainingTracks } from "@/data/electrical";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import ElectricalTrainingProviders from "./ElectricalTrainingProviders";
 
 /** Each course keeps its description, syllabus and pending document together. */
 const ElectricalTrainingCertificates = () => {
@@ -27,6 +28,6 @@ const ElectricalTrainingCertificates = () => {
       </details>}
     </div>];
   }));
-  return <div id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40"><ProfileCertificates profile="electrical" courseContent={content} /></div>;
+  return <div id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40"><ProfileCertificates profile="electrical" headerContent={<ElectricalTrainingProviders />} courseContent={content} /></div>;
 };
 export default ElectricalTrainingCertificates;

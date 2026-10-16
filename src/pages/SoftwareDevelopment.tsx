@@ -6,8 +6,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
-import ProjectCard from "@/components/cards/ProjectCard";
-import EmptyState from "@/components/shared/EmptyState";
+import SoftwareProjectCollection from "@/components/profile/SoftwareProjectCollection";
 import Gallery from "@/components/shared/Gallery";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
@@ -15,20 +14,16 @@ import ProfileTools from "@/components/profile/ProfileTools";
 import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
-import { softwareProjects } from "@/data/softwareProjects";
 import { softwareSkills } from "@/data/skills";
 import { profileBySlug } from "@/data/profiles";
 import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
-import WorkGrid from "@/components/work/WorkGrid";
-import { worksFor } from "@/data/works";
 import { site } from "@/data/site";
 
 const profile = profileBySlug("development");
 
 const SoftwareDevelopment = () => {
   const { t } = useLanguage();
-  const projects = softwareProjects.filter((p) => p.category === "Software" || p.category === "Automation");
 
   return (
     <>
@@ -57,6 +52,7 @@ const SoftwareDevelopment = () => {
             {softwareSkills.map((group) => (
               <div key={group.title} className="panel-glow hover:-translate-y-1">
                 <h3 className="text-sm font-semibold">{t(group.title)}</h3>
+                {group.note && <p className="reading-copy mt-2 text-sm leading-relaxed text-muted-foreground">{t(group.note)}</p>}
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {group.skills.map((s) => (
                     <Tag key={s}>{t(s)}</Tag>
@@ -72,29 +68,9 @@ const SoftwareDevelopment = () => {
         <SectionHeading mascot={profile.slug} mascotScene="action"
           eyebrow={t("Projects")}
           title={t("Development projects")}
-          description={t("Image-first project cards: screenshots, stack, live demo, repository and what I learned.")}
+          description={t("Explore my public GitHub projects: frontend interfaces, API practice and Python automation. Each card links to its source code.")}
         />
-        <WorkGrid
-          items={worksFor("development")}
-          emptyTitle={t("Screenshots coming soon")}
-          emptyDescription={t("Each slot becomes a project card with real screenshots, stack, demo link and takeaways.")}
-        />
-
-        {projects.length ? (
-          <>
-            <h3 className="mb-4 mt-12 text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">{t("Repositories")}</h3>
-            <div className="grid gap-4 md:grid-cols-2">
-              {projects.map((p) => (
-                <ProjectCard key={p.id} project={p} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <EmptyState
-            title={t("No development projects published yet")}
-            description={t("Projects appear here as soon as they are added to the projects data file.")}
-          />
-        )}
+        <SoftwareProjectCollection />
       </section>
 
       <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">

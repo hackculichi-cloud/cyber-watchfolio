@@ -16,8 +16,10 @@ export const cybersecuritySkills: SkillGroupData[] = [
 ];
 
 export const softwareSkills: SkillGroupData[] = [
-  { title: "Development", skills: ["Web development", "APIs", "Backend"] },
-  { title: "Workflow", skills: ["Git / GitHub", "Automation", "Documentation"] },
+  { title: "Frontend", skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS"] },
+  { title: "Python automation", skills: ["Python", "pandas", "XlsxWriter", "Excel reports", "REST API"] },
+  { title: "Workflow", skills: ["Git / GitHub", "Vercel", "TypeScript checks", "ESLint", "Vitest", "Playwright"] },
+  { title: "Cloud & backend learning", note: "AWS Cloud Practitioner preparation and continued exploration of Node.js, Docker and backend development.", skills: ["AWS Cloud Practitioner (preparation)", "Node.js", "Docker", "Backend foundations"] },
 ];
 
 export const transferableSkills: string[] = [

@@ -25,3 +25,19 @@ Limitaciones:
 - No se fusionaron cambios ni se ejecutó un despliegue de producción. El comportamento de Vercel/Cloudflare en producción no se certifica con una ejecución local.
 
 Los detalles de los avisos pendientes están en [security-audit.md](security-audit.md).
+
+## Actualización — 15 de octubre de 2026
+
+Electricidad incorpora centros de formación locales y mockups claramente rotulados. Se revisaron visualmente la composición de 320 px y escritorio, la ampliación del documento y la marca intercambiada entre encabezado y footer. El selector conserva radios iguales y seis controles accesibles, con el personaje por encima de sus elementos decorativos.
+
+Las 70 pruebas de navegador quedaron verificadas: la ejecución completa aprobó 68; las otras dos detectaron ajustes necesarios en las nuevas pruebas (medir tras la animación de entrada y buscar el subtítulo en su elemento contenedor). Sin cambios adicionales a la aplicación, la repetición del archivo nuevo aprobó sus tres pruebas. Se aprobaron también las 7 unitarias y el build con TypeScript. La regresión nueva mide la altura del hero y la leyenda al pasar entre menús, comprueba tacto en 320 px y verifica enlaces de centros y ampliación bilingüe del mockup.
+
+Los SVG de centros son locales y no contienen scripts, referencias externas ni imágenes incrustadas. El PDF eléctrico original mantiene el hash documentado en `docs/culichi-mascot.md`. Las comprobaciones corresponden a Chromium local; no equivalen a haber ejecutado LibreWolf o Mullvad.
+
+ESLint finaliza con 0 errores y las mismas 8 advertencias previas de Fast Refresh. `git diff --check` también se aprueba; no se añadieron dependencias.
+
+### Bienvenidas en el lugar de trabajo y composición de Home
+
+Se verificaron los 72 casos de navegador sobre la aplicación actual. La ejecución completa aprobó 70; se adaptaron dos expectativas al cambio solicitado (selector a la derecha y observar el final visible de la transición de 720 ms antes de abandonar Home). Su repetición aprobó los dos casos, sin cambios adicionales a la aplicación. Las 7 unitarias y el build con TypeScript también pasan.
+
+Los casos nuevos verifican las seis escenas de trabajo sin animaciones internas, ausencia de selector y herramientas flotantes dentro de los perfiles, permanencia del atuendo al recorrer el menú, retrato del footer y seis colores distintos del punto de marca. En Home se comprueba la composición lateral a 1440 px y el orden vertical sin desbordamiento a 320 y 390 px. «Trabajos realizados» conserva el ancla eléctrica existente. Las capturas se revisaron en escritorio y celular; la simplificación de efectos no se presenta como un benchmark de FPS en dispositivos reales.

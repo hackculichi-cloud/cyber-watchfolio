@@ -10,7 +10,7 @@ test("hover and keyboard preview outfits without navigating; leaving restores th
   await stage.locator('[data-outfit="development"]').hover();
   await expect(stage).toHaveAttribute("data-preview-outfit", "development");
   const preview = stage.locator('[data-outfit-preview="development"]');
-  await expect(preview).toHaveCSS("animation-name", "mascot-ready-in");
+  await expect(preview).toHaveCSS("animation-name", "outfit-reveal-new");
   await expect(page).toHaveURL(/\/$/);
   await stage.locator('[data-outfit="electrical"]').focus();
   await expect(stage).toHaveAttribute("data-preview-outfit", "electrical");
@@ -49,7 +49,8 @@ test("larger header, home characters and footer fit small screens without WebGL"
   await page.setViewportSize({ width: 360, height: 800 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator("header").getByText("aka Culichi")).toBeVisible();
+  await expect(page.locator("header").getByText("Culichi.", { exact: true })).toBeVisible();
+  await expect(page.locator("footer [data-footer-brand]")).toContainText("aka Culichi");
   await page.locator("footer").scrollIntoViewIfNeeded();
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await expect(page.locator("canvas")).toHaveCount(0);

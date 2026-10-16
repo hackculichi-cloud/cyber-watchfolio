@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, PhoneCall, FileText, Mail, type LucideIcon } from "lucide-react";
 import { navigation } from "@/data/site";
-import CulichiMascot, { type MascotVariant } from "@/components/shared/CulichiMascot";
+import { profileForPath } from "@/data/profiles";
+import type { MascotVariant } from "@/components/shared/CulichiMascot";
+import MascotMorph from "@/components/shared/MascotMorph";
+import MascotGearPreview from "@/components/shared/MascotGearPreview";
+import { previewMascotArea, type MascotIntent } from "@/lib/mascotIntent";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ProfileDropdown from "./ProfileDropdown";
@@ -32,7 +36,7 @@ const navIconColor: Record<string, string> = {
 
 const NavIcon = ({ label, className }: { label: string; className?: string }) => {
   const Icon = navIcons[label] ?? FileText;
-  return <Icon className={cn("h-5 w-5 shrink-0", className)} aria-hidden />;
+  return <span className={cn("area-nav-icon grid h-10 w-10 shrink-0 place-items-center rounded-full", className)}><Icon className="h-6 w-6" aria-hidden /></span>;
 };
 
 const SiteHeader = () => {
@@ -42,25 +46,49 @@ const SiteHeader = () => {
   const header = useRef<HTMLElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
   const location = useLocation();
+  const isHome = location.pathname === "/";
   const { t } = useLanguage();
-  const mascotRoutes: Record<string, MascotVariant> = { "/cybersecurity": "cybersecurity", "/software-development": "development", "/electrical": "electrical", "/electronics": "electronics", "/repair": "repair", "/experience": "customer-service" };
-  const mascot = mascotRoutes[location.pathname] ?? "emblem";
+  const mascot = profileForPath(location.pathname)?.slug ?? "emblem";
   const [previewMascot, setPreviewMascot] = useState<MascotVariant | null>(null);
+  const [orbitCommit, setOrbitCommit] = useState(false);
+  const [navigationCommit, setNavigationCommit] = useState(false);
+  const commitTimer = useRef<ReturnType<typeof setTimeout>>();
   const displayedMascot = previewMascot ?? mascot;
   useEffect(() => {
-    const preview = (event: Event) => setPreviewMascot((event as CustomEvent<{ profile: MascotVariant | null }>).detail.profile);
+    const preview = (event: Event) => {
+      if (!isHome) return;
+      const detail = (event as CustomEvent<{ profile: MascotVariant | null; committing?: boolean }>).detail;
+      setPreviewMascot(detail.profile);
+      setOrbitCommit(!!detail.committing);
+    };
+    const intent = (event: Event) => {
+      if (!isHome) return;
+      const { profile, commit } = (event as CustomEvent<MascotIntent>).detail;
+      setPreviewMascot(profile);
+      if (commit) {
+        clearTimeout(commitTimer.current);
+        setNavigationCommit(true);
+        commitTimer.current = setTimeout(() => setNavigationCommit(false), 1000);
+      }
+    };
     window.addEventListener("culichi:outfit-preview", preview);
-    return () => window.removeEventListener("culichi:outfit-preview", preview);
-  }, []);
+    window.addEventListener("culichi:area-intent", intent);
+    return () => { window.removeEventListener("culichi:outfit-preview", preview); window.removeEventListener("culichi:area-intent", intent); clearTimeout(commitTimer.current); };
+  }, [isHome]);
+
+  useEffect(() => { setPreviewMascot(null); setOrbitCommit(false); setNavigationCommit(false); clearTimeout(commitTimer.current); }, [location.pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => { setOpen(false); setMobileProfile(null); }, [location.pathname, location.hash]);
+  useEffect(() => {
+    if (!open) { setMobileProfile(null); previewMascotArea(null); }
+  }, [open]);
   useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
@@ -80,7 +108,7 @@ const SiteHeader = () => {
     return () => { document.body.style.overflow = previousOverflow; document.removeEventListener("keydown", closeWithEscape); document.removeEventListener("pointerdown", outside); };
   }, [open]);
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1024px)");
+    const desktop = window.matchMedia("(min-width: 1280px)");
     const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
     desktop.addEventListener("change", closeOnDesktop);
     return () => desktop.removeEventListener("change", closeOnDesktop);
@@ -91,24 +119,24 @@ const SiteHeader = () => {
       ref={header}
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled ? "border-b border-border bg-background/85 backdrop-blur-xl" : "border-b border-transparent",
+        scrolled ? "border-b border-border bg-background/95 sm:backdrop-blur-sm" : "border-b border-transparent",
       )}
     >
-      <nav className="container mx-auto flex h-24 items-center justify-between px-4" aria-label={t("Main")}>
+      <nav className="container mx-auto flex h-28 items-center justify-between px-4" aria-label={t("Main")}>
         <Link to="/" className="group flex min-w-0 items-center gap-2 font-semibold tracking-tight">
-          <span data-header-mascot={displayedMascot} className="grid h-24 w-24 shrink-0 place-items-center transition-transform duration-300 group-hover:scale-105">
-            <span key={displayedMascot} className="header-mascot-change"><CulichiMascot variant={displayedMascot} className="h-24 w-24" /></span>
+          <span role="img" aria-label={t("Culichi fox logo")} data-profile={displayedMascot} data-header-mascot={displayedMascot} className="header-mascot-frame grid h-28 w-28 shrink-0 place-items-center">
+            <MascotMorph outfit={displayedMascot} portrait committing={orbitCommit || navigationCommit} />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="text-sm transition-colors group-hover:text-primary sm:text-base">{t("Christian Velasco")}</span>
-            <span className="mt-0.5 text-xs font-medium tracking-wide text-primary">aka Culichi</span>
+            <span data-header-brand className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Culichi<span data-brand-dot data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-primary transition-colors duration-200">.</span></span>
+            <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">{t("Christian Velasco")}</span>
           </span>
         </Link>
 
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-1 xl:flex">
           {navigation.map(item => {
-            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} className={({ isActive }) => cn("flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors xl:px-3", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
+            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={event => { if (item.profile && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) previewMascotArea(item.profile, true); }} className={({ isActive }) => cn("flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
               {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
             </NavLink>;
             return <li key={item.href} className="relative">{item.children ? <ProfileDropdown item={item}>{link}</ProfileDropdown> : link}</li>;
@@ -116,12 +144,12 @@ const SiteHeader = () => {
         </ul>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcher compact className="hidden sm:flex lg:ml-2" />
+          <LanguageSwitcher compact className="hidden sm:flex xl:ml-2" />
           <Button variant="ghost" size="icon"
             ref={menuButton}
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground lg:hidden"
+            className="rounded-md p-2 text-muted-foreground transition-colors hover:text-foreground xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={t(open ? t("Close menu") : t("Open menu"))}
@@ -132,17 +160,18 @@ const SiteHeader = () => {
       </nav>
 
       {open && (
-        <div id="mobile-navigation" className="max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain border-t border-border bg-background/95 backdrop-blur-xl lg:hidden">
+        <div id="mobile-navigation" className="max-h-[calc(100dvh-7rem)] overflow-y-auto overscroll-contain border-t border-border bg-background/95 backdrop-blur-xl xl:hidden">
           <div className="container mx-auto px-4 pt-4 sm:hidden"><LanguageSwitcher /></div>
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map(item => <li key={item.href}>
               <div className="flex items-center justify-between gap-2">
-                <Link to={item.href} onClick={() => setOpen(false)} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
+                <Link to={item.href} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={() => { if (item.profile) previewMascotArea(item.profile, true); setOpen(false); }} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
                   {navIconColor[item.label] && <NavIcon label={item.label} className={navIconColor[item.label]} />}{t(item.label)}
                 </Link>
-                {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => setMobileProfile(mobileProfile === item.href ? null : item.href)}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}
+                {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => { const next = mobileProfile === item.href ? null : item.href; setMobileProfile(next); previewMascotArea(next ? item.profile ?? null : null); }}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}
               </div>
               {item.children && mobileProfile === item.href && <ul id={`mobile-specialties-${item.profile}`} className="my-2 ml-5 space-y-1 border-l border-border pl-3">
+                {isHome && item.profile && <li className="mb-3"><MascotGearPreview profile={item.profile} /></li>}
                 {item.children.map(child => <li key={child.href}><Link to={child.href} onClick={() => { setOpen(false); setMobileProfile(null); }} className="flex items-start gap-3 rounded-lg p-3 text-sm hover:bg-secondary">
                   {child.icon && <child.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />}
                   <span className="min-w-0"><span className="block font-medium">{t(child.label)}</span>{child.status && <span className="mt-1 block"><Tag>{t(child.status)}</Tag></span>}</span>

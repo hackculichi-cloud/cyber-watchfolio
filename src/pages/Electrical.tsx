@@ -85,7 +85,7 @@ const Electrical = () => {
 
       <section id="evidence" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading
-          eyebrow={t("Practical work / Evidence")}
+          eyebrow={t("Work & practical experience")}
           title={t("Installations, wiring & measurements")}
           description={t("Real photographs from course practice and residential client maintenance.")}
         />

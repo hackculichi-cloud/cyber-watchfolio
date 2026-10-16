@@ -54,7 +54,7 @@ test("phone layouts keep named tools, gallery targets and the larger header insi
     await expect(tools).toContainText('Las fotos originales');
     const illustration = tools.locator('img[data-mascot-scene="detail"]');
     await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth === 1536)).toBe(true);
-    expect((await page.locator('[data-header-mascot]').boundingBox())!.width).toBe(96);
+    expect((await page.locator('[data-header-mascot]').boundingBox())!.width).toBe(112);
     expect((await tools.boundingBox())!.height).toBeLessThan(850);
     for (const id of ['tools', 'cv', 'evidence']) {
       await page.locator(`#${id}`).scrollIntoViewIfNeeded();

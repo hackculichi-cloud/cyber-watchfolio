@@ -48,13 +48,14 @@ test("courses share their certificate card with their explanations and collapsed
   const certificates = page.locator('[data-certifications="electrical"]');
   await expect(certificates.locator("[data-certificate-placeholder]")).toHaveCount(4);
   const conocer = certificates.locator('[data-certificate="electrical-conocer"]');
-  await expect(conocer).toContainText("not an issued certificate");
+  await expect(conocer).toContainText("MOCKUP · Original pending");
+  await expect(conocer).toContainText("Training in progress; certificate pending completion.");
   const syllabus = conocer.locator('[data-course-syllabus="electrical"]');
   await expect(syllabus).not.toHaveAttribute("open", "");
   await syllabus.locator("summary").click();
   await expect(syllabus.getByRole("button", { name: /Fundamentals of Electricity/ })).toBeVisible();
   await page.locator('button[lang="es"]:visible').first().click();
-  await expect(conocer).toContainText("no es un certificado emitido");
+  await expect(conocer).toContainText("MOCKUP · Original pendiente");
   await expect(conocer.getByRole("button", { name: /Fundamentos de Electricidad/ })).toBeVisible();
   await page.locator('[data-electrical-group="residential"]').click();
   await page.locator('[data-electrical-group="residential-outlets"]').click();

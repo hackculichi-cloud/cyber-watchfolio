@@ -14,7 +14,7 @@
       "profile": "cybersecurity",
       "en": {
         "role": "SOC Analyst Tier 1 Candidate",
-        "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Seeking a first SOC Analyst Tier 1 opportunity.",
+        "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Python reporting projects and AWS Cloud Practitioner preparation complement the SOC Tier 1 learning path.",
         "sections": [
           {
             "title": "Practical portfolio — educational labs",
@@ -27,19 +27,21 @@
             "title": "Technical foundations",
             "items": [
               "Alert triage, authentication logs, Windows events, RDP, VPN and incident documentation in educational exercises.",
-              "Networking and TCP/IP fundamentals; Linux command-line and hardening learning path."
+              "Networking and TCP/IP fundamentals; Linux command-line and hardening learning path.",
+              "Culichi-Metrics: Python automation for Excel reports; Git/GitHub version control and technical documentation."
             ]
           },
           {
             "title": "Current training",
             "items": [
-              "Linux diploma program — in progress."
+              "Linux diploma program — in progress.",
+              "AWS Cloud Practitioner — exam preparation in progress."
             ]
           },
           {
             "title": "Transferable experience",
             "items": [
-              "TCS: operations supervision, SLA follow-up and incident escalation.",
+              "7 years of bilingual service and support; TCS operations supervision, SLA follow-up and incident escalation.",
               "TTEC: Tier 2 mobile support, root-cause analysis and technical training. Bilingual English/Spanish."
             ]
           }
@@ -47,7 +49,7 @@
       },
       "es": {
         "role": "Candidato a analista SOC nivel 1",
-        "summary": "Candidato a un puesto inicial en ciberseguridad, con investigaciones educativas de LetsDefend, playbooks documentados y formación de Linux en curso. Busca su primera oportunidad como analista SOC nivel 1.",
+        "summary": "Candidato inicial en ciberseguridad, con investigaciones educativas de LetsDefend, playbooks y diplomado de Linux en curso. Los proyectos de reportes con Python y la preparación de AWS Cloud Practitioner complementan su ruta hacia SOC nivel 1.",
         "sections": [
           {
             "title": "Portafolio práctico — laboratorios educativos",
@@ -60,19 +62,21 @@
             "title": "Fundamentos técnicos",
             "items": [
               "Triaje de alertas, registros de autenticación, eventos de Windows, RDP, VPN y documentación de incidentes en ejercicios educativos.",
-              "Fundamentos de redes y TCP/IP; ruta de aprendizaje de terminal y hardening de Linux."
+              "Fundamentos de redes y TCP/IP; ruta de aprendizaje de terminal y hardening de Linux.",
+              "Culichi-Metrics: automatización de reportes de Excel con Python; control de versiones con Git/GitHub y documentación técnica."
             ]
           },
           {
             "title": "Formación en curso",
             "items": [
-              "Diplomado de Linux — en curso."
+              "Diplomado de Linux — en curso.",
+              "AWS Cloud Practitioner — preparación para el examen en curso."
             ]
           },
           {
             "title": "Experiencia transferible",
             "items": [
-              "TCS: supervisión de operaciones, seguimiento de SLA y escalamiento de incidentes.",
+              "7 años de atención y soporte bilingüe; supervisión de operaciones en TCS, seguimiento de SLA y escalamiento de incidentes.",
               "TTEC: soporte móvil nivel 2, causa raíz y capacitación técnica. Atención bilingüe inglés/español."
             ]
           }
@@ -83,69 +87,69 @@
       "id": "software",
       "profile": "development",
       "en": {
-        "role": "Software Development — Partial Studies",
-        "summary": "Incomplete frontend, backend and full-stack training at Academlo. Practical portfolio project built with React, TypeScript, Vite and Tailwind CSS.",
+        "role": "Frontend Development & Python Automation",
+        "summary": "Frontend development with React, Next.js and TypeScript, supported by public GitHub projects and Python automation for Excel reports. Partial software development studies at Academlo.",
         "sections": [
           {
-            "title": "Education",
+            "title": "Selected GitHub projects",
             "items": [
-              "Academlo — frontend, backend and full-stack studies, not completed.",
-              "Knowledge foundation: API concepts, server logic, data flow and frontend/backend integration."
+              "Mirror and RonnysPage: responsive interfaces with React, Next.js, TypeScript and Tailwind CSS.",
+              "Calculator-Culichi, Todo-Culichi and WeatherApp-Culichi: arithmetic logic, task management and OpenWeatherMap REST API queries."
             ]
           },
           {
-            "title": "Documented project",
+            "title": "Automation & practical delivery",
             "items": [
-              "Cyber Watchfolio (culichi.lat): reusable React components, ES/EN content, specialty pages and photo evidence galleries.",
-              "Workflow: GitHub and Vercel; TypeScript checking, production builds, ESLint and component/browser validation."
+              "Culichi-Metrics: Python, pandas and XlsxWriter for Excel KPI reports, conditional formatting and charts.",
+              "Cyber Watchfolio (culichi.lat): bilingual React/TypeScript portfolio, reusable components, GitHub/Vercel workflow and browser validation."
             ]
           },
           {
-            "title": "Project technologies",
+            "title": "Technical skills & learning",
             "items": [
-              "React, TypeScript, Vite, Tailwind CSS, shadcn/ui and Git/GitHub.",
-              "Reusable components, bilingual interfaces, accessibility and Git-based version control."
+              "HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, Git/GitHub and Vercel.",
+              "AWS Cloud Practitioner — preparation in progress. Continued exploration of Node.js and backend development."
             ]
           },
           {
-            "title": "Transferable experience",
+            "title": "Education & transferable experience",
             "items": [
-              "TCS: operations supervision, SLA follow-up and incident escalation.",
-              "TTEC: Tier 2 mobile support, root-cause analysis and technical training. Bilingual English/Spanish."
+              "Academlo: incomplete frontend, backend and full-stack studies.",
+              "7 years in bilingual customer service, technical support and operations; TCS supervision and TTEC Tier 2 support/training."
             ]
           }
         ]
       },
       "es": {
-        "role": "Desarrollo de software — estudios inconclusos",
-        "summary": "Estudios inconclusos de frontend, backend y full stack en Academlo. Proyecto práctico de portafolio construido con React, TypeScript, Vite y Tailwind CSS.",
+        "role": "Desarrollo frontend y automatización con Python",
+        "summary": "Desarrollo frontend con React, Next.js y TypeScript, respaldado por proyectos públicos en GitHub y automatización de reportes de Excel con Python. Estudios inconclusos de desarrollo de software en Academlo.",
         "sections": [
           {
-            "title": "Formación",
+            "title": "Proyectos seleccionados de GitHub",
             "items": [
-              "Academlo — estudios de frontend, backend y full stack inconclusos.",
-              "Base de conocimientos: conceptos de API, lógica del servidor, flujo de datos e integración frontend/backend."
+              "Mirror y RonnysPage: interfaces adaptables con React, Next.js, TypeScript y Tailwind CSS.",
+              "Calculator-Culichi, Todo-Culichi y WeatherApp-Culichi: lógica aritmética, gestión de tareas y consultas a la API REST de OpenWeatherMap."
             ]
           },
           {
-            "title": "Proyecto documentado",
+            "title": "Automatización y entrega práctica",
             "items": [
-              "Cyber Watchfolio (culichi.lat): componentes reutilizables de React, contenido ES/EN, páginas por especialidad y galerías de evidencia fotográfica.",
-              "Flujo de trabajo: GitHub y Vercel; revisión de TypeScript, build de producción, ESLint y validación de componentes y navegador."
+              "Culichi-Metrics: Python, pandas y XlsxWriter para reportes de KPI en Excel, formato condicional y gráficas.",
+              "Cyber Watchfolio (culichi.lat): portafolio bilingüe en React/TypeScript, componentes reutilizables, flujo GitHub/Vercel y validación en navegador."
             ]
           },
           {
-            "title": "Tecnologías del proyecto",
+            "title": "Conocimientos técnicos y aprendizaje",
             "items": [
-              "React, TypeScript, Vite, Tailwind CSS, shadcn/ui y Git/GitHub.",
-              "Componentes reutilizables, interfaces bilingües, accesibilidad y control de versiones con Git."
+              "HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, Git/GitHub y Vercel.",
+              "AWS Cloud Practitioner — preparación en curso. Exploración de Node.js y desarrollo backend."
             ]
           },
           {
-            "title": "Experiencia transferible",
+            "title": "Formación y experiencia transferible",
             "items": [
-              "TCS: supervisión de operaciones, seguimiento de SLA y escalamiento de incidentes.",
-              "TTEC: soporte móvil nivel 2, causa raíz y capacitación técnica. Atención bilingüe inglés/español."
+              "Academlo: estudios inconclusos de frontend, backend y full stack.",
+              "7 años en atención bilingüe, soporte técnico y operaciones; supervisión en TCS y soporte/capacitación Tier 2 en TTEC."
             ]
           }
         ]
@@ -386,7 +390,7 @@
       "profile": "customer-service",
       "en": {
         "role": "Operations Supervision / Bilingual Technical Support",
-        "summary": "Bilingual professional with 5+ years in customer service, technical support, training and operations. Experience at Tata Consultancy Services, TTEC, Alorica and TP, including SLA follow-up, incident escalation and mobile-device troubleshooting.",
+        "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. Experience at Tata Consultancy Services, TTEC, Alorica and TP, including SLA follow-up, incident escalation and mobile-device troubleshooting.",
         "sections": [
           {
             "title": "Professional experience",
@@ -416,7 +420,7 @@
       },
       "es": {
         "role": "Supervisión de operaciones / Soporte técnico bilingüe",
-        "summary": "Profesional bilingüe con más de 5 años en atención al cliente, soporte técnico, capacitación y operaciones. Experiencia en Tata Consultancy Services, TTEC, Alorica y TP, con seguimiento de SLA, escalamiento de incidentes y diagnóstico de dispositivos móviles.",
+        "summary": "Profesional bilingüe con 7 años en atención al cliente, soporte técnico, capacitación y operaciones. Experiencia en Tata Consultancy Services, TTEC, Alorica y TP, con seguimiento de SLA, escalamiento de incidentes y diagnóstico de dispositivos móviles.",
         "sections": [
           {
             "title": "Experiencia profesional",
