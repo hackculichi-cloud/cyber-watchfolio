@@ -1,3 +1,4 @@
+import { englishStorageState } from "./support/language";
 import { readFileSync } from "node:fs";
 const localMedia: { path: string; bytes: number }[] = JSON.parse(readFileSync(new URL("../docs/local-media-provenance.json", import.meta.url), "utf8"));
 import { test, expect } from "@playwright/test";
@@ -104,7 +105,7 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   await expect(page).toHaveURL(/\/electronics$/);
   await expect(page.locator('[data-profile-workspace="electronics"] [data-body-mascot="electronics"]')).toBeVisible();
   await expect(page.locator("main canvas")).toHaveCount(0);
-  const context = await browser.newContext({ viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true });
+  const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 360, height: 800 }, hasTouch: true, isMobile: true });
   const mobile = await context.newPage();
   await mobile.goto("/");
   const selector = mobile.locator("[data-home-mascot]");

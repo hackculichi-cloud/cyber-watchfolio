@@ -1,3 +1,4 @@
+import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
 test("collapsed photo strips show the collection and open the correct original image", async ({ page }) => {
@@ -9,10 +10,10 @@ test("collapsed photo strips show the collection and open the correct original i
   // The last representative preview is original photo 18, not the fourth photo.
   await gallery.getByRole('button', { name: /^Open larger preview:/ }).last().click();
   const dialog = page.getByRole('dialog');
-  await expect(dialog.locator('img')).toHaveAttribute('src', '/images/repair/repair-photo-18.jpg');
+  await expect(dialog.locator('img:not([data-language-flag])')).toHaveAttribute('src', '/images/repair/repair-photo-18.jpg');
   await expect(dialog.getByRole('status')).toHaveText('Photo 18 of 18');
   await page.keyboard.press('ArrowLeft');
-  await expect(dialog.locator('img')).toHaveAttribute('src', '/images/repair/repair-photo-17.jpg');
+  await expect(dialog.locator('img:not([data-language-flag])')).toHaveAttribute('src', '/images/repair/repair-photo-17.jpg');
   await page.keyboard.press('Escape');
   await gallery.getByRole('button', { name: /^View more photos:/ }).click();
   await expect(photos).toHaveCount(18);
@@ -35,7 +36,7 @@ test("CVs share a compact row with their mascot and preserve localized previews"
     await page.locator('button[lang="es"]:visible').first().click();
     await expect(cv.locator('figure img')).toHaveAttribute('src', /-es\.png$/);
     await cv.getByRole('button', { name: /^Vista previa del CV:/ }).click();
-    await expect(page.getByRole('dialog').locator('img')).toHaveAttribute('src', await cv.locator('figure img').getAttribute('src') as string);
+    await expect(page.getByRole('dialog').locator('img:not([data-language-flag])')).toHaveAttribute('src', await cv.locator('figure img').getAttribute('src') as string);
     await page.keyboard.press('Escape');
     await page.locator('button[lang="en"]:visible').first().click();
   }
@@ -43,7 +44,7 @@ test("CVs share a compact row with their mascot and preserve localized previews"
 
 test("phone layouts keep named tools, gallery targets and the larger header inside the viewport", async ({ browser }) => {
   for (const width of [320, 390, 1024]) {
-    const context = await browser.newContext({ viewport: { width, height: 900 }, hasTouch: width < 640, isMobile: width < 640, reducedMotion: 'reduce' });
+    const context = await browser.newContext({ storageState: englishStorageState, viewport: { width, height: 900 }, hasTouch: width < 640, isMobile: width < 640, reducedMotion: 'reduce' });
     await context.addInitScript(() => localStorage.setItem('portfolio-lang', 'es'));
     const page = await context.newPage();
     await page.goto('/electrical#tools');

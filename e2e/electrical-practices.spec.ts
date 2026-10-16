@@ -1,3 +1,4 @@
+import { englishStorageState } from "./support/language";
 import { expect, test } from "@playwright/test";
 
 test("electrical cases stay grouped, preserve original photos and keep protocol and intervention facts distinct", async ({ page, request }) => {
@@ -83,7 +84,7 @@ test("mobile groups fit and only the latest CV is offered", async ({ page }) => 
 
 test("mobile home gives the mascot and group artwork separate space", async ({ browser }) => {
   for (const width of [360, 390, 430]) {
-    const context = await browser.newContext({ viewport: { width, height: 844 }, isMobile: true, hasTouch: true });
+    const context = await browser.newContext({ storageState: englishStorageState, viewport: { width, height: 844 }, isMobile: true, hasTouch: true });
     const page = await context.newPage();
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);

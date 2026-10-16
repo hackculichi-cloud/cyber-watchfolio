@@ -1,8 +1,8 @@
 import type { ProfileSlug } from "@/data/profiles";
-import atlas from "@/assets/culichi-athletic-body-atlas.webp";
+import { mascotIdentity } from "@/data/mascotIdentity";
 import { cn } from "@/lib/utils";
 
-const cells: Record<ProfileSlug | "home", number> = { home: 0, cybersecurity: 1, development: 2, electrical: 3, electronics: 4, repair: 5, "customer-service": 6 };
+const { bodyAtlas: atlas, bodyCells: cells } = mascotIdentity;
 /** The standing/title pose; action and closing scenes have separate illustrations. */
 const CulichiBody = ({ profile, className, scene = true }: { profile: ProfileSlug | "home"; className?: string; scene?: boolean }) => {
   const cell = cells[profile];

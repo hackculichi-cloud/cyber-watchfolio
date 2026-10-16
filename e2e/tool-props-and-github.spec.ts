@@ -1,3 +1,4 @@
+import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
 test("illustrated tools approach the fox and equip before navigating", async ({ page }) => {
@@ -55,7 +56,7 @@ test("GitHub projects expand on demand and AWS remains exam preparation in both 
 });
 
 test("phone layouts emphasize area titles with logos and show seven years of service", async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+  const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
   const page = await context.newPage();
   await page.goto('/#areas');
   const title = page.locator('[data-personal-skills-card="electrical"] h3');

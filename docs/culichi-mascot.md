@@ -48,9 +48,11 @@ El logotipo ampliado del encabezado sigue usando el arte local y cambia por ruta
 
 ## Lugares de trabajo y fluidez
 
-`ProfileWorkspace` muestra seis ilustraciones completas del zorro dentro de una habitación amueblada: redes y servidores, estudio de desarrollo, taller eléctrico, laboratorio electrónico, reparación y atención al cliente. Cada escena tiene superficies, equipo, herramientas e iluminación a color. La pared de herramientas original se conserva como parte del taller eléctrico terminado. No se superpone otro personaje al escenario ni se usan siluetas o diagramas SVG como sustitutos del taller.
+`ProfileWorkspace` muestra seis habitaciones completas a color sin mascota incrustada: redes, desarrollo, electricidad, electrónica, reparación y atención al cliente. El personaje de bienvenida aparece a menor tamaño en el pie de la ilustración, sin cubrirla. El mismo entorno se extiende de forma atenuada por el fondo de todo el perfil y su footer; las superficies de lectura conservan los acentos y contraste del diseño existente. No se usan siluetas como sustituto de las habitaciones.
 
-Las imágenes WebP locales tienen versiones de 768 y 1536 px, seleccionadas mediante `srcset` y `sizes`. El espacio se reserva con dimensiones 1536×1024. El visitante puede ampliar la escena en el diálogo compartido; solo al abrirlo se requiere la imagen completa si el navegador había elegido la pequeña. Los textos y las descripciones accesibles mantienen ES/EN. Son ilustraciones de marca, no fotografías de instalaciones reales. Los originales generados y las referencias se documentan en `workspace-illustrations.md`.
+`environmentArtwork.ts` contiene el arte, material y superficie de cada espacio; `mascotIdentity.ts` registra por separado los atlas de cuerpo y retrato. Esto permite sustituir el animal sin rehacer los talleres. Un cambio completo de animal requiere nuevas poses, atuendos, escenas de actividad y recursos de CV; no hay un selector de animales ni una conversión automática. Los recursos 3D archivados se conservan.
+
+Los WebP locales de entorno tienen variantes de 768 y 1536 px con `srcset` y `sizes`; el fondo reutiliza la pequeña. El espacio se reserva con dimensiones 1536×1024 y la imagen puede ampliarse en el diálogo compartido. No hay fondos fijos, zoom continuo ni nuevas dependencias. Son ilustraciones de marca, no fotografías de instalaciones reales. Los originales y referencias están documentados en `workspace-illustrations.md`.
 
 Se retiraron el zoom de 18 segundos del fondo de las áreas, la animación del patrón eléctrico y el desenfoque de todas las tarjetas. La entrada de la página usa solo opacidad durante 180 ms, sin desplazar todo el contenido. El encabezado y la navegación de sección en celular usan superficies de fondo sin desenfoque, y el listener de scroll es pasivo. Son reducciones concretas de trabajo de renderizado, no un benchmark de rendimiento en todos los navegadores.
 
@@ -78,3 +80,11 @@ Los seis personajes aparecen también en Home, repartidos en tres parejas: SOC/s
 `culichi-practice-scenes.webp` contiene seis nuevas poses de cuerpo completo: investigación con tableta, desarrollo sentado con portátil, lectura de esquema eléctrico, montaje de protoboard, apertura de teléfono y atención con plan de servicio. Se generó como lámina 3×2 con fondo transparente; sus celdas completas de 512×512 se seleccionan mediante CSS, sin recortar el personaje ni editar fotos reales.
 
 El footer usa los seis colores de las áreas, la marca Culichi, contacto por correo, GitHub/LinkedIn, enlaces por especialidad y retorno al inicio. Mantiene ES/EN y los previews locales de contacto; no incorpora dependencias de renderizado ni servicios externos.
+
+## Idioma y navegación compacta
+
+Las visitas sin preferencia guardada abren en español (`html lang="es"`). La elección explícita ES/EN se conserva con `portfolio-lang`. El selector utiliza banderas SVG locales de México y Reino Unido, estado `aria-pressed` y un indicador que se desliza; respeta movimiento reducido. No depende de emojis ni servicios externos. La licencia MIT de flag-icons acompaña los archivos.
+
+Los desplegables superiores usan títulos breves, iconos y enlaces de 44 px, sin fotografías, listas de equipo ni descripciones largas. Mantienen los destinos de todas las especialidades, nombres accesibles completos, navegación por teclado y cierre con Escape. Las herramientas del selector de Home siguen funcionando.
+
+Las tres especialidades eléctricas forman tres columnas centradas en escritorio y una en celular, con emblemas y títulos centrados. Residencial utiliza una fotografía original del trabajo terminado. Industrial y control usan imágenes realistas generadas, rotuladas «Imagen de referencia»; conservan sus estados de estudio y práctica planeada. No se incorporan a la galería de trabajos reales.

@@ -2,18 +2,7 @@ import ProfileWorkspace from "./ProfileWorkspace";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { ReactNode } from "react";
 import type { ProfileIdentity } from "@/data/profiles";
-import { profileHeroImage, profileHeroAlt } from "@/data/profileMedia";
 import Tag from "@/components/shared/Tag";
-import { cn } from "@/lib/utils";
-
-const atmosphere: Record<ProfileIdentity["slug"], string> = {
-  cybersecurity: "atmos-grid",
-  development: "atmos-code",
-  electrical: "atmos-energy",
-  electronics: "atmos-pcb",
-  repair: "atmos-circuit",
-  "customer-service": "atmos-grid",
-};
 
 interface ProfileHeroProps {
   profile: ProfileIdentity;
@@ -25,20 +14,10 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
   const { t } = useLanguage();
   return (
     <section
-      className={cn(
-        "profile-atmosphere relative isolate flex min-h-[62vh] items-end overflow-clip border-b border-border md:min-h-[72vh]",
-        atmosphere[profile.slug],
-      )}
+      data-world-hero={profile.slug}
+      className="relative isolate flex min-h-[62vh] items-end overflow-clip border-b border-border md:min-h-[72vh]"
     >
-      {/* Atmospheric photography layer */}
-      <img
-        src={profileHeroImage[profile.slug]}
-        alt={t(profileHeroAlt[profile.slug])}
-        width={1920}
-        height={1088}
-        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20"
-      />
-      {/* Readability + brand tint overlays */}
+      {/* The room continues through the page; keep the copy on a readable surface. */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,hsl(var(--background)/0.55)_0%,hsl(var(--background)/0.7)_45%,hsl(var(--background))_100%)]"

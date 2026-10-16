@@ -1,3 +1,4 @@
+import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
 test("skills introduce Christian's actions and their evidence in both languages", async ({ page }) => {
@@ -47,7 +48,7 @@ test("outfit focus reveals matching tools, transforms both figures and restores 
   await expect(page).toHaveURL(/\/$/);
 });
 
-test("desktop profile menus have six distinct neon accents and preview their own equipment", async ({ page }) => {
+test("desktop profile menus have six distinct neon accents and concise links", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
   const nav = page.getByRole('navigation', { name: 'Main', exact: true });
@@ -58,7 +59,11 @@ test("desktop profile menus have six distinct neon accents and preview their own
   await nav.getByRole('link', { name: 'Cybersecurity', exact: true }).hover();
   await nav.getByRole('link', { name: 'Electronics', exact: true }).hover();
   const menu = page.getByLabel('Specialties: Electronics', { exact: true });
-  await expect(menu.locator('[data-gear-preview="electronics"]')).toContainText('Oscilloscope');
+  await expect(menu.locator('img, [data-gear-preview]')).toHaveCount(0);
+  await expect(menu.getByRole('link')).toHaveCount(7);
+  const bounds = (await menu.boundingBox())!;
+  expect(bounds.width).toBeLessThanOrEqual(288);
+  expect(bounds.height).toBeLessThanOrEqual(400);
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electronics');
   // A previous menu's delayed close must not reset the currently hovered outfit.
   await page.waitForTimeout(300);
@@ -75,7 +80,7 @@ test("desktop profile menus have six distinct neon accents and preview their own
 });
 
 test("reduced motion and phone menu keep previews usable without animated scans or a stuck outfit", async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+  const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
   const page = await context.newPage();
   await page.goto('/');
   const stage = page.locator('[data-home-mascot]');
@@ -84,7 +89,9 @@ test("reduced motion and phone menu keep previews usable without animated scans 
   await expect(stage.locator('.mascot-morph-sweep')).toHaveCSS('opacity', '0');
   await page.getByRole('button', { name: 'Open menu', exact: true }).tap();
   await page.locator('#mobile-navigation').getByRole('button', { name: 'Open profile menu: Electronics', exact: true }).tap();
-  await expect(page.locator('#mobile-navigation [data-gear-preview="electronics"]')).toContainText('Soldering iron');
+  await expect(page.locator('#mobile-navigation [data-gear-preview]')).toHaveCount(0);
+  await expect(page.locator('#mobile-specialties-electronics a')).toHaveCount(7);
+  await expect(page.locator('#mobile-specialties-electronics')).toContainText('Audio & radio');
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electronics');
   await page.getByRole('button', { name: 'Close menu', exact: true }).tap();
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'emblem');

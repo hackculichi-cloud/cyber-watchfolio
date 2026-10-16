@@ -1,3 +1,4 @@
+import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
 const areas = [
@@ -87,21 +88,21 @@ for (const [label, path, id] of areas) test(`${label} has its own ES/EN CV downl
   expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
   await block.getByRole("button", { name: /^Preview CV:/ }).click();
   const dialog = page.getByRole("dialog");
-  await expect(dialog.locator("img")).toHaveAttribute("src", `/cv/previews/christian-velasco-${enStem}.png`);
-  await expect.poll(() => dialog.locator("img").evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  await expect(dialog.locator("img:not([data-language-flag])")).toHaveAttribute("src", `/cv/previews/christian-velasco-${enStem}.png`);
+  await expect.poll(() => dialog.locator("img:not([data-language-flag])").evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   await dialog.getByRole("button", { name: "Zoom in", exact: true }).click();
   await expect(dialog.locator("output")).toHaveText("125%");
   await dialog.getByRole("button", { name: "Fit width", exact: true }).click();
   await expect(dialog.locator("output")).toHaveText("100%");
   await dialog.locator('button[lang="es"]').click();
-  await expect(dialog.locator("img")).toHaveAttribute("src", `/cv/previews/christian-velasco-${esStem}.png`);
+  await expect(dialog.locator("img:not([data-language-flag])")).toHaveAttribute("src", `/cv/previews/christian-velasco-${esStem}.png`);
   await expect(dialog.locator('a[download]')).toHaveAttribute("href", `/cv/christian-velasco-${esStem}.pdf`);
   await page.keyboard.press("Escape");
   await expect(block.locator(`a[href="/cv/christian-velasco-${esStem}.pdf"]`)).toBeVisible();
 });
 
 test("mobile specialty controls and card preview work by touch without overflowing", async ({ browser }) => {
-  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
   await page.goto("/");
   const eye = page.getByRole("button", { name: "Preview area: Electronics", exact: true });

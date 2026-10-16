@@ -17,8 +17,8 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
   await expect(iphone14.getByText("Face ID", { exact: true })).toBeVisible();
   await expect(section.getByText(/100%|status Original/)).toHaveCount(0);
   await section.getByRole("button", { name: "View certificate", exact: true }).last().click();
-  await expect(page.getByRole("dialog").locator("img")).toHaveAttribute("src", "/images/repair/cert-lidetec.jpg");
-  await expect(page.getByRole("dialog").locator("img")).toHaveJSProperty("naturalWidth", 1600);
+  await expect(page.getByRole("dialog").locator("img:not([data-language-flag])")).toHaveAttribute("src", "/images/repair/cert-lidetec.jpg");
+  await expect(page.getByRole("dialog").locator("img:not([data-language-flag])")).toHaveJSProperty("naturalWidth", 1600);
   await page.keyboard.press("Escape");
   await page.locator('button[lang="es"]:visible').first().click();
   await expect(iphone14.getByText("Batería aftermarket autoprogramable", { exact: true })).toBeVisible();
@@ -36,7 +36,7 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
     expect(width).toBeLessThan(280);
   }
   await xr.getByRole("button", { name: /^Abrir vista ampliada:/ }).first().click();
-  await expect(page.getByRole("dialog").locator("img")).toHaveAttribute("src", "/images/repair/repair-photo-09.jpg");
+  await expect(page.getByRole("dialog").locator("img:not([data-language-flag])")).toHaveAttribute("src", "/images/repair/repair-photo-09.jpg");
   await page.keyboard.press("Escape");
 
   const gallery = page.locator("#gallery");
@@ -48,7 +48,7 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
   await gallery.getByRole("button", { name: /^Abrir vista ampliada:/ }).first().click();
   const dialog = page.getByRole("dialog");
   for (let index = 1; index <= 18; index++) {
-    const img = dialog.locator("img");
+    const img = dialog.locator("img:not([data-language-flag])");
     await expect(img).toHaveAttribute("src", `/images/repair/repair-photo-${String(index).padStart(2, "0")}.jpg`);
     await expect.poll(() => img.evaluate((node: HTMLImageElement) => node.complete && node.naturalWidth > 0)).toBe(true);
     await expect(dialog.getByRole("status")).toHaveText(`Foto ${index} de 18`);

@@ -1,11 +1,10 @@
 import type { CSSProperties } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import type { ProfileSlug } from "@/data/profiles";
-import atlas from "@/assets/culichi-mascot-atlas.webp";
+import { mascotIdentity, type MascotVariant } from "@/data/mascotIdentity";
 import { cn } from "@/lib/utils";
 
-export type MascotVariant = ProfileSlug | "home" | "ai" | "emblem";
-const cells: Record<MascotVariant, number> = { home: 0, cybersecurity: 1, development: 2, electrical: 3, electronics: 4, repair: 5, "customer-service": 6, ai: 7, emblem: 8 };
+export type { MascotVariant } from "@/data/mascotIdentity";
+const { portraitAtlas: atlas, portraitCells: cells } = mascotIdentity;
 const labels: Record<MascotVariant, string> = { home: "Culichi tech fox mascot", cybersecurity: "Culichi SOC analyst mascot", development: "Culichi software developer mascot", electrical: "Culichi electrician mascot", electronics: "Culichi electronics mascot", repair: "Culichi repair technician mascot", "customer-service": "Culichi customer support mascot", ai: "Culichi AI mascot", emblem: "Culichi fox logo" };
 
 /** Local, unmodified generated artwork; CSS selects a cell without image processing. */

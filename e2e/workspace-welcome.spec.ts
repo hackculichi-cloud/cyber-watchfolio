@@ -1,3 +1,4 @@
+import { englishStorageState } from "./support/language";
 import { test, expect } from '@playwright/test';
 
 const areas = [
@@ -21,6 +22,18 @@ test('each profile has its own static workplace, footer outfit and brand color',
     // Width-descriptor srcsets report density-corrected naturalWidth (for example 640 for a 768 px file).
     await expect.poll(() => artwork.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     await expect(workspace.locator('[data-body-mascot]')).toHaveAttribute('data-body-mascot', outfit);
+    const room = (await artwork.boundingBox())!;
+    const character = (await workspace.locator('[data-body-mascot]').boundingBox())!;
+    expect(character.y).toBeGreaterThanOrEqual(room.y + room.height);
+    expect(character.width).toBeLessThanOrEqual(112);
+    const world = page.locator('[data-world]');
+    await expect(world).toHaveAttribute('data-world', outfit);
+    const roomLayer = await page.locator('main').evaluate(el => getComputedStyle(el).backgroundImage);
+    expect(roomLayer).toContain('small-');
+    await page.locator('#cv').scrollIntoViewIfNeeded();
+    expect(await page.locator('main').evaluate(el => getComputedStyle(el).backgroundImage)).toBe(roomLayer);
+    expect(await page.locator('footer').evaluate(el => getComputedStyle(el).backgroundImage)).toContain('small-');
+
     expect(await workspace.evaluate(element => element.getAnimations({ subtree:true }).length)).toBe(0);
     await expect(page.locator('[data-interactive-mascot], [data-outfit], [data-tool-field]')).toHaveCount(0);
     await expect(page.locator('[data-footer-mascot]')).toHaveAttribute('data-footer-mascot', outfit);
@@ -41,7 +54,7 @@ test('complete workspace illustrations enlarge without leaving the profile', asy
   await page.goto('/electrical');
   await page.locator('[data-profile-workspace]').getByRole('button', {name:'Enlarge workspace illustration: Electrical workshop',exact:true}).click();
   const dialog = page.getByRole('dialog', {name:/^(Electrical workshop|Taller de electricidad)$/});
-  const image = dialog.locator('img');
+  const image = dialog.locator('img:not([data-language-flag])');
   await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth === 1536)).toBe(true);
   await expect(dialog).toContainText('Illustrated workspace · Culichi');
   await dialog.locator('button[lang="es"]').click();
@@ -52,7 +65,7 @@ test('complete workspace illustrations enlarge without leaving the profile', asy
 });
 
 test('the home fox sits beside the introduction on desktop and follows it on phones', async ({ browser }) => {
-  const context = await browser.newContext({ reducedMotion:'reduce' });
+  const context = await browser.newContext({ storageState: englishStorageState, reducedMotion:'reduce' });
   const page = await context.newPage();
   for (const width of [1440, 320, 390]) {
     await page.setViewportSize({width,height:1000});

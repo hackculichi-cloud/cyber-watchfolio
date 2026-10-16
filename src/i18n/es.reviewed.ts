@@ -1,5 +1,18 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Illustrative reference": "Imagen de referencia",
+  "My completed work": "Mi trabajo realizado",
+  "Illustrative reference: industrial motor and electrical workshop": "Imagen de referencia: motor industrial y taller eléctrico",
+  "Illustrative reference: contactor training board with START/STOP buttons": "Imagen de referencia: tablero de práctica con contactor y pulsadores de arranque y paro",
+
+  "Television & video": "Televisión y video",
+  "Audio & radio": "Audio y radio",
+  "Microcomputers": "Microcomputadoras",
+  "Industrial electronics": "Electrónica industrial",
+  "Bilingual support": "Atención bilingüe",
+  "Support & training": "Soporte y capacitación",
+
+  "Welcome to my workspace": "Te doy la bienvenida a mi espacio de trabajo",
   "Enlarge workspace illustration": "Ampliar ilustración del espacio de trabajo",
   "Illustrated workspace · Culichi": "Espacio de trabajo ilustrado · Culichi",
   "SIEM & log analysis": "SIEM y análisis de registros",

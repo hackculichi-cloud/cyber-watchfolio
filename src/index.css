@@ -534,6 +534,33 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 .eyebrow { display:flex; align-items:center; gap:.6rem; letter-spacing:.16em; line-height:1.6; }
 .eyebrow::before { content:""; flex-shrink:0; width:1.15rem; height:2px; background:linear-gradient(90deg,hsl(var(--primary)),hsl(var(--primary)/.15)); }
 .panel, .glass-panel { border-color:hsl(var(--border)/.85); }
+
+/* The same illustrated room continues behind the whole professional profile. */
+[data-world] .world-content {
+  background-image:linear-gradient(90deg,hsl(var(--background)/.97),hsl(var(--background)/.87) 48%,hsl(var(--background)/.62)),var(--world-image);
+  background-size:auto,clamp(56rem,100vw,100rem) auto;
+  background-position:0 0,right top;
+  background-repeat:repeat,repeat-y;
+}
+[data-world] .world-content > :is(section,div)[id] { border-color:hsl(var(--primary)/.18); }
+[data-world] .world-content :is(.panel,.panel-glow,.glass-panel) {
+  background:linear-gradient(145deg,hsl(var(--world-panel)/.98),hsl(var(--background)/.96));
+  border-color:hsl(var(--primary)/.23);
+  box-shadow:inset 0 2px 0 hsl(var(--primary)/.13),var(--shadow-soft);
+}
+[data-world] .world-content :is(.panel,.panel-glow,.glass-panel):hover { border-color:hsl(var(--primary)/.45); }
+[data-world] .site-footer {
+  background-image:linear-gradient(90deg,hsl(var(--background)/.98),hsl(var(--background)/.90) 55%,hsl(var(--background)/.72)),var(--world-image);
+  background-size:cover;
+  background-position:right center;
+}
+[data-world-material="workshop"] .world-content > section[id] { border-top:1px solid hsl(var(--primary)/.14); }
+[data-world-material="network"] .world-content { background-position:0 0,left top; }
+[data-world-material="studio"] .world-content > section[id],
+[data-world-material="office"] .world-content > section[id] { background-color:hsl(var(--world-panel)/.2); }
+@media (max-width:639px) {
+  [data-world] .world-content { background-image:linear-gradient(90deg,hsl(var(--background)/.96),hsl(var(--background)/.88)),var(--world-image); }
+}
 .mobile-quicknav { padding-bottom:max(.35rem,env(safe-area-inset-bottom)); }
 [data-profile] > main [id] { scroll-margin-top:11.5rem; }
 @media (max-width:639px) {
@@ -557,3 +584,13 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 }
 @keyframes outfit-orbit { from{transform:rotate(0)} to{transform:rotate(360deg)} }
 @keyframes outfit-counter-orbit { from{transform:rotate(0)} to{transform:rotate(-360deg)} }
+
+/* Local flag artwork remains legible on browsers without emoji flag support. */
+.language-selection { transition: transform 220ms ease, border-color 200ms ease, background-color 200ms ease; }
+.language-switcher[data-selected-language="en"] .language-selection { transform: translateX(100%); }
+.language-flag { transition: opacity 200ms ease, transform 200ms ease; }
+.language-switcher button[aria-pressed="false"] .language-flag { opacity: .65; transform: scale(.88); }
+.language-switcher button[aria-pressed="true"] .language-flag { opacity: 1; transform: scale(1); }
+@media (prefers-reduced-motion: reduce) {
+  .language-selection, .language-flag { transition: none; }
+}

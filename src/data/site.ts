@@ -19,8 +19,9 @@ export const site = {
   languages: ["English", "Spanish"],
 };
 
-export type NavItem = { label: string; href: string; profile?: ProfileSlug; icon?: LucideIcon; description?: string; status?: string; children?: NavItem[] };
-const specialtyLinks = (profile: ProfileSlug, path: string): NavItem[] => specialtiesFor(profile).map(item => ({ label: item.title, href: `${path}#${item.id}`, icon: item.icon, description: item.summary, status: item.status }));
+export type NavItem = { label: string; shortLabel?: string; href: string; profile?: ProfileSlug; icon?: LucideIcon; description?: string; status?: string; children?: NavItem[] };
+const shortLabels: Record<string, string> = { residential: "Residential", industrial: "Industrial", "electrical-control": "Control", "basic-electronics": "Basic Electronics", "television-video": "Television & video", "audio-radio": "Audio & radio", "digital-systems": "Digital systems", microcontrollers: "Microcontrollers", microcomputers: "Microcomputers", "industrial-electronics": "Industrial electronics", "bilingual-support": "Bilingual support", "operations-supervision": "Operations", "technical-training": "Support & training" };
+const specialtyLinks = (profile: ProfileSlug, path: string): NavItem[] => specialtiesFor(profile).map(item => ({ label: item.title, shortLabel: shortLabels[item.id], href: `${path}#${item.id}`, icon: item.icon, description: item.summary, status: item.status }));
 
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
@@ -32,13 +33,13 @@ export const navigation: NavItem[] = [
     children: specialtyLinks("cybersecurity", "/cybersecurity"),
   },
   {
-    label: "Software Development",
+    label: "Software Development", shortLabel: "Software",
     href: "/software-development",
     profile: "development",
     children: specialtyLinks("development", "/software-development"),
   },
   {
-    label: "Residential & Industrial Electrical Maintenance",
+    label: "Residential & Industrial Electrical Maintenance", shortLabel: "Electricity",
     href: "/electrical",
     profile: "electrical",
     children: specialtyLinks("electrical", "/electrical"),
@@ -49,13 +50,13 @@ export const navigation: NavItem[] = [
     children: specialtyLinks("electronics", "/electronics"),
   },
   {
-    label: "Technical Repair",
+    label: "Technical Repair", shortLabel: "Repair",
     href: "/repair",
     profile: "repair",
     children: specialtyLinks("repair", "/repair"),
   },
   {
-    label: "Call Center & Customer Service", href: "/experience",
+    label: "Call Center & Customer Service", shortLabel: "Customer service", href: "/experience",
     profile: "customer-service",
     children: specialtyLinks("customer-service", "/experience"),
   },
