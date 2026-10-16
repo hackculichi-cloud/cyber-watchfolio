@@ -8,6 +8,8 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { cvAssets, type CvVariant } from "@/data/cvs";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
+const MAX_CV_ZOOM = 400;
+
 /** Shared localized downloads and faithful previews of every actual PDF page. */
 const CvActions = ({ cv }: { cv: CvVariant }) => {
   const { t, lang } = useLanguage();
@@ -36,18 +38,18 @@ const CvActions = ({ cv }: { cv: CvVariant }) => {
         <div className="flex flex-wrap items-center justify-between gap-3">
         {cv.localized && <LanguageSwitcher compact />}
         {previews.length > 1 && <div role="group" aria-label={t("CV pages")} className="flex items-center gap-2">
-          <Button type="button" size="icon" variant="outline" aria-label={t("Previous page")} disabled={currentPage === 0} onClick={() => { setPageIndex(index => index - 1); setZoom(100); }}><ChevronLeft className="h-4 w-4" aria-hidden /></Button>
+          <Button type="button" size="icon" variant="outline" aria-label={t("Previous page")} disabled={currentPage === 0} onClick={() => { setPageIndex(currentPage - 1); setZoom(100); }}><ChevronLeft className="h-4 w-4" aria-hidden /></Button>
           <output aria-live="polite" data-cv-page className="min-w-24 text-center text-sm">{t("Page {page} of {count}").replace("{page}", String(currentPage + 1)).replace("{count}", String(previews.length))}</output>
-          <Button type="button" size="icon" variant="outline" aria-label={t("Next page")} disabled={currentPage === previews.length - 1} onClick={() => { setPageIndex(index => index + 1); setZoom(100); }}><ChevronRight className="h-4 w-4" aria-hidden /></Button>
+          <Button type="button" size="icon" variant="outline" aria-label={t("Next page")} disabled={currentPage === previews.length - 1} onClick={() => { setPageIndex(currentPage + 1); setZoom(100); }}><ChevronRight className="h-4 w-4" aria-hidden /></Button>
         </div>}
         </div>
         <div className="flex flex-wrap items-center gap-2" role="group" aria-label={t("CV zoom")}>
           <Button size="sm" variant="outline" aria-label={t("Zoom out")} disabled={zoom <= 100} onClick={() => setZoom(value => Math.max(100, value - 25))}><ZoomOut className="h-4 w-4" aria-hidden /></Button>
           <output className="min-w-12 text-center text-sm" aria-live="polite">{zoom}%</output>
-          <Button size="sm" variant="outline" aria-label={t("Zoom in")} disabled={zoom >= 200} onClick={() => setZoom(value => Math.min(200, value + 25))}><ZoomIn className="h-4 w-4" aria-hidden /></Button>
+          <Button size="sm" variant="outline" aria-label={t("Zoom in")} disabled={zoom >= MAX_CV_ZOOM} onClick={() => setZoom(value => Math.min(MAX_CV_ZOOM, value + 25))}><ZoomIn className="h-4 w-4" aria-hidden /></Button>
           <Button size="sm" variant="ghost" onClick={() => setZoom(100)}><RotateCcw className="h-4 w-4" aria-hidden />{t("Fit width")}</Button>
         </div>
-        <div ref={viewport} className="min-h-0 overflow-auto rounded-lg border border-border bg-slate-800 p-2 sm:p-4" tabIndex={0} aria-label={t("CV preview")}>
+        <div ref={viewport} className="min-h-0 overflow-auto rounded-lg border border-border bg-slate-800 p-2 sm:p-4" role="region" tabIndex={0} aria-label={t("CV preview")}>
           <img src={previews[currentPage]} alt={`${t("CV preview")}: ${t(cv.title)}`} style={{ width: `${zoom}%`, maxWidth: "none" }} className="block h-auto bg-white shadow-xl" />
         </div>
         <Button asChild><a href={assets.file} download target="_blank" rel="noopener noreferrer"><Download className="h-4 w-4" aria-hidden />{t("Download PDF")}</a></Button>

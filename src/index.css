@@ -586,6 +586,25 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 @keyframes outfit-counter-orbit { from{transform:rotate(0)} to{transform:rotate(-360deg)} }
 
 /* One language control shows the active flag with a glimpse of the other choice. */
+.language-switch-control {
+  background: linear-gradient(135deg, hsl(var(--primary) / .14), hsl(var(--background)) 70%);
+  box-shadow: inset 0 0 12px hsl(var(--primary) / .06), 0 0 12px hsl(var(--primary) / .06);
+}
+.language-switch-control::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  pointer-events: none;
+  border-radius: 4px;
+  background: linear-gradient(hsl(var(--primary)), hsl(var(--primary))) top left / 8px 1px no-repeat,
+    linear-gradient(hsl(var(--primary)), hsl(var(--primary))) top left / 1px 8px no-repeat,
+    linear-gradient(hsl(var(--primary)), hsl(var(--primary))) bottom right / 8px 1px no-repeat,
+    linear-gradient(hsl(var(--primary)), hsl(var(--primary))) bottom right / 1px 8px no-repeat;
+  opacity: .65;
+}
+.language-switch-control:hover {
+  background: linear-gradient(135deg, hsl(var(--primary) / .24), hsl(var(--background)) 85%);
+}
 .language-flag-in { animation: language-flag-in 220ms ease-out both; }
 @keyframes language-flag-in { from { opacity:0; transform:translateY(6px) rotate(-8deg); } to { opacity:1; transform:translateY(0) rotate(0); } }
 @media (prefers-reduced-motion: reduce) { .language-flag-in { animation:none; } }

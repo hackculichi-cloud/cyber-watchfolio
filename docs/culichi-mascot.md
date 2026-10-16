@@ -62,7 +62,7 @@ Home integra personajes de menor tamaño en puntos distintos del contenido: cibe
 
 ## CV y evidencias
 
-El catálogo ofrece un CV general de dos páginas y seis CV por perfil de una página, todos en ES/EN: catorce PDF y dieciséis previsualizaciones fieles de sus páginas. Cada PDF incorpora el fondo original de su área, color propio, texto seleccionable y una mascota de cuerpo completo con el atuendo correspondiente; el general usa la identidad de Home. El visor permite recorrer las dos páginas, ampliar y cambiar de idioma. El eléctrico original y su copia anterior con mascota se conservan intactos. El contenido, las fuentes y la generación reproducible se describen en `cv-design.md`.
+El catálogo ofrece un CV general y seis CV por perfil, todos en ES/EN: catorce PDF con tantas páginas como requiere su contenido y previsualizaciones fieles de cada página. Cada documento incorpora el fondo original de su área, color propio, texto seleccionable y una mascota de cuerpo completo con el atuendo correspondiente; el general usa la identidad de Home. Incluyen perfil, habilidades, cronología laboral completa, trabajos o proyectos y formación/certificaciones con estados explícitos. El visor permite recorrer todas las páginas, ampliar y cambiar de idioma. El eléctrico original y su copia anterior con mascota se conservan intactos. El contenido, las fuentes y la generación reproducible se describen en `cv-design.md`.
 
 ## Verificación
 
@@ -83,7 +83,7 @@ El footer usa los seis colores de las áreas, la marca Culichi, contacto por cor
 
 ## Idioma y navegación compacta
 
-Las visitas sin preferencia guardada abren en español (`html lang="es"`). La elección explícita ES/EN se conserva con `portfolio-lang`. El selector es un solo botón: muestra la bandera y sigla activas, flechas de cambio y el nombre completo del idioma de destino. Cuando está en inglés, «Español» queda visible; en español aparece «English». Al pulsarlo cambia al otro idioma, anuncia la etiqueta de la acción y anima la bandera entrante; respeta movimiento reducido. No depende de emojis ni servicios externos. La licencia MIT de flag-icons acompaña los archivos.
+Las visitas sin preferencia guardada abren en español (`html lang="es"`). La elección explícita ES/EN se conserva con `portfolio-lang`. El selector es un solo botón de bandera y flechas, sin texto visible. Tiene un fondo oscuro con brillo y esquinas de circuito en el color del área; ocupa 80×44 px en modo compacto y 88×48 px en el menú móvil. Su nombre accesible y título indican el idioma de destino. Al pulsarlo cambia al otro idioma y anima la bandera entrante; respeta movimiento reducido. No depende de emojis ni servicios externos. La licencia MIT de flag-icons acompaña los archivos.
 
 Los desplegables superiores usan títulos breves, iconos y enlaces de 44 px, sin fotografías, listas de equipo ni descripciones largas. Mantienen los destinos de todas las especialidades, nombres accesibles completos, navegación por teclado y cierre con Escape. Solo la flecha de cada área abre el desplegable por hover; el logo mantiene su enlace y la vista temporal del atuendo sin desplegar contenido. La flecha también funciona con clic, tacto y teclado. Las herramientas del selector de Home siguen funcionando.
 

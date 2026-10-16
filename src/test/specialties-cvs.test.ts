@@ -4,6 +4,7 @@ import { cvVariants } from "@/data/cvs";
 import { profileIdentities } from "@/data/profiles";
 import { specialtiesFor } from "@/data/specialties";
 import { translate } from "@/i18n/translate";
+import resumes from "@/data/resumes.json";
 
 describe("specialty and CV publishing integrity", () => {
   it("publishes course knowledge in both languages with an explicit training context", () => {
@@ -16,8 +17,8 @@ describe("specialty and CV publishing integrity", () => {
   it("gives each of the six profiles its own CV instead of reusing unrelated profiles", () => {
     expect(cvVariants).toHaveLength(7);
     const general = cvVariants.find(item => item.id === "general");
-    expect(general?.pageCount).toBe(2);
-    expect(general?.localized?.es.previews).toHaveLength(2);
+    expect(general?.pageCount).toBeGreaterThanOrEqual(2);
+    expect(general?.localized?.es.previews.length).toBeGreaterThanOrEqual(2);
     const ids = new Set<string>();
     for (const profile of profileIdentities) {
       expect(profile.cvIds).toHaveLength(1);
@@ -25,7 +26,29 @@ describe("specialty and CV publishing integrity", () => {
       expect(cv).toBeDefined();
       expect(ids.has(cv!.id)).toBe(false);
       ids.add(cv!.id);
-
+      for (const lang of ["es", "en"] as const) {
+        const pages = cv!.localized![lang].previews;
+        expect(pages.length).toBeGreaterThanOrEqual(2);
+        expect(new Set(pages).size).toBe(pages.length);
+        expect(pages[pages.length - 1]).toContain(`-page-${pages.length}.png`);
+      }
+    }
+  });
+  it("keeps confirmed career history and explicit credential states in every localized CV", () => {
+    for (const lang of ["es", "en"] as const) {
+      expect(resumes.career[lang]).toHaveLength(5);
+      for (const resume of resumes.resumes) {
+        const sections = resume[lang].sections;
+        expect(sections.some(section => section.id === "skills")).toBe(true);
+        expect(sections.filter(section => section.source === "career")).toHaveLength(1);
+        const training = sections.find(section => section.source === "training");
+        expect(training).toBeDefined();
+        for (const id of training!.ids!) expect(resumes.training[lang].some(record => record.id === id)).toBe(true);
+      }
+      const aws = resumes.training[lang].find(record => record.id === "aws-preparation")!;
+      expect(aws.tone).toBe("pending");
+      expect(resumes.training[lang].find(record => record.id === "academlo")?.tone).toBe("partial");
+      expect(resumes.training[lang].find(record => record.id === "lidetec")?.document).toBe("https://culichi.lat/images/repair/cert-lidetec.jpg");
     }
   });
   it("translates specialty descriptions and keeps future electronics training planned", () => {
