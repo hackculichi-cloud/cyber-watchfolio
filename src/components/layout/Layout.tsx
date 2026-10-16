@@ -4,14 +4,14 @@ import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import MobileQuickNav from "./MobileQuickNav";
 import { profileForPath } from "@/data/profiles";
-import { environmentArtwork } from "@/data/environmentArtwork";
+import { profileAtmospheres } from "@/data/profileAtmospheres";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const Layout = () => {
   const { pathname, hash } = useLocation();
   const profile = profileForPath(pathname);
-  const world = profile ? environmentArtwork[profile.slug] : undefined;
-  const worldStyle = world ? { "--world-image": `url(${world.small})`, "--world-panel":world.panel } as CSSProperties : undefined;
+  const world = profile ? profileAtmospheres[profile.slug] : undefined;
+  const worldStyle = world ? { "--world-image": `url("${world.image}")`, "--world-panel":world.panel } as CSSProperties : undefined;
   const { t } = useLanguage();
 
   useEffect(() => {

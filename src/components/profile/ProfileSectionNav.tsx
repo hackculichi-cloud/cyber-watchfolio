@@ -1,18 +1,21 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { useEffect, useId, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ChevronsUpDown } from "lucide-react";
 import type { ProfileSection } from "@/data/profiles";
 import { cn } from "@/lib/utils";
 
 /** Sticky in-page navigation for a profile page. Scroll-spy driven, keyboard accessible. */
-const ProfileSectionNav = ({ sections }: { sections: ProfileSection[] }) => {
+const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[]; contentKey?: string | null }) => {
   const { t } = useLanguage();
   const [active, setActive] = useState(sections[0]?.id);
   const selectId = useId();
   const navigate = useNavigate();
+  const { hash } = useLocation();
 
   useEffect(() => {
+    const target = hash.slice(1);
+    if (sections.some(section => section.id === target)) setActive(target);
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -28,7 +31,7 @@ const ProfileSectionNav = ({ sections }: { sections: ProfileSection[] }) => {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, [sections]);
+  }, [sections, hash, contentKey]);
 
   return (
     <nav

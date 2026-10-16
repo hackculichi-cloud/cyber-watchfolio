@@ -1,3 +1,5 @@
+import { openElectricalArea } from "./support/electricalArea";
+import { selectLanguage } from "./support/selectLanguage";
 import { test, expect } from "@playwright/test";
 
 test("six outfit circles have equal radii and spacing, and preview the larger header mascot", async ({ page }) => {
@@ -41,7 +43,7 @@ test("career timeline and skills reflect the supplied employers in English and S
   await expect(timeline.locator('[data-career-role="ttec-tier2"]')).toContainText('root-cause analysis');
   await expect(timeline.locator('[data-career-role="tp-support"]')).toContainText('New-hire training');
   await expect(page.locator('#skills article')).toHaveCount(8);
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(timeline.locator('[data-career-role="tcs-operations"]')).toContainText('Supervisor de operaciones');
   await expect(timeline.locator('[data-career-role="tcs-operations"]')).toContainText('Oct 2025 — Actualidad');
   await expect(timeline.locator('[data-career-role="ttec-tier2"]')).toContainText('análisis de causa raíz');
@@ -63,7 +65,7 @@ test("home scatters six individual scenes and keeps social links in the footer c
 
 test("both residential outlet cases use process and protocol instead of a comparison block", async ({ page }) => {
   await page.goto('/electrical#projects');
-  await page.locator('[data-electrical-group="residential"]').click();
+  await openElectricalArea(page, "residential");
   await page.locator('[data-electrical-group="residential-outlets"]').click();
   for (const id of ['residential-outlet-october-2026', 'residential-outlet-switch-replacement']) {
     const card = page.locator(`[data-work="${id}"]`);

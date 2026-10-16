@@ -18,19 +18,19 @@ const PracticeTile = ({ id, label, icon: Icon, active, onClick, count }: { id: s
 };
 
 /** Area → work type → real cases; collapsed by default, like the repair browser. */
-const ElectricalPracticeGroups = () => {
+const ElectricalPracticeGroups = ({ areaId }: { areaId?: string }) => {
   const { t } = useLanguage();
   const [area, setArea] = useState<string | null>(null);
   const [category, setCategory] = useState<string | null>(null);
-  const group = electricalPracticeGroups.find(item => item.id === area);
+  const group = electricalPracticeGroups.find(item => item.id === (areaId ?? area));
   const selected = group?.categories.find(item => item.id === category);
   const items = electricalProjects.filter(item => selected?.projectIds.includes(item.id));
   return <div data-electrical-practices className="space-y-6">
-    <div className="grid max-w-4xl grid-cols-1 gap-4 min-[420px]:grid-cols-3">
+    {!areaId && <div className="grid max-w-4xl grid-cols-1 gap-4 min-[420px]:grid-cols-3">
       {electricalPracticeGroups.map(item => <PracticeTile key={item.id} id={item.id} label={item.title} icon={item.icon} active={area === item.id}
         count={item.categories.flatMap(c => c.projectIds).filter(id => electricalProjects.some(p => p.id === id && p.status === "Completed")).length}
         onClick={() => { setArea(area === item.id ? null : item.id); setCategory(null); }} />)}
-    </div>
+    </div>}
     {group && <div id={`electrical-panel-${group.id}`} className="space-y-5 border-t border-primary/25 pt-6">
       <h3 className="text-xl font-semibold">{t(group.title)}</h3>
       <div className="grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3">

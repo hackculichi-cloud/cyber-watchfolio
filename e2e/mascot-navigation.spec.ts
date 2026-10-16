@@ -48,12 +48,12 @@ test("navigation works without WebGL and never requests the archived 3D model", 
 });
 test("each area includes a fifth scene and a full standalone activity illustration", async ({ page }) => {
     for (const path of ['/cybersecurity', '/software-development', '/electrical', '/electronics', '/repair', '/experience']) {
-        await page.goto(path);
+        await page.goto(path === "/electrical" ? `${path}#tools` : path);
         const illustration = page.locator('img[data-mascot-scene="detail"]');
         await illustration.scrollIntoViewIfNeeded();
         await expect(illustration).toBeVisible();
         await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth >= 1024 && img.naturalHeight >= 1024)).toBe(true);
         await expect(illustration).toHaveAttribute('alt', '');
-        await expect(page.locator('main [data-mascot-scene]')).toHaveCount(5);
+        await expect(page.locator('main [data-mascot-scene]')).toHaveCount(path === '/electrical' ? 3 : 5);
     }
 });

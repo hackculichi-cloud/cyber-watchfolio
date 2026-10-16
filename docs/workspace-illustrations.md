@@ -19,9 +19,9 @@ La conversión con ImageMagick solo cambia formato, resolución y compresión: 1
 
 Las fotografías de prácticas, certificados, PDF, retratos de encabezado y footer y el selector exclusivo de Home conservan sus recursos anteriores. La escena principal mantiene la etiqueta de entrada y los cinco personajes distintos del contenido de cada área.
 
-## Entornos independientes del personaje
+## Propuesta archivada de entornos independientes del personaje
 
-En la revisión posterior se generaron versiones de las seis habitaciones sin el zorro. Se reconstruyó el mobiliario y el espacio que ocupaba, conservando el acabado, perspectiva e iluminación originales. La aplicación ahora sirve `src/assets/environments/`, registrada en `environmentArtwork.ts`, tanto en la imagen principal como en el fondo atenuado continuo del área. La mascota usa su recurso independiente bajo la imagen. Los WebP anteriores de `workspaces/` permanecen conservados.
+En la revisión posterior se generaron versiones de las seis habitaciones sin el zorro. Se reconstruyó el mobiliario y el espacio que ocupaba, conservando el acabado, perspectiva e iluminación originales. Esa propuesta utilizaba `src/assets/environments/`, registrada en `environmentArtwork.ts`, tanto en la imagen principal como en el fondo atenuado continuo del área. La mascota usa su recurso independiente bajo la imagen. Los WebP anteriores de `workspaces/` permanecen conservados.
 
 Las copias nuevas usan la misma conversión de formato y resolución (1536 px calidad 86; 768 px calidad 84). Pesan 285–339 kB las completas y 96–120 kB las pequeñas. No se solicita un atlas con las seis habitaciones. Los originales PNG están conservados en `/workspace/generated_images/`.
 
@@ -41,4 +41,21 @@ Se generaron dos imágenes de apariencia fotográfica para las tarjetas industri
 - Industrial: original `exec-741251e5-7601-4d78-a6b1-cc1f5e56e24a.png`; motor industrial y taller.
 - Control: original `exec-7c0151a1-c2b3-4c43-93a2-665f5752d5b8.png`; tablero conceptual con contactor y pulsadores.
 
-Copias locales en `src/assets/specialties/`, de 768×512 a calidad 84 (58 y 66 kB). La tarjeta residencial utiliza la foto original `/images/electrical/outlet-october-2026/16.jpeg`. El catálogo `specialtyArtwork.ts` distingue expresamente los dos tipos de imagen.
+Copias locales en `src/assets/specialties/`, de 768×512 a calidad 84 (58 y 66 kB). La tarjeta residencial de esa revisión utilizaba la foto original `/images/electrical/outlet-october-2026/16.jpeg`, conservada dentro del trabajo en la versión actual. El catálogo `specialtyArtwork.ts` distingue expresamente los dos tipos de imagen.
+
+
+## Versión actual: fondos originales y personajes dentro del taller
+
+Por indicación posterior del titular, se recuperan las habitaciones con personaje de `src/assets/workspaces/` como imagen principal. Los fondos de página usan los recursos anteriores de `profileMedia.ts` (incluidos postes y rayos eléctricos), registrados para las seis áreas en `profileAtmospheres.ts`. Las habitaciones sin mascota se conservan archivadas, sin servir como fondos activos.
+
+La portada residencial también es ahora una referencia generada de apariencia fotográfica: original `exec-383e81bf-e9a4-47a7-bf4a-b86d26e16a6c.png`; copia WebP 768×512 en `src/assets/specialties/electrical-residential.webp`. La tarjeta indica «Imagen de referencia». Las fotos originales se mantienen dentro de los trabajos y la galería, y no se presentan estas portadas como evidencia de intervenciones reales.
+
+Tres nuevas poses transparentes para Home conservan la identidad de las ilustraciones aprobadas. Se convirtieron a WebP de 640 px de ancho a calidad 88, manteniendo alfa y proporciones. Los originales PNG permanecen en `/workspace/generated_images/`:
+
+| Recurso local en `src/assets/mascot-scenes/` | Original | Uso |
+| --- | --- | --- |
+| `electronics-back.webp` | `exec-39bd0948-7862-4268-b573-bbc07b2ede74.png` | De espaldas, colocando una placa sobre la tarjeta de formación |
+| `repair-peeking.webp` | `exec-474f0a64-da2a-4a7a-aadd-b626af2d5233.png` | En cuclillas, asomándose detrás del bloque de contacto |
+| `service-leaning.webp` | `exec-31346484-c72c-470c-99e8-159ea107c080.png` | Escuchando con auriculares, apoyado sobre el correo del footer |
+
+La composición usa capas de CSS para esconder deliberadamente parte de los personajes detrás de los bloques; no altera creativamente las imágenes fuera de la herramienta de generación.

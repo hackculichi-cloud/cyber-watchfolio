@@ -26,10 +26,11 @@ const ProfileDropdown = ({ item, children }: { item: NavItem; children: ReactNod
   useEffect(() => { setOpen(false); clearTimeout(closeTimer.current); previewMascotArea(null); }, [pathname, hash]);
   useEffect(() => () => clearTimeout(closeTimer.current), []);
   return <Popover open={open} onOpenChange={(value) => { clearTimeout(closeTimer.current); openedByHover.current = false; setOpen(value); }}>
-    <div className="flex items-center" onFocusCapture={() => previewMascotArea(item.profile ?? null)} onPointerEnter={(event) => { if (event.pointerType === "mouse" && !(event.target as Element).closest("[data-dropdown-toggle]")) keepOpen(); }} onPointerLeave={leave}>
+    <div className="flex items-center" onPointerEnter={event => { if (event.pointerType === "mouse") { clearTimeout(closeTimer.current); previewMascotArea(item.profile ?? null); } }} onFocusCapture={() => previewMascotArea(item.profile ?? null)} onPointerLeave={leave}>
       {children}
       <PopoverTrigger asChild>
         <button type="button" data-dropdown-toggle
+          onPointerEnter={event => { if (event.pointerType === "mouse") keepOpen(); }}
           aria-label={`${t("Open profile menu")}: ${t(item.label)}`}
           className="rounded-md px-1 py-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden />

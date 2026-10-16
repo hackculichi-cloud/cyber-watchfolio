@@ -23,8 +23,8 @@ test('electrical specialties have centered emblems, relevant images and truthful
       expect(positions[1].y).toBe(positions[2].y);
       expect(positions[1].x - positions[0].x - positions[0].width).toBeCloseTo(positions[2].x - positions[1].x - positions[1].width, 0);
     }
-    await expect(page.locator('[data-specialty="residential"]')).toContainText('My completed work');
-    await expect(page.locator('[data-specialty-art="residential"]')).toHaveAttribute('src', '/images/electrical/outlet-october-2026/16.jpeg');
+    await expect(page.locator('[data-specialty="residential"]')).toContainText('Illustrative reference');
+    await expect(page.locator('[data-specialty-art="residential"]')).toHaveAttribute('src', /electrical-residential/);
     await expect(page.locator('[data-specialty="industrial"]')).toContainText('Illustrative reference');
     await expect(page.locator('[data-specialty="industrial"]')).toContainText('Currently studying');
     const control = page.locator('[data-specialty="electrical-control"]');

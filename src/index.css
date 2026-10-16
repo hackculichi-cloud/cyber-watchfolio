@@ -535,7 +535,7 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 .eyebrow::before { content:""; flex-shrink:0; width:1.15rem; height:2px; background:linear-gradient(90deg,hsl(var(--primary)),hsl(var(--primary)/.15)); }
 .panel, .glass-panel { border-color:hsl(var(--border)/.85); }
 
-/* The same illustrated room continues behind the whole professional profile. */
+/* Original visual identities continue through profiles: energy grid, code, networks, circuits. */
 [data-world] .world-content {
   background-image:linear-gradient(90deg,hsl(var(--background)/.97),hsl(var(--background)/.87) 48%,hsl(var(--background)/.62)),var(--world-image);
   background-size:auto,clamp(56rem,100vw,100rem) auto;
@@ -585,12 +585,11 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 @keyframes outfit-orbit { from{transform:rotate(0)} to{transform:rotate(360deg)} }
 @keyframes outfit-counter-orbit { from{transform:rotate(0)} to{transform:rotate(-360deg)} }
 
-/* Local flag artwork remains legible on browsers without emoji flag support. */
-.language-selection { transition: transform 220ms ease, border-color 200ms ease, background-color 200ms ease; }
-.language-switcher[data-selected-language="en"] .language-selection { transform: translateX(100%); }
-.language-flag { transition: opacity 200ms ease, transform 200ms ease; }
-.language-switcher button[aria-pressed="false"] .language-flag { opacity: .65; transform: scale(.88); }
-.language-switcher button[aria-pressed="true"] .language-flag { opacity: 1; transform: scale(1); }
-@media (prefers-reduced-motion: reduce) {
-  .language-selection, .language-flag { transition: none; }
-}
+/* One language control shows the active flag with a glimpse of the other choice. */
+.language-flag-in { animation: language-flag-in 220ms ease-out both; }
+@keyframes language-flag-in { from { opacity:0; transform:translateY(6px) rotate(-8deg); } to { opacity:1; transform:translateY(0) rotate(0); } }
+@media (prefers-reduced-motion: reduce) { .language-flag-in { animation:none; } }
+
+/* Keep the area tabs available without hiding the selected content behind navigation. */
+.site-layout [data-electrical-area-content] [id] { scroll-margin-top:17rem; }
+@media (max-width:639px) { .site-layout [data-electrical-area-content] [id] { scroll-margin-top:23rem; } }

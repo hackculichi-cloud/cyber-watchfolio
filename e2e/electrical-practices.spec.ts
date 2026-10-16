@@ -1,3 +1,5 @@
+import { openElectricalArea } from "./support/electricalArea";
+import { selectLanguage } from "./support/selectLanguage";
 import { englishStorageState } from "./support/language";
 import { expect, test } from "@playwright/test";
 
@@ -5,7 +7,7 @@ test("electrical cases stay grouped, preserve original photos and keep protocol 
   await page.goto("/electrical#projects");
   const groups = page.locator("[data-electrical-practices]");
   await expect(groups.locator("article")).toHaveCount(0);
-  await groups.locator('[data-electrical-group="residential"]').press("Enter");
+  await openElectricalArea(page, "residential");
   await groups.locator('[data-electrical-group="residential-outlets"]').click();
   await expect(groups.locator("article")).toHaveCount(2);
   const record = groups.locator('[data-work="residential-outlet-october-2026"]');
@@ -35,11 +37,11 @@ test("electrical cases stay grouped, preserve original photos and keep protocol 
   await groups.locator('[data-electrical-group="residential-lighting"]').click();
   await expect(groups.locator("article")).toHaveCount(1);
   await expect(groups.locator("article")).toContainText("Two Ceiling Luminaires");
-  await groups.locator('[data-electrical-group="industrial"]').click();
+  await openElectricalArea(page, "industrial");
   await groups.locator('[data-electrical-group="industrial-motors"]').click();
   await expect(groups.locator("article")).toHaveCount(0);
   await expect(groups).toContainText("No completed practices documented");
-  await groups.locator('[data-electrical-group="control"]').click();
+  await openElectricalArea(page, "control");
   await groups.locator('[data-electrical-group="control-contactors"]').click();
   await expect(groups.locator("article")).toContainText("Planned");
 });
@@ -55,10 +57,10 @@ test("courses share their certificate card with their explanations and collapsed
   await expect(syllabus).not.toHaveAttribute("open", "");
   await syllabus.locator("summary").click();
   await expect(syllabus.getByRole("button", { name: /Fundamentals of Electricity/ })).toBeVisible();
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(conocer).toContainText("MOCKUP · Original pendiente");
   await expect(conocer.getByRole("button", { name: /Fundamentos de Electricidad/ })).toBeVisible();
-  await page.locator('[data-electrical-group="residential"]').click();
+  await openElectricalArea(page, "residential");
   await page.locator('[data-electrical-group="residential-outlets"]').click();
   const record = page.locator('[data-work="residential-outlet-october-2026"]');
   await expect(record).toContainText("Cambio de contacto residencial");
@@ -69,7 +71,7 @@ test("courses share their certificate card with their explanations and collapsed
 test("mobile groups fit and only the latest CV is offered", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 });
   await page.goto("/electrical#projects");
-  await page.locator('[data-electrical-group="residential"]').click();
+  await openElectricalArea(page, "residential");
   await page.locator('[data-electrical-group="residential-outlets"]').click();
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   for (const path of ["/electrical", "/electronics", "/repair", "/experience", "/software-development", "/cybersecurity"]) {

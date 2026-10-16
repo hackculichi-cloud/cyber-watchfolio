@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { englishStorageState } from "./support/language";
 import { test, expect } from '@playwright/test';
 
@@ -22,17 +23,15 @@ test('each profile has its own static workplace, footer outfit and brand color',
     // Width-descriptor srcsets report density-corrected naturalWidth (for example 640 for a 768 px file).
     await expect.poll(() => artwork.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     await expect(workspace.locator('[data-body-mascot]')).toHaveAttribute('data-body-mascot', outfit);
-    const room = (await artwork.boundingBox())!;
-    const character = (await workspace.locator('[data-body-mascot]').boundingBox())!;
-    expect(character.y).toBeGreaterThanOrEqual(room.y + room.height);
-    expect(character.width).toBeLessThanOrEqual(112);
+    await expect(workspace.locator('figcaption [data-body-mascot]')).toHaveCount(0);
+    expect(await artwork.evaluate(el => el.matches('[data-body-mascot]'))).toBe(true);
     const world = page.locator('[data-world]');
     await expect(world).toHaveAttribute('data-world', outfit);
     const roomLayer = await page.locator('main').evaluate(el => getComputedStyle(el).backgroundImage);
-    expect(roomLayer).toContain('small-');
+    expect(roomLayer).toContain(outfit === 'customer-service' ? 'data:image/svg+xml' : 'hero-');
     await page.locator('#cv').scrollIntoViewIfNeeded();
     expect(await page.locator('main').evaluate(el => getComputedStyle(el).backgroundImage)).toBe(roomLayer);
-    expect(await page.locator('footer').evaluate(el => getComputedStyle(el).backgroundImage)).toContain('small-');
+    expect(await page.locator('footer').evaluate(el => getComputedStyle(el).backgroundImage)).toContain(outfit === 'customer-service' ? 'data:image/svg+xml' : 'hero-');
 
     expect(await workspace.evaluate(element => element.getAnimations({ subtree:true }).length)).toBe(0);
     await expect(page.locator('[data-interactive-mascot], [data-outfit], [data-tool-field]')).toHaveCount(0);
@@ -57,7 +56,7 @@ test('complete workspace illustrations enlarge without leaving the profile', asy
   const image = dialog.locator('img:not([data-language-flag])');
   await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth === 1536)).toBe(true);
   await expect(dialog).toContainText('Illustrated workspace · Culichi');
-  await dialog.locator('button[lang="es"]').click();
+  await selectLanguage(dialog, "es");
   await expect(dialog).toContainText('Espacio de trabajo ilustrado · Culichi');
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);

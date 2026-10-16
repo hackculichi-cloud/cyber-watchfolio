@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
@@ -24,12 +25,12 @@ test("top dropdowns use specialties, support keyboard/Escape and navigate to a r
     await page.keyboard.press("Escape");
     await expect(toggle).toBeFocused();
   }
-  await page.locator('header a[href="/electronics"]').hover();
+  await page.getByRole('button', { name: 'Open profile menu: Electronics', exact: true }).hover();
   const menu = page.getByRole("dialog", { name: "Specialties: Electronics", exact: true });
   await menu.locator('a[href="/electronics#audio-radio"]').click();
   await expect(page.locator('[data-specialty="audio-radio"]')).toHaveAttribute("aria-expanded", "true");
   await expect(page.locator('#specialty-details-electronics').getByText("Upcoming", { exact: true })).toBeVisible();
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(page.locator('#specialty-details-electronics').getByRole("heading", { name: "Técnico en Radio Recepción y Amplificadores", exact: true })).toBeVisible();
   await page.locator('[data-specialty="basic-electronics"]').click();
   await expect(page.locator('#specialty-details-electronics').getByText(/Escuela Tecnológica de Occidente/).first()).toBeVisible();
@@ -94,7 +95,7 @@ for (const [label, path, id] of areas) test(`${label} has its own ES/EN CV downl
   await expect(dialog.locator("output")).toHaveText("125%");
   await dialog.getByRole("button", { name: "Fit width", exact: true }).click();
   await expect(dialog.locator("output")).toHaveText("100%");
-  await dialog.locator('button[lang="es"]').click();
+  await selectLanguage(dialog, "es");
   await expect(dialog.locator("img:not([data-language-flag])")).toHaveAttribute("src", `/cv/previews/christian-velasco-${esStem}.png`);
   await expect(dialog.locator('a[download]')).toHaveAttribute("href", `/cv/christian-velasco-${esStem}.pdf`);
   await page.keyboard.press("Escape");
@@ -144,7 +145,7 @@ test("school links and CV catalog reflect confirmed institutions", async ({ page
 
 test("electronics has seven training routes with only basic electronics in progress", async ({ page }) => {
   await page.goto("/electronics");
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   const routes = page.locator("#specialties");
   await expect(routes.locator("button[data-specialty]")).toHaveCount(7);
   await expect(routes.getByText("Próximamente", { exact: true })).toHaveCount(6);
@@ -179,7 +180,7 @@ test("ETO syllabus stays inside basic electronics and expands in both languages"
   await syllabus.locator("summary").click();
   await expect(syllabus.locator("li")).toHaveCount(12);
   await expect(syllabus.getByText("Applied Mathematics II", { exact: true })).toBeVisible();
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(syllabus.getByText("Finalización prevista: febrero.", { exact: true })).toBeVisible();
   await expect(syllabus.getByText("Matemáticas Aplicadas II", { exact: true })).toBeVisible();
   await expect(syllabus.getByText(/punta lógica/)).toBeVisible();

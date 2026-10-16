@@ -17,7 +17,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
       data-world-hero={profile.slug}
       className="relative isolate flex min-h-[62vh] items-end overflow-clip border-b border-border md:min-h-[72vh]"
     >
-      {/* The room continues through the page; keep the copy on a readable surface. */}
+      {/* The original area backdrop stays behind the copy; the workplace remains its own illustration. */}
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,hsl(var(--background)/0.55)_0%,hsl(var(--background)/0.7)_45%,hsl(var(--background))_100%)]"

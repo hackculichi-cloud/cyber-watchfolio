@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
@@ -33,12 +34,12 @@ test("CVs share a compact row with their mascot and preserve localized previews"
     expect(mascot.y + mascot.height).toBeGreaterThan(content.y);
     expect((await cv.boundingBox())!.height).toBeLessThan(500);
     await expect(cv.locator('figure img')).toHaveAttribute('src', /-en\.png$/);
-    await page.locator('button[lang="es"]:visible').first().click();
+    await selectLanguage(page, "es");
     await expect(cv.locator('figure img')).toHaveAttribute('src', /-es\.png$/);
     await cv.getByRole('button', { name: /^Vista previa del CV:/ }).click();
     await expect(page.getByRole('dialog').locator('img:not([data-language-flag])')).toHaveAttribute('src', await cv.locator('figure img').getAttribute('src') as string);
     await page.keyboard.press('Escape');
-    await page.locator('button[lang="en"]:visible').first().click();
+    await selectLanguage(page, "en");
   }
 });
 
@@ -58,6 +59,7 @@ test("phone layouts keep named tools, gallery targets and the larger header insi
     expect((await page.locator('[data-header-mascot]').boundingBox())!.width).toBe(112);
     expect((await tools.boundingBox())!.height).toBeLessThan(850);
     for (const id of ['tools', 'cv', 'evidence']) {
+      await page.goto(`/electrical#${id}`);
       await page.locator(`#${id}`).scrollIntoViewIfNeeded();
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }

@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { englishStorageState } from "./support/language";
 import { test, expect } from '@playwright/test';
 
@@ -82,9 +83,10 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await expect(dialog).toContainText('Universidad Internacional · RED CONOCER');
   await expect(dialog).toContainText('MOCKUP · Original pending');
   await expect(dialog.locator('a[download]')).toHaveCount(0);
-  await dialog.locator('button[lang="es"]').click();
+  await selectLanguage(dialog, "es");
   await expect(dialog).toContainText('MOCKUP · Original pendiente');
   await page.keyboard.press('Escape');
   await expect(conocer).toContainText('Actualmente está estudiando');
+  await page.locator('[data-area-tab="overview"]').click();
   expect(await page.locator('#overview [data-training-provider]').count()).toBeGreaterThan(0);
 });

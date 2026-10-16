@@ -1,5 +1,5 @@
 import BasicElectronicsSyllabus from "./BasicElectronicsSyllabus";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { ArrowRight, ChevronDown, Zap } from "lucide-react";
 import { specialtyArtwork } from "@/data/specialtyArtwork";
@@ -10,15 +10,17 @@ import Tag from "@/components/shared/Tag";
 import SectionHeading from "@/components/shared/SectionHeading";
 
 /** Stable hash destinations and visual, expandable specialty cards. */
-const SpecialtyExplorer = ({ profile }: { profile: ProfileSlug }) => {
+const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { profile: ProfileSlug; activeId?: string | null; onSelect?: (id: string | null) => void; renderDetail?: (id: string) => ReactNode }) => {
   const { t } = useLanguage();
   const { hash } = useLocation();
   const items = useMemo(() => specialtiesFor(profile), [profile]);
-  const [active, setActive] = useState<string | null>(null);
+  const [localActive, setLocalActive] = useState<string | null>(null);
+  const active = activeId === undefined ? localActive : activeId;
+  const setActive = onSelect ?? setLocalActive;
   useEffect(() => {
     const id = hash.slice(1);
     if (items.some(item => item.id === id)) setActive(id);
-  }, [hash, items]);
+  }, [hash, items, setActive]);
   return <section id="specialties" className="container mx-auto scroll-mt-32 px-4 py-12">
     <div className={profile === "electrical" ? "text-center [&_.eyebrow]:justify-center [&_p]:mx-auto" : undefined}><SectionHeading eyebrow={t("Specialties")} title={t("Explore this area")} description={t("Choose a specialty to see its training status, topics and related work.")} /></div>
     <div className={`grid grid-cols-1 gap-3 sm:grid-cols-2 ${profile === "electronics" ? "" : profile === "electrical" ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
@@ -47,7 +49,7 @@ const SpecialtyExplorer = ({ profile }: { profile: ProfileSlug }) => {
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
       {item.id === "basic-electronics" && <BasicElectronicsSyllabus />}
       <ul className="my-4 flex flex-wrap gap-2">{item.topics.map(topic => <li key={topic}><Tag>{t(topic)}</Tag></li>)}</ul>
-      <div className="flex flex-wrap gap-4">{item.related.map(link => <a key={link.anchor} href={`#${link.anchor}`} className="inline-flex items-center gap-2 rounded text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t(link.label)}<ArrowRight className="h-4 w-4" aria-hidden /></a>)}</div>
+      {renderDetail ? renderDetail(item.id) : <div className="flex flex-wrap gap-4">{item.related.map(link => <a key={link.anchor} href={`#${link.anchor}`} className="inline-flex items-center gap-2 rounded text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t(link.label)}<ArrowRight className="h-4 w-4" aria-hidden /></a>)}</div>}
     </article>)}
   </section>;
 };

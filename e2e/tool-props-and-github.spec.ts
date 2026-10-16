@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
@@ -47,10 +48,10 @@ test("GitHub projects expand on demand and AWS remains exam preparation in both 
     const aws = page.locator('[data-certificate="aws-preparation"]');
     await expect(aws).toContainText('In preparation');
     await expect(aws).toContainText('Exam not passed');
-    await page.locator('button[lang="es"]:visible').first().click();
+    await selectLanguage(page, "es");
     await expect(aws).toContainText('En preparación');
     await expect(aws).toContainText('Examen aún no aprobado');
-    await page.locator('button[lang="en"]:visible').first().click();
+    await selectLanguage(page, "en");
   }
   await expect(page.locator('[data-complementary-code] a')).toHaveAttribute('href', 'https://github.com/ByCulichi/Culichi-Metrics');
 });
@@ -69,7 +70,7 @@ test("phone layouts emphasize area titles with logos and show seven years of ser
   await page.goto('/experience#background');
   await expect(page.locator('#background').getByText('7', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Open menu', exact: true }).tap();
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await page.getByRole('button', { name: 'Cerrar menú', exact: true }).tap();
   await expect(page.locator('#background')).toContainText('Siete años');
   await context.close();

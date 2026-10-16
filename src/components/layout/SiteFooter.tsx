@@ -4,6 +4,7 @@ import { site } from "@/data/site";
 import { professionalProfiles, profileForPath } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ContactPreview from "@/components/shared/ContactPreview";
+import HomeCharacter from "@/components/shared/HomeCharacter";
 import CulichiMascot from "@/components/shared/CulichiMascot";
 
 const areaNames = ["Cybersecurity", "Software", "Electricity", "Electronics", "Repair", "Customer service"];
@@ -23,11 +24,12 @@ const SiteFooter = () => {
           <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">{t("Ideas become projects.")}<br /><span className="text-primary">{t("Let’s talk.")}</span></h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
         </div>
-        <div data-footer-contact className="min-w-0">
-        <ContactPreview channel="Email" href={`mailto:${site.email}`} className="group inline-flex min-h-14 w-fit max-w-full items-center gap-3 rounded-xl border border-primary/40 bg-primary/10 px-5 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+        <div data-footer-contact className={`relative isolate w-fit max-w-full min-w-0 ${pathname === "/" ? "mt-10" : ""}`}>
+        {pathname === "/" && <HomeCharacter profile="customer-service" scene="service-leaning" className="absolute -top-20 right-2 z-0 h-32 w-28 overflow-hidden sm:w-32" />}
+        <ContactPreview channel="Email" href={`mailto:${site.email}`} className="group relative z-10 inline-flex min-h-14 w-fit max-w-full items-center gap-3 rounded-xl border border-primary/40 bg-surface px-5 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <Mail className="h-5 w-5 shrink-0" aria-hidden /><span className="break-all">{site.email}</span><ArrowUpRight className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
         </ContactPreview>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="relative z-10 mt-3 flex flex-wrap gap-2">
             <ContactPreview channel="GitHub" href={site.github} external className={contactLink}><Github className="h-4 w-4" aria-hidden />GitHub<ArrowUpRight className="h-3 w-3" aria-hidden /></ContactPreview>
             <ContactPreview channel="LinkedIn" href={site.linkedin} external className={contactLink}><Linkedin className="h-4 w-4" aria-hidden />LinkedIn<ArrowUpRight className="h-3 w-3" aria-hidden /></ContactPreview>
           </div>

@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { test, expect } from "@playwright/test";
 
 const openRepair = async (page: import("@playwright/test").Page, id: string) => {
@@ -20,7 +21,7 @@ test("three confirmed repairs have bilingual facts without unrelated evidence", 
   await expect(page.getByRole("dialog").locator("img:not([data-language-flag])")).toHaveAttribute("src", "/images/repair/cert-lidetec.jpg");
   await expect(page.getByRole("dialog").locator("img:not([data-language-flag])")).toHaveJSProperty("naturalWidth", 1600);
   await page.keyboard.press("Escape");
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(iphone14.getByText("Batería aftermarket autoprogramable", { exact: true })).toBeVisible();
   await expect(iphone14.getByText(/comprobaciones finales enumeradas/)).toBeVisible();
   await openRepair(page, "sr-003");
@@ -93,7 +94,7 @@ test("LIDETEC syllabus expands in both languages and training skills remain dist
   await curriculum.getByRole("button", { name: "View training details", exact: true }).click();
   await expect(curriculum.getByText("Multimeter use: speakers, earpieces, buzzers and batteries", { exact: true })).toBeVisible();
   await expect(curriculum.getByText("UnlockTool setup and software servicing (coursework)", { exact: true })).toBeVisible();
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(curriculum.locator("summary")).toHaveText("Temario del curso");
   await expect(curriculum.getByText("Uso del multímetro: bocinas, auriculares, buzzer y baterías", { exact: true })).toBeVisible();
   await expect(curriculum.getByText("Introducción a la microsoldadura", { exact: true })).toBeVisible();
@@ -118,7 +119,7 @@ test("visual brand and model tiles expose repairs and preserve Samsung planned s
   await iphone.click();
   await expect(groups.locator("article")).toHaveCount(0);
 
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   const samsung = groups.locator('[data-repair-group="Samsung"]');
   await expect(samsung).toContainText("Planeadas: 2");
   await samsung.click();

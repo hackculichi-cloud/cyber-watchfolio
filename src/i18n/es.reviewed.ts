@@ -1,5 +1,10 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Open to IT, cybersecurity and development opportunities": "Abierto a oportunidades en TI, ciberseguridad y desarrollo",
+  "Illustrative reference: residential outlets, switches and measurement tools": "Imagen de referencia: contactos residenciales, apagadores y herramientas de medición",
+  "Choose a work type to explore its practices and original photographs.": "Elige un tipo de trabajo para ver sus prácticas y fotografías originales.",
+  "Switch to English": "Cambiar a inglés",
+  "Switch to Spanish": "Cambiar a español",
   "Illustrative reference": "Imagen de referencia",
   "My completed work": "Mi trabajo realizado",
   "Illustrative reference: industrial motor and electrical workshop": "Imagen de referencia: motor industrial y taller eléctrico",

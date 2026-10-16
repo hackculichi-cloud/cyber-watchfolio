@@ -1,3 +1,4 @@
+import { selectLanguage } from "./support/selectLanguage";
 import { englishStorageState } from "./support/language";
 import { test, expect } from "@playwright/test";
 
@@ -14,7 +15,7 @@ test("skills introduce Christian's actions and their evidence in both languages"
   await expect(cards.filter({ hasText: 'I investigate alerts in training labs' })).toContainText('3 documented training investigations');
   await expect(areas.locator('[data-personal-skills-card="electronics"]')).toContainText('Basic Electronics at ETO · In progress');
   await expect(areas.locator('[data-personal-skills-card="customer-service"]')).toContainText('7 years of professional experience');
-  await page.locator('button[lang="es"]:visible').first().click();
+  await selectLanguage(page, "es");
   await expect(areas.getByRole('heading', { name: 'Estas son mis habilidades', exact: true })).toBeVisible();
   await expect(areas.locator('[data-personal-skills-card="development"]')).toContainText('React, Next.js y TypeScript');
   const repair = areas.locator('[data-personal-skills-card="repair"]');
@@ -57,7 +58,7 @@ test("desktop profile menus have six distinct neon accents and concise links", a
   const colors = await icons.evaluateAll(elements => elements.map(element => getComputedStyle(element).color));
   expect(new Set(colors).size).toBe(6);
   await nav.getByRole('link', { name: 'Cybersecurity', exact: true }).hover();
-  await nav.getByRole('link', { name: 'Electronics', exact: true }).hover();
+  await nav.getByRole('button', { name: 'Open profile menu: Electronics', exact: true }).hover();
   const menu = page.getByLabel('Specialties: Electronics', { exact: true });
   await expect(menu.locator('img, [data-gear-preview]')).toHaveCount(0);
   await expect(menu.getByRole('link')).toHaveCount(7);

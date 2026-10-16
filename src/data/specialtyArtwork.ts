@@ -1,3 +1,4 @@
+import residential from "@/assets/specialties/electrical-residential.webp";
 import industrial from "@/assets/specialties/electrical-industrial.webp";
 import control from "@/assets/specialties/electrical-control.webp";
 
@@ -6,9 +7,9 @@ type SpecialtyArtwork = { src: string; alt: string; reference: boolean };
 /** Reference art is labeled separately from original photographs of completed work. */
 export const specialtyArtwork: Record<string, SpecialtyArtwork> = {
   residential: {
-    src: "/images/electrical/outlet-october-2026/16.jpeg",
-    alt: "Completed replacement outlet with its wall plate.",
-    reference: false,
+    src: residential,
+    alt: "Illustrative reference: residential outlets, switches and measurement tools",
+    reference: true,
   },
   industrial: {
     src: industrial,

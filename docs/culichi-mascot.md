@@ -48,17 +48,17 @@ El logotipo ampliado del encabezado sigue usando el arte local y cambia por ruta
 
 ## Lugares de trabajo y fluidez
 
-`ProfileWorkspace` muestra seis habitaciones completas a color sin mascota incrustada: redes, desarrollo, electricidad, electrónica, reparación y atención al cliente. El personaje de bienvenida aparece a menor tamaño en el pie de la ilustración, sin cubrirla. El mismo entorno se extiende de forma atenuada por el fondo de todo el perfil y su footer; las superficies de lectura conservan los acentos y contraste del diseño existente. No se usan siluetas como sustituto de las habitaciones.
+`ProfileWorkspace` vuelve a mostrar las seis habitaciones con el zorro integrado dentro de la ilustración principal. El personaje no aparece fuera de la escena en su pie. Las imágenes locales de `workspaces/` tienen variantes 768/1536 px y ampliación en el diálogo compartido; no se cambian las fotografías reales de los trabajos.
 
-`environmentArtwork.ts` contiene el arte, material y superficie de cada espacio; `mascotIdentity.ts` registra por separado los atlas de cuerpo y retrato. Esto permite sustituir el animal sin rehacer los talleres. Un cambio completo de animal requiere nuevas poses, atuendos, escenas de actividad y recursos de CV; no hay un selector de animales ni una conversión automática. Los recursos 3D archivados se conservan.
+El fondo de todas las áreas es el original del portafolio: red en ciberseguridad, código en software, postes y rayos en electricidad, circuitos en electrónica, banco de reparación y auriculares/comunicación en atención al cliente. `profileAtmospheres.ts` registra estos recursos independientemente de las ilustraciones del taller; su imagen atenuada continúa por el perfil y el footer. `environmentArtwork.ts` y sus habitaciones sin personaje se conservan como archivos de una propuesta anterior, sin uso en la interfaz activa.
 
-Los WebP locales de entorno tienen variantes de 768 y 1536 px con `srcset` y `sizes`; el fondo reutiliza la pequeña. El espacio se reserva con dimensiones 1536×1024 y la imagen puede ampliarse en el diálogo compartido. No hay fondos fijos, zoom continuo ni nuevas dependencias. Son ilustraciones de marca, no fotografías de instalaciones reales. Los originales y referencias están documentados en `workspace-illustrations.md`.
+`mascotIdentity.ts` mantiene el catálogo de cuerpo y retrato. Cambiar de animal sigue requiriendo nuevas poses, atuendos, escenas y recursos de CV, incluidas las habitaciones donde aparece el zorro; no existe una conversión automática. El material 3D permanece archivado.
 
 Se retiraron el zoom de 18 segundos del fondo de las áreas, la animación del patrón eléctrico y el desenfoque de todas las tarjetas. La entrada de la página usa solo opacidad durante 180 ms, sin desplazar todo el contenido. El encabezado y la navegación de sección en celular usan superficies de fondo sin desenfoque, y el listener de scroll es pasivo. Son reducciones concretas de trabajo de renderizado, no un benchmark de rendimiento en todos los navegadores.
 
 En escritorio Home coloca presentación y nombre a la izquierda y selector a la derecha, con el fondo distribuido en todo el hero. En celular se apilan en orden de lectura y la composición de fondo mantiene su propio espacio. «Trabajos realizados» reemplaza «Evidence» como etiqueta de navegación eléctrica, conservando el hash `#evidence` y las fotografías originales.
 
-Los personajes que acompañan el contenido de Home se muestran a menor tamaño. Los dos del cierre usan entre 96 y 144 px según el ancho disponible; atención al cliente queda junto a su texto y reparación acompaña la acción de contacto. El zorro principal y su selector conservan su tamaño.
+Home integra personajes de menor tamaño en puntos distintos del contenido: ciberseguridad cuelga del encabezado de habilidades; software se sienta en el borde de su tarjeta; electricidad trabaja junto a la división de formación; electrónica aparece de espaldas detrás de la tarjeta de capacitación; reparación se asoma detrás de la acción de contacto; y atención al cliente se apoya sobre el bloque de correo del footer. Las capas reservan el espacio del texto, mantienen los enlaces y no utilizan overlays fijos. Las ilustraciones completas se conservan aunque el contenido oculte intencionalmente parte de algunas poses.
 
 ## CV y evidencias
 
@@ -75,7 +75,7 @@ Las pruebas comprueban colores distintos, navegación repetida entre perfiles, s
 
 ## Inicio y pie de página
 
-Los seis personajes aparecen también en Home, repartidos en tres parejas: SOC/software con las áreas profesionales, electricidad/electrónica con la formación actual, y reparación/atención al cliente junto al cierre. Cada figura enlaza a su perfil y utiliza imágenes locales con entrada suave.
+Los seis personajes se reparten por el encabezado de habilidades, tarjetas, formación, contacto y footer de Home. La pose de software está dentro del enlace de su tarjeta; las otras figuras enlazan a su área. No hay filas de personajes emparejados.
 
 `culichi-practice-scenes.webp` contiene seis nuevas poses de cuerpo completo: investigación con tableta, desarrollo sentado con portátil, lectura de esquema eléctrico, montaje de protoboard, apertura de teléfono y atención con plan de servicio. Se generó como lámina 3×2 con fondo transparente; sus celdas completas de 512×512 se seleccionan mediante CSS, sin recortar el personaje ni editar fotos reales.
 
@@ -83,8 +83,14 @@ El footer usa los seis colores de las áreas, la marca Culichi, contacto por cor
 
 ## Idioma y navegación compacta
 
-Las visitas sin preferencia guardada abren en español (`html lang="es"`). La elección explícita ES/EN se conserva con `portfolio-lang`. El selector utiliza banderas SVG locales de México y Reino Unido, estado `aria-pressed` y un indicador que se desliza; respeta movimiento reducido. No depende de emojis ni servicios externos. La licencia MIT de flag-icons acompaña los archivos.
+Las visitas sin preferencia guardada abren en español (`html lang="es"`). La elección explícita ES/EN se conserva con `portfolio-lang`. El selector es un solo botón: muestra la bandera y sigla activas, flechas de cambio y una pequeña pista de la otra bandera. Al pulsarlo cambia al otro idioma, anuncia la etiqueta de la acción y anima la bandera entrante; respeta movimiento reducido. No depende de emojis ni servicios externos. La licencia MIT de flag-icons acompaña los archivos.
 
-Los desplegables superiores usan títulos breves, iconos y enlaces de 44 px, sin fotografías, listas de equipo ni descripciones largas. Mantienen los destinos de todas las especialidades, nombres accesibles completos, navegación por teclado y cierre con Escape. Las herramientas del selector de Home siguen funcionando.
+Los desplegables superiores usan títulos breves, iconos y enlaces de 44 px, sin fotografías, listas de equipo ni descripciones largas. Mantienen los destinos de todas las especialidades, nombres accesibles completos, navegación por teclado y cierre con Escape. Solo la flecha de cada área abre el desplegable por hover; el logo mantiene su enlace y la vista temporal del atuendo sin desplegar contenido. La flecha también funciona con clic, tacto y teclado. Las herramientas del selector de Home siguen funcionando.
 
-Las tres especialidades eléctricas forman tres columnas centradas en escritorio y una en celular, con emblemas y títulos centrados. Residencial utiliza una fotografía original del trabajo terminado. Industrial y control usan imágenes realistas generadas, rotuladas «Imagen de referencia»; conservan sus estados de estudio y práctica planeada. No se incorporan a la galería de trabajos reales.
+Las tres especialidades eléctricas forman tres columnas centradas en escritorio y una en celular, con emblemas y títulos centrados. Las tres portadas son referencias realistas generadas, rotuladas «Imagen de referencia». Las fotografías originales solo aparecen al abrir sus trabajos o la pestaña de trabajos realizados; no se reemplazan los registros reales.
+
+## Explorador compacto de Electricidad
+
+Las entradas Residencial, Industrial y Control agrupan la información en un único panel activo. Cada una ofrece Resumen, Proyectos, Trabajos realizados, Certificaciones y Herramientas. Las pestañas permanecen accesibles al recorrer contenido largo y solo el panel elegido monta su contenido. Proyectos conserva categorías y casos propios del área; Trabajos muestra sus fotografías originales y los vacíos honestos de evidencia. Certificaciones reúne los cursos, centros, temarios y documentos pendientes.
+
+La página inicial no monta todos los temarios, galerías y prácticas, y ofrece una barra corta con accesos a especialidades, proyectos, trabajos, certificados y CV. Los hashes anteriores (`#tracks`, `#skills`, `#tools`, `#practice`, etc.) siguen abriendo la pestaña correspondiente. El CV vigente permanece en una fila compacta independiente. Los cinco tipos de escena eléctrica están disponibles a través de estos paneles, en lugar de ocupar una página larga al mismo tiempo.
