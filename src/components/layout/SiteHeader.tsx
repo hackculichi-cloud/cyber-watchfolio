@@ -46,6 +46,7 @@ const SiteHeader = () => {
   const header = useRef<HTMLElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
   const location = useLocation();
+  const isHome = location.pathname === "/";
   const { t } = useLanguage();
   const mascot = profileForPath(location.pathname)?.slug ?? "emblem";
   const [previewMascot, setPreviewMascot] = useState<MascotVariant | null>(null);
@@ -55,11 +56,13 @@ const SiteHeader = () => {
   const displayedMascot = previewMascot ?? mascot;
   useEffect(() => {
     const preview = (event: Event) => {
+      if (!isHome) return;
       const detail = (event as CustomEvent<{ profile: MascotVariant | null; committing?: boolean }>).detail;
       setPreviewMascot(detail.profile);
       setOrbitCommit(!!detail.committing);
     };
     const intent = (event: Event) => {
+      if (!isHome) return;
       const { profile, commit } = (event as CustomEvent<MascotIntent>).detail;
       setPreviewMascot(profile);
       if (commit) {
@@ -71,12 +74,14 @@ const SiteHeader = () => {
     window.addEventListener("culichi:outfit-preview", preview);
     window.addEventListener("culichi:area-intent", intent);
     return () => { window.removeEventListener("culichi:outfit-preview", preview); window.removeEventListener("culichi:area-intent", intent); clearTimeout(commitTimer.current); };
-  }, []);
+  }, [isHome]);
+
+  useEffect(() => { setPreviewMascot(null); setOrbitCommit(false); setNavigationCommit(false); clearTimeout(commitTimer.current); }, [location.pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -114,7 +119,7 @@ const SiteHeader = () => {
       ref={header}
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        scrolled ? "border-b border-border bg-background/85 backdrop-blur-xl" : "border-b border-transparent",
+        scrolled ? "border-b border-border bg-background/95 sm:backdrop-blur-sm" : "border-b border-transparent",
       )}
     >
       <nav className="container mx-auto flex h-28 items-center justify-between px-4" aria-label={t("Main")}>
@@ -123,7 +128,7 @@ const SiteHeader = () => {
             <MascotMorph outfit={displayedMascot} portrait committing={orbitCommit || navigationCommit} />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span data-header-brand className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Culichi<span className="text-yellow-400">.</span></span>
+            <span data-header-brand className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Culichi<span data-brand-dot data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-primary transition-colors duration-200">.</span></span>
             <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">{t("Christian Velasco")}</span>
           </span>
         </Link>
@@ -166,7 +171,7 @@ const SiteHeader = () => {
                 {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => { const next = mobileProfile === item.href ? null : item.href; setMobileProfile(next); previewMascotArea(next ? item.profile ?? null : null); }}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}
               </div>
               {item.children && mobileProfile === item.href && <ul id={`mobile-specialties-${item.profile}`} className="my-2 ml-5 space-y-1 border-l border-border pl-3">
-                {item.profile && <li className="mb-3"><MascotGearPreview profile={item.profile} /></li>}
+                {isHome && item.profile && <li className="mb-3"><MascotGearPreview profile={item.profile} /></li>}
                 {item.children.map(child => <li key={child.href}><Link to={child.href} onClick={() => { setOpen(false); setMobileProfile(null); }} className="flex items-start gap-3 rounded-lg p-3 text-sm hover:bg-secondary">
                   {child.icon && <child.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />}
                   <span className="min-w-0"><span className="block font-medium">{t(child.label)}</span>{child.status && <span className="mt-1 block"><Tag>{t(child.status)}</Tag></span>}</span>

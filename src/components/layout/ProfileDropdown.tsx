@@ -46,9 +46,9 @@ const ProfileDropdown = ({ item, children }: { item: NavItem; children: ReactNod
       onCloseAutoFocus={event => { if (openedByHover.current) event.preventDefault(); }}
       onFocusCapture={() => previewMascotArea(item.profile ?? null)}
       className="profile-menu-panel max-h-[calc(100dvh-8rem)] w-[min(23rem,calc(100vw-2rem))] overflow-y-auto rounded-xl border-primary/25 p-3 shadow-2xl">
-      {item.profile && <img src={profileHeroImage[item.profile]} width={1920} height={1088} alt="" aria-hidden onLoad={() => setImageLoaded(true)} className={`mb-3 h-20 w-full rounded-lg object-cover transition-opacity duration-200 ${imageLoaded ? "opacity-70" : "opacity-0"}`} />}
+      {item.profile && <img src={profileHeroImage[item.profile]} width={1920} height={1088} alt="" aria-hidden decoding="async" onLoad={() => setImageLoaded(true)} className={`mb-3 h-20 w-full rounded-lg object-cover transition-opacity duration-200 ${imageLoaded ? "opacity-70" : "opacity-0"}`} />}
       <p className="mb-2 border-b border-border px-3 pb-3 pt-1 text-xs font-semibold uppercase tracking-wider text-primary">{t(item.label)}</p>
-      {item.profile && <div className="mb-3"><MascotGearPreview profile={item.profile} /></div>}
+      {pathname === "/" && item.profile && <div className="mb-3"><MascotGearPreview profile={item.profile} /></div>}
       <ul className="space-y-1">
         {item.children?.map((child) => <li key={child.href}>
           <Link to={child.href} onClick={() => { previewMascotArea(item.profile ?? null, true); setOpen(false); }} className="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">

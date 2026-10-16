@@ -1,4 +1,4 @@
-import InteractiveMascot from "@/components/shared/InteractiveMascot";
+import ProfileWorkspace from "./ProfileWorkspace";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { ReactNode } from "react";
 import type { ProfileIdentity } from "@/data/profiles";
@@ -36,7 +36,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         alt={t(profileHeroAlt[profile.slug])}
         width={1920}
         height={1088}
-        className="absolute inset-0 -z-10 h-full w-full scale-105 object-cover opacity-30 motion-safe:[animation:hero-zoom_18s_ease-out_forwards]"
+        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20"
       />
       {/* Readability + brand tint overlays */}
       <div
@@ -50,7 +50,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
 
       <div className="container relative mx-auto flex flex-col-reverse gap-8 px-4 py-16 lg:flex-row-reverse lg:items-center lg:justify-between lg:py-24">
         <div className="w-full shrink-0 lg:w-[28rem] xl:w-[35rem]">
-          <InteractiveMascot key={profile.slug} profile={profile.slug} className="drop-shadow-[0_0_25px_hsl(var(--primary)/0.2)]" />
+          <ProfileWorkspace profile={profile.slug} />
         </div>
         <div className="min-w-0 flex-1">
         <div className="animate-fade-in-up flex items-center gap-3">

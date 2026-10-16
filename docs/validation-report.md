@@ -35,3 +35,9 @@ Las 70 pruebas de navegador quedaron verificadas: la ejecución completa aprobó
 Los SVG de centros son locales y no contienen scripts, referencias externas ni imágenes incrustadas. El PDF eléctrico original mantiene el hash documentado en `docs/culichi-mascot.md`. Las comprobaciones corresponden a Chromium local; no equivalen a haber ejecutado LibreWolf o Mullvad.
 
 ESLint finaliza con 0 errores y las mismas 8 advertencias previas de Fast Refresh. `git diff --check` también se aprueba; no se añadieron dependencias.
+
+### Bienvenidas en el lugar de trabajo y composición de Home
+
+Se verificaron los 72 casos de navegador sobre la aplicación actual. La ejecución completa aprobó 70; se adaptaron dos expectativas al cambio solicitado (selector a la derecha y observar el final visible de la transición de 720 ms antes de abandonar Home). Su repetición aprobó los dos casos, sin cambios adicionales a la aplicación. Las 7 unitarias y el build con TypeScript también pasan.
+
+Los casos nuevos verifican las seis escenas de trabajo sin animaciones internas, ausencia de selector y herramientas flotantes dentro de los perfiles, permanencia del atuendo al recorrer el menú, retrato del footer y seis colores distintos del punto de marca. En Home se comprueba la composición lateral a 1440 px y el orden vertical sin desbordamiento a 320 y 390 px. «Trabajos realizados» conserva el ancla eléctrica existente. Las capturas se revisaron en escritorio y celular; la simplificación de efectos no se presenta como un benchmark de FPS en dispositivos reales.

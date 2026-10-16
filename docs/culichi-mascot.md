@@ -4,7 +4,7 @@ Las ilustraciones del zorro son arte de marca local. Las fotos reales de prácti
 
 ## Versión activa: ilustración local
 
-Home y las seis áreas muestran `CulichiBody` desde el atlas WebP local. `InteractiveMascot` no importa Three.js ni `Fox3D`: no crea canvas, solicita WebGL ni descarga el GLB. Se conservan los seis selectores y el cambio de imagen antes de navegar, sin la frase «Meet Culichi · choose your area». El aviso de cambio solo se anuncia a lectores de pantalla.
+Home y las seis áreas muestran `CulichiBody` desde el atlas WebP local. Solo Home monta `InteractiveMascot`: no importa Three.js ni `Fox3D`, ni crea canvas o descarga el GLB. Allí se conservan los seis selectores y el cambio de imagen antes de navegar, sin la frase «Meet Culichi · choose your area». El aviso de cambio solo se anuncia a lectores de pantalla. Cada área recibe al visitante con `ProfileWorkspace`, una composición estática del zorro completo y su entorno de trabajo.
 
 El selector ocupa un espacio cuadrado de hasta 560 px, limitado al ancho disponible. Los seis accesos se distribuyen a la misma distancia del centro; al abrirlos la figura ocupa el 50% del escenario y los nombres quedan dentro de las burbujas. El arte del zorro se dibuja por encima de burbujas y herramientas, sin interceptar sus clics. El saludo usa un botón central independiente. La leyenda reserva 64 px incluso en reposo para que pasar por los menús no cambie la altura del hero ni el encuadre del fondo. Las escenas del contenido se apilan con el texto en pantallas pequeñas. El encabezado de 112 px muestra el retrato con un encuadre cercano del atlas local y «Culichi. / Christian Velasco»; el footer usa «Christian Velasco / aka Culichi». La navegación interna se sitúa debajo del encabezado. No se aplica desenfoque al retrato ni se aumenta la resolución nativa del archivo.
 
@@ -20,7 +20,7 @@ Si se vuelve a activar, la escena se carga en un módulo independiente. El lienz
 
 ## Selector de atuendos
 
-Home y las seis páginas comparten el selector circular con icono y nombre. Cada enlace usa el color de su área, no el de la página actual: cian, verde, amarillo, naranja, violeta y turquesa. El atuendo activo se indica visualmente y con `aria-current`.
+Solo Home presenta el selector circular con icono y nombre. Cada enlace usa el color de su área: cian, verde, amarillo, naranja, violeta y turquesa. En las áreas se navega mediante el menú habitual, sin selector ni herramientas flotantes. El retrato superior mantiene el atuendo de la ruta mientras se recorren otros menús; las vistas de atuendos al pasar el cursor solo se habilitan en Home. El retrato del footer y el punto de «Culichi.» también siguen el perfil activo.
 
 `MascotMorph` revela dos ilustraciones mediante recortes CSS y un barrido de energía de 640 ms, tanto en el cuerpo como en el retrato del encabezado. No es una animación articulada del modelo 3D. `mascotGear.ts` define dos objetos por área: multímetro/pinzas, osciloscopio/cautín, teléfono/destornillador, portátil/teclado, router/llave USB y diadema/lista de servicio. El atlas transparente local `culichi-tool-props.png` contiene las doce ilustraciones originales; no son fotos de equipo del titular. Las regiones CSS muestran cada objeto por separado.
 
@@ -28,13 +28,13 @@ Home y las seis páginas comparten el selector circular con icono y nombre. Cada
 
 Los cambios del menú se comunican mediante `culichi:area-intent`, separados del evento de salida del selector para evitar ciclos. Al cerrar un menú anterior no se borra la vista del siguiente. Sin animaciones se muestra directamente el nuevo atuendo.
 
-El cursor, el foco o el primer toque muestran las opciones. Hover o foco sobre un selector preparan el atuendo con un barrido ilustrado y un halo del color de su área. La vista es temporal: al salir o pulsar Escape vuelve al personaje original. No se navega al pasar el cursor. Con movimiento reducido se cambia la ilustración sin barrido ni halo animado. Solo elegir expresamente otro atuendo inicia la transformación y la navegación después de 1100 ms; el movimiento reducido navega inmediatamente. Elegir el atuendo actual no bloquea las siguientes opciones. Tab, Enter y Escape funcionan, y Escape devuelve el foco al personaje. Las combinaciones Ctrl/Cmd conservan la apertura de enlaces en otra pestaña.
+En Home el cursor, el foco o el primer toque muestran las opciones. Hover o foco sobre un selector preparan el atuendo con un barrido ilustrado y un halo del color de su área. La vista es temporal: al salir o pulsar Escape vuelve al personaje original. No se navega al pasar el cursor. Con movimiento reducido se cambia la ilustración sin barrido ni halo animado. Elegir expresamente otro atuendo inicia la transformación de 640 ms y la navegación a los 720 ms; el movimiento reducido navega inmediatamente. Tab, Enter y Escape funcionan, y Escape devuelve el foco al personaje. Las combinaciones Ctrl/Cmd conservan la apertura de enlaces en otra pestaña.
 
 ## Cinco escenas por área
 
 Cada perfil presenta:
 
-1. Personaje ilustrado completo junto al título, con selector de atuendos.
+1. Personaje ilustrado completo junto al título, dentro de su lugar de trabajo y sin selector.
 2. Una nueva pose de práctica junto a conocimientos o experiencia.
 3. Una ilustración realizando una actividad dentro del contenido.
 4. Otra ilustración completa, independiente y de alta resolución, junto a herramientas o habilidades transferibles.
@@ -45,6 +45,14 @@ Las escenas de contenido usan `Reveal` para una entrada suave al desplazarse; no
 `culichi-action-scenes.webp` y `culichi-closing-scenes.webp` mantienen las actividades y cierres anteriores. Sus regiones CSS están registradas en `mascotScenes.json`, para mostrar personajes completos sin fragmentos vecinos. `culichi-full-body-atlas.webp` sirve para el personaje principal y los PDF. Los sprites de saludo y el modelo 3D se conservan como recursos para posibles versiones futuras.
 
 El logotipo ampliado del encabezado sigue usando el arte local y cambia por ruta. La composición general de Home y el favicon conservan la identidad existente.
+
+## Lugares de trabajo y fluidez
+
+`ProfileWorkspace` combina la pose de entrada existente con una escena SVG local: racks y pantallas de redes, estudio de programación, pared de herramientas y tablero eléctrico, laboratorio de electrónica, microscopio y mesa de reparación, o escritorio de atención al cliente. Las escenas son decorativas, sin canvas, filtros, eventos de hover ni animaciones continuas; incluyen descripciones accesibles traducidas y no se presentan como fotografías de instalaciones reales. Conservan las cinco poses distintas de cada perfil sin descargar nuevos mapas de imagen.
+
+Se retiraron el zoom de 18 segundos del fondo de las áreas, la animación del patrón eléctrico y el desenfoque de todas las tarjetas. La entrada de la página usa solo opacidad durante 180 ms, sin desplazar todo el contenido. El encabezado y la navegación de sección en celular usan superficies de fondo sin desenfoque, y el listener de scroll es pasivo. Son reducciones concretas de trabajo de renderizado, no un benchmark de rendimiento en todos los navegadores.
+
+En escritorio Home coloca presentación y nombre a la izquierda y selector a la derecha, con el fondo distribuido en todo el hero. En celular se apilan en orden de lectura y la composición de fondo mantiene su propio espacio. «Trabajos realizados» reemplaza «Evidence» como etiqueta de navegación eléctrica, conservando el hash `#evidence` y las fotografías originales.
 
 ## CV y evidencias
 

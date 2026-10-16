@@ -16,8 +16,8 @@ const positions = Array.from({ length: 6 }, (_, i) => {
     const angle = (-150 + i * 60) * Math.PI / 180;
     return [50 + 35 * Math.cos(angle), 50 + 35 * Math.sin(angle)];
 });
-const transformDuration = 1100;
-/** Shared outfit navigation on Home and all six profiles; never navigate on hover. */
+const transformDuration = 720;
+/** Home outfit navigation; profiles welcome visitors in their own static workspace. */
 const InteractiveMascot = ({ profile = "home", className }: {
     profile?: ProfileSlug | "home";
     className?: string;

@@ -126,6 +126,6 @@ test("rotating phone targets stay inside the screen and accept a direct touch", 
   const point = await target.evaluate(element => { const box = element.getBoundingClientRect(); return { x: box.left + box.width / 2, y: box.top + box.height / 2 }; });
   await page.touchscreen.tap(point.x, point.y);
   await expect(page).toHaveURL(/\/electrical$/);
-  await expect(page.locator('[data-interactive-mascot="electrical"]')).toBeVisible();
+  await expect(page.locator('[data-profile-workspace="electrical"]')).toBeVisible();
   await context.close();
 });

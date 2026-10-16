@@ -372,7 +372,6 @@ html { scroll-behavior: smooth; }
       ),
       radial-gradient(28rem 18rem at 85% 10%, hsl(var(--primary) / 0.12), transparent 70%);
     mask-image: radial-gradient(78% 72% at 60% 0%, #000 0%, transparent 100%);
-    animation: energy-drift 14s ease-in-out infinite alternate;
   }
 
   /* PCB traces — electronics */
@@ -410,8 +409,9 @@ html { scroll-behavior: smooth; }
   }
 
   .profile-fade {
-    animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: page-appear 180ms ease-out;
   }
+  @keyframes page-appear { from { opacity:.6; } to { opacity:1; } }
 
   /* Soft accent halo used on hero icons and feature marks. */
   .glow-ring {
@@ -422,7 +422,6 @@ html { scroll-behavior: smooth; }
   .glass-panel {
     @apply rounded-xl border border-border/80;
     background: linear-gradient(160deg, hsl(var(--card) / 0.9), hsl(222 47% 8% / 0.85));
-    backdrop-filter: blur(14px);
     box-shadow: var(--shadow-soft);
   }
 
@@ -475,8 +474,8 @@ html { scroll-behavior: smooth; }
   .mascot-morph-changed .mascot-morph-source { animation:outfit-strip-old 640ms cubic-bezier(.22,1,.36,1) both; }
   .mascot-morph-target { animation:outfit-reveal-new 640ms cubic-bezier(.22,1,.36,1) both; }
   .mascot-morph-sweep { animation:outfit-scan 640ms ease-out both; }
-  .mascot-morph[data-committing="true"] .mascot-commit-scan { animation:outfit-scan 950ms ease-in-out both; }
-  .mascot-morph[data-committing="true"] .mascot-charge-ring { animation:outfit-activate 950ms ease-out both; }
+  .mascot-morph[data-committing="true"] .mascot-commit-scan { animation:outfit-scan 640ms ease-in-out both; }
+  .mascot-morph[data-committing="true"] .mascot-charge-ring { animation:outfit-activate 640ms ease-out both; }
 }
 .area-nav-icon { border:1px solid currentColor; background:hsl(var(--background)/.9); box-shadow:0 0 14px -6px currentColor,inset 0 0 10px hsl(var(--primary)/.08); }
 .area-nav-icon svg { filter:drop-shadow(0 0 3px currentColor); }
