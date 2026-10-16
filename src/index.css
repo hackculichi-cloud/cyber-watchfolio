@@ -498,12 +498,19 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .area-nav-icon { transition:box-shadow 180ms,background-color 180ms; }
 }
 .header-mascot-frame { background:radial-gradient(ellipse,hsl(var(--primary)/.1),transparent 70%); }
+.profile-menu-panel[data-state] { animation:none; }
+@media (prefers-reduced-motion:no-preference) {
+  .profile-menu-panel[data-state="open"] { animation:profile-menu-reveal 180ms ease-out; }
+  .profile-menu-panel[data-state="closed"] { animation:profile-menu-hide 130ms ease-in; }
+}
+@keyframes profile-menu-reveal { from { opacity:0;transform:translateY(4px); } to { opacity:1;transform:translateY(0); } }
+@keyframes profile-menu-hide { from { opacity:1; } to { opacity:0; } }
 .glass-panel.skill-spotlight-card { border-top:3px solid hsl(var(--primary)/.8); }
 
 /* A square instrument dial keeps every outfit at the same radius and spacing. */
 .mascot-orbit { background:radial-gradient(ellipse at center,hsl(var(--primary)/.065),transparent 68%); }
-.mascot-orbit[data-selector-open="true"] .mascot-orbit-body { width:56%; }
-.mascot-orbit-label { position:absolute; top:calc(50% + 33px); left:50%; width:6rem; transform:translateX(-50%); border:1px solid hsl(var(--primary)/.15); border-radius:6px; padding:2px 3px; background:hsl(var(--background)/.93); font-weight:600; text-shadow:0 0 7px hsl(var(--primary)/.4); }
+.mascot-orbit[data-selector-open="true"] .mascot-orbit-body { width:50%; }
+.mascot-orbit-label { display:block; max-width:76px; padding:0 2px; font:600 11px/1.15 ui-sans-serif,system-ui,sans-serif; text-shadow:0 0 7px hsl(var(--primary)/.3); }
 
 .mascot-orbit .mascot-outfit:hover [data-orbit-node] > span:first-child { border-color:hsl(var(--primary)); background:hsl(var(--primary)/.16); }
 @media (prefers-reduced-motion: no-preference) {

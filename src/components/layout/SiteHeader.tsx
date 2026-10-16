@@ -123,8 +123,8 @@ const SiteHeader = () => {
             <MascotMorph outfit={displayedMascot} portrait committing={orbitCommit || navigationCommit} />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="text-xs transition-colors group-hover:text-primary min-[360px]:text-sm sm:text-base">{t("Christian Velasco")}</span>
-            <span className="mt-0.5 text-xs font-medium tracking-wide text-primary">aka Culichi</span>
+            <span data-header-brand className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Culichi<span className="text-yellow-400">.</span></span>
+            <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">{t("Christian Velasco")}</span>
           </span>
         </Link>
 

@@ -3,6 +3,7 @@ import type { ProfileSlug } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
+import TrainingProviderBadge from "./TrainingProviderBadge";
 
 /** Describe knowledge without turning a course topic into a fabricated client project. */
 export default function ProfileCapabilities({ profile }: { profile: ProfileSlug }) {
@@ -14,6 +15,7 @@ export default function ProfileCapabilities({ profile }: { profile: ProfileSlug 
         <Tag variant="primary">{t(item.status)}</Tag>
         <h3 className="mt-3 text-base font-semibold">{t(item.title)}</h3>
         <p className="reading-copy mt-3 text-base leading-relaxed text-foreground/85">{t(item.body)}</p>
+        {item.providers && <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-3">{item.providers.map(id => <TrainingProviderBadge key={id} id={id} />)}</div>}
       </article>)}
     </div>
   </section>;

@@ -19,13 +19,13 @@ export default function MascotToolField({ profile, committing, stage }: { profil
   return <div aria-hidden data-tool-field={profile} data-profile={profile} data-equipping={committing} className="mascot-tool-field pointer-events-none absolute inset-0 z-[5]">
     {mascotGear[profile].map((tool, i) => {
       const style = {
-        "--tool-x": `${committing ? 0 : flight.entered ? (i ? 21 : -21) : flight.x}cqw`,
-        "--tool-y": `${committing ? 3 : flight.entered ? (i ? 12 : -5) : flight.y}cqh`,
+        "--tool-x": `${committing ? 0 : flight.entered ? (i ? 27 : -27) : flight.x}cqw`,
+        "--tool-y": `${committing ? 3 : flight.entered ? (i ? 5 : -3) : flight.y}cqh`,
         "--tool-angle": `${committing ? 0 : i ? 12 : -12}deg`,
         "--tool-scale": committing ? .12 : flight.entered ? 1 : .45,
         opacity: committing ? 0 : flight.entered ? 1 : 0,
       } as CSSProperties;
-      return <span key={tool} data-tool-flight={tool} className="mascot-tool-flight absolute left-1/2 top-1/2 -ml-[13%] -mt-[13%] w-[26%]" style={style}><span className="mascot-tool-float block"><MascotToolProp tool={tool} /></span></span>;
+      return <span key={tool} data-tool-flight={tool} className="mascot-tool-flight absolute left-1/2 top-1/2 -ml-[9%] -mt-[9%] w-[18%]" style={style}><span className="mascot-tool-float block"><MascotToolProp tool={tool} /></span></span>;
     })}
   </div>;
 }

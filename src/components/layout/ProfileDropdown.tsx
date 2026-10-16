@@ -12,6 +12,7 @@ import MascotGearPreview from "@/components/shared/MascotGearPreview";
 const ProfileDropdown = ({ item, children }: { item: NavItem; children: ReactNode }) => {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const content = useRef<HTMLDivElement>(null);
   const openedByHover = useRef(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout>>();
@@ -44,8 +45,8 @@ const ProfileDropdown = ({ item, children }: { item: NavItem; children: ReactNod
       onOpenAutoFocus={(event) => { event.preventDefault(); if (!openedByHover.current) content.current?.querySelector<HTMLAnchorElement>("a")?.focus(); }}
       onCloseAutoFocus={event => { if (openedByHover.current) event.preventDefault(); }}
       onFocusCapture={() => previewMascotArea(item.profile ?? null)}
-      className="max-h-[calc(100dvh-8rem)] w-[min(23rem,calc(100vw-2rem))] overflow-y-auto rounded-xl border-primary/25 p-3 shadow-2xl">
-      {item.profile && <img src={profileHeroImage[item.profile]} alt="" aria-hidden className="mb-3 h-20 w-full rounded-lg object-cover opacity-70" />}
+      className="profile-menu-panel max-h-[calc(100dvh-8rem)] w-[min(23rem,calc(100vw-2rem))] overflow-y-auto rounded-xl border-primary/25 p-3 shadow-2xl">
+      {item.profile && <img src={profileHeroImage[item.profile]} width={1920} height={1088} alt="" aria-hidden onLoad={() => setImageLoaded(true)} className={`mb-3 h-20 w-full rounded-lg object-cover transition-opacity duration-200 ${imageLoaded ? "opacity-70" : "opacity-0"}`} />}
       <p className="mb-2 border-b border-border px-3 pb-3 pt-1 text-xs font-semibold uppercase tracking-wider text-primary">{t(item.label)}</p>
       {item.profile && <div className="mb-3"><MascotGearPreview profile={item.profile} /></div>}
       <ul className="space-y-1">

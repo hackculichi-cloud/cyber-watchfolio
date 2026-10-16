@@ -1,5 +1,14 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Where I study": "Centros y plataformas de formación",
+  "Electrical installations and measurements": "Instalaciones y mediciones eléctricas",
+  "Electrical drawings and schematics": "Planos y diagramas eléctricos",
+  "Electrical training · RED CONOCER": "Formación eléctrica · RED CONOCER",
+  "MOCKUP · Original pending": "MOCKUP · Original pendiente",
+  "Enlarge provisional certificate": "Ampliar certificado provisional",
+  "View mockup": "Ampliar mockup",
+  "Visual mockup only. The original document will replace this preview when provided.": "Vista ilustrativa. Se sustituirá por el documento original cuando esté disponible.",
+  "Electrical training with Universidad Internacional through RED CONOCER. Curriculum topics describe the program; the original certificate is pending.": "Formación eléctrica con Universidad Internacional a través de RED CONOCER. El temario describe el programa; el certificado original está pendiente.",
   "I build React/Next.js and TypeScript interfaces and automate Excel reports with Python. My public GitHub projects connect those skills with practical examples. I studied frontend, backend and full stack at Academlo without completing the program, and I am preparing for AWS Cloud Practitioner.": "Desarrollo interfaces con React/Next.js y TypeScript y automatizo reportes de Excel con Python. Mis proyectos públicos de GitHub muestran ejemplos de esas habilidades. Cursé frontend, backend y full stack en Academlo sin concluir el programa y me preparo para AWS Cloud Practitioner.",
   "APIs & backend": "API y backend",
   "Insulated pliers": "Pinzas aisladas",

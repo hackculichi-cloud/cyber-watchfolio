@@ -1,32 +1,38 @@
 import type { ProfileSlug } from "./profiles";
+import type { TrainingProviderId } from "./trainingProviders";
 
-export type ProfileCapability = { title: string; status: string; body: string };
+export type ProfileCapability = { title: string; status: string; body: string; providers?: TrainingProviderId[] };
 
 /** Owner-provided course knowledge; practical work and unfinished tracks retain their setting. */
 export const profileCapabilities: Partial<Record<ProfileSlug, ProfileCapability[]>> = {
   "electrical": [
     {
       "title": "Electrical foundations & drawings",
+      "providers": ["linkedin-learning", "udemy"],
       "status": "Training & practice",
       "body": "I apply electrical quantities, Ohm’s and Kirchhoff’s laws, circuit analysis and electrical symbols in training exercises. My completed LinkedIn Learning course supports reading drawings and schematics."
     },
     {
       "title": "Residential installations & planning",
+      "providers": ["udemy", "universidad-internacional"],
       "status": "Training & practice",
       "body": "I study conductors, cable selection, load calculations, distribution, conduit and installation standards. My practical work includes an installation board, outlet and switch replacement, and two ceiling luminaires for a residential client."
     },
     {
       "title": "Measurement & fault finding",
+      "providers": ["udemy"],
       "status": "Training & practice",
       "body": "I develop AC/DC measurement skills with a multimeter and clamp meter: voltage, current, resistance and de-energized continuity. My Udemy training also covers series/parallel circuits, short-circuit checks, protection devices and instrument safety ratings."
     },
     {
       "title": "Industrial systems, motors & control",
+      "providers": ["universidad-internacional"],
       "status": "Currently studying",
       "body": "My RED CONOCER studies cover three-phase systems, motor protection and starting, contactors, control/power diagrams, simulation and introductory VFDs. I have practiced float-switch control; the START/STOP contactor exercise remains planned."
     },
     {
       "title": "Maintenance, projects & energy",
+      "providers": ["universidad-internacional"],
       "status": "Currently studying",
       "body": "I study fault diagnosis, preventive maintenance planning and electrical project design, calculations and commissioning concepts. The program also introduces photovoltaic components, solar system types and energy efficiency; these are training topics rather than completed client installations."
     }

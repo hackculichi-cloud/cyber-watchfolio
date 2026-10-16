@@ -35,7 +35,7 @@ const SiteFooter = () => {
         <div>
           <Link to="/" className="inline-flex items-center gap-4 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
             <CulichiMascot variant="emblem" decorative className="h-24 w-24 sm:h-28 sm:w-28" />
-            <span><span className="block text-3xl font-bold tracking-tight sm:text-4xl">Culichi<span className="text-primary">.</span></span><span className="mt-1 block text-sm text-muted-foreground">{site.shortName}</span></span>
+            <span data-footer-brand className="min-w-0"><span className="block text-xl font-semibold tracking-tight sm:text-2xl">{site.shortName}</span><span className="mt-1 block text-sm font-medium text-primary">aka Culichi</span></span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
 
