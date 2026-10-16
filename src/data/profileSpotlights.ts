@@ -9,8 +9,8 @@ export const profileSpotlights: Record<ProfileSlug, { headline: string; skills: 
   },
   development: {
     headline: "I build web interfaces",
-    skills: ["React and TypeScript", "Bilingual interfaces and accessible navigation", "Git/GitHub version control"],
-    proof: "This portfolio is a real React project",
+    skills: ["React, Next.js and TypeScript interfaces", "Python automation for Excel reports", "Git/GitHub version control"],
+    proof: "9 public portfolio projects to explore",
   },
   electrical: {
     headline: "I install, measure and verify",
@@ -30,6 +30,6 @@ export const profileSpotlights: Record<ProfileSlug, { headline: string; skills: 
   "customer-service": {
     headline: "I turn problems into solutions",
     skills: ["Operations supervision and SLA follow-up", "Tier 2 technical support and training", "Bilingual customer communication"],
-    proof: "5+ years of professional experience",
+    proof: "7 years of professional experience",
   },
 };

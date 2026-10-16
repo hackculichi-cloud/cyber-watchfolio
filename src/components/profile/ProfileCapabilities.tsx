@@ -13,7 +13,7 @@ export default function ProfileCapabilities({ profile }: { profile: ProfileSlug 
       {profileCapabilities[profile]?.map(item => <article key={item.title} className="glass-panel p-5">
         <Tag variant="primary">{t(item.status)}</Tag>
         <h3 className="mt-3 text-base font-semibold">{t(item.title)}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(item.body)}</p>
+        <p className="reading-copy mt-3 text-base leading-relaxed text-foreground/85">{t(item.body)}</p>
       </article>)}
     </div>
   </section>;

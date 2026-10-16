@@ -7,6 +7,9 @@ import { chromium } from "@playwright/test";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(await readFile(resolve(root, "src/data/resumes.json"), "utf8"));
+const only = process.argv.find(value => value.startsWith("--only="))?.slice(7).split(",");
+if (only?.some(id => !data.resumes.some(resume => resume.id === id))) throw new Error("Unknown CV profile in --only");
+const selected = data.resumes.filter(resume => !only || only.includes(resume.id));
 const mascotAtlas = (await readFile(resolve(root, "src/assets/culichi-athletic-body-atlas.webp"))).toString("base64");
 const actionAtlas = (await readFile(resolve(root, "src/assets/culichi-action-scenes.webp"))).toString("base64");
 const scenes = JSON.parse(await readFile(resolve(root, "src/data/mascotScenes.json"), "utf8"));
@@ -18,7 +21,7 @@ const browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIG
 try {
   const context = await browser.newContext({ offline: true });
   const page = await context.newPage();
-  for (const resume of data.resumes) for (const lang of ["en", "es"]) {
+  for (const resume of selected) for (const lang of ["en", "es"]) {
     const cv = resume[lang];
     const themes = { cybersecurity: ["#0891b2", "SOC / BLUE TEAM"], software: ["#15803d", "SOFTWARE"], electrical: ["#ca8a04", "ELECTRICAL"], electronics: ["#c2410c", "ELECTRONICS"], repair: ["#7c3aed", "TECHNICAL REPAIR"], "customer-service": ["#0f766e", "CUSTOMER SERVICE"] };
     const [accent, englishBadge] = themes[resume.id];
@@ -50,6 +53,7 @@ try {
     execFileSync("pdftoppm", ["-f", "1", "-singlefile", "-scale-to", "1600", "-png", pdf, resolve(out, "previews", stem)]);
     console.log(`${resume.id} ${lang}: PDF, 1 page, first-page preview`);
   }
+  if (selected.some(resume => resume.id === "electrical")) {
   const temporary = await mkdtemp(resolve(tmpdir(), "culichi-cv-"));
   try {
     // Only the free upper-right header area is stamped; original PDF is never written.
@@ -61,6 +65,7 @@ try {
     execFileSync("pdftoppm", ["-f", "1", "-singlefile", "-scale-to", "1600", "-png", stamped, resolve(out, "previews/christian-velasco-electrical-mascot")]);
     console.log("Original electrical CV: separate mascot copy created; original preserved");
   } finally { await rm(temporary, { recursive: true, force: true }); }
+  }
   await writeFile(resolve(root, "src/data/cvManifest.json"), JSON.stringify(data.resumes.map(resume => ({ id: resume.id, profile: resume.profile, summary: resume.en.summary })), null, 2) + "\n");
   await writeFile(resolve(out, "README.md"), "Six role-specific CVs, each in ES/EN. Generated from src/data/resumes.json with scripts/generate-profile-cvs.mjs. Preview PNGs are rasterizations of the actual PDF first page. No employers, dates of employment, degrees or performance metrics are inferred.\n");
 } finally { await browser.close(); }

@@ -12,10 +12,10 @@ test("skills introduce Christian's actions and their evidence in both languages"
   }
   await expect(cards.filter({ hasText: 'I investigate alerts in training labs' })).toContainText('3 documented training investigations');
   await expect(areas.locator('[data-personal-skills-card="electronics"]')).toContainText('Basic Electronics at ETO · In progress');
-  await expect(areas.locator('[data-personal-skills-card="customer-service"]')).toContainText('5+ years of professional experience');
+  await expect(areas.locator('[data-personal-skills-card="customer-service"]')).toContainText('7 years of professional experience');
   await page.locator('button[lang="es"]:visible').first().click();
   await expect(areas.getByRole('heading', { name: 'Estas son mis habilidades', exact: true })).toBeVisible();
-  await expect(areas.locator('[data-personal-skills-card="development"]')).toContainText('React y TypeScript');
+  await expect(areas.locator('[data-personal-skills-card="development"]')).toContainText('React, Next.js y TypeScript');
   const repair = areas.locator('[data-personal-skills-card="repair"]');
   await expect(repair).toContainText('Reparo y pruebo celulares');
   await expect(repair).toContainText('3 reparaciones de iPhone realizadas');
@@ -30,15 +30,15 @@ test("outfit focus reveals matching tools, transforms both figures and restores 
   const stage = page.locator('[data-home-mascot]');
   const morph = stage.locator('[data-morph-to]');
   await stage.locator('[data-outfit="electrical"]').focus();
-  await expect(stage.locator('[data-gear-burst="electrical"] svg')).toHaveCount(3);
+  await expect(stage.locator('[data-tool-field="electrical"] [data-tool-prop]')).toHaveCount(2);
   const gear = page.locator('[data-gear-preview="electrical"]').first();
   await expect(gear).toContainText('Digital multimeter');
-  await expect(gear).toContainText('Hand tools');
+  await expect(gear).toContainText('Insulated pliers');
   await expect(morph.locator('.mascot-morph-target')).toHaveCSS('animation-name', 'outfit-reveal-new');
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electrical');
   await stage.locator('[data-outfit="repair"]').focus();
-  await expect(stage.locator('[data-gear-burst="electrical"]')).toHaveCount(0);
-  await expect(page.locator('[data-gear-preview="repair"]')).toContainText('Precision toolkit');
+  await expect(stage.locator('[data-tool-field="electrical"]')).toHaveCount(0);
+  await expect(page.locator('[data-gear-preview="repair"]')).toContainText('Precision screwdriver');
   await expect(morph).toHaveAttribute('data-morph-to', 'repair');
   await page.keyboard.press('Escape');
   await expect(page.locator('[data-gear-preview]')).toHaveCount(0);
@@ -58,7 +58,7 @@ test("desktop profile menus have six distinct neon accents and preview their own
   await nav.getByRole('link', { name: 'Cybersecurity', exact: true }).hover();
   await nav.getByRole('link', { name: 'Electronics', exact: true }).hover();
   const menu = page.getByLabel('Specialties: Electronics', { exact: true });
-  await expect(menu.locator('[data-gear-preview="electronics"]')).toContainText('Oscilloscope (learning)');
+  await expect(menu.locator('[data-gear-preview="electronics"]')).toContainText('Oscilloscope');
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electronics');
   // A previous menu's delayed close must not reset the currently hovered outfit.
   await page.waitForTimeout(300);

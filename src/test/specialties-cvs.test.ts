@@ -35,6 +35,7 @@ describe("specialty and CV publishing integrity", () => {
     expect(electronic).toHaveLength(7);
     expect(electronic.filter(item => item.status === "Currently studying")).toHaveLength(1);
     for (const id of ["audio-radio", "television-video", "digital-systems", "microcontrollers", "microcomputers", "industrial-electronics"]) expect(electronic.find(item => item.id === id)?.status).toBe("Upcoming");
-    for (const item of specialtiesFor("development")) expect(item.summary).toContain("Academlo");
+    for (const item of specialtiesFor("development").filter(item => ["frontend", "backend", "full-stack"].includes(item.id))) expect(item.summary).toContain("Academlo");
+    expect(specialtiesFor("development").find(item => item.id === "python-automation")?.summary).toContain("Culichi-Metrics");
   });
 });

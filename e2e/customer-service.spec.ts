@@ -12,7 +12,7 @@ test("home replaces the text experience block with a phone profile and bilingual
   await expect(page.locator('main[data-profile="customer-service"], [data-profile="customer-service"] main')).toHaveCount(1);
   await expect(page.getByRole("heading", { name: "Call Center & Customer Service", exact: true })).toBeVisible();
   await expect(page.locator("#skills article")).toHaveCount(8);
-  await expect(page.locator("#background").getByText("5+", { exact: true })).toBeVisible();
+  await expect(page.locator("#background").getByText("7", { exact: true })).toBeVisible();
   await expect(page.locator("#background").getByText("Languages (EN / ES)", { exact: true })).toBeVisible();
   await page.locator('button[lang="es"]:visible').first().click();
   await expect(page.getByRole("heading", { name: "Call Center y atención al cliente", exact: true })).toBeVisible();

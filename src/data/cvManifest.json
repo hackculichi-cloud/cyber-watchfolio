@@ -2,12 +2,12 @@
   {
     "id": "cybersecurity",
     "profile": "cybersecurity",
-    "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Seeking a first SOC Analyst Tier 1 opportunity."
+    "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Python reporting projects and AWS Cloud Practitioner preparation complement the SOC Tier 1 learning path."
   },
   {
     "id": "software",
     "profile": "development",
-    "summary": "Incomplete frontend, backend and full-stack training at Academlo. Practical portfolio project built with React, TypeScript, Vite and Tailwind CSS."
+    "summary": "Frontend development with React, Next.js and TypeScript, supported by public GitHub projects and Python automation for Excel reports. Partial software development studies at Academlo."
   },
   {
     "id": "electrical",
@@ -27,6 +27,6 @@
   {
     "id": "customer-service",
     "profile": "customer-service",
-    "summary": "Bilingual professional with 5+ years in customer service, technical support, training and operations. Experience at Tata Consultancy Services, TTEC, Alorica and TP, including SLA follow-up, incident escalation and mobile-device troubleshooting."
+    "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. Experience at Tata Consultancy Services, TTEC, Alorica and TP, including SLA follow-up, incident escalation and mobile-device troubleshooting."
   }
 ]

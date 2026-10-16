@@ -87,12 +87,16 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: inherit;
     @apply tracking-tight;
+  }
+
+  code, pre, .eyebrow, .mascot-orbit-label, .tech-label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
   }
 
   ::selection {
@@ -480,13 +484,16 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 .mascot-neon-orb { box-shadow:0 0 0 4px hsl(var(--background)),0 0 22px hsl(var(--primary)/.3),inset 0 0 15px hsl(var(--primary)/.12); }
 .mascot-neon-orb svg { filter:drop-shadow(0 0 4px hsl(var(--primary)/.8)); }
 [data-outfit][data-active="true"] .mascot-neon-orb { background:hsl(var(--primary)/.2); box-shadow:0 0 0 4px hsl(var(--background)),0 0 30px hsl(var(--primary)/.6),inset 0 0 18px hsl(var(--primary)/.2); }
-.mascot-gear-spark { box-shadow:0 0 10px hsl(var(--primary)/.4); }
-.mascot-gear-spark[data-gear-slot="0"] { left:calc(50% - 44px);top:calc(50% - 30px); }
-.mascot-gear-spark[data-gear-slot="1"] { left:calc(50% - 11px);top:calc(50% - 49px); }
-.mascot-gear-spark[data-gear-slot="2"] { left:calc(50% + 22px);top:calc(50% - 30px); }
+.mascot-tool-field { container-type:size; }
+.mascot-tool-flight { transform:translate(var(--tool-x),var(--tool-y)) rotate(var(--tool-angle)) scale(var(--tool-scale)); filter:drop-shadow(0 3px 7px hsl(var(--background)/.9)) drop-shadow(0 0 5px hsl(var(--primary)/.3)); }
+@keyframes tool-float { 0%,100% { transform:translateY(0) rotate(-2deg); } 50% { transform:translateY(-7px) rotate(2deg); } }
+@media (prefers-reduced-motion:no-preference) {
+  .mascot-tool-flight { transition:transform 850ms cubic-bezier(.2,.8,.3,1),opacity 350ms; }
+  .mascot-tool-float { animation:tool-float 3s 850ms ease-in-out infinite; }
+  .mascot-tool-flight:nth-child(2) .mascot-tool-float { animation-delay:1150ms; }
+}
 @keyframes gear-appear { from{opacity:0;transform:translateY(8px) scale(.4)} to{opacity:1;transform:none} }
 @media (prefers-reduced-motion:no-preference) {
-  .mascot-gear-spark { animation:gear-appear 240ms ease-out both; }
   .mascot-gear-preview { animation:gear-appear 220ms ease-out both; }
   .area-nav-icon { transition:box-shadow 180ms,background-color 180ms; }
 }

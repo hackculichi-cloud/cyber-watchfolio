@@ -21,7 +21,7 @@ const Experience = () => {
     <>
       <Seo
         title={t(`Call Center & Customer Service | ${site.shortName}`)}
-        description={t("5+ years of bilingual customer service experience and how those skills transfer into IT, cybersecurity and software development.")}
+        description={t("7 years of bilingual customer service experience and how those skills transfer into IT, cybersecurity and software development.")}
         path="/experience"
       />
       <ProfileHero profile={profile} />

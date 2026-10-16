@@ -29,6 +29,7 @@ import { toolsByProfile } from "@/data/tools";
 import WorkGrid from "@/components/work/WorkGrid";
 import { worksFor } from "@/data/works";
 import { site } from "@/data/site";
+import { Github, Terminal } from "lucide-react";
 
 const profile = profileBySlug("cybersecurity");
 
@@ -154,6 +155,11 @@ const Cybersecurity = () => {
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-10">
         <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Tooling I work with")}><ProfileTools groups={toolsByProfile.cybersecurity} profile={profile.slug} /></SectionHeading>
+        <article data-complementary-code className="mt-6 rounded-xl border border-primary/30 bg-card p-5 sm:p-6">
+          <h3 className="flex items-center gap-3 text-xl font-bold"><Terminal className="h-6 w-6 shrink-0 text-primary" aria-hidden />{t("Code that supports my learning")}</h3>
+          <p className="reading-copy mt-3 max-w-3xl text-base leading-relaxed text-foreground/85">{t("Culichi-Metrics is my Python project for Excel KPI reports. It adds scripting and data-handling practice alongside my educational SOC investigations and Linux studies.")}</p>
+          <a href="https://github.com/ByCulichi/Culichi-Metrics" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-2 font-semibold text-primary underline underline-offset-4"><Github className="h-5 w-5" aria-hidden />Culichi-Metrics</a>
+        </article>
       </section>
 
       <ProfileCertificates profile={profile.slug} />

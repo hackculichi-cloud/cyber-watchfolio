@@ -30,7 +30,7 @@ export const professionalProfiles: ProfileCardData[] = [
     slug: "development",
     title: "Software Development",
     summary:
-      "Frontend, backend and full-stack foundations from partial Academlo studies, applied to a bilingual React/TypeScript portfolio with Git/GitHub.",
+      "React/Next.js and TypeScript interfaces, Python report automation and public GitHub projects, supported by partial Academlo studies and AWS Cloud Practitioner preparation.",
     href: "/software-development",
     icon: Code2,
     emphasis: "primary",
@@ -73,7 +73,7 @@ export const professionalProfiles: ProfileCardData[] = [
   {
     slug: "customer-service",
     title: "Call Center & Customer Service",
-    summary: "5+ years of bilingual customer service, communication, user support and conflict resolution.",
+    summary: "7 years of bilingual customer service, communication, user support and conflict resolution.",
     href: "/experience",
     icon: PhoneCall,
     emphasis: "secondary",
@@ -137,7 +137,7 @@ export const profileIdentities: ProfileIdentity[] = [
     eyebrow: "Primary profile",
     status: "Primary focus",
     description:
-      "My partial Academlo studies provide frontend, backend and full-stack foundations. This portfolio brings together React, TypeScript, reusable interfaces, bilingual content and a Git/GitHub workflow as a published practical project.",
+      "I build React/Next.js and TypeScript interfaces and automate Excel reports with Python. My public GitHub projects connect those skills with practical examples. I studied frontend, backend and full stack at Academlo without completing the program, and I am preparing for AWS Cloud Practitioner.",
     icon: Code2,
     highlights: ["Web apps", "APIs & backend", "Automation", "Git / GitHub"],
     sections: [

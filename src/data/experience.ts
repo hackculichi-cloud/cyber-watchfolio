@@ -10,11 +10,11 @@ export type ExperienceEntry = {
 };
 
 export const experienceSummary = {
-  headline: "5+ years of bilingual customer service experience",
+  headline: "7 years of bilingual customer service experience",
   statement:
-    "More than five years of bilingual customer service, with roles in operations supervision, Tier 2 technical support, training, logistics and billing support at TCS, TTEC, Alorica and TP.",
+    "Seven years of bilingual customer service, with roles in operations supervision, Tier 2 technical support, training, logistics and billing support at TCS, TTEC, Alorica and TP.",
   stats: [
-    { value: "5+", label: "Years of experience" },
+    { value: "7", label: "Years of experience" },
     { value: "2", label: "Languages (EN / ES)" },
     { value: "Daily", label: "Direct user support" },
   ],

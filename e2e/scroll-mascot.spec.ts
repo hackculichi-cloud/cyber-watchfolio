@@ -45,7 +45,8 @@ test("home loads the local code font and general mascot background", async ({ pa
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   await expect.poll(() => page.evaluate(() => document.fonts.check('16px "JetBrains Mono"'))).toBe(true);
-  await expect(page.locator("body")).toHaveCSS("font-family", /JetBrains Mono/);
+  await expect(page.locator("body")).toHaveCSS("font-family", /sans-serif/);
+  await expect(page.locator(".eyebrow").first()).toHaveCSS("font-family", /JetBrains Mono/);
   const backdrop = page.locator("[data-home-background]");
   await expect.poll(() => backdrop.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   await expect(backdrop).toHaveAttribute("aria-hidden", "true");

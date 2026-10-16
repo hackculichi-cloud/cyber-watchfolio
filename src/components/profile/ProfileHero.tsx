@@ -36,7 +36,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         alt={t(profileHeroAlt[profile.slug])}
         width={1920}
         height={1088}
-        className="absolute inset-0 -z-10 h-full w-full scale-105 object-cover opacity-60 [animation:hero-zoom_18s_ease-out_forwards]"
+        className="absolute inset-0 -z-10 h-full w-full scale-105 object-cover opacity-30 motion-safe:[animation:hero-zoom_18s_ease-out_forwards]"
       />
       {/* Readability + brand tint overlays */}
       <div
@@ -54,9 +54,6 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         </div>
         <div className="min-w-0 flex-1">
         <div className="animate-fade-in-up flex items-center gap-3">
-          <span className="glow-ring grid h-14 w-14 place-items-center rounded-2xl border border-primary/35 bg-background/60 text-primary backdrop-blur-md">
-            <profile.icon className="h-7 w-7" aria-hidden />
-          </span>
           <div>
             <p className="eyebrow">{t(profile.eyebrow)}</p>
             <Tag variant="primary" className="mt-1 bg-background/60 backdrop-blur-sm">
@@ -65,10 +62,11 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
           </div>
         </div>
 
-        <h1 className="animate-fade-in-up delay-100 mt-8 max-w-4xl break-words text-4xl font-bold leading-[1.05] sm:text-5xl xl:text-6xl">
-          <span className="gradient-text">{t(profile.label)}</span>
-        </h1>
-        <p className="reading-copy animate-fade-in-up delay-200 mt-5 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
+        <div className="animate-fade-in-up delay-100 mt-6 flex items-start gap-4">
+          <span className="glow-ring mt-1 grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-primary/60 bg-background text-primary sm:h-16 sm:w-16"><profile.icon className="h-8 w-8" aria-hidden /></span>
+          <h1 className="max-w-4xl break-words text-3xl font-bold leading-tight text-foreground sm:text-4xl xl:text-5xl">{t(profile.label)}</h1>
+        </div>
+        <p className="reading-copy animate-fade-in-up delay-200 mt-5 max-w-2xl text-base leading-relaxed text-foreground/95 md:text-lg">
           {t(profile.description)}
         </p>
 

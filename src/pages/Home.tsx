@@ -21,14 +21,14 @@ const Home = () => {
     <>
       <Seo
         title={t(`${site.shortName} | IT, Cybersecurity & Software Development`)}
-        description={t("Personal portfolio of Christian Velasco: cybersecurity, software development, electronics and technical training, backed by 5+ years of bilingual customer service.")}
+        description={t("Personal portfolio of Christian Velasco: cybersecurity, software development, electronics and technical training, backed by 7 years of bilingual customer service.")}
         path="/"
       />
 
       {/* Hero */}
       <section className="grid-bg relative isolate overflow-clip border-b border-border">
-        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 hidden h-full w-full -translate-y-12 object-cover object-right-top opacity-90 md:block" />
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.98)_0%,hsl(var(--background)/0.88)_42%,hsl(var(--background)/0.32)_100%)]" />
+        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 hidden h-full w-full -translate-y-12 object-cover object-right-top opacity-55 md:block" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.98)_0%,hsl(var(--background)/0.92)_42%,hsl(var(--background)/0.45)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
         <div className="container relative mx-auto grid gap-6 px-4 py-12 sm:py-20 md:py-24 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
@@ -38,7 +38,7 @@ const Home = () => {
               {t(site.name.split(" ").slice(0, 2).join(" "))}{t(" ")}
               <span className="gradient-text">{t(site.name.split(" ").slice(2).join(" "))}</span>
             </h1>
-            <p className="animate-fade-in-up delay-200 mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="reading-copy animate-fade-in-up delay-200 mt-6 max-w-2xl text-lg leading-relaxed text-foreground/90">
               {t(site.tagline)}
             </p>
 
