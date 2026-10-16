@@ -62,7 +62,7 @@ Home integra personajes de menor tamaño en puntos distintos del contenido: cibe
 
 ## CV y evidencias
 
-El catálogo ofrece un CV general de dos páginas y seis CV por perfil de una página, todos en ES/EN: catorce PDF y dieciséis previsualizaciones fieles de sus páginas. Cada PDF incorpora el fondo original de su área, color propio, texto seleccionable y una mascota de cuerpo completo con el atuendo correspondiente; el general usa la identidad de Home. El visor permite recorrer las dos páginas, ampliar y cambiar de idioma. El eléctrico original y su copia anterior con mascota se conservan intactos. El contenido, las fuentes y la generación reproducible se describen en `cv-design.md`.
+El catálogo ofrece un CV general y seis CV por perfil, todos en ES/EN: catorce PDF con tantas páginas como requiere su contenido y previsualizaciones fieles de cada página. Cada documento incorpora el fondo original de su área, color propio, texto seleccionable y una mascota de cuerpo completo con el atuendo correspondiente; el general usa la identidad de Home. Incluyen perfil, habilidades, cronología laboral completa, trabajos o proyectos y formación/certificaciones con estados explícitos. El visor permite recorrer todas las páginas, ampliar y cambiar de idioma. El eléctrico original y su copia anterior con mascota se conservan intactos. El contenido, las fuentes y la generación reproducible se describen en `cv-design.md`.
 
 ## Verificación
 

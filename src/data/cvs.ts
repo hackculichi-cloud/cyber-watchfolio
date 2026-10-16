@@ -14,7 +14,7 @@ const titles: Record<string, string> = {
   repair: "Technical Repair CV", "customer-service": "Call Center & Customer Service CV",
 };
 const generatedCvVariants: CvVariant[] = manifests.map(resume => {
-  const assets = (lang: Lang) => ({ file: `/cv/christian-velasco-${resume.id}-${lang}.pdf`, preview: `/cv/previews/christian-velasco-${resume.id}-${lang}.png`, previews: Array.from({ length: resume.pageCount }, (_, index) => `/cv/previews/christian-velasco-${resume.id}-${lang}${index ? `-page-${index + 1}` : ""}.png`) });
+  const assets = (lang: Lang) => ({ file: `/cv/christian-velasco-${resume.id}-${lang}.pdf`, preview: `/cv/previews/christian-velasco-${resume.id}-${lang}.png`, previews: Array.from({ length: resume.pageCounts[lang] }, (_, index) => `/cv/previews/christian-velasco-${resume.id}-${lang}${index ? `-page-${index + 1}` : ""}.png`) });
   return { id: resume.id, title: titles[resume.id], description: resume.summary, available: true, pageCount: resume.pageCount, ...assets("en"), localized: { en: assets("en"), es: assets("es") } };
 });
 export const cvAssets = (cv: CvVariant, lang: Lang) => cv.localized?.[lang] ?? { file: cv.file, preview: cv.preview, previews: cv.preview ? [cv.preview] : [] };

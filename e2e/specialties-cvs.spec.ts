@@ -92,9 +92,9 @@ for (const [label, path, id] of areas) test(`${label} has its own ES/EN CV downl
   await expect(dialog.locator("img:not([data-language-flag])")).toHaveAttribute("src", `/cv/previews/christian-velasco-${enStem}.png`);
   await expect.poll(() => dialog.locator("img:not([data-language-flag])").evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   await dialog.getByRole("button", { name: "Zoom in", exact: true }).click();
-  await expect(dialog.locator("output")).toHaveText("125%");
+  await expect(dialog.locator("output:not([data-cv-page])")).toHaveText("125%");
   await dialog.getByRole("button", { name: "Fit width", exact: true }).click();
-  await expect(dialog.locator("output")).toHaveText("100%");
+  await expect(dialog.locator("output:not([data-cv-page])")).toHaveText("100%");
   await selectLanguage(dialog, "es");
   await expect(dialog.locator("img:not([data-language-flag])")).toHaveAttribute("src", `/cv/previews/christian-velasco-${esStem}.png`);
   await expect(dialog.locator('a[download]')).toHaveAttribute("href", `/cv/christian-velasco-${esStem}.pdf`);
@@ -125,7 +125,7 @@ test("mobile specialty controls and card preview work by touch without overflowi
   await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).tap();
   const cvDialog = page.getByRole("dialog");
   for (let step = 0; step < 4; step++) await cvDialog.getByRole("button", { name: "Zoom in", exact: true }).tap();
-  await expect(cvDialog.locator("output")).toHaveText("200%");
+  await expect(cvDialog.locator("output:not([data-cv-page])")).toHaveText("200%");
   await expect.poll(() => cvDialog.evaluate(el => el.getBoundingClientRect().width <= innerWidth)).toBe(true);
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await cvDialog.getByRole("button", { name: "Close", exact: true }).tap();

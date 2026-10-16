@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { selectLanguage } from './support/selectLanguage';
+import manifests from '../src/data/cvManifest.json' with { type: 'json' };
 
-test('the general CV exposes both real PDF pages, preserves language on page two and downloads the full document', async ({ page, request }) => {
+const generalPages = manifests.find(cv => cv.id === 'general')!.pageCounts;
+
+test('the general CV exposes its real PDF pages, preserves language on page two and downloads the full document', async ({ page, request }) => {
   await page.goto('/cv');
   const general = page.locator('[data-cv-theme="general"]');
   await expect(page.locator('[data-cv-theme]')).toHaveCount(7);
@@ -15,14 +18,14 @@ test('the general CV exposes both real PDF pages, preserves language on page two
   await general.getByRole('button', { name: /^Preview CV:/ }).click();
   const dialog = page.getByRole('dialog');
   const image = dialog.locator('img:not([data-language-flag])');
-  await expect(dialog.locator('[data-cv-page]')).toHaveText('Page 1 of 2');
+  await expect(dialog.locator('[data-cv-page]')).toHaveText(`Page 1 of ${generalPages.en}`);
   await expect(dialog.getByRole('button', { name: 'Previous page', exact: true })).toBeDisabled();
   await dialog.getByRole('button', { name: 'Next page', exact: true }).click();
-  await expect(dialog.locator('[data-cv-page]')).toHaveText('Page 2 of 2');
+  await expect(dialog.locator('[data-cv-page]')).toHaveText(`Page 2 of ${generalPages.en}`);
   await expect(image).toHaveAttribute('src', '/cv/previews/christian-velasco-general-en-page-2.png');
   await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   await selectLanguage(dialog, 'es');
-  await expect(dialog.locator('[data-cv-page]')).toHaveText('Página 2 de 2');
+  await expect(dialog.locator('[data-cv-page]')).toHaveText(`Página 2 de ${generalPages.es}`);
   await expect(image).toHaveAttribute('src', '/cv/previews/christian-velasco-general-es-page-2.png');
   await expect(dialog.locator('a[download]')).toHaveAttribute('href', '/cv/christian-velasco-general-es.pdf');
   await dialog.getByRole('button', { name: 'Página anterior', exact: true }).click();
@@ -31,7 +34,7 @@ test('the general CV exposes both real PDF pages, preserves language on page two
   await page.setViewportSize({ width: 320, height: 844 });
   await general.getByRole('button', { name: /^Vista previa del CV:/ }).click();
   await dialog.getByRole('button', { name: 'Página siguiente', exact: true }).click();
-  await expect(dialog.locator('[data-cv-page]')).toHaveText('Página 2 de 2');
+  await expect(dialog.locator('[data-cv-page]')).toHaveText(`Página 2 de ${generalPages.es}`);
   const bounds = (await dialog.boundingBox())!;
   expect(bounds.x).toBeGreaterThanOrEqual(0);
   expect(bounds.x + bounds.width).toBeLessThanOrEqual(320);
