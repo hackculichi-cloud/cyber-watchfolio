@@ -715,9 +715,6 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .hero-actions > a { min-height:2.75rem; padding:.5rem .75rem; font-size:.75rem; }
   .hero-actions > div { gap:.5rem; padding:0; font-size:.75rem; }
   .hero-actions > div a { min-height:2.75rem; }
-  .hero-workspace figcaption { padding-top:.375rem; }
-  .hero-workspace figcaption > span > span:first-child { font-size:.6875rem; line-height:1.4; }
-  .hero-workspace figcaption > span > span:last-child { display:none; }
   .hero-workspace button > span { width:1.75rem; height:1.75rem; bottom:.375rem; right:.375rem; }
   .hero-workspace button > span svg { width:1rem; height:1rem; }
   .page-heading { padding-top:1.5rem; padding-bottom:1.5rem; }

@@ -16,14 +16,14 @@ test('each profile has its own static workplace, footer outfit and brand color',
   for (const [outfit, path, title] of areas) {
     await page.goto(path);
     const workspace = page.locator(`[data-profile-workspace="${outfit}"]`);
-    await expect(workspace).toContainText(title);
+    await expect(workspace.getByRole('button', { name: `Enlarge workspace illustration: ${title}`, exact: true })).toBeVisible();
     await expect(workspace.getByRole('img')).toBeVisible();
     const artwork = workspace.locator('img[data-workspace-art]');
     await expect(artwork).toHaveAttribute('srcset', /768w, .*1536w/);
     // Width-descriptor srcsets report density-corrected naturalWidth (for example 640 for a 768 px file).
     await expect.poll(() => artwork.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     await expect(workspace.locator('[data-body-mascot]')).toHaveAttribute('data-body-mascot', outfit);
-    await expect(workspace.locator('figcaption [data-body-mascot]')).toHaveCount(0);
+    await expect(workspace.locator('figcaption')).toHaveCount(0);
     expect(await artwork.evaluate(el => el.matches('[data-body-mascot]'))).toBe(true);
     const world = page.locator('[data-world]');
     await expect(world).toHaveAttribute('data-world', outfit);
