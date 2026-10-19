@@ -1,5 +1,5 @@
 import BasicElectronicsSyllabus from "./BasicElectronicsSyllabus";
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ChevronDown, Zap } from "lucide-react";
 import { specialtyArtwork } from "@/data/specialtyArtwork";
@@ -16,34 +16,31 @@ const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { prof
   const { hash } = useLocation();
   const navigate = useNavigate();
   const detail = useRef<HTMLElement>(null);
+  const openingByClick = useRef(false);
   const items = useMemo(() => specialtiesFor(profile), [profile]);
   const [localActive, setLocalActive] = useState<string | null>(null);
   const active = activeId === undefined ? localActive : activeId;
   const setActive = onSelect ?? setLocalActive;
   const enterDetail = useCallback(() => {
     detail.current?.focus({ preventScroll: true });
-    detail.current?.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    detail.current?.scrollIntoView({ block: "start", behavior: "instant" });
   }, []);
   useEffect(() => {
     const id = hash.slice(1);
     if (items.some(item => item.id === id)) setActive(id);
     else if (id === "specialties") setActive(null);
   }, [hash, items, setActive]);
-  useEffect(() => {
-    if (!active || hash.slice(1) !== active) return;
-    let cancelled = false;
-    let frame = 0;
-    void (document.fonts?.ready ?? Promise.resolve()).then(() => {
-      if (!cancelled) frame = requestAnimationFrame(enterDetail);
-    });
-    return () => { cancelled = true; cancelAnimationFrame(frame); };
+  useLayoutEffect(() => {
+    if (!active || (hash.slice(1) !== active && !openingByClick.current)) return;
+    openingByClick.current = false;
+    enterDetail();
   }, [active, hash, enterDetail]);
   return <section id="specialties" className="container mx-auto scroll-mt-32 px-4 py-12">
     <div className={profile === "electrical" ? "text-center [&_.eyebrow]:justify-center [&_p]:mx-auto" : undefined}><SectionHeading title={t("My specialties")} /></div>
     <div className={`specialty-grid grid grid-cols-1 gap-3 sm:grid-cols-2 ${profile === "electronics" ? "" : profile === "electrical" ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
       {items.map(item => { const art = specialtyArtwork[item.id]; return <div key={item.id} id={item.id} data-specialty-anchor className="scroll-mt-32">
         <button type="button" data-specialty={item.id} aria-expanded={active === item.id} aria-controls={active === item.id ? `specialty-details-${profile}` : undefined}
-          onClick={() => { if (active === item.id && hash.slice(1) === item.id) enterDetail(); else { setActive(item.id); navigate({ hash: `#${item.id}` }); } }}
+          onClick={() => { if (active === item.id && hash.slice(1) === item.id) enterDetail(); else { openingByClick.current = true; setActive(item.id); navigate({ hash: `#${item.id}` }); } }}
           className={`specialty-choice group flex h-full w-full flex-col overflow-hidden rounded-xl border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${active === item.id ? "border-primary bg-primary/10" : "border-border bg-surface/60 hover:border-primary/60"}`}>
           {art && <span className="relative block aspect-[16/9] w-full overflow-hidden border-b border-border bg-background">
             <img data-specialty-art={item.id} src={art.src} alt={t(art.alt)} width={768} height={432} loading="lazy" decoding="async" className="h-full w-full object-cover" />

@@ -15,7 +15,7 @@ const DetailModal = ({ open, onOpenChange, title, subtitle, children }: DetailMo
   const { t } = useLanguage();
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/25 bg-background/95 backdrop-blur-xl">
+      <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/25 bg-background sm:backdrop-blur-sm">
         <DialogHeader>
           <div className="flex flex-wrap items-center gap-3 pr-6">
             <DialogTitle className="min-w-0 flex-1 text-xl font-semibold tracking-tight">{t(title)}</DialogTitle>

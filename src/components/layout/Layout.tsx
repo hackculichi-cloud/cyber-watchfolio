@@ -22,12 +22,12 @@ const Layout = () => {
       // SpecialtyExplorer opens and focuses the detail, rather than its cover card.
       if (el?.hasAttribute("data-specialty-anchor")) return;
       if (el) {
-        el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+        el.scrollIntoView({ behavior: "instant", block: "start" });
         return;
       }
       return; // Dynamically mounted tab content handles its own scroll after rendering.
     }
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname, hash]);
 
   return (

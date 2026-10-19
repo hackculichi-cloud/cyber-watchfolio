@@ -33,7 +33,7 @@ describe("entering a specialty", () => {
       fireEvent.click(card);
       const panel = screen.getByRole("article");
       await waitFor(() => expect(panel).toHaveFocus());
-      expect(HTMLElement.prototype.scrollIntoView).toHaveBeenLastCalledWith({ block: "start", behavior: "smooth" });
+      expect(HTMLElement.prototype.scrollIntoView).toHaveBeenLastCalledWith({ block: "start", behavior: "instant" });
       expect(card).toHaveAttribute("aria-expanded", "true");
       expect(screen.getByTestId("hash")).toHaveTextContent(`#${id}`);
     }

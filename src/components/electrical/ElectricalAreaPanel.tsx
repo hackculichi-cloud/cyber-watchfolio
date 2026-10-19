@@ -49,7 +49,7 @@ export default function ElectricalAreaPanel({ area }: { area: string }) {
   useEffect(() => {
     const target = hash.slice(1);
     if (!electricalDetailHashes.has(target)) return;
-    const frame = requestAnimationFrame(() => document.getElementById(target)?.scrollIntoView({ block: "start", behavior: "auto" }));
+    const frame = requestAnimationFrame(() => document.getElementById(target)?.scrollIntoView({ block: "start", behavior: "instant" }));
     return () => cancelAnimationFrame(frame);
   }, [hash, tab]);
 
