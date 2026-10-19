@@ -1,5 +1,12 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Back to specialties": "Volver a especialidades",
+  "Courses behind these skills": "Cursos que respaldan mis conocimientos",
+  "View course details": "Ver detalles del curso",
+  "Syllabus for this specialty": "Temario de esta especialidad",
+  "Relevant modules from my ongoing Universidad Internacional · RED CONOCER program.": "Módulos relacionados del programa que estoy cursando en Universidad Internacional · RED CONOCER.",
+  "Practice connected to my training": "Prácticas relacionadas con mi formación",
+  "View practices and evidence": "Ver prácticas y evidencias",
   "Show one profile section at a time": "Mostrar una sección del perfil a la vez",
   "Show the entire profile": "Mostrar todo el perfil",
   "By section": "Por secciones",
