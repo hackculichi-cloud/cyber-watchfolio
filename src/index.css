@@ -193,13 +193,12 @@
   .reveal {
     opacity: 0;
     transition:
-      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
+      opacity 0.16s ease-out,
+      transform 0.16s ease-out;
   }
-  .reveal-up { transform: translateY(26px); }
-  .reveal-left { transform: translateX(-26px); }
-  .reveal-right { transform: translateX(26px); }
+  .reveal-up { transform: translateY(8px); }
+  .reveal-left { transform: translateX(-8px); }
+  .reveal-right { transform: translateX(8px); }
   .reveal-scale { transform: scale(0.96); }
   .reveal.is-visible { opacity: 1; transform: none; }
 
@@ -416,9 +415,7 @@ html { scroll-behavior: smooth; }
     to { background-position: 120px 0, 0 0; }
   }
 
-  .profile-fade {
-    animation: page-appear 180ms ease-out;
-  }
+  .profile-fade { animation:none; }
   @keyframes page-appear { from { opacity:.6; } to { opacity:1; } }
 
   /* Soft accent halo used on hero icons and feature marks. */
@@ -812,4 +809,12 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   [data-mobile-skill-details="false"] .skill-card-atmosphere h3 { font-size:.9375rem; }
   [data-mobile-skill-details="false"] .skill-card-headline { font-size:.875rem; }
   .hero-description { font-size:.9375rem; }
+}
+
+/* Opening content must never wait behind a decorative entrance. */
+.profile-fade .animate-fade-in-up { animation-duration:160ms; animation-delay:0ms; }
+div.dialog-content[data-state], div.dialog-overlay[data-state] { animation-duration:100ms; }
+.specialty-details .reveal, [data-electrical-area-content] .reveal { opacity:1; transform:none; transition:none; }
+@media (max-width:767px) {
+  .reveal { opacity:1; transform:none; transition:none !important; }
 }

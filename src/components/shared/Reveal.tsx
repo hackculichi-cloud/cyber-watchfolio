@@ -19,7 +19,7 @@ const Reveal = ({ children, className, delay = 0, from = "up", as: Tag = "div" }
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 767px)").matches) {
       setVisible(true);
       return;
     }
@@ -39,7 +39,7 @@ const Reveal = ({ children, className, delay = 0, from = "up", as: Tag = "div" }
   return (
     <Tag
       ref={ref as never}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: `${Math.min(delay, 60)}ms` }}
       className={cn("reveal", `reveal-${from}`, visible && "is-visible", className)}
     >
       {children}

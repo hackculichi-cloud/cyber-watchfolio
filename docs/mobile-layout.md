@@ -14,7 +14,7 @@ Las entradas de perfiles colocan taller y título juntos y conservan la ampliaci
 
 ## Entrada directa a las especialidades
 
-Las tarjetas y los enlaces de menú abren el detalle elegido y lo colocan bajo las barras de navegación. El foco pasa al artículo sin desplazar primero la tarjeta; se espera a las fuentes locales para evitar que su carga cambie el punto de llegada. Los hashes de especialidad y la recarga mantienen ese comportamiento. Pulsar de nuevo una especialidad ya abierta vuelve a su contenido; «Todas las especialidades» regresa al listado. Las categorías de prácticas eléctricas también desplazan la vista a sus resultados.
+Las tarjetas y los enlaces de menú abren el detalle elegido y lo colocan bajo las barras de navegación. El foco y la posición se actualizan al montar el artículo, sin esperar fuentes ni un desplazamiento animado. Los hashes de especialidad y la recarga mantienen ese comportamiento. Pulsar de nuevo una especialidad ya abierta vuelve a su contenido; «Todas las especialidades» regresa al listado. Las categorías de prácticas eléctricas también llevan directamente a sus resultados.
 
 Se retira la instrucción para elegir sección y los rótulos superpuestos de las portadas. Las imágenes de referencia conservan su procedencia en el catálogo y su texto alternativo; las fotografías originales permanecen dentro de los trabajos. Los estados de formación siguen visibles. Menús, pestañas y tarjetas resaltan con hover y foco.
 

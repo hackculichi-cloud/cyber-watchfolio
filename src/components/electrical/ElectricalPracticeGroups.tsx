@@ -27,7 +27,7 @@ const ElectricalPracticeGroups = ({ areaId }: { areaId?: string }) => {
     if (!category) return;
     const frame = requestAnimationFrame(() => {
       detail.current?.focus({ preventScroll: true });
-      detail.current?.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      detail.current?.scrollIntoView({ block: "start", behavior: "instant" });
     });
     return () => cancelAnimationFrame(frame);
   }, [category]);
