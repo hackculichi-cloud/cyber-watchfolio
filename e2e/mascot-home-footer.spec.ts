@@ -61,6 +61,10 @@ test("larger header, home characters and footer fit small screens without WebGL"
     await expect(brand).toContainText('aka Culichi');
     await footer.scrollIntoViewIfNeeded();
     const name = (await brand.boundingBox())!, portrait = (await footer.locator('[data-footer-mascot]').boundingBox())!;
+    const areas = (await footer.getByRole('navigation', { name: 'Footer', exact: true }).boundingBox())!;
+    const introduction = (await footer.locator('[data-footer-introduction]').boundingBox())!;
+    if (width >= 1024) expect(areas.x + areas.width).toBeLessThan(introduction.x);
+    else expect(areas.y + areas.height).toBeLessThan(introduction.y);
     expect(portrait.x).toBeGreaterThanOrEqual(name.x + name.width);
     expect(Math.abs((portrait.y + portrait.height / 2) - (name.y + name.height / 2))).toBeLessThan(2);
     await expect(footer.locator('.footer-area-icon')).toHaveCount(6);

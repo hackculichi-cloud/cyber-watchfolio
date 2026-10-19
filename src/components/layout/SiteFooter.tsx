@@ -35,15 +35,7 @@ const SiteFooter = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-10 py-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-        <div>
-          <Link to="/" data-footer-identity className="flex w-full max-w-md items-center justify-between gap-5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-            <span data-footer-brand className="min-w-0"><span className="block text-xl font-semibold tracking-tight sm:text-2xl">{site.shortName}</span><span className="mt-1 block text-sm font-medium text-primary">aka Culichi</span></span>
-            <span data-footer-mascot={mascot} className="shrink-0"><CulichiMascot variant={mascot} portrait decorative className="h-24 w-24 sm:h-28 sm:w-28" /></span>
-          </Link>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
-
-        </div>
+      <div className="grid gap-10 py-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
         <nav aria-label={t("Footer")}>
           <p className="text-xs font-semibold uppercase tracking-[.18em] text-muted-foreground">{t("Explore my areas")}</p>
           <ul className="mt-5 grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:grid-cols-3">{professionalProfiles.map((area, i) => <li key={area.slug}>
@@ -53,6 +45,13 @@ const SiteFooter = () => {
           </li>)}</ul>
           <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">{[["About", "/about"], ["CV", "/cv"], ["Contact", "/contact"]].map(([label, href]) => <li key={href}><Link to={href} className="rounded transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t(label)}</Link></li>)}</ul>
         </nav>
+        <div data-footer-introduction className="w-full max-w-md lg:justify-self-end">
+          <Link to="/" data-footer-identity className="flex w-full items-center justify-between gap-5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <span data-footer-brand className="min-w-0"><span className="block text-xl font-semibold tracking-tight sm:text-2xl">{site.shortName}</span><span className="mt-1 block text-sm font-medium text-primary">aka Culichi</span></span>
+            <span data-footer-mascot={mascot} className="shrink-0"><CulichiMascot variant={mascot} portrait decorative className="h-24 w-24 sm:h-28 sm:w-28" /></span>
+          </Link>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
+        </div>
       </div>
       <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border/70 py-6 text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} {site.shortName} <span className="text-primary/70">/ aka Culichi</span></p>
