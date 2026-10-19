@@ -12,6 +12,14 @@ Los perfiles largos muestran en móvil el bloque elegido en el selector de secci
 
 Las entradas de perfiles colocan taller y título juntos y conservan la ampliación de la ilustración. Los encabezados de contenido integran personajes más pequeños a un lado. Especialidades, espacios y footer también reducen su altura, conservando nombres y estados; la explicación completa de cada especialidad aparece al abrirla. Las fotos de trabajos, certificados y PDF originales no se modifican.
 
+## Entrada directa a las especialidades
+
+Las tarjetas y los enlaces de menú abren el detalle elegido y lo colocan bajo las barras de navegación. El foco pasa al artículo sin desplazar primero la tarjeta; se espera a las fuentes locales para evitar que su carga cambie el punto de llegada. Los hashes de especialidad y la recarga mantienen ese comportamiento. Pulsar de nuevo una especialidad ya abierta vuelve a su contenido; «Todas las especialidades» regresa al listado. Las categorías de prácticas eléctricas también desplazan la vista a sus resultados.
+
+Se retira la instrucción para elegir sección y los rótulos superpuestos de las portadas. Las imágenes de referencia conservan su procedencia en el catálogo y su texto alternativo; las fotografías originales permanecen dentro de los trabajos. Los estados de formación siguen visibles. Menús, pestañas y tarjetas resaltan con hover y foco.
+
+El texto mantiene Manrope y aumenta el contraste, el peso de lectura y el tamaño de títulos móviles y párrafos. El detalle eléctrico evita repetir su resumen antes de las pestañas; presenta conocimientos, prácticas realmente documentadas y temarios relacionados de Universidad Internacional y Udemy. START/STOP sigue planeado y el control por electronivel consta como práctica realizada. Otras especialidades reutilizan las descripciones confirmadas de conocimientos y aplicación, sin convertir formación futura en experiencia realizada.
+
 ## Comparación de la portada
 
 Mediciones locales con Chromium, español inicial y movimiento reducido; cifras redondeadas en píxeles CSS. Miden la altura del contenido, no tiempos de carga ni rendimiento en equipos reales.

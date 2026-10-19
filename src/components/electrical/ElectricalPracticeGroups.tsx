@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronDown, type LucideIcon } from "lucide-react";
 import { electricalPracticeGroups } from "@/data/electricalPracticeGroups";
 import { electricalProjects } from "@/data/electricalProjects";
@@ -22,6 +22,15 @@ const ElectricalPracticeGroups = ({ areaId }: { areaId?: string }) => {
   const { t } = useLanguage();
   const [area, setArea] = useState<string | null>(null);
   const [category, setCategory] = useState<string | null>(null);
+  const detail = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!category) return;
+    const frame = requestAnimationFrame(() => {
+      detail.current?.focus({ preventScroll: true });
+      detail.current?.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [category]);
   const group = electricalPracticeGroups.find(item => item.id === (areaId ?? area));
   const selected = group?.categories.find(item => item.id === category);
   const items = electricalProjects.filter(item => selected?.projectIds.includes(item.id));
@@ -38,7 +47,7 @@ const ElectricalPracticeGroups = ({ areaId }: { areaId?: string }) => {
           count={item.projectIds.filter(id => electricalProjects.some(p => p.id === id && p.status === "Completed")).length}
           onClick={() => setCategory(category === item.id ? null : item.id)} />)}
       </div>
-      {selected && <div key={`${group.id}-${selected.id}`} id={`electrical-panel-${group.id}-${selected.id}`} className="space-y-4">
+      {selected && <div ref={detail} tabIndex={-1} key={`${group.id}-${selected.id}`} id={`electrical-panel-${group.id}-${selected.id}`} className="scroll-mt-80 space-y-4 outline-none">
         <h4 className="text-lg font-semibold text-primary">{t(selected.title)}</h4>
         <WorkGrid items={items} placeholderSlots={0} emptyTitle="Evidence pending" emptyDescription="No completed practices documented in this category yet. Training topics are listed with their courses and certificates." />
       </div>}

@@ -48,7 +48,7 @@ Copias locales en `src/assets/specialties/`, de 768×512 a calidad 84 (58 y 66 k
 
 Por indicación posterior del titular, se recuperan las habitaciones con personaje de `src/assets/workspaces/` como imagen principal. Los fondos de página usan los recursos anteriores de `profileMedia.ts` (incluidos postes y rayos eléctricos), registrados para las seis áreas en `profileAtmospheres.ts`. Las habitaciones sin mascota se conservan archivadas, sin servir como fondos activos.
 
-La portada residencial también es ahora una referencia generada de apariencia fotográfica: original `exec-383e81bf-e9a4-47a7-bf4a-b86d26e16a6c.png`; copia WebP 768×512 en `src/assets/specialties/electrical-residential.webp`. La tarjeta indica «Imagen de referencia». Las fotos originales se mantienen dentro de los trabajos y la galería, y no se presentan estas portadas como evidencia de intervenciones reales.
+La portada residencial también es ahora una referencia generada de apariencia fotográfica: original `exec-383e81bf-e9a4-47a7-bf4a-b86d26e16a6c.png`; copia WebP 768×512 en `src/assets/specialties/electrical-residential.webp`. La versión actual retira el rótulo superpuesto de las tres portadas, conservando «Imagen de referencia» en su texto alternativo y la procedencia en el catálogo. Las fotos originales se mantienen dentro de los trabajos y la galería, y no se presentan estas portadas como evidencia de intervenciones reales.
 
 Tres nuevas poses transparentes para Home conservan la identidad de las ilustraciones aprobadas. Se convirtieron a WebP de 640 px de ancho a calidad 88, manteniendo alfa y proporciones. Los originales PNG permanecen en `/workspace/generated_images/`:
 

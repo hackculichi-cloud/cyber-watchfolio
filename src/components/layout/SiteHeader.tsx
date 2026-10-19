@@ -134,7 +134,7 @@ const SiteHeader = () => {
 
         <ul className="hidden items-center gap-1 xl:flex">
           {navigation.map(item => {
-            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={event => { if (item.profile && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) previewMascotArea(item.profile, true); }} className={({ isActive }) => cn("flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
+            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={event => { if (item.profile && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) previewMascotArea(item.profile, true); }} className={({ isActive }) => cn("menu-choice flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
               {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
             </NavLink>;
             return <li key={item.href} className="relative">{item.children ? <ProfileDropdown item={item}>{link}</ProfileDropdown> : link}</li>;
@@ -163,13 +163,13 @@ const SiteHeader = () => {
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map(item => <li key={item.href}>
               <div className="flex items-center justify-between gap-2">
-                <Link to={item.href} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={() => { if (item.profile) previewMascotArea(item.profile, true); setOpen(false); }} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
+                <Link to={item.href} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={() => { if (item.profile) previewMascotArea(item.profile, true); setOpen(false); }} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="menu-choice inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
                   {navIconColor[item.label] && <NavIcon label={item.label} className={navIconColor[item.label]} />}{t(item.shortLabel ?? item.label)}
                 </Link>
                 {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => { const next = mobileProfile === item.href ? null : item.href; setMobileProfile(next); previewMascotArea(next ? item.profile ?? null : null); }}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}
               </div>
               {item.children && mobileProfile === item.href && <ul id={`mobile-specialties-${item.profile}`} className="my-2 ml-5 space-y-1 border-l border-border pl-3">
-                {item.children.map(child => <li key={child.href}><Link to={child.href} aria-label={t(child.label)} onClick={() => { setOpen(false); setMobileProfile(null); }} className="flex min-h-11 items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-secondary">
+                {item.children.map(child => <li key={child.href}><Link to={child.href} aria-label={t(child.label)} onClick={() => { setOpen(false); setMobileProfile(null); }} className="menu-choice flex min-h-11 items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-secondary">
                   {child.icon && <child.icon className="h-4 w-4 shrink-0 text-primary" aria-hidden />}
                   <span className="min-w-0 font-medium">{t(child.shortLabel ?? child.label)}</span>
                 </Link></li>)}

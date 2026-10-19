@@ -82,7 +82,7 @@ const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[
               href={`#${s.id}`}
               aria-current={active === s.id ? "true" : undefined}
               className={cn(
-                "block whitespace-nowrap rounded-md px-3 py-1.5 text-sm transition-colors",
+                "menu-choice block whitespace-nowrap rounded-md px-3 py-1.5 text-sm transition-colors",
                 active === s.id
                   ? "bg-primary/12 font-medium text-primary"
                   : "text-muted-foreground hover:bg-secondary hover:text-foreground",

@@ -89,7 +89,7 @@ Las visitas sin preferencia guardada abren en español (`html lang="es"`). La el
 
 Los desplegables superiores usan títulos breves, iconos y enlaces de 44 px, sin fotografías, listas de equipo ni descripciones largas. Mantienen los destinos de todas las especialidades, nombres accesibles completos, navegación por teclado y cierre con Escape. Solo la flecha de cada área abre el desplegable por hover; el logo mantiene su enlace y la vista temporal del atuendo sin desplegar contenido. La flecha también funciona con clic, tacto y teclado. Las herramientas del selector de Home siguen funcionando.
 
-Las tres especialidades eléctricas forman tres columnas centradas en escritorio y dos en celular, con la última centrada, con emblemas y títulos centrados. Las tres portadas son referencias realistas generadas, rotuladas «Imagen de referencia». Las fotografías originales solo aparecen al abrir sus trabajos o la pestaña de trabajos realizados; no se reemplazan los registros reales.
+Las tres especialidades eléctricas forman tres columnas centradas en escritorio y dos en celular, con la última centrada, con emblemas y títulos centrados. Las tres portadas son referencias realistas generadas. Su procedencia permanece en el catálogo y texto alternativo, sin rótulos superpuestos. Las fotografías originales solo aparecen al abrir sus trabajos o la pestaña de trabajos realizados; no se reemplazan los registros reales.
 
 ## Explorador compacto de Electricidad
 

@@ -119,7 +119,7 @@ test("mobile specialty controls and card preview work by touch without overflowi
   await page.getByRole("button", { name: "Open profile menu: Software Development", exact: true }).tap();
   await page.locator('header a[href="/software-development#backend"]:visible').tap();
   await expect(page.locator('[data-specialty="backend"]')).toHaveAttribute("aria-expanded", "true");
-  await expect(page.locator('#specialty-details-development').getByText(/Academlo/)).toBeVisible();
+  await expect(page.locator('#specialty-details-development').getByText(/Academlo/).first()).toBeVisible();
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.goto("/repair#cv");
   await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).tap();
@@ -154,7 +154,7 @@ test("electronics has seven training routes with only basic electronics in progr
     await expect(page.locator("#specialty-details-electronics").getByText("Próximamente", { exact: true })).toBeVisible();
   }
   await routes.locator('[data-specialty="basic-electronics"]').click();
-  await expect(page.locator("#specialty-details-electronics").getByText(/Escuela Tecnológica de Occidente/)).toBeVisible();
+  await expect(page.locator("#specialty-details-electronics").getByText(/Escuela Tecnológica de Occidente/).first()).toBeVisible();
 });
 
 test("Culichi changes costume on all six profile pages without overflowing", async ({ page }) => {

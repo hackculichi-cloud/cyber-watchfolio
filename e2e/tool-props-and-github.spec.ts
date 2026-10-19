@@ -63,7 +63,7 @@ test("phone layouts emphasize area titles with logos and show seven years of ser
   const title = page.locator('[data-personal-skills-card="electrical"] h3');
   await expect(title).toHaveText('Electricity');
   await expect(title.locator('..').locator('..').locator('svg')).toHaveCount(1);
-  await expect(title).toHaveCSS('font-size', '14px');
+  await expect(title).toHaveCSS('font-size', '15px');
   await page.goto('/software-development#projects');
   await page.getByRole('button', { name: 'Explore all 9 projects', exact: true }).tap();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
