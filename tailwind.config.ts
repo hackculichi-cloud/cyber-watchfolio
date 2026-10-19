@@ -15,9 +15,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        sans: ['"Manrope"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        display: ['"Manrope"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
         surface: {

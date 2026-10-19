@@ -81,7 +81,7 @@ Los seis personajes se reparten por el encabezado de habilidades, tarjetas, form
 
 `culichi-practice-scenes.webp` contiene seis nuevas poses de cuerpo completo: investigación con tableta, desarrollo sentado con portátil, lectura de esquema eléctrico, montaje de protoboard, apertura de teléfono y atención con plan de servicio. Se generó como lámina 3×2 con fondo transparente; sus celdas completas de 512×512 se seleccionan mediante CSS, sin recortar el personaje ni editar fotos reales.
 
-El footer usa los seis colores de las áreas, la marca Culichi, contacto por correo, GitHub/LinkedIn, enlaces por especialidad y retorno al inicio. Mantiene ES/EN y los previews locales de contacto; no incorpora dependencias de renderizado ni servicios externos.
+El footer usa los seis colores de las áreas, la marca Culichi, contacto por correo, GitHub/LinkedIn, enlaces por especialidad y retorno al inicio. El nombre queda a la izquierda y el retrato de la ruta a la derecha de su bloque de identidad. Los emblemas tienen luz neón contenida y el retorno responde a hover, foco y pulsación; sus movimientos respetan la preferencia de movimiento reducido. Mantiene ES/EN y los previews locales de contacto; no incorpora dependencias de renderizado ni servicios externos.
 
 ## Idioma y navegación compacta
 
