@@ -33,7 +33,7 @@ const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { prof
     if (!active || hash.slice(1) !== active) return;
     let cancelled = false;
     let frame = 0;
-    void document.fonts.ready.then(() => {
+    void (document.fonts?.ready ?? Promise.resolve()).then(() => {
       if (!cancelled) frame = requestAnimationFrame(enterDetail);
     });
     return () => { cancelled = true; cancelAnimationFrame(frame); };
@@ -46,7 +46,7 @@ const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { prof
           onClick={() => { if (active === item.id && hash.slice(1) === item.id) enterDetail(); else { setActive(item.id); navigate({ hash: `#${item.id}` }); } }}
           className={`specialty-choice group flex h-full w-full flex-col overflow-hidden rounded-xl border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${active === item.id ? "border-primary bg-primary/10" : "border-border bg-surface/60 hover:border-primary/60"}`}>
           {art && <span className="relative block aspect-[16/9] w-full overflow-hidden border-b border-border bg-background">
-            <img data-specialty-art={item.id} src={art.src} alt={`${art.reference ? `${t("Illustrative reference")}: ` : ""}${t(art.alt)}`} width={768} height={432} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            <img data-specialty-art={item.id} src={art.src} alt={t(art.alt)} width={768} height={432} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </span>}
           <span className={`specialty-card-copy flex flex-1 flex-col gap-3 p-5 ${profile === "electrical" ? "items-center text-center" : "items-start text-left"}`}>
             <span data-specialty-logo={item.id} aria-hidden className={`relative grid place-items-center border border-primary/40 bg-primary/10 text-primary ${profile === "electrical" ? "h-20 w-20 rounded-full shadow-[0_0_22px_hsl(var(--primary)/.12)]" : "h-14 w-14 rounded-xl"}`}>

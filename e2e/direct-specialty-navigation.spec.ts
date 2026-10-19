@@ -18,6 +18,7 @@ test('a direct touch enters each specialty beneath the fixed navigation and can 
       await expect(page).toHaveURL(new RegExp(`#${id}$`));
       const detail = page.locator(`[data-specialty-details-for="${id}"]`);
       await expect(detail).toBeFocused();
+      await expect(page.getByRole('banner')).toHaveCSS('background-color', 'rgb(11, 17, 30)');
       const heading = detail.locator('h3').first();
       await expect.poll(async () => {
         const box = (await heading.boundingBox())!, nav = (await page.locator('.profile-section-nav').boundingBox())!;
@@ -41,6 +42,7 @@ test('specialty deep links and reload enter their content; electrical learning k
   await expect(detail).toBeFocused();
   await expect(detail.locator('[data-area-learning]')).toContainText('Residential');
   await detail.locator('[data-area-syllabus] summary').click();
+  await detail.locator('[data-area-syllabus]').getByRole('button', { name: /Residential Electrical Installations/ }).click();
   await expect(detail.locator('[data-area-syllabus]')).toContainText('Electrical load calculations');
   await page.locator('[data-area-tab="certificate"]').click();
   const title = page.locator('#certificate h2');

@@ -623,6 +623,7 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 
 /* Phone layouts are a compact overview; detailed work stays available on demand. */
 @media (max-width:767px) {
+  .site-header { background:hsl(var(--background)); }
   .site-header > nav { height:5rem; }
   .site-header .header-mascot-frame { width:5rem; height:5rem; }
   .site-header [data-header-brand] { font-size:1.75rem; }
@@ -748,10 +749,18 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .specialty-card-copy > [data-specialty-logo] > svg { width:1.25rem; height:1.25rem; }
   .specialty-card-copy > [data-specialty-logo] > span { width:1rem; height:1rem; }
   .specialty-card-copy > [data-specialty-logo] > span svg { width:.625rem; height:.625rem; }
-  .specialty-card-title { font-size:.8125rem; line-height:1.4; }
-  .specialty-card-copy > .specialty-card-title + span { font-size:.625rem; line-height:1.4; }
+  .specialty-card-title { font-size:1rem; line-height:1.5; }
+  .specialty-card-copy > .specialty-card-title + span { font-size:.8125rem; line-height:1.5; }
   .specialty-card-summary { display:none; }
-  [data-specialty] > span:first-child > span { left:.25rem; bottom:.25rem; padding:.125rem .25rem; font-size:.625rem; }
+}
+
+/* Keep course descriptions readable against the illustrated background. */
+.specialty-detail .section-heading-row .reading-copy { font-size:1rem; line-height:1.75; color:hsl(var(--foreground)/.9); }
+.specialty-detail [data-profile-capabilities] { padding-top:2rem; padding-bottom:2rem; }
+@media (max-width:767px) {
+  .specialty-detail { padding:1rem; }
+  .specialty-detail [data-profile-capabilities] { padding-left:0; padding-right:0; }
+  .specialty-detail [data-profile-capabilities] .glass-panel { padding:1rem; }
 }
 
 @media (max-width:767px) {
