@@ -910,4 +910,10 @@ export const reviewedEs: Record<string, string> = {
   "Learning, building and solving across technology and technical trades.": "Aprender, construir y resolver entre tecnología y oficios técnicos.",
   "Explore my areas": "Explora mis áreas",
   "Back to top": "Volver arriba",
+  "All specialties": "Todas las especialidades",
+  "My specialties": "Mis especialidades",
+  "My documented practice": "Mis prácticas documentadas",
+  "I apply electrical drawings and AC/DC measurements to residential maintenance. My documented work includes outlet and switch replacements, two ceiling luminaires and an installation training board.": "Aplico la lectura de diagramas y las mediciones de CA/CC al mantenimiento residencial. He documentado cambios de contactos y apagadores, dos luminarias de techo y un tablero de prácticas de instalación.",
+  "I am studying three-phase circuits, motor protection and starting, electrical diagrams and maintenance at Universidad Internacional through RED CONOCER. My industrial practice records will be added as I complete them.": "Estudio circuitos trifásicos, protección y arranque de motores, diagramas eléctricos y mantenimiento con Universidad Internacional a través de RED CONOCER. Añadiré las prácticas industriales conforme las realice.",
+  "I have practiced level control with a float switch on a training board. My coursework covers contactors, control and power circuits, simulation and introductory VFDs; the START/STOP contactor exercise is still planned.": "He practicado control de nivel con un electronivel en un tablero de formación. Mi temario abarca contactores, circuitos de control y potencia, simulación e introducción a variadores; la práctica START/STOP con contactor sigue planeada.",
 };

@@ -46,7 +46,7 @@
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217 33% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted-foreground: 215 20% 72%;
 
     --accent: 142 71% 45%;
     --accent-foreground: 222 47% 8%;
@@ -95,6 +95,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight:450;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -779,4 +780,27 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .site-footer .footer-area-icon { width:1.75rem; height:1.75rem; border-radius:.6rem; }
   .site-footer .footer-area-icon svg { width:1rem; height:1rem; }
   .site-footer nav > ul:first-of-type a { padding:.5rem; gap:.375rem; }
+}
+
+/* Selected content starts beneath the two navigation bars, with readable surfaces. */
+.site-layout main .specialty-details { scroll-margin-top:12rem; background:hsl(var(--surface)/.96); }
+.specialty-details > p { font-size:1rem; line-height:1.75; color:hsl(var(--foreground)/.9); }
+.specialty-details [data-profile-capabilities] { padding:1.25rem 1rem; }
+.specialty-details [data-profile-capabilities] .section-heading-row { flex-direction:row; gap:1rem; }
+.specialty-details [data-profile-capabilities] .section-heading-row > :last-child:not(:first-child) { width:7rem; flex-shrink:0; }
+.world-content :is(p,li).text-sm { font-size:.9375rem; line-height:1.7; }
+.menu-choice:is(:hover,:focus-visible), .profile-menu-panel a:is(:hover,:focus-visible) { background:hsl(var(--primary)/.18); color:hsl(var(--primary)); box-shadow:inset 0 -2px hsl(var(--primary)/.65); }
+.specialty-choice:is(:hover,:focus-visible) { border-color:hsl(var(--primary)/.9); background:hsl(var(--primary)/.12); box-shadow:0 0 22px hsl(var(--primary)/.13); }
+.specialty-choice:is(:hover,:focus-visible) [data-specialty-logo] { box-shadow:0 0 22px hsl(var(--primary)/.25); }
+.specialty-choice[aria-expanded="true"] { box-shadow:inset 0 0 0 1px hsl(var(--primary)/.3); }
+@media (max-width:767px) {
+  .site-layout main .specialty-details { scroll-margin-top:9.5rem; padding:1rem; }
+  .specialty-details[data-embedded-detail="true"] > ul { display:none; }
+  .specialty-details [data-profile-capabilities] { padding:1rem 0; }
+  .specialty-details [data-profile-capabilities] .section-heading-row > :last-child:not(:first-child) { width:3rem; }
+  .specialty-card-title { font-size:.9375rem; line-height:1.4; }
+  .specialty-card-copy > .specialty-card-title + span { font-size:.75rem; }
+  [data-mobile-skill-details="false"] .skill-card-atmosphere h3 { font-size:.9375rem; }
+  [data-mobile-skill-details="false"] .skill-card-headline { font-size:.875rem; }
+  .hero-description { font-size:.9375rem; }
 }

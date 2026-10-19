@@ -19,10 +19,13 @@ const Layout = () => {
       let id: string;
       try { id = decodeURIComponent(hash.slice(1)); } catch { id = hash.slice(1); }
       const el = document.getElementById(id);
+      // SpecialtyExplorer opens and focuses the detail, rather than its cover card.
+      if (el?.hasAttribute("data-specialty-anchor")) return;
       if (el) {
         el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
         return;
       }
+      return; // Dynamically mounted tab content handles its own scroll after rendering.
     }
     window.scrollTo({ top: 0 });
   }, [pathname, hash]);

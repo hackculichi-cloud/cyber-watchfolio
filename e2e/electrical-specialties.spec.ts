@@ -23,17 +23,17 @@ test('electrical specialties have centered emblems, relevant images and truthful
       expect(positions[1].y).toBe(positions[2].y);
       expect(positions[1].x - positions[0].x - positions[0].width).toBeCloseTo(positions[2].x - positions[1].x - positions[1].width, 0);
     }
-    await expect(page.locator('[data-specialty="residential"]')).toContainText('Illustrative reference');
+    await expect(page.locator('[data-specialty-art="residential"]')).toHaveAttribute('alt', /^Illustrative reference:/);
     await expect(page.locator('[data-specialty-art="residential"]')).toHaveAttribute('src', /electrical-residential/);
-    await expect(page.locator('[data-specialty="industrial"]')).toContainText('Illustrative reference');
+    await expect(page.locator('[data-specialty-art="industrial"]')).toHaveAttribute('alt', /^Illustrative reference:/);
     await expect(page.locator('[data-specialty="industrial"]')).toContainText('Currently studying');
     const control = page.locator('[data-specialty="electrical-control"]');
-    await expect(control).toContainText('Illustrative reference');
-    await expect(control).toContainText('Planned practice');
+    await expect(control).not.toContainText('Illustrative reference');
+    await expect(control).toContainText('Training & practice');
     await control.click();
     await expect(control).toHaveAttribute('aria-expanded', 'true');
     await expect(page.locator('#specialty-details-electrical')).toContainText('START/STOP');
-    await control.click();
+    await page.getByRole('button', { name: 'All specialties', exact: true }).click();
     await expect(control).toHaveAttribute('aria-expanded', 'false');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }

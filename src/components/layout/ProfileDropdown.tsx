@@ -32,7 +32,7 @@ const ProfileDropdown = ({ item, children }: { item: NavItem; children: ReactNod
         <button type="button" data-dropdown-toggle
           onPointerEnter={event => { if (event.pointerType === "mouse") keepOpen(); }}
           aria-label={`${t("Open profile menu")}: ${t(item.label)}`}
-          className="rounded-md px-1 py-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          className="menu-choice rounded-md px-1 py-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden />
         </button>
       </PopoverTrigger>
