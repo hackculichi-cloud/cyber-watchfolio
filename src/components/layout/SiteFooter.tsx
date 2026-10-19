@@ -35,28 +35,31 @@ const SiteFooter = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-10 py-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-        <div>
-          <Link to="/" className="inline-flex items-center gap-4 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-            <span data-footer-mascot={mascot}><CulichiMascot variant={mascot} portrait decorative className="h-24 w-24 sm:h-28 sm:w-28" /></span>
-            <span data-footer-brand className="min-w-0"><span className="block text-xl font-semibold tracking-tight sm:text-2xl">{site.shortName}</span><span className="mt-1 block text-sm font-medium text-primary">aka Culichi</span></span>
-          </Link>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
-
-        </div>
+      <div className="grid gap-10 py-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
         <nav aria-label={t("Footer")}>
           <p className="text-xs font-semibold uppercase tracking-[.18em] text-muted-foreground">{t("Explore my areas")}</p>
           <ul className="mt-5 grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:grid-cols-3">{professionalProfiles.map((area, i) => <li key={area.slug}>
-            <Link to={area.href} data-profile={area.slug} className="group flex h-full min-h-16 items-center gap-2 rounded-xl sm:gap-2.5 border border-border/60 bg-background/40 px-3 py-3 text-xs transition-colors sm:text-sm hover:border-primary/50 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-              <area.icon className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5" aria-hidden /><span className="min-w-0 break-words text-foreground/90 group-hover:text-primary">{t(areaNames[i])}</span>
+            <Link to={area.href} data-profile={area.slug} className="footer-area-link group flex h-full min-h-16 items-center gap-2 rounded-xl sm:gap-2.5 border border-border/60 bg-background/40 px-3 py-3 text-xs sm:text-sm hover:border-primary/50 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+              <span className="footer-area-icon grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-primary/40 bg-primary/10 text-primary"><area.icon className="h-5 w-5" aria-hidden /></span><span className="min-w-0 break-words font-semibold text-foreground/90 group-hover:text-primary">{t(areaNames[i])}</span>
             </Link>
           </li>)}</ul>
           <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">{[["About", "/about"], ["CV", "/cv"], ["Contact", "/contact"]].map(([label, href]) => <li key={href}><Link to={href} className="rounded transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t(label)}</Link></li>)}</ul>
         </nav>
+        <div data-footer-introduction className="w-full max-w-md lg:justify-self-end">
+          <Link to="/" data-footer-identity className="flex w-full items-center justify-between gap-5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <span data-footer-brand className="min-w-0"><span className="block text-xl font-semibold tracking-tight sm:text-2xl">{site.shortName}</span><span className="mt-1 block text-sm font-medium text-primary">aka Culichi</span></span>
+            <span data-footer-mascot={mascot} className="shrink-0"><CulichiMascot variant={mascot} portrait decorative className="h-24 w-24 sm:h-28 sm:w-28" /></span>
+          </Link>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
+        </div>
       </div>
       <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border/70 py-6 text-xs text-muted-foreground">
         <p>© {new Date().getFullYear()} {site.shortName} <span className="text-primary/70">/ aka Culichi</span></p>
-        <a href="#main" className="inline-flex min-h-10 items-center gap-2 rounded px-2 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t("Back to top")}<ArrowUp className="h-4 w-4" aria-hidden /></a>
+        <a href="#main" className="footer-top-link group relative inline-flex min-h-11 items-center gap-3 overflow-hidden rounded-full border border-primary/35 bg-primary/5 py-1.5 pl-4 pr-1.5 font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <span aria-hidden className="footer-top-signal h-1.5 w-1.5 rounded-full bg-primary" />
+          <span>{t("Back to top")}</span>
+          <span className="footer-top-arrow grid h-8 w-8 place-items-center rounded-full border border-primary/50 bg-primary/15 text-primary"><ArrowUp className="h-4 w-4" aria-hidden /></span>
+        </a>
       </div>
     </div>
   </footer>;

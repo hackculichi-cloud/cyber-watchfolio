@@ -50,14 +50,37 @@ test("home distributes all six full characters and the footer offers real profil
 });
 
 test("larger header, home characters and footer fit small screens without WebGL", async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 800 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator("header").getByText("Culichi.", { exact: true })).toBeVisible();
-  await expect(page.locator("footer [data-footer-brand]")).toContainText("aka Culichi");
-  await page.locator("footer").scrollIntoViewIfNeeded();
-  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.evaluate(() => document.fonts.ready);
+  for (const width of [320, 390, 1440]) {
+    await page.setViewportSize({ width, height: 844 });
+    await expect(page.locator("header").getByText("Culichi.", { exact: true })).toBeVisible();
+    const footer = page.locator('footer');
+    const brand = footer.locator('[data-footer-brand]');
+    await expect(brand).toContainText('aka Culichi');
+    await footer.scrollIntoViewIfNeeded();
+    const name = (await brand.boundingBox())!, portrait = (await footer.locator('[data-footer-mascot]').boundingBox())!;
+    const areas = (await footer.getByRole('navigation', { name: 'Footer', exact: true }).boundingBox())!;
+    const introduction = (await footer.locator('[data-footer-introduction]').boundingBox())!;
+    if (width >= 1024) expect(areas.x + areas.width).toBeLessThan(introduction.x);
+    else expect(areas.y + areas.height).toBeLessThan(introduction.y);
+    expect(portrait.x).toBeGreaterThanOrEqual(name.x + name.width);
+    expect(Math.abs((portrait.y + portrait.height / 2) - (name.y + name.height / 2))).toBeLessThan(2);
+    await expect(footer.locator('.footer-area-icon')).toHaveCount(6);
+    for (const link of await footer.locator('.footer-area-link').all()) {
+      expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+      expect(await link.locator('.footer-area-icon').evaluate(el => getComputedStyle(el).boxShadow)).not.toBe('none');
+    }
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
   await expect(page.locator("canvas")).toHaveCount(0);
-  await page.locator("footer").getByRole("link", { name: "Back to top" }).click();
+  const back = page.locator('footer').getByRole('link', { name: 'Back to top' });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await back.hover();
+  await expect.poll(() => back.locator('svg').evaluate(el => getComputedStyle(el).transform)).not.toBe('none');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(back.locator('svg')).toHaveCSS('transform', 'none');
+  await back.click();
   await expect(page.locator("main h1")).toBeInViewport();
 });
