@@ -23,7 +23,7 @@ const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { prof
   }, [hash, items, setActive]);
   return <section id="specialties" className="container mx-auto scroll-mt-32 px-4 py-12">
     <div className={profile === "electrical" ? "text-center [&_.eyebrow]:justify-center [&_p]:mx-auto" : undefined}><SectionHeading eyebrow={t("Specialties")} title={t("Explore this area")} description={t("Choose a specialty to see its training status, topics and related work.")} /></div>
-    <div className={`grid grid-cols-1 gap-3 sm:grid-cols-2 ${profile === "electronics" ? "" : profile === "electrical" ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
+    <div className={`specialty-grid grid grid-cols-1 gap-3 sm:grid-cols-2 ${profile === "electronics" ? "" : profile === "electrical" ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
       {items.map(item => { const art = specialtyArtwork[item.id]; return <div key={item.id} id={item.id} className="scroll-mt-32">
         <button type="button" data-specialty={item.id} aria-expanded={active === item.id} aria-controls={active === item.id ? `specialty-details-${profile}` : undefined}
           onClick={() => setActive(active === item.id ? null : item.id)}
@@ -32,14 +32,14 @@ const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { prof
             <img data-specialty-art={item.id} src={art.src} alt={t(art.alt)} width={768} height={432} loading="lazy" decoding="async" className="h-full w-full object-cover" />
             <span className="absolute bottom-2 left-2 rounded-md border border-white/20 bg-background/90 px-2 py-1 text-[10px] font-medium text-foreground">{t(art.reference ? "Illustrative reference" : "My completed work")}</span>
           </span>}
-          <span className={`flex flex-1 flex-col gap-3 p-5 ${profile === "electrical" ? "items-center text-center" : "items-start text-left"}`}>
+          <span className={`specialty-card-copy flex flex-1 flex-col gap-3 p-5 ${profile === "electrical" ? "items-center text-center" : "items-start text-left"}`}>
             <span data-specialty-logo={item.id} aria-hidden className={`relative grid place-items-center border border-primary/40 bg-primary/10 text-primary ${profile === "electrical" ? "h-20 w-20 rounded-full shadow-[0_0_22px_hsl(var(--primary)/.12)]" : "h-14 w-14 rounded-xl"}`}>
               <item.icon className={profile === "electrical" ? "h-9 w-9" : "h-7 w-7"} />
               {profile === "electrical" && <span className="absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full border border-primary/50 bg-background"><Zap className="h-4 w-4" /></span>}
             </span>
-            <span className={`flex w-full items-center gap-2 font-semibold ${profile === "electrical" ? "justify-center" : "justify-between"}`}>{t(item.title)}<ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${active === item.id ? "rotate-180" : ""}`} aria-hidden /></span>
+            <span className={`specialty-card-title flex w-full items-center gap-2 font-semibold ${profile === "electrical" ? "justify-center" : "justify-between"}`}>{t(item.title)}<ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${active === item.id ? "rotate-180" : ""}`} aria-hidden /></span>
             <Tag variant={item.status.includes("Planned") || item.status === "Upcoming" ? "muted" : "primary"}>{t(item.status)}</Tag>
-            <span className="line-clamp-3 text-xs leading-relaxed text-muted-foreground">{t(item.summary)}</span>
+            <span className="specialty-card-summary line-clamp-3 text-xs leading-relaxed text-muted-foreground">{t(item.summary)}</span>
           </span>
         </button>
       </div>; })}

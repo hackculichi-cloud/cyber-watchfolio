@@ -39,7 +39,7 @@ const ProfileCard = ({ data }: { data: ProfileCardData }) => {
       {/* Atmospheric visual preview */}
       <div
         className={cn(
-          "profile-atmosphere relative flex min-h-36 items-center gap-3 overflow-hidden border-b border-border/70 py-5 pl-5 pr-16",
+          "skill-card-atmosphere profile-atmosphere relative flex min-h-36 items-center gap-3 overflow-hidden border-b border-border/70 py-5 pl-5 pr-16",
           atmosphere[data.slug],
         )}
       >
@@ -62,13 +62,13 @@ const ProfileCard = ({ data }: { data: ProfileCardData }) => {
         </div>
       </div>
 
-      <div className="relative flex flex-1 flex-col p-5">
-        <p className="text-lg font-semibold leading-snug text-foreground">{t(spotlight.headline)}</p>
-        <ul className="reading-copy my-5 flex-1 space-y-3">
+      <div className="skill-card-body relative flex flex-1 flex-col p-5">
+        <p className="skill-card-headline text-lg font-semibold leading-snug text-foreground">{t(spotlight.headline)}</p>
+        <ul className="skill-card-bullets reading-copy my-5 flex-1 space-y-3">
           {spotlight.skills.map(skill => <li key={skill} className="flex items-start gap-2.5 text-base leading-relaxed text-foreground/95"><span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary/15 text-primary"><Check className="h-3.5 w-3.5" aria-hidden /></span>{t(skill)}</li>)}
         </ul>
-        <p className={`reading-copy flex items-start gap-2 border-t border-primary/20 pt-3 text-sm font-medium leading-relaxed text-muted-foreground ${data.slug === "development" ? "pr-24 sm:pr-28" : ""}`}><FileCheck2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />{t(spotlight.proof)}</p>
-        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">{t("See my work")}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        <p className={`skill-card-proof reading-copy flex items-start gap-2 border-t border-primary/20 pt-3 text-sm font-medium leading-relaxed text-muted-foreground ${data.slug === "development" ? "pr-24 sm:pr-28" : ""}`}><FileCheck2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />{t(spotlight.proof)}</p>
+        <span className="skill-card-link mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">{t("See my work")}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </span>
         {data.slug === "development" && <span data-home-character="development" data-profile="development" className="pointer-events-none absolute bottom-0 right-1 block w-24 sm:w-28"><MascotScene profile="development" scene="practice" className="w-full" /></span>}
       </div>
