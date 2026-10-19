@@ -612,3 +612,143 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 /* Keep the area tabs available without hiding the selected content behind navigation. */
 .site-layout [data-electrical-area-content] [id] { scroll-margin-top:17rem; }
 @media (max-width:639px) { .site-layout [data-electrical-area-content] [id] { scroll-margin-top:23rem; } }
+
+/* Phone layouts are a compact overview; detailed work stays available on demand. */
+@media (max-width:767px) {
+  .site-header > nav { height:5rem; }
+  .site-header .header-mascot-frame { width:5rem; height:5rem; }
+  .site-header [data-header-brand] { font-size:1.75rem; }
+  #mobile-navigation { max-height:calc(100dvh - 5rem); }
+  .site-layout > main { padding-top:5rem; }
+  .profile-section-nav { top:5rem; }
+
+  .home-hero [data-home-introduction] { gap:.5rem; padding-top:1rem; padding-bottom:1rem; }
+  [data-home-intro-copy] .eyebrow { font-size:.6rem; letter-spacing:.08em; line-height:1.5; }
+  [data-home-intro-copy] h1 { margin-top:.5rem; font-size:1.625rem; line-height:1.12; }
+  [data-home-intro-copy] > .reading-copy { margin-top:.65rem; font-size:.875rem; line-height:1.45; }
+  [data-home-actions] { margin-top:1rem; gap:.5rem; }
+  [data-home-actions] > a { height:2.75rem; padding:0 .75rem; font-size:.75rem; }
+  [data-home-actions] > a:last-child, [data-home-email] { display:none; }
+  .home-hero [data-home-background] { object-position:65% center; opacity:.25; }
+  .home-mascot-widget { max-width:22.5rem; }
+  [data-home-mascot] { aspect-ratio:auto; height:14.25rem; }
+  [data-home-mascot] .mascot-orbit-guide, [data-home-mascot] [data-orbit-toggle], .home-mascot-widget [data-mascot-legend] { display:none; }
+  [data-home-mascot] .mascot-orbit-body, [data-home-mascot][data-selector-open="true"] .mascot-orbit-body { width:58%; }
+  [data-home-mascot] [data-outfit-selector], [data-home-mascot] [data-orbit-node] { animation:none; }
+  [data-home-mascot] .mascot-outfit, [data-home-mascot] [data-orbit-node], [data-home-mascot] .mascot-neon-orb { width:82px; height:58px; border-radius:.75rem; }
+  [data-home-mascot] .mascot-neon-orb { gap:3px; padding:3px; box-shadow:0 0 12px hsl(var(--primary)/.17),inset 0 0 10px hsl(var(--primary)/.08); }
+  [data-home-mascot] .mascot-neon-orb > svg { width:18px; height:18px; }
+  [data-home-mascot] .mascot-orbit-label { font-size:11px; line-height:1.1; }
+  [data-home-mascot] [data-outfit="cybersecurity"] { left:15% !important; top:17% !important; }
+  [data-home-mascot] [data-outfit="development"] { left:85% !important; top:17% !important; }
+  [data-home-mascot] [data-outfit="electrical"] { left:15% !important; top:50% !important; }
+  [data-home-mascot] [data-outfit="electronics"] { left:85% !important; top:50% !important; }
+  [data-home-mascot] [data-outfit="repair"] { left:15% !important; top:83% !important; }
+  [data-home-mascot] [data-outfit="customer-service"] { left:85% !important; top:83% !important; }
+
+  .world-content > section.container { padding-top:1.75rem; padding-bottom:1.75rem; }
+  #areas > div:first-child { margin-bottom:.75rem; padding-left:4rem; }
+  #areas > div:first-child h2 { font-size:1.25rem; }
+  #areas > div:first-child .eyebrow { font-size:.6rem; }
+  #areas > div:first-child .reading-copy { margin-top:.5rem; font-size:.8125rem; line-height:1.5; }
+  #areas > div:first-child [data-home-character] { width:3.5rem; margin-top:-.5rem; }
+  [data-mobile-skill-details="false"] .skill-card-atmosphere { min-height:7rem; align-items:flex-start; flex-direction:column; gap:.5rem; padding:.75rem; }
+  [data-mobile-skill-details="false"] .skill-card-atmosphere .mascot-neon-orb { width:2rem; height:2rem; border-radius:.6rem; }
+  [data-mobile-skill-details="false"] .skill-card-atmosphere .mascot-neon-orb svg { width:1.25rem; height:1.25rem; }
+  [data-mobile-skill-details="false"] .skill-card-atmosphere h3 { font-size:.875rem; line-height:1.3; }
+  [data-mobile-skill-details="false"] .skill-card-atmosphere h3 + span { display:none; }
+  [data-mobile-skill-details="false"] .skill-card-body { padding:.75rem; gap:.5rem; }
+  [data-mobile-skill-details="false"] .skill-card-headline { font-size:.8125rem; line-height:1.4; }
+  [data-mobile-skill-details="false"] .skill-card-bullets { display:none; }
+  [data-mobile-skill-details="false"] .skill-card-proof { margin-top:auto; padding:.5rem 0 0; font-size:.75rem; line-height:1.4; gap:.375rem; }
+  [data-mobile-skill-details="false"] .skill-card-proof svg { width:.75rem; height:.75rem; }
+  [data-mobile-skill-details="false"] .skill-card-link { margin-top:0; font-size:.75rem; }
+  [data-mobile-skill-details="false"] [data-home-character="development"] { display:none; }
+  #home-skills-grid [data-preview-toggle] { top:.25rem; right:.25rem; background:hsl(var(--background)/.7); }
+  [data-home-focus] > div:first-child { margin-bottom:1rem; padding-left:4.5rem; padding-top:1rem; }
+  [data-home-focus] > div:first-child [data-home-character] { width:4rem; }
+  [data-home-focus] h2 { font-size:1.25rem; }
+  [data-home-focus] .panel-glow { padding:1rem; }
+  [data-home-focus] .panel-glow h3 { margin-top:.5rem; font-size:.875rem; }
+  [data-home-focus] .panel-glow p { font-size:.8125rem; line-height:1.5; }
+  [data-home-focus] .reveal.relative.isolate { padding-top:0; }
+  [data-home-focus] [data-home-character="electronics"] { top:-2rem; width:4rem; }
+  [data-home-cta] [data-home-character] { width:5rem; }
+  [data-home-cta] .relative.z-10 { margin-right:2.5rem; padding:1rem; }
+  [data-home-cta] h2 { font-size:1.125rem; }
+  [data-home-cta] .reading-copy, [data-home-cta] p { font-size:.8125rem; line-height:1.5; }
+
+  .site-footer .container > div { padding-top:1.5rem; padding-bottom:1.5rem; gap:1.5rem; }
+  .site-footer h2 { font-size:1.5rem; }
+  .site-footer [data-footer-mascot] > * { width:4rem; height:4rem; }
+  .site-footer [data-footer-brand] > span:first-child { font-size:1.125rem; }
+  .site-footer nav > ul:first-of-type { grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:.75rem; }
+  .site-footer nav > ul:first-of-type a { min-height:2.75rem; padding:.5rem; font-size:.75rem; }
+  .site-footer nav > ul:last-child { margin-top:.75rem; }
+  .site-footer nav > ul:last-child a { display:inline-flex; min-height:2.75rem; align-items:center; }
+}
+
+@media (max-width:767px) {
+  [data-world-hero] { min-height:0; }
+  .profile-hero-layout { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.95fr); align-items:center; gap:1rem .75rem; padding-top:1.5rem; padding-bottom:1.5rem; }
+  .profile-hero-copy { display:contents; }
+  .hero-workspace { grid-column:2; grid-row:1 / span 2; width:100%; }
+  .hero-eyebrow { grid-column:1; grid-row:1; }
+  .hero-eyebrow .eyebrow { font-size:.6rem; letter-spacing:.06em; line-height:1.5; }
+  .hero-eyebrow .eyebrow::before { width:.65rem; }
+  .hero-eyebrow .eyebrow + span { font-size:.625rem; line-height:1.4; }
+  .hero-title { grid-column:1; grid-row:2; flex-direction:column; gap:.375rem; margin:0; }
+  .hero-title > span { width:1.75rem; height:1.75rem; border-radius:.5rem; margin:0; }
+  .hero-title svg { width:1.125rem; height:1.125rem; }
+  .hero-title h1 { font-size:1.125rem; line-height:1.3; text-wrap:initial; }
+  .hero-description { grid-column:1 / -1; grid-row:3; margin:0; font-size:.875rem; line-height:1.55; }
+  .hero-highlights { grid-column:1 / -1; grid-row:4; margin:0; gap:.375rem; }
+  .hero-highlights li { padding:.25rem .5rem; font-size:.6875rem; }
+  .hero-actions { grid-column:1 / -1; grid-row:5; margin:0; gap:.5rem; }
+  .hero-actions > a { min-height:2.75rem; padding:.5rem .75rem; font-size:.75rem; }
+  .hero-actions > div { gap:.5rem; padding:0; font-size:.75rem; }
+  .hero-actions > div a { min-height:2.75rem; }
+  .hero-workspace figcaption { padding-top:.375rem; }
+  .hero-workspace figcaption > span > span:first-child { font-size:.6875rem; line-height:1.4; }
+  .hero-workspace figcaption > span > span:last-child { display:none; }
+  .hero-workspace button > span { width:1.75rem; height:1.75rem; bottom:.375rem; right:.375rem; }
+  .hero-workspace button > span svg { width:1rem; height:1rem; }
+  .page-heading { padding-top:1.5rem; padding-bottom:1.5rem; }
+  .page-heading h1 { font-size:1.5rem; }
+  .page-heading .reading-copy { font-size:.875rem; line-height:1.55; }
+  .section-heading-grid { grid-template-columns:minmax(0,1fr) 5rem; align-items:center; column-gap:.75rem; row-gap:1rem; }
+  .section-heading-grid > div:first-child { grid-column:1; grid-row:1; }
+  .section-heading-grid > :nth-child(2) { grid-column:2; grid-row:1; grid-row-end:auto; width:100%; max-width:5rem; justify-self:end; align-self:center; }
+  .section-heading-grid > [data-mascot-content] { grid-column:1 / -1; grid-row:2; }
+  .section-heading-grid h2, .section-heading-row h2 { font-size:1.25rem; }
+  .section-heading-grid .eyebrow, .section-heading-row .eyebrow { font-size:.625rem; }
+  .section-heading-grid .reading-copy, .section-heading-row .reading-copy { margin-top:.5rem; font-size:.8125rem; line-height:1.55; }
+  .section-heading-row { flex-direction:row; align-items:center; gap:.75rem; margin-bottom:1rem; }
+  .section-heading-row > .reveal { width:5rem; flex-shrink:0; }
+  .world-content > section:not([data-world-hero]) > .container { padding-top:1.75rem; padding-bottom:1.75rem; }
+  [data-electrical-area-content] [role="tablist"] { top:9rem; }
+}
+
+@media (max-width:767px) and (max-height:700px) {
+  .home-hero [data-home-introduction] { padding-top:.5rem; }
+  [data-home-mascot] { height:12.75rem; }
+}
+
+@media (max-width:767px) {
+  [data-mobile-profile-section][data-mobile-profile-active="false"] { display:none; }
+  .specialty-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .specialty-grid > div:last-child:nth-child(odd) { grid-column:1 / -1; width:calc((100% - .75rem) / 2); justify-self:center; }
+  .specialty-card-copy { gap:.5rem; padding:.75rem; }
+  .specialty-card-copy > [data-specialty-logo] { width:2rem; height:2rem; border-radius:.5rem; }
+  .specialty-card-copy > [data-specialty-logo] > svg { width:1.25rem; height:1.25rem; }
+  .specialty-card-copy > [data-specialty-logo] > span { width:1rem; height:1rem; }
+  .specialty-card-copy > [data-specialty-logo] > span svg { width:.625rem; height:.625rem; }
+  .specialty-card-title { font-size:.8125rem; line-height:1.4; }
+  .specialty-card-copy > .specialty-card-title + span { font-size:.625rem; line-height:1.4; }
+  .specialty-card-summary { display:none; }
+  [data-specialty] > span:first-child > span { left:.25rem; bottom:.25rem; padding:.125rem .25rem; font-size:.625rem; }
+}
+
+@media (max-width:767px) {
+  .site-header button[aria-controls="mobile-navigation"] { min-width:44px; min-height:44px; }
+}

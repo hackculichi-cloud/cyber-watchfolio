@@ -12,7 +12,7 @@ const PageHeader = ({ eyebrow, title, description, children }: PageHeaderProps) 
   const { t } = useLanguage();
   return (
     <section className="grid-bg border-b border-border">
-      <div className="container mx-auto px-4 py-16 md:py-20">
+      <div className="page-heading container mx-auto px-4 py-16 md:py-20">
         {eyebrow && <p className="eyebrow animate-fade-in-up">{t(eyebrow)}</p>}
         <h1 className="animate-fade-in-up delay-100 mt-3 max-w-3xl text-3xl font-bold md:text-4xl">{t(title)}</h1>
         {description && (

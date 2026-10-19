@@ -27,12 +27,12 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         className="absolute inset-0 -z-10 bg-[radial-gradient(75rem_38rem_at_15%_110%,hsl(var(--primary)/0.22),transparent_65%)]"
       />
 
-      <div className="container relative mx-auto flex flex-col-reverse gap-8 px-4 py-16 lg:flex-row-reverse lg:items-center lg:justify-between lg:py-24">
-        <div className="w-full shrink-0 lg:w-[48%] xl:w-[40rem]">
+      <div className="profile-hero-layout container relative mx-auto flex flex-col-reverse gap-8 px-4 py-16 lg:flex-row-reverse lg:items-center lg:justify-between lg:py-24">
+        <div className="hero-workspace w-full shrink-0 lg:w-[48%] xl:w-[40rem]">
           <ProfileWorkspace profile={profile.slug} />
         </div>
-        <div className="min-w-0 flex-1">
-        <div className="animate-fade-in-up flex items-center gap-3">
+        <div className="profile-hero-copy min-w-0 flex-1">
+        <div className="hero-eyebrow animate-fade-in-up flex items-center gap-3">
           <div>
             <p className="eyebrow">{t(profile.eyebrow)}</p>
             <Tag variant="primary" className="mt-1 bg-background/60 backdrop-blur-sm">
@@ -41,16 +41,16 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
           </div>
         </div>
 
-        <div className="animate-fade-in-up delay-100 mt-6 flex items-start gap-4">
+        <div className="hero-title animate-fade-in-up delay-100 mt-6 flex items-start gap-4">
           <span className="glow-ring mt-1 grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-primary/60 bg-background text-primary sm:h-16 sm:w-16"><profile.icon className="h-8 w-8" aria-hidden /></span>
           <h1 className="max-w-4xl break-words text-3xl font-bold leading-tight text-foreground sm:text-4xl xl:text-5xl">{t(profile.label)}</h1>
         </div>
-        <p className="reading-copy animate-fade-in-up delay-200 mt-5 max-w-2xl text-base leading-relaxed text-foreground/95 md:text-lg">
+        <p className="hero-description reading-copy animate-fade-in-up delay-200 mt-5 max-w-2xl text-base leading-relaxed text-foreground/95 md:text-lg">
           {t(profile.description)}
         </p>
 
         {profile.highlights?.length ? (
-          <ul className="animate-fade-in-up delay-300 mt-8 flex flex-wrap gap-2">
+          <ul className="hero-highlights animate-fade-in-up delay-300 mt-8 flex flex-wrap gap-2">
             {profile.highlights.map((h) => (
               <li
                 key={h}
@@ -62,7 +62,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
           </ul>
         ) : null}
 
-        {children && <div className="animate-fade-in-up delay-400 mt-8 flex flex-wrap gap-3">{children}</div>}
+        {children && <div className="hero-actions animate-fade-in-up delay-400 mt-8 flex flex-wrap gap-3">{children}</div>}
         </div>
       </div>
     </section>

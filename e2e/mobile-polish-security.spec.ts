@@ -89,29 +89,21 @@ test("orbit moves with upright labels, pauses manually and respects reduced moti
   await expect(stage.locator('[data-outfit]')).toHaveCount(6);
 });
 
-test("rotating phone targets stay inside the screen and accept a direct touch", async ({ browser }) => {
+test("fixed phone targets stay inside the screen and accept a direct touch", async ({ browser }) => {
   const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'no-preference' });
   const page = await context.newPage();
   await page.goto('/');
   const stage = page.locator('[data-home-mascot]');
   await stage.scrollIntoViewIfNeeded();
-  // Sample a full orbit without waiting 96 seconds. Labels must stay upright and visible.
-  for (const milliseconds of [0, 24000, 48000, 72000]) {
-    await stage.locator('[data-outfit-selector], [data-orbit-node]').evaluateAll((elements, time) => {
-      elements.forEach(element => element.getAnimations().forEach(animation => { animation.pause(); animation.currentTime = time; }));
-    }, milliseconds);
-    for (const node of await stage.locator('[data-orbit-node]').all()) {
-      const bounds = await node.evaluate(element => {
-        const box = element.getBoundingClientRect();
-        return { left: box.left, right: box.right, width: box.width };
-      });
-      expect(bounds.left).toBeGreaterThanOrEqual(0);
-      expect(bounds.right).toBeLessThanOrEqual(320);
-      expect(bounds.width).toBeCloseTo(80, 0);
-    }
+  // Phone choices are fixed around the fox, so touch targets do not drift.
+  await expect(stage.locator('[data-outfit-selector]')).toHaveCSS('animation-name', 'none');
+  for (const node of await stage.locator('[data-orbit-node]').all()) {
+    const bounds = (await node.boundingBox())!;
+    expect(bounds.x).toBeGreaterThanOrEqual(0);
+    expect(bounds.x + bounds.width).toBeLessThanOrEqual(320);
+    expect(bounds.width).toBe(82);
+    expect(bounds.height).toBeGreaterThanOrEqual(44);
   }
-  // Use real touch coordinates while the orbit runs, with no greeting or forced click.
-  await stage.locator('[data-outfit-selector], [data-orbit-node]').evaluateAll(elements => elements.forEach(element => element.getAnimations().forEach(animation => { animation.currentTime = 0; animation.play(); })));
   const target = stage.locator('[data-outfit="electrical"] [data-orbit-node] > span:first-child');
   const point = await target.evaluate(element => { const box = element.getBoundingClientRect(); return { x: box.left + box.width / 2, y: box.top + box.height / 2 }; });
   await page.touchscreen.tap(point.x, point.y);

@@ -42,6 +42,12 @@ const InteractiveMascot = ({ profile = "home", className }: {
     const selected = target ?? preview;
     const gearId = `${id}-gear`;
     useEffect(() => {
+        const phone = window.matchMedia("(max-width: 767px)");
+        const showChoices = () => { if (phone.matches && !locked.current) setOpen(true); };
+        phone.addEventListener("change", showChoices);
+        return () => phone.removeEventListener("change", showChoices);
+    }, []);
+    useEffect(() => {
         if (!inView) return;
         const artwork = new Image();
         artwork.decoding = "async";
@@ -79,6 +85,8 @@ const InteractiveMascot = ({ profile = "home", className }: {
         if (!open)
             return;
         const outside = (event: PointerEvent) => {
+            // Touch scrolling must not hide choices that cannot be reopened by hover.
+            if (window.matchMedia("(max-width: 767px)").matches || event.pointerType === "touch") return;
             if (!root.current?.contains(event.target as Node) && !locked.current) {
                 setOpen(false);
                 setPreview(null);
@@ -116,7 +124,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         else
             navigationTimer.current = setTimeout(() => navigate(href), transformDuration);
     };
-    return <div className={cn("w-full max-w-[35rem]", className)}><div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-motion-paused={motionPaused || reduced || !inView || keyboardFocus || !!preview || phase === "transforming"} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className="mascot-selector mascot-orbit relative aspect-square w-full" onFocusCapture={event => { clearTimeout(closeTimer.current); if (event.target.matches(":focus-visible")) setKeyboardFocus(true); }} onPointerDownCapture={event => {
+    return <div className={cn("home-mascot-widget relative w-full max-w-[35rem]", className)}><div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-motion-paused={motionPaused || reduced || !inView || keyboardFocus || !!preview || phase === "transforming"} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className="mascot-selector mascot-orbit relative aspect-square w-full" onFocusCapture={event => { clearTimeout(closeTimer.current); if (event.target.matches(":focus-visible")) setKeyboardFocus(true); }} onPointerDownCapture={event => {
         setKeyboardFocus(false);
         // Touch freezes the choices immediately so the next selection stays put.
         if (event.pointerType === "touch" && !(event.target as Element).closest("[data-orbit-toggle]")) setMotionPaused(true);

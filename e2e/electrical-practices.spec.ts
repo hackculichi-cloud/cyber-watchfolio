@@ -84,33 +84,27 @@ test("mobile groups fit and only the latest CV is offered", async ({ page }) => 
   }
 });
 
-test("mobile home gives the mascot and group artwork separate space", async ({ browser }) => {
+test("mobile home integrates the artwork and exposes six choices without a greeting", async ({ browser }) => {
   for (const width of [360, 390, 430]) {
     const context = await browser.newContext({ storageState: englishStorageState, viewport: { width, height: 844 }, isMobile: true, hasTouch: true });
     const page = await context.newPage();
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     const selector = page.locator('[data-home-mascot]');
-    const artwork = page.locator('[data-home-mobile-art]');
-    await expect(artwork).toBeVisible();
-    const assertSeparate = async () => {
-      const mascot = (await selector.boundingBox())!;
-      const art = (await artwork.boundingBox())!;
-      expect(mascot.y + mascot.height).toBeLessThanOrEqual(art.y);
-      await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    };
-    const closed = (await selector.boundingBox())!;
-    expect(closed.height).toBeCloseTo(closed.width, 1);
-    await assertSeparate();
-    await selector.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).tap();
+    await expect(page.locator('[data-home-mobile-art]')).toHaveCount(0);
+    await expect(page.locator('[data-home-background]')).toBeVisible();
     await expect(selector.locator('[data-outfit]')).toHaveCount(6);
+    const bar = (await page.locator('[data-mobile-quicknav]').boundingBox())!;
     for (const link of await selector.locator('[data-outfit]').all()) {
-      await expect.poll(async () => {
-        const box = (await link.boundingBox())!;
-        return box.x >= 0 && box.x + box.width <= width;
-      }).toBe(true);
+      const box = (await link.boundingBox())!;
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(width);
+      expect(box.y + box.height).toBeLessThanOrEqual(bar.y);
+      await link.tap({ trial: true });
     }
-    await assertSeparate();
+    await page.locator('h1').tap();
+    await expect(selector).toHaveAttribute('data-selector-open', 'true');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await context.close();
   }
 });

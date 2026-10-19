@@ -15,14 +15,26 @@ test("six outfit circles have equal radii and spacing, and preview the larger he
       const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
       const points = [...el.querySelectorAll('[data-outfit] > span:first-child')].map(node => { const r = node.getBoundingClientRect(); return [r.x + r.width / 2, r.y + r.height / 2]; });
       return {
+        points, cx, cy,
         square: Math.abs(box.width - box.height),
         radii: points.map(([x, y]) => Math.hypot(x - cx, y - cy)),
         spacing: points.map(([x, y], i) => Math.hypot(x - points[(i + 1) % points.length][0], y - points[(i + 1) % points.length][1])),
       };
     });
-    expect(geometry.square).toBeLessThan(1);
-    expect(Math.max(...geometry.radii) - Math.min(...geometry.radii)).toBeLessThan(1);
-    expect(Math.max(...geometry.spacing) - Math.min(...geometry.spacing)).toBeLessThan(1);
+    if (width >= 768) {
+      expect(geometry.square).toBeLessThan(1);
+      expect(Math.max(...geometry.radii) - Math.min(...geometry.radii)).toBeLessThan(1);
+      expect(Math.max(...geometry.spacing) - Math.min(...geometry.spacing)).toBeLessThan(1);
+    } else {
+      const left = geometry.points.filter(([x]) => x < geometry.cx);
+      const right = geometry.points.filter(([x]) => x > geometry.cx);
+      expect(left).toHaveLength(3);
+      expect(right).toHaveLength(3);
+      for (let i = 0; i < 3; i++) {
+        expect(left[i][1]).toBeCloseTo(right[i][1], 0);
+        expect(geometry.cx - left[i][0]).toBeCloseTo(right[i][0] - geometry.cx, 0);
+      }
+    }
     await stage.locator('[data-outfit="development"]').focus();
     await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'development');
     const head = (await page.locator('[data-header-mascot]').boundingBox())!;

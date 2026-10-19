@@ -13,9 +13,11 @@ import { site } from "@/data/site";
 import Reveal from "@/components/shared/Reveal";
 import ContactPreview from "@/components/shared/ContactPreview";
 import InteractiveMascot from "@/components/shared/InteractiveMascot";
+import { useState } from "react";
 
 const Home = () => {
   const { t } = useLanguage();
+  const [skillDetails, setSkillDetails] = useState(false);
   return (
     <>
       <Seo
@@ -25,8 +27,8 @@ const Home = () => {
       />
 
       {/* Hero */}
-      <section className="grid-bg relative isolate overflow-clip border-b border-border">
-        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 hidden h-full w-full object-cover object-center opacity-30 md:block" />
+      <section className="home-hero grid-bg relative isolate overflow-clip border-b border-border">
+        <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-30" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.94)_0%,hsl(var(--background)/0.78)_40%,hsl(var(--background)/0.45)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
         <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
@@ -41,7 +43,7 @@ const Home = () => {
               {t(site.tagline)}
             </p>
 
-            <div className="animate-fade-in-up delay-300 mt-8 flex flex-wrap gap-3">
+            <div data-home-actions className="animate-fade-in-up delay-300 mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="lift">
                 <Link to="/#areas">{t("Choose an area")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></Link>
               </Button>
@@ -54,7 +56,7 @@ const Home = () => {
               </Button>
             </div>
 
-            <div className="animate-fade-in-up delay-400 mt-8 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            <div data-home-email className="animate-fade-in-up delay-400 mt-8 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <ContactPreview channel="Email" href={`mailto:${site.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-primary">
                 <Mail className="h-4 w-4" /> {t(site.email)}
               </ContactPreview>
@@ -63,11 +65,6 @@ const Home = () => {
           <div data-home-mascot-zone className="min-w-0 lg:justify-self-end lg:w-full">
             <InteractiveMascot className="mx-auto lg:ml-auto lg:mr-0" />
           </div>
-        </div>
-        {/* On phones the group artwork has its own space, never behind the selector. */}
-        <div data-home-mobile-art className="relative mx-auto max-w-xl md:hidden">
-          <img src={homeBackground} alt="" aria-hidden width={1536} height={1024} className="block h-auto w-full" />
-          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-background to-transparent" />
         </div>
       </section>
 
@@ -78,7 +75,8 @@ const Home = () => {
           <div className="min-w-0 flex-1 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl"><SectionHeading eyebrow="Christian Velasco · aka Culichi" title={t("These are my skills")} description={t("Practical work, study and experience in six areas. Choose what you need and see the examples behind each skill.")} /></div>
           <HomeCharacter profile="cybersecurity" scene="hanging" className="absolute left-0 top-0 -mt-8 w-20 border-t border-primary/30 sm:w-24" />
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <button type="button" aria-expanded={skillDetails} aria-controls="home-skills-grid" onClick={() => setSkillDetails(value => !value)} className="mb-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 bg-primary/10 px-3 text-sm font-medium text-primary md:hidden">{t(skillDetails ? "Compact view" : "Show skill details")}</button>
+        <div id="home-skills-grid" data-mobile-skill-details={skillDetails} className={`grid gap-3 sm:gap-5 ${skillDetails ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2"} lg:grid-cols-3`}>
           {professionalProfiles.map((p, i) => (
             <Reveal key={p.title} delay={i * 90} className="h-full">
               <ProfileCard data={p} />
@@ -88,7 +86,7 @@ const Home = () => {
       </section>
 
       {/* Current focus */}
-      <section className="relative container mx-auto px-4 py-14">
+      <section data-home-focus className="relative container mx-auto px-4 py-14">
         <div className="relative mb-10 border-t border-primary/25 pl-24 pt-8 sm:pl-32">
           <div className="min-w-0 flex-1"><SectionHeading eyebrow={t("Current focus")} title={t("What I am working on right now")} description={t("An honest snapshot of my learning path — updated as I progress.")} /></div>
           <HomeCharacter profile="electrical" scene="action" className="absolute left-0 top-0 -mt-6 w-24 sm:w-28" />
@@ -112,7 +110,7 @@ const Home = () => {
       </section>
 
       {/* CTA */}
-      <section className="container mx-auto px-4 pb-24">
+      <section data-home-cta className="container mx-auto px-4 pb-24">
         <Reveal from="scale" className="relative isolate">
           <HomeCharacter profile="repair" scene="repair-peeking" className="absolute right-0 top-6 z-0 w-32 sm:w-36" />
           <div className="relative z-10 mr-16 rounded-xl border border-primary/25 bg-background p-5 sm:mr-24 sm:p-8">

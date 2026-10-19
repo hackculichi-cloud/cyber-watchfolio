@@ -1,5 +1,11 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Show one profile section at a time": "Mostrar una sección del perfil a la vez",
+  "Show the entire profile": "Mostrar todo el perfil",
+  "By section": "Por secciones",
+  "View all": "Ver todo",
+  "Show skill details": "Ver habilidades en detalle",
+  "Compact view": "Vista compacta",
   "Bilingual professional with 7 years in customer service, technical support, training and operations. I build web interfaces and automate reports, document educational cybersecurity investigations, and develop practical electrical, electronics and smartphone-repair skills.": "Profesional bilingüe con 7 años en atención al cliente, soporte técnico, capacitación y operaciones. Desarrollo interfaces web y automatizo reportes, documento investigaciones educativas de ciberseguridad y aplico conocimientos de electricidad, electrónica y reparación de celulares.",
   "Residential electrical maintenance with documented outlet, switch and ceiling-light replacements, polarity and protective-earth checks. Complementary training in AC/DC measurement, industrial electricity and control.": "Mantenimiento eléctrico residencial con cambios documentados de contactos, apagador y luminarias, y comprobaciones de polaridad y tierra. Formación complementaria en mediciones CA/CC, electricidad industrial y control.",
   "General CV — experience, projects & training": "CV general — experiencia, proyectos y formación",

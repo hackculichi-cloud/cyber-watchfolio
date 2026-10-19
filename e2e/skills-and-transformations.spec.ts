@@ -100,6 +100,7 @@ test("reduced motion and phone menu keep previews usable without animated scans 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('navigation', { name: 'Quick navigation', exact: true }).getByRole('link', { name: 'Areas', exact: true }).tap();
   await expect(page.locator('#areas h2')).toBeInViewport();
+  await page.getByRole('button', { name: 'Show skill details', exact: true }).tap();
   await expect(page.locator('[data-personal-skills-card="cybersecurity"] li').first()).toBeInViewport();
   await context.close();
 });
