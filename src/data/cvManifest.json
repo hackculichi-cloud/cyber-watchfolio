@@ -2,11 +2,11 @@
   {
     "id": "general",
     "profile": "home",
-    "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. I build web interfaces and automate reports, document educational cybersecurity investigations, and develop practical electrical, electronics and smartphone-repair skills.",
-    "pageCount": 6,
+    "summary": "I build web interfaces and automate reports, document educational cybersecurity investigations, and apply electrical, electronics and smartphone-repair skills through documented work and course practice.",
+    "pageCount": 5,
     "pageCounts": {
-      "en": 6,
-      "es": 6
+      "en": 5,
+      "es": 5
     }
   },
   {
@@ -23,40 +23,40 @@
     "id": "software",
     "profile": "development",
     "summary": "Frontend development with React, Next.js and TypeScript, supported by public GitHub projects and Python automation for Excel reports. Partial software development studies at Academlo.",
-    "pageCount": 4,
+    "pageCount": 3,
     "pageCounts": {
-      "en": 4,
-      "es": 4
+      "en": 3,
+      "es": 3
     }
   },
   {
     "id": "electrical",
     "profile": "electrical",
     "summary": "Residential electrical maintenance with documented outlet, switch and ceiling-light replacements, polarity and protective-earth checks. Complementary training in AC/DC measurement, industrial electricity and control.",
-    "pageCount": 3,
+    "pageCount": 2,
     "pageCounts": {
-      "en": 3,
-      "es": 3
+      "en": 2,
+      "es": 2
     }
   },
   {
     "id": "electronics",
     "profile": "electronics",
     "summary": "Currently studying basic electronics at Escuela Tecnológica de Occidente, with additional smartphone repair coursework at LIDETEC.",
-    "pageCount": 3,
+    "pageCount": 2,
     "pageCounts": {
-      "en": 3,
-      "es": 3
+      "en": 2,
+      "es": 2
     }
   },
   {
     "id": "repair",
     "profile": "repair",
     "summary": "LIDETEC smartphone repair course participation with three documented iPhone interventions and confirmed post-repair checks.",
-    "pageCount": 3,
+    "pageCount": 2,
     "pageCounts": {
-      "en": 3,
-      "es": 3
+      "en": 2,
+      "es": 2
     }
   },
   {

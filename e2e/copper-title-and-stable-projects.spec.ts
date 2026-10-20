@@ -14,9 +14,10 @@ test('the electrical hero has readable copper letters in both languages and no s
       await expect(heading.locator('[data-copper-title]')).toBeVisible();
       await expect(heading.locator('[data-electron-flow]')).toHaveAttribute('aria-hidden', 'true');
       await expect(heading.locator('[data-copper-source]')).toContainText(lang === 'es' ? 'CA' : 'AC');
+      await expect(page.locator('[data-world-hero="electrical"] .hero-title > .glow-ring')).toHaveCount(0);
       await expect(heading.locator('[data-copper-load]')).toHaveCount(1);
       await expect(heading.locator('[data-copper-return]')).toHaveCount(1);
-      await expect(heading.locator('.copper-conductor-glyph').first()).toHaveCSS('background-image', /repeating-linear-gradient/);
+      await expect(heading.locator('.copper-cable-core').first()).toHaveCSS('stroke', 'rgb(233, 169, 108)');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await page.locator('[data-specialty="residential"]').click();
       await expect(page.locator('[data-title-circuit]')).toHaveCount(0);
@@ -27,7 +28,7 @@ test('the electrical hero has readable copper letters in both languages and no s
   }
 });
 
-test('the electron pulse powers the bulb and closes the title circuit, pausing offscreen and respecting reduced motion', async ({ page }) => {
+test('the slow dotted current powers the bulb, supports pause and stops offscreen or with reduced motion', async ({ page }) => {
   await page.goto('/electrical');
   const title = page.locator('[data-copper-title]');
   const first = title.locator('.copper-electron').first();
@@ -37,16 +38,32 @@ test('the electron pulse powers the bulb and closes the title circuit, pausing o
   await expect(first).toHaveCSS('animation-play-state', 'running');
   const timing = await title.locator('.copper-electron').evaluateAll(elements => elements.map(el => ({ delay: parseFloat(getComputedStyle(el).animationDelay), duration: parseFloat(getComputedStyle(el).animationDuration) })));
   expect(timing.at(-1)!.delay).toBeGreaterThan(timing[0].delay);
-  expect(timing.at(-1)!.delay + timing.at(-1)!.duration).toBeLessThanOrEqual(5);
+  expect(timing.at(-1)!.delay + timing.at(-1)!.duration).toBeGreaterThanOrEqual(8);
+  expect(timing[0].duration).toBeGreaterThanOrEqual(1.5);
+  const dots = title.locator('.copper-feed-pulse');
+  await expect(dots).toHaveCSS('stroke-dasharray', '1px, 11px');
+  await expect(dots).toHaveCSS('animation-duration', '3s');
+  const pause = page.locator('[data-copper-motion]');
+  await expect(pause).toHaveAccessibleName('Pause energy flow');
+  await pause.click();
+  await expect(first).toHaveCSS('animation-play-state', 'paused');
+  await expect(dots).toHaveCSS('animation-play-state', 'paused');
+  await expect(pause).toHaveAttribute('aria-pressed', 'true');
+  await expect(pause).toHaveAccessibleName('Resume energy flow');
+  await pause.click();
+  await expect(first).toHaveCSS('animation-play-state', 'running');
   await expect(last).toHaveCount(1);
   await page.locator('#cv').scrollIntoViewIfNeeded();
   await expect(title).toHaveAttribute('data-in-view', 'false');
   await expect(first).toHaveCSS('animation-play-state', 'paused');
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
-  await expect.poll(() => title.evaluate(el => el.getAnimations({ subtree: true }).every(animation => animation.playState === 'finished')), { timeout: 7500 }).toBe(true);
+  await expect.poll(() => last.evaluate(el => el.getAnimations().every(animation => animation.playState === 'finished')), { timeout: 12000 }).toBe(true);
+  await expect(title.locator('.copper-return-pulse')).toHaveCSS('animation-play-state', 'running');
   await expect.poll(() => title.locator('[data-copper-bulb-glow]').evaluate(el => parseFloat(getComputedStyle(el).opacity))).toBeGreaterThan(0.5);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(first).toHaveCSS('animation-name', 'none');
+  await expect(dots).toHaveCSS('animation-name', 'none');
+  await expect(pause).not.toBeVisible();
 });
 
 test('practice categories and results are centered and selecting or closing them keeps the page and focus still', async ({ browser }) => {

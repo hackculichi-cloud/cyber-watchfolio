@@ -5,6 +5,7 @@ import { profileIdentities } from "@/data/profiles";
 import { specialtiesFor } from "@/data/specialties";
 import { translate } from "@/i18n/translate";
 import resumes from "@/data/resumes.json";
+import { cvSections } from "../../scripts/cv-layout.mjs";
 
 describe("specialty and CV publishing integrity", () => {
   it("publishes course knowledge in both languages with an explicit training context", () => {
@@ -34,13 +35,21 @@ describe("specialty and CV publishing integrity", () => {
       }
     }
   });
-  it("keeps confirmed career history and explicit credential states in every localized CV", () => {
+  it("keeps service employment only in its own CV and gives technical CVs relevant practical experience", () => {
     for (const lang of ["es", "en"] as const) {
       expect(resumes.career[lang]).toHaveLength(5);
       for (const resume of resumes.resumes) {
         const sections = resume[lang].sections;
         expect(sections.some(section => section.id === "skills")).toBe(true);
-        expect(sections.filter(section => section.source === "career")).toHaveLength(1);
+        if (resume.id === "customer-service") {
+          expect(sections.filter(section => section.source === "career")).toHaveLength(1);
+          expect(cvSections(resumes, resume, lang).find(section => section.source === "career")?.entries).toEqual(resumes.career[lang]);
+          expect(resume[lang].highlights[0].value).toBe("7");
+        } else {
+          expect(sections.some(section => section.source === "career")).toBe(false);
+          expect(sections.find(section => section.id === "experience")?.entries?.length).toBeGreaterThan(0);
+          expect(JSON.stringify(resume[lang])).not.toMatch(/customer service|atención al cliente|Tata Consultancy Services|TTEC|Alorica|years in bilingual service|años de atención bilingüe/i);
+        }
         const training = sections.find(section => section.source === "training");
         expect(training).toBeDefined();
         for (const id of training!.ids!) expect(resumes.training[lang].some(record => record.id === id)).toBe(true);
@@ -50,6 +59,11 @@ describe("specialty and CV publishing integrity", () => {
       expect(resumes.training[lang].find(record => record.id === "academlo")?.tone).toBe("partial");
       expect(resumes.training[lang].find(record => record.id === "lidetec")?.document).toBe("https://culichi.lat/images/repair/cert-lidetec.jpg");
     }
+  });
+  it("rejects accidentally adding the shared service chronology to a technical PDF", () => {
+    const original = resumes.resumes.find(item => item.id === "electrical")!;
+    const resume = { ...original, es: { ...original.es, sections: [...original.es.sections, { id: "unrelated", title: "Unrelated history", icon: "experience", layout: "timeline", source: "career" }] } };
+    expect(() => cvSections(resumes, resume, "es")).toThrow(/only in its own CV/);
   });
   it("translates specialty descriptions and keeps future electronics training planned", () => {
     for (const profile of profileIdentities) for (const item of specialtiesFor(profile.slug)) {

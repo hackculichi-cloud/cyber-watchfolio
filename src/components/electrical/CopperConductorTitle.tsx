@@ -1,10 +1,11 @@
-import { useEffect, useLayoutEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import "./CopperConductorTitle.css";
 
-/** Copper glyphs carry a brief charge in reading order, including across wrapped lines. */
+/** A slow, pausable dotted current feeds copper letters and returns to the AC supply. */
 export default function CopperConductorTitle({ text }: { text: string }) {
   const { t } = useLanguage();
+  const [paused, setPaused] = useState(false);
   const title = useRef<HTMLSpanElement>(null);
   const source = useRef<SVGSVGElement>(null);
   const wires = useRef<SVGSVGElement>(null);
@@ -62,15 +63,20 @@ export default function CopperConductorTitle({ text }: { text: string }) {
     return () => observer.disconnect();
   }, [text]);
 
-  return <span ref={title} data-copper-title data-in-view="false" className="copper-conductor-title">
+  return <div className="copper-heading min-w-0 max-w-4xl">
+    <h1 className="break-words text-3xl font-bold leading-tight text-foreground sm:text-4xl xl:text-5xl">
+    <span ref={title} data-copper-title data-in-view="false" data-motion-paused={paused} className="copper-conductor-title">
     <span className="sr-only">{text}</span>
     <span aria-hidden="true" data-copper-source className="copper-conductor-source">
-      <svg ref={source} viewBox="0 0 32 32"><circle className="copper-source-disc" cx="16" cy="16" r="12" /><path d="M7 16c3-9 6-9 9 0s6 9 9 0" /></svg>
+      <svg ref={source} viewBox="0 0 40 40">
+        <rect className="copper-source-disc" x="3" y="3" width="34" height="34" rx="6" />
+        <path d="M5 20h5m20 0h5M12 9c6 0 6 7 0 7 6 0 6 8 0 8 6 0 6 7 0 7M28 9c-6 0-6 7 0 7-6 0-6 8 0 8-6 0-6 7 0 7M19 9v22m3-22v22" />
+      </svg>
       <span>{t("AC")}</span>
     </span>
     <svg ref={wires} aria-hidden="true" className="copper-conductor-wires" preserveAspectRatio="none">
-      <g data-copper-feed><path data-feed-path className="copper-wire" /><path data-feed-path className="copper-feed-pulse" pathLength="1" /></g>
-      <g data-copper-return><path data-return-path className="copper-wire" /><path data-return-path className="copper-return-pulse" pathLength="1" /></g>
+      <g data-copper-feed><path data-feed-path className="copper-wire" /><path data-feed-path className="copper-feed-pulse" /></g>
+      <g data-copper-return><path data-return-path className="copper-wire" /><path data-return-path className="copper-return-pulse" /></g>
     </svg>
     <span key={text} aria-hidden="true" data-electron-flow className="copper-conductor-visual">
       {words.map((word, wordIndex) => /\s/.test(word) ? word : <span key={wordIndex} className="copper-conductor-word">
@@ -78,9 +84,14 @@ export default function CopperConductorTitle({ text }: { text: string }) {
           const index = glyphIndex++;
           const isLoad = wordIndex === loadWord && letter.toLowerCase() === "i";
           const glyph = isLoad ? "ı" : letter;
-          const style = { "--electron-delay": `${260 + Math.round(index * 3000 / Math.max(1, glyphCount - 1))}ms` } as CSSProperties;
+          const style = { "--electron-delay": `${600 + Math.round(index * 6000 / Math.max(1, glyphCount - 1))}ms` } as CSSProperties;
           return <span key={letterIndex} className="copper-conductor-glyph" style={style}>
-            {glyph}<span className="copper-electron" data-electron-terminal={index === glyphCount - 1 ? "true" : undefined}>{glyph}</span>
+            {glyph}<svg className="copper-glyph-strands" aria-hidden="true">
+              <text x="0" y="1em" className="copper-cable-edge">{glyph}</text>
+              <text x="0" y="1em" className="copper-cable-core">{glyph}</text>
+              <text x="0" y="1em" className="copper-cable-shine">{glyph}</text>
+              <text x="0" y="1em" className="copper-electron" data-electron-terminal={index === glyphCount - 1 ? "true" : undefined}>{glyph}</text>
+            </svg>
             {isLoad && <span data-copper-load className="copper-conductor-load"><svg viewBox="0 0 24 32">
               <path data-copper-bulb-glow className="copper-bulb-light" d="M12 2a8 8 0 0 0-6 13l2 3v4h8v-4l2-3a8 8 0 0 0-6-13Z" />
               <path className="copper-bulb-outline" d="M12 2a8 8 0 0 0-6 13l2 3v4h8v-4l2-3a8 8 0 0 0-6-13ZM8 25h8m-7 3h6M8 10l4 4 4-4m-4 4v7" />
@@ -89,5 +100,10 @@ export default function CopperConductorTitle({ text }: { text: string }) {
         })}
       </span>)}
     </span>
-  </span>;
+    </span>
+    </h1>
+    <button type="button" data-copper-motion aria-pressed={paused} aria-label={t(paused ? "Resume energy flow" : "Pause energy flow")} title={t(paused ? "Resume energy flow" : "Pause energy flow")} onClick={() => setPaused(value => !value)} className="copper-motion-control">
+      <svg viewBox="0 0 24 24" aria-hidden="true">{paused ? <path d="m9 5 11 7-11 7Z" /> : <path d="M8 5v14m8-14v14" />}</svg>
+    </button>
+  </div>;
 }

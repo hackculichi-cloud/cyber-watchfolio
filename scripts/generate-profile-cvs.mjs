@@ -46,6 +46,9 @@ try {
       if (count !== expectedPages) throw new Error(`${stem}: expected ${expectedPages} page(s), got ${count}`);
       const normalize = value => value.replace(/-\s+/g, "-").replace(/\s+/g, " ").trim();
       const text = normalize(execFileSync("pdftotext", ["-raw", pdf, "-"], { encoding: "utf8" }));
+      if (resume.id !== "customer-service" && /customer service|call cent(?:er|re)|atención al cliente|Tata Consultancy Services|TTEC|Alorica|years in bilingual service|años de atención bilingüe/i.test(text)) {
+        throw new Error(`${stem}: unrelated customer-service experience in the generated PDF`);
+      }
       for (const section of cvSections(data, resume, lang)) {
         for (const content of [section.title, ...section.entries.flatMap(entry => [entry.title, entry.body, entry.status].filter(Boolean))]) {
           if (!text.includes(normalize(content))) throw new Error(`${stem}: missing selectable content: ${content}`);
@@ -68,5 +71,5 @@ try {
     if (index < 0) manifest.push(record); else manifest[index] = record;
   }
   await writeFile(resolve(root, "src/data/cvManifest.json"), JSON.stringify(manifest, null, 2) + "\n");
-  await writeFile(resolve(out, "README.md"), "One general CV and six role-specific CVs, each in ES/EN with measured multi-page layouts. Page counts are recorded per language in cvManifest.json. Generated from src/data/resumes.json by scripts/generate-profile-cvs.mjs and scripts/cv-layout.mjs. Original area backgrounds and Culichi artwork are embedded offline. Preview PNGs are rasterizations of every actual PDF page. Uploaded electrical originals and their archived mascot copy are preserved. No qualifications, employment dates or performance metrics are inferred.\n");
+  await writeFile(resolve(out, "README.md"), "One general CV and six role-specific CVs, each in ES/EN with measured multi-page layouts. Page counts are recorded per language in cvManifest.json. Generated from src/data/resumes.json by scripts/generate-profile-cvs.mjs and scripts/cv-layout.mjs. Original area backgrounds and Culichi artwork are embedded offline. Preview PNGs are rasterizations of every actual PDF page. Uploaded electrical originals and their archived mascot copy are preserved. Customer-service employment appears only in its dedicated CV; technical experience uses relevant documented work and course practice. No qualifications, employment dates or performance metrics are inferred.\n");
 } finally { await browser.close(); }
