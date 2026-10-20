@@ -9,13 +9,14 @@ import CertificateMockup from "./CertificateMockup";
 import TrainingProviderBadge from "./TrainingProviderBadge";
 
 /** Documents are not treated as credentials until the owner confirms them. */
-const ProfileCertificates = ({ profile, courseContent, headerContent }: { profile: ProfileSlug; courseContent?: Record<string, ReactNode>; headerContent?: ReactNode }) => {
+const ProfileCertificates = ({ profile, courseContent, headerContent, featuredId }: { profile: ProfileSlug; courseContent?: Record<string, ReactNode>; headerContent?: ReactNode; featuredId?: string }) => {
   const { t } = useLanguage();
   const records = certifications[profile] ?? [];
   return <section id={profile === "electrical" ? "certificate" : "certifications"} className="container mx-auto scroll-mt-32 px-4 py-16" data-certifications={profile}>
     <SectionHeading eyebrow={t("Certifications")} title={t("Certificates and pending documents")} description={t("Confirmed training and the documents still to be added. In-progress courses are not completed certifications.")} />
     {headerContent}
-    {records.length ? <div className={`grid gap-6 ${courseContent ? "" : "md:grid-cols-2"}`}>{records.map(record => <article key={record.id} data-certificate={record.id} className="rounded-xl border border-border bg-surface/50 p-5 sm:p-6">
+    {records.length ? <div className={`grid gap-6 ${courseContent ? "" : "md:grid-cols-2"}`}>{records.map(record => <article key={record.id} id={`certificate-${record.id}`} tabIndex={-1} data-certificate={record.id} className={`scroll-mt-64 rounded-xl border p-5 outline-none focus-visible:ring-2 focus-visible:ring-primary sm:p-6 ${record.id === featuredId ? "border-primary/40 bg-primary/5" : "border-border bg-surface/50"}`}>
+      {featuredId && <p data-training-role={record.id === featuredId ? "main" : "complementary"} className={`mb-4 text-sm font-bold ${record.id === featuredId ? "text-primary" : "text-muted-foreground"}`}>{t(record.id === featuredId ? "Main training" : "Complementary courses")}</p>}
       <div className={courseContent ? "grid gap-6 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]" : ""}>
       {courseContent && <CertificateMockup record={record} />}
       <div className="min-w-0">

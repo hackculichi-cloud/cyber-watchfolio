@@ -4,8 +4,8 @@ import type { TrainingProviderId } from "./trainingProviders";
 export type CertificationRecord = { id: string; title: string; provider: string; providerId?: TrainingProviderId; training: string; document: string; href?: string };
 export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>> = {
   electrical: [
-    { id: "electrical-linkedin", title: "Electrical Systems: Reading Drawings and Schematics", provider: "LinkedIn Learning", providerId: "linkedin-learning", training: "Completed", document: "Certificate confirmed; file pending upload." },
     { id: "electrical-conocer", title: "Electrical Fundamentals & Industrial Electricity", provider: "Universidad Internacional · RED CONOCER", providerId: "universidad-internacional", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
+    { id: "electrical-linkedin", title: "Electrical Systems: Reading Drawings and Schematics", provider: "LinkedIn Learning", providerId: "linkedin-learning", training: "Completed", document: "Certificate confirmed; file pending upload." },
     { id: "electrical-udemy", title: "Basic Electrical Installations", provider: "Udemy", providerId: "udemy", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
     { id: "electrical-measurements", title: "Electrical Measurements", provider: "Udemy", providerId: "udemy", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
   ],

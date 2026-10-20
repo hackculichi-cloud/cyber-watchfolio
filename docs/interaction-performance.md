@@ -44,3 +44,9 @@ Los totales de `RasterTask` suman trabajo de varios hilos; no son tiempo de espe
 | 3 | 10861.2 ms | 912.0 ms | 44 / 113 | 9 / 97 |
 
 La mediana del trabajo de rasterizado pasa de **11 767,1 ms a 787,1 ms**, y la mediana del trabajo `Paint` de **471,6 ms a 183,9 ms**. Los intervalos entre callbacks mayores de 50 ms pasan de una mediana de **44 a 9**. La duración de tareas del proceso principal (`TaskDuration`) pasa de una mediana de **4,095 s a 1,622 s**. Las pausas restantes incluyen el montaje de pestañas y las imágenes bajo CPU limitada; estos resultados no afirman ausencia de lag en todos los equipos.
+
+## Circuito junto al título y resumen reorganizado
+
+La nueva cabecera eléctrica incluye un SVG de 360×120, sin imágenes externas ni nuevas dependencias. El movimiento dura 3,6 segundos por montaje: dos puntos cambian de sentido en línea y neutro. Solo anima `transform`/`opacity`, usa `IntersectionObserver` para pausar fuera de pantalla y queda estático con `prefers-reduced-motion`. No se reintroduce `panel-glow` en el artículo completo.
+
+Las regresiones comprueban la apertura con fuentes pendientes y CPU limitada, ausencia de sombra grande, contenido de pestañas inactivas desmontado, pausa fuera de pantalla y final de la animación. Los resultados raster de la tabla anterior corresponden al resumen anterior, no a una medición de esta nueva composición.

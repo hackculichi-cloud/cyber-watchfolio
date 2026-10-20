@@ -13,9 +13,10 @@ function HistoryControls() {
 
 beforeEach(() => {
   localStorage.setItem("portfolio-lang", "en");
+  vi.stubGlobal("IntersectionObserver", class { observe() {} unobserve() {} disconnect() {} });
   Object.defineProperty(HTMLElement.prototype, "scrollIntoView", { configurable: true, writable: true, value: vi.fn() });
 });
-afterEach(() => { cleanup(); localStorage.clear(); vi.restoreAllMocks(); });
+afterEach(() => { cleanup(); localStorage.clear(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 
 function renderExplorer(hash = "specialties") {
   return render(<MemoryRouter initialEntries={[`/electrical#${hash}`]}><LanguageProvider>
@@ -65,9 +66,15 @@ describe("course knowledge and documented practice", () => {
     expect(screen.getByText("Electrical load calculations")).toBeVisible();
     const practice = document.querySelector("[data-area-practices]")! as HTMLElement;
     expect(within(practice).getByText("Residential Outlet Replacement — Photo Record")).toBeInTheDocument();
-    fireEvent.click(document.querySelector('[data-area-courses] summary')!);
+    const main = document.querySelector('[data-main-electrical-training]')!;
+    const complementary = document.querySelector('[data-area-courses]')!;
+    expect(main).toHaveTextContent('Universidad Internacional · RED CONOCER');
+    expect(main.compareDocumentPosition(complementary) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(complementary).not.toHaveTextContent('Electrical Fundamentals & Industrial Electricity');
+    expect(document.querySelector('[data-complementary-course="electrical-linkedin"]')).toHaveTextContent('Completed');
+    expect(document.querySelector('[data-complementary-course="electrical-udemy-measurements"]')).toHaveTextContent('In progress');
     fireEvent.click(screen.getAllByText("View course details")[0]);
-    expect(onOpen).toHaveBeenLastCalledWith("certificate");
+    expect(onOpen).toHaveBeenLastCalledWith("certificate", "electrical-linkedin");
     fireEvent.click(screen.getByText("View practices and evidence"));
     expect(onOpen).toHaveBeenLastCalledWith("projects");
   });
