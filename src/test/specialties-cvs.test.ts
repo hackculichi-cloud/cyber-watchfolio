@@ -65,6 +65,18 @@ describe("specialty and CV publishing integrity", () => {
     const resume = { ...original, es: { ...original.es, sections: [...original.es.sections, { id: "unrelated", title: "Unrelated history", icon: "experience", layout: "timeline", source: "career" }] } };
     expect(() => cvSections(resumes, resume, "es")).toThrow(/only in its own CV/);
   });
+  it("targets relevant roles in both languages and leads applications with evidenced work", () => {
+    for (const resume of resumes.resumes) for (const lang of ["es", "en"] as const) {
+      expect(resume[lang].targetRoles).toHaveLength(3);
+      expect(resume[lang].sections[0].id).toBe(resume.id === "general" ? "projects" : "experience");
+      expect(translate(resume.en.summary, "es")).toBe(resume.es.summary);
+    }
+    const electrical = resumes.resumes.find(resume => resume.id === "electrical")!;
+    expect(electrical.es.targetRoles).toContain("Ayudante electricista");
+    expect(electrical.es.targetRoles.join(" ")).not.toMatch(/ingeniero|certificado/i);
+    expect(electrical.es.sections.find(section => section.source === "training")?.ids?.[0]).toBe("electrical-conocer");
+    expect(resumes.training.es.find(record => record.id === "electrical-conocer")?.tone).toBe("progress");
+  });
   it("translates specialty descriptions and keeps future electronics training planned", () => {
     for (const profile of profileIdentities) for (const item of specialtiesFor(profile.slug)) {
       expect(translate(item.summary, "es")).not.toBe(item.summary);

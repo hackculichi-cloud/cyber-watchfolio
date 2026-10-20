@@ -2,17 +2,17 @@
   {
     "id": "general",
     "profile": "home",
-    "summary": "I build web interfaces and automate reports, document educational cybersecurity investigations, and apply electrical, electronics and smartphone-repair skills through documented work and course practice.",
-    "pageCount": 5,
+    "summary": "I build responsive web interfaces and automate Excel reports with Python. My portfolio also includes three educational security investigations, documented residential electrical work and three iPhone repairs. I bring a practical approach: organize the task, document the process and present evidence of the result.",
+    "pageCount": 6,
     "pageCounts": {
       "en": 5,
-      "es": 5
+      "es": 6
     }
   },
   {
     "id": "cybersecurity",
     "profile": "cybersecurity",
-    "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Python reporting projects and AWS Cloud Practitioner preparation complement the SOC Tier 1 learning path.",
+    "summary": "Entry-level cybersecurity candidate with three documented LetsDefend investigations covering VPN authentication, RDP brute force and phishing. I correlate events, organize evidence and write investigation findings and response playbooks. I am studying Linux and preparing for the AWS Cloud Practitioner exam, with Python reporting projects as complementary practice.",
     "pageCount": 3,
     "pageCounts": {
       "en": 3,
@@ -22,7 +22,7 @@
   {
     "id": "software",
     "profile": "development",
-    "summary": "Frontend development with React, Next.js and TypeScript, supported by public GitHub projects and Python automation for Excel reports. Partial software development studies at Academlo.",
+    "summary": "I build responsive interfaces with React, Next.js and TypeScript, and automate Excel reporting with Python. Nine public projects show reusable components, API integration, browser storage and bilingual navigation. I apply Git/GitHub workflows, TypeScript checks and browser validation in my portfolio, supported by partial software development studies at Academlo.",
     "pageCount": 3,
     "pageCounts": {
       "en": 3,
@@ -32,17 +32,17 @@
   {
     "id": "electrical",
     "profile": "electrical",
-    "summary": "Residential electrical maintenance with documented outlet, switch and ceiling-light replacements, polarity and protective-earth checks. Complementary training in AC/DC measurement, industrial electricity and control.",
-    "pageCount": 2,
+    "summary": "I have completed documented residential outlet, switch and ceiling-light replacements, plus installation-board and float-switch course practice. I interpret electrical drawings and practice AC/DC measurement and circuit checks. My main training is ongoing at Universidad Internacional · RED CONOCER, reinforced by Udemy and LinkedIn Learning.",
+    "pageCount": 3,
     "pageCounts": {
-      "en": 2,
-      "es": 2
+      "en": 3,
+      "es": 3
     }
   },
   {
     "id": "electronics",
     "profile": "electronics",
-    "summary": "Currently studying basic electronics at Escuela Tecnológica de Occidente, with additional smartphone repair coursework at LIDETEC.",
+    "summary": "I am studying Basic Electronics at Escuela Tecnológica de Occidente, with course practice in component identification, instrument use, circuit interpretation and diagnosis. LIDETEC smartphone-repair coursework and three documented iPhone interventions complement this training. I am seeking an assistant or laboratory trainee opportunity while I develop my electronics skills.",
     "pageCount": 2,
     "pageCounts": {
       "en": 2,
@@ -52,7 +52,7 @@
   {
     "id": "repair",
     "profile": "repair",
-    "summary": "LIDETEC smartphone repair course participation with three documented iPhone interventions and confirmed post-repair checks.",
+    "summary": "I have completed three documented iPhone repairs: batteries on the 12 Pro and 14 Pro, and a display on the XR. I record each case and confirm post-repair functional checks. My LIDETEC participation certificate supports practical coursework in diagnosis, disassembly, measurement and repair; I am also studying Basic Electronics at ETO.",
     "pageCount": 2,
     "pageCounts": {
       "en": 2,
@@ -62,7 +62,7 @@
   {
     "id": "customer-service",
     "profile": "customer-service",
-    "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. Experience at Tata Consultancy Services, TTEC, Alorica and TP, including SLA follow-up, incident escalation and mobile-device troubleshooting.",
+    "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations at TCS, TTEC, Alorica and TP. I currently supervise operations, follow SLA commitments and coordinate incident escalation. My experience combines English/Spanish communication, mobile-device troubleshooting, root-cause analysis and technical training.",
     "pageCount": 3,
     "pageCounts": {
       "en": 3,

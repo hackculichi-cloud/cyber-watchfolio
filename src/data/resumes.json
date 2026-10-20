@@ -12,75 +12,115 @@
     "en": [
       {
         "title": "Operations Supervisor",
-        "body": "Supervise daily operations, follow SLA commitments and incident response times, apply escalation protocols and monitor quality metrics and time management.",
+        "body": "",
         "organization": "Tata Consultancy Services (TCS)",
         "period": "Oct 2025 — present",
-        "location": "San Pedro Tlaquepaque, Jalisco · Hybrid"
+        "location": "San Pedro Tlaquepaque, Jalisco · Hybrid",
+        "bullets": [
+          "Follow SLA commitments, incident response times and escalation protocols.",
+          "Monitor quality metrics and time management across daily operations."
+        ]
       },
       {
         "title": "Technical Support Analyst · Energy Operations",
-        "body": "Monitored technical queues involving network issues, service outages and system-impact incidents. Worked with billing services and telecommunications billing.",
+        "body": "",
         "organization": "Tata Consultancy Services (TCS)",
         "period": "Nov 2023 — Oct 2025",
-        "location": "Guadalajara, Jalisco"
+        "location": "Guadalajara, Jalisco",
+        "bullets": [
+          "Monitored technical queues for network issues, outages and system-impact incidents.",
+          "Worked with billing services and telecommunications billing."
+        ]
       },
       {
         "title": "Logistics Operations Analyst",
-        "body": "Coordinated business-critical deliveries using internal ticketing and tracking systems, maintaining follow-up across logistics operations.",
+        "body": "",
         "organization": "Alorica",
         "period": "Dec 2022 — Aug 2023",
-        "location": "Guadalajara, Jalisco · On-site"
+        "location": "Guadalajara, Jalisco · On-site",
+        "bullets": [
+          "Coordinated business-critical deliveries with internal tickets and tracking systems.",
+          "Maintained follow-up across logistics operations."
+        ]
       },
       {
         "title": "Training Technician / Tier 2 Technical Support",
-        "body": "Provided Tier 2 support for mobile devices, investigated hardware and software incidents through root-cause analysis, and delivered technical training.",
+        "body": "",
         "organization": "TTEC",
         "period": "Apr 2019 — Oct 2022",
-        "location": "Guadalajara, Jalisco · Hybrid"
+        "location": "Guadalajara, Jalisco · Hybrid",
+        "bullets": [
+          "Investigated mobile-device hardware/software incidents through root-cause analysis.",
+          "Provided Tier 2 support and delivered technical training."
+        ]
       },
       {
         "title": "Customer Support & Sales Representative",
-        "body": "Provided bilingual customer and billing support in high-volume environments, with experience in new-hire and sales training.",
+        "body": "",
         "organization": "TP",
         "period": "Aug 2017 — May 2018",
-        "location": "Guadalajara, Jalisco · On-site"
+        "location": "Guadalajara, Jalisco · On-site",
+        "bullets": [
+          "Handled bilingual customer and billing support in high-volume environments.",
+          "Contributed to new-hire and sales training."
+        ]
       }
     ],
     "es": [
       {
         "title": "Supervisor de operaciones",
-        "body": "Superviso la operación diaria, doy seguimiento a SLA y tiempos de respuesta a incidentes, aplico protocolos de escalamiento y reviso métricas de calidad y gestión del tiempo.",
+        "body": "",
         "organization": "Tata Consultancy Services (TCS)",
         "period": "Oct 2025 — actualidad",
-        "location": "San Pedro Tlaquepaque, Jalisco · Híbrido"
+        "location": "San Pedro Tlaquepaque, Jalisco · Híbrido",
+        "bullets": [
+          "Doy seguimiento a compromisos de SLA, tiempos de respuesta y protocolos de escalamiento.",
+          "Superviso métricas de calidad y gestión del tiempo en la operación diaria."
+        ]
       },
       {
         "title": "Analista de soporte técnico · Operaciones de energía",
-        "body": "Monitoreé colas técnicas de problemas de red, interrupciones de servicio e incidentes de sistemas. Trabajé con servicios de facturación y facturación de telecomunicaciones.",
+        "body": "",
         "organization": "Tata Consultancy Services (TCS)",
         "period": "Nov 2023 — Oct 2025",
-        "location": "Guadalajara, Jalisco"
+        "location": "Guadalajara, Jalisco",
+        "bullets": [
+          "Monitoreé colas técnicas de fallas de red, interrupciones e incidentes con impacto en sistemas.",
+          "Trabajé con servicios de facturación y facturación de telecomunicaciones."
+        ]
       },
       {
         "title": "Analista de operaciones logísticas",
-        "body": "Coordiné entregas críticas para la operación mediante sistemas internos de tickets y rastreo, manteniendo el seguimiento de las actividades logísticas.",
+        "body": "",
         "organization": "Alorica",
         "period": "Dic 2022 — Ago 2023",
-        "location": "Guadalajara, Jalisco · Presencial"
+        "location": "Guadalajara, Jalisco · Presencial",
+        "bullets": [
+          "Coordiné entregas críticas para el negocio con tickets y sistemas internos de seguimiento.",
+          "Mantuve el seguimiento de las operaciones logísticas."
+        ]
       },
       {
         "title": "Técnico de capacitación / Soporte técnico nivel 2",
-        "body": "Brindé soporte de nivel 2 para dispositivos móviles, investigué incidentes de hardware y software mediante análisis de causa raíz e impartí capacitación técnica.",
+        "body": "",
         "organization": "TTEC",
         "period": "Abr 2019 — Oct 2022",
-        "location": "Guadalajara, Jalisco · Híbrido"
+        "location": "Guadalajara, Jalisco · Híbrido",
+        "bullets": [
+          "Investigué incidentes de hardware y software de dispositivos móviles mediante análisis de causa raíz.",
+          "Brindé soporte de nivel 2 e impartí capacitación técnica."
+        ]
       },
       {
         "title": "Representante de atención al cliente y ventas",
-        "body": "Brindé atención bilingüe al cliente y soporte de facturación en entornos de alto volumen, con experiencia en capacitación de nuevos ingresos y ventas.",
+        "body": "",
         "organization": "TP",
         "period": "Ago 2017 — May 2018",
-        "location": "Guadalajara, Jalisco · Presencial"
+        "location": "Guadalajara, Jalisco · Presencial",
+        "bullets": [
+          "Atendí soporte bilingüe al cliente y de facturación en entornos de alto volumen.",
+          "Participé en capacitación de nuevos ingresos y ventas."
+        ]
       }
     ]
   },
@@ -123,7 +163,7 @@
         "monogram": "UI",
         "url": "https://www.facebook.com/uinternacionaloficial/?locale=es_LA",
         "title": "Electrical Fundamentals & Industrial Electricity",
-        "body": "Ongoing residential and industrial training: circuits, installation, control and motors. Certificate pending program completion.",
+        "body": "Main program in progress: electrical foundations; materials; residential installations; control; industrial motors; maintenance and diagnosis; renewable energy; final project. I connect the topics with installation-board, float-switch and residential practice.",
         "status": "In progress",
         "tone": "progress"
       },
@@ -215,7 +255,7 @@
         "monogram": "UI",
         "url": "https://www.facebook.com/uinternacionaloficial/?locale=es_LA",
         "title": "Fundamentos eléctricos y electricidad industrial",
-        "body": "Formación residencial e industrial en curso: circuitos, instalaciones, control y motores. Certificado pendiente de finalizar el programa.",
+        "body": "Programa principal en curso: fundamentos eléctricos; materiales; instalaciones residenciales; control; motores industriales; mantenimiento y diagnóstico; energías renovables; proyecto final. Relaciono los temas con prácticas de tablero, electronivel y trabajos residenciales.",
         "status": "En curso",
         "tone": "progress"
       },
@@ -275,12 +315,144 @@
       "id": "general",
       "profile": "home",
       "en": {
-        "role": "Technical Portfolio | Software, Cybersecurity & Hands-on Practice",
-        "summary": "I build web interfaces and automate reports, document educational cybersecurity investigations, and apply electrical, electronics and smartphone-repair skills through documented work and course practice.",
+        "role": "Junior Technical Profile | Web Development & Practical Projects",
+        "summary": "I build responsive web interfaces and automate Excel reports with Python. My portfolio also includes three educational security investigations, documented residential electrical work and three iPhone repairs. I bring a practical approach: organize the task, document the process and present evidence of the result.",
         "sections": [
           {
+            "id": "projects",
+            "title": "Selected development projects",
+            "icon": "projects",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "culichi.lat",
+                "body": "Bilingual React/TypeScript portfolio with accessible navigation and documented work.",
+                "tags": [
+                  "React",
+                  "TypeScript",
+                  "Tailwind",
+                  "Vite"
+                ],
+                "url": "https://culichi.lat",
+                "linkLabel": "View portfolio",
+                "bullets": [
+                  "Built reusable components, responsive layouts and local galleries.",
+                  "Integrated localized PDF generation and a GitHub pull-request / Vercel delivery workflow."
+                ]
+              },
+              {
+                "title": "Culichi-Metrics",
+                "body": "Python automation for daily and team Excel KPI reports.",
+                "tags": [
+                  "Python",
+                  "pandas",
+                  "XlsxWriter",
+                  "Excel"
+                ],
+                "url": "https://github.com/ByCulichi/Culichi-Metrics",
+                "bullets": [
+                  "Processed tabular data with pandas and generated workbooks with XlsxWriter.",
+                  "Applied formatting, conditional rules and charts to present the report."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "experience",
+            "title": "Hands-on experience & educational investigations",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "VPN authentication investigation",
+                "body": "Educational LetsDefend investigation of VPN authentication events.",
+                "status": "Educational lab",
+                "tone": "progress",
+                "tags": [
+                  "VPN",
+                  "Log analysis"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Reviewed logs and correlated the sequence of activity.",
+                  "Organized evidence and documented the investigation verdict."
+                ]
+              },
+              {
+                "title": "RDP brute-force investigation",
+                "body": "Educational investigation of repeated RDP authentication activity.",
+                "status": "Educational lab",
+                "tone": "progress",
+                "tags": [
+                  "RDP",
+                  "Windows",
+                  "Playbooks"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Examined authentication events and organized the evidence.",
+                  "Documented investigation steps and response guidance."
+                ]
+              },
+              {
+                "title": "Phishing analysis",
+                "body": "Educational analysis of a suspicious email.",
+                "status": "Educational lab",
+                "tone": "progress",
+                "tags": [
+                  "Email analysis",
+                  "Documentation"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Reviewed suspicious-email indicators and recorded findings.",
+                  "Documented evidence and a reusable response playbook."
+                ]
+              },
+              {
+                "title": "Residential outlets, switch & lighting",
+                "body": "Residential work: two documented outlet-replacement cases, a switch replacement and two ceiling luminaires.",
+                "status": "Completed work",
+                "tone": "complete",
+                "tags": [
+                  "Residential",
+                  "Measurement",
+                  "Documentation"
+                ],
+                "url": "https://culichi.lat/electrical#projects",
+                "bullets": [
+                  "Recorded the initial condition, replacement, mounting and final checks with original photographs.",
+                  "Confirmed polarity and protective-earth checks; one case includes a recorded 119.3 V AC measurement."
+                ]
+              },
+              {
+                "title": "Installation board & float-switch control",
+                "body": "Course practice in residential installation and float-switch control.",
+                "status": "Course practice",
+                "tone": "progress",
+                "tags": [
+                  "Wiring",
+                  "Control"
+                ],
+                "url": "https://culichi.lat/electrical#projects",
+                "bullets": [
+                  "Assembled and wired an installation board, documented with original photographs.",
+                  "Recorded a video demonstration of float-switch operation. START/STOP contactor practice remains planned."
+                ]
+              },
+              {
+                "title": "Three completed iPhone interventions",
+                "body": "iPhone 12 Pro / 14 Pro batteries and iPhone XR screen. Confirmed checks: power, charging, touch, cameras, audio, Face ID and battery settings. Original images are grouped by case.",
+                "status": "Documented practice",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              }
+            ],
+            "intro": "Documented technical work and educational practice across the portfolio. Software projects are presented separately above."
+          },
+          {
             "id": "skills",
-            "title": "Skills & capabilities",
+            "title": "Skills I can contribute",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -331,34 +503,11 @@
             ]
           },
           {
-            "id": "projects",
-            "title": "Software projects & automation",
+            "id": "additional-projects",
+            "title": "Additional web projects",
             "icon": "projects",
             "layout": "grid",
             "entries": [
-              {
-                "title": "culichi.lat",
-                "body": "Bilingual React/TypeScript portfolio with reusable components, accessible navigation, local galleries and localized PDF generation. GitHub pull requests and Vercel delivery.",
-                "tags": [
-                  "React",
-                  "TypeScript",
-                  "Tailwind",
-                  "Vite"
-                ],
-                "url": "https://culichi.lat",
-                "linkLabel": "View portfolio"
-              },
-              {
-                "title": "Culichi-Metrics",
-                "body": "Python automation for daily and team Excel KPI reports, including formatting, conditional rules and charts.",
-                "tags": [
-                  "Python",
-                  "pandas",
-                  "XlsxWriter",
-                  "Excel"
-                ],
-                "url": "https://github.com/ByCulichi/Culichi-Metrics"
-              },
               {
                 "title": "Mirror",
                 "body": "Responsive music-player interface built with reusable components and a dark visual system.",
@@ -426,81 +575,8 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Hands-on experience & educational investigations",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "VPN authentication investigation",
-                "body": "Reviewed authentication events and correlated the sequence of activity to support an educational investigation verdict.",
-                "status": "Educational lab",
-                "tone": "progress",
-                "tags": [
-                  "VPN",
-                  "Log analysis"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "RDP brute-force investigation",
-                "body": "Examined repeated authentication activity, organized evidence and documented investigation steps and response guidance.",
-                "status": "Educational lab",
-                "tone": "progress",
-                "tags": [
-                  "RDP",
-                  "Windows",
-                  "Playbooks"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "Phishing analysis",
-                "body": "Analyzed suspicious-email indicators and documented evidence, findings and a reusable response playbook.",
-                "status": "Educational lab",
-                "tone": "progress",
-                "tags": [
-                  "Email analysis",
-                  "Documentation"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "Residential outlets, switch & lighting",
-                "body": "Two documented outlet-replacement cases, switch replacement and two ceiling luminaires. Confirmed polarity and protective-earth checks, with original photographs and a recorded 119.3 V AC measurement.",
-                "status": "Completed work",
-                "tone": "complete",
-                "tags": [
-                  "Residential",
-                  "Measurement",
-                  "Documentation"
-                ],
-                "url": "https://culichi.lat/electrical"
-              },
-              {
-                "title": "Installation board & float-switch control",
-                "body": "Course practice assembling and wiring an installation board, with photographs and a float-switch video demonstration. START/STOP contactor practice remains planned.",
-                "status": "Course practice",
-                "tone": "progress",
-                "tags": [
-                  "Wiring",
-                  "Control"
-                ],
-                "url": "https://culichi.lat/electrical"
-              },
-              {
-                "title": "Three completed iPhone interventions",
-                "body": "iPhone 12 Pro / 14 Pro batteries and iPhone XR screen. Confirmed checks: power, charging, touch, cameras, audio, Face ID and battery settings. Original images are grouped by case.",
-                "status": "Documented practice",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              }
-            ],
-            "intro": "Documented technical work and educational practice across the portfolio. Software projects are presented separately above."
-          },
-          {
             "id": "certifications",
-            "title": "Certifications & education",
+            "title": "Education & credentials",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
@@ -533,15 +609,152 @@
             "value": "Practice",
             "label": "Documented portfolio"
           }
+        ],
+        "targetRoles": [
+          "Junior web development",
+          "Python reporting automation",
+          "Technical assistant / trainee"
         ]
       },
       "es": {
-        "role": "Portafolio técnico | Software, ciberseguridad y práctica",
-        "summary": "Desarrollo interfaces web y automatizo reportes, documento investigaciones educativas de ciberseguridad y aplico conocimientos de electricidad, electrónica y reparación de celulares en trabajos y prácticas documentados.",
+        "role": "Perfil técnico junior | Desarrollo web y proyectos prácticos",
+        "summary": "Desarrollo interfaces web responsivas y automatizo reportes de Excel con Python. Mi portafolio también incluye tres investigaciones educativas de seguridad, trabajos eléctricos residenciales documentados y tres reparaciones de iPhone. Aporto un enfoque práctico: organizar el trabajo, documentar el proceso y presentar evidencias del resultado.",
         "sections": [
           {
+            "id": "projects",
+            "title": "Proyectos destacados de desarrollo",
+            "icon": "projects",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "culichi.lat",
+                "body": "Portafolio bilingüe en React/TypeScript con navegación accesible y trabajos documentados.",
+                "tags": [
+                  "React",
+                  "TypeScript",
+                  "Tailwind",
+                  "Vite"
+                ],
+                "url": "https://culichi.lat",
+                "linkLabel": "Ver portafolio",
+                "bullets": [
+                  "Desarrollé componentes reutilizables, diseños responsivos y galerías locales.",
+                  "Integré generación de PDF por idioma y un flujo de entrega con pull requests de GitHub y Vercel."
+                ]
+              },
+              {
+                "title": "Culichi-Metrics",
+                "body": "Automatización en Python para reportes de KPI diarios y por equipo en Excel.",
+                "tags": [
+                  "Python",
+                  "pandas",
+                  "XlsxWriter",
+                  "Excel"
+                ],
+                "url": "https://github.com/ByCulichi/Culichi-Metrics",
+                "bullets": [
+                  "Procesé datos tabulares con pandas y generé libros de Excel con XlsxWriter.",
+                  "Apliqué formato, reglas condicionales y gráficas para presentar el reporte."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "experience",
+            "title": "Experiencia práctica e investigaciones educativas",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "Investigación de autenticación VPN",
+                "body": "Investigación educativa de LetsDefend sobre eventos de autenticación VPN.",
+                "status": "Laboratorio educativo",
+                "tone": "progress",
+                "tags": [
+                  "VPN",
+                  "Análisis de registros"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Revisé registros y correlacioné la secuencia de actividad.",
+                  "Organicé evidencias y documenté el veredicto de la investigación."
+                ]
+              },
+              {
+                "title": "Investigación de fuerza bruta por RDP",
+                "body": "Investigación educativa de actividad repetida de autenticación RDP.",
+                "status": "Laboratorio educativo",
+                "tone": "progress",
+                "tags": [
+                  "RDP",
+                  "Windows",
+                  "Playbooks"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Examiné eventos de autenticación y organicé la evidencia.",
+                  "Documenté los pasos de investigación y las recomendaciones de respuesta."
+                ]
+              },
+              {
+                "title": "Análisis de phishing",
+                "body": "Análisis educativo de un correo sospechoso.",
+                "status": "Laboratorio educativo",
+                "tone": "progress",
+                "tags": [
+                  "Análisis de correo",
+                  "Documentación"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Revisé los indicadores del correo y registré los hallazgos.",
+                  "Documenté la evidencia y un playbook de respuesta reutilizable."
+                ]
+              },
+              {
+                "title": "Contactos, apagador e iluminación residencial",
+                "body": "Trabajo residencial: dos casos documentados de cambio de contactos, un apagador y dos luminarias de techo.",
+                "status": "Trabajo realizado",
+                "tone": "complete",
+                "tags": [
+                  "Residencial",
+                  "Medición",
+                  "Documentación"
+                ],
+                "url": "https://culichi.lat/electrical#projects",
+                "bullets": [
+                  "Registré el estado inicial, reemplazo, montaje y comprobaciones finales con fotografías originales.",
+                  "Confirmé comprobaciones de polaridad y tierra; un caso incluye una medición registrada de 119.3 V CA."
+                ]
+              },
+              {
+                "title": "Tablero de instalación y control con electronivel",
+                "body": "Prácticas de curso de instalación residencial y control por electronivel.",
+                "status": "Práctica de curso",
+                "tone": "progress",
+                "tags": [
+                  "Cableado",
+                  "Control"
+                ],
+                "url": "https://culichi.lat/electrical#projects",
+                "bullets": [
+                  "Armé y cableé un tablero de instalación, documentado con fotografías originales.",
+                  "Registré una demostración en video del funcionamiento del electronivel. La práctica START/STOP con contactor sigue planeada."
+                ]
+              },
+              {
+                "title": "Tres intervenciones de iPhone realizadas",
+                "body": "Baterías de iPhone 12 Pro / 14 Pro y pantalla de iPhone XR. Pruebas confirmadas: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes. Imágenes originales agrupadas por caso.",
+                "status": "Práctica documentada",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              }
+            ],
+            "intro": "Trabajos técnicos documentados y prácticas educativas del portafolio. Los proyectos de software se presentan por separado en la sección anterior."
+          },
+          {
             "id": "skills",
-            "title": "Habilidades y conocimientos",
+            "title": "Conocimientos que puedo aportar",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -592,34 +805,11 @@
             ]
           },
           {
-            "id": "projects",
-            "title": "Proyectos de software y automatización",
+            "id": "additional-projects",
+            "title": "Otros proyectos web",
             "icon": "projects",
             "layout": "grid",
             "entries": [
-              {
-                "title": "culichi.lat",
-                "body": "Portafolio bilingüe con React/TypeScript, componentes reutilizables, navegación accesible, galerías locales y generación de PDF por idioma. Flujo de pull requests en GitHub y entrega con Vercel.",
-                "tags": [
-                  "React",
-                  "TypeScript",
-                  "Tailwind",
-                  "Vite"
-                ],
-                "url": "https://culichi.lat",
-                "linkLabel": "Ver portafolio"
-              },
-              {
-                "title": "Culichi-Metrics",
-                "body": "Automatización en Python de reportes de KPI diarios y por equipo en Excel, con formato, reglas condicionales y gráficas.",
-                "tags": [
-                  "Python",
-                  "pandas",
-                  "XlsxWriter",
-                  "Excel"
-                ],
-                "url": "https://github.com/ByCulichi/Culichi-Metrics"
-              },
               {
                 "title": "Mirror",
                 "body": "Interfaz adaptable de reproductor musical con componentes reutilizables y un sistema visual oscuro.",
@@ -687,81 +877,8 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Experiencia práctica e investigaciones educativas",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "Investigación de autenticación VPN",
-                "body": "Revisé eventos de autenticación y correlacioné la secuencia de actividad para fundamentar la conclusión de un laboratorio educativo.",
-                "status": "Laboratorio educativo",
-                "tone": "progress",
-                "tags": [
-                  "VPN",
-                  "Análisis de registros"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "Investigación de fuerza bruta por RDP",
-                "body": "Examiné actividad repetida de autenticación, organicé evidencias y documenté los pasos de investigación y las recomendaciones de respuesta.",
-                "status": "Laboratorio educativo",
-                "tone": "progress",
-                "tags": [
-                  "RDP",
-                  "Windows",
-                  "Playbooks"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "Análisis de phishing",
-                "body": "Analicé indicadores de correos sospechosos y documenté evidencias, hallazgos y un playbook reutilizable de respuesta.",
-                "status": "Laboratorio educativo",
-                "tone": "progress",
-                "tags": [
-                  "Análisis de correo",
-                  "Documentación"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "Contactos, apagador e iluminación residencial",
-                "body": "Dos casos documentados de cambio de contacto, reemplazo de apagador y dos luminarias de techo. Comprobaciones confirmadas de polaridad y tierra, fotos originales y lectura registrada de 119.3 V CA.",
-                "status": "Trabajo realizado",
-                "tone": "complete",
-                "tags": [
-                  "Residencial",
-                  "Medición",
-                  "Documentación"
-                ],
-                "url": "https://culichi.lat/electrical"
-              },
-              {
-                "title": "Tablero de instalación y control con electronivel",
-                "body": "Prácticas de curso de montaje y cableado de tablero, con fotografías y demostración en video del control con electronivel. La práctica START/STOP con contactor sigue planeada.",
-                "status": "Práctica de curso",
-                "tone": "progress",
-                "tags": [
-                  "Cableado",
-                  "Control"
-                ],
-                "url": "https://culichi.lat/electrical"
-              },
-              {
-                "title": "Tres intervenciones de iPhone realizadas",
-                "body": "Baterías de iPhone 12 Pro / 14 Pro y pantalla de iPhone XR. Pruebas confirmadas: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes. Imágenes originales agrupadas por caso.",
-                "status": "Práctica documentada",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              }
-            ],
-            "intro": "Trabajos técnicos documentados y prácticas educativas del portafolio. Los proyectos de software se presentan por separado en la sección anterior."
-          },
-          {
             "id": "certifications",
-            "title": "Certificaciones y formación",
+            "title": "Formación y constancias",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
@@ -794,6 +911,11 @@
             "value": "Práctica",
             "label": "Portafolio documentado"
           }
+        ],
+        "targetRoles": [
+          "Desarrollo web junior",
+          "Automatización de reportes con Python",
+          "Auxiliar técnico / practicante"
         ]
       }
     },
@@ -801,12 +923,67 @@
       "id": "cybersecurity",
       "profile": "cybersecurity",
       "en": {
-        "role": "SOC Analyst Tier 1 Candidate",
-        "summary": "Entry-level cybersecurity candidate with educational LetsDefend investigations, documented playbooks and ongoing Linux training. Python reporting projects and AWS Cloud Practitioner preparation complement the SOC Tier 1 learning path.",
+        "role": "SOC Analyst L1 Candidate | Log Analysis & Investigation",
+        "summary": "Entry-level cybersecurity candidate with three documented LetsDefend investigations covering VPN authentication, RDP brute force and phishing. I correlate events, organize evidence and write investigation findings and response playbooks. I am studying Linux and preparing for the AWS Cloud Practitioner exam, with Python reporting projects as complementary practice.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Experience in educational investigations",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "VPN authentication investigation",
+                "body": "Educational LetsDefend investigation of VPN authentication events.",
+                "status": "Educational lab",
+                "tone": "progress",
+                "tags": [
+                  "VPN",
+                  "Log analysis"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Reviewed logs and correlated the sequence of activity.",
+                  "Organized evidence and documented the investigation verdict."
+                ]
+              },
+              {
+                "title": "RDP brute-force investigation",
+                "body": "Educational investigation of repeated RDP authentication activity.",
+                "status": "Educational lab",
+                "tone": "progress",
+                "tags": [
+                  "RDP",
+                  "Windows",
+                  "Playbooks"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Examined authentication events and organized the evidence.",
+                  "Documented investigation steps and response guidance."
+                ]
+              },
+              {
+                "title": "Phishing analysis",
+                "body": "Educational analysis of a suspicious email.",
+                "status": "Educational lab",
+                "tone": "progress",
+                "tags": [
+                  "Email analysis",
+                  "Documentation"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Reviewed suspicious-email indicators and recorded findings.",
+                  "Documented evidence and a reusable response playbook."
+                ]
+              }
+            ],
+            "intro": "Three documented LetsDefend training investigations. These are educational labs; I am seeking my first SOC Tier 1 role."
+          },
+          {
             "id": "skills",
-            "title": "Skills & capabilities",
+            "title": "Skills I can contribute",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -851,51 +1028,8 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Experience in educational investigations",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "VPN authentication investigation",
-                "body": "Reviewed authentication events and correlated the sequence of activity to support an educational investigation verdict.",
-                "status": "Educational lab",
-                "tone": "progress",
-                "tags": [
-                  "VPN",
-                  "Log analysis"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "RDP brute-force investigation",
-                "body": "Examined repeated authentication activity, organized evidence and documented investigation steps and response guidance.",
-                "status": "Educational lab",
-                "tone": "progress",
-                "tags": [
-                  "RDP",
-                  "Windows",
-                  "Playbooks"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "Phishing analysis",
-                "body": "Analyzed suspicious-email indicators and documented evidence, findings and a reusable response playbook.",
-                "status": "Educational lab",
-                "tone": "progress",
-                "tags": [
-                  "Email analysis",
-                  "Documentation"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              }
-            ],
-            "intro": "Three documented LetsDefend training investigations. These are educational labs; I am seeking my first SOC Tier 1 role."
-          },
-          {
             "id": "certifications",
-            "title": "Certifications & education",
+            "title": "Education & credentials",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
@@ -919,15 +1053,75 @@
             "value": "Linux",
             "label": "Training in progress"
           }
+        ],
+        "targetRoles": [
+          "SOC analyst L1 — entry level",
+          "Junior security analyst",
+          "Cybersecurity internship"
         ]
       },
       "es": {
-        "role": "Candidato a analista SOC nivel 1",
-        "summary": "Candidato inicial en ciberseguridad, con investigaciones educativas de LetsDefend, playbooks y diplomado de Linux en curso. Los proyectos de reportes con Python y la preparación de AWS Cloud Practitioner complementan su ruta hacia SOC nivel 1.",
+        "role": "Candidato a analista SOC L1 | Análisis de registros e investigación",
+        "summary": "Candidato de entrada a ciberseguridad con tres investigaciones educativas documentadas en LetsDefend: autenticación VPN, fuerza bruta RDP y phishing. Correlaciono eventos, organizo evidencias y redacto hallazgos y playbooks de respuesta. Estudio Linux y preparo el examen AWS Cloud Practitioner; complemento mi formación con proyectos de reportes en Python.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Experiencia en investigaciones educativas",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "Investigación de autenticación VPN",
+                "body": "Investigación educativa de LetsDefend sobre eventos de autenticación VPN.",
+                "status": "Laboratorio educativo",
+                "tone": "progress",
+                "tags": [
+                  "VPN",
+                  "Análisis de registros"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Revisé registros y correlacioné la secuencia de actividad.",
+                  "Organicé evidencias y documenté el veredicto de la investigación."
+                ]
+              },
+              {
+                "title": "Investigación de fuerza bruta por RDP",
+                "body": "Investigación educativa de actividad repetida de autenticación RDP.",
+                "status": "Laboratorio educativo",
+                "tone": "progress",
+                "tags": [
+                  "RDP",
+                  "Windows",
+                  "Playbooks"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Examiné eventos de autenticación y organicé la evidencia.",
+                  "Documenté los pasos de investigación y las recomendaciones de respuesta."
+                ]
+              },
+              {
+                "title": "Análisis de phishing",
+                "body": "Análisis educativo de un correo sospechoso.",
+                "status": "Laboratorio educativo",
+                "tone": "progress",
+                "tags": [
+                  "Análisis de correo",
+                  "Documentación"
+                ],
+                "url": "https://culichi.lat/cybersecurity#investigations",
+                "bullets": [
+                  "Revisé los indicadores del correo y registré los hallazgos.",
+                  "Documenté la evidencia y un playbook de respuesta reutilizable."
+                ]
+              }
+            ],
+            "intro": "Tres investigaciones de formación en LetsDefend documentadas. Son laboratorios educativos; busco mi primera oportunidad SOC nivel 1."
+          },
+          {
             "id": "skills",
-            "title": "Habilidades y conocimientos",
+            "title": "Conocimientos que puedo aportar",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -972,51 +1166,8 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Experiencia en investigaciones educativas",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "Investigación de autenticación VPN",
-                "body": "Revisé eventos de autenticación y correlacioné la secuencia de actividad para fundamentar la conclusión de un laboratorio educativo.",
-                "status": "Laboratorio educativo",
-                "tone": "progress",
-                "tags": [
-                  "VPN",
-                  "Análisis de registros"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "Investigación de fuerza bruta por RDP",
-                "body": "Examiné actividad repetida de autenticación, organicé evidencias y documenté los pasos de investigación y las recomendaciones de respuesta.",
-                "status": "Laboratorio educativo",
-                "tone": "progress",
-                "tags": [
-                  "RDP",
-                  "Windows",
-                  "Playbooks"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              },
-              {
-                "title": "Análisis de phishing",
-                "body": "Analicé indicadores de correos sospechosos y documenté evidencias, hallazgos y un playbook reutilizable de respuesta.",
-                "status": "Laboratorio educativo",
-                "tone": "progress",
-                "tags": [
-                  "Análisis de correo",
-                  "Documentación"
-                ],
-                "url": "https://culichi.lat/cybersecurity"
-              }
-            ],
-            "intro": "Tres investigaciones de formación en LetsDefend documentadas. Son laboratorios educativos; busco mi primera oportunidad SOC nivel 1."
-          },
-          {
             "id": "certifications",
-            "title": "Certificaciones y formación",
+            "title": "Formación y constancias",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
@@ -1040,6 +1191,11 @@
             "value": "Linux",
             "label": "Formación en curso"
           }
+        ],
+        "targetRoles": [
+          "Analista SOC L1 — entrada",
+          "Analista de seguridad junior",
+          "Prácticas de ciberseguridad"
         ]
       }
     },
@@ -1047,12 +1203,52 @@
       "id": "software",
       "profile": "development",
       "en": {
-        "role": "Frontend Development & Python Automation",
-        "summary": "Frontend development with React, Next.js and TypeScript, supported by public GitHub projects and Python automation for Excel reports. Partial software development studies at Academlo.",
+        "role": "Junior Frontend Developer | React, TypeScript & Python Automation",
+        "summary": "I build responsive interfaces with React, Next.js and TypeScript, and automate Excel reporting with Python. Nine public projects show reusable components, API integration, browser storage and bilingual navigation. I apply Git/GitHub workflows, TypeScript checks and browser validation in my portfolio, supported by partial software development studies at Academlo.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Selected development projects",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "culichi.lat",
+                "body": "Bilingual React/TypeScript portfolio with accessible navigation and documented work.",
+                "tags": [
+                  "React",
+                  "TypeScript",
+                  "Tailwind",
+                  "Vite"
+                ],
+                "url": "https://culichi.lat",
+                "linkLabel": "View portfolio",
+                "bullets": [
+                  "Built reusable components, responsive layouts and local galleries.",
+                  "Integrated localized PDF generation and a GitHub pull-request / Vercel delivery workflow."
+                ]
+              },
+              {
+                "title": "Culichi-Metrics",
+                "body": "Python automation for daily and team Excel KPI reports.",
+                "tags": [
+                  "Python",
+                  "pandas",
+                  "XlsxWriter",
+                  "Excel"
+                ],
+                "url": "https://github.com/ByCulichi/Culichi-Metrics",
+                "bullets": [
+                  "Processed tabular data with pandas and generated workbooks with XlsxWriter.",
+                  "Applied formatting, conditional rules and charts to present the report."
+                ]
+              }
+            ],
+            "intro": "Public personal and learning projects demonstrate my frontend and automation experience. Each entry links to the portfolio or its source code."
+          },
+          {
             "id": "skills",
-            "title": "Skills & capabilities",
+            "title": "Skills I can contribute",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -1097,34 +1293,11 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Development experience through projects",
+            "id": "additional-projects",
+            "title": "Additional web projects",
             "icon": "experience",
             "layout": "grid",
             "entries": [
-              {
-                "title": "culichi.lat",
-                "body": "Bilingual React/TypeScript portfolio with reusable components, accessible navigation, local galleries and localized PDF generation. GitHub pull requests and Vercel delivery.",
-                "tags": [
-                  "React",
-                  "TypeScript",
-                  "Tailwind",
-                  "Vite"
-                ],
-                "url": "https://culichi.lat",
-                "linkLabel": "View portfolio"
-              },
-              {
-                "title": "Culichi-Metrics",
-                "body": "Python automation for daily and team Excel KPI reports, including formatting, conditional rules and charts.",
-                "tags": [
-                  "Python",
-                  "pandas",
-                  "XlsxWriter",
-                  "Excel"
-                ],
-                "url": "https://github.com/ByCulichi/Culichi-Metrics"
-              },
               {
                 "title": "Mirror",
                 "body": "Responsive music-player interface built with reusable components and a dark visual system.",
@@ -1189,12 +1362,11 @@
                 ],
                 "url": "https://github.com/ByCulichi"
               }
-            ],
-            "intro": "Public personal and learning projects demonstrate my frontend and automation experience. Each entry links to the portfolio or its source code."
+            ]
           },
           {
             "id": "certifications",
-            "title": "Certifications & education",
+            "title": "Education & credentials",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
@@ -1218,15 +1390,60 @@
             "value": "Python",
             "label": "Excel automation"
           }
+        ],
+        "targetRoles": [
+          "Junior frontend developer",
+          "Junior web developer",
+          "Junior Python reporting automation"
         ]
       },
       "es": {
-        "role": "Desarrollo frontend y automatización con Python",
-        "summary": "Desarrollo frontend con React, Next.js y TypeScript, respaldado por proyectos públicos en GitHub y automatización de reportes de Excel con Python. Estudios inconclusos de desarrollo de software en Academlo.",
+        "role": "Desarrollador frontend junior | React, TypeScript y automatización Python",
+        "summary": "Desarrollo interfaces responsivas con React, Next.js y TypeScript y automatizo reportes de Excel con Python. Nueve proyectos públicos muestran componentes reutilizables, integración de APIs, almacenamiento local y navegación bilingüe. Aplico flujo de Git/GitHub, comprobaciones de TypeScript y validación en navegador en mi portafolio, con bases de estudios parciales de desarrollo en Academlo.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Proyectos destacados de desarrollo",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "culichi.lat",
+                "body": "Portafolio bilingüe en React/TypeScript con navegación accesible y trabajos documentados.",
+                "tags": [
+                  "React",
+                  "TypeScript",
+                  "Tailwind",
+                  "Vite"
+                ],
+                "url": "https://culichi.lat",
+                "linkLabel": "Ver portafolio",
+                "bullets": [
+                  "Desarrollé componentes reutilizables, diseños responsivos y galerías locales.",
+                  "Integré generación de PDF por idioma y un flujo de entrega con pull requests de GitHub y Vercel."
+                ]
+              },
+              {
+                "title": "Culichi-Metrics",
+                "body": "Automatización en Python para reportes de KPI diarios y por equipo en Excel.",
+                "tags": [
+                  "Python",
+                  "pandas",
+                  "XlsxWriter",
+                  "Excel"
+                ],
+                "url": "https://github.com/ByCulichi/Culichi-Metrics",
+                "bullets": [
+                  "Procesé datos tabulares con pandas y generé libros de Excel con XlsxWriter.",
+                  "Apliqué formato, reglas condicionales y gráficas para presentar el reporte."
+                ]
+              }
+            ],
+            "intro": "Proyectos personales y de aprendizaje públicos que demuestran mi práctica en frontend y automatización. Cada entrada enlaza al portafolio o a su código."
+          },
+          {
             "id": "skills",
-            "title": "Habilidades y conocimientos",
+            "title": "Conocimientos que puedo aportar",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -1271,34 +1488,11 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Experiencia de desarrollo en proyectos",
+            "id": "additional-projects",
+            "title": "Otros proyectos web",
             "icon": "experience",
             "layout": "grid",
             "entries": [
-              {
-                "title": "culichi.lat",
-                "body": "Portafolio bilingüe con React/TypeScript, componentes reutilizables, navegación accesible, galerías locales y generación de PDF por idioma. Flujo de pull requests en GitHub y entrega con Vercel.",
-                "tags": [
-                  "React",
-                  "TypeScript",
-                  "Tailwind",
-                  "Vite"
-                ],
-                "url": "https://culichi.lat",
-                "linkLabel": "Ver portafolio"
-              },
-              {
-                "title": "Culichi-Metrics",
-                "body": "Automatización en Python de reportes de KPI diarios y por equipo en Excel, con formato, reglas condicionales y gráficas.",
-                "tags": [
-                  "Python",
-                  "pandas",
-                  "XlsxWriter",
-                  "Excel"
-                ],
-                "url": "https://github.com/ByCulichi/Culichi-Metrics"
-              },
               {
                 "title": "Mirror",
                 "body": "Interfaz adaptable de reproductor musical con componentes reutilizables y un sistema visual oscuro.",
@@ -1363,12 +1557,11 @@
                 ],
                 "url": "https://github.com/ByCulichi"
               }
-            ],
-            "intro": "Proyectos personales y de aprendizaje públicos que demuestran mi práctica en frontend y automatización. Cada entrada enlaza al portafolio o a su código."
+            ]
           },
           {
             "id": "certifications",
-            "title": "Certificaciones y formación",
+            "title": "Formación y constancias",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
@@ -1392,6 +1585,11 @@
             "value": "Python",
             "label": "Automatización de Excel"
           }
+        ],
+        "targetRoles": [
+          "Desarrollador frontend junior",
+          "Desarrollador web junior",
+          "Automatización de reportes Python — junior"
         ]
       }
     },
@@ -1399,12 +1597,52 @@
       "id": "electrical",
       "profile": "electrical",
       "en": {
-        "role": "Residential Electrical Maintenance & Industrial Training",
-        "summary": "Residential electrical maintenance with documented outlet, switch and ceiling-light replacements, polarity and protective-earth checks. Complementary training in AC/DC measurement, industrial electricity and control.",
+        "role": "Electrical Assistant | Residential Maintenance & Industrial Training",
+        "summary": "I have completed documented residential outlet, switch and ceiling-light replacements, plus installation-board and float-switch course practice. I interpret electrical drawings and practice AC/DC measurement and circuit checks. My main training is ongoing at Universidad Internacional · RED CONOCER, reinforced by Udemy and LinkedIn Learning.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Electrical work & course experience",
+            "icon": "experience",
+            "layout": "list",
+            "entries": [
+              {
+                "title": "Residential outlets, switch & lighting",
+                "body": "Residential work: two documented outlet-replacement cases, a switch replacement and two ceiling luminaires.",
+                "status": "Completed work",
+                "tone": "complete",
+                "tags": [
+                  "Residential",
+                  "Measurement",
+                  "Documentation"
+                ],
+                "url": "https://culichi.lat/electrical#projects",
+                "bullets": [
+                  "Recorded the initial condition, replacement, mounting and final checks with original photographs.",
+                  "Confirmed polarity and protective-earth checks; one case includes a recorded 119.3 V AC measurement."
+                ]
+              },
+              {
+                "title": "Installation board & float-switch control",
+                "body": "Course practice in residential installation and float-switch control.",
+                "status": "Course practice",
+                "tone": "progress",
+                "tags": [
+                  "Wiring",
+                  "Control"
+                ],
+                "url": "https://culichi.lat/electrical#projects",
+                "bullets": [
+                  "Assembled and wired an installation board, documented with original photographs.",
+                  "Recorded a video demonstration of float-switch operation. START/STOP contactor practice remains planned."
+                ]
+              }
+            ],
+            "intro": "Documented residential maintenance and installation/control course practice. Industrial training is ongoing; the START/STOP exercise remains planned."
+          },
+          {
             "id": "skills",
-            "title": "Skills & capabilities",
+            "title": "Skills I can contribute",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -1447,40 +1685,8 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Electrical work & course experience",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "Residential outlets, switch & lighting",
-                "body": "Two documented outlet-replacement cases, switch replacement and two ceiling luminaires. Confirmed polarity and protective-earth checks, with original photographs and a recorded 119.3 V AC measurement.",
-                "status": "Completed work",
-                "tone": "complete",
-                "tags": [
-                  "Residential",
-                  "Measurement",
-                  "Documentation"
-                ],
-                "url": "https://culichi.lat/electrical"
-              },
-              {
-                "title": "Installation board & float-switch control",
-                "body": "Course practice assembling and wiring an installation board, with photographs and a float-switch video demonstration. START/STOP contactor practice remains planned.",
-                "status": "Course practice",
-                "tone": "progress",
-                "tags": [
-                  "Wiring",
-                  "Control"
-                ],
-                "url": "https://culichi.lat/electrical"
-              }
-            ],
-            "intro": "Documented residential maintenance and installation/control course practice. Industrial training is ongoing; the START/STOP exercise remains planned."
-          },
-          {
             "id": "certifications",
-            "title": "Certifications & education",
+            "title": "Education & credentials",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
@@ -1494,26 +1700,71 @@
         ],
         "highlights": [
           {
-            "value": "Residential",
-            "label": "Documented work"
-          },
-          {
-            "value": "RED CONOCER",
-            "label": "Training in progress"
+            "value": "5",
+            "label": "Documented work & course practices"
           },
           {
             "value": "AC / DC",
             "label": "Measurement practice"
+          },
+          {
+            "value": "UI · CONOCER",
+            "label": "Main training in progress"
           }
+        ],
+        "targetRoles": [
+          "Electrical assistant",
+          "Electrical maintenance assistant",
+          "Industrial electricity trainee"
         ]
       },
       "es": {
-        "role": "Mantenimiento eléctrico residencial y formación industrial",
-        "summary": "Mantenimiento eléctrico residencial con cambios documentados de contactos, apagador y luminarias, y comprobaciones de polaridad y tierra. Formación complementaria en mediciones CA/CC, electricidad industrial y control.",
+        "role": "Ayudante electricista | Mantenimiento residencial y formación industrial",
+        "summary": "He realizado cambios documentados de contactos, apagador y luminarias de techo, además de prácticas de tablero de instalación y control por electronivel. Interpreto planos eléctricos y practico mediciones CA/CC y comprobaciones de circuitos. Mi formación principal está en curso en Universidad Internacional · RED CONOCER, reforzada con Udemy y LinkedIn Learning.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Experiencia en trabajos y prácticas eléctricas",
+            "icon": "experience",
+            "layout": "list",
+            "entries": [
+              {
+                "title": "Contactos, apagador e iluminación residencial",
+                "body": "Trabajo residencial: dos casos documentados de cambio de contactos, un apagador y dos luminarias de techo.",
+                "status": "Trabajo realizado",
+                "tone": "complete",
+                "tags": [
+                  "Residencial",
+                  "Medición",
+                  "Documentación"
+                ],
+                "url": "https://culichi.lat/electrical#projects",
+                "bullets": [
+                  "Registré el estado inicial, reemplazo, montaje y comprobaciones finales con fotografías originales.",
+                  "Confirmé comprobaciones de polaridad y tierra; un caso incluye una medición registrada de 119.3 V CA."
+                ]
+              },
+              {
+                "title": "Tablero de instalación y control con electronivel",
+                "body": "Prácticas de curso de instalación residencial y control por electronivel.",
+                "status": "Práctica de curso",
+                "tone": "progress",
+                "tags": [
+                  "Cableado",
+                  "Control"
+                ],
+                "url": "https://culichi.lat/electrical#projects",
+                "bullets": [
+                  "Armé y cableé un tablero de instalación, documentado con fotografías originales.",
+                  "Registré una demostración en video del funcionamiento del electronivel. La práctica START/STOP con contactor sigue planeada."
+                ]
+              }
+            ],
+            "intro": "Mantenimiento residencial documentado y prácticas de curso de instalación y control. La formación industrial sigue en curso; el ejercicio START/STOP permanece planeado."
+          },
+          {
             "id": "skills",
-            "title": "Habilidades y conocimientos",
+            "title": "Conocimientos que puedo aportar",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -1556,40 +1807,8 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Experiencia en trabajos y prácticas eléctricas",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "Contactos, apagador e iluminación residencial",
-                "body": "Dos casos documentados de cambio de contacto, reemplazo de apagador y dos luminarias de techo. Comprobaciones confirmadas de polaridad y tierra, fotos originales y lectura registrada de 119.3 V CA.",
-                "status": "Trabajo realizado",
-                "tone": "complete",
-                "tags": [
-                  "Residencial",
-                  "Medición",
-                  "Documentación"
-                ],
-                "url": "https://culichi.lat/electrical"
-              },
-              {
-                "title": "Tablero de instalación y control con electronivel",
-                "body": "Prácticas de curso de montaje y cableado de tablero, con fotografías y demostración en video del control con electronivel. La práctica START/STOP con contactor sigue planeada.",
-                "status": "Práctica de curso",
-                "tone": "progress",
-                "tags": [
-                  "Cableado",
-                  "Control"
-                ],
-                "url": "https://culichi.lat/electrical"
-              }
-            ],
-            "intro": "Mantenimiento residencial documentado y prácticas de curso de instalación y control. La formación industrial sigue en curso; el ejercicio START/STOP permanece planeado."
-          },
-          {
             "id": "certifications",
-            "title": "Certificaciones y formación",
+            "title": "Formación y constancias",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
@@ -1603,17 +1822,22 @@
         ],
         "highlights": [
           {
-            "value": "Residencial",
-            "label": "Trabajos documentados"
-          },
-          {
-            "value": "RED CONOCER",
-            "label": "Formación en curso"
+            "value": "5",
+            "label": "Trabajos y prácticas documentados"
           },
           {
             "value": "CA / CC",
             "label": "Práctica de medición"
+          },
+          {
+            "value": "UI · CONOCER",
+            "label": "Formación principal en curso"
           }
+        ],
+        "targetRoles": [
+          "Ayudante electricista",
+          "Auxiliar de mantenimiento eléctrico",
+          "Practicante de electricidad industrial"
         ]
       }
     },
@@ -1621,12 +1845,35 @@
       "id": "electronics",
       "profile": "electronics",
       "en": {
-        "role": "Basic Electronics Student",
-        "summary": "Currently studying basic electronics at Escuela Tecnológica de Occidente, with additional smartphone repair coursework at LIDETEC.",
+        "role": "Electronics Assistant / Trainee | Components, Measurement & Diagnosis",
+        "summary": "I am studying Basic Electronics at Escuela Tecnológica de Occidente, with course practice in component identification, instrument use, circuit interpretation and diagnosis. LIDETEC smartphone-repair coursework and three documented iPhone interventions complement this training. I am seeking an assistant or laboratory trainee opportunity while I develop my electronics skills.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Electronics laboratory experience",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "ETO laboratory practice",
+                "body": "Basic electronics exercises in components, circuit behavior, instrument use, diagram interpretation and structured diagnosis.",
+                "status": "Training in progress",
+                "tone": "progress",
+                "url": "https://culichi.lat/electronics"
+              },
+              {
+                "title": "Smartphone practice",
+                "body": "Documented iPhone 12 Pro / 14 Pro battery replacements and an iPhone XR display replacement complement the LIDETEC course foundations.",
+                "status": "Documented practice",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              }
+            ],
+            "intro": "Basic-electronics training at ETO and complementary hands-on smartphone practice. The upcoming ETO specializations are listed separately as a learning plan."
+          },
+          {
             "id": "skills",
-            "title": "Skills & capabilities",
+            "title": "Skills I can contribute",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -1669,51 +1916,14 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Electronics laboratory experience",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "ETO laboratory practice",
-                "body": "Basic electronics exercises in components, circuit behavior, instrument use, diagram interpretation and structured diagnosis.",
-                "status": "Training in progress",
-                "tone": "progress",
-                "url": "https://culichi.lat/electronics"
-              },
-              {
-                "title": "Smartphone practice",
-                "body": "Documented iPhone 12 Pro / 14 Pro battery replacements and an iPhone XR display replacement complement the LIDETEC course foundations.",
-                "status": "Documented practice",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              }
-            ],
-            "intro": "Basic-electronics training at ETO and complementary hands-on smartphone practice. The upcoming ETO specializations are listed separately as a learning plan."
-          },
-          {
             "id": "certifications",
-            "title": "Certifications & education",
+            "title": "Education & credentials",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
             "ids": [
               "eto-basic",
               "lidetec"
-            ]
-          },
-          {
-            "id": "learning-plan",
-            "title": "Learning plan",
-            "icon": "education",
-            "layout": "list",
-            "entries": [
-              {
-                "title": "Upcoming ETO specializations",
-                "body": "Television; radio reception and amplifiers; digital systems; microcontrollers; microcomputers; industrial electronics. These six tracks have not started yet.",
-                "status": "Planned",
-                "tone": "pending"
-              }
             ]
           }
         ],
@@ -1730,15 +1940,43 @@
             "value": "Circuits",
             "label": "Laboratory practice"
           }
+        ],
+        "targetRoles": [
+          "Electronics assistant",
+          "Electronics laboratory trainee",
+          "Electronics technician in training"
         ]
       },
       "es": {
-        "role": "Estudiante de electrónica básica",
-        "summary": "Estudio electrónica básica en la Escuela Tecnológica de Occidente, con formación adicional de reparación de celulares en LIDETEC.",
+        "role": "Auxiliar de electrónica en formación | Componentes, medición y diagnóstico",
+        "summary": "Estudio Electrónica Básica en Escuela Tecnológica de Occidente, con prácticas de identificación de componentes, uso de instrumentos, interpretación de circuitos y diagnóstico. Complemento esta base con formación de reparación de celulares en LIDETEC y tres intervenciones de iPhone documentadas. Busco una oportunidad como auxiliar o practicante de laboratorio mientras desarrollo mis habilidades de electrónica.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Experiencia de laboratorio en electrónica",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "Práctica de laboratorio ETO",
+                "body": "Ejercicios de electrónica básica sobre componentes, comportamiento de circuitos, instrumentos, interpretación de diagramas y diagnóstico estructurado.",
+                "status": "Formación en curso",
+                "tone": "progress",
+                "url": "https://culichi.lat/electronics"
+              },
+              {
+                "title": "Práctica en smartphones",
+                "body": "Cambios documentados de batería en iPhone 12 Pro / 14 Pro y pantalla en iPhone XR complementan las bases del curso LIDETEC.",
+                "status": "Práctica documentada",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              }
+            ],
+            "intro": "Formación en electrónica básica en ETO y práctica complementaria en smartphones. Las especialidades futuras de ETO se presentan por separado como plan de aprendizaje."
+          },
+          {
             "id": "skills",
-            "title": "Habilidades y conocimientos",
+            "title": "Conocimientos que puedo aportar",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -1781,51 +2019,14 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Experiencia de laboratorio en electrónica",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "Práctica de laboratorio ETO",
-                "body": "Ejercicios de electrónica básica sobre componentes, comportamiento de circuitos, instrumentos, interpretación de diagramas y diagnóstico estructurado.",
-                "status": "Formación en curso",
-                "tone": "progress",
-                "url": "https://culichi.lat/electronics"
-              },
-              {
-                "title": "Práctica en smartphones",
-                "body": "Cambios documentados de batería en iPhone 12 Pro / 14 Pro y pantalla en iPhone XR complementan las bases del curso LIDETEC.",
-                "status": "Práctica documentada",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              }
-            ],
-            "intro": "Formación en electrónica básica en ETO y práctica complementaria en smartphones. Las especialidades futuras de ETO se presentan por separado como plan de aprendizaje."
-          },
-          {
             "id": "certifications",
-            "title": "Certificaciones y formación",
+            "title": "Formación y constancias",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
             "ids": [
               "eto-basic",
               "lidetec"
-            ]
-          },
-          {
-            "id": "learning-plan",
-            "title": "Plan de aprendizaje",
-            "icon": "education",
-            "layout": "list",
-            "entries": [
-              {
-                "title": "Próximas especialidades en ETO",
-                "body": "Televisión; radio recepción y amplificadores; sistemas digitales; microcontroladores; microcomputadoras; electrónica industrial. Las seis áreas aún no se han iniciado.",
-                "status": "Planeado",
-                "tone": "pending"
-              }
             ]
           }
         ],
@@ -1842,6 +2043,11 @@
             "value": "Circuitos",
             "label": "Práctica de laboratorio"
           }
+        ],
+        "targetRoles": [
+          "Auxiliar de electrónica",
+          "Practicante de laboratorio electrónico",
+          "Técnico de electrónica en formación"
         ]
       }
     },
@@ -1849,12 +2055,42 @@
       "id": "repair",
       "profile": "repair",
       "en": {
-        "role": "Smartphone Repair — Training and Practice",
-        "summary": "LIDETEC smartphone repair course participation with three documented iPhone interventions and confirmed post-repair checks.",
+        "role": "Smartphone Repair Assistant | Battery & Display Replacement",
+        "summary": "I have completed three documented iPhone repairs: batteries on the 12 Pro and 14 Pro, and a display on the XR. I record each case and confirm post-repair functional checks. My LIDETEC participation certificate supports practical coursework in diagnosis, disassembly, measurement and repair; I am also studying Basic Electronics at ETO.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Hands-on repair experience",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "iPhone 12 Pro",
+                "body": "Completed battery replacement.",
+                "status": "Completed",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              },
+              {
+                "title": "iPhone 14 Pro",
+                "body": "Completed aftermarket self-programming battery replacement.",
+                "status": "Completed",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              },
+              {
+                "title": "iPhone XR",
+                "body": "Completed display replacement.",
+                "status": "Completed",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              }
+            ],
+            "intro": "Three completed repairs with original photographs. Confirmed final checks: power, charging, touch, cameras, audio, Face ID and battery settings."
+          },
+          {
             "id": "skills",
-            "title": "Skills & capabilities",
+            "title": "Skills I can contribute",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -1895,58 +2131,14 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Hands-on repair experience",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "iPhone 12 Pro",
-                "body": "Battery replacement documented with original case photographs.",
-                "status": "Completed",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              },
-              {
-                "title": "iPhone 14 Pro",
-                "body": "Aftermarket self-programming battery replacement documented by device.",
-                "status": "Completed",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              },
-              {
-                "title": "iPhone XR",
-                "body": "Screen replacement documented with original images.",
-                "status": "Completed",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              }
-            ],
-            "intro": "Three completed repairs with original photographs. Confirmed final checks: power, charging, touch, cameras, audio, Face ID and battery settings."
-          },
-          {
             "id": "certifications",
-            "title": "Certifications & education",
+            "title": "Education & credentials",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
             "ids": [
               "lidetec",
               "eto-basic"
-            ]
-          },
-          {
-            "id": "learning-plan",
-            "title": "Upcoming practice",
-            "icon": "education",
-            "layout": "list",
-            "entries": [
-              {
-                "title": "Samsung & additional iPhone work",
-                "body": "Galaxy S21 Ultra screen, Galaxy A35 battery and two iPhone XS interventions remain pending. Console repair is a future learning track.",
-                "status": "Pending / planned",
-                "tone": "pending"
-              }
             ]
           }
         ],
@@ -1963,15 +2155,50 @@
             "value": "LIDETEC",
             "label": "Course participation"
           }
+        ],
+        "targetRoles": [
+          "Smartphone repair assistant",
+          "Battery and display replacement",
+          "Smartphone technician in training"
         ]
       },
       "es": {
-        "role": "Reparación de celulares — formación y práctica",
-        "summary": "Participación en el curso de reparación de celulares de LIDETEC, con tres intervenciones de iPhone documentadas y comprobaciones finales confirmadas.",
+        "role": "Auxiliar de reparación de celulares | Baterías y pantallas",
+        "summary": "He realizado tres reparaciones de iPhone documentadas: baterías de 12 Pro y 14 Pro y pantalla de XR. Registro cada caso y confirmo las comprobaciones funcionales posteriores. Mi constancia de participación de LIDETEC respalda formación práctica en diagnóstico, desensamble, medición y reparación; también estudio Electrónica Básica en ETO.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Experiencia práctica en reparación",
+            "icon": "experience",
+            "layout": "grid",
+            "entries": [
+              {
+                "title": "iPhone 12 Pro",
+                "body": "Cambio de batería realizado.",
+                "status": "Realizado",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              },
+              {
+                "title": "iPhone 14 Pro",
+                "body": "Cambio realizado de batería aftermarket autoprogramable.",
+                "status": "Realizado",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              },
+              {
+                "title": "iPhone XR",
+                "body": "Cambio de pantalla realizado.",
+                "status": "Realizado",
+                "tone": "complete",
+                "url": "https://culichi.lat/repair"
+              }
+            ],
+            "intro": "Tres reparaciones realizadas con fotografías originales. Pruebas finales confirmadas: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes."
+          },
+          {
             "id": "skills",
-            "title": "Habilidades y conocimientos",
+            "title": "Conocimientos que puedo aportar",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -2012,58 +2239,14 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Experiencia práctica en reparación",
-            "icon": "experience",
-            "layout": "grid",
-            "entries": [
-              {
-                "title": "iPhone 12 Pro",
-                "body": "Cambio de batería documentado con fotografías originales del caso.",
-                "status": "Realizado",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              },
-              {
-                "title": "iPhone 14 Pro",
-                "body": "Cambio de batería aftermarket autoprogramable documentado por equipo.",
-                "status": "Realizado",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              },
-              {
-                "title": "iPhone XR",
-                "body": "Cambio de pantalla documentado con imágenes originales.",
-                "status": "Realizado",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              }
-            ],
-            "intro": "Tres reparaciones realizadas con fotografías originales. Pruebas finales confirmadas: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes."
-          },
-          {
             "id": "certifications",
-            "title": "Certificaciones y formación",
+            "title": "Formación y constancias",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
             "ids": [
               "lidetec",
               "eto-basic"
-            ]
-          },
-          {
-            "id": "learning-plan",
-            "title": "Próximas prácticas",
-            "icon": "education",
-            "layout": "list",
-            "entries": [
-              {
-                "title": "Samsung y más intervenciones de iPhone",
-                "body": "Pantalla de Galaxy S21 Ultra, batería de Galaxy A35 y dos intervenciones de iPhone XS siguen pendientes. La reparación de consolas es una ruta futura.",
-                "status": "Pendiente / planeado",
-                "tone": "pending"
-              }
             ]
           }
         ],
@@ -2080,6 +2263,11 @@
             "value": "LIDETEC",
             "label": "Participación en curso"
           }
+        ],
+        "targetRoles": [
+          "Auxiliar de reparación de celulares",
+          "Cambio de baterías y pantallas",
+          "Técnico de celulares en formación"
         ]
       }
     },
@@ -2087,12 +2275,20 @@
       "id": "customer-service",
       "profile": "customer-service",
       "en": {
-        "role": "Operations Supervision / Bilingual Technical Support",
-        "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. Experience at Tata Consultancy Services, TTEC, Alorica and TP, including SLA follow-up, incident escalation and mobile-device troubleshooting.",
+        "role": "Operations Supervisor | Bilingual Tier 2 Support & Technical Training",
+        "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations at TCS, TTEC, Alorica and TP. I currently supervise operations, follow SLA commitments and coordinate incident escalation. My experience combines English/Spanish communication, mobile-device troubleshooting, root-cause analysis and technical training.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Professional experience",
+            "icon": "experience",
+            "layout": "timeline",
+            "source": "career",
+            "intro": "Seven years of bilingual customer service, technical support, training and operations."
+          },
+          {
             "id": "skills",
-            "title": "Skills & capabilities",
+            "title": "Skills I can contribute",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -2135,13 +2331,14 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Professional experience",
-            "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Seven years of bilingual customer service, technical support, training and operations.",
-            "newPage": true
+            "id": "certifications",
+            "title": "Education & credentials",
+            "icon": "certifications",
+            "layout": "grid",
+            "source": "training",
+            "ids": [
+              "lidetec"
+            ]
           },
           {
             "id": "work",
@@ -2160,18 +2357,6 @@
                 "url": "https://culichi.lat"
               }
             ]
-          },
-          {
-            "id": "certifications",
-            "title": "Certifications & education",
-            "icon": "certifications",
-            "layout": "grid",
-            "source": "training",
-            "ids": [
-              "lidetec",
-              "academlo",
-              "linux-diploma"
-            ]
           }
         ],
         "highlights": [
@@ -2187,15 +2372,28 @@
             "value": "5",
             "label": "Confirmed roles"
           }
+        ],
+        "targetRoles": [
+          "Operations / team supervisor",
+          "Bilingual Tier 2 technical support",
+          "Technical trainer"
         ]
       },
       "es": {
-        "role": "Supervisión de operaciones / Soporte técnico bilingüe",
-        "summary": "Profesional bilingüe con 7 años en atención al cliente, soporte técnico, capacitación y operaciones. Experiencia en Tata Consultancy Services, TTEC, Alorica y TP, con seguimiento de SLA, escalamiento de incidentes y diagnóstico de dispositivos móviles.",
+        "role": "Supervisor de operaciones | Soporte bilingüe N2 y capacitación técnica",
+        "summary": "Profesional bilingüe con 7 años en atención al cliente, soporte técnico, capacitación y operaciones en TCS, TTEC, Alorica y TP. Actualmente superviso operaciones, doy seguimiento a compromisos de SLA y coordino el escalamiento de incidentes. Mi experiencia combina comunicación en inglés y español, diagnóstico de dispositivos móviles, análisis de causa raíz y capacitación técnica.",
         "sections": [
           {
+            "id": "experience",
+            "title": "Experiencia profesional",
+            "icon": "experience",
+            "layout": "timeline",
+            "source": "career",
+            "intro": "Siete años de atención bilingüe al cliente, soporte técnico, capacitación y operaciones."
+          },
+          {
             "id": "skills",
-            "title": "Habilidades y conocimientos",
+            "title": "Conocimientos que puedo aportar",
             "icon": "skills",
             "layout": "grid",
             "entries": [
@@ -2238,13 +2436,14 @@
             ]
           },
           {
-            "id": "experience",
-            "title": "Experiencia profesional",
-            "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Siete años de atención bilingüe al cliente, soporte técnico, capacitación y operaciones.",
-            "newPage": true
+            "id": "certifications",
+            "title": "Formación y constancias",
+            "icon": "certifications",
+            "layout": "grid",
+            "source": "training",
+            "ids": [
+              "lidetec"
+            ]
           },
           {
             "id": "work",
@@ -2263,18 +2462,6 @@
                 "url": "https://culichi.lat"
               }
             ]
-          },
-          {
-            "id": "certifications",
-            "title": "Certificaciones y formación",
-            "icon": "certifications",
-            "layout": "grid",
-            "source": "training",
-            "ids": [
-              "lidetec",
-              "academlo",
-              "linux-diploma"
-            ]
           }
         ],
         "highlights": [
@@ -2290,6 +2477,11 @@
             "value": "5",
             "label": "Puestos confirmados"
           }
+        ],
+        "targetRoles": [
+          "Supervisor de operaciones / equipo",
+          "Soporte técnico bilingüe N2",
+          "Capacitador técnico"
         ]
       }
     }

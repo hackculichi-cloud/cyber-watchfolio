@@ -14,6 +14,8 @@ if (only?.some(id => !data.resumes.some(resume => resume.id === id))) throw new 
 const selected = data.resumes.filter(resume => !only || only.includes(resume.id));
 const mascotAtlas = (await readFile(resolve(root, "src/assets/culichi-athletic-body-atlas.webp"))).toString("base64");
 const codeFont = (await readFile(resolve(root, "public/fonts/JetBrainsMono-Regular.woff2"))).toString("base64");
+// Static TrueType faces retain word spacing in raw PDF text extraction.
+const bodyFont = Object.fromEntries(await Promise.all(["Regular", "Bold"].map(async weight => [weight.toLowerCase(), (await readFile(resolve(root, `public/fonts/cv/Manrope-${weight}.ttf`))).toString("base64")])));
 const providerLogos = Object.fromEntries(await Promise.all(["udemy", "linkedin"].map(async name => [`/images/providers/${name}.svg`, `data:image/svg+xml;base64,${(await readFile(resolve(root, `public/images/providers/${name}.svg`))).toString("base64")}`])));
 const manifest = JSON.parse(await readFile(resolve(root, "src/data/cvManifest.json"), "utf8"));
 const out = resolve(root, "public/cv");
@@ -28,7 +30,7 @@ try {
     const background = `data:${mime};base64,${(await readFile(path)).toString("base64")}`;
     const pageCounts = {};
     for (const lang of ["en", "es"]) {
-      await page.setContent(renderCv({ data, resume, lang, background, mascotAtlas, codeFont, providerLogos }));
+      await page.setContent(renderCv({ data, resume, lang, background, mascotAtlas, codeFont, bodyFont, providerLogos }));
       await page.evaluate(() => document.fonts.ready);
       const expectedPages = await page.evaluate(paginateCv, { lang });
       pageCounts[lang] = expectedPages;
@@ -38,6 +40,7 @@ try {
         return content.bottom > footer.top - 8 ? [{ page: sheet.dataset.sheet, overflow: content.bottom - footer.top + 8 }] : [];
       }));
       if (overflow.length) throw new Error(`${resume.id} ${lang}: content overlaps footer: ${JSON.stringify(overflow)}`);
+      if (!(await page.locator('[data-sheet="1"] [data-entry-title]').count())) throw new Error(`${resume.id} ${lang}: first page has no practical experience`);
       const stem = `christian-velasco-${resume.id}-${lang}`;
       const pdf = resolve(out, `${stem}.pdf`);
       await page.pdf({ path: pdf, printBackground: true, preferCSSPageSize: true, tagged: true, outline: true });
@@ -49,8 +52,11 @@ try {
       if (resume.id !== "customer-service" && /customer service|call cent(?:er|re)|atención al cliente|Tata Consultancy Services|TTEC|Alorica|years in bilingual service|años de atención bilingüe/i.test(text)) {
         throw new Error(`${stem}: unrelated customer-service experience in the generated PDF`);
       }
+      for (const content of [data.displayName, data.name, resume[lang].role, resume[lang].summary, ...resume[lang].targetRoles]) {
+        if (!text.includes(normalize(content))) throw new Error(`${stem}: missing profile or target role: ${content}`);
+      }
       for (const section of cvSections(data, resume, lang)) {
-        for (const content of [section.title, ...section.entries.flatMap(entry => [entry.title, entry.body, entry.status].filter(Boolean))]) {
+        for (const content of [section.title, ...section.entries.flatMap(entry => [entry.title, entry.body, entry.status, ...(entry.bullets ?? [])].filter(Boolean))]) {
           if (!text.includes(normalize(content))) throw new Error(`${stem}: missing selectable content: ${content}`);
         }
       }

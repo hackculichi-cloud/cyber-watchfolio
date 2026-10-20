@@ -8,7 +8,7 @@ test('the general CV exposes its real PDF pages, preserves language on page two 
   await page.goto('/cv');
   const general = page.locator('[data-cv-theme="general"]');
   await expect(page.locator('[data-cv-theme]')).toHaveCount(7);
-  await expect(general).toContainText('documented work and course practice');
+  await expect(general).toContainText('automate Excel reports with Python');
   await expect(general).not.toContainText('customer service');
   await expect(page.locator('[data-cv-theme="customer-service"]')).toContainText('7 years');
   const download = general.locator('a[download]');

@@ -38,7 +38,7 @@ const CV = () => {
               {cv.id === "general" ? <img src={cvAssets(cv, lang).preview} alt={t("First page of the general CV")} width={1132} height={1600} loading="lazy" className="absolute right-4 top-4 h-auto w-16 rounded border border-primary/30 sm:w-20" /> : <div className="pointer-events-none absolute right-2 top-4 -z-10 opacity-25"><CulichiBody profile={profiles[cv.id]} className="w-24 sm:w-28" /></div>}
               <FileText className="h-5 w-5 text-primary" aria-hidden />
               <h2 className="mt-3 max-w-[80%] text-base font-semibold">{t(cv.title)}</h2>
-              <p className={`mt-2 flex-1 text-sm leading-relaxed text-muted-foreground ${cv.id === "general" ? "pr-20 sm:pr-28" : ""}`}>{t(cv.description)}</p>
+              <p className={`mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground ${cv.id === "general" ? "pr-20 sm:pr-28" : ""}`}>{t(cv.description)}</p>
 
               <div className="mt-5">
                 <CvActions cv={cv} />

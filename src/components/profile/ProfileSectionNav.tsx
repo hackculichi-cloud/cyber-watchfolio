@@ -62,7 +62,7 @@ const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[
   return (
     <nav
       aria-label={t("Profile sections")}
-      className="profile-section-nav sticky top-28 z-30 border-b border-border bg-background/95 sm:backdrop-blur-sm"
+      className="profile-section-nav sticky top-28 z-30 border-b border-border bg-background"
     >
       <div className="container mx-auto flex items-center gap-3 px-4 py-2 sm:hidden">
         <label htmlFor={selectId} className={`${compactProfile ? "sr-only" : "shrink-0 text-[11px] font-medium text-muted-foreground"}`}>{t("On this page")}</label>

@@ -4,7 +4,7 @@
   position: relative;
   display: block;
   min-width: 0;
-  padding: 0 0 .5em max(44px, 1.12em);
+  padding: .32em 0 .6em max(48px, 1.3em);
   color: #f4bd8a;
 }
 
@@ -13,22 +13,33 @@
 .copper-conductor-source {
   position: absolute;
   z-index: 2;
-  top: .25em;
+  top: .55em;
   left: 4px;
   display: grid;
-  width: clamp(28px, .85em, 40px);
+  width: clamp(34px, 1em, 50px);
   justify-items: center;
   gap: 1px;
   color: #f6bf85;
 }
 .copper-conductor-title .copper-conductor-source > svg { display: block; width: 100%; height: auto; overflow: visible; }
 .copper-conductor-source path { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; }
-.copper-source-disc { fill: hsl(var(--background)); stroke: currentColor; stroke-width: 1.3; }
+.copper-source-case { fill: #33271f; stroke: #db9b60; stroke-width: 1.5; }
+.copper-source-bevel { fill: #161c26; stroke: #80583a; stroke-width: .8; }
+.copper-source-rotor { fill: #241e19; stroke: #bb814d; stroke-width: 1; }
+.copper-conductor-source .copper-source-wave { stroke: #ffe1ae; stroke-width: 2.2; }
+.copper-conductor-source .copper-source-vents { stroke: #ba8758; stroke-width: 1; }
+.copper-source-terminals { fill: #ffe1ae; stroke: #e2a76d; stroke-width: 1; }
+.copper-source-screws { fill: #a48c73; }
 .copper-conductor-source > span { font: 650 clamp(8px,.2em,11px)/1 "JetBrains Mono",ui-monospace,monospace; }
 
 .copper-conductor-title .copper-conductor-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .copper-wire { fill: none; stroke: #bf8958; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
 .copper-feed-pulse, .copper-return-pulse { fill: none; stroke: #fff0b5; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1 11; }
+.copper-connection-edge, .copper-connection-core, .copper-connection-shine, .copper-connection-pulse { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.copper-connection-edge { stroke: #75432a; stroke-width: .09em; }
+.copper-connection-core { stroke: #e9a96c; stroke-width: .055em; }
+.copper-connection-shine { stroke: #ffe0bb; stroke-width: .012em; }
+.copper-connection-pulse { stroke: #fff0b5; stroke-width: 2.2; stroke-dasharray: 1 11; }
 .copper-motion-control { position: absolute; bottom: 0; left: 0; display: grid; place-items: center; width: 44px; height: 44px; color: #eeb37b; border-radius: 50%; }
 .copper-heading .copper-motion-control svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 .copper-motion-control:hover { background: #f4bd8a18; }
@@ -36,6 +47,7 @@
 
 .copper-conductor-word {
   display: inline-block;
+  white-space: nowrap;
 }
 
 .copper-conductor-glyph {
@@ -52,10 +64,12 @@
 .copper-cable-shine { stroke: #ffe0bb; stroke-width: .012em; }
 .copper-electron { stroke: #fff8d6; stroke-width: .055em; stroke-dasharray: .01em .22em; opacity: 0; }
 
-.copper-conductor-load { position: absolute; top: .035em; left: 50%; width: .34em; height: .45em; transform: translateX(-50%); }
+.copper-conductor-load { position: absolute; top: -.38em; left: 50%; width: clamp(15px,.56em,30px); height: clamp(20px,.75em,40px); transform: translateX(-50%); }
 .copper-conductor-title .copper-conductor-load svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .copper-bulb-outline { fill: none; stroke: #ffe0a4; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
-.copper-bulb-light { fill: #ffe293; opacity: .85; }
+.copper-bulb-light { fill: #fff0a6; opacity: 1; }
+.copper-bulb-halo { opacity: .9; }
+.copper-bulb-rays { fill: none; stroke: #ffe389; stroke-width: 1.4; stroke-linecap: round; opacity: .9; }
 
 @media (prefers-reduced-motion: no-preference) {
   .copper-electron {
@@ -64,10 +78,11 @@
   .copper-electron[data-electron-terminal="true"] {
     animation-name: copper-electron-arrive;
   }
-  .copper-feed-pulse { animation: copper-wire-flow 3s linear infinite paused; }
+  .copper-feed-pulse, .copper-connection-pulse { animation: copper-wire-flow 3s linear infinite paused; }
   .copper-return-pulse { animation: copper-wire-flow 3s linear 8200ms infinite both paused; }
-  .copper-bulb-light { animation: copper-load-on 600ms ease-out calc(var(--electron-delay) + 450ms) 1 both paused; }
-  .copper-conductor-title[data-in-view="true"][data-motion-paused="false"] :is(.copper-electron,.copper-feed-pulse,.copper-return-pulse,.copper-bulb-light) {
+  .copper-bulb-light { animation: copper-load-on 1200ms ease-out calc(var(--electron-delay) + 450ms) 1 both paused; }
+  .copper-bulb-halo, .copper-bulb-rays { animation: copper-load-halo 1200ms ease-out calc(var(--electron-delay) + 450ms) 1 both paused; }
+  .copper-conductor-title[data-in-view="true"][data-motion-paused="false"] :is(.copper-electron,.copper-feed-pulse,.copper-connection-pulse,.copper-return-pulse,.copper-bulb-light,.copper-bulb-halo,.copper-bulb-rays) {
     animation-play-state: running;
   }
 }
@@ -84,8 +99,18 @@
   100% { stroke-dashoffset: -.46em; opacity: .35; }
 }
 
-@keyframes copper-load-on { from { opacity: .06; } to { opacity: .85; } }
+@keyframes copper-load-on { from { opacity: .04; } to { opacity: 1; } }
+@keyframes copper-load-halo { from { opacity: 0; } to { opacity: .9; } }
 @keyframes copper-wire-flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -24; } }
+
+/* A compact, static circuit shares the hero identity without continuous header repainting. */
+.copper-heading--brand { display: inline-block; vertical-align: middle; font-size: .9em; }
+.copper-heading--brand .copper-conductor-title { padding: .15em .04em .2em .68em; line-height: 1.2; white-space: nowrap; }
+.copper-heading--brand .copper-conductor-source { top: .42em; left: 0; width: .6em; }
+.copper-heading--brand .copper-conductor-load { top: -.18em; width: .3em; height: .4em; }
+.copper-heading--brand :is(.copper-electron,.copper-feed-pulse,.copper-connection-pulse,.copper-return-pulse,.copper-bulb-light,.copper-bulb-halo,.copper-bulb-rays) { animation: none; }
+.copper-heading--brand :is(.copper-bulb-light,.copper-bulb-halo,.copper-bulb-rays) { opacity: 1; }
+.copper-heading--brand .copper-conductor-glyph { font-weight: 750; }
 
 @media (prefers-reduced-motion: reduce) { .copper-motion-control { display: none; } }
 
@@ -99,7 +124,7 @@
   .copper-glyph-strands { display: none; }
   .copper-electron { display: none; }
   .copper-conductor-source { color: CanvasText; }
-  .copper-wire, .copper-bulb-outline, .copper-source-disc { stroke: CanvasText; }
-  .copper-source-disc { fill: Canvas; }
+  .copper-wire, .copper-connection-core, .copper-bulb-outline, .copper-source-case, .copper-source-rotor { stroke: CanvasText; }
+  .copper-source-case, .copper-source-rotor { fill: Canvas; }
   .copper-bulb-light { fill: CanvasText; }
 }

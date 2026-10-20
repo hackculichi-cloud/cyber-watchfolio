@@ -24,7 +24,7 @@ const ProfileCvBlock = ({ cvIds }: { cvIds: string[] }) => {
             </h3>
             <Tag className="hidden sm:inline-flex" variant={cv.available ? "primary" : "muted"}>{t(cv.available ? "Available" : "Coming soon")}</Tag>
           </div>
-          <p className="reading-copy mt-2 text-sm leading-relaxed text-muted-foreground">{t(cv.description)}</p>
+          <p className="reading-copy mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{t(cv.description)}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <CvActions cv={cv} />
           </div>
