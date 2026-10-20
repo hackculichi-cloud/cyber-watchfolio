@@ -2,6 +2,7 @@ import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ReactNode } from "react";
+import type { ProfileSlug } from "@/data/profiles";
 
 interface DetailModalProps {
   open: boolean;
@@ -9,13 +10,14 @@ interface DetailModalProps {
   title: string;
   subtitle?: string;
   children: ReactNode;
+  profile?: ProfileSlug;
 }
 
-const DetailModal = ({ open, onOpenChange, title, subtitle, children }: DetailModalProps) => {
+const DetailModal = ({ open, onOpenChange, title, subtitle, children, profile }: DetailModalProps) => {
   const { t } = useLanguage();
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/25 bg-background sm:backdrop-blur-sm">
+      <DialogContent data-profile={profile} className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/25 bg-background sm:backdrop-blur-sm">
         <DialogHeader>
           <div className="flex flex-wrap items-center gap-3 pr-6">
             <DialogTitle className="min-w-0 flex-1 text-xl font-semibold tracking-tight">{t(title)}</DialogTitle>

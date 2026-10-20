@@ -1,5 +1,6 @@
 import { reviewedEs } from "./es.reviewed";
 import { generatedEs } from "./es.generated";
+import { workRecordEs } from "./es.work-records";
 
 /**
  * Spanish dictionary. Keys are the canonical English strings used across the UI
@@ -325,4 +326,5 @@ export const es: Record<string, string> = {
   "I study fault diagnosis and preventive maintenance.": "Estudio diagnóstico de fallas y mantenimiento preventivo.",
   "I learn about project design and photovoltaic systems.": "Aprendo diseño de proyectos y sistemas fotovoltaicos.",
   ...reviewedEs,
+  ...workRecordEs,
 };
