@@ -298,7 +298,8 @@ export const es: Record<string, string> = {
   "operational": "operativo",
   "detectionImprovements": "mejoras de detección",
   "References": "Referencias",
-  // Electrical training hierarchy and conceptual AC diagram
+  // Electrical training hierarchy
+  "AC": "CA",
   "Main training": "Formación principal",
   "Complementary courses": "Cursos complementarios",
   "The core of my electrical training. I connect the program's theory with course practice and documented residential work.": "La base de mi formación eléctrica. Relaciono la teoría del programa con prácticas de curso y trabajos residenciales documentados.",
@@ -323,11 +324,5 @@ export const es: Record<string, string> = {
   "I develop maintenance skills": "Desarrollo habilidades de mantenimiento",
   "I study fault diagnosis and preventive maintenance.": "Estudio diagnóstico de fallas y mantenimiento preventivo.",
   "I learn about project design and photovoltaic systems.": "Aprendo diseño de proyectos y sistemas fotovoltaicos.",
-  "AC circuit: line, load and neutral": "Circuito de CA: línea, carga y neutro",
-  "Line": "Línea",
-  "Neutral": "Neutro",
-  "Load": "Carga",
-  "Alternating flow": "Flujo alterno",
-  "AC": "CA",
   ...reviewedEs,
 };

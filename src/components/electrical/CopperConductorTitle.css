@@ -1,0 +1,123 @@
+.copper-conductor-title {
+  position: relative;
+  display: block;
+  min-width: 0;
+  padding: 0 0 .35em .92em;
+  color: #f4bd8a;
+}
+
+.copper-conductor-visual { position: relative; }
+
+.copper-conductor-source {
+  position: absolute;
+  z-index: 2;
+  top: .25em;
+  left: 0;
+  display: grid;
+  width: .8em;
+  justify-items: center;
+  gap: 1px;
+  color: #f6bf85;
+}
+.copper-conductor-title .copper-conductor-source > svg { display: block; width: 100%; height: auto; overflow: visible; }
+.copper-conductor-source path { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; }
+.copper-source-disc { fill: hsl(var(--background)); stroke: currentColor; stroke-width: 1.3; }
+.copper-conductor-source > span { font: 650 clamp(8px,.2em,11px)/1 "JetBrains Mono",ui-monospace,monospace; }
+
+.copper-conductor-title .copper-conductor-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.copper-wire { fill: none; stroke: #bf8958; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+.copper-feed-pulse, .copper-return-pulse { fill: none; stroke: #fff0b5; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: .018 .982; opacity: 0; }
+
+.copper-conductor-word {
+  display: inline-block;
+}
+
+.copper-conductor-glyph {
+  position: relative;
+  display: inline-block;
+}
+
+.copper-electron {
+  display: none;
+}
+
+.copper-conductor-load { position: absolute; top: .035em; left: 50%; width: .34em; height: .45em; transform: translateX(-50%); }
+.copper-conductor-title .copper-conductor-load svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.copper-bulb-outline { fill: none; stroke: #ffe0a4; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
+.copper-bulb-light { fill: #ffe293; opacity: .85; }
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .copper-conductor-glyph {
+    background-image:
+      repeating-linear-gradient(145deg, transparent 0 2px, rgb(255 239 219 / .3) 2px 2.4px, transparent 2.4px 4px),
+      linear-gradient(180deg, #ffe4c9 0%, #f4bc84 18%, #d99255 35%, #ffd3a5 48%, #f3b77a 58%, #ce8950 76%, #ffe0bc 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: .25px rgb(255 217 176 / .45);
+  }
+
+  .copper-electron {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background-image: radial-gradient(circle at center, #fffce7 0 .04em, #ffec9b .055em, transparent .085em);
+    background-size: .26em .28em;
+    background-position: 0 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .copper-electron {
+    animation: copper-electron-pass 480ms ease-out var(--electron-delay) 1 both paused;
+  }
+  .copper-electron[data-electron-terminal="true"] {
+    animation-name: copper-electron-arrive;
+  }
+  .copper-feed-pulse { animation: copper-wire-return 260ms linear 1 both paused; }
+  .copper-return-pulse { animation: copper-wire-return 820ms linear 3760ms 1 both paused; }
+  .copper-bulb-light { animation: copper-load-on 240ms ease-out calc(var(--electron-delay) + 140ms) 1 both paused; }
+  .copper-conductor-title[data-in-view="true"] :is(.copper-electron,.copper-feed-pulse,.copper-return-pulse,.copper-bulb-light) {
+    animation-play-state: running;
+  }
+}
+
+@keyframes copper-electron-pass {
+  0% { background-position: 0 0; opacity: 0; }
+  38% { opacity: 1; }
+  100% { background-position: .26em .28em; opacity: 0; }
+}
+
+@keyframes copper-electron-arrive {
+  0% { background-position: 0 0; opacity: 0; }
+  38% { opacity: 1; }
+  100% { background-position: .26em .28em; opacity: .35; }
+}
+
+@keyframes copper-load-on { from { opacity: .06; } to { opacity: .85; } }
+@keyframes copper-wire-return {
+  0% { stroke-dashoffset: 0; opacity: 0; }
+  4%,96% { opacity: 1; }
+  100% { stroke-dashoffset: -1; opacity: 0; }
+}
+
+@media (forced-colors: active) {
+  .copper-conductor-glyph {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+    -webkit-text-stroke: 0;
+  }
+  .copper-electron { display: none; }
+  .copper-conductor-source { color: CanvasText; }
+  .copper-wire, .copper-bulb-outline, .copper-source-disc { stroke: CanvasText; }
+  .copper-source-disc { fill: Canvas; }
+  .copper-bulb-light { fill: CanvasText; }
+}

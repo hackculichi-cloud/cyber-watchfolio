@@ -8,7 +8,6 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { ProviderMark } from "@/components/profile/TrainingProviderBadge";
 import MascotScene from "@/components/shared/MascotScene";
 import ElectricalCurriculum from "./ElectricalCurriculum";
-import ElectricalTitleCircuit from "./ElectricalTitleCircuit";
 import Tag from "@/components/shared/Tag";
 
 const complementaryProviders: Record<string, TrainingProviderId> = {
@@ -27,12 +26,11 @@ export default function ElectricalAreaLearning({ area, onOpen }: { area: string;
   const university = trainingProviders["universidad-internacional"];
 
   return <section id="overview" data-area-learning={area} className="space-y-6 px-0 py-5 sm:px-4 sm:py-6">
-    <header className="grid items-center gap-4 xl:grid-cols-[minmax(0,1fr)_20rem]">
-      <div className="flex items-center justify-between gap-3">
+    <header>
+      <div className="flex w-full items-center justify-between gap-3">
         <div><p className="eyebrow">{t("Knowledge & applied practice")}</p><h2 className="mt-2 text-2xl font-semibold sm:text-3xl">{t("What I know and how I apply it")}</h2></div>
         <MascotScene profile="electrical" scene="practice" className="w-14 shrink-0 sm:w-20" />
       </div>
-      <ElectricalTitleCircuit />
     </header>
 
     <article data-main-electrical-training className="overflow-hidden rounded-xl border border-primary/40 bg-background/60">

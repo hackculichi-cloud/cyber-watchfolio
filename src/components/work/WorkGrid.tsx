@@ -14,6 +14,8 @@ interface WorkGridProps {
   emptyDescription?: string;
   /** Number of marked placeholder slots shown while no real work is published. */
   placeholderSlots?: number;
+  /** Center small collections without stretching a lone card across the page. */
+  centered?: boolean;
 }
 
 /**
@@ -25,6 +27,7 @@ const WorkGrid = ({
   emptyTitle = "Real projects coming soon",
   emptyDescription = "These slots are reserved for documented work with real photos and screenshots.",
   placeholderSlots = 3,
+  centered = false,
 }: WorkGridProps) => {
   const { t } = useLanguage();
   const [category, setCategory] = useState("All");
@@ -39,7 +42,7 @@ const WorkGrid = ({
 
   if (!items.length) {
     return (
-      <div>
+      <div className={centered ? "text-center" : undefined}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: placeholderSlots }).map((_, i) => (
             <div key={i} className="panel flex flex-col overflow-hidden p-0">
@@ -84,9 +87,9 @@ const WorkGrid = ({
         </div>
       )}
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className={centered ? "flex flex-wrap items-stretch justify-center gap-5" : "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
         {filtered.map((item) => (
-          <WorkCard key={item.id} item={item} onOpen={setOpenId} />
+          centered ? <div key={item.id} className="w-full min-w-0 max-w-sm flex-[1_1_16rem]"><WorkCard item={item} onOpen={setOpenId} /></div> : <WorkCard key={item.id} item={item} onOpen={setOpenId} />
         ))}
       </div>
 

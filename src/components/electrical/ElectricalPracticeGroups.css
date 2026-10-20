@@ -1,0 +1,22 @@
+.electrical-choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.electrical-choice-row > button {
+  flex: 0 1 calc((100% - .75rem) / 2);
+  max-width: 18rem;
+}
+
+@media (min-width: 640px) {
+  .electrical-choice-row > button {
+    flex-basis: calc((100% - 1.5rem) / 3);
+  }
+}
+
+/* Replacing results must not make the browser anchor to a different case. */
+.electrical-practice-results { overflow-anchor: none; }
