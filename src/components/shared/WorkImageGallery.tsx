@@ -48,7 +48,7 @@ const WorkImageGallery = ({ images, title, compact = false, collapsible = false 
         <ChevronDown className={`ml-2 h-4 w-4 transition-transform motion-reduce:transition-none ${expanded ? "rotate-180" : ""}`} aria-hidden />
       </Button>}
       <Dialog open={Boolean(active)} onOpenChange={(open) => !open && setActiveIndex(null)}>
-        <DialogContent className="max-h-[92vh] max-w-5xl overflow-y-auto" onKeyDown={(event) => {
+        <DialogContent data-photo-dialog className="max-h-[92vh] max-w-5xl overflow-y-auto" onKeyDown={(event) => {
           if (event.key === "ArrowLeft") { event.preventDefault(); move(-1); }
           if (event.key === "ArrowRight") { event.preventDefault(); move(1); }
         }}>

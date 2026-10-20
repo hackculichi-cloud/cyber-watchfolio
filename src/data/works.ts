@@ -9,11 +9,35 @@ export type WorkImage = {
   caption?: string;
 };
 
+export type WorkStep = {
+  title: string;
+  description: string;
+  images?: WorkImage[];
+  /** Explicit author confirmation, used when no photo or recording was supplied. */
+  confirmed?: boolean;
+  /** Render the supplied recording at this stage, without autoplay. */
+  video?: boolean;
+};
+
+export type DocumentationGap = {
+  title: string;
+  description: string;
+  timing: "Current condition" | "Original record" | "Next session";
+};
+
+export type WorkProcessRecord = {
+  /** Stages actually documented or confirmed by the author, never planned actions. */
+  documentedSteps?: WorkStep[];
+  /** Reference checklist, distinct from actions recorded as performed. */
+  protocol?: string[];
+  documentationNeeded?: DocumentationGap[];
+};
+
 /**
  * Image-first project / work entry, shared by every professional profile.
  * Add an object here and the visual card + detail view render automatically.
  */
-export type WorkItem = {
+export type WorkItem = WorkProcessRecord & {
   id: string;
   profile: ProfileSlug;
   title: string;
@@ -31,10 +55,6 @@ export type WorkItem = {
   components?: string[];
   /** Only document steps actually performed; future work stays Planned. */
   procedure?: string[];
-  /** Photo-backed stages, distinct from any checks still awaiting confirmation. */
-  documentedSteps?: { title: string; description: string; images?: WorkImage[] }[];
-  /** Reference checklist; does not assert unrecorded steps were performed. */
-  protocol?: string[];
   technicalExplanation?: string;
   did?: string[];
   learned?: string[];

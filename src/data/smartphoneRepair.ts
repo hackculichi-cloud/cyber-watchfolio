@@ -1,11 +1,12 @@
-import type { WorkImage } from "./works";
+import type { WorkImage, WorkProcessRecord } from "./works";
 import { repairPhotos } from "./repairPhotos";
+import { workProcessFor } from "./workProcesses";
 
 /** ---------------------------------------------------------------
  * Smartphone repair profile data.
  * Everything below is either real (training curriculum, certificate,
  * documented photos) or explicitly marked as pending.
- * Add new repairs to `smartphoneRepairs` — the UI renders automatically.
+ * Add new cases to `confirmedSmartphoneRepairs`; shared process records live in workProcesses.ts.
  * --------------------------------------------------------------- */
 
 export const smartphoneStatus = "Training completed · Practical development";
@@ -169,7 +170,7 @@ export type SmartphoneBrand = "iPhone" | "Samsung";
 export type SmartphoneRepairType = "Battery replacement" | "Screen replacement";
 
 /** Individual documented smartphone repair. */
-export type SmartphoneRepair = {
+export type SmartphoneRepair = WorkProcessRecord & {
   id: string;
   ref: string;
   device: string;
@@ -198,7 +199,7 @@ export type SmartphoneRepair = {
  * Only real, personally performed repairs. Fields left undefined render as
  * "pending" in the UI — never invent content here.
  */
-export const smartphoneRepairs: SmartphoneRepair[] = [
+const confirmedSmartphoneRepairs: SmartphoneRepair[] = [
   {
     "id": "sr-001",
     "ref": "SMARTPHONE REPAIR #001",
@@ -272,6 +273,8 @@ export const smartphoneRepairs: SmartphoneRepair[] = [
     "notes": "Repair date, screen brand and test measurements are not documented."
   }
 ];
+
+export const smartphoneRepairs: SmartphoneRepair[] = confirmedSmartphoneRepairs.map(repair => ({ ...repair, ...workProcessFor(repair.id, repair.photos) }));
 
 /** User-confirmed future work. Never included in completed repair counts. */
 export const plannedSmartphoneRepairs: { id: string; brand: SmartphoneBrand; device: string; repairType: SmartphoneRepairType }[] = [

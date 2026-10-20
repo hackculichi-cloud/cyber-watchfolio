@@ -94,6 +94,7 @@ const WorkGrid = ({
       </div>
 
       <DetailModal
+        profile={current?.profile}
         open={Boolean(current)}
         onOpenChange={(o) => !o && setOpenId(null)}
         title={t(current?.title)}

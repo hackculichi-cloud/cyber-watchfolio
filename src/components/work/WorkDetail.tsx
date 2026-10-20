@@ -6,6 +6,7 @@ import PlaceholderImage from "@/components/shared/PlaceholderImage";
 import BeforeAfter from "@/components/shared/BeforeAfter";
 import WorkImageGallery from "@/components/shared/WorkImageGallery";
 import SmartImage from "@/components/shared/SmartImage";
+import WorkProcess from "./WorkProcess";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const List = ({ title, items }: { title: string; items?: string[] }) => {
@@ -29,6 +30,29 @@ const List = ({ title, items }: { title: string; items?: string[] }) => {
 const WorkDetail = ({ item }: { item: WorkItem }) => {
   const { t } = useLanguage();
   const [videoError, setVideoError] = useState(false);
+  const recordedVideo = item.video && (
+        <section className="space-y-3">
+          <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t(item.video.title)}</h4>
+          <video
+            key={item.video.src}
+            controls
+            playsInline
+            preload="metadata"
+            poster={item.video.poster}
+            aria-label={t(item.video.title)}
+            className="aspect-video w-full rounded-lg border border-border bg-background object-contain"
+            onError={() => setVideoError(true)}
+          >
+            {item.video.webmSrc && <source src={item.video.webmSrc} type="video/webm" />}
+            <source src={item.video.src} type="video/mp4" />
+            {t("Your browser cannot play this video.")}
+          </video>
+          {videoError && <p role="status" className="text-sm text-muted-foreground">{t("Video unavailable")}</p>}
+          <a href={item.video.src} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
+            <ExternalLink className="h-4 w-4" aria-hidden />{t("Open video")}
+          </a>
+        </section>
+      );
   return (
     <div className="reading-copy space-y-8">
       {item.cover?.src ? (
@@ -69,20 +93,7 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
           {item.procedure.map((step, index) => <li key={index}>{t(step)}</li>)}
         </ol>
       </section> : null}
-      {item.documentedSteps?.length ? <section data-documented-steps className="space-y-5">
-        <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Photographic process record")}</h4>
-        <ol className="space-y-6">
-          {item.documentedSteps.map((step, index) => <li key={step.title} className="border-l border-primary/30 pl-4">
-            <h5 className="text-sm font-semibold"><span className="mr-2 font-mono text-primary">{String(index + 1).padStart(2, "0")}</span>{t(step.title)}</h5>
-            <p className="mb-3 mt-2 text-sm leading-relaxed text-muted-foreground">{t(step.description)}</p>
-            {step.images?.length ? <WorkImageGallery images={step.images} title={step.title} compact /> : null}
-          </li>)}
-        </ol>
-      </section> : null}
-      {item.protocol?.length ? <section data-work-protocol className="rounded-lg border border-primary/30 bg-primary/5 p-4">
-        <p className="mb-3 text-xs leading-relaxed text-muted-foreground">{t("Reference checklist. Performed actions and recorded results are described in the process above.")}</p>
-        <List title="Work protocol" items={item.protocol} />
-      </section> : null}
+      <WorkProcess documentedSteps={item.documentedSteps} protocol={item.protocol} documentationNeeded={item.documentationNeeded} video={recordedVideo} />
       {item.technicalExplanation && <section className="space-y-2">
         <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Technical explanation")}</h4>
         <p className="text-sm leading-relaxed text-muted-foreground">{t(item.technicalExplanation)}</p>
@@ -102,29 +113,7 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
         </div>
       ) : null}
 
-      {item.video && (
-        <section className="space-y-3">
-          <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t(item.video.title)}</h4>
-          <video
-            key={item.video.src}
-            controls
-            playsInline
-            preload="metadata"
-            poster={item.video.poster}
-            aria-label={t(item.video.title)}
-            className="aspect-video w-full rounded-lg border border-border bg-background object-contain"
-            onError={() => setVideoError(true)}
-          >
-            {item.video.webmSrc && <source src={item.video.webmSrc} type="video/webm" />}
-            <source src={item.video.src} type="video/mp4" />
-            {t("Your browser cannot play this video.")}
-          </video>
-          {videoError && <p role="status" className="text-sm text-muted-foreground">{t("Video unavailable")}</p>}
-          <a href={item.video.src} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
-            <ExternalLink className="h-4 w-4" aria-hidden />{t("Open video")}
-          </a>
-        </section>
-      )}
+      {!item.documentedSteps?.some(step => step.video) && recordedVideo}
 
       {(item.repo || item.demo || item.writeup) && (
         <div className="flex flex-wrap items-center gap-5 border-t border-border pt-5 text-sm">

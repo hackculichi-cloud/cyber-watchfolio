@@ -37,6 +37,9 @@ Campos disponibles:
 - `components`: dispositivos utilizados con especificaciones verificadas.
 - `tools`: herramientas efectivamente utilizadas.
 - `procedure`: pasos realizados, en orden.
+- `documentedSteps`: etapas realizadas o confirmadas, con descripción, fotos originales y video opcional; `confirmed` distingue una confirmación sin imagen.
+- `protocol`: lista de referencia; no afirma que todos sus puntos se realizaron.
+- `documentationNeeded`: fotos o datos por completar, indicando si pueden documentarse ahora, requieren un registro original o corresponden a una próxima sesión.
 - `technicalExplanation`: explicación del montaje y del circuito.
 - `did`, `learned`, `results`: acciones, aprendizajes y resultados observados.
 - `cover`, `images`, `before`, `after`, `video`: evidencia propia, con textos alternativos y pies de foto.
@@ -45,4 +48,4 @@ La entrada de control con contactor y START/STOP permanece `Planned`. Después d
 
 Las fotografías del detalle se amplían y permiten navegación con flechas y cierre con Escape. Conservar los originales como evidencia; no alterar lo que muestran. Añadir traducciones para todas las descripciones, pasos, resultados, pies de foto y textos alternativos. Los botones START/STOP y referencias de componentes pueden conservar sus nombres técnicos.
 
-Electrónica y reparación de smartphones no se amplían en esta fase.
+Los cinco trabajos eléctricos realizados y las tres reparaciones de iPhone comparten `WorkProcess`. Los registros de etapas y pendientes se reúnen en `src/data/workProcesses.ts`, con fotos de su propio caso. START/STOP conserva estado planeado sin etapas realizadas; las reparaciones Samsung siguen planeadas. La lista práctica en español para aportar evidencia está en [work-process-evidence.md](work-process-evidence.md).

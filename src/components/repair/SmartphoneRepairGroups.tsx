@@ -74,7 +74,7 @@ const SmartphoneRepairGroups = () => {
             {plans.map(plan => <DeviceTile key={plan.id} label={plan.device} group={plan.id} planned={1} selected={deviceId === plan.id}
               onSelect={() => setDeviceId(deviceId === plan.id ? null : plan.id)} visual={<DeviceImage id={plan.id} />} />)}
           </div>
-          {selectedRepair && <div id={`repair-panel-${selectedRepair.id}`}><SmartphoneRepairCard repair={selectedRepair} /></div>}
+          {selectedRepair && <div id={`repair-panel-${selectedRepair.id}`}><SmartphoneRepairCard key={selectedRepair.id} repair={selectedRepair} /></div>}
           {selectedPlan && <div id={`repair-panel-${selectedPlan.id}`} className="rounded-lg border border-border p-4">
             <p className="font-medium">{selectedPlan.device} · {t("Planned")}</p>
             <p className="mt-2 text-sm text-muted-foreground">{t("Upcoming repair. Results and photographic evidence will be added after the work is completed.")}</p>

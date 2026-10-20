@@ -4,6 +4,7 @@ const groupPhoto = "/images/electrical/training-group.jpg";
 const wiringWork = "/images/electrical/training-wiring.jpg";
 const installationDetail = "/images/electrical/training-installation.jpg";
 import type { WorkItem } from "@/data/works";
+import { workProcessFor } from "./workProcesses";
 
 const floatPhoto = {
   src: "/media/portfolio/float-switch-practice-board.png",
@@ -77,7 +78,7 @@ export const outletPhotoPractice: WorkItem = {
   cover: contactPhotos[15], images: contactPhotos,
 };
 
-export const electricalProjects: WorkItem[] = [
+const electricalProjectEntries: WorkItem[] = [
   outletPhotoPractice,
   {
     id: "start-stop-contactor-planned",
@@ -96,6 +97,7 @@ export const electricalProjects: WorkItem[] = [
       "Hands-on course practice documenting the assembly and wiring of a residential installation training board.",
     category: "Practical training",
     status: "Completed",
+    objective: "Document the course board assembly, conduit routing, device wiring and observed lighting result.",
     skills: ["Residential wiring", "Conduit routing", "Device installation", "Circuit assembly"],
     tools: ["Wire stripping and crimping tools", "Screwdrivers", "Hand tools", "Power drill"],
     did: [
@@ -108,6 +110,7 @@ export const electricalProjects: WorkItem[] = [
       "Organization of conductors inside junction and device boxes",
       "Installation workflow from assembly through functional testing",
     ],
+    results: ["The course photographs show the assembled board and illuminated lighting points. Individual electrical test readings have not been supplied."],
     cover: {
       src: boardWork,
       alt: "Residential electrical training board with conduit, outlets, switches and lighting points",
@@ -143,8 +146,10 @@ export const electricalProjects: WorkItem[] = [
     summary: "Course exercise with an electronivel (float switch) on the electrical practice board, documented with a photograph and a functional demonstration video.",
     category: "Practical training",
     status: "Completed",
+    objective: "Document the float-switch training setup and its recorded functional demonstration.",
     skills: ["Float-switch practice", "Electrical control", "Circuit assembly"],
     did: ["Practiced float-switch control on the course training board.", "Documented the exercise with a board photograph and a video demonstration."],
+    results: ["The supplied photograph and video document the course exercise; specific control-state measurements remain unrecorded."],
     cover: floatPhoto,
     images: [floatPhoto],
     video: { src: "/media/portfolio/float-switch-functional-test.mp4", webmSrc: "/media/portfolio/float-switch-functional-test.webm", title: "Float-switch practice demonstration", poster: floatPhoto.src },
@@ -158,6 +163,7 @@ export const electricalProjects: WorkItem[] = [
     status: "Completed",
     skills: ["Device replacement", "Residential wiring", "Electrical maintenance"],
     did: ["Replaced a residential outlet and switch for a client.", "Documented the removed device, the installed replacement and the power strips."],
+    results: ["The replacement outlet and switch are shown installed with their wall plate beside the power strip."],
     cover: outletPhotos[0],
     images: outletPhotos,
     objective: "Document residential outlet and switch replacement with an organized process and supporting photographs.",
@@ -176,12 +182,15 @@ export const electricalProjects: WorkItem[] = [
     category: "Residential",
     status: "Completed",
     skills: ["Luminaire replacement", "Residential wiring", "Electrical maintenance"],
+    objective: "Document the replacement of two ceiling luminaires, their connection and mounting, and the observed lighting result.",
     did: ["Replaced two ceiling luminaires in a client's residence.", "Documented the luminaire connections and ceiling mounting.", "Photographed the completed installation with both luminaires illuminated."],
     results: ["Two replacement ceiling luminaires shown operating in the completed installation."],
     cover: lightPhotos[3],
     images: lightPhotos,
   },
 ];
+
+export const electricalProjects: WorkItem[] = electricalProjectEntries.map(item => ({ ...item, ...workProcessFor(item.id, item.images) }));
 
 export const electricalEvidence = electricalProjects.flatMap((project) =>
   (project.images ?? []).filter((image) => Boolean(image.src)).map((image) => ({
