@@ -43,8 +43,10 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         </div>
 
         <div className="hero-title animate-fade-in-up delay-100 mt-6 flex items-start gap-4">
-          <span className="glow-ring mt-1 grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-primary/60 bg-background text-primary sm:h-16 sm:w-16"><profile.icon className="h-8 w-8" aria-hidden /></span>
-          <h1 className="max-w-4xl break-words text-3xl font-bold leading-tight text-foreground sm:text-4xl xl:text-5xl">{profile.slug === "electrical" ? <CopperConductorTitle text={t(profile.label)} /> : t(profile.label)}</h1>
+          {profile.slug === "electrical" ? <CopperConductorTitle text={t(profile.label)} /> : <>
+            <span className="glow-ring mt-1 grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-primary/60 bg-background text-primary sm:h-16 sm:w-16"><profile.icon className="h-8 w-8" aria-hidden /></span>
+            <h1 className="max-w-4xl break-words text-3xl font-bold leading-tight text-foreground sm:text-4xl xl:text-5xl">{t(profile.label)}</h1>
+          </>}
         </div>
         <p className="hero-description reading-copy animate-fade-in-up delay-200 mt-5 max-w-2xl text-base leading-relaxed text-foreground/95 md:text-lg">
           {t(profile.description)}

@@ -13,7 +13,7 @@ Confirmed learning states:
 
 ## CV source and generation
 
-`src/data/resumes.json` contains the six tailored documents in English and Spanish. They use the existing portfolio and owner-confirmed training; employer names, employment dates, degree names, grades, proficiency scores and performance metrics are not inferred.
+`src/data/resumes.json` contains one general technical CV and six area-specific CVs in English and Spanish. They use the existing portfolio and owner-confirmed training. The five confirmed employment records and seven years of service experience appear only in the customer-service CV. Technical versions use their own documented work, projects or educational labs as experience; no jobs or employment dates are inferred for these activities.
 
 Run `npm run generate:cvs` with an installed Playwright Chromium and Poppler (`pdfinfo` and `pdftoppm`). In this cloud workspace:
 
@@ -21,7 +21,7 @@ Run `npm run generate:cvs` with an installed Playwright Chromium and Poppler (`p
 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run generate:cvs
 ```
 
-The generator renders offline, creates twelve one-page tagged A4 PDFs (six areas × two languages), rejects multi-page outputs, rasterizes each actual first page to PNG, and writes the lightweight `cvManifest.json` used by the app. The complete source documents are not bundled into client JavaScript. Generated PDFs/previews are committed so deployment does not require Poppler or regeneration.
+The generator renders offline, creates fourteen tagged multi-page A4 PDFs (seven CVs × two languages), checks pagination, footer clearance and selectable text, rasterizes every actual page to PNG, and writes the lightweight `cvManifest.json` used by the app. It rejects customer-service employment references in technical documents. The complete source documents are not bundled into client JavaScript. Generated PDFs/previews are committed so deployment does not require Poppler or regeneration. See `docs/cv-design.md` for the current layout and per-language page counts.
 
 `CvActions` shares downloads and an explicit preview dialog that works by touch. Each profile references its own CV id. All six primary CVs are updated ES/EN documents, including electrical; the unmodified uploaded electrical original remains downloadable. The extra updated electrical entry has been removed from `/cv` as requested.
 
@@ -29,9 +29,9 @@ No new dependencies. The existing chunk-size warning remains visible.
 
 ## Explicit previews and themed documents
 
-Area previews are momentary: hold the eye button (mouse, touch, Enter/Space) to show a read-only overview; release, cancellation, focus loss, Escape or window blur closes it. Pointer capture ensures releasing outside the eye also closes it. Hover and focus alone do not open it. Enter the card normally to navigate. CV download links do not open hover previews. The shared CV dialog provides width fit and 100–200% zoom with a scrollable image of the actual PDF.
+Area previews are momentary: hold the eye button (mouse, touch, Enter/Space) to show a read-only overview; release, cancellation, focus loss, Escape or window blur closes it. Pointer capture ensures releasing outside the eye also closes it. Hover and focus alone do not open it. Enter the card normally to navigate. CV download links do not open hover previews. The shared CV dialog provides width fit, 100–400% zoom and page navigation with faithful images of the actual PDF.
 
-El PDF eléctrico original se conserva sin cambios y sigue disponible como original. La descarga principal ahora utiliza los documentos actualizados ES/EN con los estados confirmados: RED CONOCER y ambos cursos de Udemy en curso; LinkedIn Learning completado. No se publica una segunda tarjeta eléctrica. Las doce variantes tienen texto seleccionable, una página, mascota con el atuendo del perfil y un fondo técnico propio. El diseño de la página `/cv` no cambia en esta actualización.
+El PDF eléctrico original se conserva sin cambios. La descarga principal utiliza los documentos actualizados ES/EN con los estados confirmados: Universidad Internacional · RED CONOCER y ambos cursos de Udemy en curso; LinkedIn Learning completado. No se publica una segunda tarjeta eléctrica. Las catorce variantes tienen texto seleccionable, varias páginas, mascota con el atuendo del perfil y un fondo técnico propio. El diseño de la página `/cv` no cambia en esta actualización.
 
 ETO basic electronics now includes the owner's supplied course objectives and eight modules inside the expanded basic-electronics detail, with a collapsed syllabus control. Instruments and diagnostic topics are described as learning objectives, not completed competencies. Expected completion is February; no year or graduation is inferred. The electronics CV includes the same expected month and a compact summary of the syllabus.
 

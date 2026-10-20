@@ -275,8 +275,8 @@
       "id": "general",
       "profile": "home",
       "en": {
-        "role": "Bilingual Technical Professional | Development, Support & Operations",
-        "summary": "Bilingual professional with 7 years in customer service, technical support, training and operations. I build web interfaces and automate reports, document educational cybersecurity investigations, and develop practical electrical, electronics and smartphone-repair skills.",
+        "role": "Technical Portfolio | Software, Cybersecurity & Hands-on Practice",
+        "summary": "I build web interfaces and automate reports, document educational cybersecurity investigations, and apply electrical, electronics and smartphone-repair skills through documented work and course practice.",
         "sections": [
           {
             "id": "skills",
@@ -327,26 +327,8 @@
                   "Displays",
                   "Diagnostics"
                 ]
-              },
-              {
-                "title": "Customer service",
-                "body": "Seven years of bilingual support, operations supervision and technical training.",
-                "tags": [
-                  "English / Spanish",
-                  "SLA",
-                  "Tier 2"
-                ]
               }
             ]
-          },
-          {
-            "id": "experience",
-            "title": "Professional experience",
-            "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Seven years of bilingual support, training and operations across five confirmed roles. Technical work is documented separately below.",
-            "newPage": true
           },
           {
             "id": "projects",
@@ -444,9 +426,9 @@
             ]
           },
           {
-            "id": "practice",
-            "title": "Practical work & investigations",
-            "icon": "work",
+            "id": "experience",
+            "title": "Hands-on experience & educational investigations",
+            "icon": "experience",
             "layout": "grid",
             "entries": [
               {
@@ -513,7 +495,8 @@
                 "tone": "complete",
                 "url": "https://culichi.lat/repair"
               }
-            ]
+            ],
+            "intro": "Documented technical work and educational practice across the portfolio. Software projects are presented separately above."
           },
           {
             "id": "certifications",
@@ -539,22 +522,22 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Years in bilingual service"
+            "value": "5",
+            "label": "Technical areas"
           },
           {
             "value": "EN / ES",
             "label": "Working languages"
           },
           {
-            "value": "6",
-            "label": "Technical areas"
+            "value": "Practice",
+            "label": "Documented portfolio"
           }
         ]
       },
       "es": {
-        "role": "Profesional técnico bilingüe | Desarrollo, soporte y operaciones",
-        "summary": "Profesional bilingüe con 7 años en atención al cliente, soporte técnico, capacitación y operaciones. Desarrollo interfaces web y automatizo reportes, documento investigaciones educativas de ciberseguridad y aplico conocimientos de electricidad, electrónica y reparación de celulares.",
+        "role": "Portafolio técnico | Software, ciberseguridad y práctica",
+        "summary": "Desarrollo interfaces web y automatizo reportes, documento investigaciones educativas de ciberseguridad y aplico conocimientos de electricidad, electrónica y reparación de celulares en trabajos y prácticas documentados.",
         "sections": [
           {
             "id": "skills",
@@ -605,26 +588,8 @@
                   "Pantallas",
                   "Diagnóstico"
                 ]
-              },
-              {
-                "title": "Atención al cliente",
-                "body": "Siete años de soporte bilingüe, supervisión de operaciones y capacitación técnica.",
-                "tags": [
-                  "Inglés / Español",
-                  "SLA",
-                  "Tier 2"
-                ]
               }
             ]
-          },
-          {
-            "id": "experience",
-            "title": "Experiencia profesional",
-            "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Siete años de atención bilingüe, capacitación y operaciones en cinco puestos confirmados. El trabajo técnico se documenta por separado.",
-            "newPage": true
           },
           {
             "id": "projects",
@@ -722,9 +687,9 @@
             ]
           },
           {
-            "id": "practice",
-            "title": "Trabajos e investigaciones",
-            "icon": "work",
+            "id": "experience",
+            "title": "Experiencia práctica e investigaciones educativas",
+            "icon": "experience",
             "layout": "grid",
             "entries": [
               {
@@ -791,7 +756,8 @@
                 "tone": "complete",
                 "url": "https://culichi.lat/repair"
               }
-            ]
+            ],
+            "intro": "Trabajos técnicos documentados y prácticas educativas del portafolio. Los proyectos de software se presentan por separado en la sección anterior."
           },
           {
             "id": "certifications",
@@ -817,16 +783,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Años de atención bilingüe"
+            "value": "5",
+            "label": "Áreas técnicas"
           },
           {
             "value": "EN / ES",
-            "label": "Idiomas de atención"
+            "label": "Idiomas de trabajo"
           },
           {
-            "value": "6",
-            "label": "Áreas técnicas"
+            "value": "Práctica",
+            "label": "Portafolio documentado"
           }
         ]
       }
@@ -886,17 +852,8 @@
           },
           {
             "id": "experience",
-            "title": "Professional experience",
+            "title": "Experience in educational investigations",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Transferable professional experience in support and operations. The security investigations are educational labs; I am seeking my first SOC Tier 1 role.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Investigations & educational practice",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -933,7 +890,8 @@
                 ],
                 "url": "https://culichi.lat/cybersecurity"
               }
-            ]
+            ],
+            "intro": "Three documented LetsDefend training investigations. These are educational labs; I am seeking my first SOC Tier 1 role."
           },
           {
             "id": "certifications",
@@ -950,16 +908,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Years in bilingual service"
-          },
-          {
-            "value": "EN / ES",
-            "label": "Working languages"
-          },
-          {
             "value": "3",
             "label": "Educational investigations"
+          },
+          {
+            "value": "VPN / RDP",
+            "label": "Authentication analysis"
+          },
+          {
+            "value": "Linux",
+            "label": "Training in progress"
           }
         ]
       },
@@ -1015,17 +973,8 @@
           },
           {
             "id": "experience",
-            "title": "Experiencia profesional",
+            "title": "Experiencia en investigaciones educativas",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Experiencia profesional transferible de soporte y operaciones. Las investigaciones de seguridad son laboratorios educativos; busco mi primera oportunidad SOC nivel 1.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Investigaciones y práctica educativa",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -1062,7 +1011,8 @@
                 ],
                 "url": "https://culichi.lat/cybersecurity"
               }
-            ]
+            ],
+            "intro": "Tres investigaciones de formación en LetsDefend documentadas. Son laboratorios educativos; busco mi primera oportunidad SOC nivel 1."
           },
           {
             "id": "certifications",
@@ -1079,16 +1029,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Años de atención bilingüe"
-          },
-          {
-            "value": "EN / ES",
-            "label": "Idiomas de atención"
-          },
-          {
             "value": "3",
             "label": "Investigaciones educativas"
+          },
+          {
+            "value": "VPN / RDP",
+            "label": "Análisis de autenticación"
+          },
+          {
+            "value": "Linux",
+            "label": "Formación en curso"
           }
         ]
       }
@@ -1148,17 +1098,8 @@
           },
           {
             "id": "experience",
-            "title": "Professional experience",
+            "title": "Development experience through projects",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Transferable professional experience in support, training and operations. Software experience is demonstrated through the portfolio projects above.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Projects & practical experience",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -1248,7 +1189,8 @@
                 ],
                 "url": "https://github.com/ByCulichi"
               }
-            ]
+            ],
+            "intro": "Public personal and learning projects demonstrate my frontend and automation experience. Each entry links to the portfolio or its source code."
           },
           {
             "id": "certifications",
@@ -1265,16 +1207,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Years in bilingual service"
-          },
-          {
-            "value": "EN / ES",
-            "label": "Working languages"
-          },
-          {
             "value": "9",
             "label": "Public projects"
+          },
+          {
+            "value": "React / TS",
+            "label": "Web interfaces"
+          },
+          {
+            "value": "Python",
+            "label": "Excel automation"
           }
         ]
       },
@@ -1330,17 +1272,8 @@
           },
           {
             "id": "experience",
-            "title": "Experiencia profesional",
+            "title": "Experiencia de desarrollo en proyectos",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Experiencia profesional transferible de soporte, capacitación y operaciones. La experiencia de software se demuestra en los proyectos del portafolio.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Proyectos y experiencia práctica",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -1430,7 +1363,8 @@
                 ],
                 "url": "https://github.com/ByCulichi"
               }
-            ]
+            ],
+            "intro": "Proyectos personales y de aprendizaje públicos que demuestran mi práctica en frontend y automatización. Cada entrada enlaza al portafolio o a su código."
           },
           {
             "id": "certifications",
@@ -1447,16 +1381,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Años de atención bilingüe"
-          },
-          {
-            "value": "EN / ES",
-            "label": "Idiomas de atención"
-          },
-          {
             "value": "9",
             "label": "Proyectos públicos"
+          },
+          {
+            "value": "React / TS",
+            "label": "Interfaces web"
+          },
+          {
+            "value": "Python",
+            "label": "Automatización de Excel"
           }
         ]
       }
@@ -1514,17 +1448,8 @@
           },
           {
             "id": "experience",
-            "title": "Professional experience",
+            "title": "Electrical work & course experience",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Professional support and operations background complements residential service, communication and documentation. Electrical work and course practice are listed separately.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Completed work & course practice",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -1550,7 +1475,8 @@
                 ],
                 "url": "https://culichi.lat/electrical"
               }
-            ]
+            ],
+            "intro": "Documented residential maintenance and installation/control course practice. Industrial training is ongoing; the START/STOP exercise remains planned."
           },
           {
             "id": "certifications",
@@ -1559,8 +1485,8 @@
             "layout": "grid",
             "source": "training",
             "ids": [
-              "electrical-linkedin",
               "electrical-conocer",
+              "electrical-linkedin",
               "electrical-udemy",
               "electrical-measurements"
             ]
@@ -1568,16 +1494,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Years in bilingual service"
+            "value": "Residential",
+            "label": "Documented work"
           },
           {
-            "value": "EN / ES",
-            "label": "Working languages"
+            "value": "RED CONOCER",
+            "label": "Training in progress"
           },
           {
             "value": "AC / DC",
-            "label": "Measurement training"
+            "label": "Measurement practice"
           }
         ]
       },
@@ -1631,17 +1557,8 @@
           },
           {
             "id": "experience",
-            "title": "Experiencia profesional",
+            "title": "Experiencia en trabajos y prácticas eléctricas",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "La trayectoria en soporte y operaciones complementa el servicio residencial, la comunicación y la documentación. Los trabajos eléctricos y las prácticas se presentan por separado.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Trabajos realizados y prácticas",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -1667,7 +1584,8 @@
                 ],
                 "url": "https://culichi.lat/electrical"
               }
-            ]
+            ],
+            "intro": "Mantenimiento residencial documentado y prácticas de curso de instalación y control. La formación industrial sigue en curso; el ejercicio START/STOP permanece planeado."
           },
           {
             "id": "certifications",
@@ -1676,8 +1594,8 @@
             "layout": "grid",
             "source": "training",
             "ids": [
-              "electrical-linkedin",
               "electrical-conocer",
+              "electrical-linkedin",
               "electrical-udemy",
               "electrical-measurements"
             ]
@@ -1685,16 +1603,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Años de atención bilingüe"
+            "value": "Residencial",
+            "label": "Trabajos documentados"
           },
           {
-            "value": "EN / ES",
-            "label": "Idiomas de atención"
+            "value": "RED CONOCER",
+            "label": "Formación en curso"
           },
           {
             "value": "CA / CC",
-            "label": "Formación en medición"
+            "label": "Práctica de medición"
           }
         ]
       }
@@ -1752,17 +1670,8 @@
           },
           {
             "id": "experience",
-            "title": "Professional experience",
+            "title": "Electronics laboratory experience",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "Professional support and operations background complements the current electronics training and practical diagnosis skills.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Laboratory & practical experience",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -1779,7 +1688,8 @@
                 "tone": "complete",
                 "url": "https://culichi.lat/repair"
               }
-            ]
+            ],
+            "intro": "Basic-electronics training at ETO and complementary hands-on smartphone practice. The upcoming ETO specializations are listed separately as a learning plan."
           },
           {
             "id": "certifications",
@@ -1809,16 +1719,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Years in bilingual service"
-          },
-          {
-            "value": "EN / ES",
-            "label": "Working languages"
-          },
-          {
             "value": "ETO",
             "label": "Basic electronics in progress"
+          },
+          {
+            "value": "LIDETEC",
+            "label": "Complementary coursework"
+          },
+          {
+            "value": "Circuits",
+            "label": "Laboratory practice"
           }
         ]
       },
@@ -1872,17 +1782,8 @@
           },
           {
             "id": "experience",
-            "title": "Experiencia profesional",
+            "title": "Experiencia de laboratorio en electrónica",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "La trayectoria profesional en soporte y operaciones complementa la formación actual en electrónica y las habilidades de diagnóstico práctico.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Laboratorio y experiencia práctica",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -1899,7 +1800,8 @@
                 "tone": "complete",
                 "url": "https://culichi.lat/repair"
               }
-            ]
+            ],
+            "intro": "Formación en electrónica básica en ETO y práctica complementaria en smartphones. Las especialidades futuras de ETO se presentan por separado como plan de aprendizaje."
           },
           {
             "id": "certifications",
@@ -1929,16 +1831,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Años de atención bilingüe"
-          },
-          {
-            "value": "EN / ES",
-            "label": "Idiomas de atención"
-          },
-          {
             "value": "ETO",
             "label": "Electrónica básica en curso"
+          },
+          {
+            "value": "LIDETEC",
+            "label": "Curso complementario"
+          },
+          {
+            "value": "Circuitos",
+            "label": "Práctica de laboratorio"
           }
         ]
       }
@@ -1994,17 +1896,8 @@
           },
           {
             "id": "experience",
-            "title": "Professional experience",
+            "title": "Hands-on repair experience",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "The TTEC role provides mobile-device technical-support experience; completed hands-on interventions are documented in the repair section.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Completed repairs",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -2029,7 +1922,7 @@
                 "url": "https://culichi.lat/repair"
               }
             ],
-            "intro": "Final checks confirmed: power, charging, touch, cameras, audio, Face ID and battery settings."
+            "intro": "Three completed repairs with original photographs. Confirmed final checks: power, charging, touch, cameras, audio, Face ID and battery settings."
           },
           {
             "id": "certifications",
@@ -2059,16 +1952,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Years in bilingual service"
-          },
-          {
-            "value": "EN / ES",
-            "label": "Working languages"
-          },
-          {
             "value": "3",
             "label": "Documented repairs"
+          },
+          {
+            "value": "Battery / screen",
+            "label": "Completed interventions"
+          },
+          {
+            "value": "LIDETEC",
+            "label": "Course participation"
           }
         ]
       },
@@ -2120,17 +2013,8 @@
           },
           {
             "id": "experience",
-            "title": "Experiencia profesional",
+            "title": "Experiencia práctica en reparación",
             "icon": "experience",
-            "layout": "timeline",
-            "source": "career",
-            "intro": "El puesto en TTEC aporta experiencia de soporte técnico de dispositivos móviles; las intervenciones prácticas realizadas se documentan en la sección de reparaciones.",
-            "newPage": true
-          },
-          {
-            "id": "work",
-            "title": "Reparaciones realizadas",
-            "icon": "work",
             "layout": "grid",
             "entries": [
               {
@@ -2155,7 +2039,7 @@
                 "url": "https://culichi.lat/repair"
               }
             ],
-            "intro": "Pruebas finales confirmadas: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes."
+            "intro": "Tres reparaciones realizadas con fotografías originales. Pruebas finales confirmadas: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes."
           },
           {
             "id": "certifications",
@@ -2185,16 +2069,16 @@
         ],
         "highlights": [
           {
-            "value": "7",
-            "label": "Años de atención bilingüe"
-          },
-          {
-            "value": "EN / ES",
-            "label": "Idiomas de atención"
-          },
-          {
             "value": "3",
             "label": "Reparaciones documentadas"
+          },
+          {
+            "value": "Batería / pantalla",
+            "label": "Intervenciones realizadas"
+          },
+          {
+            "value": "LIDETEC",
+            "label": "Participación en curso"
           }
         ]
       }

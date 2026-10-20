@@ -16,6 +16,9 @@ export const cvDesigns = {
 };
 
 export function cvSections(data, resume, lang) {
+  if (resume.id !== "customer-service" && resume[lang].sections.some(section => section.source === "career")) {
+    throw new Error(`${resume.id} ${lang}: customer-service employment belongs only in its own CV`);
+  }
   return resume[lang].sections.map(section => ({ ...section, entries: section.source === "career" ? data.career[lang] : section.source === "training" ? section.ids.map(id => {
     const entry = data.training[lang].find(item => item.id === id);
     if (!entry) throw new Error(`Unknown training record: ${id}`);

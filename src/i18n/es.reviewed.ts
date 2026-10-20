@@ -1,5 +1,8 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "I build web interfaces and automate reports, document educational cybersecurity investigations, and apply electrical, electronics and smartphone-repair skills through documented work and course practice.": "Desarrollo interfaces web y automatizo reportes, documento investigaciones educativas de ciberseguridad y aplico conocimientos de electricidad, electrónica y reparación de celulares en trabajos y prácticas documentados.",
+  "Pause energy flow": "Pausar el recorrido de energía",
+  "Resume energy flow": "Reanudar el recorrido de energía",
   "Back to specialties": "Volver a especialidades",
   "Courses behind these skills": "Cursos que respaldan mis conocimientos",
   "View course details": "Ver detalles del curso",
