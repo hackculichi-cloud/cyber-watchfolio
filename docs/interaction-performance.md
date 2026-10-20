@@ -22,3 +22,25 @@ La observación comparativa local usa una compilación de producción, Chromium 
 | Mediana | 843.1 ms | 130.0 ms | 1071.8 ms | 344.6 ms |
 
 Las fuentes estaban cargadas para esta comparación; la apertura con fuentes retenidas se verifica en una prueba separada. Las muestras finales se tomaron sin otras pruebas de navegador en paralelo, sobre el mismo build que aprobó la suite completa. La comparación corresponde a seleccionar Residencial desde `/electrical#specialties`; no representa todos los dispositivos o interacciones.
+
+## Coste del panel abierto — 20 de octubre de 2026
+
+La revisión siguiente mide el contenido ya abierto, en vez de limitarse a la llegada desde una tarjeta. El artículo compartido de especialidades heredaba `panel-glow`, una superficie pensada para tarjetas pequeñas: una sombra exterior difuminada, una variante al hover y transición de sombra. Esa clase también añadía un gradiente a toda la superficie. Aplicarla a un artículo de varias pantallas obligaba al navegador a rasterizar una superficie muy grande al cambiar su altura o pasar el puntero por ella.
+
+Las pruebas de aislamiento conservan el mismo contenido y retiran por separado el fondo, el desenfoque de barras, el ajuste de texto, la transición o la sombra. Quitar únicamente la transición no corrige el coste de rasterizado de la sombra; retirar el fondo tampoco produce una mejora comparable. La corrección evita heredar `panel`/`panel-glow` en el artículo completo y usa la superficie oscura uniforme prevista para este detalle, conservando el fondo general del área, su borde, espaciado y controles interiores. Los resaltados de menú y las tarjetas pequeñas mantienen su diseño.
+
+Las pestañas eléctricas ya montan solo el contenido seleccionado. La nueva regresión lo verifica junto con la ausencia de sombra exterior antes y después del hover, a 390 y 1440 px. No se ocultan conocimientos, prácticas ni temarios para conseguir la mejora.
+
+### Medición de repintado
+
+Producción local, Chromium 154, 1440×900 px, movimiento normal y CPU limitada a 4×. Cada muestra abre `/electrical#residential`, espera las fuentes, comienza la traza de Chromium y selecciona Certificaciones → Resumen → Herramientas → Resumen; tras cada selección envía seis desplazamientos de 110 px separados por 30 ms. Se recogen eventos `Paint`/`RasterTask`, métricas del proceso principal y intervalos entre callbacks de `requestAnimationFrame`. Hay tres contextos nuevos por versión, sin otra suite de navegador simultánea.
+
+Los totales de `RasterTask` suman trabajo de varios hilos; no son tiempo de espera de una persona. Los intervalos de animación son un indicador del ensayo sintético, que también incluye montaje y decodificación de imágenes, y no equivalen a FPS de un teléfono físico. Las barras, imágenes y datos son los mismos en ambas versiones.
+
+| Muestra | Antes: trabajo raster | Ahora: trabajo raster | Antes: intervalos >50 ms | Ahora: intervalos >50 ms |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 13022.2 ms | 786.1 ms | 46 / 121 | 8 / 96 |
+| 2 | 11767.1 ms | 787.1 ms | 41 / 111 | 9 / 93 |
+| 3 | 10861.2 ms | 912.0 ms | 44 / 113 | 9 / 97 |
+
+La mediana del trabajo de rasterizado pasa de **11 767,1 ms a 787,1 ms**, y la mediana del trabajo `Paint` de **471,6 ms a 183,9 ms**. Los intervalos entre callbacks mayores de 50 ms pasan de una mediana de **44 a 9**. La duración de tareas del proceso principal (`TaskDuration`) pasa de una mediana de **4,095 s a 1,622 s**. Las pausas restantes incluyen el montaje de pestañas y las imágenes bajo CPU limitada; estos resultados no afirman ausencia de lag en todos los equipos.

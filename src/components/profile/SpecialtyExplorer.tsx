@@ -57,7 +57,8 @@ const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { prof
         </button>
       </div>; })}
     </div>
-    {items.filter(item => item.id === active).map(item => <article key={item.id} ref={detail} tabIndex={-1} data-specialty-details-for={item.id} data-embedded-detail={!!renderDetail} id={`specialty-details-${profile}`} aria-labelledby={`specialty-title-${item.id}`} className="specialty-details panel-glow mt-5 outline-none">
+    {/* A long article must not inherit panel-glow's large blurred hover shadow. */}
+    {items.filter(item => item.id === active).map(item => <article key={item.id} ref={detail} tabIndex={-1} data-specialty-details-for={item.id} data-embedded-detail={!!renderDetail} id={`specialty-details-${profile}`} aria-labelledby={`specialty-title-${item.id}`} className="specialty-details mt-5 rounded-xl border border-primary/25 p-5 outline-none">
       <button type="button" onClick={() => { setActive(null); navigate({ hash: "#specialties" }); }} className="menu-choice mb-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary/30 px-3 text-sm font-semibold text-primary"><ArrowLeft className="h-4 w-4" aria-hidden />{t("All specialties")}</button>
       <div className="flex flex-wrap items-center justify-between gap-3"><h3 id={`specialty-title-${item.id}`} className="text-xl font-semibold">{t(item.title)}</h3><Tag variant={item.status === "Upcoming" ? "muted" : "primary"}>{t(item.status)}</Tag></div>
       {!renderDetail && <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>}
