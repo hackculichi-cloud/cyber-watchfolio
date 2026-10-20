@@ -69,3 +69,30 @@ test('course expansion uses its full height immediately and photo dialogs avoid 
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
+
+test('long specialty panels stay free of blurred hover shadows while only the selected tab mounts', async ({ page }) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/electrical#residential');
+    const detail = page.locator('[data-specialty-details-for="residential"]');
+    await expect(detail).toBeFocused();
+    await expect(detail).toHaveCSS('box-shadow', 'none');
+    await expect(detail).toHaveCSS('transition-duration', '0s');
+    await expect(page.locator('[data-area-learning]')).toBeVisible();
+    await expect(page.locator('[data-certifications]')).toHaveCount(0);
+    await expect(page.locator('[data-electrical-practices]')).toHaveCount(0);
+
+    await page.locator('[data-area-tab="certificate"]').click();
+    await expect(page.locator('[data-certifications]')).toBeVisible();
+    await expect(page.locator('[data-area-learning]')).toHaveCount(0);
+    await page.locator('[data-certifications] h2').hover();
+    expect(await detail.evaluate(el => el.matches(':hover'))).toBe(true);
+    await expect(detail).toHaveCSS('box-shadow', 'none');
+    await expect(page.locator('[data-area-tab="certificate"]')).toHaveAttribute('aria-selected', 'true');
+
+    await page.locator('[data-area-tab="overview"]').click();
+    await expect(page.locator('[data-certifications]')).toHaveCount(0);
+    await expect(page.locator('[data-area-learning]')).toBeVisible();
+    await expect(detail).toHaveCSS('box-shadow', 'none');
+  }
+});

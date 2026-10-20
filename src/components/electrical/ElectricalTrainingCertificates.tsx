@@ -28,6 +28,6 @@ const ElectricalTrainingCertificates = () => {
       </details>}
     </div>];
   }));
-  return <div id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40"><ProfileCertificates profile="electrical" headerContent={<ElectricalTrainingProviders />} courseContent={content} /></div>;
+  return <div id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40"><ProfileCertificates profile="electrical" featuredId="electrical-conocer" headerContent={<ElectricalTrainingProviders />} courseContent={content} /></div>;
 };
 export default ElectricalTrainingCertificates;
