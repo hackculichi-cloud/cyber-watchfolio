@@ -19,7 +19,7 @@ interface GalleryProps {
 const Gallery = ({
   items,
   emptyTitle = "No photos published yet",
-  emptyDescription = "Add entries to the gallery data file and they appear here automatically.",
+  emptyDescription = "Original photos and screenshots will appear here when available.",
 }: GalleryProps) => {
   const { t } = useLanguage();
   const [category, setCategory] = useState<string>("All");

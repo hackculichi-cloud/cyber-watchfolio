@@ -3,7 +3,7 @@ import type { WorkItem } from "@/data/works";
 import WorkCard from "@/components/work/WorkCard";
 import WorkDetail from "@/components/work/WorkDetail";
 import DetailModal from "@/components/shared/DetailModal";
-import PlaceholderImage from "@/components/shared/PlaceholderImage";
+import EmptyState from "@/components/shared/EmptyState";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -12,8 +12,6 @@ interface WorkGridProps {
   items: WorkItem[];
   emptyTitle?: string;
   emptyDescription?: string;
-  /** Number of marked placeholder slots shown while no real work is published. */
-  placeholderSlots?: number;
   /** Center small collections without stretching a lone card across the page. */
   centered?: boolean;
 }
@@ -25,8 +23,7 @@ interface WorkGridProps {
 const WorkGrid = ({
   items,
   emptyTitle = "Real projects coming soon",
-  emptyDescription = "These slots are reserved for documented work with real photos and screenshots.",
-  placeholderSlots = 3,
+  emptyDescription = "Documented work and original photos will appear here when available.",
   centered = false,
 }: WorkGridProps) => {
   const { t } = useLanguage();
@@ -40,27 +37,7 @@ const WorkGrid = ({
   const filtered = category === "All" ? items : items.filter((i) => i.category === category);
   const current = items.find((i) => i.id === openId) ?? null;
 
-  if (!items.length) {
-    return (
-      <div className={centered ? "text-center" : undefined}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: placeholderSlots }).map((_, i) => (
-            <div key={i} className="panel flex flex-col overflow-hidden p-0">
-              <PlaceholderImage className="aspect-[16/10] w-full rounded-none border-0" />
-              <div className="space-y-2 p-5">
-                <div className="h-3 w-2/3 rounded bg-secondary/70" />
-                <div className="h-2.5 w-full rounded bg-secondary/50" />
-                <div className="h-2.5 w-4/5 rounded bg-secondary/40" />
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="mt-4 text-sm text-muted-foreground">
-          <span className="font-medium text-foreground">{t(emptyTitle)}.</span> {t(emptyDescription)}
-        </p>
-      </div>
-    );
-  }
+  if (!items.length) return <EmptyState title={emptyTitle} description={emptyDescription} />;
 
   return (
     <>

@@ -24,7 +24,7 @@ const Seo = ({ title, description, path = "/" }: SeoProps) => {
   useEffect(() => {
     const localizedTitle = t(title);
     const localizedDescription = t(description);
-    document.title = localizedTitle;
+    document.title = site.shortName;
     setMeta('meta[property="og:locale"]', "property", "og:locale", lang === "es" ? "es_MX" : "en_US");
     setMeta('meta[name="description"]', "name", "description", localizedDescription);
     setMeta('meta[property="og:title"]', "property", "og:title", localizedTitle);

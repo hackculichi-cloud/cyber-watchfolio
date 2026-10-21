@@ -2,6 +2,7 @@ import { FileClock, ExternalLink } from "lucide-react";
 import { certifications } from "@/data/certifications";
 import type { ProfileSlug } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import EmptyCollectionSection from "@/components/shared/EmptyCollectionSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
 import type { ReactNode } from "react";
@@ -12,6 +13,7 @@ import TrainingProviderBadge from "./TrainingProviderBadge";
 const ProfileCertificates = ({ profile, courseContent, headerContent, featuredId }: { profile: ProfileSlug; courseContent?: Record<string, ReactNode>; headerContent?: ReactNode; featuredId?: string }) => {
   const { t } = useLanguage();
   const records = certifications[profile] ?? [];
+  if (!records.length && !headerContent) return <EmptyCollectionSection id={profile === "electrical" ? "certificate" : "certifications"} data-certifications={profile} title="Certifications" description="No certificates provided for this area yet." />;
   return <section id={profile === "electrical" ? "certificate" : "certifications"} className="container mx-auto scroll-mt-32 px-4 py-16" data-certifications={profile}>
     <SectionHeading eyebrow={t("Certifications")} title={t("Certificates and pending documents")} description={t("Confirmed training and the documents still to be added. In-progress courses are not completed certifications.")} />
     {headerContent}

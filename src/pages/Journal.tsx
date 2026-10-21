@@ -30,7 +30,7 @@ const Journal = () => {
         description={t("Notes and write-ups documenting what I learn — organised by topic so progress is visible over time.")}
       />
 
-      <section className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-6">
         <div className="mb-8 flex flex-wrap gap-2">
           {(["All", ...journalCategories] as const).map((cat) => (
             <button
@@ -72,7 +72,7 @@ const Journal = () => {
         ) : (
           <EmptyState
             title={t("No entries published yet")}
-            description={t("Write-ups will appear here as they are added to the journal data file — filters and layout are already wired up.")}
+            description={t("Technical notes and write-ups will appear here as I document my learning.")}
           />
         )}
       </section>

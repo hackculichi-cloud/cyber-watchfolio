@@ -1,3 +1,4 @@
+import { copyReviewedEs } from "./es.copy-reviewed";
 import { reviewedEs } from "./es.reviewed";
 import { generatedEs } from "./es.generated";
 import { workRecordEs } from "./es.work-records";
@@ -327,4 +328,5 @@ export const es: Record<string, string> = {
   "I learn about project design and photovoltaic systems.": "Aprendo diseño de proyectos y sistemas fotovoltaicos.",
   ...reviewedEs,
   ...workRecordEs,
+  ...copyReviewedEs,
 };
