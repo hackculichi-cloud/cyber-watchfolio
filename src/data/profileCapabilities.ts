@@ -112,7 +112,7 @@ export const profileCapabilities: Partial<Record<ProfileSlug, ProfileCapability[
     {
       "title": "Frontend interfaces",
       "status": "Portfolio project",
-      "body": "I build React and Next.js interfaces with TypeScript and Tailwind CSS. Mirror and RonnysPage demonstrate interface work, while this portfolio adds bilingual content, accessible controls and reusable components."
+      "body": "I build React and Next.js interfaces with TypeScript and Tailwind CSS. Ronny’s Food Truck demonstrates an interactive menu, while this portfolio adds bilingual content, accessible controls and reusable components."
     },
     {
       "title": "Backend & data foundations",

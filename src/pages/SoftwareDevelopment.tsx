@@ -33,14 +33,24 @@ const SoftwareDevelopment = () => {
         path="/software-development"
       />
       <ProfileHero profile={profile}>
-        <InstitutionLink profile="development" />
+        <Button asChild><a href="#projects">{t("Explore my projects")}</a></Button>
         <Button asChild variant="outline">
           <a href={site.github} target="_blank" rel="noreferrer noopener">
             <Github className="h-4 w-4" /> {t(site.githubHandle)}
           </a>
         </Button>
+        <InstitutionLink profile="development" />
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
+      <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading mascot={profile.slug} mascotScene="action"
+          eyebrow={t("Projects")}
+          title={t("Two projects that show how I build")}
+          description={t("Ronny’s Food Truck and this portfolio: working interfaces, source code and the decisions behind each project.")}
+        />
+        <SoftwareProjectCollection />
+      </section>
+
       <SpecialtyExplorer profile={profile.slug} />
 
       <ProfileCapabilities profile={profile.slug} />
@@ -62,15 +72,6 @@ const SoftwareDevelopment = () => {
             ))}
           </div>
         </div>
-      </section>
-
-      <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug} mascotScene="action"
-          eyebrow={t("Projects")}
-          title={t("Development projects")}
-          description={t("Explore my public GitHub projects: frontend interfaces, API practice and Python automation. Each card links to its source code.")}
-        />
-        <SoftwareProjectCollection />
       </section>
 
       <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">

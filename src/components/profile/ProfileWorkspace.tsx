@@ -7,7 +7,7 @@ import DetailModal from "@/components/shared/DetailModal";
 
 const workspaces: Record<ProfileSlug, { title: string; alt?: string }> = {
   cybersecurity: { title: "Networks & monitoring lab" },
-  development: { title: "Development studio" },
+  development: { title: "Development studio", alt: "Culichi seated at his computer setup in a high-rise apartment with a glass window overlooking the city" },
   electrical: { title: "Electrical workshop", alt: "Illustrated electrical workshop with Culichi, a residential training board on the bench and an industrial control and power panel on the wall" },
   electronics: { title: "Electronics laboratory" },
   repair: { title: "Repair workbench" },

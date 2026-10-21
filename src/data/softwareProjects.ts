@@ -5,6 +5,9 @@ export type SoftwareProject = {
   name: string;
   description: string;
   stack: string[];
+  features?: string[];
+  scope?: string;
+  previousRepo?: string;
   repo?: string;
   demo?: string;
   status: ProjectStatus;
@@ -17,19 +20,13 @@ export type SoftwareProject = {
  */
 export const softwareProjects: SoftwareProject[] = [
   {
-    id: "mirror", name: "Mirror", category: "Software", status: "Active",
-    description: "Music-player interface built with Next.js, React and TypeScript, with a responsive dark layout and reusable UI components.",
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"], repo: "https://github.com/ByCulichi/Mirror",
-  },
-  {
-    id: "ronnys-page", name: "RonnysPage", category: "Software", status: "Active",
-    description: "Food-truck website with a responsive interface, built with Next.js, React, TypeScript and Tailwind CSS.",
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"], repo: "https://github.com/ByCulichi/RonnysPage",
-  },
-  {
-    id: "culichi-metrics", name: "Culichi-Metrics", category: "Automation", status: "Active",
-    description: "Python automation that generates Excel KPI reports with daily and team metrics, conditional formatting and charts.",
-    stack: ["Python", "pandas", "XlsxWriter", "Excel"], repo: "https://github.com/ByCulichi/Culichi-Metrics",
+    id: "ronnys-food-truck", name: "Ronny’s Food Truck", category: "Software", status: "Active",
+    description: "A food-truck website that turns a 28-product menu into a responsive, interactive experience with four categories and a seasonal identity.",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    repo: "https://github.com/ByCulichi/RonnysFoodTruck", demo: "https://ronnys-food-truck.vercel.app",
+    previousRepo: "https://github.com/ByCulichi/RonnysPage",
+    features: ["Interactive menu with four categories and product selection", "Original menu viewer with zoom and mobile navigation", "Category-based character outfits and reduced-motion controls"],
+    scope: "Informational website and menu browser. Contact shortcuts lead to the business channels; the site does not include checkout or payment processing.",
   },
   {
     id: "portfolio",
@@ -40,6 +37,19 @@ export const softwareProjects: SoftwareProject[] = [
     repo: "https://github.com/hackculichi-cloud/cyber-watchfolio",
     status: "In progress",
     category: "Software",
+    demo: "https://culichi.lat",
+    features: ["Six professional areas with reusable, data-driven content", "Spanish and English navigation, profile CVs and local evidence galleries", "Keyboard-accessible dialogs, responsive layouts and browser checks"],
+    scope: "This portfolio brings together projects, training and documented practice. Its content is maintained in typed data and local assets, with GitHub version control.",
+  },
+  {
+    id: "mirror", name: "Mirror", category: "Software", status: "Active",
+    description: "Music-player interface built with Next.js, React and TypeScript, with a responsive dark layout, reusable UI components and built-in demo data.",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"], repo: "https://github.com/ByCulichi/Mirror",
+  },
+  {
+    id: "culichi-metrics", name: "Culichi-Metrics", category: "Automation", status: "Active",
+    description: "Python automation that generates Excel KPI reports with daily and team metrics, conditional formatting and charts.",
+    stack: ["Python", "pandas", "XlsxWriter", "Excel"], repo: "https://github.com/ByCulichi/Culichi-Metrics",
   },
   {
     id: "calculator", name: "Calculator-Culichi", category: "Software", status: "Active",
@@ -58,8 +68,8 @@ export const softwareProjects: SoftwareProject[] = [
   },
   {
     id: "journey", name: "Journey_blog", category: "Software", status: "Active",
-    description: "Travel blog for practicing HTML structure, content organization and responsive reading layouts.",
-    stack: ["HTML", "CSS"], repo: "https://github.com/ByCulichi/Journey_blog",
+    description: "An early travel-blog exercise using semantic HTML to organize articles, links and navigation.",
+    stack: ["HTML"], repo: "https://github.com/ByCulichi/Journey_blog",
   },
   {
     id: "previous-portfolio", name: "Portfolio-Culichi", category: "Software", status: "Active",

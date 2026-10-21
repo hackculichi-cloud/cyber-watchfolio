@@ -1,9 +1,11 @@
+import { softwareScreenshots } from "./softwareScreenshots";
 import type { ProfileSlug } from "./profiles";
 
 export type GalleryItem = {
   id: string;
   /** Image URL or imported asset. Use a real photo of your own work. */
   src: string;
+  thumbnail?: string;
   alt: string;
   title: string;
   description?: string;
@@ -18,8 +20,15 @@ export type GalleryItem = {
 
 /**
  * Add a new object here and it appears automatically in the matching profile gallery.
- * Nothing is invented — the galleries stay empty until you publish real photos.
+ * Software screenshots come from repository builds; other areas use their own work galleries.
  */
-export const galleryItems: GalleryItem[] = [];
+export const galleryItems: GalleryItem[] = softwareScreenshots
+  .filter(item => item.projectId === "ronnys-food-truck" || item.projectId === "portfolio")
+  .map(item => ({
+    id: item.id, src: item.src, thumbnail: item.thumbnail, alt: item.alt,
+    title: item.title, date: item.capturedAt, category: item.viewport,
+    project: item.projectId === "portfolio" ? "Culichi" : "Ronny’s Food Truck",
+    profile: "development", description: "Actual interface captured from a local repository build.",
+  }));
 
 export const galleryFor = (profile: ProfileSlug) => galleryItems.filter((g) => g.profile === profile);
