@@ -1,0 +1,35 @@
+.electronics-training-timeline { position:relative; display:flex; flex-direction:column; gap:.6rem; list-style:none; padding:0; margin:0; max-width:58rem; }
+.electronics-training-timeline::before { content:""; position:absolute; left:1rem; top:1.3rem; bottom:2rem; width:2px; background:linear-gradient(hsl(var(--primary)),hsl(var(--primary)/.15)); }
+.electronics-training-timeline > li { position:relative; padding-left:2.75rem; }
+.electronics-training-choice { position:relative; text-align:left; background:hsl(var(--background)/.92); }
+.electronics-training-choice:hover { background:hsl(var(--primary)/.07); }
+.training-stage-content { display:grid; width:100%; grid-template-columns:2.5rem minmax(0,1fr) 1rem; align-items:center; gap:.5rem .9rem; padding:.75rem 1rem; }
+.training-step-number { position:absolute; left:-2.75rem; top:1rem; display:grid; place-items:center; width:2rem; height:2rem; border:1px solid hsl(var(--primary)/.45); border-radius:50%; background:hsl(var(--background)); color:hsl(var(--primary)); font:600 .75rem/1 "JetBrains Mono",monospace; }
+.training-stage-icon { display:grid; place-items:center; width:2.5rem; height:2.5rem; border:1px solid hsl(var(--primary)/.3); border-radius:.6rem; background:hsl(var(--primary)/.08); color:hsl(var(--primary)); }
+.training-stage-icon svg { width:1.3rem; height:1.3rem; }
+.training-stage-content .specialty-card-title { font-size:1rem; line-height:1.4; margin-bottom:.25rem; }
+.training-stage-content .training-current-summary { grid-column:2 / -1; max-width:42rem; padding-bottom:.25rem; }
+.electronics-training-timeline > li:first-child .electronics-training-choice { border-color:hsl(var(--primary)/.6); }
+.electronics-training-timeline > li:first-child .training-step-number { background:hsl(var(--primary)); color:hsl(var(--primary-foreground)); }
+[data-compact-pending] { padding-top:1.25rem; padding-bottom:1.25rem; }
+[data-compact-pending] .electronics-pending-row { display:flex; align-items:center; gap:1rem; border:1px dashed hsl(var(--primary)/.3); border-radius:.75rem; background:hsl(var(--background)/.9); padding:1rem; }
+.electronics-pending-row > svg { flex:none; width:1.75rem; height:1.75rem; color:hsl(var(--primary)); }
+@media (max-width:767px) {
+  .electronics-training-timeline > li { padding-left:2.25rem; }
+  .electronics-training-timeline::before { left:.8rem; }
+  .training-step-number { left:-2.25rem; width:1.65rem; height:1.65rem; font-size:.65rem; }
+  .training-stage-content { grid-template-columns:1.8rem minmax(0,1fr) .75rem; padding:.65rem .7rem; gap:.35rem .55rem; }
+  .training-stage-icon { width:1.8rem; height:1.8rem; border-radius:.45rem; }
+  .training-stage-icon svg { width:1.1rem; height:1.1rem; }
+  .training-stage-content .specialty-card-title { font-size:.875rem; line-height:1.4; }
+  .training-stage-content .training-current-summary { grid-column:1 / -1; font-size:.8125rem; }
+  .electronics-pending-row { gap:.75rem; }
+}
+@media (max-width:767px) {
+  .world-content > section.container[data-compact-pending] { padding-top:.75rem; padding-bottom:.75rem; }
+  [data-compact-pending] .electronics-pending-row { display:grid; grid-template-columns:1.5rem minmax(0,1fr); gap:.5rem .75rem; padding:.85rem; }
+  .electronics-pending-row > div { display:contents; }
+  .electronics-pending-row > svg { width:1.5rem; height:1.5rem; }
+  .electronics-pending-row h2 { grid-column:2; }
+  .electronics-pending-row p { grid-column:1 / -1; margin-top:0; }
+}

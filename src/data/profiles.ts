@@ -187,9 +187,8 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: Cpu,
     highlights: ["Components & circuits", "PCB work", "Soldering", "Oscilloscope / multimeter"],
     sections: [
-      { id: "specialties", label: "Specialties" },
+      { id: "specialties", label: "Learning path" },
       { id: "overview", label: "Overview" },
-      { id: "tracks", label: "Training" },
       { id: "projects", label: "Projects" },
       { id: "diagnostics", label: "Diagnostics" },
       { id: "gallery", label: "Gallery" },

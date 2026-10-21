@@ -1,0 +1,14 @@
+.pcb-lettering { display:block; margin:0; min-width:0; max-width:100%; }
+.pcb-lettering--hero { width:100%; max-width:42rem; }
+.pcb-lettering .pcb-board { display:block; width:100%; height:auto; overflow:visible; }
+.pcb-lettering--brand { display:inline-block; width:8.8rem; flex-shrink:0; vertical-align:middle; }
+@media (max-width:767px) {
+  [data-world-hero="electronics"] .hero-workspace { grid-row:1; }
+  [data-world-hero="electronics"] .hero-title { grid-row:2; grid-column:1 / -1; }
+  [data-world-hero="electronics"] .pcb-lettering .pcb-board { width:100%; height:auto; }
+  .pcb-lettering--brand { width:7rem; }
+}
+@media (forced-colors:active) {
+  .pcb-lettering text { fill:CanvasText; stroke:none; }
+  .pcb-lettering .pcb-board > rect { fill:Canvas; stroke:CanvasText; }
+}
