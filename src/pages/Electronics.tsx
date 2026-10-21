@@ -1,13 +1,11 @@
 import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
-import InstitutionLink from "@/components/profile/InstitutionLink";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CircuitBoard, Camera } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
-import Tag from "@/components/shared/Tag";
 import Gallery from "@/components/shared/Gallery";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
@@ -16,7 +14,6 @@ import ProfileCvBlock from "@/components/profile/ProfileCvBlock";
 import { Button } from "@/components/ui/button";
 import WorkGrid from "@/components/work/WorkGrid";
 import { worksFor } from "@/data/works";
-import { trainingTracks } from "@/data/electrical";
 import { profileBySlug } from "@/data/profiles";
 import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
@@ -26,7 +23,8 @@ const profile = profileBySlug("electronics");
 
 const Electronics = () => {
   const { t } = useLanguage();
-  const tracks = trainingTracks.filter((entry) => entry.anchor === "electronics");
+  const works = worksFor("electronics");
+  const photos = galleryFor("electronics");
 
   return (
     <>
@@ -36,13 +34,9 @@ const Electronics = () => {
         path="/electronics"
       />
       <ProfileHero profile={profile}>
-        <InstitutionLink profile="electronics" />
-        <Button asChild>
-          <a href="#projects">{t("View projects")}</a>
-        </Button>
-        <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
-          <a href="#tracks">{t("My training")}</a>
-        </Button>
+        <Button asChild><a href="#specialties">{t("Explore my training")}</a></Button>
+        <Button asChild variant="outline"><a href="#overview">{t("What I am learning")}</a></Button>
+        {works.length > 0 && <Button asChild variant="outline"><a href="#projects">{t("View projects")}</a></Button>}
         <div className="flex w-full flex-wrap gap-4 pt-2 text-sm">
           <Link to="/electrical" className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline">{t("Electrical profile ")}<ArrowRight className="h-3.5 w-3.5" />
           </Link>
@@ -55,74 +49,55 @@ const Electronics = () => {
 
       <ProfileCapabilities profile={profile.slug} />
 
-      <section id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40">
-        <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("Training")} title={t("Current training")} />
-          <div className="grid gap-4 md:grid-cols-2">
-            {tracks.map((track) => (
-              <article key={track.id} className="panel-glow hover:-translate-y-1">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-base font-semibold">{t(track.title)}</h3>
-                  <Tag variant={track.status === "Planned" ? "muted" : "primary"}>{t(track.status)}</Tag>
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(track.description)}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {track.topics.map((entry) => (
-                    <Tag key={entry}>{t(entry)}</Tag>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-16">
+      {works.length ? <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-10">
         <SectionHeading
           eyebrow={t("Projects")}
           title={t("Electronics projects")}
           description={t("Image-first documentation of circuits, PCB work, soldering practice and measurements.")}
         />
         <WorkGrid
-          items={worksFor("electronics")}
-          placeholderSlots={6}
+          items={works}
           emptyTitle={t("Real photographs pending")}
           emptyDescription={t("These slots are reserved for my own photos of PCBs, circuits, components, soldering work and measurements.")}
         />
-      </section>
+      </section> : <section id="projects" data-compact-pending="projects" className="container mx-auto scroll-mt-32 px-4">
+        <div className="electronics-pending-row"><CircuitBoard aria-hidden="true" /><div><h2 className="text-base font-semibold">{t("Electronics projects")}</h2><p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t("I will add my documented circuit and soldering practice here as I complete it.")}</p></div></div>
+      </section>}
 
       <section id="diagnostics" className="scroll-mt-32 border-y border-border bg-surface/40">
-        <div className="container mx-auto px-4 py-16">
-          <SectionHeading mascot={profile.slug} mascotScene="action"
+        <div className="container mx-auto px-4 py-8">
+          <SectionHeading
             eyebrow={t("Diagnostics & measurements")}
             title={t("How I troubleshoot")}
-            description={t("A consistent method applied to every board: observe, measure, isolate, repair, verify.")}
+            description={t("The diagnostic method I am learning: observe, measure, isolate, repair and verify.")}
           />
-          <ol className="grid gap-3 md:grid-cols-5">
+          <ol className="grid grid-cols-2 gap-2 sm:grid-cols-5">
             {["Observe", "Measure", "Isolate", "Repair", "Verify"].map((s, i) => (
-              <li key={s} className="rounded-lg border border-border bg-surface-2/40 p-4">
+              <li key={s} className="flex items-center gap-3 rounded-lg border border-border bg-surface-2/40 p-3">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
                   {t(String(i + 1).padStart(2, "0"))}
                 </p>
-                <p className="mt-2 text-sm font-medium">{t(s)}</p>
+                <p className="text-sm font-medium">{t(s)}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section id="gallery" className="container mx-auto scroll-mt-32 px-4 py-16">
+      {photos.length ? <section id="gallery" className="container mx-auto scroll-mt-32 px-4 py-10">
         <SectionHeading
           eyebrow={t("Gallery")}
           title={t("PCBs, components & soldering")}
           description={t("Real photos of boards, components, soldering work, measurements and practical exercises.")}
         />
         <Gallery
-          items={galleryFor("electronics")}
+          items={photos}
           emptyTitle={t("No photos published yet")}
           emptyDescription={t("Add photos to the gallery data file — they appear here automatically with filters and a lightbox.")}
         />
-      </section>
+      </section> : <section id="gallery" data-compact-pending="gallery" className="container mx-auto scroll-mt-32 px-4">
+        <div className="electronics-pending-row"><Camera aria-hidden="true" /><div><h2 className="text-base font-semibold">{t("PCBs, components & soldering")}</h2><p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t("My original laboratory photos will appear here when available.")}</p></div></div>
+      </section>}
 
       <section id="tools" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-10">

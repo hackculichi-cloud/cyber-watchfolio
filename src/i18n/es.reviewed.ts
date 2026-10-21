@@ -1,5 +1,14 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Main training": "Formación principal",
+  "My electronics learning path": "Mi ruta de formación en electrónica",
+  "Seven courses, in this order. Basic Electronics is in progress; the next six have not started yet.": "Siete cursos en este orden. Actualmente estudio Electrónica básica; las seis etapas siguientes aún no han comenzado.",
+  "View syllabus & skills": "Ver temario y conocimientos",
+  "Learning path": "Ruta de formación",
+  "Explore my training": "Explorar mi formación",
+  "I will add my documented circuit and soldering practice here as I complete it.": "Aquí añadiré mis prácticas documentadas de circuitos y soldadura conforme las realice.",
+  "My original laboratory photos will appear here when available.": "Aquí reuniré mis fotografías originales del trabajo de laboratorio.",
+  "The diagnostic method I am learning: observe, measure, isolate, repair and verify.": "El método de diagnóstico que estoy aprendiendo: observar, medir, aislar, reparar y verificar.",
   "Pause code animation": "Pausar animación de código",
   "Resume code animation": "Reanudar animación de código",
   "Explore my projects": "Ver mis proyectos",
