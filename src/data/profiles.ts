@@ -90,6 +90,8 @@ export type ProfileIdentity = {
   /** Extra routes that should also render with this profile identity. */
   aliases: string[];
   label: string;
+  /** Optional display title; navigation keeps the discipline's familiar name. */
+  heroTitle?: string;
   eyebrow: string;
   status: string;
   description: string;
@@ -134,17 +136,18 @@ export const profileIdentities: ProfileIdentity[] = [
     path: "/software-development",
     aliases: ["/development", "/projects"],
     label: "Software Development",
+    heroTitle: "Full Stack Developer",
     eyebrow: "Primary profile",
     status: "Primary focus",
     description:
-      "I build React/Next.js and TypeScript interfaces and automate Excel reports with Python. My public GitHub projects connect those skills with practical examples. I studied frontend, backend and full stack at Academlo without completing the program, and I am preparing for AWS Cloud Practitioner.",
+      "I build web interfaces with React, Next.js and TypeScript and automate reports with Python. Ronny’s Food Truck and Culichi show my work in responsive interfaces, reusable components, content and accessible navigation.",
     icon: Code2,
-    highlights: ["Web apps", "APIs & backend", "Automation", "Git / GitHub"],
+    highlights: ["React / Next.js", "TypeScript", "APIs", "Python / Excel"],
     sections: [
+      { id: "projects", label: "Projects" },
       { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
       { id: "skills", label: "Technologies" },
-      { id: "projects", label: "Projects" },
       { id: "gallery", label: "Gallery" },
       { id: "tools", label: "Tools" },
       { id: "certifications", label: "Certifications" },

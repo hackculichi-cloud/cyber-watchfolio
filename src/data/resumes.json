@@ -325,6 +325,21 @@
             "layout": "grid",
             "entries": [
               {
+                "title": "Ronny’s Food Truck",
+                "body": "Responsive food-truck website with a 28-product interactive menu, four categories and a seasonal visual identity.",
+                "tags": [
+                  "Next.js",
+                  "React",
+                  "TypeScript",
+                  "Tailwind"
+                ],
+                "url": "https://github.com/ByCulichi/RonnysFoodTruck",
+                "bullets": [
+                  "Built category navigation, product selection and an original-menu viewer with zoom.",
+                  "Adapted layouts for phone and desktop, with category-based character outfits and reduced-motion controls."
+                ]
+              },
+              {
                 "title": "culichi.lat",
                 "body": "Bilingual React/TypeScript portfolio with accessible navigation and documented work.",
                 "tags": [
@@ -338,21 +353,6 @@
                 "bullets": [
                   "Built reusable components, responsive layouts and local galleries.",
                   "Integrated localized PDF generation and a GitHub pull-request / Vercel delivery workflow."
-                ]
-              },
-              {
-                "title": "Culichi-Metrics",
-                "body": "Python automation for daily and team Excel KPI reports.",
-                "tags": [
-                  "Python",
-                  "pandas",
-                  "XlsxWriter",
-                  "Excel"
-                ],
-                "url": "https://github.com/ByCulichi/Culichi-Metrics",
-                "bullets": [
-                  "Processed tabular data with pandas and generated workbooks with XlsxWriter.",
-                  "Applied formatting, conditional rules and charts to present the report."
                 ]
               }
             ]
@@ -520,15 +520,19 @@
                 "url": "https://github.com/ByCulichi/Mirror"
               },
               {
-                "title": "RonnysPage",
-                "body": "Food-truck website with responsive layouts and clear presentation of business content.",
+                "title": "Culichi-Metrics",
+                "body": "Python automation for daily and team Excel KPI reports.",
                 "tags": [
-                  "Next.js",
-                  "React",
-                  "TypeScript",
-                  "Tailwind"
+                  "Python",
+                  "pandas",
+                  "XlsxWriter",
+                  "Excel"
                 ],
-                "url": "https://github.com/ByCulichi/RonnysPage"
+                "url": "https://github.com/ByCulichi/Culichi-Metrics",
+                "bullets": [
+                  "Processed tabular data with pandas and generated workbooks with XlsxWriter.",
+                  "Applied formatting, conditional rules and charts to present the report."
+                ]
               },
               {
                 "title": "Calculator-Culichi",
@@ -627,6 +631,21 @@
             "layout": "grid",
             "entries": [
               {
+                "title": "Ronny’s Food Truck",
+                "body": "Sitio responsivo para food truck con menú interactivo de 28 productos, cuatro categorías e identidad visual de temporada.",
+                "tags": [
+                  "Next.js",
+                  "React",
+                  "TypeScript",
+                  "Tailwind"
+                ],
+                "url": "https://github.com/ByCulichi/RonnysFoodTruck",
+                "bullets": [
+                  "Desarrollé navegación por categorías, selección de productos y visor del menú original con zoom.",
+                  "Adapté las interfaces a teléfono y escritorio, con atuendos por categoría y controles para reducir el movimiento."
+                ]
+              },
+              {
                 "title": "culichi.lat",
                 "body": "Portafolio bilingüe en React/TypeScript con navegación accesible y trabajos documentados.",
                 "tags": [
@@ -640,21 +659,6 @@
                 "bullets": [
                   "Desarrollé componentes reutilizables, diseños responsivos y galerías locales.",
                   "Integré generación de PDF por idioma y un flujo de entrega con pull requests de GitHub y Vercel."
-                ]
-              },
-              {
-                "title": "Culichi-Metrics",
-                "body": "Automatización en Python para reportes de KPI diarios y por equipo en Excel.",
-                "tags": [
-                  "Python",
-                  "pandas",
-                  "XlsxWriter",
-                  "Excel"
-                ],
-                "url": "https://github.com/ByCulichi/Culichi-Metrics",
-                "bullets": [
-                  "Procesé datos tabulares con pandas y generé libros de Excel con XlsxWriter.",
-                  "Apliqué formato, reglas condicionales y gráficas para presentar el reporte."
                 ]
               }
             ]
@@ -822,15 +826,19 @@
                 "url": "https://github.com/ByCulichi/Mirror"
               },
               {
-                "title": "RonnysPage",
-                "body": "Sitio para food truck con diseño adaptable y una presentación clara del contenido del negocio.",
+                "title": "Culichi-Metrics",
+                "body": "Automatización en Python para reportes de KPI diarios y por equipo en Excel.",
                 "tags": [
-                  "Next.js",
-                  "React",
-                  "TypeScript",
-                  "Tailwind"
+                  "Python",
+                  "pandas",
+                  "XlsxWriter",
+                  "Excel"
                 ],
-                "url": "https://github.com/ByCulichi/RonnysPage"
+                "url": "https://github.com/ByCulichi/Culichi-Metrics",
+                "bullets": [
+                  "Procesé datos tabulares con pandas y generé libros de Excel con XlsxWriter.",
+                  "Apliqué formato, reglas condicionales y gráficas para presentar el reporte."
+                ]
               },
               {
                 "title": "Calculator-Culichi",
@@ -1203,7 +1211,7 @@
       "id": "software",
       "profile": "development",
       "en": {
-        "role": "Junior Frontend Developer | React, TypeScript & Python Automation",
+        "role": "Junior Full Stack Developer | React, TypeScript & Python",
         "summary": "I build responsive interfaces with React, Next.js and TypeScript, and automate Excel reporting with Python. Nine public projects show reusable components, API integration, browser storage and bilingual navigation. I apply Git/GitHub workflows, TypeScript checks and browser validation in my portfolio, supported by partial software development studies at Academlo.",
         "sections": [
           {
@@ -1212,6 +1220,21 @@
             "icon": "experience",
             "layout": "grid",
             "entries": [
+              {
+                "title": "Ronny’s Food Truck",
+                "body": "Responsive food-truck website with a 28-product interactive menu, four categories and a seasonal visual identity.",
+                "tags": [
+                  "Next.js",
+                  "React",
+                  "TypeScript",
+                  "Tailwind"
+                ],
+                "url": "https://github.com/ByCulichi/RonnysFoodTruck",
+                "bullets": [
+                  "Built category navigation, product selection and an original-menu viewer with zoom.",
+                  "Adapted layouts for phone and desktop, with category-based character outfits and reduced-motion controls."
+                ]
+              },
               {
                 "title": "culichi.lat",
                 "body": "Bilingual React/TypeScript portfolio with accessible navigation and documented work.",
@@ -1226,21 +1249,6 @@
                 "bullets": [
                   "Built reusable components, responsive layouts and local galleries.",
                   "Integrated localized PDF generation and a GitHub pull-request / Vercel delivery workflow."
-                ]
-              },
-              {
-                "title": "Culichi-Metrics",
-                "body": "Python automation for daily and team Excel KPI reports.",
-                "tags": [
-                  "Python",
-                  "pandas",
-                  "XlsxWriter",
-                  "Excel"
-                ],
-                "url": "https://github.com/ByCulichi/Culichi-Metrics",
-                "bullets": [
-                  "Processed tabular data with pandas and generated workbooks with XlsxWriter.",
-                  "Applied formatting, conditional rules and charts to present the report."
                 ]
               }
             ],
@@ -1310,15 +1318,19 @@
                 "url": "https://github.com/ByCulichi/Mirror"
               },
               {
-                "title": "RonnysPage",
-                "body": "Food-truck website with responsive layouts and clear presentation of business content.",
+                "title": "Culichi-Metrics",
+                "body": "Python automation for daily and team Excel KPI reports.",
                 "tags": [
-                  "Next.js",
-                  "React",
-                  "TypeScript",
-                  "Tailwind"
+                  "Python",
+                  "pandas",
+                  "XlsxWriter",
+                  "Excel"
                 ],
-                "url": "https://github.com/ByCulichi/RonnysPage"
+                "url": "https://github.com/ByCulichi/Culichi-Metrics",
+                "bullets": [
+                  "Processed tabular data with pandas and generated workbooks with XlsxWriter.",
+                  "Applied formatting, conditional rules and charts to present the report."
+                ]
               },
               {
                 "title": "Calculator-Culichi",
@@ -1398,7 +1410,7 @@
         ]
       },
       "es": {
-        "role": "Desarrollador frontend junior | React, TypeScript y automatización Python",
+        "role": "Full Stack Developer junior | React, TypeScript y Python",
         "summary": "Desarrollo interfaces responsivas con React, Next.js y TypeScript y automatizo reportes de Excel con Python. Nueve proyectos públicos muestran componentes reutilizables, integración de APIs, almacenamiento local y navegación bilingüe. Aplico flujo de Git/GitHub, comprobaciones de TypeScript y validación en navegador en mi portafolio, con bases de estudios parciales de desarrollo en Academlo.",
         "sections": [
           {
@@ -1407,6 +1419,21 @@
             "icon": "experience",
             "layout": "grid",
             "entries": [
+              {
+                "title": "Ronny’s Food Truck",
+                "body": "Sitio responsivo para food truck con menú interactivo de 28 productos, cuatro categorías e identidad visual de temporada.",
+                "tags": [
+                  "Next.js",
+                  "React",
+                  "TypeScript",
+                  "Tailwind"
+                ],
+                "url": "https://github.com/ByCulichi/RonnysFoodTruck",
+                "bullets": [
+                  "Desarrollé navegación por categorías, selección de productos y visor del menú original con zoom.",
+                  "Adapté las interfaces a teléfono y escritorio, con atuendos por categoría y controles para reducir el movimiento."
+                ]
+              },
               {
                 "title": "culichi.lat",
                 "body": "Portafolio bilingüe en React/TypeScript con navegación accesible y trabajos documentados.",
@@ -1421,21 +1448,6 @@
                 "bullets": [
                   "Desarrollé componentes reutilizables, diseños responsivos y galerías locales.",
                   "Integré generación de PDF por idioma y un flujo de entrega con pull requests de GitHub y Vercel."
-                ]
-              },
-              {
-                "title": "Culichi-Metrics",
-                "body": "Automatización en Python para reportes de KPI diarios y por equipo en Excel.",
-                "tags": [
-                  "Python",
-                  "pandas",
-                  "XlsxWriter",
-                  "Excel"
-                ],
-                "url": "https://github.com/ByCulichi/Culichi-Metrics",
-                "bullets": [
-                  "Procesé datos tabulares con pandas y generé libros de Excel con XlsxWriter.",
-                  "Apliqué formato, reglas condicionales y gráficas para presentar el reporte."
                 ]
               }
             ],
@@ -1505,15 +1517,19 @@
                 "url": "https://github.com/ByCulichi/Mirror"
               },
               {
-                "title": "RonnysPage",
-                "body": "Sitio para food truck con diseño adaptable y una presentación clara del contenido del negocio.",
+                "title": "Culichi-Metrics",
+                "body": "Automatización en Python para reportes de KPI diarios y por equipo en Excel.",
                 "tags": [
-                  "Next.js",
-                  "React",
-                  "TypeScript",
-                  "Tailwind"
+                  "Python",
+                  "pandas",
+                  "XlsxWriter",
+                  "Excel"
                 ],
-                "url": "https://github.com/ByCulichi/RonnysPage"
+                "url": "https://github.com/ByCulichi/Culichi-Metrics",
+                "bullets": [
+                  "Procesé datos tabulares con pandas y generé libros de Excel con XlsxWriter.",
+                  "Apliqué formato, reglas condicionales y gráficas para presentar el reporte."
+                ]
               },
               {
                 "title": "Calculator-Culichi",

@@ -37,8 +37,8 @@ test("all six profiles have distinct illustrated props and reduced motion stops 
 test("GitHub projects expand on demand and AWS remains exam preparation in both profiles", async ({ page }) => {
   await page.goto('/software-development#projects');
   const projects = page.locator('[data-software-projects]');
-  await expect(projects.locator('article')).toHaveCount(4);
-  await expect(projects.getByRole('link', { name: /Repository/ }).filter({ has: page.locator('svg') }).first()).toHaveAttribute('href', 'https://github.com/ByCulichi/Mirror');
+  await expect(projects.locator('article')).toHaveCount(2);
+  await expect(projects.getByRole('link', { name: /Repository/ }).filter({ has: page.locator('svg') }).first()).toHaveAttribute('href', 'https://github.com/ByCulichi/RonnysFoodTruck');
   await projects.getByRole('button', { name: 'Explore all 9 projects', exact: true }).click();
   await expect(projects.locator('article')).toHaveCount(9);
   await expect(projects.locator('[data-software-project="culichi-metrics"]')).toContainText('Python');

@@ -59,3 +59,7 @@ Tres nuevas poses transparentes para Home conservan la identidad de las ilustrac
 | `service-leaning.webp` | `exec-31346484-c72c-470c-99e8-159ea107c080.png` | Escuchando con auriculares, apoyado sobre el correo del footer |
 
 La composición usa capas de CSS para esconder deliberadamente parte de los personajes detrás de los bloques; no altera creativamente las imágenes fuera de la herramienta de generación.
+
+## Estudio de desarrollo · 21 de octubre de 2026
+
+La ilustración actual de `development.webp` muestra a Culichi sentado frente a su setup, dentro de un departamento alto, con ventanal y ciudad al fondo. Se generó con la herramienta de imágenes conservando la identidad del personaje; original `exec-f0345bb4-d11a-4c3c-8b54-1a1b74fa7b59.png`. La conversión local solo crea los recursos WebP de 1536×1024 y 768×512. El fondo original de código de la sección continúa a través de la página; la habitación no lo reemplaza.

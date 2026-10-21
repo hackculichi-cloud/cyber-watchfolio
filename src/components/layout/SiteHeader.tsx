@@ -12,6 +12,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 import CopperConductorTitle from "@/components/electrical/CopperConductorTitle";
+import { CodeWordmark } from "@/components/software/CodeExecutionTitle";
 
 const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, "Call Center & Customer Service": PhoneCall, CV: FileText, Contact: Mail };
 
@@ -127,7 +128,7 @@ const SiteHeader = () => {
             <MascotMorph outfit={displayedMascot} portrait committing={orbitCommit || navigationCommit} />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span data-header-brand data-brand-profile={mascot} className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{mascot === "electrical" ? <CopperConductorTitle text="Culichi" variant="brand" /> : <span className="profile-wordmark">Culichi</span>}<span data-brand-dot data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-primary transition-colors duration-200">.</span></span>
+            <span data-header-brand data-brand-profile={displayedMascot} data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"><span key={displayedMascot} data-brand-lettering={displayedMascot} className="header-wordmark-slot">{displayedMascot === "electrical" ? <CopperConductorTitle text="Culichi" variant="brand" /> : displayedMascot === "development" ? <CodeWordmark /> : <span className="profile-wordmark">Culichi</span>}<span data-brand-dot data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-primary transition-colors duration-200">.</span></span></span>
             <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">{t("Christian Velasco")}</span>
           </span>
         </Link>

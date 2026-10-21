@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import type { ProfileIdentity } from "@/data/profiles";
 import Tag from "@/components/shared/Tag";
 import CopperConductorTitle from "@/components/electrical/CopperConductorTitle";
+import CodeExecutionTitle from "@/components/software/CodeExecutionTitle";
 
 interface ProfileHeroProps {
   profile: ProfileIdentity;
@@ -43,7 +44,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
         </div>
 
         <div className="hero-title animate-fade-in-up delay-100 mt-6 flex items-start gap-4">
-          {profile.slug === "electrical" ? <CopperConductorTitle text={t(profile.label)} /> : <>
+          {profile.slug === "electrical" ? <CopperConductorTitle text={t(profile.label)} /> : profile.slug === "development" ? <CodeExecutionTitle text={t(profile.heroTitle ?? profile.label)} /> : <>
             <span className="glow-ring mt-1 grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-primary/60 bg-background text-primary sm:h-16 sm:w-16"><profile.icon className="h-8 w-8" aria-hidden /></span>
             <h1 className="max-w-4xl break-words text-3xl font-bold leading-tight text-foreground sm:text-4xl xl:text-5xl">{t(profile.label)}</h1>
           </>}

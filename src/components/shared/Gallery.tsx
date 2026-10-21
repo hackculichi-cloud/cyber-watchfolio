@@ -1,5 +1,5 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import Tag from "@/components/shared/Tag";
 import EmptyState from "@/components/shared/EmptyState";
@@ -24,6 +24,7 @@ const Gallery = ({
   const { t } = useLanguage();
   const [category, setCategory] = useState<string>("All");
   const [openId, setOpenId] = useState<string | null>(null);
+  const returnFocus = useRef<HTMLButtonElement | null>(null);
 
   const categories = useMemo(
     () => ["All", ...Array.from(new Set(items.map((i) => i.category)))],
@@ -62,13 +63,13 @@ const Gallery = ({
           <li key={item.id}>
             <button
               type="button"
-              onClick={() => setOpenId(item.id)}
+              onClick={event => { returnFocus.current = event.currentTarget; setOpenId(item.id); }}
               style={{ padding: 0 }}
               className="panel-glow group w-full overflow-hidden text-left hover:-translate-y-1"
             >
               <span className="block aspect-[4/3] overflow-hidden rounded-t-xl bg-secondary">
                 <img
-                  src={item.src}
+                  src={item.thumbnail ?? item.src}
                   alt={t(item.alt)}
                   loading="lazy"
                   decoding="async"
@@ -91,7 +92,7 @@ const Gallery = ({
       </ul>
 
       <Dialog open={!!current} onOpenChange={(o) => !o && setOpenId(null)}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent onCloseAutoFocus={event => { if (returnFocus.current) { event.preventDefault(); returnFocus.current.focus({ preventScroll: true }); } }} className="max-h-[90dvh] max-w-3xl overflow-y-auto">
           {current && (
             <>
               <DialogTitle className="text-base">{t(current.title)}</DialogTitle>
@@ -104,7 +105,7 @@ const Gallery = ({
                   </figure>
                 )}
                 <figure>
-                  <img src={current.src} alt={t(current.alt)} className="rounded-lg border border-border" />
+                  <img src={current.src} alt={t(current.alt)} className="max-h-[65dvh] w-full rounded-lg border border-border object-contain" />
                   {current.beforeSrc && <figcaption className="mt-1 text-xs text-muted-foreground">{t("After")}</figcaption>}
                 </figure>
               </div>
