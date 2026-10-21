@@ -1,5 +1,11 @@
 import { CircuitBoard, House, Gauge, Cog, ClipboardCheck } from "lucide-react";
 
+/** Small, unretouched derivatives for overview tiles; evidence galleries retain the originals. */
+export const electricalPracticeThumbnails: Record<string, string> = Object.fromEntries([
+  "residential-outlet-october-2026", "residential-training-board", "float-switch-course-practice",
+  "residential-outlet-switch-replacement", "residential-two-luminaire-replacement",
+].map(id => [id, `/images/electrical/overview/${id}.webp`]));
+
 /** Short reading layer; the full topics remain in the main program's syllabus. */
 export const electricalKnowledge = [
   { title: "I interpret circuits", icon: CircuitBoard, points: ["I relate voltage, current and resistance.", "I read electrical symbols, drawings and connections."] },

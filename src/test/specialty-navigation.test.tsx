@@ -27,6 +27,19 @@ function renderExplorer(hash = "specialties") {
 }
 
 describe("entering a specialty", () => {
+  it("closes from either explicit control or the active card and returns focus to the card", async () => {
+    renderExplorer("residential");
+    const card = document.querySelector<HTMLButtonElement>('[data-specialty="residential"]')!;
+    for (const action of ["top", "bottom", "card"]) {
+      if (!screen.queryByRole("article")) fireEvent.click(card);
+      await waitFor(() => expect(screen.getByRole("article")).toHaveFocus());
+      fireEvent.click(action === "card" ? card : document.querySelector(`[data-close-specialty="${action}"]`)!);
+      await waitFor(() => expect(screen.queryByRole("article")).not.toBeInTheDocument());
+      expect(card).toHaveFocus();
+      expect(card).toHaveAttribute("aria-expanded", "false");
+      expect(screen.getByTestId("hash")).toHaveTextContent("#specialties");
+    }
+  });
   it("moves focus and the viewport into each opened panel and preserves back navigation", async () => {
     renderExplorer();
     for (const id of ["residential", "industrial", "electrical-control"]) {
@@ -62,6 +75,9 @@ describe("course knowledge and documented practice", () => {
     const onOpen = vi.fn();
     render(<LanguageProvider><ElectricalAreaLearning area="residential" onOpen={onOpen} /></LanguageProvider>);
     fireEvent.click(document.querySelector('[data-area-syllabus] summary')!);
+    expect(document.querySelectorAll('[data-electrical-module]')).toHaveLength(8);
+    expect(document.querySelectorAll('[data-related-module="true"]')).toHaveLength(3);
+    expect(screen.getByRole("button", { name: /Final Project and Evaluation/ })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: /Residential Electrical Installations/ }));
     expect(screen.getByText("Electrical load calculations")).toBeVisible();
     const practice = document.querySelector("[data-area-practices]")! as HTMLElement;

@@ -541,12 +541,16 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 .panel, .glass-panel { border-color:hsl(var(--border)/.85); }
 
 /* Original visual identities continue through profiles: energy grid, code, networks, circuits. */
-[data-world] .world-content {
-  background-image:linear-gradient(90deg,hsl(var(--background)/.97),hsl(var(--background)/.87) 48%,hsl(var(--background)/.62)),var(--world-image);
-  background-size:auto,clamp(56rem,100vw,100rem) auto;
-  background-position:0 0,right top;
-  background-repeat:repeat,repeat-y;
+.site-layout[data-world] {
+  --world-width:clamp(56rem,100vw,100rem);
+  --world-height:calc(var(--world-width) * .566667);
+  /* One canvas for the whole profile. Fade each tile edge instead of a visible cut. */
+  background-image:linear-gradient(90deg,hsl(var(--background)/.94),hsl(var(--background)/.83) 48%,hsl(var(--background)/.58)),linear-gradient(180deg,hsl(var(--background)) 0%,transparent 14%,transparent 86%,hsl(var(--background)) 100%),var(--world-image);
+  background-size:auto,var(--world-width) var(--world-height),var(--world-width) var(--world-height);
+  background-position:0 0,right top,right top;
+  background-repeat:repeat,repeat-y,repeat-y;
 }
+[data-world] .world-content { background:none; }
 [data-world] .world-content > :is(section,div)[id] { border-color:hsl(var(--primary)/.18); }
 [data-world] .world-content :is(.panel,.panel-glow,.glass-panel) {
   background:linear-gradient(145deg,hsl(var(--world-panel)/.98),hsl(var(--background)/.96));
@@ -555,16 +559,37 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 }
 [data-world] .world-content :is(.panel,.panel-glow,.glass-panel):hover { border-color:hsl(var(--primary)/.45); }
 [data-world] .site-footer {
-  background-image:linear-gradient(90deg,hsl(var(--background)/.98),hsl(var(--background)/.90) 55%,hsl(var(--background)/.72)),var(--world-image);
-  background-size:cover;
-  background-position:right center;
+  background-image:none;
+  background-color:hsl(var(--background)/.3);
 }
 [data-world-material="workshop"] .world-content > section[id] { border-top:1px solid hsl(var(--primary)/.14); }
-[data-world-material="network"] .world-content { background-position:0 0,left top; }
+.site-layout[data-world-material="network"] { background-position:0 0,left top,left top; }
 [data-world-material="studio"] .world-content > section[id],
 [data-world-material="office"] .world-content > section[id] { background-color:hsl(var(--world-panel)/.2); }
 @media (max-width:639px) {
-  [data-world] .world-content { background-image:linear-gradient(90deg,hsl(var(--background)/.96),hsl(var(--background)/.88)),var(--world-image); }
+  .site-layout[data-world] { background-image:linear-gradient(90deg,hsl(var(--background)/.94),hsl(var(--background)/.82)),linear-gradient(180deg,hsl(var(--background)),transparent 14%,transparent 86%,hsl(var(--background))),var(--world-image); }
+}
+
+.site-header nav, .profile-section-nav, [data-electrical-area-content] [role="tablist"] { font-family:"Manrope",ui-sans-serif,system-ui,sans-serif; letter-spacing:0; }
+.site-header nav > ul > li > :is(a,div) a, .site-header nav > ul > li > a { font-size:.9375rem; font-weight:750; line-height:1.4; }
+.profile-section-nav a { font-weight:650; }
+[data-brand-profile] .profile-wordmark { position:relative; display:inline-block; }
+[data-brand-profile]:not([data-brand-profile="emblem"]) .profile-wordmark { color:hsl(var(--primary)); }
+[data-brand-profile="development"] .profile-wordmark { font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em; letter-spacing:-.065em; }
+[data-brand-profile="cybersecurity"] .profile-wordmark::after,
+[data-brand-profile="electronics"] .profile-wordmark::after { content:""; position:absolute; left:2%; right:2%; bottom:-.06em; height:3px; background:linear-gradient(90deg,transparent,hsl(var(--primary)) 25%,transparent 26%,transparent 35%,hsl(var(--primary)) 36%); }
+[data-brand-profile="repair"] .profile-wordmark { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:.12em; }
+[data-brand-profile="customer-service"] .profile-wordmark { text-decoration:underline wavy hsl(var(--primary)/.6); text-decoration-thickness:1px; text-underline-offset:.12em; }
+
+.learning-stage + .learning-stage { border-top:1px solid hsl(var(--border)); padding-top:1.5rem; }
+.learning-stage-heading { display:flex; align-items:flex-start; gap:.85rem; }
+.learning-stage-number { display:grid; flex-shrink:0; place-items:center; width:2.4rem; height:2.4rem; border:1px solid hsl(var(--primary)/.35); border-radius:.7rem; background:hsl(var(--primary)/.09); color:hsl(var(--primary)); font:650 .8rem/1 "JetBrains Mono",ui-monospace,monospace; }
+.learning-stage [data-area-courses] { border-left:2px solid hsl(var(--border)); padding-left:1rem; }
+
+@media (max-width:767px) {
+  [data-world-hero="electrical"] .hero-workspace { grid-row:1; }
+  [data-world-hero="electrical"] .hero-title { grid-column:1 / -1; grid-row:2; }
+  [data-world-hero="electrical"] .hero-title h1 { font-size:1.5rem; line-height:1.75; }
 }
 .mobile-quicknav { padding-bottom:max(.35rem,env(safe-area-inset-bottom)); }
 [data-profile] > main [id] { scroll-margin-top:11.5rem; }

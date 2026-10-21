@@ -62,7 +62,7 @@ export default function ElectricalAreaPanel({ area }: { area: string }) {
 
   return <div data-electrical-area-content={area} className="mt-6 border-t border-primary/20 pt-5">
     <Tabs value={tab} onValueChange={openTab}>
-      <TabsList ref={tabBar} aria-label={`${t("Explore this area")}: ${t(group.title)}`} className="sticky top-44 z-20 grid h-auto w-full grid-cols-2 sm:top-40 gap-1 rounded-xl border border-primary/20 bg-background/90 p-1 min-[440px]:grid-cols-3 lg:grid-cols-5">
+      <TabsList ref={tabBar} aria-label={`${t("Explore this area")}: ${t(group.title)}`} className="sticky top-44 z-20 grid h-auto w-full grid-cols-2 sm:top-40 gap-1 rounded-xl border border-primary/20 bg-background p-1 min-[440px]:grid-cols-3 lg:grid-cols-5">
         {tabs.map(item => <TabsTrigger key={item.id} value={item.id} data-area-tab={item.id} className="menu-choice min-h-11 gap-2 whitespace-normal text-sm font-semibold data-[state=active]:bg-primary/15 data-[state=active]:text-primary"><item.icon className="h-4 w-4 shrink-0" aria-hidden />{t(item.label)}</TabsTrigger>)}
       </TabsList>
       <TabsContent value="overview">

@@ -21,7 +21,7 @@ const ProfileHero = ({ profile, children }: ProfileHeroProps) => {
       {/* The original area backdrop stays behind the copy; the workplace remains its own illustration. */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,hsl(var(--background)/0.55)_0%,hsl(var(--background)/0.7)_45%,hsl(var(--background))_100%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,hsl(var(--background)/0.2),hsl(var(--background)/0.1))]"
       />
       <div
         aria-hidden
