@@ -19,6 +19,7 @@ const details: Record<ProfileSlug, [string, number, number]> = {
 };
 /** Decorative illustrations, separate from real project evidence and measurements. */
 const MascotScene = ({ profile, scene, className }: { profile: ProfileSlug; scene: MascotSceneKind; className?: string }) => {
+  if (profile === "cybersecurity") return <Reveal from="left" className={cn("shrink-0", className)}><img src={cyberDetail} width={1024} height={1536} alt="" aria-hidden loading="lazy" decoding="async" data-masked-mascot data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;
   if (scene === "detail") {
     const [src, width, height] = details[profile];
     return <Reveal from="left" className={cn("shrink-0", className)}><img src={src} width={width} height={height} alt="" aria-hidden loading="lazy" decoding="async" data-mascot={profile} data-mascot-scene="detail" data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;

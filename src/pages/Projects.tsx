@@ -29,7 +29,7 @@ const Projects = () => {
         </Button>
       </PageHeader>
 
-      <section className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-6">
         {softwareProjects.length ? (
           <div className="grid gap-4 md:grid-cols-2">
             {softwareProjects.map((p) => (
@@ -37,7 +37,7 @@ const Projects = () => {
             ))}
           </div>
         ) : (
-          <EmptyState title={t("No projects published yet")} description={t("Add an entry to the projects data file and it appears here automatically.")} />
+          <EmptyState title={t("No projects published yet")} description={t("Documented projects will appear here when available.")} />
         )}
       </section>
     </>

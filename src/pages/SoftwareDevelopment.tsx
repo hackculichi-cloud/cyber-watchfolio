@@ -80,7 +80,7 @@ const SoftwareDevelopment = () => {
           <Gallery
             items={galleryFor("development")}
             emptyTitle={t("No screenshots published yet")}
-            emptyDescription={t("Add project screenshots to the gallery data file and they appear here automatically.")}
+            emptyDescription={t("Original project screenshots will appear here when available.")}
           />
         </div>
       </section>

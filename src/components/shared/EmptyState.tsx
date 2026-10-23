@@ -1,20 +1,14 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { FileQuestion } from "lucide-react";
+import { FileClock } from "lucide-react";
 
-interface EmptyStateProps {
-  title: string;
-  description: string;
-}
+interface EmptyStateProps { title: string; description: string; }
 
+/** A brief, honest pending row shared by every unpublished collection. */
 const EmptyState = ({ title, description }: EmptyStateProps) => {
   const { t } = useLanguage();
-  return (
-    <div className="panel flex flex-col items-center gap-3 border-dashed py-14 text-center">
-      <FileQuestion className="h-6 w-6 text-muted-foreground" aria-hidden />
-      <p className="text-sm font-medium text-foreground">{t(title)}</p>
-      <p className="max-w-md text-sm text-muted-foreground">{t(description)}</p>
-    </div>
-  );
+  return <div data-empty-state className="flex items-start gap-3 rounded-xl border border-dashed border-primary/25 bg-background/85 p-4">
+    <FileClock className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+    <div className="min-w-0"><p className="text-sm font-semibold text-foreground">{t(title)}</p><p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t(description)}</p></div>
+  </div>;
 };
-
 export default EmptyState;

@@ -93,7 +93,7 @@ const Electronics = () => {
         <Gallery
           items={photos}
           emptyTitle={t("No photos published yet")}
-          emptyDescription={t("Add photos to the gallery data file — they appear here automatically with filters and a lightbox.")}
+          emptyDescription={t("Original photographs will appear here when available.")}
         />
       </section> : <section id="gallery" data-compact-pending="gallery" className="container mx-auto scroll-mt-32 px-4">
         <div className="electronics-pending-row"><Camera aria-hidden="true" /><div><h2 className="text-base font-semibold">{t("PCBs, components & soldering")}</h2><p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t("My original laboratory photos will appear here when available.")}</p></div></div>

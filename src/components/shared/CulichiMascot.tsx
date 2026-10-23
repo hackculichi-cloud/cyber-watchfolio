@@ -11,6 +11,9 @@ const labels: Record<MascotVariant, string> = { home: "Culichi tech fox mascot",
 const CulichiMascot = ({ variant = "home", className, decorative = false, portrait = false }: { variant?: MascotVariant; className?: string; decorative?: boolean; portrait?: boolean }) => {
   const { t } = useLanguage();
   const cell = cells[variant];
+  if (variant === "cybersecurity") return <span role={decorative ? undefined : "img"} aria-label={decorative ? undefined : t("Culichi security analyst with a Guy Fawkes mask")} aria-hidden={decorative || undefined} data-mascot={variant} data-masked-mascot className={cn("block aspect-square shrink-0", className)}>
+    <svg viewBox={portrait ? "150 0 750 750" : "0 0 1024 1536"} className="block h-full w-full" aria-hidden preserveAspectRatio="xMidYMid meet"><image href={mascotIdentity.maskedCybersecurity} width="1024" height="1536" /></svg>
+  </span>;
   if (portrait) return <span role={decorative ? undefined : "img"} aria-label={decorative ? undefined : t(labels[variant])} aria-hidden={decorative || undefined} data-mascot={variant} className={cn("block aspect-square shrink-0", className)}>
     <svg viewBox={`${cell % 3 * 418 + 34} ${Math.floor(cell / 3) * 418 + 2} 350 350`} className="block h-full w-full" aria-hidden preserveAspectRatio="xMidYMid meet">
       <image href={atlas} width="1254" height="1254" />

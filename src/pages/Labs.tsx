@@ -21,7 +21,7 @@ const Labs = () => {
         description={t("Hands-on practice environments and exercises. Each lab records the objective, the tools used, the difficulty and the outcome.")}
       />
 
-      <section className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-6">
         {labs.length ? (
           <div className="grid gap-4 md:grid-cols-2">
             {labs.map((lab) => (
@@ -31,7 +31,7 @@ const Labs = () => {
         ) : (
           <EmptyState
             title={t("Labs are being documented")}
-            description={t("Completed labs will be published here with objective, technologies, difficulty and results. The layout is already wired to the labs data file.")}
+            description={t("Completed labs will be published here with objective, technologies, difficulty and results.")}
           />
         )}
       </section>

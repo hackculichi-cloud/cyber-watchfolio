@@ -70,3 +70,7 @@ Las cinco miniaturas del resumen son WebP de hasta 192 px, derivados sin retoque
 ## Título de código y marca sincronizada · 21 de octubre de 2026
 
 Software presenta un título legible `Full Stack Developer` con una secuencia CSS finita: seis destellos del cursor y una pasada UI → API → APP. Un IntersectionObserver pausa la secuencia fuera de pantalla; hay pausa manual y se desactiva con reduced-motion. No usa temporizadores por letra ni bucles de renderizado. La marca Culichi adopta automáticamente el estilo de la ruta (cobre o código); en Home también anticipa el área con hover/foco. Un espacio fijo de 10 rem/8 rem y un fundido de 160 ms evitan desplazar el menú.
+
+## Ciberseguridad y colecciones sin publicar
+
+La marca de red protegida es un SVG estático sin filtros. Las filas pendientes compartidas eliminan las rejillas de esqueletos en colecciones sin datos; la ruta, foco y cambio de idioma se conservan. Los retratos enmascarados se sirven desde un WebP transparente local; los talleres usan 1536/768 px como antes. Los interludios se limitan a 256 px de altura para que no dominen la información. Las nuevas capas no añaden scripts por fotograma ni animaciones continuas.

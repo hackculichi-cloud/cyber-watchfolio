@@ -45,7 +45,7 @@ const PlaybookDetail = ({ data }: { data: Playbook }) => {
         <List items={data.prerequisites} />
       </SectionBlock>
 
-      <SectionBlock title={t("required_tools")} show={nonEmpty(data.tools)}>
+      <SectionBlock title={t("Required tools")} show={nonEmpty(data.tools)}>
         <div className="flex flex-wrap gap-1.5">
           {data.tools!.map((entry) => (
             <span key={entry} className="text-[10px] px-2 py-0.5 rounded bg-secondary text-muted-foreground border border-border">
@@ -55,7 +55,7 @@ const PlaybookDetail = ({ data }: { data: Playbook }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock title={t("investigation_procedure")}>
+      <SectionBlock title={t("Investigation procedure")}>
         <div className="space-y-3">
           {data.steps.map((s, i) => (
             <div key={i} className="panel-glow p-3">
@@ -95,7 +95,7 @@ const PlaybookDetail = ({ data }: { data: Playbook }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock title={t("decision_tree")} show={!!data.decisionTree}>
+      <SectionBlock title={t("Decision tree")} show={!!data.decisionTree}>
         <div className="grid sm:grid-cols-3 gap-3">
           <KeyVal label={t("True Positive")} value={data.decisionTree?.truePositive} />
           <KeyVal label={t("False Positive")} value={data.decisionTree?.falsePositive} />
@@ -112,22 +112,22 @@ const PlaybookDetail = ({ data }: { data: Playbook }) => {
       <SectionBlock title={t("recovery")} show={nonEmpty(data.recovery)}>
         <List items={data.recovery} />
       </SectionBlock>
-      <SectionBlock title={t("escalation_criteria")} show={nonEmpty(data.escalation)}>
+      <SectionBlock title={t("Escalation criteria")} show={nonEmpty(data.escalation)}>
         <List items={data.escalation} />
       </SectionBlock>
 
-      <SectionBlock title={t("mitre_attack")} show={nonEmpty(data.mitre)}>
+      <SectionBlock title={t("MITRE ATT&CK")} show={nonEmpty(data.mitre)}>
         <DataTable
           columns={["Tactic", "Technique", "ID", "Evidence"]}
           rows={data.mitre!.map((m) => [m.tactic, m.technique, m.id, m.evidence])}
         />
       </SectionBlock>
 
-      <SectionBlock title={t("detection_opportunities")} show={nonEmpty(data.detectionOpportunities)}>
+      <SectionBlock title={t("Detection opportunities")} show={nonEmpty(data.detectionOpportunities)}>
         <List items={data.detectionOpportunities} />
       </SectionBlock>
 
-      <SectionBlock title={t("lessons_learned")} show={!!data.lessonsLearned}>
+      <SectionBlock title={t("Lessons learned")} show={!!data.lessonsLearned}>
         {(["technical", "operational", "detectionImprovements"] as const).map(
           (k) =>
             nonEmpty(data.lessonsLearned?.[k]) && (
@@ -139,7 +139,7 @@ const PlaybookDetail = ({ data }: { data: Playbook }) => {
         )}
       </SectionBlock>
 
-      <SectionBlock title={t("analyst_notes")} show={!!data.analystNotes}>
+      <SectionBlock title={t("Analyst notes")} show={!!data.analystNotes}>
         <p className="italic">{t(data.analystNotes)}</p>
       </SectionBlock>
 

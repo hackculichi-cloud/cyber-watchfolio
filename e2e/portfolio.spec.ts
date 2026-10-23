@@ -34,7 +34,7 @@ test("all SOC cases and playbooks have translated details", async ({ page }) => 
       const dialog = page.getByRole("dialog");
       await expect(dialog).toBeVisible();
       if (section === "investigations") await expect(dialog.getByText("Ejercicio educativo · LetsDefend", { exact: true })).toBeVisible();
-      await expect(dialog.getByRole("heading", { name: /pasos_de_investigación|procedimiento_de_investigación/ })).toBeVisible();
+      await expect(dialog.getByRole("heading", { name: /Pasos de investigación|Procedimiento de investigación/ })).toBeVisible();
       await expect(dialog.getByRole("columnheader", { name: "Táctica", exact: true })).toBeVisible();
       await page.keyboard.press("Escape");
       await expect(dialog).not.toBeVisible();
@@ -49,7 +49,7 @@ test("electrical project photos enlarge and navigate with keyboard", async ({ pa
   await page.locator('[data-electrical-group="residential-training-boards"]').click();
   await page.locator('[data-work="residential-training-board"]').getByRole("button", { name: "Ver proyecto", exact: true }).last().click();
   const details = page.getByRole("dialog").first();
-  await details.getByRole("button", { name: /^Abrir vista ampliada:/ }).first().click();
+  await details.locator("[data-photo-gallery]").last().getByRole("button", { name: /^Abrir vista ampliada:/ }).first().click();
   const viewer = page.getByRole("dialog").last();
   await expect(viewer.getByRole("status")).toHaveText("Foto 1 de 4");
   await page.keyboard.press("ArrowRight");

@@ -42,7 +42,7 @@ const ElectricalPracticeGroups = ({ areaId }: { areaId?: string }) => {
       <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">{selected && `${t(selected.title)}. ${t("Recorded practices: {count}").replace("{count}", String(items.filter(item => item.status === "Completed").length))}`}</p>
       {selected && <div key={`${group.id}-${selected.id}`} id={`electrical-panel-${group.id}-${selected.id}`} data-electrical-results role="region" aria-labelledby={`electrical-result-title-${group.id}-${selected.id}`} className="electrical-practice-results space-y-4">
         <h4 id={`electrical-result-title-${group.id}-${selected.id}`} className="text-center text-lg font-semibold text-primary">{t(selected.title)}</h4>
-        <WorkGrid items={items} centered placeholderSlots={0} emptyTitle="Evidence pending" emptyDescription="No completed practices documented in this category yet. Training topics are listed with their courses and certificates." />
+        <WorkGrid items={items} centered emptyTitle="Evidence pending" emptyDescription="No completed practices documented in this category yet. Training topics are listed with their courses and certificates." />
       </div>}
     </div>}
   </div>;

@@ -31,7 +31,8 @@ describe("portfolio localization", () => {
   it("translates metadata and serves practical evidence from the portfolio domain", () => {
     render(<LanguageProvider><LanguageButtons /><Seo title="Cybersecurity | Christian Velasco" description="View investigations" path="/cybersecurity" /></LanguageProvider>);
     fireEvent.click(screen.getByText("ES"));
-    expect(document.title).toBe("Ciberseguridad | Christian Velasco");
+    expect(document.title).toBe("Christian Velasco");
+    expect(document.querySelector('meta[property="og:title"]')).toHaveAttribute("content", "Ciberseguridad | Christian Velasco");
     expect(document.querySelector('meta[name="description"]')).toHaveAttribute("content", "Ver investigaciones");
     expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute("href", "https://culichi.lat/cybersecurity");
     expect(document.querySelector('meta[property="og:locale"]')).toHaveAttribute("content", "es_MX");

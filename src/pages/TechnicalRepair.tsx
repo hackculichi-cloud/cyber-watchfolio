@@ -8,6 +8,7 @@ import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
 import EmptyState from "@/components/shared/EmptyState";
+import EmptyCollectionSection from "@/components/shared/EmptyCollectionSection";
 import WorkImageGallery from "@/components/shared/WorkImageGallery";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
@@ -21,7 +22,7 @@ import SmartphoneRepairGroups from "@/components/repair/SmartphoneRepairGroups";
 import { smartphoneRepairs } from "@/data/smartphoneRepair";
 import { repairPhotos } from "@/data/repairPhotos";
 import { worksFor } from "@/data/works";
-import { repairCases, repairDeviceTypes, repairsFor, type RepairDeviceType } from "@/data/repairs";
+import { repairDeviceTypes, repairsFor, type RepairDeviceType } from "@/data/repairs";
 import { profileBySlug } from "@/data/profiles";
 import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
@@ -41,6 +42,7 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
   const meta = repairDeviceTypes.find((d) => d.type === type)!;
   const Icon = icons[type];
   const cases = repairsFor(type);
+  if (type !== "Smartphones" && !cases.length) return <EmptyCollectionSection id={anchors[type]} title={type} description={meta.description} status={<Tag variant="muted">{t(meta.status)}</Tag>} />;
 
   return (
     <section id={anchors[type]} className="container mx-auto scroll-mt-32 px-4 py-16">
@@ -130,9 +132,8 @@ const TechnicalRepair = () => {
         />
         <WorkGrid
           items={worksFor("repair")}
-          placeholderSlots={6}
           emptyTitle={t("Real repair photos pending")}
-          emptyDescription={t(`These slots are reserved for documented repairs${repairCases.length ? "" : " — before, during and after photos of my own work"}.`)}
+          emptyDescription={t("Documented repairs and original photos will appear here when available.")}
         />
       </section>
 

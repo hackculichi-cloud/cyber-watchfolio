@@ -56,7 +56,7 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         <p className="font-medium text-primary">{t(data.context.kind)} · {data.context.platform}</p>
         {data.context.note && <p className="mt-1 text-muted-foreground">{t(data.context.note)}</p>}
       </div>}
-      <SectionBlock title={t("case_information")}>
+      <SectionBlock title={t("Case information")}>
         <div className="grid sm:grid-cols-2 gap-2">
           <KeyVal label={t("Case ID")} value={caseInfo.caseId} />
           <KeyVal label={t("Incident")} value={caseInfo.incidentName} />
@@ -66,14 +66,14 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock title={t("executive_summary")}>
+      <SectionBlock title={t("Executive summary")}>
         <KeyVal label={t("What happened")} value={executiveSummary.whatHappened} />
         <KeyVal label={t("Why important")} value={executiveSummary.whyImportant} />
         <KeyVal label={t("Final verdict")} value={executiveSummary.finalVerdict} />
         <KeyVal label={t("Business impact")} value={executiveSummary.businessImpact} />
       </SectionBlock>
 
-      <SectionBlock title={t("alert_information")} show={!!alertInfo}>
+      <SectionBlock title={t("Alert information")} show={!!alertInfo}>
         <div className="grid sm:grid-cols-2 gap-2">
           <KeyVal label={t("Alert name")} value={alertInfo?.alertName} />
           <KeyVal label={t("Severity")} value={alertInfo?.severity} />
@@ -87,14 +87,14 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock title={t("detection_and_triage")} show={!!triage}>
+      <SectionBlock title={t("Detection and triage")} show={!!triage}>
         <KeyVal label={t("Why triggered")} value={triage?.whyTriggered} />
         <KeyVal label={t("Initial hypothesis")} value={triage?.initialHypothesis} />
         <KeyVal label={t("Initial severity")} value={triage?.initialSeverity} />
         <KeyVal label={t("Priority")} value={triage?.priority} />
       </SectionBlock>
 
-      <SectionBlock title={t("investigation_steps")} show={nonEmpty(steps)}>
+      <SectionBlock title={t("Investigation steps")} show={nonEmpty(steps)}>
         <div className="space-y-3">
           {steps!.map((s, i) => (
             <div key={i} className="panel-glow p-3">
@@ -121,7 +121,7 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock title={t("evidence_collected")} show={nonEmpty(evidence)}>
+      <SectionBlock title={t("Collected evidence")} show={nonEmpty(evidence)}>
         <div className="grid sm:grid-cols-2 gap-3">
           {evidence!.map((b, i) => (
             <div key={i} className="border border-border rounded p-2">
@@ -132,14 +132,14 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock title={t("indicators_of_compromise")} show={nonEmpty(iocs)}>
+      <SectionBlock title={t("Indicators of compromise")} show={nonEmpty(iocs)}>
         <DataTable
           columns={["Type", "Value", "Description"]}
           rows={iocs!.map((i) => [i.type, i.value, i.description])}
         />
       </SectionBlock>
 
-      <SectionBlock title={t("mitre_attack_mapping")} show={nonEmpty(mitre)}>
+      <SectionBlock title={t("MITRE ATT&CK mapping")} show={nonEmpty(mitre)}>
         <DataTable
           columns={["Tactic", "Technique", "ID", "Evidence"]}
           rows={mitre!.map((m) => [m.tactic, m.technique, m.id, m.evidence])}
@@ -181,7 +181,7 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         <KeyVal label={t("Confidence")} value={analysis?.confidence} />
       </SectionBlock>
 
-      <SectionBlock title={t("response_actions")} show={!!responseActions}>
+      <SectionBlock title={t("Response actions")} show={!!responseActions}>
         <div className="grid sm:grid-cols-2 gap-3">
           {(["containment", "eradication", "recovery", "monitoring"] as const).map(
             (k) =>
@@ -195,11 +195,11 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock title={t("additional_data_requested")} show={nonEmpty(additionalDataRequested)}>
+      <SectionBlock title={t("Additional data requested")} show={nonEmpty(additionalDataRequested)}>
         <List items={additionalDataRequested} />
       </SectionBlock>
 
-      <SectionBlock title={t("lessons_learned")} show={!!lessonsLearned}>
+      <SectionBlock title={t("Lessons learned")} show={!!lessonsLearned}>
         {(["technical", "operational", "detectionImprovements"] as const).map(
           (k) =>
             nonEmpty(lessonsLearned?.[k]) && (
@@ -211,12 +211,12 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         )}
       </SectionBlock>
 
-      <SectionBlock title={t("final_verdict")}>
+      <SectionBlock title={t("Final verdict")}>
         <KeyVal label={t("Verdict")} value={finalVerdict.verdict} />
         <KeyVal label={t("Justification")} value={finalVerdict.justification} />
       </SectionBlock>
 
-      <SectionBlock title={t("analyst_notes")} show={!!analystNotes}>
+      <SectionBlock title={t("Analyst notes")} show={!!analystNotes}>
         <p className="italic">{t(analystNotes)}</p>
       </SectionBlock>
 

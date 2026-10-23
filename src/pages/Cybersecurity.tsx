@@ -2,12 +2,12 @@ import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
 import DetailModal from "@/components/shared/DetailModal";
-import EmptyState from "@/components/shared/EmptyState";
+import EmptyCollectionSection from "@/components/shared/EmptyCollectionSection";
 import Gallery from "@/components/shared/Gallery";
 import LabCard from "@/components/cards/LabCard";
 import InvestigationCard from "@/components/investigations/InvestigationCard";
@@ -35,8 +35,13 @@ const profile = profileBySlug("cybersecurity");
 
 const Cybersecurity = () => {
   const { t } = useLanguage();
+  const incidentTrigger = useRef<HTMLElement | null>(null);
+  const playbookTrigger = useRef<HTMLElement | null>(null);
   const [incidentId, setIncidentId] = useState<string | null>(null);
   const [playbookId, setPlaybookId] = useState<string | null>(null);
+
+  const publishedWorks = worksFor("cybersecurity");
+  const gallery = galleryFor("cybersecurity");
 
   const incident = investigations.find((i) => i.id === incidentId) ?? null;
   const playbook = playbooks.find((p) => p.id === playbookId) ?? null;
@@ -53,7 +58,7 @@ const Cybersecurity = () => {
           <a href="#investigations">{t("View investigations")}</a>
         </Button>
         <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
-          <a href="#labs">{t("Security labs")}</a>
+          <a href="#playbooks">{t("Detection playbooks")}</a>
         </Button>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
@@ -87,7 +92,7 @@ const Cybersecurity = () => {
         />
         <div className="grid gap-4 md:grid-cols-2">
           {investigations.map((inc) => (
-            <InvestigationCard key={inc.id} investigation={inc} onOpen={() => setIncidentId(inc.id)} />
+            <InvestigationCard key={inc.id} investigation={inc} onOpen={() => { incidentTrigger.current = document.activeElement as HTMLElement; setIncidentId(inc.id); }} />
           ))}
         </div>
       </section>
@@ -101,57 +106,26 @@ const Cybersecurity = () => {
           />
           <div className="grid gap-4 md:grid-cols-2">
             {playbooks.map((pb) => (
-              <PlaybookCard key={pb.id} playbook={pb} onOpen={() => setPlaybookId(pb.id)} />
+              <PlaybookCard key={pb.id} playbook={pb} onOpen={() => { playbookTrigger.current = document.activeElement as HTMLElement; setPlaybookId(pb.id); }} />
             ))}
           </div>
         </div>
       </section>
 
-      <section id="labs" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow={t("Labs")}
-          title={t("Security labs & CTFs")}
-          description={t("Hands-on practice environments with objective, tooling, difficulty and outcome.")}
-        />
-        {labs.length ? (
-          <div className="grid gap-4 md:grid-cols-2">
-            {labs.map((lab) => (
-              <LabCard key={lab.id} lab={lab} />
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            title={t("Labs are being documented")}
-            description={t("Completed labs will be published here with objective, technologies, difficulty and results.")}
-          />
-        )}
-      </section>
+      {labs.length ? <section id="labs" className="container mx-auto scroll-mt-32 px-4 py-10">
+        <SectionHeading eyebrow={t("Labs")} title={t("Security labs & CTFs")} description={t("Hands-on practice environments with objective, tooling, difficulty and outcome.")} />
+        <div className="grid gap-4 md:grid-cols-2">{labs.map(lab => <LabCard key={lab.id} lab={lab} />)}</div>
+      </section> : <EmptyCollectionSection id="labs" title="Security labs & CTFs" description="Additional labs will appear here as I document them. My three LetsDefend investigations are available above." />}
 
-      <section id="projects" className="scroll-mt-32 border-y border-border bg-surface/40">
-        <div className="container mx-auto px-4 py-16">
-          <SectionHeading
-            eyebrow={t("Projects")}
-            title={t("Security projects & write-ups")}
-            description={t("Visual project cards with objective, environment, tooling, evidence screenshots and results.")}
-          />
-          <WorkGrid
-            items={worksFor("cybersecurity")}
-            emptyTitle={t("Security projects coming soon")}
-            emptyDescription={t("Each slot becomes a project card with lab screenshots, tooling, results and a write-up link.")}
-          />
-        </div>
-      </section>
+      {publishedWorks.length ? <section id="projects" className="container mx-auto scroll-mt-32 px-4 py-10">
+        <SectionHeading eyebrow={t("Projects")} title={t("Security projects & write-ups")} description={t("Visual project cards with objective, environment, tooling, evidence screenshots and results.")} />
+        <WorkGrid items={publishedWorks} />
+      </section> : <EmptyCollectionSection id="projects" title="Security projects & write-ups" description="New security projects will appear here with their process and results." />}
 
-      <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
-        <div className="container mx-auto px-4 py-16">
-          <SectionHeading eyebrow={t("Gallery")} title={t("Lab & tooling screenshots")} />
-          <Gallery
-            items={galleryFor("cybersecurity")}
-            emptyTitle={t("No screenshots published yet")}
-            emptyDescription={t("Add lab screenshots or dashboards to the gallery data file and they appear here.")}
-          />
-        </div>
-      </section>
+      {gallery.length ? <section id="gallery" className="container mx-auto scroll-mt-32 px-4 py-10">
+        <SectionHeading eyebrow={t("Gallery")} title={t("Lab & tooling screenshots")} />
+        <Gallery items={gallery} />
+      </section> : <EmptyCollectionSection id="gallery" title="Lab & tooling screenshots" description="Screenshots are included in each investigation. Additional lab images will appear here when available." />}
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-10">
         <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Tooling I work with")}><ProfileTools groups={toolsByProfile.cybersecurity} profile={profile.slug} /></SectionHeading>
@@ -170,6 +144,8 @@ const Cybersecurity = () => {
       </section>
 
       <DetailModal
+        profile="cybersecurity"
+        returnFocusRef={incidentTrigger}
         open={!!incident}
         onOpenChange={(o) => !o && setIncidentId(null)}
         title={t(incident?.title ?? "")}
@@ -179,6 +155,8 @@ const Cybersecurity = () => {
       </DetailModal>
 
       <DetailModal
+        profile="cybersecurity"
+        returnFocusRef={playbookTrigger}
         open={!!playbook}
         onOpenChange={(o) => !o && setPlaybookId(null)}
         title={t(playbook?.name ?? "")}

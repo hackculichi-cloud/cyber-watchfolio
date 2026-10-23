@@ -1,0 +1,12 @@
+.network-lettering { display:block; margin:0; min-width:0; max-width:100%; }
+.network-lettering--hero { width:100%; max-width:48rem; }
+.network-lettering .network-lettering-svg { display:block; width:100%; height:auto; overflow:visible; }
+.network-lettering--brand { display:inline-block; width:8.8rem; flex-shrink:0; vertical-align:middle; }
+@media(max-width:767px) {
+  [data-world-hero="cybersecurity"] .hero-workspace { grid-row:1; }
+  [data-world-hero="cybersecurity"] .hero-title { grid-column:1 / -1; grid-row:2; }
+  [data-world-hero="cybersecurity"] .network-lettering-svg { width:100%; height:auto; }
+  .network-lettering--brand { width:7rem; }
+}
+@media(forced-colors:active) { .network-lettering text { fill:CanvasText; } .network-lettering path,.network-lettering circle { stroke:CanvasText; } }
+.section-heading-row img[data-masked-mascot] { max-height:16rem; }
