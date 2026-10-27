@@ -354,6 +354,22 @@
                   "Built reusable components, responsive layouts and local galleries.",
                   "Integrated localized PDF generation and a GitHub pull-request / Vercel delivery workflow."
                 ]
+              },
+              {
+                "title": "World’s Finest Shows",
+                "body": "Reference-based carnival homepage prototype with React 19, TypeScript and Vite.",
+                "tags": [
+                  "React 19",
+                  "TypeScript",
+                  "Vite",
+                  "CSS"
+                ],
+                "url": "https://github.com/hackculichi-cloud/worldfinestshows",
+                "status": "Prototype",
+                "bullets": [
+                  "Built responsive navigation, six-category attraction filters, search and keyboard-accessible detail dialogs.",
+                  "Recreated the reference design with local fonts and images; newsletter feedback remains local to the prototype."
+                ]
               }
             ]
           },
@@ -659,6 +675,22 @@
                 "bullets": [
                   "Desarrollé componentes reutilizables, diseños responsivos y galerías locales.",
                   "Integré generación de PDF por idioma y un flujo de entrega con pull requests de GitHub y Vercel."
+                ]
+              },
+              {
+                "title": "World’s Finest Shows",
+                "body": "Prototipo de página de inicio para una empresa de atracciones, basado en una referencia y desarrollado con React 19, TypeScript y Vite.",
+                "tags": [
+                  "React 19",
+                  "TypeScript",
+                  "Vite",
+                  "CSS"
+                ],
+                "url": "https://github.com/hackculichi-cloud/worldfinestshows",
+                "status": "Prototipo",
+                "bullets": [
+                  "Desarrollé navegación adaptable, filtros de seis categorías de atracciones, búsqueda y ventanas de detalle accesibles con teclado.",
+                  "Recreé el diseño de referencia con fuentes e imágenes locales; la respuesta del formulario de suscripción permanece en el prototipo."
                 ]
               }
             ]
@@ -1212,7 +1244,7 @@
       "profile": "development",
       "en": {
         "role": "Junior Full Stack Developer | React, TypeScript & Python",
-        "summary": "I build responsive interfaces with React, Next.js and TypeScript, and automate Excel reporting with Python. Nine public projects show reusable components, API integration, browser storage and bilingual navigation. I apply Git/GitHub workflows, TypeScript checks and browser validation in my portfolio, supported by partial software development studies at Academlo.",
+        "summary": "I build responsive interfaces with React, Next.js and TypeScript, and automate Excel reporting with Python. Ten public projects show reusable components, API integration, browser storage and bilingual navigation. I apply Git/GitHub workflows, TypeScript checks and browser validation in my portfolio, supported by partial software development studies at Academlo.",
         "sections": [
           {
             "id": "experience",
@@ -1249,6 +1281,22 @@
                 "bullets": [
                   "Built reusable components, responsive layouts and local galleries.",
                   "Integrated localized PDF generation and a GitHub pull-request / Vercel delivery workflow."
+                ]
+              },
+              {
+                "title": "World’s Finest Shows",
+                "body": "Reference-based carnival homepage prototype with React 19, TypeScript and Vite.",
+                "tags": [
+                  "React 19",
+                  "TypeScript",
+                  "Vite",
+                  "CSS"
+                ],
+                "url": "https://github.com/hackculichi-cloud/worldfinestshows",
+                "status": "Prototype",
+                "bullets": [
+                  "Built responsive navigation, six-category attraction filters, search and keyboard-accessible detail dialogs.",
+                  "Recreated the reference design with local fonts and images; newsletter feedback remains local to the prototype."
                 ]
               }
             ],
@@ -1391,7 +1439,7 @@
         ],
         "highlights": [
           {
-            "value": "9",
+            "value": "10",
             "label": "Public projects"
           },
           {
@@ -1411,7 +1459,7 @@
       },
       "es": {
         "role": "Full Stack Developer junior | React, TypeScript y Python",
-        "summary": "Desarrollo interfaces responsivas con React, Next.js y TypeScript y automatizo reportes de Excel con Python. Nueve proyectos públicos muestran componentes reutilizables, integración de APIs, almacenamiento local y navegación bilingüe. Aplico flujo de Git/GitHub, comprobaciones de TypeScript y validación en navegador en mi portafolio, con bases de estudios parciales de desarrollo en Academlo.",
+        "summary": "Desarrollo interfaces responsivas con React, Next.js y TypeScript y automatizo reportes de Excel con Python. Diez proyectos públicos muestran componentes reutilizables, integración de APIs, almacenamiento local y navegación bilingüe. Aplico flujo de Git/GitHub, comprobaciones de TypeScript y validación en navegador en mi portafolio, con bases de estudios parciales de desarrollo en Academlo.",
         "sections": [
           {
             "id": "experience",
@@ -1448,6 +1496,22 @@
                 "bullets": [
                   "Desarrollé componentes reutilizables, diseños responsivos y galerías locales.",
                   "Integré generación de PDF por idioma y un flujo de entrega con pull requests de GitHub y Vercel."
+                ]
+              },
+              {
+                "title": "World’s Finest Shows",
+                "body": "Prototipo de página de inicio para una empresa de atracciones, basado en una referencia y desarrollado con React 19, TypeScript y Vite.",
+                "tags": [
+                  "React 19",
+                  "TypeScript",
+                  "Vite",
+                  "CSS"
+                ],
+                "url": "https://github.com/hackculichi-cloud/worldfinestshows",
+                "status": "Prototipo",
+                "bullets": [
+                  "Desarrollé navegación adaptable, filtros de seis categorías de atracciones, búsqueda y ventanas de detalle accesibles con teclado.",
+                  "Recreé el diseño de referencia con fuentes e imágenes locales; la respuesta del formulario de suscripción permanece en el prototipo."
                 ]
               }
             ],
@@ -1590,7 +1654,7 @@
         ],
         "highlights": [
           {
-            "value": "9",
+            "value": "10",
             "label": "Proyectos públicos"
           },
           {

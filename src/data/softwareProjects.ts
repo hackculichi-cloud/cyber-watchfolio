@@ -1,4 +1,4 @@
-export type ProjectStatus = "In progress" | "Active" | "Completed" | "Planned";
+export type ProjectStatus = "In progress" | "Active" | "Completed" | "Planned" | "Prototype";
 
 export type SoftwareProject = {
   id: string;
@@ -40,6 +40,15 @@ export const softwareProjects: SoftwareProject[] = [
     demo: "https://culichi.lat",
     features: ["Six professional areas with reusable, data-driven content", "Spanish and English navigation, profile CVs and local evidence galleries", "Keyboard-accessible dialogs, responsive layouts and browser checks"],
     scope: "This portfolio brings together projects, training and documented practice. Its content is maintained in typed data and local assets, with GitHub version control.",
+  },
+  {
+    id: "worlds-finest-shows", name: "World’s Finest Shows", category: "Software", status: "Prototype",
+    description: "A reference-based carnival homepage prototype built with React 19, TypeScript and Vite, with responsive navigation and interactive attraction browsing.",
+    stack: ["React 19", "TypeScript", "Vite", "CSS"],
+    repo: "https://github.com/hackculichi-cloud/worldfinestshows",
+    demo: "https://worldfinestshows.vercel.app",
+    features: ["Six attraction categories with filters and search", "Attraction detail dialogs with keyboard and Escape support", "Responsive reference design with local images, fonts and newsletter feedback"],
+    scope: "Development prototype based on the official website reference. Newsletter feedback stays local; ticket purchases and payments are outside this prototype.",
   },
   {
     id: "mirror", name: "Mirror", category: "Software", status: "Active",

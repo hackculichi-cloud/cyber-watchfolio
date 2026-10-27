@@ -8,6 +8,9 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sources = process.env.SOFTWARE_SOURCE_ROOT ?? "/tmp/culichi-software-projects";
 const only = process.argv.find(arg => arg.startsWith("--only="))?.slice(7).split(",");
 const shots = [
+  ["worlds-finest-home-desktop", "worlds-finest-shows", "worldfinestshows", "http://127.0.0.1:4304/", "Desktop", "World’s Finest Shows · homepage", "Actual desktop interface of the World’s Finest Shows development prototype", "https://github.com/hackculichi-cloud/worldfinestshows"],
+  ["worlds-finest-attractions-desktop", "worlds-finest-shows", "worldfinestshows", "http://127.0.0.1:4304/#attractions", "Desktop", "World’s Finest Shows · attractions", "Actual attraction category browser in the World’s Finest Shows prototype", "https://github.com/hackculichi-cloud/worldfinestshows"],
+  ["worlds-finest-home-mobile", "worlds-finest-shows", "worldfinestshows", "http://127.0.0.1:4304/", "Mobile", "World’s Finest Shows · mobile", "Actual mobile interface of the World’s Finest Shows development prototype", "https://github.com/hackculichi-cloud/worldfinestshows"],
   ["ronnys-home-desktop", "ronnys-food-truck", "RonnysFoodTruck", "http://127.0.0.1:4300/", "Desktop", "Ronny’s Food Truck · homepage", "Actual desktop interface of Ronny’s Food Truck with its seasonal cover and navigation"],
   ["ronnys-menu-desktop", "ronnys-food-truck", "RonnysFoodTruck", "http://127.0.0.1:4300/#menu", "Desktop", "Ronny’s Food Truck · interactive menu", "Actual food-truck menu with category controls, product selection and prices"],
   ["ronnys-home-mobile", "ronnys-food-truck", "RonnysFoodTruck", "http://127.0.0.1:4300/", "Mobile", "Ronny’s Food Truck · mobile", "Actual mobile layout of Ronny’s Food Truck with its menu and delivery shortcuts"],
@@ -29,7 +32,7 @@ const browser = await chromium.launch({ executablePath: process.env.PLAYWRIGHT_C
 let manifest = [];
 try { manifest = JSON.parse(await readFile(resolve(root, "src/data/softwareCaptureManifest.json"), "utf8")); } catch { /* First capture. */ }
 try {
-  for (const [id, projectId, repo, url, viewport, title, alt] of shots) {
+  for (const [id, projectId, repo, url, viewport, title, alt, sourceUrl] of shots) {
     if (only && !only.includes(projectId)) continue;
     const mobile = viewport === "Mobile";
     const context = await browser.newContext({ viewport: { width: mobile ? 390 : 1440, height: mobile ? 844 : 960 }, deviceScaleFactor: mobile ? 2 : 1, reducedMotion: "reduce" });
@@ -44,6 +47,7 @@ try {
     }
     await page.goto(url, { waitUntil: "load", timeout: 45000 });
     if (projectId === "portfolio") await page.locator("[data-home-intro-copy]").waitFor();
+    if (id === "worlds-finest-attractions-desktop") await page.locator("#attractions").evaluate(el => el.scrollIntoView({ block: "start", behavior: "instant" }));
     if (id === "ronnys-menu-desktop") await page.locator("#menu").evaluate(el => el.scrollIntoView({ block: "start", behavior: "instant" }));
     if (id === "culichi-areas-desktop") await page.locator("#areas").evaluate(el => el.scrollIntoView({ block: "start", behavior: "instant" }));
     if (projectId === "todo") {
@@ -58,7 +62,7 @@ try {
     });
     await page.screenshot({ path: resolve(temporary, `${id}.png`), animations: "disabled" });
     execFileSync("python", ["-c", "from PIL import Image; import sys; im=Image.open(sys.argv[1]).convert('RGB'); im.save(sys.argv[2], quality=88, method=6); im.thumbnail((768,768), Image.Resampling.LANCZOS); im.save(sys.argv[3],quality=82,method=6)", resolve(temporary, `${id}.png`), resolve(out, `${id}.webp`), resolve(out, "thumbnails", `${id}.webp`)]);
-    const sourceRepo = repo ? `https://github.com/ByCulichi/${repo}` : "https://github.com/hackculichi-cloud/cyber-watchfolio";
+    const sourceRepo = sourceUrl ?? (repo ? `https://github.com/ByCulichi/${repo}` : "https://github.com/hackculichi-cloud/cyber-watchfolio");
     const sourceRef = repo ? execFileSync("git", ["-C", resolve(sources, repo), "rev-parse", "HEAD"], { encoding: "utf8" }).trim() : "codex/software-studio-projects";
     const record = { id, projectId, title, alt, viewport, src: `/images/software/screenshots/${id}.webp`, thumbnail: `/images/software/screenshots/thumbnails/${id}.webp`, width: mobile ? 780 : 1440, height: mobile ? 1688 : 960, route: new URL(url).pathname + new URL(url).hash, sourceRepo, sourceRef, capturedAt: new Date().toISOString().slice(0, 10), capture: "Local repository build" };
     manifest = [...manifest.filter(item => item.id !== id), record];

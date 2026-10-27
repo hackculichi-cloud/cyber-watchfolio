@@ -22,11 +22,11 @@
   {
     "id": "software",
     "profile": "development",
-    "summary": "I build responsive interfaces with React, Next.js and TypeScript, and automate Excel reporting with Python. Nine public projects show reusable components, API integration, browser storage and bilingual navigation. I apply Git/GitHub workflows, TypeScript checks and browser validation in my portfolio, supported by partial software development studies at Academlo.",
-    "pageCount": 3,
+    "summary": "I build responsive interfaces with React, Next.js and TypeScript, and automate Excel reporting with Python. Ten public projects show reusable components, API integration, browser storage and bilingual navigation. I apply Git/GitHub workflows, TypeScript checks and browser validation in my portfolio, supported by partial software development studies at Academlo.",
+    "pageCount": 4,
     "pageCounts": {
-      "en": 3,
-      "es": 3
+      "en": 4,
+      "es": 4
     }
   },
   {

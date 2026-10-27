@@ -12,7 +12,7 @@ export default function SoftwareProjectCollection() {
       {(expanded ? softwareProjects : softwareProjects.slice(0, 2)).map(project => <ProjectCard key={project.id} project={project} />)}
     </div>
     <button type="button" aria-controls="software-repositories" aria-expanded={expanded} onClick={() => setExpanded(value => !value)} className="mt-6 inline-flex min-h-11 items-center gap-3 rounded-lg border border-primary/40 bg-primary/10 px-5 py-3 font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">
-      {t(expanded ? "Show featured projects" : "Explore all 9 projects")}<ChevronDown className={`h-5 w-5 ${expanded ? "rotate-180" : ""}`} aria-hidden />
+      {expanded ? t("Show featured projects") : t("Explore all {count} projects").replace("{count}", String(softwareProjects.length))}<ChevronDown className={`h-5 w-5 ${expanded ? "rotate-180" : ""}`} aria-hidden />
     </button>
   </div>;
 }

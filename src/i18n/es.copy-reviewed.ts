@@ -301,5 +301,20 @@ export const copyReviewedEs: Record<string, string> = {
   "Decision tree": "Árbol de decisión",
   "Escalation criteria": "Criterios de escalamiento",
   "MITRE ATT&CK": "MITRE ATT&CK",
-  "Detection opportunities": "Oportunidades de detección"
+  "Detection opportunities": "Oportunidades de detección",
+  "Prototype": "Prototipo",
+  "Explore all {count} projects": "Explorar los {count} proyectos",
+  "A reference-based carnival homepage prototype built with React 19, TypeScript and Vite, with responsive navigation and interactive attraction browsing.": "Prototipo de una página de inicio para una empresa de atracciones, basado en una referencia y desarrollado con React 19, TypeScript y Vite, con navegación adaptable y exploración interactiva de atracciones.",
+  "Six attraction categories with filters and search": "Seis categorías de atracciones con filtros y búsqueda",
+  "Attraction detail dialogs with keyboard and Escape support": "Ventanas de detalle de atracciones accesibles con teclado y cierre con Escape",
+  "Responsive reference design with local images, fonts and newsletter feedback": "Diseño adaptable basado en la referencia, con imágenes y fuentes locales y respuesta visual del formulario de suscripción",
+  "Development prototype based on the official website reference. Newsletter feedback stays local; ticket purchases and payments are outside this prototype.": "Prototipo de desarrollo basado en el sitio de referencia. La respuesta del formulario de suscripción es local; las compras de entradas y los pagos se gestionan fuera de este prototipo.",
+  "World’s Finest Shows · homepage": "World’s Finest Shows · inicio",
+  "World’s Finest Shows · attractions": "World’s Finest Shows · atracciones",
+  "World’s Finest Shows · mobile": "World’s Finest Shows · móvil",
+  "Actual desktop interface of the World’s Finest Shows development prototype": "Interfaz real de escritorio del prototipo de desarrollo World’s Finest Shows",
+  "Actual attraction category browser in the World’s Finest Shows prototype": "Explorador real de categorías de atracciones del prototipo World’s Finest Shows",
+  "Actual mobile interface of the World’s Finest Shows development prototype": "Interfaz móvil real del prototipo de desarrollo World’s Finest Shows",
+  "I build responsive web interfaces and automate Excel reports with Python. My portfolio also includes three educational security investigations, documented residential electrical work and three iPhone repairs. I bring a practical approach: organize the task, document the process and present evidence of the result.": "Desarrollo interfaces web responsivas y automatizo reportes de Excel con Python. Mi portafolio también incluye tres investigaciones educativas de seguridad, trabajos eléctricos residenciales documentados y tres reparaciones de iPhone. Aporto un enfoque práctico: organizar el trabajo, documentar el proceso y presentar evidencias del resultado.",
+  "I build responsive interfaces with React, Next.js and TypeScript, and automate Excel reporting with Python. Ten public projects show reusable components, API integration, browser storage and bilingual navigation. I apply Git/GitHub workflows, TypeScript checks and browser validation in my portfolio, supported by partial software development studies at Academlo.": "Desarrollo interfaces responsivas con React, Next.js y TypeScript y automatizo reportes de Excel con Python. Diez proyectos públicos muestran componentes reutilizables, integración de APIs, almacenamiento local y navegación bilingüe. Aplico flujo de Git/GitHub, comprobaciones de TypeScript y validación en navegador en mi portafolio, con bases de estudios parciales de desarrollo en Academlo."
 };
