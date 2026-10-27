@@ -23,11 +23,11 @@ export type GalleryItem = {
  * Software screenshots come from repository builds; other areas use their own work galleries.
  */
 export const galleryItems: GalleryItem[] = softwareScreenshots
-  .filter(item => item.projectId === "ronnys-food-truck" || item.projectId === "portfolio")
+  .filter(item => item.projectId === "ronnys-food-truck" || item.projectId === "portfolio" || item.projectId === "worlds-finest-shows")
   .map(item => ({
     id: item.id, src: item.src, thumbnail: item.thumbnail, alt: item.alt,
     title: item.title, date: item.capturedAt, category: item.viewport,
-    project: item.projectId === "portfolio" ? "Culichi" : "Ronny’s Food Truck",
+    project: item.projectId === "portfolio" ? "Culichi" : item.projectId === "worlds-finest-shows" ? "World’s Finest Shows" : "Ronny’s Food Truck",
     profile: "development", description: "Actual interface captured from a local repository build.",
   }));
 

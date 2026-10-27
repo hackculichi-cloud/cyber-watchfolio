@@ -64,8 +64,8 @@ test('featured projects open actual local desktop and mobile captures with sourc
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
   await expect(trigger).toBeFocused();
-  await projects.getByRole('button', { name: 'Explorar los 9 proyectos', exact: true }).click();
-  await expect(projects.locator('article')).toHaveCount(9);
+  await projects.getByRole('button', { name: 'Explorar los 10 proyectos', exact: true }).click();
+  await expect(projects.locator('article')).toHaveCount(10);
   await expect(projects.locator('[data-software-project="journey"]')).toContainText('HTML semántico');
 });
 
@@ -89,9 +89,9 @@ for (const width of [320, 390]) test(`software fits ${width}px and reduced motio
 test('gallery filters the primary interfaces and keeps phone images inside the lightbox', async ({ page }) => {
   await page.goto('/software-development#gallery');
   const gallery = page.locator('#gallery');
-  await expect(gallery.locator('li')).toHaveCount(6);
+  await expect(gallery.locator('li')).toHaveCount(9);
   await gallery.getByRole('button', { name: 'Mobile', exact: true }).click();
-  await expect(gallery.locator('li')).toHaveCount(2);
+  await expect(gallery.locator('li')).toHaveCount(3);
   const trigger = gallery.locator('li button').first();
   await trigger.click();
   const dialog = page.getByRole('dialog');
@@ -101,4 +101,28 @@ test('gallery filters the primary interfaces and keeps phone images inside the l
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   await expect(trigger).toBeFocused();
+});
+
+test('World’s Finest Shows joins the catalog with its real repository, prototype status and local captures', async ({ page }) => {
+  await page.goto('/software-development#projects');
+  await page.getByRole('button', { name: 'Explore all 10 projects', exact: true }).click();
+  const card = page.locator('[data-software-project="worlds-finest-shows"]');
+  await expect(card.getByRole('heading', { name: 'World’s Finest Shows', exact: true })).toBeVisible();
+  await expect(card.getByText('Prototype', { exact: true })).toBeVisible();
+  await expect(card.getByRole('link', { name: 'Repository', exact: true })).toHaveAttribute('href', 'https://github.com/hackculichi-cloud/worldfinestshows');
+  await expect(card.getByRole('link', { name: 'Live demo', exact: true })).toHaveAttribute('href', 'https://worldfinestshows.vercel.app');
+  const trigger = card.getByRole('button').last();
+  await trigger.click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toContainText('Newsletter feedback stays local');
+  await dialog.getByRole('button', { name: 'World’s Finest Shows · mobile', exact: true }).click();
+  const image = dialog.locator('figure img');
+  await expect(image).toHaveAttribute('src', '/images/software/screenshots/worlds-finest-home-mobile.webp');
+  await expect.poll(() => image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth === 780)).toBe(true);
+  await selectLanguage(dialog, 'es');
+  await expect(dialog).toContainText('Prototipo de desarrollo');
+  await expect(dialog).toContainText('Seis categorías de atracciones');
+  await page.keyboard.press('Escape');
+  await expect(trigger).toBeFocused();
+  await expect(card.getByText('Prototipo', { exact: true })).toBeVisible();
 });

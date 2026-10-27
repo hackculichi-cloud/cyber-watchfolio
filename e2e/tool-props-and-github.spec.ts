@@ -39,8 +39,8 @@ test("GitHub projects expand on demand and AWS remains exam preparation in both 
   const projects = page.locator('[data-software-projects]');
   await expect(projects.locator('article')).toHaveCount(2);
   await expect(projects.getByRole('link', { name: /Repository/ }).filter({ has: page.locator('svg') }).first()).toHaveAttribute('href', 'https://github.com/ByCulichi/RonnysFoodTruck');
-  await projects.getByRole('button', { name: 'Explore all 9 projects', exact: true }).click();
-  await expect(projects.locator('article')).toHaveCount(9);
+  await projects.getByRole('button', { name: 'Explore all 10 projects', exact: true }).click();
+  await expect(projects.locator('article')).toHaveCount(10);
   await expect(projects.locator('[data-software-project="culichi-metrics"]')).toContainText('Python');
   await expect(projects.locator('[data-software-project="calculator"]')).toContainText('TypeScript');
   for (const path of ['/software-development', '/cybersecurity']) {
@@ -65,7 +65,7 @@ test("phone layouts emphasize area titles with logos and show seven years of ser
   await expect(title.locator('..').locator('..').locator('svg')).toHaveCount(1);
   await expect(title).toHaveCSS('font-size', '15px');
   await page.goto('/software-development#projects');
-  await page.getByRole('button', { name: 'Explore all 9 projects', exact: true }).tap();
+  await page.getByRole('button', { name: 'Explore all 10 projects', exact: true }).tap();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.goto('/experience#background');
   await expect(page.locator('#background').getByText('7', { exact: true })).toBeVisible();

@@ -190,5 +190,53 @@
     "sourceRef": "aa3adf9cc15c24b5d609dea24ef9bbd7bad37d2a",
     "capturedAt": "2026-10-21",
     "capture": "Local repository build"
+  },
+  {
+    "id": "worlds-finest-home-desktop",
+    "projectId": "worlds-finest-shows",
+    "title": "World’s Finest Shows · homepage",
+    "alt": "Actual desktop interface of the World’s Finest Shows development prototype",
+    "viewport": "Desktop",
+    "src": "/images/software/screenshots/worlds-finest-home-desktop.webp",
+    "thumbnail": "/images/software/screenshots/thumbnails/worlds-finest-home-desktop.webp",
+    "width": 1440,
+    "height": 960,
+    "route": "/",
+    "sourceRepo": "https://github.com/hackculichi-cloud/worldfinestshows",
+    "sourceRef": "e54d43db822cd58518f6805b3df2641967553490",
+    "capturedAt": "2026-10-27",
+    "capture": "Local repository build"
+  },
+  {
+    "id": "worlds-finest-attractions-desktop",
+    "projectId": "worlds-finest-shows",
+    "title": "World’s Finest Shows · attractions",
+    "alt": "Actual attraction category browser in the World’s Finest Shows prototype",
+    "viewport": "Desktop",
+    "src": "/images/software/screenshots/worlds-finest-attractions-desktop.webp",
+    "thumbnail": "/images/software/screenshots/thumbnails/worlds-finest-attractions-desktop.webp",
+    "width": 1440,
+    "height": 960,
+    "route": "/#attractions",
+    "sourceRepo": "https://github.com/hackculichi-cloud/worldfinestshows",
+    "sourceRef": "e54d43db822cd58518f6805b3df2641967553490",
+    "capturedAt": "2026-10-27",
+    "capture": "Local repository build"
+  },
+  {
+    "id": "worlds-finest-home-mobile",
+    "projectId": "worlds-finest-shows",
+    "title": "World’s Finest Shows · mobile",
+    "alt": "Actual mobile interface of the World’s Finest Shows development prototype",
+    "viewport": "Mobile",
+    "src": "/images/software/screenshots/worlds-finest-home-mobile.webp",
+    "thumbnail": "/images/software/screenshots/thumbnails/worlds-finest-home-mobile.webp",
+    "width": 780,
+    "height": 1688,
+    "route": "/",
+    "sourceRepo": "https://github.com/hackculichi-cloud/worldfinestshows",
+    "sourceRef": "e54d43db822cd58518f6805b3df2641967553490",
+    "capturedAt": "2026-10-27",
+    "capture": "Local repository build"
   }
 ]
