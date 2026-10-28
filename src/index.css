@@ -866,3 +866,15 @@ div.dialog-content[data-state], div.dialog-overlay[data-state] { animation-durat
 @media (max-width:767px) {
   .reveal { opacity:1; transform:none; transition:none !important; }
 }
+
+/* Keep the current character painted; previewing never hides a previous layer. */
+.mascot-current { opacity:1; }
+.mascot-tool-float { animation:none !important; }
+.mascot-tool-flight { filter:none; }
+@media (prefers-reduced-motion:no-preference) {
+  .mascot-current[data-outfit-preview] { animation:mascot-quick-appear 160ms ease-out; }
+}
+@keyframes mascot-quick-appear { from { opacity:.8; } to { opacity:1; } }
+@media (max-width:767px) {
+  .site-layout [class*="backdrop-blur"] { backdrop-filter:none; }
+}

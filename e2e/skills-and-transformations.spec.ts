@@ -36,7 +36,7 @@ test("outfit focus reveals matching tools, transforms both figures and restores 
   const gear = page.locator('[data-gear-preview="electrical"]').first();
   await expect(gear).toContainText('Digital multimeter');
   await expect(gear).toContainText('Insulated pliers');
-  await expect(morph.locator('.mascot-morph-target')).toHaveCSS('animation-name', 'outfit-reveal-new');
+  await expect(morph.locator('.mascot-current')).toHaveCSS('animation-name', 'mascot-quick-appear');
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electrical');
   await stage.locator('[data-outfit="repair"]').focus();
   await expect(stage.locator('[data-tool-field="electrical"]')).toHaveCount(0);
@@ -69,7 +69,7 @@ test("desktop profile menus have seven distinct neon accents and concise links",
   // A previous menu's delayed close must not reset the currently hovered outfit.
   await page.waitForTimeout(300);
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electronics');
-  const portrait = page.locator('[data-header-mascot] .mascot-morph-target svg');
+  const portrait = page.locator('[data-header-mascot] .mascot-current svg');
   await expect(portrait).toHaveAttribute('viewBox', '452 420 350 350');
   await page.mouse.move(0, 120);
   await expect(menu).not.toBeVisible();
@@ -86,8 +86,8 @@ test("reduced motion and phone menu keep previews usable without animated scans 
   await page.goto('/');
   const stage = page.locator('[data-home-mascot]');
   await stage.locator('[data-outfit="repair"]').focus();
-  await expect(stage.locator('.mascot-morph-target')).toHaveCSS('animation-name', 'none');
-  await expect(stage.locator('.mascot-morph-sweep')).toHaveCSS('opacity', '0');
+  await expect(stage.locator('.mascot-current')).toHaveCSS('animation-name', 'none');
+  await expect(stage.locator('.mascot-morph-sweep, .mascot-morph-target')).toHaveCount(0);
   await page.getByRole('button', { name: 'Open menu', exact: true }).tap();
   await page.locator('#mobile-navigation').getByRole('button', { name: 'Open profile menu: Electronics', exact: true }).tap();
   await expect(page.locator('#mobile-navigation [data-gear-preview]')).toHaveCount(0);
