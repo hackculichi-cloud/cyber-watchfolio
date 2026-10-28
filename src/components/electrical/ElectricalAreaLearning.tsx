@@ -9,6 +9,7 @@ import { ProviderMark } from "@/components/profile/TrainingProviderBadge";
 import MascotScene from "@/components/shared/MascotScene";
 import ElectricalCurriculum from "./ElectricalCurriculum";
 import Tag from "@/components/shared/Tag";
+import DeferredDetails from "@/components/shared/DeferredDetails";
 
 const complementaryProviders: Record<string, TrainingProviderId> = {
   "electrical-linkedin": "linkedin-learning", "electrical-udemy": "udemy", "electrical-udemy-measurements": "udemy",
@@ -62,11 +63,11 @@ export default function ElectricalAreaLearning({ area, onOpen }: { area: string;
           <a data-training-provider="universidad-internacional" href={university.url} target="_blank" rel="noopener noreferrer" className="menu-choice inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-semibold text-primary">{t("Visit the training center")}<ArrowUpRight className="h-4 w-4" aria-hidden /></a>
         </div>
       </div>
-      <details data-area-syllabus className="border-t border-primary/20 bg-background/40 p-4 sm:px-5">
-        <summary className="menu-choice cursor-pointer rounded-lg py-2 font-semibold text-primary">{t("Complete course syllabus")} <span className="font-normal text-foreground/75">· {t("{count} modules").replace("{count}", String(electricalTraining.modules.length))}</span></summary>
+      <DeferredDetails data-area-syllabus className="border-t border-primary/20 bg-background/40 p-4 sm:px-5"
+        summary={<summary className="menu-choice cursor-pointer rounded-lg py-2 font-semibold text-primary">{t("Complete course syllabus")} <span className="font-normal text-foreground/75">· {t("{count} modules").replace("{count}", String(electricalTraining.modules.length))}</span></summary>}>
         <p className="reading-copy mt-3 text-sm text-foreground/80">{t("All modules from my main training program. Related topics are marked for this specialty.")}</p>
         <div className="mt-4"><ElectricalCurriculum training={electricalTraining} relatedModuleIds={config.modules} showSummary={false} /></div>
-      </details>
+      </DeferredDetails>
     </article>
 
     <section data-area-courses className="space-y-3">

@@ -78,8 +78,8 @@
   .copper-electron[data-electron-terminal="true"] {
     animation-name: copper-electron-arrive;
   }
-  .copper-feed-pulse, .copper-connection-pulse { animation: copper-wire-flow 3s linear infinite paused; }
-  .copper-return-pulse { animation: copper-wire-flow 3s linear 8200ms infinite both paused; }
+  .copper-feed-pulse, .copper-connection-pulse { animation: copper-wire-flow 3s linear 3 both paused; }
+  .copper-return-pulse { animation: copper-wire-flow 3s linear 8200ms 3 both paused; }
   .copper-bulb-light { animation: copper-load-on 1200ms ease-out calc(var(--electron-delay) + 450ms) 1 both paused; }
   .copper-bulb-halo, .copper-bulb-rays { animation: copper-load-halo 1200ms ease-out calc(var(--electron-delay) + 450ms) 1 both paused; }
   .copper-conductor-title[data-in-view="true"][data-motion-paused="false"] :is(.copper-electron,.copper-feed-pulse,.copper-connection-pulse,.copper-return-pulse,.copper-bulb-light,.copper-bulb-halo,.copper-bulb-rays) {

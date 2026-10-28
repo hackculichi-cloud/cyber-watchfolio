@@ -16,6 +16,8 @@ const ProfileContent = () => {
       const el = document.getElementById(id);
       // SpecialtyExplorer opens and focuses the detail, rather than its cover card.
       if (el?.hasAttribute("data-specialty-anchor")) return;
+      // ElectricalAreaPanel owns tab/course positioning after the new content mounts.
+      if (el?.closest("[data-electrical-area-content]")) return;
       if (el) {
         el.scrollIntoView({ behavior: "instant", block: "start" });
         return;
