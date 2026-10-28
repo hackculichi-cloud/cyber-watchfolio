@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, PhoneCall, FileText, Mail, Scissors, type LucideIcon } from "lucide-react";
+import { preloadProfile } from "@/lib/preloadProfile";
 import { navigation } from "@/data/site";
 import { profileForPath } from "@/data/profiles";
 import type { MascotVariant } from "@/components/shared/CulichiMascot";
@@ -140,7 +141,7 @@ const SiteHeader = () => {
 
         <ul className="hidden items-center gap-1 xl:flex">
           {navigation.map(item => {
-            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={event => { if (item.profile && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) previewMascotArea(item.profile, true); }} className={({ isActive }) => cn("menu-choice flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
+            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} onPointerEnter={() => preloadProfile(item.href)} onPointerDown={() => preloadProfile(item.href)} onFocus={() => { preloadProfile(item.href); previewMascotArea(item.profile ?? null); }} onClick={event => { if (item.profile && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) previewMascotArea(item.profile, true); }} className={({ isActive }) => cn("menu-choice flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
               {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
             </NavLink>;
             return <li key={item.href} className="relative">{item.children ? <ProfileDropdown item={item}>{link}</ProfileDropdown> : link}</li>;
@@ -169,7 +170,7 @@ const SiteHeader = () => {
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map(item => <li key={item.href}>
               <div className="flex items-center justify-between gap-2">
-                <Link to={item.href} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={() => { if (item.profile) previewMascotArea(item.profile, true); setOpen(false); }} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="menu-choice inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
+                <Link to={item.href} onPointerEnter={() => preloadProfile(item.href)} onPointerDown={() => preloadProfile(item.href)} onFocus={() => { preloadProfile(item.href); previewMascotArea(item.profile ?? null); }} onClick={() => { if (item.profile) previewMascotArea(item.profile, true); setOpen(false); }} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="menu-choice inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
                   {navIconColor[item.label] && <NavIcon label={item.label} className={navIconColor[item.label]} />}{t(item.shortLabel ?? item.label)}
                 </Link>
                 {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => { const next = mobileProfile === item.href ? null : item.href; setMobileProfile(next); previewMascotArea(next ? item.profile ?? null : null); }}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}

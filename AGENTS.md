@@ -8,6 +8,8 @@
 
 # Owner presentation preferences
 
+- Keep «Sobre mí» / About out of the top desktop and mobile menus; the About page remains accessible from the footer.
+
 - Keep unpublished collections compact in every area: use one brief pending row, never grids of empty image cards or large blank panels. Preserve existing anchors and automatically show the real collection when data is published.
 - Review Spanish spelling and technical meaning across all profiles, menus and dialogs. Render plain Unicode text rather than HTML entities; preserve commands, case identifiers, filenames, domains and evidence values exactly. Keep user-facing empty-state copy about the portfolio, not data-file editing instructions.
 - Give each profile title a readable visual identity related to its discipline and synchronize the Culichi header lettering automatically with that profile, including Home hover/focus previews. Keep navigation position stable and avoid continuous costly effects.

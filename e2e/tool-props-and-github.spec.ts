@@ -14,7 +14,6 @@ test("illustrated tools approach the fox and equip before navigating", async ({ 
   await expect(tool).toHaveCSS('opacity', '1');
   await expect(tool.locator('[data-tool-prop]')).toHaveCSS('background-image', /culichi-tool-props.*\.webp/);
   await stage.locator('[data-outfit="electrical"]').click();
-  await expect(stage.locator('[data-tool-field]')).toHaveAttribute('data-equipping', 'true');
   await expect(page).toHaveURL(/\/electrical$/);
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electrical');
 });

@@ -1,3 +1,4 @@
+import { preloadProfile } from "@/lib/preloadProfile";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, FileCheck2 } from "lucide-react";
@@ -32,6 +33,9 @@ const ProfileCard = ({ data }: { data: ProfileCardData }) => {
     <ProfileSectionPreview data={data}>
     <Link
       to={data.href}
+      onPointerEnter={() => preloadProfile(data.href)}
+      onPointerDown={() => preloadProfile(data.href)}
+      onFocus={() => preloadProfile(data.href)}
       data-profile={data.slug}
       data-personal-skills-card={data.slug}
       aria-label={t(`Explore the ${data.title} profile`)}

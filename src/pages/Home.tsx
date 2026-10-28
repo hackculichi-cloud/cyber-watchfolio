@@ -31,7 +31,6 @@ const Home = () => {
         <img data-home-background src={homeBackground} alt="" aria-hidden width={1536} height={1024} fetchPriority="high" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-30" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-background/70 md:bg-transparent md:bg-[linear-gradient(90deg,hsl(var(--background)/0.94)_0%,hsl(var(--background)/0.78)_40%,hsl(var(--background)/0.45)_100%)]" />
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(0deg,hsl(var(--background)),transparent_40%)]" />
-        <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
         <div data-home-introduction className="container relative mx-auto grid gap-8 px-4 py-10 sm:py-12 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-10">
           <div data-home-intro-copy className="min-w-0 max-w-3xl">
             <p className="eyebrow animate-fade-in-up">{t(site.role)}</p>
