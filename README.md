@@ -12,8 +12,9 @@ Sitio principal: https://culichi.lat
 - Práctica futura de control con contactor y START/STOP, marcada como **planeada**.
 - Formación de RED CONOCER y de Udemy en curso.
 - Curso **Electrical Systems: Reading Drawings and Schematics**, de LinkedIn Learning, completado según confirmación del autor. Imagen del certificado pendiente.
+- **Barbería**: formación en Baltra Barbería, Guadalajara, con apartados para cortes y herramientas propias. Fotografías originales pendientes; sin fechas ni certificaciones inferidas.
 
-Las investigaciones educativas no representan experiencia laboral en un SOC. Los laboratorios y proyectos SOC adicionales permanecen pendientes de documentación. Cada área dispone de su CV, una sección de certificaciones y estados explícitos para formación y documentos pendientes. No se añaden certificaciones no confirmadas.
+Las investigaciones educativas no representan experiencia laboral en un SOC. Los laboratorios y proyectos SOC adicionales permanecen pendientes de documentación. Las seis áreas anteriores conservan sus CV y certificaciones; Barbería presenta la escuela confirmada y sus colecciones sin publicar un CV con datos insuficientes. No se añaden certificaciones no confirmadas.
 
 ## Desarrollo
 

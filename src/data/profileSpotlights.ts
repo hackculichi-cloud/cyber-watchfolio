@@ -10,7 +10,7 @@ export const profileSpotlights: Record<ProfileSlug, { headline: string; skills: 
   development: {
     headline: "I build web interfaces",
     skills: ["React, Next.js and TypeScript interfaces", "Python automation for Excel reports", "Git/GitHub version control"],
-    proof: "9 public portfolio projects to explore",
+    proof: "10 public portfolio projects to explore",
   },
   electrical: {
     headline: "I install, measure and verify",
@@ -31,5 +31,10 @@ export const profileSpotlights: Record<ProfileSlug, { headline: string; skills: 
     headline: "I turn problems into solutions",
     skills: ["Operations supervision and SLA follow-up", "Tier 2 technical support and training", "Bilingual customer communication"],
     proof: "7 years of professional experience",
+  },
+  barbering: {
+    headline: "I also cut hair",
+    skills: ["Haircutting", "Training at Baltra Barbería", "A space for my cuts and tools"],
+    proof: "Baltra Barbería · Guadalajara",
   },
 };

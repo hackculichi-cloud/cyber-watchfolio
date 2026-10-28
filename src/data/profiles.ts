@@ -1,11 +1,12 @@
-import { PhoneCall, Cpu, Shield, Code2, Wrench, Zap, type LucideIcon } from "lucide-react";
+import { PhoneCall, Cpu, Shield, Code2, Wrench, Zap, Scissors, type LucideIcon } from "lucide-react";
 
 /** Slugs used for the per-profile visual identity (see `[data-profile]` in index.css). */
-export type ProfileSlug = "cybersecurity" | "development" | "electrical" | "electronics" | "repair" | "customer-service";
+export type ProfileSlug = "cybersecurity" | "development" | "electrical" | "electronics" | "repair" | "customer-service" | "barbering";
 
 export type ProfileCardData = {
   slug: ProfileSlug;
   title: string;
+  shortTitle?: string;
   summary: string;
   href: string;
   icon: LucideIcon;
@@ -29,6 +30,7 @@ export const professionalProfiles: ProfileCardData[] = [
   {
     slug: "development",
     title: "Software Development",
+    shortTitle: "Software",
     summary:
       "React/Next.js and TypeScript interfaces, Python report automation and public GitHub projects, supported by partial Academlo studies and AWS Cloud Practitioner preparation.",
     href: "/software-development",
@@ -40,6 +42,7 @@ export const professionalProfiles: ProfileCardData[] = [
   {
     slug: "electrical",
     title: "Residential & Industrial Electrical Maintenance",
+    shortTitle: "Electricity",
     summary:
       "Electrical foundations, drawings, AC/DC measurement and residential/industrial training, with documented installations and maintenance practice.",
     href: "/electrical",
@@ -73,12 +76,23 @@ export const professionalProfiles: ProfileCardData[] = [
   {
     slug: "customer-service",
     title: "Call Center & Customer Service",
+    shortTitle: "Customer service",
     summary: "7 years of bilingual customer service, communication, user support and conflict resolution.",
     href: "/experience",
     icon: PhoneCall,
     emphasis: "secondary",
     focus: ["English / Spanish", "Communication", "Customer support", "Problem solving"],
     status: "Professional experience",
+  },
+  {
+    slug: "barbering",
+    title: "Barbering",
+    summary: "Haircutting, training at Baltra Barbería in Guadalajara, and a space for my own cuts and tools.",
+    href: "/barbering",
+    icon: Scissors,
+    emphasis: "secondary",
+    focus: ["Haircutting", "Baltra Barbería", "Tools"],
+    status: "Practical skill",
   },
 ];
 
@@ -242,6 +256,23 @@ export const profileIdentities: ProfileIdentity[] = [
       { id: "cv", label: "CV" },
     ],
     cvIds: ["customer-service"],
+  },
+  {
+    slug: "barbering",
+    path: "/barbering",
+    aliases: [],
+    label: "Barbering",
+    eyebrow: "Practical profile",
+    status: "Practical skill",
+    description: "Haircutting is another of my practical skills. Baltra Barbería, in Guadalajara, is my school for this area.",
+    icon: Scissors,
+    highlights: ["Haircutting", "Baltra Barbería", "Guadalajara"],
+    sections: [
+      { id: "training", label: "Training" },
+      { id: "cuts", label: "My cuts" },
+      { id: "tools", label: "Tools" },
+    ],
+    cvIds: [],
   },
 ];
 

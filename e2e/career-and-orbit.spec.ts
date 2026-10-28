@@ -2,14 +2,14 @@ import { openElectricalArea } from "./support/electricalArea";
 import { selectLanguage } from "./support/selectLanguage";
 import { test, expect } from "@playwright/test";
 
-test("six outfit circles have equal radii and spacing, and preview the larger header mascot", async ({ page }) => {
+test("seven outfit circles have equal radii and spacing, and preview the larger header mascot", async ({ page }) => {
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     const stage = page.locator('[data-home-mascot]');
     await stage.getByRole('button', { name: 'Greet Culichi and choose an outfit', exact: true }).click();
-    await expect(stage.locator('[data-outfit]')).toHaveCount(6);
+    await expect(stage.locator('[data-outfit]')).toHaveCount(7);
     const geometry = await stage.evaluate(el => {
       const box = el.getBoundingClientRect();
       const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
@@ -26,8 +26,9 @@ test("six outfit circles have equal radii and spacing, and preview the larger he
       expect(Math.max(...geometry.radii) - Math.min(...geometry.radii)).toBeLessThan(1);
       expect(Math.max(...geometry.spacing) - Math.min(...geometry.spacing)).toBeLessThan(1);
     } else {
-      const left = geometry.points.filter(([x]) => x < geometry.cx);
-      const right = geometry.points.filter(([x]) => x > geometry.cx);
+      const originalPoints = geometry.points.slice(0, 6);
+      const left = originalPoints.filter(([x]) => x < geometry.cx);
+      const right = originalPoints.filter(([x]) => x > geometry.cx);
       expect(left).toHaveLength(3);
       expect(right).toHaveLength(3);
       for (let i = 0; i < 3; i++) {

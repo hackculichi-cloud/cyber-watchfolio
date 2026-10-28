@@ -3,17 +3,17 @@ import { test, expect } from '@playwright/test';
 const areas = [
   ['cybersecurity', '/cybersecurity'], ['development', '/software-development'],
   ['electrical', '/electrical'], ['electronics', '/electronics'],
-  ['repair', '/repair'], ['customer-service', '/experience'],
+  ['repair', '/repair'], ['customer-service', '/experience'], ['barbering', '/barbering'],
 ] as const;
 
-test('phone visitors see the fox, background and all six usable area controls without scrolling or hovering', async ({ browser }) => {
+test('phone visitors see the fox, background and all seven usable area controls without scrolling or hovering', async ({ browser }) => {
   for (const [width, height] of [[320, 640], [390, 844], [430, 932]]) {
     const context = await browser.newContext({ viewport: { width, height }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
     const page = await context.newPage();
     await page.goto('/');
     const stage = page.locator('[data-home-mascot]');
     await expect(stage).toHaveAttribute('data-selector-open', 'true');
-    await expect(stage.locator('[data-outfit]')).toHaveCount(6);
+    await expect(stage.locator('[data-outfit]')).toHaveCount(7);
     await expect(page.locator('[data-home-background]')).toBeVisible();
     await expect(page.locator('[data-home-mobile-art]')).toHaveCount(0);
     const header = (await page.locator('header').boundingBox())!;
@@ -47,7 +47,7 @@ test('a compact two-column skill overview can reveal every skill and return to t
   await page.goto('/');
   const grid = page.locator('#home-skills-grid');
   const cards = grid.locator('[data-personal-skills-card]');
-  await expect(cards).toHaveCount(6);
+  await expect(cards).toHaveCount(7);
   const a = (await cards.nth(0).boundingBox())!, b = (await cards.nth(1).boundingBox())!;
   expect(a.y).toBeCloseTo(b.y, 0);
   expect(b.x).toBeGreaterThan(a.x + a.width);
@@ -76,23 +76,25 @@ test('mobile profiles show a chosen content block, retain deep links and can rev
     const figure = (await workspace.boundingBox())!, heading = (await title.boundingBox())!;
     expect(figure.x).toBeGreaterThan(heading.x);
     const before = await page.evaluate(() => document.documentElement.scrollHeight);
+    const firstSection = slug === 'barbering' ? '#training' : '#specialties';
+    const destination = slug === 'barbering' ? 'tools' : 'cv';
     await expect(page.locator('[data-mobile-profile-section]:visible')).toHaveCount(1);
     const jump = page.getByRole('combobox', { name: 'Jump to section', exact: true });
-    await jump.selectOption('cv');
-    await expect(page.locator('#cv')).toBeVisible();
-    await expect(page.locator('#specialties')).toBeHidden();
+    await jump.selectOption(destination);
+    await expect(page.locator(`#${destination}`)).toBeVisible();
+    await expect(page.locator(firstSection)).toBeHidden();
     await page.reload();
-    await expect(page.locator('#cv')).toBeVisible();
-    await expect(jump).toHaveValue('cv');
+    await expect(page.locator(`#${destination}`)).toBeVisible();
+    await expect(jump).toHaveValue(destination);
     await page.getByRole('button', { name: 'Show the entire profile', exact: true }).click();
-    await expect(page.locator('#specialties')).toBeVisible();
+    await expect(page.locator(firstSection)).toBeVisible();
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(before);
     await page.getByRole('button', { name: 'Show one profile section at a time', exact: true }).click();
     await expect(page.locator('[data-mobile-profile-section]:visible')).toHaveCount(1);
-    await expect(page.locator('#cv')).toBeVisible();
+    await expect(page.locator(`#${destination}`)).toBeVisible();
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await expect(page.locator('#specialties')).toBeVisible();
-    await expect(page.locator('#cv')).toBeVisible();
+    await expect(page.locator(firstSection)).toBeVisible();
+    await expect(page.locator(`#${destination}`)).toBeVisible();
     await page.setViewportSize({ width: 390, height: 844 });
   }
 });

@@ -84,7 +84,7 @@ test("mobile groups fit and only the latest CV is offered", async ({ page }) => 
   }
 });
 
-test("mobile home integrates the artwork and exposes six choices without a greeting", async ({ browser }) => {
+test("mobile home integrates the artwork and exposes seven choices without a greeting", async ({ browser }) => {
   for (const width of [360, 390, 430]) {
     const context = await browser.newContext({ storageState: englishStorageState, viewport: { width, height: 844 }, isMobile: true, hasTouch: true });
     const page = await context.newPage();
@@ -93,7 +93,7 @@ test("mobile home integrates the artwork and exposes six choices without a greet
     const selector = page.locator('[data-home-mascot]');
     await expect(page.locator('[data-home-mobile-art]')).toHaveCount(0);
     await expect(page.locator('[data-home-background]')).toBeVisible();
-    await expect(selector.locator('[data-outfit]')).toHaveCount(6);
+    await expect(selector.locator('[data-outfit]')).toHaveCount(7);
     const bar = (await page.locator('[data-mobile-quicknav]').boundingBox())!;
     for (const link of await selector.locator('[data-outfit]').all()) {
       const box = (await link.boundingBox())!;

@@ -1,0 +1,18 @@
+.barbering-training-card {
+  background-image: radial-gradient(ellipse at top right, hsl(var(--primary) / .08), transparent 65%);
+}
+.barbering-kit-icon svg {
+  filter: drop-shadow(0 0 5px hsl(var(--primary) / .28));
+}
+.barbering-tool-card {
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+@media (hover: hover) {
+  .barbering-tool-card:hover {
+    border-color: hsl(var(--primary) / .4);
+    background-color: hsl(var(--primary) / .05);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .barbering-tool-card { transition: none; }
+}

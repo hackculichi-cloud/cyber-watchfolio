@@ -7,7 +7,7 @@ test("skills introduce Christian's actions and their evidence in both languages"
   const areas = page.locator('#areas');
   await expect(areas.getByRole('heading', { name: 'These are my skills', exact: true })).toBeInViewport();
   const cards = areas.locator('[data-personal-skills-card]');
-  await expect(cards).toHaveCount(6);
+  await expect(cards).toHaveCount(7);
   for (const card of await cards.all()) {
     await expect(card.locator('li')).toHaveCount(3);
     await expect(card.getByText('See my work', { exact: true })).toBeVisible();
@@ -49,14 +49,14 @@ test("outfit focus reveals matching tools, transforms both figures and restores 
   await expect(page).toHaveURL(/\/$/);
 });
 
-test("desktop profile menus have six distinct neon accents and concise links", async ({ page }) => {
+test("desktop profile menus have seven distinct neon accents and concise links", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
   const nav = page.getByRole('navigation', { name: 'Main', exact: true });
   const icons = nav.locator('.area-nav-icon:visible');
-  await expect(icons).toHaveCount(6);
+  await expect(icons).toHaveCount(7);
   const colors = await icons.evaluateAll(elements => elements.map(element => getComputedStyle(element).color));
-  expect(new Set(colors).size).toBe(6);
+  expect(new Set(colors).size).toBe(7);
   await nav.getByRole('link', { name: 'Cybersecurity', exact: true }).hover();
   await nav.getByRole('button', { name: 'Open profile menu: Electronics', exact: true }).hover();
   const menu = page.getByLabel('Specialties: Electronics', { exact: true });

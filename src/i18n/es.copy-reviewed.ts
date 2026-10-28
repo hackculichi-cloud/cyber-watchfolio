@@ -1,5 +1,6 @@
 /** Human-reviewed spelling and technical meaning; canonical identifiers remain unchanged. */
 export const copyReviewedEs: Record<string, string> = {
+  "10 public portfolio projects to explore": "10 proyectos públicos para explorar",
   "APIs & backend": "APIs y backend",
   "Advanced Hardware & Microsoldering": "Hardware avanzado y microsoldadura",
   "Diagnostics & measurements": "Diagnóstico y mediciones",

@@ -21,11 +21,11 @@ test("illustrated tools approach the fox and equip before navigating", async ({ 
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electrical');
 });
 
-test("all six profiles have distinct illustrated props and reduced motion stops their floating", async ({ page }) => {
+test("all seven profiles have distinct illustrated props and reduced motion stops their floating", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   const stage = page.locator('[data-home-mascot]');
-  for (const [area, prop] of [['cybersecurity', 'router'], ['development', 'laptop'], ['electrical', 'multimeter'], ['electronics', 'oscilloscope'], ['repair', 'phone'], ['customer-service', 'headset']]) {
+  for (const [area, prop] of [['cybersecurity', 'router'], ['development', 'laptop'], ['electrical', 'multimeter'], ['electronics', 'oscilloscope'], ['repair', 'phone'], ['customer-service', 'headset'], ['barbering', 'hair-clipper']]) {
     await stage.locator(`[data-outfit="${area}"]`).focus();
     await expect(stage.locator(`[data-tool-field="${area}"] [data-tool-prop="${prop}"]`)).toBeVisible();
     await expect(stage.locator('.mascot-tool-float').first()).toHaveCSS('animation-name', 'none');

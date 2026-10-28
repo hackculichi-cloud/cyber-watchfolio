@@ -9,4 +9,5 @@ export const profileAtmospheres: Record<ProfileSlug, { image: string; material: 
   electronics: { image: profileHeroImage.electronics, material: "circuit", panel: "218 35% 14%" },
   repair: { image: profileHeroImage.repair, material: "precision", panel: "254 29% 14%" },
   "customer-service": { image: profileHeroImage["customer-service"], material: "communication", panel: "192 32% 13%" },
+  barbering: { image: profileHeroImage.barbering, material: "barbershop", panel: "222 29% 12%" },
 };

@@ -1,6 +1,6 @@
 import { specialtiesFor } from "./specialties";
 import type { ProfileSlug } from "./profiles";
-import type { LucideIcon } from "lucide-react";
+import { GraduationCap, Scissors, Wrench, type LucideIcon } from "lucide-react";
 
 export const site = {
   name: "Christian Armando Velasco Estrada",
@@ -59,6 +59,14 @@ export const navigation: NavItem[] = [
     label: "Call Center & Customer Service", shortLabel: "Customer service", href: "/experience",
     profile: "customer-service",
     children: specialtyLinks("customer-service", "/experience"),
+  },
+  {
+    label: "Barbering", href: "/barbering", profile: "barbering",
+    children: [
+      { label: "Training", href: "/barbering#training", icon: GraduationCap },
+      { label: "My cuts", href: "/barbering#cuts", icon: Scissors },
+      { label: "Tools", href: "/barbering#tools", icon: Wrench },
+    ],
   },
   { label: "CV", href: "/cv" },
   { label: "Contact", href: "/contact" },

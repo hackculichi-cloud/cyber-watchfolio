@@ -5,11 +5,14 @@ import { cn } from "@/lib/utils";
 
 export type { MascotVariant } from "@/data/mascotIdentity";
 const { portraitAtlas: atlas, portraitCells: cells } = mascotIdentity;
-const labels: Record<MascotVariant, string> = { home: "Culichi tech fox mascot", cybersecurity: "Culichi SOC analyst mascot", development: "Culichi software developer mascot", electrical: "Culichi electrician mascot", electronics: "Culichi electronics mascot", repair: "Culichi repair technician mascot", "customer-service": "Culichi customer support mascot", ai: "Culichi AI mascot", emblem: "Culichi fox logo" };
+const labels: Record<MascotVariant, string> = { home: "Culichi tech fox mascot", cybersecurity: "Culichi SOC analyst mascot", development: "Culichi software developer mascot", electrical: "Culichi electrician mascot", electronics: "Culichi electronics mascot", repair: "Culichi repair technician mascot", "customer-service": "Culichi customer support mascot", barbering: "Culichi barber mascot", ai: "Culichi AI mascot", emblem: "Culichi fox logo" };
 
 /** Local, unmodified generated artwork; CSS selects a cell without image processing. */
 const CulichiMascot = ({ variant = "home", className, decorative = false, portrait = false }: { variant?: MascotVariant; className?: string; decorative?: boolean; portrait?: boolean }) => {
   const { t } = useLanguage();
+  if (variant === "barbering") return <span role={decorative ? undefined : "img"} aria-label={decorative ? undefined : t(labels.barbering)} aria-hidden={decorative || undefined} data-mascot={variant} className={cn("block aspect-square shrink-0", className)}>
+    <svg viewBox={portrait ? "255 0 650 650" : "0 0 1024 1536"} className="block h-full w-full" aria-hidden preserveAspectRatio="xMidYMid meet"><image href={mascotIdentity.barbering} width="1024" height="1536" /></svg>
+  </span>;
   const cell = cells[variant];
   if (variant === "cybersecurity") return <span role={decorative ? undefined : "img"} aria-label={decorative ? undefined : t("Culichi security analyst with a Guy Fawkes mask")} aria-hidden={decorative || undefined} data-mascot={variant} data-masked-mascot className={cn("block aspect-square shrink-0", className)}>
     <svg viewBox={portrait ? "150 0 750 750" : "0 0 1024 1536"} className="block h-full w-full" aria-hidden preserveAspectRatio="xMidYMid meet"><image href={mascotIdentity.maskedCybersecurity} width="1024" height="1536" /></svg>

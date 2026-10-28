@@ -2,7 +2,7 @@ import { useEffect, useId, useState, type ReactNode } from "react";
 import { Anchor } from "@radix-ui/react-popover";
 import { Eye } from "lucide-react";
 import { Popover, PopoverContent } from "@/components/ui/popover";
-import type { ProfileCardData } from "@/data/profiles";
+import { profileBySlug, type ProfileCardData } from "@/data/profiles";
 import { specialtiesFor } from "@/data/specialties";
 import { profileHeroImage } from "@/data/profileMedia";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -36,9 +36,10 @@ const ProfileSectionPreview = ({ data, children }: { data: ProfileCardData; chil
       {specialties.length <= 5 && <img src={profileHeroImage[data.slug]} alt="" aria-hidden className="h-20 w-full rounded-lg object-cover opacity-70" />}
       <h3 className="my-3 text-base font-semibold">{t(data.title)}</h3>
       <p className="mb-3 text-xs text-muted-foreground">{t("Hold to preview; release to close. Open the card to explore.")}</p>
-      <ul className="space-y-0.5">{specialties.map(item => <li key={item.id} className="flex items-center gap-2 rounded-lg p-1">
+      {specialties.length > 0 && <ul className="space-y-0.5">{specialties.map(item => <li key={item.id} className="flex items-center gap-2 rounded-lg p-1">
         <item.icon className="h-4 w-4 shrink-0 text-primary" aria-hidden /><span className="min-w-0"><span className="block text-xs font-medium">{t(item.title)}</span><Tag>{t(item.status)}</Tag></span>
-      </li>)}</ul>
+      </li>)}</ul>}
+      {!specialties.length && <ul className="space-y-2">{profileBySlug(data.slug).sections.map(section => <li key={section.id} className="flex items-center gap-2 rounded-lg p-1 text-sm font-medium"><data.icon className="h-4 w-4 shrink-0 text-primary" aria-hidden />{t(section.label)}</li>)}</ul>}
     </PopoverContent>
   </Popover>;
 };

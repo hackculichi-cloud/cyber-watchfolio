@@ -10,10 +10,9 @@ import type { MascotIntent } from "@/lib/mascotIntent";
 import { cn } from "@/lib/utils";
 import { Pause, Play } from "lucide-react";
 type MascotPhase = "standby" | "ready" | "transforming";
-const shortNames = ["Cybersecurity", "Software", "Electricity", "Electronics", "Repair", "Customer service"];
-// Six equidistant points on a true circle; the square stage preserves symmetry.
-const positions = Array.from({ length: 6 }, (_, i) => {
-    const angle = (-150 + i * 60) * Math.PI / 180;
+// The orbit adapts when a new discipline is added.
+const positions = professionalProfiles.map((_, i) => {
+    const angle = (-150 + i * 360 / professionalProfiles.length) * Math.PI / 180;
     return [50 + 35 * Math.cos(angle), 50 + 35 * Math.sin(angle)];
 });
 const transformDuration = 720;
@@ -167,7 +166,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
     {open && <nav id={id} className="z-10" aria-label={t("Choose Culichi's outfit")} data-outfit-selector>
       {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onPointerLeave={event => { if (!locked.current && document.activeElement !== event.currentTarget) setPreview(null); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current) setPreview(null); }} aria-disabled={phase === "transforming"} aria-describedby={selected === area.slug ? gearId : undefined} data-profile={area.slug} data-outfit={area.slug} data-active={selected === area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center text-[11px] leading-tight text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
         <span data-orbit-node className="relative grid h-20 w-20 place-items-center">
-          <span className={cn("mascot-neon-orb flex h-20 w-20 flex-col items-center justify-center gap-1 rounded-full border border-primary/80 bg-background/95", profile === area.slug && "bg-primary/20 ring-2 ring-primary/40")}><area.icon className="h-6 w-6 shrink-0" aria-hidden/><span className="mascot-orbit-label">{t(shortNames[i])}</span></span>
+          <span className={cn("mascot-neon-orb flex h-20 w-20 flex-col items-center justify-center gap-1 rounded-full border border-primary/80 bg-background/95", profile === area.slug && "bg-primary/20 ring-2 ring-primary/40")}><area.icon className="h-6 w-6 shrink-0" aria-hidden/><span className="mascot-orbit-label">{t(area.shortTitle ?? area.title)}</span></span>
         </span>
       </Link>)}
     </nav>}

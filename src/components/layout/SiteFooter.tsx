@@ -7,7 +7,6 @@ import ContactPreview from "@/components/shared/ContactPreview";
 import HomeCharacter from "@/components/shared/HomeCharacter";
 import CulichiMascot from "@/components/shared/CulichiMascot";
 
-const areaNames = ["Cybersecurity", "Software", "Electricity", "Electronics", "Repair", "Customer service"];
 const contactLink = "inline-flex min-h-11 items-center gap-2 rounded-lg border border-border/70 bg-background/50 px-3 py-2 text-sm text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
 const SiteFooter = () => {
@@ -38,9 +37,9 @@ const SiteFooter = () => {
       <div className="grid gap-10 py-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
         <nav aria-label={t("Footer")}>
           <p className="text-xs font-semibold uppercase tracking-[.18em] text-muted-foreground">{t("Explore my areas")}</p>
-          <ul className="mt-5 grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:grid-cols-3">{professionalProfiles.map((area, i) => <li key={area.slug}>
+          <ul className="mt-5 grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:grid-cols-3">{professionalProfiles.map(area => <li key={area.slug}>
             <Link to={area.href} data-profile={area.slug} className="footer-area-link group flex h-full min-h-16 items-center gap-2 rounded-xl sm:gap-2.5 border border-border/60 bg-background/40 px-3 py-3 text-xs sm:text-sm hover:border-primary/50 hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-              <span className="footer-area-icon grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-primary/40 bg-primary/10 text-primary"><area.icon className="h-5 w-5" aria-hidden /></span><span className="min-w-0 break-words font-semibold text-foreground/90 group-hover:text-primary">{t(areaNames[i])}</span>
+              <span className="footer-area-icon grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-primary/40 bg-primary/10 text-primary"><area.icon className="h-5 w-5" aria-hidden /></span><span className="min-w-0 break-words font-semibold text-foreground/90 group-hover:text-primary">{t(area.shortTitle ?? area.title)}</span>
             </Link>
           </li>)}</ul>
           <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">{[["About", "/about"], ["CV", "/cv"], ["Contact", "/contact"]].map(([label, href]) => <li key={href}><Link to={href} className="rounded transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t(label)}</Link></li>)}</ul>

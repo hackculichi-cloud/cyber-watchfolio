@@ -17,6 +17,7 @@ const Electrical = lazy(() => import("./pages/Electrical"));
 const Electronics = lazy(() => import("./pages/Electronics"));
 const TechnicalRepair = lazy(() => import("./pages/TechnicalRepair"));
 const Experience = lazy(() => import("./pages/Experience"));
+const Barbering = lazy(() => import("./pages/Barbering"));
 const CV = lazy(() => import("./pages/CV"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -51,6 +52,7 @@ const App = () => (
                 <Route path="/electronics" element={<Electronics />} />
                 <Route path="/repair" element={<TechnicalRepair />} />
                 <Route path="/experience" element={<Experience />} />
+                <Route path="/barbering" element={<Barbering />} />
                 <Route path="/cv" element={<CV />} />
                 <Route path="/contact" element={<Contact />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

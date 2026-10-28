@@ -11,6 +11,8 @@ import repair from "@/assets/workspaces/repair.webp";
 import repairSmall from "@/assets/workspaces/repair-small.webp";
 import service from "@/assets/workspaces/customer-service.webp";
 import serviceSmall from "@/assets/workspaces/customer-service-small.webp";
+import barbering from "@/assets/workspaces/barbering.webp";
+import barberingSmall from "@/assets/workspaces/barbering-small.webp";
 
 export const workspaceArtwork: Record<ProfileSlug, { full: string; small: string }> = {
   cybersecurity: { full:cyber, small:cyberSmall },
@@ -19,4 +21,5 @@ export const workspaceArtwork: Record<ProfileSlug, { full: string; small: string
   electronics: { full:electronics, small:electronicsSmall },
   repair: { full:repair, small:repairSmall },
   "customer-service": { full:service, small:serviceSmall },
+  barbering: { full:barbering, small:barberingSmall },
 };

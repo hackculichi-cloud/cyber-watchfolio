@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-const areas = ["cybersecurity", "development", "electrical", "electronics", "repair", "customer-service"];
-test("all six home selectors have distinct colors, while profiles welcome visitors without outfit controls", async ({ page }) => {
+const areas = ["cybersecurity", "development", "electrical", "electronics", "repair", "customer-service", "barbering"];
+test("all seven home selectors have distinct colors, while profiles welcome visitors without outfit controls", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
     const home = page.locator('[data-home-mascot]');
@@ -11,7 +11,7 @@ test("all six home selectors have distinct colors, while profiles welcome visito
         await expect(option).toHaveAttribute("data-profile", area);
         colors.add(await option.evaluate(el => getComputedStyle(el).color));
     }
-    expect(colors.size).toBe(6);
+    expect(colors.size).toBe(7);
     await home.locator('[data-outfit="electrical"]').click();
     await expect(page).toHaveURL(/\/electrical$/);
     await expect(page.locator('[data-profile-workspace="electrical"] [data-body-mascot="electrical"]')).toBeVisible();
@@ -46,14 +46,22 @@ test("navigation works without WebGL and never requests the archived 3D model", 
     await expect(page.locator('[data-profile-workspace="development"] [data-body-mascot="development"]')).toBeVisible();
     expect(requested3D).toEqual([]);
 });
-test("each area includes a fifth scene and a full standalone activity illustration", async ({ page }) => {
-    for (const path of ['/cybersecurity', '/software-development', '/electrical', '/electronics', '/repair', '/experience']) {
-        await page.goto(path === "/electrical" ? `${path}#tools` : path);
+test("each profile keeps a full standalone illustration with the appropriate number of interludes", async ({ page }) => {
+    const profiles = [
+        ["/cybersecurity", 5], ["/software-development", 5], ["/electrical#tools", 3],
+        ["/electronics", 4], ["/repair", 5], ["/experience", 5], ["/barbering", 2],
+    ] as const;
+    for (const [path, count] of profiles) {
+        await page.goto(path);
         const illustration = page.locator('img[data-mascot-scene="detail"]');
         await illustration.scrollIntoViewIfNeeded();
         await expect(illustration).toBeVisible();
         await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth >= 1024 && img.naturalHeight >= 1024)).toBe(true);
         await expect(illustration).toHaveAttribute('alt', '');
-        await expect(page.locator('main [data-mascot-scene]')).toHaveCount(path === '/electrical' ? 3 : 5);
+        await expect(illustration).toHaveAttribute('aria-hidden', 'true');
+        await expect(illustration).toHaveCSS('position', 'static');
+        await expect(page.locator('main [data-mascot-scene]')).toHaveCount(count);
+        // Empty collections remain compact rather than acquiring decorative filler.
+        await expect(page.locator('[data-empty-collection] [data-mascot-scene]')).toHaveCount(0);
     }
 });

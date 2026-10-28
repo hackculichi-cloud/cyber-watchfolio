@@ -1,7 +1,9 @@
 import type { ProfileSlug } from "./profiles";
 
-export type MascotTool = "multimeter" | "pliers" | "oscilloscope" | "soldering-iron" | "phone" | "screwdriver" | "laptop" | "keyboard" | "router" | "security-key" | "headset" | "clipboard";
-export const toolArtwork: Record<MascotTool, { label: string; region: [number, number, number, number]; clip?: string }> = {
+export type MascotTool = "multimeter" | "pliers" | "oscilloscope" | "soldering-iron" | "phone" | "screwdriver" | "laptop" | "keyboard" | "router" | "security-key" | "headset" | "clipboard" | "hair-clipper" | "barber-scissors";
+export const toolArtwork: Record<MascotTool, { label: string; region?: [number, number, number, number]; clip?: string }> = {
+  "hair-clipper": { label: "Hair clipper" },
+  "barber-scissors": { label: "Barber scissors" },
   multimeter: { label: "Digital multimeter", region: [0, 0, 362, 362] },
   pliers: { label: "Insulated pliers", region: [362, 0, 340, 362] },
   oscilloscope: { label: "Oscilloscope", region: [705, 0, 381, 362] },
@@ -24,4 +26,5 @@ export const mascotGear: Record<ProfileSlug, [MascotTool, MascotTool]> = {
   electronics: ["oscilloscope", "soldering-iron"],
   repair: ["phone", "screwdriver"],
   "customer-service": ["headset", "clipboard"],
+  barbering: ["hair-clipper", "barber-scissors"],
 };
