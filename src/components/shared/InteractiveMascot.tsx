@@ -5,7 +5,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import MascotMorph from "./MascotMorph";
 import MascotGearPreview from "./MascotGearPreview";
 import MascotToolField from "./MascotToolField";
-import toolAtlas from "@/assets/culichi-tool-props.png";
+import toolAtlas from "@/assets/culichi-tool-props.webp";
 import type { MascotIntent } from "@/lib/mascotIntent";
 import { cn } from "@/lib/utils";
 import { Pause, Play } from "lucide-react";

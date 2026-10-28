@@ -878,3 +878,8 @@ div.dialog-content[data-state], div.dialog-overlay[data-state] { animation-durat
 @media (max-width:767px) {
   .site-layout [class*="backdrop-blur"] { backdrop-filter:none; }
 }
+
+/* Stable content is painted directly; avoid scroll observers and translucent GPU layers. */
+.reveal, .reveal.is-visible { opacity:1; transform:none; transition:none; }
+.site-layout [class*="backdrop-blur"] { backdrop-filter:none; }
+.animate-float-slow, .animate-ring-pulse, .animate-blink { animation:none; }

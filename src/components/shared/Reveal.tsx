@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface RevealProps {
@@ -11,36 +11,11 @@ interface RevealProps {
   as?: "div" | "section" | "li";
 }
 
-/** Scroll-triggered reveal wrapper — respects prefers-reduced-motion. */
-const Reveal = ({ children, className, delay = 0, from = "up", as: Tag = "div" }: RevealProps) => {
-  const ref = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 767px)").matches) {
-      setVisible(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+/** Stable wrapper: render content immediately without observers or scroll-triggered state. */
+const Reveal = ({ children, className, as: Tag = "div" }: RevealProps) => {
   return (
     <Tag
-      ref={ref as never}
-      style={{ transitionDelay: `${Math.min(delay, 60)}ms` }}
-      className={cn("reveal", `reveal-${from}`, visible && "is-visible", className)}
+      className={cn("reveal", "is-visible", className)}
     >
       {children}
     </Tag>

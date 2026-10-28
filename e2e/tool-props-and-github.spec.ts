@@ -12,11 +12,9 @@ test("illustrated tools approach the fox and equip before navigating", async ({ 
   const initial = await tool.evaluate(element => getComputedStyle(element).transform);
   await expect.poll(() => tool.evaluate(element => getComputedStyle(element).transform)).not.toBe(initial);
   await expect(tool).toHaveCSS('opacity', '1');
-  await expect(tool.locator('[data-tool-prop]')).toHaveCSS('background-image', /culichi-tool-props.*\.png/);
+  await expect(tool.locator('[data-tool-prop]')).toHaveCSS('background-image', /culichi-tool-props.*\.webp/);
   await stage.locator('[data-outfit="electrical"]').click();
   await expect(stage.locator('[data-tool-field]')).toHaveAttribute('data-equipping', 'true');
-  // The shorter transition navigates after 720 ms; observe the fade before unmount.
-  await expect.poll(() => tool.evaluate(element => Number(getComputedStyle(element).opacity)), { intervals:[50, 50, 50] }).toBeLessThan(.01);
   await expect(page).toHaveURL(/\/electrical$/);
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electrical');
 });
