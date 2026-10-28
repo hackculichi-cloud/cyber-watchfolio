@@ -12,6 +12,7 @@ export const barberingCuts: GalleryItem[] = [];
 export const barberingToolPhotos: GalleryItem[] = [];
 
 export const barberingEs: Record<string, string> = {
+  "Generated realistic tool references. Personal equipment photographs will be added separately.": "Imágenes realistas de referencia generadas. Las fotos de mi equipo propio se añadirán por separado.",
   "Practical skill": "Habilidad práctica",
   "I also cut hair": "También corto cabello",
   "Training at Baltra Barbería": "Formación en Baltra Barbería",

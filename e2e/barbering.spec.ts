@@ -22,6 +22,8 @@ test('barbering has its own bilingual identity and an honest school and photo co
   await expect(cuts).toHaveAttribute('data-empty-collection', 'true');
   await expect(cuts.locator('img, [data-work], .placeholder-image')).toHaveCount(0);
   await expect(page.locator('#tools li')).toHaveCount(4);
+  await expect(page.locator('#tools [data-realistic-tool]')).toHaveCount(4);
+  await expect(page.locator('#tools li svg')).toHaveCount(0);
   await expect(page.locator('#cv, a[download]')).toHaveCount(0);
   await selectLanguage(page, 'es');
   await expect(page.locator('main h1')).toHaveText('Barbería');

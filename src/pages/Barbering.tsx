@@ -1,4 +1,5 @@
-import { GraduationCap, MapPin, Scissors, SprayCan, type LucideIcon } from "lucide-react";
+import BarberToolImage from "@/components/barbering/BarberToolImage";
+import { GraduationCap, MapPin } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { profileBySlug } from "@/data/profiles";
 import { barberingCuts, barberingToolPhotos, barberingTraining } from "@/data/barbering";
@@ -20,11 +21,11 @@ const stages = [
   { title: "Haircut", description: "Document the technique and the process." },
   { title: "Finishing", description: "Review the shape, details and final result." },
 ];
-const kit: { title: string; description: string; icon: LucideIcon | "clipper" | "trimmer" }[] = [
+const kit: { title: string; description: string; icon: "clipper" | "trimmer" | "scissors" | "hygiene" }[] = [
   { title: "Hair clipper", description: "For removing length and working with guide combs.", icon: "clipper" },
   { title: "Detail trimmer", description: "For outlining and finishing edges.", icon: "trimmer" },
-  { title: "Scissors and combs", description: "For sectioning, controlling length and shaping the cut.", icon: Scissors },
-  { title: "Hygiene and care", description: "Cleaning, disinfection and protection during each session.", icon: SprayCan },
+  { title: "Scissors and combs", description: "For sectioning, controlling length and shaping the cut.", icon: "scissors" },
+  { title: "Hygiene and care", description: "Cleaning, disinfection and protection during each session.", icon: "hygiene" },
 ];
 
 export default function Barbering() {
@@ -76,11 +77,12 @@ export default function Barbering() {
       <SectionHeading mascot="barbering" mascotScene="detail" eyebrow={t("Tools")} title={t("Barbering kit")} description={t("Equipment used in barbering. I will add photographs and model names from my own kit when available.")} />
       <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {kit.map(({ title, description, icon: Icon }) => <li key={title} className="barbering-tool-card rounded-xl border border-border bg-surface p-4">
-          <span className="barbering-kit-icon mb-3 grid h-10 w-10 place-items-center rounded-lg border border-primary/30 bg-primary/10 text-primary">{typeof Icon === "string" ? <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d={Icon === "clipper" ? "M5 4h14v5H5zM8 9v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V9M8 2v2m4-2v2m4-2v2" : "M4 4h16v3H4zM9 7v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V7M8 2v2m4-2v2m4-2v2"} /><path d="M12 12v3" /></svg> : <Icon className="h-5 w-5" aria-hidden />}</span>
+          <BarberToolImage kind={Icon} className="mb-3 rounded-lg" />
           <h3 className="text-sm font-semibold sm:text-base">{t(title)}</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(description)}</p>
         </li>)}
       </ul>
+      <p className="mt-3 text-xs text-muted-foreground">{t("Generated realistic tool references. Personal equipment photographs will be added separately.")}</p>
       {barberingToolPhotos.length > 0 && <div className="mt-6"><h3 className="mb-4 text-lg font-semibold">{t("My tool photographs")}</h3><Gallery items={barberingToolPhotos} /></div>}
     </section>
   </>;

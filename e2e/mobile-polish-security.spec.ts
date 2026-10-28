@@ -72,6 +72,9 @@ test("orbit moves with upright labels, pauses manually and respects reduced moti
   const orbit = stage.locator('[data-outfit-selector]');
   await expect(orbit).toHaveCSS('animation-name', 'outfit-orbit');
   await expect(stage.locator('[data-orbit-node]').first()).toHaveCSS('animation-name', 'outfit-counter-orbit');
+  await expect(orbit).toHaveCSS('animation-play-state', 'paused');
+  await stage.getByRole('button', { name: 'Resume orbital motion', exact: true }).click();
+  await page.mouse.move(0, 0);
   const initial = await orbit.evaluate(el => getComputedStyle(el).transform);
   await expect.poll(() => orbit.evaluate(el => getComputedStyle(el).transform)).not.toBe(initial);
   await stage.getByRole('button', { name: 'Pause orbital motion', exact: true }).click();

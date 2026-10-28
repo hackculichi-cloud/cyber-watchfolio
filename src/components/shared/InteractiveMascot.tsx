@@ -5,7 +5,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import MascotMorph from "./MascotMorph";
 import MascotGearPreview from "./MascotGearPreview";
 import MascotToolField from "./MascotToolField";
-import toolAtlas from "@/assets/culichi-tool-props.png";
+import toolAtlas from "@/assets/culichi-tool-props.webp";
 import type { MascotIntent } from "@/lib/mascotIntent";
 import { cn } from "@/lib/utils";
 import { Pause, Play } from "lucide-react";
@@ -15,7 +15,7 @@ const positions = professionalProfiles.map((_, i) => {
     const angle = (-150 + i * 360 / professionalProfiles.length) * Math.PI / 180;
     return [50 + 35 * Math.cos(angle), 50 + 35 * Math.sin(angle)];
 });
-const transformDuration = 720;
+const transformDuration = 180;
 /** Home outfit navigation; profiles welcome visitors in their own static workspace. */
 const InteractiveMascot = ({ profile = "home", className }: {
     profile?: ProfileSlug | "home";
@@ -33,7 +33,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
     const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
     const [phase, setPhase] = useState<MascotPhase>("standby");
     const [open, setOpen] = useState(true);
-    const [motionPaused, setMotionPaused] = useState(false);
+    const [motionPaused, setMotionPaused] = useState(true);
     const [inView, setInView] = useState(false);
     const [keyboardFocus, setKeyboardFocus] = useState(false);
     const [preview, setPreview] = useState<ProfileSlug | null>(null);
