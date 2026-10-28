@@ -1,4 +1,4 @@
-import { readdirSync } from "node:fs";
+import { lstatSync, readdirSync } from "node:fs";
 import { resolve, relative, basename } from "node:path";
 
 // Check names only: never print the contents of a potentially sensitive file.
@@ -19,7 +19,11 @@ function inspect(directory, root) {
 }
 
 try {
-  for (const root of roots) inspect(resolve(root), root);
+  for (const root of roots) {
+    const absolute = resolve(root);
+    if (lstatSync(absolute).isSymbolicLink()) rejected.push(root);
+    else inspect(absolute, root);
+  }
   if (rejected.length) {
     process.stderr.write(`Unsafe public artifact paths:\n${rejected.join("\n")}\n`);
     process.exitCode = 1;

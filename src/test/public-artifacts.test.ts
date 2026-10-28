@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { execFileSync, spawnSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { afterEach, expect, it } from "vitest";
@@ -29,4 +29,16 @@ it("rejects accidentally published private configuration, keys and source maps w
   expect(result.status).toBe(1);
   for (const name of [".env.production", "private.pem", "bundle.js.map"]) expect(result.stderr).toContain(name);
   expect(result.stderr).not.toContain("PRIVATE_TEST_CONTENT");
+});
+
+it.skipIf(process.platform === "win32")("rejects symbolic links both inside an artifact tree and at its root", () => {
+  const directory = fixture();
+  const target = fixture();
+  const link = resolve(directory, "linked-assets");
+  symlinkSync(target, link, "dir");
+  for (const root of [directory, link]) {
+    const result = spawnSync(process.execPath, [checker, root], { encoding: "utf8" });
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("linked-assets");
+  }
 });
