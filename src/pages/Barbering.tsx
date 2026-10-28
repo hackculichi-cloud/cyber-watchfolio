@@ -76,7 +76,7 @@ export default function Barbering() {
     <section id="tools" data-barbering-tools className="container mx-auto scroll-mt-32 px-4 py-8 sm:py-10">
       <SectionHeading mascot="barbering" mascotScene="detail" eyebrow={t("Tools")} title={t("Barbering kit")} description={t("Equipment used in barbering. I will add photographs and model names from my own kit when available.")} />
       <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        {kit.map(({ title, description, icon: Icon }) => <li key={title} className="barbering-tool-card rounded-xl border border-border bg-surface p-4">
+        {kit.map(({ title, description, icon: Icon }) => <li key={title} className="barbering-tool-card p-3">
           <BarberToolImage kind={Icon} className="mb-3 rounded-lg" />
           <h3 className="text-sm font-semibold sm:text-base">{t(title)}</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(description)}</p>

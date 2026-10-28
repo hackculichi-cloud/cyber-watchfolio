@@ -62,6 +62,8 @@ test('the slow dotted current powers the bulb, supports pause and stops offscree
   const dots = title.locator('.copper-feed-pulse');
   await expect(dots).toHaveCSS('stroke-dasharray', '1px, 11px');
   await expect(dots).toHaveCSS('animation-duration', '3s');
+  await expect(dots).toHaveCSS('animation-iteration-count', '3');
+  await expect(title.locator('.copper-return-pulse')).toHaveCSS('animation-iteration-count', '3');
   const pause = page.locator('[data-copper-motion]');
   await expect(pause).toHaveAccessibleName('Pause energy flow');
   await pause.click();

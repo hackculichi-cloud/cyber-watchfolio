@@ -593,8 +593,6 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 [data-brand-profile] .profile-wordmark { position:relative; display:inline-block; }
 .header-wordmark-slot { display:inline-flex; align-items:center; width:10rem; height:1.5em; white-space:nowrap; }
 @media (max-width:767px) { .header-wordmark-slot { width:8rem; } }
-@media (prefers-reduced-motion:no-preference) { .header-wordmark-slot { animation:header-wordmark-in 160ms ease-out both; } }
-@keyframes header-wordmark-in { from { opacity:.55; } to { opacity:1; } }
 [data-brand-profile]:not([data-brand-profile="emblem"]) .profile-wordmark { color:hsl(var(--primary)); }
 [data-brand-profile="development"] .profile-wordmark { font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.9em; letter-spacing:-.065em; }
 [data-brand-profile="cybersecurity"] .profile-wordmark::after,

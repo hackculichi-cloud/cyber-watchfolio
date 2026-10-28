@@ -67,6 +67,22 @@ test('complete workspace illustrations enlarge without leaving the profile', asy
   await expect(page).toHaveURL(/\/electrical$/);
 });
 
+test('high-density phones load compact workspace images and enlarge the full original', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  for (const [outfit, path] of areas) {
+    await page.goto(path);
+    const image = page.locator(`[data-workspace-art="${outfit}"]`);
+    await expect.poll(() => image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
+    expect(await image.evaluate((el: HTMLImageElement) => el.currentSrc)).toMatch(/-small-.*\.webp$/);
+  }
+  await page.locator('[data-profile-workspace] button').tap();
+  const full = page.getByRole('dialog').locator('img:not([data-language-flag])');
+  await expect.poll(() => full.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth)).toBe(1536);
+  expect(await full.evaluate((el: HTMLImageElement) => el.currentSrc)).not.toMatch(/-small-/);
+  await context.close();
+});
+
 test('the home fox sits beside the introduction on desktop and follows it on phones', async ({ browser }) => {
   const context = await browser.newContext({ storageState: englishStorageState, reducedMotion:'reduce' });
   const page = await context.newPage();

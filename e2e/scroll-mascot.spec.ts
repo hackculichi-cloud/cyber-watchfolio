@@ -99,7 +99,7 @@ test("Udemy electrical measurements is in progress with ten bilingual learning o
   await expect(course.getByText("Medición de continuidad en circuitos sin energía.", { exact: true })).toBeVisible();
 });
 
-test("illustrated mascot reveals seven outfits and transitions before navigating", async ({ page }) => {
+test("illustrated mascot reveals seven outfits and navigates without an artificial delay", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   const mascot = page.locator("[data-home-mascot]");
@@ -111,9 +111,6 @@ test("illustrated mascot reveals seven outfits and transitions before navigating
   await expect(mascot.locator("[data-outfit]")).toHaveCount(7);
   await expect(page).toHaveURL(/\/$/);
   await mascot.locator('[data-outfit="electrical"]').click();
-  await expect(mascot).toHaveAttribute("data-phase", "transforming");
-  await expect(page).toHaveURL(/\/$/);
-  await expect(mascot.locator('.mascot-target [data-body-mascot="electrical"]')).toBeVisible();
   await expect(page).toHaveURL(/\/electrical$/);
   const destination = page.locator('[data-profile-workspace="electrical"]');
   await expect(destination).toBeVisible();

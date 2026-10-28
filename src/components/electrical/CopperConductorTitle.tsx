@@ -23,14 +23,29 @@ export default function CopperConductorTitle({ text, variant = "hero" }: { text:
     const element = title.current;
     if (!element || !source.current || !wires.current) return;
     let active = true;
+    let frame: number | null = null;
+    let forceMeasurement = true;
+    let previousLayout = "";
+    const letters = [...element.querySelectorAll<HTMLElement>(".copper-conductor-glyph")];
+    const last = letters[letters.length - 1];
+    if (!last) return;
     const measure = () => {
+      frame = null;
       if (!active || !source.current || !wires.current) return;
-      const letters = [...element.querySelectorAll<HTMLElement>(".copper-conductor-glyph")];
-      if (!letters.length) return;
       const box = element.getBoundingClientRect(), supply = source.current.getBoundingClientRect();
-      const font = parseFloat(getComputedStyle(element).fontSize);
+      const lastBox = last.getBoundingClientRect();
+      const style = getComputedStyle(last);
+      const layout = [box.width, box.height, supply.left - box.left, supply.top - box.top, supply.width, supply.height,
+        lastBox.left - box.left, lastBox.top - box.top, lastBox.width, lastBox.height,
+        style.font, style.letterSpacing, style.fontFeatureSettings, style.fontVariationSettings].join("|");
+      // ResizeObserver also reports the initial layout and viewport-only changes.
+      // Those do not require reading every SVG glyph or rebuilding its wires.
+      if (!forceMeasurement && layout === previousLayout) return;
+      forceMeasurement = false;
+      previousLayout = layout;
+      const font = parseFloat(style.fontSize);
       const glyphs = letters.map(letter => {
-        const rect = letter.getBoundingClientRect();
+        const rect = letter === last ? lastBox : letter.getBoundingClientRect();
         const ink = letter.querySelector<SVGTextElement>(".copper-cable-core")!.getBBox();
         return { left: rect.left - box.left + ink.x, right: rect.left - box.left + ink.x + ink.width,
           top: rect.top - box.top, bottom: rect.bottom - box.top, y: rect.top - box.top + font * .82 };
@@ -44,19 +59,35 @@ export default function CopperConductorTitle({ text, variant = "hero" }: { text:
       wires.current.querySelectorAll("[data-connection-path]").forEach(path => path.setAttribute("d", geometry.connections));
       wires.current.querySelectorAll("[data-return-path]").forEach(path => path.setAttribute("d", geometry.returning));
     };
-    measure();
-    const observer = "ResizeObserver" in window ? new ResizeObserver(measure) : null;
+    const schedule = (force = false) => {
+      if (!active) return;
+      forceMeasurement ||= force;
+      if (frame === null) frame = requestAnimationFrame(measure);
+    };
+    const resized = () => schedule();
+    const fontsChanged = () => schedule(true);
+    const observer = "ResizeObserver" in window ? new ResizeObserver(resized) : null;
     observer?.observe(element);
-    const last = element.querySelector("[data-electron-terminal]")?.parentElement;
-    if (last) observer?.observe(last);
-    window.addEventListener("resize", measure, { passive: true });
-    void document.fonts?.ready.then(measure);
-    return () => { active = false; observer?.disconnect(); window.removeEventListener("resize", measure); };
-  }, [text]);
+    observer?.observe(last);
+    if (!observer) window.addEventListener("resize", resized, { passive: true });
+    // Loaded fonts can change ink widths even if the heading's outer bounds stay
+    // fixed, so font completion must bypass the unchanged-layout shortcut.
+    const fonts = document.fonts;
+    if (fonts?.status === "loading") void fonts.ready.then(fontsChanged);
+    fonts?.addEventListener("loadingdone", fontsChanged);
+    schedule();
+    return () => {
+      active = false;
+      if (frame !== null) cancelAnimationFrame(frame);
+      observer?.disconnect();
+      if (!observer) window.removeEventListener("resize", resized);
+      fonts?.removeEventListener("loadingdone", fontsChanged);
+    };
+  }, [text, compact]);
 
   useEffect(() => {
     const element = title.current;
-    if (!element) return;
+    if (!element || compact) return;
     element.dataset.inView = "false";
     if (!("IntersectionObserver" in window)) {
       element.dataset.inView = "true";
@@ -67,7 +98,7 @@ export default function CopperConductorTitle({ text, variant = "hero" }: { text:
     }, { threshold: 0.15 });
     observer.observe(element);
     return () => observer.disconnect();
-  }, [text]);
+  }, [text, compact]);
 
   return <Container className={compact ? "copper-heading copper-heading--brand" : "copper-heading min-w-0 max-w-4xl"}>
     <Heading className={compact ? undefined : "break-words text-3xl font-bold leading-tight text-foreground sm:text-4xl xl:text-5xl"}>

@@ -71,11 +71,11 @@ describe("entering a specialty", () => {
 });
 
 describe("course knowledge and documented practice", () => {
-  it("shows the residential syllabus and provides actions for courses and evidence", () => {
+  it("shows the residential syllabus and provides actions for courses and evidence", async () => {
     const onOpen = vi.fn();
     render(<LanguageProvider><ElectricalAreaLearning area="residential" onOpen={onOpen} /></LanguageProvider>);
     fireEvent.click(document.querySelector('[data-area-syllabus] summary')!);
-    expect(document.querySelectorAll('[data-electrical-module]')).toHaveLength(8);
+    await waitFor(() => expect(document.querySelectorAll('[data-electrical-module]')).toHaveLength(8));
     expect(document.querySelectorAll('[data-related-module="true"]')).toHaveLength(3);
     expect(screen.getByRole("button", { name: /Final Project and Evaluation/ })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: /Residential Electrical Installations/ }));

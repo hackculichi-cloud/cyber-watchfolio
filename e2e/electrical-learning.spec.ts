@@ -63,9 +63,13 @@ test('syllabus, measurements and certificates keep their provider and actual sta
   await page.setViewportSize({ width: 390, height: 900 });
   await page.goto('/electrical#residential');
   const syllabus = page.locator('[data-area-syllabus]');
+  await expect(syllabus.locator('[data-electrical-module]')).toHaveCount(0);
   await syllabus.locator('summary').click();
   await expect(syllabus.getByRole('button')).toHaveCount(8);
   await syllabus.getByRole('button', { name: /Residential Electrical Installations/ }).click();
+  await expect(syllabus.getByText('Electrical load calculations')).toBeVisible();
+  await syllabus.locator('summary').click();
+  await syllabus.locator('summary').click();
   await expect(syllabus.getByText('Electrical load calculations')).toBeVisible();
   const measurements = page.locator('[data-complementary-course="electrical-udemy-measurements"]');
   await measurements.locator('summary').click();

@@ -1,21 +1,17 @@
+import HeaderIdentity from "./HeaderIdentity";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, PhoneCall, FileText, Mail, Scissors, type LucideIcon } from "lucide-react";
+import { preloadProfile } from "@/lib/preloadProfile";
 import { navigation } from "@/data/site";
 import { profileForPath } from "@/data/profiles";
 import type { MascotVariant } from "@/components/shared/CulichiMascot";
-import MascotMorph from "@/components/shared/MascotMorph";
 import { previewMascotArea, type MascotIntent } from "@/lib/mascotIntent";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ProfileDropdown from "./ProfileDropdown";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "@/components/ui/button";
-import CopperConductorTitle from "@/components/electrical/CopperConductorTitle";
-import NetworkSecurityTitle from "@/components/cybersecurity/NetworkSecurityTitle";
-import PcbTitle from "@/components/electronics/PcbTitle";
-import { CodeWordmark } from "@/components/software/CodeExecutionTitle";
-import BarberTitle from "@/components/barbering/BarberTitle";
 
 const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, "Call Center & Customer Service": PhoneCall, Barbering: Scissors, CV: FileText, Contact: Mail };
 
@@ -127,20 +123,12 @@ const SiteHeader = () => {
       )}
     >
       <nav className="container mx-auto flex h-28 items-center justify-between px-4" aria-label={t("Main")}>
-        <Link to="/" className="group flex min-w-0 items-center gap-2 font-semibold tracking-tight">
-          <span role="img" aria-label={t("Culichi fox logo")} data-profile={displayedMascot} data-header-mascot={displayedMascot} className="header-mascot-frame grid h-28 w-28 shrink-0 place-items-center">
-            <MascotMorph outfit={displayedMascot} portrait committing={orbitCommit || navigationCommit} />
-          </span>
-          <span className="flex min-w-0 flex-col leading-tight">
-            <span data-header-brand data-brand-profile={displayedMascot} data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"><span key={displayedMascot} data-brand-lettering={displayedMascot} className="header-wordmark-slot">{displayedMascot === "electrical" ? <CopperConductorTitle text="Culichi" variant="brand" /> : displayedMascot === "development" ? <CodeWordmark /> : displayedMascot === "electronics" ? <PcbTitle text="Culichi" variant="brand" /> : displayedMascot === "cybersecurity" ? <NetworkSecurityTitle text="Culichi" variant="brand" /> : displayedMascot === "barbering" ? <BarberTitle text="Culichi" variant="brand" /> : <span className="profile-wordmark">Culichi</span>}<span data-brand-dot data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-primary transition-colors duration-200">.</span></span></span>
-            <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">{t("Christian Velasco")}</span>
-          </span>
-        </Link>
+        <HeaderIdentity displayedMascot={displayedMascot} committing={orbitCommit || navigationCommit} />
 
 
         <ul className="hidden items-center gap-1 xl:flex">
           {navigation.map(item => {
-            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={event => { if (item.profile && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) previewMascotArea(item.profile, true); }} className={({ isActive }) => cn("menu-choice flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
+            const link = <NavLink to={item.href} end={item.href === "/"} aria-label={t(item.label)} onPointerEnter={() => preloadProfile(item.href)} onPointerDown={() => preloadProfile(item.href)} onFocus={() => { preloadProfile(item.href); previewMascotArea(item.profile ?? null); }} onClick={event => { if (item.profile && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) previewMascotArea(item.profile, true); }} className={({ isActive }) => cn("menu-choice flex items-center gap-1 rounded-md px-2 py-2 text-sm font-semibold transition-colors", isActive ? "bg-primary/10 text-primary" : "text-foreground/90 hover:bg-secondary hover:text-primary")}>
               {navIconColor[item.label] ? <NavIcon label={item.label} className={navIconColor[item.label]} /> : t(item.label)}
             </NavLink>;
             return <li key={item.href} className="relative">{item.children ? <ProfileDropdown item={item}>{link}</ProfileDropdown> : link}</li>;
@@ -169,7 +157,7 @@ const SiteHeader = () => {
           <ul className="container mx-auto flex flex-col gap-1 px-4 py-4">
             {navigation.map(item => <li key={item.href}>
               <div className="flex items-center justify-between gap-2">
-                <Link to={item.href} onFocus={() => previewMascotArea(item.profile ?? null)} onClick={() => { if (item.profile) previewMascotArea(item.profile, true); setOpen(false); }} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="menu-choice inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
+                <Link to={item.href} onPointerEnter={() => preloadProfile(item.href)} onPointerDown={() => preloadProfile(item.href)} onFocus={() => { preloadProfile(item.href); previewMascotArea(item.profile ?? null); }} onClick={() => { if (item.profile) previewMascotArea(item.profile, true); setOpen(false); }} aria-label={t(item.label)} aria-current={location.pathname === item.href ? "page" : undefined} className="menu-choice inline-flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-lg px-3 text-sm font-semibold hover:bg-secondary aria-[current=page]:bg-primary/10 aria-[current=page]:text-primary">
                   {navIconColor[item.label] && <NavIcon label={item.label} className={navIconColor[item.label]} />}{t(item.shortLabel ?? item.label)}
                 </Link>
                 {item.children && <button type="button" aria-label={`${t("Open profile menu")}: ${t(item.label)}`} aria-expanded={mobileProfile === item.href} aria-controls={mobileProfile === item.href ? `mobile-specialties-${item.profile}` : undefined} className="rounded p-3 text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary" onClick={() => { const next = mobileProfile === item.href ? null : item.href; setMobileProfile(next); previewMascotArea(next ? item.profile ?? null : null); }}><ChevronDown className={`h-4 w-4 ${mobileProfile === item.href ? "rotate-180" : ""}`} aria-hidden /></button>}

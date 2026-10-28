@@ -5,6 +5,7 @@ import Tag from "@/components/shared/Tag";
 import { electricalTraining, trainingTracks } from "@/data/electrical";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ElectricalTrainingProviders from "./ElectricalTrainingProviders";
+import DeferredDetails from "@/components/shared/DeferredDetails";
 
 /** Each course keeps its description, syllabus and pending document together. */
 const ElectricalTrainingCertificates = () => {
@@ -17,10 +18,10 @@ const ElectricalTrainingCertificates = () => {
         {track.id === "electrical-udemy-measurements" && <MascotScene profile="electrical" scene="action" className="w-52 shrink-0 sm:w-60" />}
       </div>
       {track.topics.length > 0 && <div className="flex flex-wrap gap-2">{track.topics.map(topic => <Tag key={topic}>{t(topic)}</Tag>)}</div>}
-      {track.id === "electrical" && <details data-course-syllabus={track.id}>
-        <summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>
+      {track.id === "electrical" && <DeferredDetails data-course-syllabus={track.id}
+        summary={<summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>}>
         <div className="mt-4"><ElectricalCurriculum training={electricalTraining} /></div>
-      </details>}
+      </DeferredDetails>}
       {track.learningObjectives && <details data-course-objectives={track.id}>
         <summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course learning objectives")}</summary>
         <p className="mt-3 text-xs text-muted-foreground">{t("Topics being studied; certificate pending completion.")}</p>

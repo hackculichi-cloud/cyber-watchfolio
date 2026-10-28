@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties } from "react";
+import { Suspense, useEffect, type CSSProperties } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
@@ -7,13 +7,8 @@ import { profileForPath } from "@/data/profiles";
 import { profileAtmospheres } from "@/data/profileAtmospheres";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
-const Layout = () => {
+const ProfileContent = () => {
   const { pathname, hash } = useLocation();
-  const profile = profileForPath(pathname);
-  const world = profile ? profileAtmospheres[profile.slug] : undefined;
-  const worldStyle = world ? { "--world-image": `url("${world.image}")`, "--world-panel":world.panel } as CSSProperties : undefined;
-  const { t } = useLanguage();
-
   useEffect(() => {
     if (hash) {
       let id: string;
@@ -21,6 +16,8 @@ const Layout = () => {
       const el = document.getElementById(id);
       // SpecialtyExplorer opens and focuses the detail, rather than its cover card.
       if (el?.hasAttribute("data-specialty-anchor")) return;
+      // ElectricalAreaPanel owns tab/course positioning after the new content mounts.
+      if (el?.closest("[data-electrical-area-content]")) return;
       if (el) {
         el.scrollIntoView({ behavior: "instant", block: "start" });
         return;
@@ -29,6 +26,15 @@ const Layout = () => {
     }
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname, hash]);
+  return <Outlet />;
+};
+
+const Layout = () => {
+  const { pathname } = useLocation();
+  const profile = profileForPath(pathname);
+  const world = profile ? profileAtmospheres[profile.slug] : undefined;
+  const worldStyle = world ? { "--world-image": `url("${world.image}")`, "--world-panel":world.panel } as CSSProperties : undefined;
+  const { t } = useLanguage();
 
   return (
     <div className="site-layout flex min-h-screen flex-col bg-background" data-profile={profile?.slug} data-world={profile?.slug} data-world-material={world?.material} style={worldStyle}>
@@ -40,7 +46,9 @@ const Layout = () => {
       </a>
       <SiteHeader />
       <main id="main" key={profile?.slug ?? "base"} className="profile-fade world-content flex-1 pt-28">
-        <Outlet />
+        <Suspense fallback={<p role="status" className="container mx-auto px-4 py-12 text-muted-foreground">{t("Loading page")}</p>}>
+          <ProfileContent />
+        </Suspense>
       </main>
       <SiteFooter />
       <MobileQuickNav />

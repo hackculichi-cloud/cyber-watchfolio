@@ -25,7 +25,6 @@ const specialtyLinks = (profile: ProfileSlug, path: string): NavItem[] => specia
 
 export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   {
     label: "Cybersecurity",
     href: "/cybersecurity",

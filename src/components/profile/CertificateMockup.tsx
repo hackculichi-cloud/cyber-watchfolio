@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Expand } from "lucide-react";
-import paper from "@/assets/electrical-certificate-paper.png";
+import paper from "@/assets/electrical-certificate-paper.webp";
 import type { CertificationRecord } from "@/data/certifications";
 import { site } from "@/data/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -10,7 +10,7 @@ import { ProviderMark } from "./TrainingProviderBadge";
 function MockupPaper({ record }: { record: CertificationRecord }) {
   const { t } = useLanguage();
   return <div data-certificate-mockup={record.id} className="relative aspect-[3/2] w-full overflow-hidden rounded bg-[#faf9f4] text-slate-900 [container-type:inline-size]">
-    <img src={paper} alt="" aria-hidden width={1536} height={1024} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+    <img src={paper} alt="" aria-hidden width={1536} height={1024} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
     <span aria-hidden className="pointer-events-none absolute inset-0 grid -rotate-12 place-items-center text-[14cqw] font-black tracking-widest text-slate-900/[0.06]">MOCKUP</span>
     <div className="absolute inset-[9%] flex flex-col items-center justify-center text-center">
       <div className="mb-[3cqw] flex items-center justify-center gap-[2cqw]">

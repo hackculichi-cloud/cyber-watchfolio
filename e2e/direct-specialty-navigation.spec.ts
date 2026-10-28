@@ -66,7 +66,7 @@ test('menu and specialty hover/focus produce a visible highlight without moving 
   await page.mouse.move(0, 0);
   await card.focus();
   await expect(card).toHaveCSS('outline-style', 'solid');
-  const link = page.getByRole('navigation', { name: 'Main', exact: true }).getByRole('link', { name: 'About', exact: true });
+  const link = page.getByRole('navigation', { name: 'Main', exact: true }).getByRole('link', { name: 'Contact', exact: true });
   await link.hover();
   await expect.poll(() => link.evaluate(el => getComputedStyle(el).boxShadow)).not.toBe('none');
 });
