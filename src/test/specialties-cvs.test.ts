@@ -22,6 +22,10 @@ describe("specialty and CV publishing integrity", () => {
     expect(general?.localized?.es.previews.length).toBeGreaterThanOrEqual(2);
     const ids = new Set<string>();
     for (const profile of profileIdentities) {
+      if (profile.slug === "barbering") {
+        expect(profile.cvIds).toHaveLength(0);
+        continue; // No barbering CV is published without confirmed course and work details.
+      }
       expect(profile.cvIds).toHaveLength(1);
       const cv = cvVariants.find(item => item.id === profile.cvIds[0]);
       expect(cv).toBeDefined();

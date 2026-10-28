@@ -1,4 +1,5 @@
 import { copyReviewedEs } from "./es.copy-reviewed";
+import { barberingEs } from "@/data/barbering";
 import { reviewedEs } from "./es.reviewed";
 import { generatedEs } from "./es.generated";
 import { workRecordEs } from "./es.work-records";
@@ -329,4 +330,5 @@ export const es: Record<string, string> = {
   ...reviewedEs,
   ...workRecordEs,
   ...copyReviewedEs,
+  ...barberingEs,
 };

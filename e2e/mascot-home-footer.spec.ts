@@ -67,7 +67,7 @@ test("larger header, home characters and footer fit small screens without WebGL"
     else expect(areas.y + areas.height).toBeLessThan(introduction.y);
     expect(portrait.x).toBeGreaterThanOrEqual(name.x + name.width);
     expect(Math.abs((portrait.y + portrait.height / 2) - (name.y + name.height / 2))).toBeLessThan(2);
-    await expect(footer.locator('.footer-area-icon')).toHaveCount(6);
+    await expect(footer.locator('.footer-area-icon')).toHaveCount(7);
     for (const link of await footer.locator('.footer-area-link').all()) {
       expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
       expect(await link.locator('.footer-area-icon').evaluate(el => getComputedStyle(el).boxShadow)).not.toBe('none');

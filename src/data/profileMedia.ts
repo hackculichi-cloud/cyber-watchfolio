@@ -5,6 +5,7 @@ import heroElectrical from "@/assets/hero-electrical.jpg";
 import heroElectronics from "@/assets/hero-electronics.jpg";
 import heroCustomerService from "@/assets/hero-customer-service.svg";
 import heroRepair from "@/assets/hero-repair.jpg";
+import heroBarbering from "@/assets/hero-barbering.webp";
 
 /**
  * Atmospheric hero imagery per professional world.
@@ -17,6 +18,7 @@ export const profileHeroImage: Record<ProfileSlug, string> = {
   electronics: heroElectronics,
   repair: heroRepair,
   "customer-service": heroCustomerService,
+  barbering: heroBarbering,
 };
 
 export const profileHeroAlt: Record<ProfileSlug, string> = {
@@ -26,4 +28,5 @@ export const profileHeroAlt: Record<ProfileSlug, string> = {
   electronics: "Macro photo of a circuit board with glowing traces and components",
   "customer-service": "Illustration of a headset and communication connections",
   repair: "Electronics repair bench with a disassembled phone, laptop board and precision tools",
+  barbering: "Close-up of hair clippers, scissors and combs in warm barbershop lighting",
 };

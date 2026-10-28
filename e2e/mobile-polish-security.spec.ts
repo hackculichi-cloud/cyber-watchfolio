@@ -13,7 +13,7 @@ test("production CSP allows the app and blocks injected inline scripts", async (
   page.on('pageerror', error => appErrors.push(error.message));
   await page.goto('/');
   await expect(page.locator('main h1')).toBeVisible();
-  await expect(page.locator('[data-outfit]')).toHaveCount(6);
+  await expect(page.locator('[data-outfit]')).toHaveCount(7);
   await page.evaluate(() => {
     const probe = window as typeof window & { inlineProbe?: boolean; policyViolations?: string[] };
     probe.policyViolations = [];
@@ -86,7 +86,7 @@ test("orbit moves with upright labels, pauses manually and respects reduced moti
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(orbit).toHaveCSS('animation-name', 'none');
   await expect(stage.locator('[data-orbit-toggle]')).toHaveCount(0);
-  await expect(stage.locator('[data-outfit]')).toHaveCount(6);
+  await expect(stage.locator('[data-outfit]')).toHaveCount(7);
 });
 
 test("fixed phone targets stay inside the screen and accept a direct touch", async ({ browser }) => {

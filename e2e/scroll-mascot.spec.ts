@@ -6,13 +6,27 @@ const localMedia: { path: string; bytes: number }[] = JSON.parse(readFileSync(ne
 import { test, expect } from "@playwright/test";
 
 test("profile mascots appear between content blocks, never as floating overlays", async ({ page }) => {
-  for (const path of ["/cybersecurity", "/software-development", "/electrical", "/electronics", "/repair", "/experience"]) {
+  const profiles = [
+    { path: "/cybersecurity", initialCount: 5, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 2 },
+    { path: "/software-development", initialCount: 5, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 5 },
+    { path: "/electrical", initialCount: 2, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 5 },
+    { path: "/electronics", initialCount: 4, kinds: ["entry", "practice", "detail", "closing"], sources: 4 },
+    { path: "/repair", initialCount: 5, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 5 },
+    { path: "/experience", initialCount: 5, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 5 },
+    { path: "/barbering", initialCount: 2, kinds: ["entry", "detail"], sources: 2 },
+  ];
+  for (const profile of profiles) {
+    const { path } = profile;
     await page.goto(path);
     await expect(page.locator('[data-profile-workspace] [data-mascot-scene="entry"]')).toBeVisible();
     const scenes = page.locator("main [data-mascot-scene]");
-    await expect(scenes).toHaveCount(path === "/electrical" ? 2 : 5);
+    await expect(scenes).toHaveCount(profile.initialCount);
+    if (path !== "/electrical") {
+      expect(await scenes.evaluateAll(nodes => nodes.map(node => node.getAttribute("data-mascot-scene")).sort())).toEqual([...profile.kinds].sort());
+    }
     const sources = new Set<string>();
-    for (const kind of ["entry", "practice", "action", "detail", "closing"]) {
+    const secondarySources = new Set<string>();
+    for (const kind of profile.kinds) {
       if (path === "/electrical" && ["practice", "action", "detail"].includes(kind)) {
         const target = kind === "practice" ? "overview" : kind === "action" ? "certificate" : "tools";
         await page.goto(`/electrical#${target}`);
@@ -22,13 +36,26 @@ test("profile mascots appear between content blocks, never as floating overlays"
       await expect(scene).toBeVisible();
       if (kind !== "entry") await expect(scene).toHaveCSS("position", "static");
       await expect(scene).toHaveCSS("border-top-width", "0px");
-      sources.add(await scene.evaluate(el => el.tagName === "CANVAS" ? "3D" : el.getAttribute("src") ?? getComputedStyle(el).backgroundImage));
+      const source = await scene.evaluate(el => el.getAttribute("src") ?? getComputedStyle(el).backgroundImage);
+      expect(source).not.toBe("none");
+      expect(source).not.toBe("");
+      if (await scene.evaluate(el => el instanceof HTMLImageElement)) {
+        await expect.poll(() => scene.evaluate(el => (el as HTMLImageElement).complete && (el as HTMLImageElement).naturalWidth > 0)).toBe(true);
+      }
+      sources.add(source);
+      if (kind !== "entry") secondarySources.add(source);
     }
-    expect(sources.size).toBe(5);
-    await page.locator("#cv").scrollIntoViewIfNeeded();
-    await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).click();
-    await expect(page.getByRole("dialog").locator("[data-mascot]")).toBeVisible();
-    await page.keyboard.press("Escape");
+    expect(sources.size).toBe(profile.sources);
+    // The approved masked fox keeps the same outfit across all cybersecurity interludes.
+    if (path === "/cybersecurity") expect(secondarySources.size).toBe(1);
+    if (path === "/barbering") {
+      await expect(page.locator("#cv")).toHaveCount(0);
+    } else {
+      await page.locator("#cv").scrollIntoViewIfNeeded();
+      await page.locator("#cv").getByRole("button", { name: /^Preview CV:/ }).click();
+      await expect(page.getByRole("dialog").locator("[data-mascot]")).toBeVisible();
+      await page.keyboard.press("Escape");
+    }
   }
 });
 
@@ -72,7 +99,7 @@ test("Udemy electrical measurements is in progress with ten bilingual learning o
   await expect(course.getByText("Medición de continuidad en circuitos sin energía.", { exact: true })).toBeVisible();
 });
 
-test("illustrated mascot reveals six outfits and transitions before navigating", async ({ page }) => {
+test("illustrated mascot reveals seven outfits and transitions before navigating", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   const mascot = page.locator("[data-home-mascot]");
@@ -81,7 +108,7 @@ test("illustrated mascot reveals six outfits and transitions before navigating",
   await expect(mascot).toHaveAttribute("data-mascot-renderer", "illustration");
   await expect(mascot).toHaveAttribute("data-phase", "standby");
   await mascot.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).hover();
-  await expect(mascot.locator("[data-outfit]")).toHaveCount(6);
+  await expect(mascot.locator("[data-outfit]")).toHaveCount(7);
   await expect(page).toHaveURL(/\/$/);
   await mascot.locator('[data-outfit="electrical"]').click();
   await expect(mascot).toHaveAttribute("data-phase", "transforming");
@@ -100,7 +127,7 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   const mascot = page.locator("[data-home-mascot]");
   const greet = mascot.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true });
   await greet.focus();
-  await expect(mascot.locator("[data-outfit]")).toHaveCount(6);
+  await expect(mascot.locator("[data-outfit]")).toHaveCount(7);
   await page.keyboard.press("Tab");
   await expect(mascot.locator("[data-outfit]").first()).toBeFocused();
   await page.keyboard.press("Escape");
@@ -116,9 +143,9 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
   const mobile = await context.newPage();
   await mobile.goto("/");
   const selector = mobile.locator("[data-home-mascot]");
-  await expect(selector.locator("[data-outfit]")).toHaveCount(6);
+  await expect(selector.locator("[data-outfit]")).toHaveCount(7);
   await selector.getByRole("button", { name: "Greet Culichi and choose an outfit", exact: true }).tap();
-  await expect(selector.locator("[data-outfit]")).toHaveCount(6);
+  await expect(selector.locator("[data-outfit]")).toHaveCount(7);
   for (const link of await selector.locator("[data-outfit]").all()) {
     const rect = (await link.boundingBox())!;
     expect(rect.x).toBeGreaterThanOrEqual(0);

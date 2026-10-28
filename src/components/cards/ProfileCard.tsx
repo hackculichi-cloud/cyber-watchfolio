@@ -16,6 +16,7 @@ const atmosphere: Record<ProfileSlug, string> = {
   electronics: "atmos-pcb",
   repair: "atmos-circuit",
   "customer-service": "atmos-grid",
+  barbering: "atmos-barber",
 };
 
 /**

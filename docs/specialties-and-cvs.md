@@ -2,6 +2,8 @@
 
 The six existing profiles share `src/data/specialties.ts`. Each entry defines a stable hash, icon, short preview, training status and related existing content. Header dropdowns and profile pages use the same data. `ProfileSectionPreview` provides explicit eye-button, keyboard and touch access on Home without putting a button inside a link.
 
+Barbering is a seventh area with direct training, haircut and tools destinations. Its confirmed school is Baltra Barbería in Guadalajara. It does not publish a CV, completed qualification or invented haircut evidence; see [barbering.md](./barbering.md).
+
 Confirmed learning states:
 
 - Linux diploma in progress. Institution not inferred.

@@ -8,6 +8,7 @@ const palettes: Record<FoxOutfit, [string, string]> = {
   development: ["#193a2b", "#57e483"], electrical: ["#d8a520", "#ffe369"],
   electronics: ["#dbe2e9", "#ff943d"], repair: ["#513078", "#ba91ff"],
   "customer-service": ["#138b96", "#65e6dc"],
+  barbering: ["#25202a", "#f5a2b2"],
 };
 export type FoxController = {
   root: THREE.Object3D;

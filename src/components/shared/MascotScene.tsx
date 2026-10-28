@@ -11,15 +11,18 @@ import electricalDetail from "@/assets/mascot-scenes/electrical-tool-wall.webp";
 import electronicsDetail from "@/assets/mascot-scenes/electronics.webp";
 import repairDetail from "@/assets/mascot-scenes/repair.webp";
 import serviceDetail from "@/assets/mascot-scenes/customer-service.webp";
+import barberDetail from "@/assets/mascot-scenes/barbering.webp";
 
 export type MascotSceneKind = "action" | "closing" | "detail" | "practice";
 const details: Record<ProfileSlug, [string, number, number]> = {
   cybersecurity: [cyberDetail, 1024, 1536], development: [softwareDetail, 1024, 1536], electrical: [electricalDetail, 1536, 1024],
   electronics: [electronicsDetail, 1147, 1371], repair: [repairDetail, 1145, 1374], "customer-service": [serviceDetail, 1024, 1536],
+  barbering: [barberDetail, 1024, 1536],
 };
 /** Decorative illustrations, separate from real project evidence and measurements. */
 const MascotScene = ({ profile, scene, className }: { profile: ProfileSlug; scene: MascotSceneKind; className?: string }) => {
   if (profile === "cybersecurity") return <Reveal from="left" className={cn("shrink-0", className)}><img src={cyberDetail} width={1024} height={1536} alt="" aria-hidden loading="lazy" decoding="async" data-masked-mascot data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;
+  if (profile === "barbering") return <Reveal from="right" className={cn("shrink-0", className)}><img src={barberDetail} width={1024} height={1536} alt="" aria-hidden loading="lazy" decoding="async" data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;
   if (scene === "detail") {
     const [src, width, height] = details[profile];
     return <Reveal from="left" className={cn("shrink-0", className)}><img src={src} width={width} height={height} alt="" aria-hidden loading="lazy" decoding="async" data-mascot={profile} data-mascot-scene="detail" data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;

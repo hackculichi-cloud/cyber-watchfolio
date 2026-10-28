@@ -9,6 +9,7 @@ const areas = [
   ['electronics', '/electronics', 'Electronics laboratory'],
   ['repair', '/repair', 'Repair workbench'],
   ['customer-service', '/experience', 'Customer support workspace'],
+  ['barbering', '/barbering', 'Barbering studio'],
 ];
 
 test('each profile has its own static workplace, footer outfit and brand color', async ({ page }) => {
@@ -29,7 +30,7 @@ test('each profile has its own static workplace, footer outfit and brand color',
     await expect(world).toHaveAttribute('data-world', outfit);
     const roomLayer = await world.evaluate(el => getComputedStyle(el).backgroundImage);
     expect(roomLayer).toContain(outfit === 'customer-service' ? 'data:image/svg+xml' : 'hero-');
-    await page.locator('#cv').scrollIntoViewIfNeeded();
+    await page.locator(outfit === 'barbering' ? '#tools' : '#cv').scrollIntoViewIfNeeded();
     expect(await world.evaluate(el => getComputedStyle(el).backgroundImage)).toBe(roomLayer);
     await expect(page.locator('main')).toHaveCSS('background-image', 'none');
     await expect(page.locator('footer')).toHaveCSS('background-image', 'none');
@@ -46,7 +47,7 @@ test('each profile has its own static workplace, footer outfit and brand color',
     await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', outfit);
     await expect(dot).toHaveAttribute('data-profile', outfit);
   }
-  expect(colors.size).toBe(6);
+  expect(colors.size).toBe(7);
   await page.goto('/electrical#evidence');
   await expect(page.getByRole('navigation', { name:'Profile sections' }).getByRole('link', {name:'Completed work', exact:true})).toHaveAttribute('href', '#evidence');
   await expect(page.locator('#evidence')).toContainText('Work & practical experience');
@@ -81,7 +82,7 @@ test('the home fox sits beside the introduction on desktop and follows it on pho
     } else {
       expect(character.y).toBeGreaterThanOrEqual(copy.y + copy.height);
     }
-    await expect(page.locator('[data-outfit]')).toHaveCount(6);
+    await expect(page.locator('[data-outfit]')).toHaveCount(7);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.goto('/electrical');
     await expect(page.locator('[data-profile-workspace="electrical"]')).toBeVisible();

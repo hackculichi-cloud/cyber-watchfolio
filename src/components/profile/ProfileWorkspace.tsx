@@ -12,6 +12,7 @@ const workspaces: Record<ProfileSlug, { title: string; alt?: string }> = {
   electronics: { title: "Electronics laboratory" },
   repair: { title: "Repair workbench" },
   "customer-service": { title: "Customer support workspace" },
+  barbering: { title: "Barbering studio", alt: "Culichi in a barbershop with a barber apron, hair clippers and comb, beside a chair and a fully equipped workstation" },
 };
 
 /** Complete illustrated workplaces, served locally at the appropriate resolution. */

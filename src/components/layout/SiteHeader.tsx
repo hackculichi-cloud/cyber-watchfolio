@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, PhoneCall, FileText, Mail, type LucideIcon } from "lucide-react";
+import { ChevronDown, Menu, X, Home, UserRound, Shield, Zap, CodeXml, CircuitBoard, Wrench, PhoneCall, FileText, Mail, Scissors, type LucideIcon } from "lucide-react";
 import { navigation } from "@/data/site";
 import { profileForPath } from "@/data/profiles";
 import type { MascotVariant } from "@/components/shared/CulichiMascot";
@@ -15,8 +15,9 @@ import CopperConductorTitle from "@/components/electrical/CopperConductorTitle";
 import NetworkSecurityTitle from "@/components/cybersecurity/NetworkSecurityTitle";
 import PcbTitle from "@/components/electronics/PcbTitle";
 import { CodeWordmark } from "@/components/software/CodeExecutionTitle";
+import BarberTitle from "@/components/barbering/BarberTitle";
 
-const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, "Call Center & Customer Service": PhoneCall, CV: FileText, Contact: Mail };
+const navIcons: Record<string, LucideIcon> = { Home, About: UserRound, Cybersecurity: Shield, "Software Development": CodeXml, "Residential & Industrial Electrical Maintenance": Zap, Electronics: CircuitBoard, "Technical Repair": Wrench, "Call Center & Customer Service": PhoneCall, Barbering: Scissors, CV: FileText, Contact: Mail };
 
 /** Per-profile accent color utilities (defined in index.css). */
 const navIconColor: Record<string, string> = {
@@ -33,6 +34,7 @@ const navIconColor: Record<string, string> = {
   Smartphones: "nav-ico-repair",
   Laptops: "nav-ico-repair",
   Consoles: "nav-ico-repair",
+  Barbering: "nav-ico-barbering",
 };
 
 
@@ -130,7 +132,7 @@ const SiteHeader = () => {
             <MascotMorph outfit={displayedMascot} portrait committing={orbitCommit || navigationCommit} />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span data-header-brand data-brand-profile={displayedMascot} data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"><span key={displayedMascot} data-brand-lettering={displayedMascot} className="header-wordmark-slot">{displayedMascot === "electrical" ? <CopperConductorTitle text="Culichi" variant="brand" /> : displayedMascot === "development" ? <CodeWordmark /> : displayedMascot === "electronics" ? <PcbTitle text="Culichi" variant="brand" /> : displayedMascot === "cybersecurity" ? <NetworkSecurityTitle text="Culichi" variant="brand" /> : <span className="profile-wordmark">Culichi</span>}<span data-brand-dot data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-primary transition-colors duration-200">.</span></span></span>
+            <span data-header-brand data-brand-profile={displayedMascot} data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"><span key={displayedMascot} data-brand-lettering={displayedMascot} className="header-wordmark-slot">{displayedMascot === "electrical" ? <CopperConductorTitle text="Culichi" variant="brand" /> : displayedMascot === "development" ? <CodeWordmark /> : displayedMascot === "electronics" ? <PcbTitle text="Culichi" variant="brand" /> : displayedMascot === "cybersecurity" ? <NetworkSecurityTitle text="Culichi" variant="brand" /> : displayedMascot === "barbering" ? <BarberTitle text="Culichi" variant="brand" /> : <span className="profile-wordmark">Culichi</span>}<span data-brand-dot data-profile={displayedMascot === "emblem" ? undefined : displayedMascot} className="text-primary transition-colors duration-200">.</span></span></span>
             <span className="mt-1 text-xs font-medium text-muted-foreground sm:text-sm">{t("Christian Velasco")}</span>
           </span>
         </Link>

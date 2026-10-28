@@ -27,14 +27,14 @@ test('previewing the top menus does not move the hero or reset the intervening o
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'emblem');
 });
 
-test('the fox stays in front of decorative props and all six controls remain reachable on a narrow phone', async ({ browser }) => {
+test('the fox stays in front of decorative props and all seven controls remain reachable on a narrow phone', async ({ browser }) => {
   const context = await browser.newContext({ storageState: englishStorageState, viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
   const page = await context.newPage();
   await page.goto('/');
   const stage = page.locator('[data-home-mascot]');
   await expect(page.locator('[data-header-brand]')).toContainText('Culichi.');
   await expect(page.locator('[data-header-brand]').locator('..')).toContainText('Christian Velasco');
-  for (const outfit of ['cybersecurity', 'development', 'electrical', 'electronics', 'repair', 'customer-service']) {
+  for (const outfit of ['cybersecurity', 'development', 'electrical', 'electronics', 'repair', 'customer-service', 'barbering']) {
     const control = stage.locator(`[data-outfit="${outfit}"]`);
     await control.focus();
     const layers = await stage.evaluate(element => {
@@ -86,7 +86,7 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await selectLanguage(dialog, "es");
   await expect(dialog).toContainText('MOCKUP · Original pendiente');
   await page.keyboard.press('Escape');
-  await expect(conocer).toContainText('Actualmente está estudiando');
+  await expect(conocer).toContainText('Estudiando actualmente');
   await page.locator('[data-area-tab="overview"]').click();
   expect(await page.locator('#overview [data-training-provider]').count()).toBeGreaterThan(0);
 });

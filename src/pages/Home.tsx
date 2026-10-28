@@ -72,7 +72,7 @@ const Home = () => {
       {/* Professional profile */}
       <section id="areas" className="relative container mx-auto scroll-mt-28 px-4 py-16">
         <div className="relative mb-8 flex items-center gap-4 pl-20 sm:pl-28 lg:gap-6">
-          <div className="min-w-0 flex-1 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl"><SectionHeading eyebrow="Christian Velasco · aka Culichi" title={t("These are my skills")} description={t("Practical work, study and experience in six areas. Choose what you need and see the examples behind each skill.")} /></div>
+          <div className="min-w-0 flex-1 [&_h2]:text-2xl [&_h2]:sm:text-3xl [&_h2]:lg:text-4xl"><SectionHeading eyebrow="Christian Velasco · aka Culichi" title={t("These are my skills")} description={t("Practical work, study and experience across my areas. Choose what you need and see the examples behind each skill.")} /></div>
           <HomeCharacter profile="cybersecurity" scene="hanging" className="absolute left-0 top-0 -mt-8 w-20 border-t border-primary/30 sm:w-24" />
         </div>
         <button type="button" aria-expanded={skillDetails} aria-controls="home-skills-grid" onClick={() => setSkillDetails(value => !value)} className="mb-4 inline-flex min-h-11 items-center rounded-lg border border-primary/30 bg-primary/10 px-3 text-sm font-medium text-primary md:hidden">{t(skillDetails ? "Compact view" : "Show skill details")}</button>

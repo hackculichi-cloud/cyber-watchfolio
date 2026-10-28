@@ -11,6 +11,7 @@ import repair from "@/assets/environments/repair.webp";
 import repairSmall from "@/assets/environments/repair-small.webp";
 import service from "@/assets/environments/customer-service.webp";
 import serviceSmall from "@/assets/environments/customer-service-small.webp";
+import barbering from "@/assets/hero-barbering.webp";
 
 /** Environment layers contain no mascot; changing the character does not replace these rooms. */
 export const environmentArtwork: Record<ProfileSlug, { full: string; small: string; material: string; panel: string }> = {
@@ -20,4 +21,5 @@ export const environmentArtwork: Record<ProfileSlug, { full: string; small: stri
   electronics: { full:electronics, small:electronicsSmall, material:"laboratory", panel:"218 35% 14%" },
   repair: { full:repair, small:repairSmall, material:"precision", panel:"254 29% 14%" },
   "customer-service": { full:service, small:serviceSmall, material:"office", panel:"192 32% 13%" },
+  barbering: { full:barbering, small:barbering, material:"barbershop", panel:"222 29% 12%" },
 };
