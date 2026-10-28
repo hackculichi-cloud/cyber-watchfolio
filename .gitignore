@@ -26,3 +26,12 @@ dist-ssr
 # Browser validation outputs
 test-results/
 playwright-report/
+
+# Local deployment and secret material
+.env
+.env.*
+!.env.example
+!.env.*.example
+.vercel/
+*.pem
+*.key

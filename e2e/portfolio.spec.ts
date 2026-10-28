@@ -103,7 +103,7 @@ test("React Router navigation, hashes and browser history preserve language", as
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
-  await page.locator('header a[aria-label="About"]').click();
+  await page.locator('footer a[href="/about"]').click();
   await expect(page).toHaveURL(/\/about$/);
   await expect(page.locator("main h1")).toBeVisible();
   await page.locator('header a[aria-label="Cybersecurity"]').click();
@@ -111,7 +111,7 @@ test("React Router navigation, hashes and browser history preserve language", as
   await page.getByRole("navigation", { name: "Profile sections" }).getByRole("link", { name: "Playbooks", exact: true }).click();
   await expect(page).toHaveURL(/\/cybersecurity#playbooks$/);
   await selectLanguage(page, "es");
-  await page.locator('header a[aria-label="Sobre mí"]').click();
+  await page.locator('footer a[href="/about"]').click();
   await expect(page).toHaveURL(/\/about$/);
   await page.goBack();
   await expect(page).toHaveURL(/\/cybersecurity#playbooks$/);

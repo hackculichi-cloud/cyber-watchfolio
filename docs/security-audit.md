@@ -1,6 +1,59 @@
-# Revisión de seguridad — 15 de octubre de 2026
+# Revisión de seguridad — 28 de octubre de 2026
 
-## Resultado actual
+## Resultado
+
+La auditoría actual de dependencias reporta **0 avisos**, tanto en el árbol completo como al omitir desarrollo. Antes de esta revisión había **10 avisos propagados por dependencias: 2 altos, 7 moderados y 1 bajo**; uno alto correspondía al paquete de producción Zod, que no tenía consumidores en el código. Los avisos no equivalían a diez vías de ataque al sitio público.
+
+Se revisaron fuentes, dependencias instaladas/lockfile, configuración de Vite/Vercel, workflow, artefactos publicados y flujos de navegador. No se encontró una vía de inyección controlada por visitantes en los flujos actuales. No es una garantía de ausencia de vulnerabilidades ni de protección frente a cualquier ataque.
+
+## Correcciones
+
+| Componente | Antes | Después | Motivo |
+| --- | --- | --- | --- |
+| Vite | 6.4.3 | 6.4.5 | Correcciones de avisos del servidor de desarrollo y apertura de editores; se conserva el host 127.0.0.1. |
+| Vitest / Mocker | 4.1.11 | 4.1.12 | Registro de mocks y bypass de ruta Windows corregidos. |
+| postcss-selector-parser | 6.1.4 y 6.0.10 | 6.1.5 | Parche compatible de la rama 6 para complejidad de análisis de selectores. |
+| Paquetes sin consumidores | Zod, @hookform/resolvers, @tailwindcss/typography | Retirados | Reduce dependencias sin cambiar formularios ni estilos: no había imports ni plugin de tipografía activo. |
+
+No se aplicaron overrides entre versiones mayores, una migración a Tailwind 4 ni `npm audit fix --force`. La instalación reproducible usa `npm ci --ignore-scripts` y se verificó con el build y las pruebas; los binarios opcionales de las herramientas siguen funcionando.
+
+La CSP añade `base-uri 'none'`, `script-src-attr 'none'` y `worker-src 'none'`. `Cross-Origin-Resource-Policy: same-origin` restringe usos cruzados de los recursos. Se conservan scripts/conexiones locales, bloqueo de frames, objetos, formularios y `eval`, junto con `nosniff`, COOP y políticas de permisos/referencia. Los estilos inline siguen permitidos porque Radix y las posiciones visuales los necesitan.
+
+CI audita dependencias antes de compilar y bloquea avisos moderados o superiores. El checkout no conserva credenciales de Git. Se añaden revisión semanal/manual y propuestas semanales de Dependabot para npm/acciones, sin fusión automática. Estos mecanismos solo quedan activos en la rama predeterminada cuando se fusiona y despliega el cambio.
+
+`.gitignore` excluye entornos locales, `.vercel` y material de claves. `security:artifacts` revisa recursivamente nombres en `public` y `dist`: rechaza configuraciones privadas, claves, source maps y enlaces simbólicos sin imprimir contenidos. Es una barrera de publicación accidental, no un detector completo de secretos dentro de cualquier archivo.
+
+## Comprobaciones
+
+- Árbol actual: sin archivos secretos rastreados ni coincidencias en la revisión acotada de patrones de credenciales; no se imprimieron valores. No se revisó todo el historial Git.
+- React escapa el contenido. Las rutas/hash usan destinos locales y la preferencia guardada solo acepta `en` o `es`. No hay API de escritura, sesión, pagos ni formulario receptor en esta aplicación estática.
+- Los enlaces externos revisados usan `noopener noreferrer`. Contacto muestra vistas previas locales; no hay formularios ni iframes de terceros.
+- El helper de gráficos sin consumidores contiene generación de CSS mediante HTML; no recibe datos de visitantes. Si se habilita con datos externos, se deberán validar valores de CSS e identificadores antes de usarlos.
+- 198 imágenes revisadas entre `public` y los recursos de la aplicación sin metadatos EXIF/GPS; dos videos sin etiquetas de ubicación detectadas. Dieciséis PDF sin acciones JavaScript, lanzamiento, envío de formularios o archivos incrustados detectados. Trece SVG públicos sin scripts, eventos, referencias externas o `foreignObject` detectados. Son revisiones acotadas, no OCR completo ni análisis antivirus.
+- Los CV originales archivados dentro de `public/cv` siguen siendo accesibles por URL aunque no aparezcan en el menú. No se detectaron campos sensibles adicionales en la extracción acotada de texto; se conservaron según las instrucciones del propietario. Ocultar un enlace no vuelve privado un archivo.
+- El guardián de artefactos y las pruebas de navegador comprueban que no se publica un source map; las pruebas bloquean scripts/eventos inline, incrustación externa, envío de formulario y fetch externo, y mantienen inertes las cadenas de URL/idioma maliciosas.
+
+## Validación de los cambios
+
+Instalación limpia con scripts de instalación desactivados, TypeScript/build, ESLint (0 errores, 8 advertencias anteriores), guardián de artefactos y 28 pruebas unitarias aprobadas. Se aprobaron 139 escenarios distintos de Chromium: la primera ejecución completa pasó 136; se adaptó una prueba al enlace de «Sobre mí» en el footer y se corrigieron dos montajes de prueba de CSP. El padre del iframe ahora es un servidor local real para evaluar CSP en lugar del bloqueo previo de red privada de Chromium; la comprobación del formulario usa el documento activo porque el navegador cancela la navegación. Se conservaron las exigencias de bloqueo, los eventos de violación y la ausencia de peticiones salientes, y las tres pruebas afectadas pasaron al repetirse.
+
+Las nuevas pruebas cubren cabeceras en rutas, SVG y PDF; denegación de iframe externo; bloqueo efectivo de formulario/fetch y eventos inline; payloads inertes en query/hash/idioma. La política anterior ya tenía varias de estas defensas: la revisión las valida y añade barreras, no las presenta todas como correcciones de fallos explotables.
+
+## Verificación del dominio y límites
+
+El 28 de octubre se comprobó mediante peticiones acotadas al dominio propio que HTTP redirige a HTTPS, la página y el PDF público devuelven las cabeceras configuradas, y el proveedor añade HSTS de dos años. El bundle público no incluye directiva de source map y su ruta `.js.map` devuelve 404. Esto describe el despliegue observado; las nuevas cabeceras se validan primero en el build/preview y no se declaran activas en producción hasta desplegarlas.
+
+No se realizaron pruebas de carga, denegación de servicio ni escaneo amplio. Las credenciales, MFA, protección de ramas, integraciones y permisos de las cuentas GitHub/Vercel, reglas de WAF/DDoS y configuración DNS no quedan auditados por revisar el repositorio. La consulta de protección de `main` fue rechazada por GitHub con HTTP 403 (permisos de la integración); no se afirma que esté activada ni desactivada. La auditoría de npm solo cubre avisos conocidos por su registro y cambia con el tiempo.
+
+La notificación privada se documenta en [SECURITY.md](../SECURITY.md).
+
+---
+
+# Historial: las cifras siguientes corresponden a revisiones anteriores
+
+# Revisión histórica — 15 de octubre de 2026
+
+## Resultado en esa fecha
 
 - Auditoría de dependencias de producción (`npm audit --omit=dev`): **0 avisos reportados**.
 - Auditoría completa: **8 avisos, 5 altos y 3 moderados; 0 críticos**. Corresponden al procesamiento de CSS durante desarrollo/compilación, no a un formulario público que acepte CSS o patrones.
