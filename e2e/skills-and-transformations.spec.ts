@@ -32,7 +32,7 @@ test("outfit focus reveals matching tools, transforms both figures and restores 
   const stage = page.locator('[data-home-mascot]');
   const morph = stage.locator('[data-morph-to]');
   await stage.locator('[data-outfit="electrical"]').focus();
-  await expect(stage.locator('[data-tool-field="electrical"] [data-tool-prop]')).toHaveCount(2);
+  await expect(stage.locator('[data-tool-field="electrical"] [data-tool-prop]')).toHaveCount(3);
   const gear = page.locator('[data-gear-preview="electrical"]').first();
   await expect(gear).toContainText('Digital multimeter');
   await expect(gear).toContainText('Insulated pliers');
