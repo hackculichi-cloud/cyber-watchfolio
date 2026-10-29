@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { professionalProfiles, type ProfileSlug } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import MascotMorph from "./MascotMorph";
-import MascotGearPreview from "./MascotGearPreview";
 import MascotToolField from "./MascotToolField";
 import toolAtlas from "@/assets/culichi-tool-props.webp";
 import type { MascotIntent } from "@/lib/mascotIntent";
@@ -158,7 +157,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         setOpen(true);
         greet();
     } }} className="absolute left-1/2 top-1/2 z-30 aspect-square w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-full [clip-path:circle(50%)] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" />
-    {selected && <MascotToolField key={selected} profile={selected} committing={phase === "transforming"} stage={root} />}
+    {selected && <MascotToolField key={selected} profile={selected} committing={phase === "transforming"} id={gearId} />}
     {open && <nav id={id} className="z-10" aria-label={t("Choose Culichi's outfit")} data-outfit-selector>
       {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onPointerDown={() => preloadProfile(area.href)} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onPointerLeave={event => { if (!locked.current && document.activeElement !== event.currentTarget) setPreview(null); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current) setPreview(null); }} aria-disabled={phase === "transforming"} aria-describedby={selected === area.slug ? gearId : undefined} data-profile={area.slug} data-outfit={area.slug} data-active={selected === area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center text-[11px] leading-tight text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
         <span data-orbit-node className="relative grid h-20 w-20 place-items-center">
@@ -172,6 +171,6 @@ const InteractiveMascot = ({ profile = "home", className }: {
     <span role="status" aria-live="polite" className="sr-only">
       {phase === "transforming" ? t("Changing outfit…") : ""}
     </span>
-  </div><div id={gearId} data-mascot-legend className="mt-2 h-16">{selected && <MascotGearPreview profile={selected} compact />}</div></div>;
+  </div><div data-mascot-legend aria-hidden className="mt-2 h-16" /></div>;
 };
 export default InteractiveMascot;

@@ -505,13 +505,17 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 .mascot-neon-orb { box-shadow:0 0 0 4px hsl(var(--background)),0 0 22px hsl(var(--primary)/.3),inset 0 0 15px hsl(var(--primary)/.12); }
 .mascot-neon-orb svg { filter:drop-shadow(0 0 4px hsl(var(--primary)/.8)); }
 [data-outfit][data-active="true"] .mascot-neon-orb { background:hsl(var(--primary)/.2); box-shadow:0 0 0 4px hsl(var(--background)),0 0 30px hsl(var(--primary)/.6),inset 0 0 18px hsl(var(--primary)/.2); }
-.mascot-tool-field { container-type:size; }
-.mascot-tool-flight { transform:translate(var(--tool-x),var(--tool-y)) rotate(var(--tool-angle)) scale(var(--tool-scale)); filter:drop-shadow(0 3px 7px hsl(var(--background)/.9)) drop-shadow(0 0 5px hsl(var(--primary)/.3)); }
+.mascot-tool-flight { transform:scale(.82); opacity:0; }
+[data-tools-entered="true"] .mascot-tool-flight { transform:scale(1); opacity:1; }
+[data-equipping="true"] .mascot-tool-flight { transform:scale(.82); opacity:0; }
 @keyframes tool-float { 0%,100% { transform:translateY(0) rotate(-2deg); } 50% { transform:translateY(-7px) rotate(2deg); } }
 @media (prefers-reduced-motion:no-preference) {
-  .mascot-tool-flight { transition:transform 850ms cubic-bezier(.2,.8,.3,1),opacity 350ms; }
+  .mascot-tool-flight { transition:transform 220ms ease-out,opacity 160ms ease-out; }
   .mascot-tool-float { animation:tool-float 3s 850ms ease-in-out infinite; }
   .mascot-tool-flight:nth-child(2) .mascot-tool-float { animation-delay:1150ms; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .mascot-tool-field .mascot-tool-flight { transform:none; opacity:1; transition-property:none; }
 }
 @keyframes gear-appear { from{opacity:0;transform:translateY(8px) scale(.4)} to{opacity:1;transform:none} }
 @media (prefers-reduced-motion:no-preference) {
@@ -683,7 +687,12 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .home-mascot-widget { max-width:22.5rem; }
   [data-home-mascot] { aspect-ratio:auto; height:12.75rem; }
   [data-home-mascot] .mascot-orbit-guide, [data-home-mascot] [data-orbit-toggle], .home-mascot-widget [data-mascot-legend] { display:none; }
-  [data-home-mascot] .mascot-orbit-body, [data-home-mascot][data-selector-open="true"] .mascot-orbit-body { width:50%; max-width:9rem; top:43%; }
+  /* The gap between the first two buttons keeps all three tools above the fox. */
+  .mascot-tool-field { top:0; left:50%; right:auto; width:calc(70% - 6.125rem); height:2rem; margin-top:0; transform:translateX(-50%); }
+  .mascot-tool-field .mascot-gear-preview { padding:0 .25rem; }
+  .mascot-tool-field .mascot-tool-flight { width:1.75rem; max-width:100%; }
+  .mascot-tool-field .mascot-tool-name { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  [data-home-mascot] .mascot-orbit-body, [data-home-mascot][data-selector-open="true"] .mascot-orbit-body { width:42%; max-width:8rem; top:calc(43% + .75rem); }
   [data-home-mascot] [data-outfit-selector], [data-home-mascot] [data-orbit-node] { animation:none; }
   [data-home-mascot] .mascot-outfit, [data-home-mascot] [data-orbit-node], [data-home-mascot] .mascot-neon-orb { width:82px; height:58px; border-radius:.75rem; }
   [data-home-mascot] .mascot-neon-orb { gap:3px; padding:3px; box-shadow:0 0 12px hsl(var(--primary)/.17),inset 0 0 10px hsl(var(--primary)/.08); }

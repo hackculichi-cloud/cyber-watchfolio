@@ -5,7 +5,7 @@ import BarberToolImage from "@/components/barbering/BarberToolImage";
 
 /** Original transparent artwork, selected with CSS rather than remote image services. */
 export default function MascotToolProp({ tool, className }: { tool: MascotTool; className?: string }) {
-  if (tool === "barber-scissors" || tool === "hair-clipper") return <span aria-hidden data-tool-prop={tool} className={cn("block w-full", className)}><BarberToolImage kind={tool === "hair-clipper" ? "clipper" : "scissors"} /></span>;
+  if (tool === "barber-scissors" || tool === "hair-clipper" || tool === "detail-trimmer") return <span aria-hidden data-tool-prop={tool} className={cn("block w-full", className)}><BarberToolImage kind={tool === "hair-clipper" ? "clipper" : tool === "detail-trimmer" ? "trimmer" : "scissors"} /></span>;
   const { region, clip } = toolArtwork[tool];
   if (!region) return null;
   const [x, y, width, height] = region;
