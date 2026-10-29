@@ -2,6 +2,9 @@ import type { ProfileSlug } from "@/data/profiles";
 import actionAtlas from "@/assets/culichi-action-scenes.webp";
 import practiceAtlas from "@/assets/culichi-practice-scenes.webp";
 import closingAtlas from "@/assets/culichi-closing-scenes.webp";
+import actionPreview from "@/assets/mascot-previews/culichi-action-scenes-768.webp";
+import practicePreview from "@/assets/mascot-previews/culichi-practice-scenes-768.webp";
+import closingPreview from "@/assets/mascot-previews/culichi-closing-scenes-768.webp";
 import Reveal from "./Reveal";
 import { cn } from "@/lib/utils";
 import scenes from "@/data/mascotScenes.json";
@@ -19,6 +22,11 @@ const details: Record<ProfileSlug, [string, number, number]> = {
   electronics: [electronicsDetail, 1147, 1371], repair: [repairDetail, 1145, 1374], "customer-service": [serviceDetail, 1024, 1536],
   barbering: [barberDetail, 1024, 1536],
 };
+const atlases = {
+  action: { full: actionAtlas, preview: actionPreview },
+  practice: { full: practiceAtlas, preview: practicePreview },
+  closing: { full: closingAtlas, preview: closingPreview },
+};
 /** Decorative illustrations, separate from real project evidence and measurements. */
 const MascotScene = ({ profile, scene, className }: { profile: ProfileSlug; scene: MascotSceneKind; className?: string }) => {
   if (profile === "cybersecurity") return <Reveal from="left" className={cn("shrink-0", className)}><img src={cyberDetail} width={1024} height={1536} alt="" aria-hidden loading="lazy" decoding="async" data-masked-mascot data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;
@@ -28,9 +36,17 @@ const MascotScene = ({ profile, scene, className }: { profile: ProfileSlug; scen
     return <Reveal from="left" className={cn("shrink-0", className)}><img src={src} width={width} height={height} alt="" aria-hidden loading="lazy" decoding="async" data-mascot={profile} data-mascot-scene="detail" data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;
   }
   const atlas = scenes[scene];
+  const artwork = atlases[scene];
   const [x, y, width, height] = atlas.regions[profile];
   return <Reveal from={scene === "action" ? "left" : "right"} className={cn("shrink-0", className)}>
-    <span aria-hidden data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} className="block w-full bg-no-repeat" style={{ aspectRatio: `${width} / ${height}`, backgroundImage: `url(${scene === "action" ? actionAtlas : scene === "practice" ? practiceAtlas : closingAtlas})`, backgroundSize: `${atlas.width / width * 100}% ${atlas.height / height * 100}%`, backgroundPosition: `${x / (atlas.width - width) * 100}% ${y / (atlas.height - height) * 100}%` }} />
+    <span aria-hidden data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} data-mascot-atlas={scene} className="relative block w-full overflow-hidden" style={{ aspectRatio: `${width} / ${height}` }}>
+      {/* Native lazy loading waits for the actual crop, without a scroll observer. */}
+      <img src={artwork.full} srcSet={`${artwork.preview} 768w, ${artwork.full} ${atlas.width}w`}
+        sizes={`auto, (max-width:767px) ${Math.ceil(80 * atlas.width / width)}px, ${Math.ceil(320 * atlas.width / width)}px`}
+        width={atlas.width} height={atlas.height} alt="" aria-hidden loading="lazy" decoding="async" data-mascot-atlas-image
+        className="absolute block max-w-none"
+        style={{ width: `${atlas.width / width * 100}%`, height: `${atlas.height / height * 100}%`, maxHeight: "none", left: `${-x / width * 100}%`, top: `${-y / height * 100}%` }} />
+    </span>
   </Reveal>;
 };
 export default MascotScene;

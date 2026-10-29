@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Expand } from "lucide-react";
 import type { ProfileSlug } from "@/data/profiles";
 import { workspaceArtwork } from "@/data/workspaceArtwork";
@@ -19,14 +19,15 @@ const workspaces: Record<ProfileSlug, { title: string; alt?: string }> = {
 export default function ProfileWorkspace({ profile }: { profile: ProfileSlug }) {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
+  const opener = useRef<HTMLButtonElement>(null);
   const workspace = workspaces[profile];
   const art = workspaceArtwork[profile];
   return <figure data-profile-workspace={profile} className="relative mx-auto w-full max-w-[40rem]">
-    <button type="button" onClick={() => setOpen(true)} aria-label={`${t("Enlarge workspace illustration")}: ${t(workspace.title)}`} className="group relative block w-full overflow-hidden rounded-xl text-left outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background">
-      <img src={art.full} srcSet={`${art.small} 768w, ${art.full} 1536w`} sizes="(max-width:767px) 45vw, (min-width:1280px) 640px, (min-width:1024px) 48vw, calc(100vw - 2rem)" width={1536} height={1024} fetchPriority="high" decoding="async" alt={t(workspace.alt ?? workspace.title)} data-workspace-art={profile} data-body-mascot={profile} data-mascot={profile} data-mascot-scene="entry" data-scene-profile={profile} className="block h-auto w-full" />
+    <button ref={opener} type="button" onClick={() => setOpen(true)} aria-label={`${t("Enlarge workspace illustration")}: ${t(workspace.title)}`} className="group relative block w-full overflow-hidden rounded-xl text-left outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background">
+      <img src={art.full} srcSet={`${art.small} 768w, ${art.full} 1536w`} sizes="(max-width:767px) calc(46.342vw - 1.275rem), (max-width:1023px) calc(47.619vw - 1.667rem), (max-width:1279px) calc(48vw - .96rem), 640px" width={1536} height={1024} fetchPriority="high" decoding="async" alt={t(workspace.alt ?? workspace.title)} data-workspace-art={profile} data-body-mascot={profile} data-mascot={profile} data-mascot-scene="entry" data-scene-profile={profile} className="block h-auto w-full" />
       <span aria-hidden className="absolute bottom-3 right-3 grid h-11 w-11 place-items-center rounded-lg border border-primary/50 bg-background/90 text-primary transition-colors group-hover:bg-background"><Expand className="h-5 w-5" /></span>
     </button>
-    <DetailModal open={open} onOpenChange={setOpen} title={t(workspace.title)} subtitle={t("Illustrated workspace · Culichi")}>
+    <DetailModal open={open} onOpenChange={setOpen} returnFocusRef={opener} title={t(workspace.title)} subtitle={t("Illustrated workspace · Culichi")}>
       <img src={art.full} width={1536} height={1024} alt={t(workspace.alt ?? workspace.title)} decoding="async" className="h-auto w-full rounded-lg" />
     </DetailModal>
   </figure>;

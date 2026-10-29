@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import SmartImage from "./SmartImage";
 import type { WorkImage } from "@/data/works";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { photoPreview } from "@/lib/photoPreview";
 
 type EvidenceImage = WorkImage & { projectTitle?: string };
 
@@ -21,6 +22,9 @@ const WorkImageGallery = ({ images, title, compact = false, collapsible = false 
   const previewIndexes = new Set(Array.from({ length: previewCount }, (_, index) => previewCount === 1 ? 0 : Math.round(index * (available.length - 1) / (previewCount - 1))));
   const visible = available.map((image, index) => ({ image, index })).filter(({ index }) => !collapsible || expanded || previewIndexes.has(index));
   const move = (delta: number) => setActiveIndex((index) => index === null ? null : (index + delta + available.length) % available.length);
+  const previewSizes = compact
+    ? collapsible ? "(min-width:1024px) 230px, 44vw" : "(min-width:1024px) 180px, (min-width:640px) 28vw, 44vw"
+    : "(min-width:1024px) 30vw, (min-width:640px) 46vw, calc(100vw - 2rem)";
   if (!available.length) return null;
   return (
     <>
@@ -32,7 +36,7 @@ const WorkImageGallery = ({ images, title, compact = false, collapsible = false 
         {visible.map(({ image, index }) => (
           <figure key={`${image.src}-${index}`} className={`group break-inside-avoid overflow-hidden rounded-lg border border-border bg-surface ${compact ? "" : "mb-4"}`}>
             <button type="button" onClick={() => setActiveIndex(index)} className="block w-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" aria-label={`${t("Open larger preview")}: ${t(image.alt)}`}>
-              <div className="relative"><SmartImage src={image.src!} alt={t(image.alt)} className="aspect-[4/3] w-full" imgClassName="transition-transform duration-500 group-hover:scale-[1.02]" />
+              <div className="relative"><SmartImage {...photoPreview(image.src!, previewSizes)} alt={t(image.alt)} className="aspect-[4/3] w-full" imgClassName="transition-transform duration-500 group-hover:scale-[1.02]" />
                 <span aria-hidden className="absolute bottom-2 right-2 grid h-7 w-7 place-items-center rounded-full border border-white/15 bg-background/80 text-white"><ZoomIn className="h-3.5 w-3.5" /></span>
               </div>
             </button>
