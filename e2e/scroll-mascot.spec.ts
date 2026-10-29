@@ -34,9 +34,21 @@ test("profile mascots appear between content blocks, never as floating overlays"
       const scene = page.locator(`main [data-mascot-scene="${kind}"]`);
       await scene.scrollIntoViewIfNeeded();
       await expect(scene).toBeVisible();
-      if (kind !== "entry") await expect(scene).toHaveCSS("position", "static");
+      const atlas = await scene.getAttribute("data-mascot-atlas");
+      if (atlas) {
+        await expect(scene).toHaveCSS("position", "relative");
+        await expect(scene).toHaveCSS("overflow", "hidden");
+        const geometry = await scene.evaluate(el => {
+          const box = el.getBoundingClientRect();
+          const image = el.querySelector("img")!.getBoundingClientRect();
+          const [width, height] = getComputedStyle(el).aspectRatio.split("/").map(Number);
+          return { ratio: box.width / box.height, expected: width / height, covers: image.left <= box.left + 1 && image.top <= box.top + 1 && image.right >= box.right - 1 && image.bottom >= box.bottom - 1 };
+        });
+        expect(geometry.ratio).toBeCloseTo(geometry.expected, 2);
+        expect(geometry.covers).toBe(true);
+      } else if (kind !== "entry") await expect(scene).toHaveCSS("position", "static");
       await expect(scene).toHaveCSS("border-top-width", "0px");
-      const source = await scene.evaluate(el => el.getAttribute("src") ?? getComputedStyle(el).backgroundImage);
+      const source = await scene.evaluate(el => el.getAttribute("src") ?? el.querySelector("img")?.getAttribute("src") ?? getComputedStyle(el).backgroundImage);
       expect(source).not.toBe("none");
       expect(source).not.toBe("");
       if (await scene.evaluate(el => el instanceof HTMLImageElement)) {

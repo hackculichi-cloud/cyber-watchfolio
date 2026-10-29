@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUp, ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { site } from "@/data/site";
@@ -9,9 +10,9 @@ import CulichiMascot from "@/components/shared/CulichiMascot";
 
 const contactLink = "inline-flex min-h-11 items-center gap-2 rounded-lg border border-border/70 bg-background/50 px-3 py-2 text-sm text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
-const SiteFooter = () => {
+// Changing a section hash does not change the footer's copy, art or menus.
+const FooterContent = memo(function FooterContent({ pathname }: { pathname: string }) {
   const { t } = useLanguage();
-  const { pathname } = useLocation();
   const mascot = profileForPath(pathname)?.slug ?? "emblem";
   return <footer className="site-footer relative isolate overflow-hidden border-t border-border bg-[#080f1b]">
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_15%_20%,hsl(var(--primary)/0.12),transparent_60%)]" />
@@ -62,5 +63,10 @@ const SiteFooter = () => {
       </div>
     </div>
   </footer>;
+});
+
+const SiteFooter = () => {
+  const { pathname } = useLocation();
+  return <FooterContent pathname={pathname} />;
 };
 export default SiteFooter;

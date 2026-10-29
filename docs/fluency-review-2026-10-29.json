@@ -1,0 +1,1420 @@
+{
+  "date": "2026-10-29",
+  "baselineCommit": "9d0e5e6db8494723dfe2ae2115ea1fc50aab5ebc",
+  "environment": {
+    "viewport": [
+      390,
+      844
+    ],
+    "deviceScaleFactor": 3,
+    "cpuThrottlingRate": 4,
+    "reducedMotion": "reduce",
+    "samples": 3,
+    "language": "es",
+    "server": "local production preview"
+  },
+  "bundle": {
+    "before": {
+      "name": "index-BXpuzaU4.js",
+      "bytes": 792033,
+      "gzipBytes": 244100
+    },
+    "after": {
+      "name": "index-1kwupKnb.js",
+      "bytes": 708086,
+      "gzipBytes": 219225
+    }
+  },
+  "loading": {
+    "before": [
+      {
+        "round": 0,
+        "path": "/",
+        "scriptBytes": 244100,
+        "imageBytes": 3859490,
+        "totalBytes": 4247286,
+        "requests": 18,
+        "dom": 769,
+        "taskMs": 723.8860000000001,
+        "scriptMs": 217.81400000000002,
+        "layoutMs": 42.465,
+        "styleMs": 76.172
+      },
+      {
+        "round": 0,
+        "path": "/electrical",
+        "scriptBytes": 295638,
+        "imageBytes": 3391652,
+        "totalBytes": 3927640,
+        "requests": 31,
+        "dom": 884,
+        "taskMs": 829.031,
+        "scriptMs": 303.76599999999996,
+        "layoutMs": 55.160000000000004,
+        "styleMs": 78.254
+      },
+      {
+        "round": 0,
+        "path": "/software-development",
+        "scriptBytes": 277685,
+        "imageBytes": 2315693,
+        "totalBytes": 2833386,
+        "requests": 30,
+        "dom": 880,
+        "taskMs": 786.47,
+        "scriptMs": 225.992,
+        "layoutMs": 51.484,
+        "styleMs": 58.621
+      },
+      {
+        "round": 0,
+        "path": "/repair",
+        "scriptBytes": 288576,
+        "imageBytes": 1871061,
+        "totalBytes": 2305017,
+        "requests": 30,
+        "dom": 878,
+        "taskMs": 721.072,
+        "scriptMs": 226.18099999999998,
+        "layoutMs": 33.771,
+        "styleMs": 49.824
+      },
+      {
+        "round": 0,
+        "path": "/barbering",
+        "scriptBytes": 256192,
+        "imageBytes": 1513019,
+        "totalBytes": 1913964,
+        "requests": 19,
+        "dom": 463,
+        "taskMs": 728.733,
+        "scriptMs": 209.23,
+        "layoutMs": 46.830999999999996,
+        "styleMs": 64.152
+      },
+      {
+        "round": 1,
+        "path": "/",
+        "scriptBytes": 244100,
+        "imageBytes": 3859490,
+        "totalBytes": 4247286,
+        "requests": 18,
+        "dom": 769,
+        "taskMs": 795.1859999999999,
+        "scriptMs": 245.629,
+        "layoutMs": 62.156000000000006,
+        "styleMs": 110.403
+      },
+      {
+        "round": 1,
+        "path": "/electrical",
+        "scriptBytes": 295638,
+        "imageBytes": 3391652,
+        "totalBytes": 3927640,
+        "requests": 31,
+        "dom": 884,
+        "taskMs": 804.7950000000001,
+        "scriptMs": 244.638,
+        "layoutMs": 57.977000000000004,
+        "styleMs": 92.168
+      },
+      {
+        "round": 1,
+        "path": "/software-development",
+        "scriptBytes": 277685,
+        "imageBytes": 2315693,
+        "totalBytes": 2833386,
+        "requests": 30,
+        "dom": 880,
+        "taskMs": 779.551,
+        "scriptMs": 245.09,
+        "layoutMs": 47.539,
+        "styleMs": 61.164
+      },
+      {
+        "round": 1,
+        "path": "/repair",
+        "scriptBytes": 288576,
+        "imageBytes": 1871061,
+        "totalBytes": 2305017,
+        "requests": 30,
+        "dom": 878,
+        "taskMs": 733.445,
+        "scriptMs": 217.75,
+        "layoutMs": 32.904999999999994,
+        "styleMs": 53.949999999999996
+      },
+      {
+        "round": 1,
+        "path": "/barbering",
+        "scriptBytes": 256192,
+        "imageBytes": 1513019,
+        "totalBytes": 1913964,
+        "requests": 19,
+        "dom": 463,
+        "taskMs": 744.047,
+        "scriptMs": 224.78500000000003,
+        "layoutMs": 33.662,
+        "styleMs": 56.006
+      },
+      {
+        "round": 2,
+        "path": "/",
+        "scriptBytes": 244100,
+        "imageBytes": 3859490,
+        "totalBytes": 4247286,
+        "requests": 18,
+        "dom": 769,
+        "taskMs": 821.9300000000001,
+        "scriptMs": 201.51,
+        "layoutMs": 47.620999999999995,
+        "styleMs": 107.128
+      },
+      {
+        "round": 2,
+        "path": "/electrical",
+        "scriptBytes": 295638,
+        "imageBytes": 3391652,
+        "totalBytes": 3927640,
+        "requests": 31,
+        "dom": 884,
+        "taskMs": 778.393,
+        "scriptMs": 228.103,
+        "layoutMs": 58.681999999999995,
+        "styleMs": 79.803
+      },
+      {
+        "round": 2,
+        "path": "/software-development",
+        "scriptBytes": 277685,
+        "imageBytes": 2315693,
+        "totalBytes": 2833386,
+        "requests": 30,
+        "dom": 880,
+        "taskMs": 851.5169999999999,
+        "scriptMs": 274.444,
+        "layoutMs": 54.479,
+        "styleMs": 69.615
+      },
+      {
+        "round": 2,
+        "path": "/repair",
+        "scriptBytes": 288576,
+        "imageBytes": 1871061,
+        "totalBytes": 2305017,
+        "requests": 30,
+        "dom": 878,
+        "taskMs": 793.027,
+        "scriptMs": 261.79,
+        "layoutMs": 33.903000000000006,
+        "styleMs": 54.602
+      },
+      {
+        "round": 2,
+        "path": "/barbering",
+        "scriptBytes": 256192,
+        "imageBytes": 1513019,
+        "totalBytes": 1913964,
+        "requests": 19,
+        "dom": 463,
+        "taskMs": 789.285,
+        "scriptMs": 232.97699999999998,
+        "layoutMs": 33.774,
+        "styleMs": 49.827999999999996
+      }
+    ],
+    "after": [
+      {
+        "round": 0,
+        "path": "/",
+        "scriptBytes": 219225,
+        "imageBytes": 3417036,
+        "totalBytes": 3780060,
+        "requests": 18,
+        "dom": 767,
+        "taskMs": 712.429,
+        "scriptMs": 208.47899999999998,
+        "layoutMs": 49.543,
+        "styleMs": 86.047
+      },
+      {
+        "round": 0,
+        "path": "/electrical",
+        "scriptBytes": 272196,
+        "imageBytes": 3161108,
+        "totalBytes": 3673757,
+        "requests": 31,
+        "dom": 881,
+        "taskMs": 738.739,
+        "scriptMs": 212.711,
+        "layoutMs": 61.856,
+        "styleMs": 96.35199999999999
+      },
+      {
+        "round": 0,
+        "path": "/software-development",
+        "scriptBytes": 252858,
+        "imageBytes": 2031243,
+        "totalBytes": 2524212,
+        "requests": 30,
+        "dom": 879,
+        "taskMs": 824.331,
+        "scriptMs": 261.96500000000003,
+        "layoutMs": 55.699,
+        "styleMs": 64.197
+      },
+      {
+        "round": 0,
+        "path": "/repair",
+        "scriptBytes": 264736,
+        "imageBytes": 1871061,
+        "totalBytes": 2281280,
+        "requests": 30,
+        "dom": 877,
+        "taskMs": 768.039,
+        "scriptMs": 254.97799999999998,
+        "layoutMs": 37.644,
+        "styleMs": 66.72
+      },
+      {
+        "round": 0,
+        "path": "/barbering",
+        "scriptBytes": 231362,
+        "imageBytes": 1513019,
+        "totalBytes": 1889237,
+        "requests": 19,
+        "dom": 459,
+        "taskMs": 643.044,
+        "scriptMs": 182.327,
+        "layoutMs": 31.243,
+        "styleMs": 52.513
+      },
+      {
+        "round": 1,
+        "path": "/",
+        "scriptBytes": 219225,
+        "imageBytes": 3417036,
+        "totalBytes": 3780060,
+        "requests": 18,
+        "dom": 767,
+        "taskMs": 683.712,
+        "scriptMs": 184.567,
+        "layoutMs": 45.811,
+        "styleMs": 74.047
+      },
+      {
+        "round": 1,
+        "path": "/electrical",
+        "scriptBytes": 272196,
+        "imageBytes": 3161108,
+        "totalBytes": 3673757,
+        "requests": 31,
+        "dom": 881,
+        "taskMs": 794.741,
+        "scriptMs": 251.32999999999998,
+        "layoutMs": 57.96,
+        "styleMs": 94.875
+      },
+      {
+        "round": 1,
+        "path": "/software-development",
+        "scriptBytes": 252858,
+        "imageBytes": 2031243,
+        "totalBytes": 2524212,
+        "requests": 30,
+        "dom": 879,
+        "taskMs": 745.0020000000001,
+        "scriptMs": 227.677,
+        "layoutMs": 42.43,
+        "styleMs": 61.809999999999995
+      },
+      {
+        "round": 1,
+        "path": "/repair",
+        "scriptBytes": 264736,
+        "imageBytes": 1871061,
+        "totalBytes": 2281280,
+        "requests": 30,
+        "dom": 877,
+        "taskMs": 715.198,
+        "scriptMs": 225.75300000000001,
+        "layoutMs": 28.493000000000002,
+        "styleMs": 54.574999999999996
+      },
+      {
+        "round": 1,
+        "path": "/barbering",
+        "scriptBytes": 231362,
+        "imageBytes": 1513019,
+        "totalBytes": 1889237,
+        "requests": 19,
+        "dom": 459,
+        "taskMs": 700.8729999999999,
+        "scriptMs": 188.868,
+        "layoutMs": 37.37,
+        "styleMs": 54.909
+      },
+      {
+        "round": 2,
+        "path": "/",
+        "scriptBytes": 219225,
+        "imageBytes": 3417036,
+        "totalBytes": 3780060,
+        "requests": 18,
+        "dom": 767,
+        "taskMs": 705.7719999999999,
+        "scriptMs": 199.24900000000002,
+        "layoutMs": 46.988,
+        "styleMs": 77.92399999999999
+      },
+      {
+        "round": 2,
+        "path": "/electrical",
+        "scriptBytes": 272196,
+        "imageBytes": 3161108,
+        "totalBytes": 3673757,
+        "requests": 31,
+        "dom": 881,
+        "taskMs": 783.274,
+        "scriptMs": 252.714,
+        "layoutMs": 56.313,
+        "styleMs": 83.563
+      },
+      {
+        "round": 2,
+        "path": "/software-development",
+        "scriptBytes": 252858,
+        "imageBytes": 2031243,
+        "totalBytes": 2524212,
+        "requests": 30,
+        "dom": 879,
+        "taskMs": 761.657,
+        "scriptMs": 229.858,
+        "layoutMs": 46.251,
+        "styleMs": 64.473
+      },
+      {
+        "round": 2,
+        "path": "/repair",
+        "scriptBytes": 264736,
+        "imageBytes": 1871061,
+        "totalBytes": 2281280,
+        "requests": 30,
+        "dom": 877,
+        "taskMs": 716.697,
+        "scriptMs": 229.52100000000002,
+        "layoutMs": 31.305,
+        "styleMs": 56.326
+      },
+      {
+        "round": 2,
+        "path": "/barbering",
+        "scriptBytes": 231362,
+        "imageBytes": 1513019,
+        "totalBytes": 1889237,
+        "requests": 19,
+        "dom": 459,
+        "taskMs": 667.1089999999999,
+        "scriptMs": 180.274,
+        "layoutMs": 34.879,
+        "styleMs": 44.679
+      }
+    ]
+  },
+  "interactions": {
+    "before": [
+      {
+        "round": 0,
+        "name": "electrical-cold",
+        "taskMs": 956.786,
+        "scriptMs": 285.037,
+        "layoutMs": 66.634,
+        "layoutCount": 11,
+        "styleMs": 107.594,
+        "nodes": 2096,
+        "longTasks": 4,
+        "longTaskMax": 205
+      },
+      {
+        "round": 0,
+        "name": "open-residential",
+        "taskMs": 245.45799999999994,
+        "scriptMs": 71.498,
+        "layoutMs": 19.574999999999996,
+        "layoutCount": 2,
+        "styleMs": 36.41,
+        "nodes": 2502,
+        "longTasks": 1,
+        "longTaskMax": 95
+      },
+      {
+        "round": 0,
+        "name": "open-projects",
+        "taskMs": 172.31400000000008,
+        "scriptMs": 42.82800000000003,
+        "layoutMs": 5.210000000000006,
+        "layoutCount": 3,
+        "styleMs": 21.096000000000004,
+        "nodes": 2578,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 0,
+        "name": "open-certificates",
+        "taskMs": 220.59300000000005,
+        "scriptMs": 56.488999999999955,
+        "layoutMs": 20.979,
+        "layoutCount": 4,
+        "styleMs": 29.497999999999998,
+        "nodes": 2968,
+        "longTasks": 1,
+        "longTaskMax": 76
+      },
+      {
+        "round": 0,
+        "name": "open-tools",
+        "taskMs": 157.24000000000004,
+        "scriptMs": 47.73,
+        "layoutMs": 6.872000000000003,
+        "layoutCount": 2,
+        "styleMs": 16.624,
+        "nodes": 3070,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 0,
+        "name": "return-summary",
+        "taskMs": 164.2999999999999,
+        "scriptMs": 47.66800000000004,
+        "layoutMs": 8.645,
+        "layoutCount": 2,
+        "styleMs": 21.04500000000001,
+        "nodes": 3398,
+        "longTasks": 1,
+        "longTaskMax": 52
+      },
+      {
+        "round": 1,
+        "name": "electrical-cold",
+        "taskMs": 910.5889999999999,
+        "scriptMs": 267.367,
+        "layoutMs": 65.754,
+        "layoutCount": 11,
+        "styleMs": 110.514,
+        "nodes": 2096,
+        "longTasks": 3,
+        "longTaskMax": 209
+      },
+      {
+        "round": 1,
+        "name": "open-residential",
+        "taskMs": 244.88600000000005,
+        "scriptMs": 78.044,
+        "layoutMs": 31.240999999999993,
+        "layoutCount": 2,
+        "styleMs": 32.79599999999999,
+        "nodes": 2502,
+        "longTasks": 1,
+        "longTaskMax": 105
+      },
+      {
+        "round": 1,
+        "name": "open-projects",
+        "taskMs": 207.43200000000007,
+        "scriptMs": 68.907,
+        "layoutMs": 9.481000000000003,
+        "layoutCount": 2,
+        "styleMs": 23.96900000000002,
+        "nodes": 2578,
+        "longTasks": 1,
+        "longTaskMax": 67
+      },
+      {
+        "round": 1,
+        "name": "open-certificates",
+        "taskMs": 254.73999999999995,
+        "scriptMs": 76.65699999999998,
+        "layoutMs": 24.20499999999999,
+        "layoutCount": 2,
+        "styleMs": 33.99200000000002,
+        "nodes": 2968,
+        "longTasks": 1,
+        "longTaskMax": 100
+      },
+      {
+        "round": 1,
+        "name": "open-tools",
+        "taskMs": 174.9560000000001,
+        "scriptMs": 51.238999999999976,
+        "layoutMs": 5.937999999999999,
+        "layoutCount": 2,
+        "styleMs": 16.034999999999993,
+        "nodes": 3070,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 1,
+        "name": "return-summary",
+        "taskMs": 151.83499999999995,
+        "scriptMs": 52.78700000000003,
+        "layoutMs": 7.085000000000008,
+        "layoutCount": 2,
+        "styleMs": 16.56400000000002,
+        "nodes": 3398,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 2,
+        "name": "electrical-cold",
+        "taskMs": 864.148,
+        "scriptMs": 275.13599999999997,
+        "layoutMs": 64.626,
+        "layoutCount": 13,
+        "styleMs": 90.994,
+        "nodes": 2096,
+        "longTasks": 3,
+        "longTaskMax": 214
+      },
+      {
+        "round": 2,
+        "name": "open-residential",
+        "taskMs": 272.04200000000003,
+        "scriptMs": 93.77099999999999,
+        "layoutMs": 21.394999999999996,
+        "layoutCount": 2,
+        "styleMs": 36.065,
+        "nodes": 2502,
+        "longTasks": 1,
+        "longTaskMax": 114
+      },
+      {
+        "round": 2,
+        "name": "open-projects",
+        "taskMs": 179.20800000000003,
+        "scriptMs": 50.395999999999994,
+        "layoutMs": 6.141999999999995,
+        "layoutCount": 3,
+        "styleMs": 15.481999999999996,
+        "nodes": 2578,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 2,
+        "name": "open-certificates",
+        "taskMs": 222.31400000000014,
+        "scriptMs": 61.44199999999999,
+        "layoutMs": 20.750000000000004,
+        "layoutCount": 3,
+        "styleMs": 33.723000000000006,
+        "nodes": 2968,
+        "longTasks": 1,
+        "longTaskMax": 77
+      },
+      {
+        "round": 2,
+        "name": "open-tools",
+        "taskMs": 145.49199999999996,
+        "scriptMs": 40.10899999999995,
+        "layoutMs": 7.2819999999999965,
+        "layoutCount": 2,
+        "styleMs": 17.515000000000004,
+        "nodes": 3070,
+        "longTasks": 1,
+        "longTaskMax": 50
+      },
+      {
+        "round": 2,
+        "name": "return-summary",
+        "taskMs": 160.736,
+        "scriptMs": 44.403000000000084,
+        "layoutMs": 8.224000000000009,
+        "layoutCount": 2,
+        "styleMs": 22.71300000000001,
+        "nodes": 3398,
+        "longTasks": 1,
+        "longTaskMax": 51
+      }
+    ],
+    "after": [
+      {
+        "round": 0,
+        "name": "electrical-cold",
+        "taskMs": 867.583,
+        "scriptMs": 233.495,
+        "layoutMs": 85.26100000000001,
+        "layoutCount": 12,
+        "styleMs": 87.838,
+        "nodes": 2092,
+        "longTasks": 3,
+        "longTaskMax": 177
+      },
+      {
+        "round": 0,
+        "name": "open-residential",
+        "taskMs": 196.1139999999999,
+        "scriptMs": 73.52999999999999,
+        "layoutMs": 14.327999999999994,
+        "layoutCount": 2,
+        "styleMs": 24.508000000000003,
+        "nodes": 2499,
+        "longTasks": 1,
+        "longTaskMax": 72
+      },
+      {
+        "round": 0,
+        "name": "open-projects",
+        "taskMs": 136.1030000000001,
+        "scriptMs": 39.146000000000015,
+        "layoutMs": 8.424000000000001,
+        "layoutCount": 3,
+        "styleMs": 15.007999999999994,
+        "nodes": 2575,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 0,
+        "name": "open-certificates",
+        "taskMs": 189.15300000000013,
+        "scriptMs": 59.03799999999998,
+        "layoutMs": 17.712000000000007,
+        "layoutCount": 3,
+        "styleMs": 22.361999999999995,
+        "nodes": 2966,
+        "longTasks": 1,
+        "longTaskMax": 62
+      },
+      {
+        "round": 0,
+        "name": "open-tools",
+        "taskMs": 138.31600000000012,
+        "scriptMs": 39.07900000000003,
+        "layoutMs": 4.519999999999996,
+        "layoutCount": 2,
+        "styleMs": 15.189000000000007,
+        "nodes": 3068,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 0,
+        "name": "return-summary",
+        "taskMs": 150.60699999999994,
+        "scriptMs": 44.17499999999996,
+        "layoutMs": 8.599000000000023,
+        "layoutCount": 3,
+        "styleMs": 19.373,
+        "nodes": 3397,
+        "longTasks": 1,
+        "longTaskMax": 53
+      },
+      {
+        "round": 1,
+        "name": "electrical-cold",
+        "taskMs": 792.378,
+        "scriptMs": 213.995,
+        "layoutMs": 58.324,
+        "layoutCount": 13,
+        "styleMs": 97.511,
+        "nodes": 2092,
+        "longTasks": 3,
+        "longTaskMax": 158
+      },
+      {
+        "round": 1,
+        "name": "open-residential",
+        "taskMs": 199.34400000000008,
+        "scriptMs": 75.65900000000003,
+        "layoutMs": 15.492999999999993,
+        "layoutCount": 2,
+        "styleMs": 26.234999999999996,
+        "nodes": 2499,
+        "longTasks": 1,
+        "longTaskMax": 83
+      },
+      {
+        "round": 1,
+        "name": "open-projects",
+        "taskMs": 151.97499999999997,
+        "scriptMs": 39.827,
+        "layoutMs": 4.3530000000000095,
+        "layoutCount": 3,
+        "styleMs": 14.033000000000017,
+        "nodes": 2575,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 1,
+        "name": "open-certificates",
+        "taskMs": 197.37999999999988,
+        "scriptMs": 56.16500000000002,
+        "layoutMs": 17.730999999999998,
+        "layoutCount": 2,
+        "styleMs": 21.427999999999976,
+        "nodes": 2966,
+        "longTasks": 1,
+        "longTaskMax": 76
+      },
+      {
+        "round": 1,
+        "name": "open-tools",
+        "taskMs": 173.1149999999999,
+        "scriptMs": 44.305999999999955,
+        "layoutMs": 6.250000000000005,
+        "layoutCount": 3,
+        "styleMs": 17.82800000000001,
+        "nodes": 3068,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 1,
+        "name": "return-summary",
+        "taskMs": 146.81199999999995,
+        "scriptMs": 35.34800000000005,
+        "layoutMs": 9.183999999999997,
+        "layoutCount": 5,
+        "styleMs": 15.940999999999983,
+        "nodes": 3397,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 2,
+        "name": "electrical-cold",
+        "taskMs": 782.9150000000001,
+        "scriptMs": 209.758,
+        "layoutMs": 60.199000000000005,
+        "layoutCount": 12,
+        "styleMs": 91.857,
+        "nodes": 2092,
+        "longTasks": 3,
+        "longTaskMax": 155
+      },
+      {
+        "round": 2,
+        "name": "open-residential",
+        "taskMs": 224.1439999999999,
+        "scriptMs": 80.91700000000002,
+        "layoutMs": 16.951999999999995,
+        "layoutCount": 2,
+        "styleMs": 30.904,
+        "nodes": 2499,
+        "longTasks": 1,
+        "longTaskMax": 94
+      },
+      {
+        "round": 2,
+        "name": "open-projects",
+        "taskMs": 175.38300000000007,
+        "scriptMs": 52.30999999999997,
+        "layoutMs": 5.934000000000009,
+        "layoutCount": 2,
+        "styleMs": 15.401000000000012,
+        "nodes": 2575,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 2,
+        "name": "open-certificates",
+        "taskMs": 174.20499999999996,
+        "scriptMs": 50.43700000000001,
+        "layoutMs": 15.995999999999997,
+        "layoutCount": 2,
+        "styleMs": 22.006999999999998,
+        "nodes": 2966,
+        "longTasks": 1,
+        "longTaskMax": 66
+      },
+      {
+        "round": 2,
+        "name": "open-tools",
+        "taskMs": 147.78700000000012,
+        "scriptMs": 42.09499999999999,
+        "layoutMs": 6.002999999999995,
+        "layoutCount": 2,
+        "styleMs": 15.370000000000022,
+        "nodes": 3068,
+        "longTasks": 0,
+        "longTaskMax": 0
+      },
+      {
+        "round": 2,
+        "name": "return-summary",
+        "taskMs": 158.8989999999999,
+        "scriptMs": 43.39499999999996,
+        "layoutMs": 9.517999999999999,
+        "layoutCount": 3,
+        "styleMs": 20.568999999999978,
+        "nodes": 3397,
+        "longTasks": 1,
+        "longTaskMax": 53
+      }
+    ]
+  },
+  "tablet": {
+    "before": [
+      {
+        "width": 768,
+        "path": "/",
+        "overflow": 0,
+        "height": 5648,
+        "dom": 769,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 1126.6875,
+          "bottom": 1238.6875
+        },
+        "copy": {
+          "x": 16,
+          "y": 160,
+          "width": 736,
+          "height": 365.6875,
+          "bottom": 525.6875
+        },
+        "title": {
+          "x": 16,
+          "y": 195.1875,
+          "width": 736,
+          "height": 120,
+          "bottom": 315.1875
+        },
+        "workspace": {
+          "x": 104,
+          "y": 557.6875,
+          "width": 560,
+          "height": 560,
+          "bottom": 1117.6875
+        },
+        "nav": null,
+        "hiddenSections": 0,
+        "unloadedImages": [],
+        "activeAnimations": 0,
+        "errors": []
+      },
+      {
+        "width": 768,
+        "path": "/electrical",
+        "overflow": 0,
+        "height": 4003,
+        "dom": 884,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 1076.453125,
+          "bottom": 1188.453125
+        },
+        "copy": {
+          "x": 16,
+          "y": 176,
+          "width": 736,
+          "height": 488.796875,
+          "bottom": 664.796875
+        },
+        "title": {
+          "x": 16,
+          "y": 245.6875,
+          "width": 736,
+          "height": 113.109375,
+          "bottom": 358.796875
+        },
+        "workspace": {
+          "x": 64,
+          "y": 696.796875,
+          "width": 640,
+          "height": 426.65625,
+          "bottom": 1123.453125
+        },
+        "nav": {
+          "x": 0,
+          "y": 1188.453125,
+          "width": 768,
+          "height": 49,
+          "bottom": 1237.453125
+        },
+        "hiddenSections": 0,
+        "unloadedImages": [],
+        "activeAnimations": 0,
+        "errors": []
+      },
+      {
+        "width": 768,
+        "path": "/software-development",
+        "overflow": 0,
+        "height": 10350,
+        "dom": 880,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 1141.46875,
+          "bottom": 1253.46875
+        },
+        "copy": {
+          "x": 16,
+          "y": 176,
+          "width": 736,
+          "height": 553.8125,
+          "bottom": 729.8125
+        },
+        "title": {
+          "x": 37,
+          "y": 346.671875,
+          "width": 534,
+          "height": 66,
+          "bottom": 412.671875
+        },
+        "workspace": {
+          "x": 64,
+          "y": 761.8125,
+          "width": 640,
+          "height": 426.65625,
+          "bottom": 1188.46875
+        },
+        "nav": {
+          "x": 0,
+          "y": 1253.46875,
+          "width": 768,
+          "height": 49,
+          "bottom": 1302.46875
+        },
+        "hiddenSections": 7,
+        "unloadedImages": [],
+        "activeAnimations": 5,
+        "errors": []
+      }
+    ],
+    "after": [
+      {
+        "lang": "es",
+        "width": 768,
+        "path": "/",
+        "overflow": 0,
+        "height": 5174,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 652.375,
+          "bottom": 764.375
+        },
+        "title": {
+          "x": 16,
+          "y": 198.375,
+          "width": 356,
+          "height": 240,
+          "bottom": 438.375
+        },
+        "workspace": {
+          "x": 396,
+          "y": 144,
+          "width": 356,
+          "height": 356,
+          "bottom": 500
+        },
+        "minHeight": "0px",
+        "nav": null,
+        "errors": []
+      },
+      {
+        "lang": "es",
+        "width": 768,
+        "path": "/electrical",
+        "overflow": 0,
+        "height": 3519,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 593.03125,
+          "bottom": 705.03125
+        },
+        "title": {
+          "x": 16,
+          "y": 223.109375,
+          "width": 372.9375,
+          "height": 153.109375,
+          "bottom": 376.21875
+        },
+        "workspace": {
+          "x": 412.9375,
+          "y": 152,
+          "width": 339.0625,
+          "height": 226.03125,
+          "bottom": 378.03125
+        },
+        "minHeight": "0px",
+        "nav": {
+          "x": 0,
+          "y": 705.03125,
+          "width": 768,
+          "height": 49,
+          "bottom": 754.03125
+        },
+        "errors": []
+      },
+      {
+        "lang": "es",
+        "width": 768,
+        "path": "/software-development",
+        "overflow": 0,
+        "height": 9819,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 610.8125,
+          "bottom": 722.8125
+        },
+        "title": {
+          "x": 37,
+          "y": 304.671875,
+          "width": 330.9375,
+          "height": 66,
+          "bottom": 370.671875
+        },
+        "workspace": {
+          "x": 412.9375,
+          "y": 194.890625,
+          "width": 339.0625,
+          "height": 226.03125,
+          "bottom": 420.921875
+        },
+        "minHeight": "0px",
+        "nav": {
+          "x": 0,
+          "y": 722.8125,
+          "width": 768,
+          "height": 49,
+          "bottom": 771.8125
+        },
+        "errors": []
+      },
+      {
+        "lang": "es",
+        "width": 1023,
+        "path": "/",
+        "overflow": 0,
+        "height": 4781,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 1023,
+          "height": 620.5,
+          "bottom": 732.5
+        },
+        "title": {
+          "x": 16,
+          "y": 179.1875,
+          "width": 483.5,
+          "height": 180,
+          "bottom": 359.1875
+        },
+        "workspace": {
+          "x": 523.5,
+          "y": 144,
+          "width": 483.5,
+          "height": 483.5,
+          "bottom": 627.5
+        },
+        "minHeight": "0px",
+        "nav": null,
+        "errors": []
+      },
+      {
+        "lang": "es",
+        "width": 1023,
+        "path": "/electrical",
+        "overflow": 0,
+        "height": 3716,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 1023,
+          "height": 645.984375,
+          "bottom": 757.984375
+        },
+        "title": {
+          "x": 16,
+          "y": 313.828125,
+          "width": 506.515625,
+          "height": 113.109375,
+          "bottom": 426.9375
+        },
+        "workspace": {
+          "x": 546.515625,
+          "y": 152,
+          "width": 460.484375,
+          "height": 306.984375,
+          "bottom": 458.984375
+        },
+        "minHeight": "0px",
+        "nav": {
+          "x": 0,
+          "y": 757.984375,
+          "width": 1023,
+          "height": 49,
+          "bottom": 806.984375
+        },
+        "errors": []
+      },
+      {
+        "lang": "es",
+        "width": 1023,
+        "path": "/software-development",
+        "overflow": 0,
+        "height": 9879,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 1023,
+          "height": 593.53125,
+          "bottom": 705.53125
+        },
+        "title": {
+          "x": 37,
+          "y": 304.671875,
+          "width": 464.515625,
+          "height": 76.71875,
+          "bottom": 381.390625
+        },
+        "workspace": {
+          "x": 546.515625,
+          "y": 159.765625,
+          "width": 460.484375,
+          "height": 306.984375,
+          "bottom": 466.75
+        },
+        "minHeight": "0px",
+        "nav": {
+          "x": 0,
+          "y": 705.53125,
+          "width": 1023,
+          "height": 49,
+          "bottom": 754.53125
+        },
+        "errors": []
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "path": "/",
+        "overflow": 0,
+        "height": 4965,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 623.125,
+          "bottom": 735.125
+        },
+        "title": {
+          "x": 16,
+          "y": 198.375,
+          "width": 356,
+          "height": 240,
+          "bottom": 438.375
+        },
+        "workspace": {
+          "x": 396,
+          "y": 144,
+          "width": 356,
+          "height": 356,
+          "bottom": 500
+        },
+        "minHeight": "0px",
+        "nav": null,
+        "errors": []
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "path": "/electrical",
+        "overflow": 0,
+        "height": 3491,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 565.03125,
+          "bottom": 677.03125
+        },
+        "title": {
+          "x": 16,
+          "y": 237.109375,
+          "width": 372.9375,
+          "height": 153.109375,
+          "bottom": 390.21875
+        },
+        "workspace": {
+          "x": 412.9375,
+          "y": 152,
+          "width": 339.0625,
+          "height": 226.03125,
+          "bottom": 378.03125
+        },
+        "minHeight": "0px",
+        "nav": {
+          "x": 0,
+          "y": 677.03125,
+          "width": 768,
+          "height": 49,
+          "bottom": 726.03125
+        },
+        "errors": []
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "path": "/software-development",
+        "overflow": 0,
+        "height": 9692,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 768,
+          "height": 610.8125,
+          "bottom": 722.8125
+        },
+        "title": {
+          "x": 37,
+          "y": 304.671875,
+          "width": 330.9375,
+          "height": 66,
+          "bottom": 370.671875
+        },
+        "workspace": {
+          "x": 412.9375,
+          "y": 194.890625,
+          "width": 339.0625,
+          "height": 226.03125,
+          "bottom": 420.921875
+        },
+        "minHeight": "0px",
+        "nav": {
+          "x": 0,
+          "y": 722.8125,
+          "width": 768,
+          "height": 49,
+          "bottom": 771.8125
+        },
+        "errors": []
+      },
+      {
+        "lang": "en",
+        "width": 1023,
+        "path": "/",
+        "overflow": 0,
+        "height": 4757,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 1023,
+          "height": 620.5,
+          "bottom": 732.5
+        },
+        "title": {
+          "x": 16,
+          "y": 179.1875,
+          "width": 483.5,
+          "height": 180,
+          "bottom": 359.1875
+        },
+        "workspace": {
+          "x": 523.5,
+          "y": 144,
+          "width": 483.5,
+          "height": 483.5,
+          "bottom": 627.5
+        },
+        "minHeight": "0px",
+        "nav": null,
+        "errors": []
+      },
+      {
+        "lang": "en",
+        "width": 1023,
+        "path": "/electrical",
+        "overflow": 0,
+        "height": 3716,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 1023,
+          "height": 645.984375,
+          "bottom": 757.984375
+        },
+        "title": {
+          "x": 16,
+          "y": 313.828125,
+          "width": 506.515625,
+          "height": 113.109375,
+          "bottom": 426.9375
+        },
+        "workspace": {
+          "x": 546.515625,
+          "y": 152,
+          "width": 460.484375,
+          "height": 306.984375,
+          "bottom": 458.984375
+        },
+        "minHeight": "0px",
+        "nav": {
+          "x": 0,
+          "y": 757.984375,
+          "width": 1023,
+          "height": 49,
+          "bottom": 806.984375
+        },
+        "errors": []
+      },
+      {
+        "lang": "en",
+        "width": 1023,
+        "path": "/software-development",
+        "overflow": 0,
+        "height": 9768,
+        "hero": {
+          "x": 0,
+          "y": 112,
+          "width": 1023,
+          "height": 593.53125,
+          "bottom": 705.53125
+        },
+        "title": {
+          "x": 37,
+          "y": 304.671875,
+          "width": 464.515625,
+          "height": 76.71875,
+          "bottom": 381.390625
+        },
+        "workspace": {
+          "x": 546.515625,
+          "y": 159.765625,
+          "width": 460.484375,
+          "height": 306.984375,
+          "bottom": 466.75
+        },
+        "minHeight": "0px",
+        "nav": {
+          "x": 0,
+          "y": 705.53125,
+          "width": 1023,
+          "height": 49,
+          "bottom": 754.53125
+        },
+        "errors": []
+      }
+    ]
+  }
+}

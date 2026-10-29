@@ -5,6 +5,7 @@ import PlaceholderImage from "@/components/shared/PlaceholderImage";
 import { Button } from "@/components/ui/button";
 import SmartImage from "@/components/shared/SmartImage";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { photoPreview } from "@/lib/photoPreview";
 
 /** Image-first project card: large visual area, metadata, and a detail entry point. */
 const WorkCard = ({ item, onOpen }: { item: WorkItem; onOpen: (id: string) => void }) => {
@@ -14,7 +15,7 @@ const WorkCard = ({ item, onOpen }: { item: WorkItem; onOpen: (id: string) => vo
       <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border">
         {item.cover?.src ? (
           <button type="button" onClick={() => onOpen(item.id)} className="block h-full w-full" aria-label={t("View project")}>
-            <SmartImage src={item.cover.src} alt={t(item.cover.alt)} fit="cover" className="h-full w-full" imgClassName="transition-transform duration-500 group-hover:scale-105" />
+            <SmartImage {...photoPreview(item.cover.src, "(min-width:1024px) 440px, (min-width:640px) 46vw, calc(100vw - 2rem)")} alt={t(item.cover.alt)} fit="cover" className="h-full w-full" imgClassName="transition-transform duration-500 group-hover:scale-105" />
           </button>
         ) : (
           <PlaceholderImage className="h-full w-full rounded-none border-0 border-b-0" />

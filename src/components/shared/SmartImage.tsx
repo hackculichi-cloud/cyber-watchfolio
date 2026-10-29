@@ -5,6 +5,10 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 
 interface SmartImageProps {
   src: string;
+  srcSet?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
   alt: string;
   /** Classes for the outer frame (sizing, aspect ratio, radius). */
   className?: string;
@@ -14,7 +18,7 @@ interface SmartImageProps {
 }
 
 /** Image with loading skeleton and a designed fallback — never shows raw alt text as the visual. */
-const ImageFrame = ({ src, alt, className, imgClassName, fit = "contain", eager }: SmartImageProps) => {
+const ImageFrame = ({ src, srcSet, sizes, width, height, alt, className, imgClassName, fit = "contain", eager }: SmartImageProps) => {
   const { t } = useLanguage();
   const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
 
@@ -29,6 +33,10 @@ const ImageFrame = ({ src, alt, className, imgClassName, fit = "contain", eager 
       ) : (
         <img
           src={src}
+          srcSet={srcSet}
+          sizes={sizes}
+          width={width}
+          height={height}
           alt={t(alt)}
           loading={eager ? "eager" : "lazy"}
           decoding="async"
