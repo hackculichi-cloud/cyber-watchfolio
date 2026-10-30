@@ -9,6 +9,25 @@ export function ProviderMark({ id, className = "h-9 w-9" }: { id: TrainingProvid
   </span>;
 }
 
+/** A free-standing, illuminated brand for the training-centers directory. */
+export function TrainingProviderLogo({ id }: { id: TrainingProviderId }) {
+  const { t } = useLanguage();
+  const provider = trainingProviders[id];
+  const label = `${provider.name} · ${t(provider.detail)}`;
+  return <a data-training-provider={id} data-provider-logo href={provider.url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label} className="training-provider-logo">
+    <span aria-hidden className="training-provider-logo-art">
+      {provider.logo
+        ? <img src={provider.logo} width={40} height={40} alt="" loading="lazy" decoding="async" className="training-provider-logo-symbol" />
+        : <span className="training-provider-logo-monogram">{provider.monogram}</span>}
+      {id === "universidad-internacional"
+        ? <span className="training-provider-logo-school">Universidad<span>Internacional</span></span>
+        : id === "linkedin-learning"
+          ? <span className="training-provider-logo-name">LinkedIn<span className="training-provider-logo-learning">Learning</span></span>
+          : <span className="training-provider-logo-name">{provider.name}</span>}
+    </span>
+  </a>;
+}
+
 export default function TrainingProviderBadge({ id, detailed = false }: { id: TrainingProviderId; detailed?: boolean }) {
   const { t } = useLanguage();
   const provider = trainingProviders[id];
