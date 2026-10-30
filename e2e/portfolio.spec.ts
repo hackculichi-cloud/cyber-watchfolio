@@ -65,7 +65,8 @@ test("confirmed electrical course states and future practice are honest", async 
   await page.goto("/electrical#certificate");
   const tracks = page.locator("#tracks");
   await expect(tracks.getByText("Completed through RED CONOCER", { exact: false })).toHaveCount(0);
-  await expect(tracks.getByText("Currently Studying", { exact: true })).toHaveCount(3);
+  await expect(tracks.getByText("Currently Studying", { exact: true })).toHaveCount(2);
+  await expect(tracks.getByText("Completed", { exact: true })).toHaveCount(2);
   await expect(tracks.getByRole("heading", { name: "Electrical Systems: Reading Drawings and Schematics", exact: true })).toBeVisible();
   await openElectricalArea(page, "control");
   await page.locator('[data-electrical-group="control-contactors"]').click();

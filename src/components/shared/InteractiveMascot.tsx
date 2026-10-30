@@ -23,6 +23,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
     const { t } = useLanguage();
     const navigate = useNavigate();
     const id = useId();
+    const widget = useRef<HTMLDivElement>(null);
     const root = useRef<HTMLDivElement>(null);
     const button = useRef<HTMLButtonElement>(null);
     const closeTimer = useRef<ReturnType<typeof setTimeout>>();
@@ -84,7 +85,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         const outside = (event: PointerEvent) => {
             // Touch scrolling must not hide choices that cannot be reopened by hover.
             if (window.matchMedia("(max-width: 767px)").matches || event.pointerType === "touch") return;
-            if (!root.current?.contains(event.target as Node) && !locked.current) {
+            if (!widget.current?.contains(event.target as Node) && !locked.current) {
                 setOpen(false);
                 setPreview(null);
                 setPhase("standby");
@@ -118,20 +119,20 @@ const InteractiveMascot = ({ profile = "home", className }: {
         setPhase("transforming");
         navigate(href);
     };
-    return <div className={cn("home-mascot-widget relative w-full max-w-[35rem]", className)}><div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-motion-paused={motionPaused || reduced || !inView || keyboardFocus || !!preview || phase === "transforming"} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className="mascot-selector mascot-orbit relative aspect-square w-full" onFocusCapture={event => { clearTimeout(closeTimer.current); if (event.target.matches(":focus-visible")) setKeyboardFocus(true); }} onPointerDownCapture={event => {
-        setKeyboardFocus(false);
-        // Touch freezes the choices immediately so the next selection stays put.
-        if (event.pointerType === "touch" && !(event.target as Element).closest("[data-orbit-toggle]")) setMotionPaused(true);
-    }} onPointerEnter={event => { clearTimeout(closeTimer.current); if (event.pointerType === "mouse" && !locked.current) {
+    return <div ref={widget} className={cn("home-mascot-widget relative w-full max-w-[35rem]", className)} onPointerEnter={event => { clearTimeout(closeTimer.current); if (event.pointerType === "mouse" && !locked.current) {
         setOpen(true);
         greet();
     } }} onPointerLeave={() => {
-        // Keep the choices visible; leaving only restores the standing outfit.
+        // Floating objects belong to the same preview as their outfit controls.
         clearTimeout(closeTimer.current);
         closeTimer.current = setTimeout(() => {
-            if (!root.current?.matches(":hover") && !root.current?.contains(document.activeElement) && !locked.current) { setPreview(null); setPhase("standby"); }
+            if (!widget.current?.matches(":hover") && !widget.current?.contains(document.activeElement) && !locked.current) { setPreview(null); setPhase("standby"); }
         }, 200);
-    }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node)) { setKeyboardFocus(false); if (!locked.current) { setPreview(null); setPhase("standby"); } }
+    }}><div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-motion-paused={motionPaused || reduced || !inView || keyboardFocus || !!preview || phase === "transforming"} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className="mascot-selector mascot-orbit relative aspect-square w-full" onFocusCapture={event => { clearTimeout(closeTimer.current); if (event.target.matches(":focus-visible")) setKeyboardFocus(true); }} onPointerDownCapture={event => {
+        setKeyboardFocus(false);
+        // Touch freezes the choices immediately so the next selection stays put.
+        if (event.pointerType === "touch" && !(event.target as Element).closest("[data-orbit-toggle]")) setMotionPaused(true);
+    }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node)) { setKeyboardFocus(false); if (!locked.current && !widget.current?.matches(":hover")) { setPreview(null); setPhase("standby"); } }
     }} onKeyDown={event => { if (event.key === "Escape" && !locked.current) {
         event.preventDefault();
         event.stopPropagation();
@@ -157,9 +158,9 @@ const InteractiveMascot = ({ profile = "home", className }: {
         setOpen(true);
         greet();
     } }} className="absolute left-1/2 top-1/2 z-30 aspect-square w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-full [clip-path:circle(50%)] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" />
-    {selected && <MascotToolField key={selected} profile={selected} committing={phase === "transforming"} id={gearId} />}
+    {selected && <MascotToolField key={selected} profile={selected} committing={phase === "transforming"} id={gearId} stage={root} />}
     {open && <nav id={id} className="z-10" aria-label={t("Choose Culichi's outfit")} data-outfit-selector>
-      {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onPointerDown={() => preloadProfile(area.href)} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onPointerLeave={event => { if (!locked.current && document.activeElement !== event.currentTarget) setPreview(null); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current) setPreview(null); }} aria-disabled={phase === "transforming"} aria-describedby={selected === area.slug ? gearId : undefined} data-profile={area.slug} data-outfit={area.slug} data-active={selected === area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center text-[11px] leading-tight text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
+      {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onPointerDown={() => preloadProfile(area.href)} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current && !widget.current?.matches(":hover")) setPreview(null); }} aria-disabled={phase === "transforming"} aria-describedby={selected === area.slug ? gearId : undefined} data-profile={area.slug} data-outfit={area.slug} data-active={selected === area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center text-[11px] leading-tight text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
         <span data-orbit-node className="relative grid h-20 w-20 place-items-center">
           <span className={cn("mascot-neon-orb flex h-20 w-20 flex-col items-center justify-center gap-1 rounded-full border border-primary/80 bg-background/95", profile === area.slug && "bg-primary/20 ring-2 ring-primary/40")}><area.icon className="h-6 w-6 shrink-0" aria-hidden/><span className="mascot-orbit-label">{t(area.shortTitle ?? area.title)}</span></span>
         </span>
@@ -171,6 +172,6 @@ const InteractiveMascot = ({ profile = "home", className }: {
     <span role="status" aria-live="polite" className="sr-only">
       {phase === "transforming" ? t("Changing outfit…") : ""}
     </span>
-  </div><div data-mascot-legend aria-hidden className="mt-2 h-16" /></div>;
+  </div><div data-mascot-legend aria-hidden className="sr-only" /></div>;
 };
 export default InteractiveMascot;

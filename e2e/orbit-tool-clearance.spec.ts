@@ -29,9 +29,8 @@ async function selectAndSample(page: Page, area: string, mode: "focus" | "hover"
         if (tool.box.width <= 0 || tool.box.height <= 0) violations.push(`Empty tool: ${tool.id}`);
         for (const [slug, button] of Object.entries(circles)) if (intersects(tool.box, button, 8)) violations.push(`${tool.id} approaches ${slug}`);
       }
-      if (field) for (const [slug, button] of Object.entries(circles)) if (intersects(rectangle(field), button, 8)) violations.push(`Rail approaches ${slug}`);
       const fox = stage.querySelector(".mascot-orbit-body");
-      if (field && fox && intersects(rectangle(field), rectangle(fox))) violations.push("The fox covers the tool rail");
+      if (fox) for (const tool of tools) if (intersects(tool.box, rectangle(fox), 8)) violations.push(`The fox covers ${tool.id}`);
       for (let i = 0; i < tools.length; i++) for (let j = i + 1; j < tools.length; j++) {
         if (tools[i].id !== tools[j].id && intersects(tools[i].box, tools[j].box)) violations.push(`${tools[i].id} overlaps ${tools[j].id}`);
       }
@@ -80,8 +79,7 @@ for (const lang of ["es", "en"] as const) {
           const { x, y, width, height } = element.getBoundingClientRect();
           return [element.getAttribute("data-outfit")!, { x, y, width, height }];
         })));
-        if (width >= 768) await expect(page.locator("[data-mascot-legend]")).toBeVisible();
-        else await expect(page.locator("[data-mascot-legend]")).toBeHidden();
+        await expect(page.locator("[data-mascot-legend]")).toHaveClass("sr-only");
         const combinations = new Set<string>();
         for (const [index, area] of areas.entries()) {
           const mode = width >= 768 && index % 2 ? "hover" : "focus";

@@ -181,11 +181,12 @@
         "id": "electrical-measurements",
         "provider": "Udemy",
         "logo": "/images/providers/udemy.svg",
-        "url": "https://www.udemy.com/",
+        "url": "https://www.udemy.com/certificate/UC-25442727-a627-4cdc-894e-d93da3bba021/",
         "title": "Electrical Measurements",
-        "body": "AC/DC voltage, AC clamp current, resistance, de-energized continuity and protection checks. Certificate pending course completion.",
-        "status": "In progress",
-        "tone": "progress"
+        "body": "Completed on 30 October 2026: 2 hours with Irving Lopez Hernandez. Multimeter use, voltage, current, resistance, continuity and safety.",
+        "status": "Completed",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/udemy-mediciones-electricas.pdf"
       },
       {
         "id": "academlo",
@@ -273,11 +274,12 @@
         "id": "electrical-measurements",
         "provider": "Udemy",
         "logo": "/images/providers/udemy.svg",
-        "url": "https://www.udemy.com/",
+        "url": "https://www.udemy.com/certificate/UC-25442727-a627-4cdc-894e-d93da3bba021/",
         "title": "Mediciones Eléctricas",
-        "body": "Voltaje CA/CC, corriente alterna con gancho, resistencia, continuidad sin energía y comprobación de protecciones. Certificado pendiente de completar el curso.",
-        "status": "En curso",
-        "tone": "progress"
+        "body": "Curso de 2 horas con Irving Lopez Hernandez, completado el 30 de octubre de 2026. Multímetro, voltaje, corriente, resistencia, continuidad y seguridad.",
+        "status": "Completado",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/udemy-mediciones-electricas.pdf"
       },
       {
         "id": "academlo",

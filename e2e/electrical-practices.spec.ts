@@ -49,7 +49,7 @@ test("electrical cases stay grouped, preserve original photos and keep protocol 
 test("courses share their certificate card with their explanations and collapsed syllabus", async ({ page }) => {
   await page.goto("/electrical#certificate");
   const certificates = page.locator('[data-certifications="electrical"]');
-  await expect(certificates.locator("[data-certificate-placeholder]")).toHaveCount(4);
+  await expect(certificates.locator("[data-certificate-placeholder]")).toHaveCount(3);
   const conocer = certificates.locator('[data-certificate="electrical-conocer"]');
   await expect(conocer).toContainText("MOCKUP · Original pending");
   await expect(conocer).toContainText("Training in progress; certificate pending completion.");

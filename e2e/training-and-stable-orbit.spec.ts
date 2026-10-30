@@ -75,7 +75,7 @@ test('electrical training links to its confirmed providers and enlarges clearly 
     await expect.poll(() => logo.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
   }
   const records = page.locator('[data-certifications="electrical"]');
-  await expect(records.locator('[data-certificate-mockup]')).toHaveCount(4);
+  await expect(records.locator('[data-certificate-mockup]')).toHaveCount(3);
   const conocer = records.locator('[data-certificate="electrical-conocer"]');
   await expect(conocer).toContainText('Currently Studying');
   await conocer.getByRole('button', { name: /^Enlarge provisional certificate/ }).click();

@@ -4,12 +4,14 @@ import { cn } from "@/lib/utils";
 import BarberToolImage from "@/components/barbering/BarberToolImage";
 
 /** Original transparent artwork, selected with CSS rather than remote image services. */
-export default function MascotToolProp({ tool, className }: { tool: MascotTool; className?: string }) {
+export default function MascotToolProp({ tool, className, contain = false }: { tool: MascotTool; className?: string; contain?: boolean }) {
   if (tool === "barber-scissors" || tool === "hair-clipper" || tool === "detail-trimmer") return <span aria-hidden data-tool-prop={tool} className={cn("block w-full", className)}><BarberToolImage kind={tool === "hair-clipper" ? "clipper" : tool === "detail-trimmer" ? "trimmer" : "scissors"} /></span>;
   const { region, clip } = toolArtwork[tool];
   if (!region) return null;
   const [x, y, width, height] = region;
   return <span aria-hidden data-tool-prop={tool} className={cn("block w-full bg-no-repeat", className)} style={{
+    width: contain ? `${width / Math.max(width, height) * 100}%` : undefined,
+    height: contain ? `${height / Math.max(width, height) * 100}%` : undefined,
     aspectRatio: `${width}/${height}`, backgroundImage: `url(${atlas})`,
     backgroundSize: `${1086 / width * 100}% ${1448 / height * 100}%`,
     backgroundPosition: `${x / (1086 - width) * 100}% ${y / (1448 - height) * 100}%`, clipPath: clip,

@@ -36,7 +36,8 @@ test('the main program leads the visual overview and complementary courses in bo
       await expect(complementary.locator('[data-complementary-course]')).toHaveCount(3);
       await expect(complementary).not.toContainText('RED CONOCER');
       await expect(complementary.locator('[data-complementary-course="electrical-linkedin"]')).toContainText(lang === 'es' ? 'Completado' : 'Completed');
-      await expect(complementary.locator('[data-complementary-course="electrical-udemy-measurements"]')).toContainText(lang === 'es' ? 'En progreso' : 'In progress');
+      await expect(complementary.locator('[data-complementary-course="electrical-udemy-measurements"]')).toContainText(lang === 'es' ? 'Completado' : 'Completed');
+      await expect(complementary.locator('[data-complementary-course="electrical-udemy"]')).toContainText(lang === 'es' ? 'En progreso' : 'In progress');
       await expect(page.locator('[data-electrical-knowledge] article')).toHaveCount(3);
       await expect(page.locator('[data-learning-stage]')).toHaveCount(3);
       expect(await page.locator('[data-learning-stage]').evaluateAll(elements => elements.map(el => el.getAttribute('data-learning-stage')))).toEqual(['training', 'knowledge', 'practice']);

@@ -4,6 +4,7 @@ import { MemoryRouter, useLocation, useNavigate } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import ElectricalAreaLearning from "@/components/electrical/ElectricalAreaLearning";
+import ElectricalTrainingCertificates from "@/components/electrical/ElectricalTrainingCertificates";
 
 function HistoryControls() {
   const { hash } = useLocation();
@@ -88,7 +89,7 @@ describe("course knowledge and documented practice", () => {
     expect(main.compareDocumentPosition(complementary) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(complementary).not.toHaveTextContent('Electrical Fundamentals & Industrial Electricity');
     expect(document.querySelector('[data-complementary-course="electrical-linkedin"]')).toHaveTextContent('Completed');
-    expect(document.querySelector('[data-complementary-course="electrical-udemy-measurements"]')).toHaveTextContent('In progress');
+    expect(document.querySelector('[data-complementary-course="electrical-udemy-measurements"]')).toHaveTextContent('Completed');
     fireEvent.click(screen.getAllByText("View course details")[0]);
     expect(onOpen).toHaveBeenLastCalledWith("certificate", "electrical-linkedin");
     fireEvent.click(screen.getByText("View practices and evidence"));
@@ -103,5 +104,28 @@ describe("course knowledge and documented practice", () => {
     const title = screen.getByText("Electrical Control — START/STOP Contactor Practice");
     expect(title.closest("li")).toHaveTextContent("Planned");
     expect(document.querySelector("[data-area-practices]")).toHaveTextContent("Float-switch Control — Course Practice");
+  });
+
+  it("publishes the supplied measurements credential without certifying the ongoing programs", () => {
+    render(<LanguageProvider><ElectricalTrainingCertificates /></LanguageProvider>);
+    const completed = document.querySelector('[data-certificate="electrical-measurements"]')! as HTMLElement;
+    expect(within(completed).getByText("Completed", { exact: true })).toBeVisible();
+    expect(completed).toHaveTextContent("Christian Velasco Estrada");
+    expect(completed).toHaveTextContent("Irving Lopez Hernandez");
+    expect(completed).toHaveTextContent("2 hours");
+    expect(completed).toHaveTextContent("UC-25442727-a627-4cdc-894e-d93da3bba021");
+    expect(completed.querySelector("time")).toHaveAttribute("dateTime", "2026-10-30");
+    expect(within(completed).getByRole("link", { name: "View Udemy credential" })).toHaveAttribute("href", "https://www.udemy.com/certificate/UC-25442727-a627-4cdc-894e-d93da3bba021/");
+    expect(completed.querySelector("[data-certificate-mockup]")).toBeNull();
+    expect(completed.querySelector('[data-certificate-original="electrical-measurements"] img')).toHaveAttribute("src", "/certificates/udemy-mediciones-electricas.webp");
+    expect(within(completed).getByRole("link", { name: /^Download PDF$/ })).toHaveAttribute("href", "/certificates/udemy-mediciones-electricas.pdf");
+    expect(within(completed).getByRole("link", { name: /^Download PDF$/ })).toHaveAttribute("download");
+    for (const id of ["electrical-conocer", "electrical-udemy"]) {
+      const ongoing = document.querySelector(`[data-certificate="${id}"]`)! as HTMLElement;
+      expect(within(ongoing).getByText("Currently Studying", { exact: true })).toBeVisible();
+      expect(ongoing.querySelector("time, [data-certificate-details]")).toBeNull();
+    }
+    expect(document.querySelectorAll('[data-training-role="main"]')).toHaveLength(1);
+    expect(document.querySelector('[data-training-role="main"]')?.closest("article")).toHaveAttribute("data-certificate", "electrical-conocer");
   });
 });

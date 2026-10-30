@@ -22,9 +22,17 @@ const ElectricalTrainingCertificates = () => {
         summary={<summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>}>
         <div className="mt-4"><ElectricalCurriculum training={electricalTraining} /></div>
       </DeferredDetails>}
+      {track.syllabus && <DeferredDetails data-confirmed-course-syllabus={track.id}
+        summary={<summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Documented course syllabus")}</summary>}>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t(track.syllabusNote)}</p>
+        <ol className="mt-4 space-y-3">{track.syllabus.map((section, index) => <li key={section.title} data-confirmed-syllabus-section className="rounded-lg border border-border bg-background/40 p-4">
+          <h4 className="font-semibold"><span className="mr-2 font-mono text-primary">{String(index + 1).padStart(2, "0")}</span>{t(section.title)}</h4>
+          <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">{section.topics.map(topic => <li key={topic}>{t(topic)}</li>)}</ul>
+        </li>)}</ol>
+      </DeferredDetails>}
       {track.learningObjectives && <details data-course-objectives={track.id}>
         <summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course learning objectives")}</summary>
-        <p className="mt-3 text-xs text-muted-foreground">{t("Topics being studied; certificate pending completion.")}</p>
+        <p className="mt-3 text-xs text-muted-foreground">{t(track.status === "Completed" ? "Learning objectives from my completed course." : "Topics being studied; certificate pending completion.")}</p>
         <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">{track.learningObjectives.map(item => <li key={item}>{t(item)}</li>)}</ul>
       </details>}
     </div>];
