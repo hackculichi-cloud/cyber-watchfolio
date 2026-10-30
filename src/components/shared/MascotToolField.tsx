@@ -10,7 +10,7 @@ export default function MascotToolField({ profile, committing, id }: { profile: 
     const first = requestAnimationFrame(() => { next = requestAnimationFrame(() => setEntered(true)); });
     return () => { cancelAnimationFrame(first); cancelAnimationFrame(next); };
   }, []);
-  return <div data-tool-field={profile} data-profile={profile} data-equipping={committing} data-tools-entered={entered} className="mascot-tool-field pointer-events-none absolute inset-x-0 top-full z-[5] mt-2 h-16">
+  return <div data-tool-field={profile} data-profile={profile} data-equipping={committing} data-tools-entered={entered} className="mascot-tool-field absolute inset-x-0 top-full z-[5] mt-2 h-16">
     <MascotGearPreview profile={profile} id={id} compact />
   </div>;
 }

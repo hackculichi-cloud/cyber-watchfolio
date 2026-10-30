@@ -10,6 +10,7 @@
 
 - Keep «Sobre mí» / About out of the top desktop and mobile menus; the About page remains accessible from the footer.
 - Give each Home outfit three relevant tools in a reserved area clear of all outfit controls, including during transitions and on phones.
+- Keep outfit tools visible while the pointer moves from their circle to the tool rail or hovers either region, and give each tool a consistent individual color accent.
 
 - Keep unpublished collections compact in every area: use one brief pending row, never grids of empty image cards or large blank panels. Preserve existing anchors and automatically show the real collection when data is published.
 - Review Spanish spelling and technical meaning across all profiles, menus and dialogs. Render plain Unicode text rather than HTML entities; preserve commands, case identifiers, filenames, domains and evidence values exactly. Keep user-facing empty-state copy about the portfolio, not data-file editing instructions.
