@@ -155,6 +155,9 @@ export type TrainingTrack = {
   topics: string[];
   anchor: string;
   learningObjectives?: string[];
+  /** Only the sections visible in the author's supplied course screenshot. */
+  syllabus?: { title: string; topics: string[] }[];
+  syllabusNote?: string;
 };
 
 export const trainingTracks: TrainingTrack[] = [
@@ -186,10 +189,17 @@ export const trainingTracks: TrainingTrack[] = [
     id: "electrical-udemy-measurements",
     anchor: "electrical",
     title: "Electrical Measurements",
-    status: "Currently Studying",
-    description: "Udemy course in progress: AC/DC voltage, current, resistance and continuity measurements. Certificate pending course completion.",
+    status: "Completed",
+    description: "Completed Udemy course on electrical quantities, measuring instruments and multimeter measurements, with a certificate dated October 30, 2026.",
     topics: ["AC / DC", "Digital multimeter", "Clamp multimeter", "Resistance", "Continuity"],
     learningObjectives: ["Main electrical quantities present in electrical circuits.", "How an elementary electrical circuit works.", "Differences between series and parallel circuits.", "Measuring AC and DC voltage.", "Measuring AC current with a clamp multimeter.", "Measuring the electrical resistance of components.", "Testing continuity in de-energized circuits.", "Detecting short circuits using continuity testing on de-energized circuits.", "Checking protection devices with a multimeter.", "Understanding multimeter protection ratings and voltage limits."],
+    syllabusNote: "Documented topics from the completed course. This list is partial.",
+    syllabus: [
+      { title: "Electrical fundamentals", topics: ["What is electricity?", "Electrical quantities", "Elementary electrical circuit", "Series, parallel and mixed circuits", "Quiz: electrical fundamentals"] },
+      { title: "Measuring instruments", topics: ["What does measuring mean?", "Measuring instruments", "Instrument accuracy and precision", "Multimeter capacity", "Symbols on the multimeter", "Analysis of the course multimeter", "Physical inspection of the multimeter", "Voltage test screwdriver", "Voltage detector", "Outlet tester", "Multimeter recommendations", "Quiz: measuring instruments and alternatives"] },
+      { title: "Measurements with a multimeter", topics: ["Voltage measurement at an outlet and lamp socket", "Battery voltage measurement", "Electric current measurement", "Electrical resistance measurement", "What is continuity?", "Continuity in lamp sockets, outlets and switches", "Quiz: voltage, current, resistance and continuity"] },
+      { title: "Multimeter protection ratings", topics: ["Multimeter safety", "CAT measurement categories"] },
+    ],
   },
   {
     id: "electronics",

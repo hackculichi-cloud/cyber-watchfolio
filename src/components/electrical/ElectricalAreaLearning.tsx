@@ -77,7 +77,7 @@ export default function ElectricalAreaLearning({ area, onOpen }: { area: string;
         <Tag variant={course.status === "Completed" ? "primary" : "muted"} className="self-start">{t(course.status === "Completed" ? "Completed" : "In progress")}</Tag>
         <h5 className="mt-3 font-bold">{t(course.title)}</h5>
         {course.learningObjectives && <details className="mt-3">
-          <summary className="menu-choice cursor-pointer rounded-lg py-2 text-sm font-semibold text-primary">{t("What I study in this course")}</summary>
+          <summary className="menu-choice cursor-pointer rounded-lg py-2 text-sm font-semibold text-primary">{t(course.status === "Completed" ? "What I learned in this course" : "What I study in this course")}</summary>
           <ul className="mt-2 list-disc space-y-2 pl-4 text-sm text-foreground/85">{course.learningObjectives.map(topic => <li key={topic}>{t(topic)}</li>)}</ul>
         </details>}
         <button type="button" onClick={() => onOpen("certificate", course.id === "electrical-udemy-measurements" ? "electrical-measurements" : course.id)} className="menu-choice mt-auto inline-flex min-h-11 items-center gap-2 self-start rounded-lg px-2 pt-3 text-sm font-semibold text-primary">{t("View course details")}<ArrowRight className="h-4 w-4" aria-hidden /></button>

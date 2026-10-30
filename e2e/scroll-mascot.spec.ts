@@ -99,13 +99,14 @@ test("home loads the local code font and general mascot background", async ({ pa
   await expect(backdrop).toHaveAttribute("aria-hidden", "true");
 });
 
-test("Udemy electrical measurements is in progress with ten bilingual learning objectives", async ({ page }) => {
+test("completed Udemy electrical measurements retains ten bilingual learning objectives", async ({ page }) => {
   await page.goto("/electrical#tracks");
   const course = page.locator("#tracks article").filter({ has: page.locator('[data-course-objectives="electrical-udemy-measurements"]') });
-  await expect(course.getByText("Currently Studying", { exact: true })).toBeVisible();
-  await expect(course.getByText(/Certificate pending course completion/)).toBeVisible();
-  await course.locator("summary").click();
-  await expect(course.locator("li")).toHaveCount(10);
+  await expect(course.getByText("Completed", { exact: true })).toBeVisible();
+  await expect(course).toContainText("UC-25442727-a627-4cdc-894e-d93da3bba021");
+  const objectives = course.locator('[data-course-objectives="electrical-udemy-measurements"]');
+  await objectives.locator("summary").click();
+  await expect(objectives.locator("li")).toHaveCount(10);
   await selectLanguage(page, "es");
   await expect(course.getByRole("heading", { name: "Mediciones Eléctricas", exact: true })).toBeVisible();
   await expect(course.getByText("Medición de continuidad en circuitos sin energía.", { exact: true })).toBeVisible();
@@ -170,8 +171,10 @@ test("certificate inventories distinguish missing files from unfinished courses"
   await page.goto("/electrical#certificate");
   const inventory = page.locator('[data-certifications="electrical"]');
   await expect(inventory.locator("article")).toHaveCount(4);
-  await expect(inventory.getByText("Completed", { exact: true })).toHaveCount(1);
-  await expect(inventory.getByText("Currently Studying", { exact: true })).toHaveCount(3);
+  await expect(inventory.getByText("Completed", { exact: true })).toHaveCount(2);
+  await expect(inventory.getByText("Currently Studying", { exact: true })).toHaveCount(2);
+  await expect(inventory.locator("[data-certificate-original]")).toHaveCount(1);
+  await expect(inventory.locator("[data-certificate-placeholder]")).toHaveCount(3);
   await expect(inventory.getByText("Certificate confirmed; file pending upload.", { exact: true })).toBeVisible();
   await selectLanguage(page, "es");
   await expect(inventory.getByText("Certificado confirmado; archivo pendiente de subir.", { exact: true })).toBeVisible();

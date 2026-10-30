@@ -22,7 +22,7 @@ export const profileCapabilities: Partial<Record<ProfileSlug, ProfileCapability[
       "title": "Measurement & fault finding",
       "providers": ["udemy"],
       "status": "Training & practice",
-      "body": "I develop AC/DC measurement skills with a multimeter and clamp meter: voltage, current, resistance and de-energized continuity. My Udemy training also covers series/parallel circuits, short-circuit checks, protection devices and instrument safety ratings."
+      "body": "My completed Udemy Electrical Measurements course supports AC/DC measurement with a multimeter and clamp meter: voltage, current, resistance and de-energized continuity. The course also covers series/parallel circuits, short-circuit checks, protection devices and instrument safety ratings."
     },
     {
       "title": "Industrial systems, motors & control",

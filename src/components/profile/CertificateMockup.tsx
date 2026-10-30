@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Expand } from "lucide-react";
 import paper from "@/assets/electrical-certificate-paper.webp";
 import type { CertificationRecord } from "@/data/certifications";
@@ -28,7 +28,17 @@ function MockupPaper({ record }: { record: CertificationRecord }) {
 /** Clearly marked visual sample: no fabricated dates, signatures or credential numbers. */
 export default function CertificateMockup({ record }: { record: CertificationRecord }) {
   const [open, setOpen] = useState(false);
+  const opener = useRef<HTMLButtonElement>(null);
   const { t } = useLanguage();
+  if (record.image) return <div data-certificate-original={record.id}>
+    <button ref={opener} type="button" onClick={() => setOpen(true)} aria-label={`${t("Enlarge original certificate")}: ${t(record.title)}`} className="block w-full rounded-lg border border-primary/30 text-left outline-none focus-visible:ring-2 focus-visible:ring-primary">
+      <img src={record.image.src} alt={t(record.image.alt)} width={record.image.width} height={record.image.height} loading="lazy" decoding="async" className="block h-auto w-full rounded-t-lg bg-white" />
+      <span className="flex items-center justify-between gap-2 rounded-b-lg bg-background px-3 py-2 text-xs text-primary">{t("View original certificate")}<Expand className="h-4 w-4" aria-hidden /></span>
+    </button>
+    <DetailModal open={open} onOpenChange={setOpen} returnFocusRef={opener} title={t(record.title)} subtitle={t("Original certificate supplied by the author")}>
+      <img src={record.image.src} alt={t(record.image.alt)} width={record.image.width} height={record.image.height} decoding="async" className="h-auto w-full rounded-lg bg-white" />
+    </DetailModal>
+  </div>;
   return <div data-certificate-placeholder>
     <button type="button" onClick={() => setOpen(true)} aria-label={`${t("Enlarge provisional certificate")}: ${t(record.title)}`} className="block w-full rounded-lg border border-primary/30 text-left shadow-lg outline-none focus-visible:ring-2 focus-visible:ring-primary">
       <span aria-hidden className="block"><MockupPaper record={record} /></span>

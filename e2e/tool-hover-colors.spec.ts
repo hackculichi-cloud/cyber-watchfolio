@@ -4,7 +4,7 @@ const areas = ["cybersecurity", "development", "electrical", "electronics", "rep
 
 for (const lang of ["es", "en"] as const) {
   for (const width of [768, 1440]) {
-    test(`hover keeps three individually colored tools available at ${width}px in ${lang}`, async ({ page }) => {
+    test(`hover keeps three floating tools in their section color at ${width}px in ${lang}`, async ({ page }) => {
       test.setTimeout(60000);
       const errors: string[] = [];
       page.on("pageerror", error => errors.push(error.message));
@@ -13,7 +13,7 @@ for (const lang of ["es", "en"] as const) {
       await page.goto("/");
       await page.evaluate(() => document.fonts.ready);
       const stage = page.locator("[data-home-mascot]");
-      const observedColors = new Map<string, string>();
+      const sectionColors = new Set<string>();
 
       for (const area of areas) {
         const option = stage.locator(`[data-outfit="${area}"]`);
@@ -21,30 +21,29 @@ for (const lang of ["es", "en"] as const) {
         const field = stage.locator(`[data-tool-field="${area}"]`);
         await expect(field).toBeVisible();
         await expect(field).toHaveAttribute("data-tools-entered", "true");
-        // Wait for the finite entrance before Playwright scrolls an absolute
-        // target into view. Early-frame clearance is covered by orbit-tool-clearance.
-        await field.evaluate(async element => {
+        // Wait only for the object's entrance; its small finite bob does not
+        // move the hover target. Early-frame clearance has its own regression.
+        await field.locator("[data-floating-tool]").first().evaluate(async element => {
           await Promise.all(element.getAnimations({ subtree: true })
-            .filter(animation => animation.playState === "running" && Number.isFinite(animation.effect?.getTiming().iterations))
+            .filter(animation => animation.effect instanceof KeyframeEffect && animation.effect.target === element && animation.playState === "running")
             .map(animation => animation.finished));
         });
-        const chips = field.locator("[data-tool-chip]");
-        await expect(chips).toHaveCount(3);
+        const tools = field.locator("[data-floating-tool]");
+        await expect(tools).toHaveCount(3);
         await expect(field.locator("[data-tool-prop]")).toHaveCount(3);
-        const styles = await chips.evaluateAll(elements => elements.map(element => {
+        await expect(field.locator("[data-tool-chip]")).toHaveCount(0);
+        await expect(field).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+        await expect(field).toHaveCSS("border-top-width", "0px");
+        const sectionColor = await option.evaluate(element => getComputedStyle(element).color);
+        sectionColors.add(sectionColor);
+        const styles = await tools.evaluateAll(elements => elements.map(element => {
           const style = getComputedStyle(element);
-          return { id: element.getAttribute("data-tool-chip")!, border: style.borderTopColor, borderWidth: parseFloat(style.borderTopWidth), background: style.backgroundColor, text: element.textContent?.trim() ?? "" };
+          return { id: element.getAttribute("data-tool-flight")!, color: style.color, filter: getComputedStyle(element.querySelector(".mascot-tool-float")!).filter };
         }));
         expect(new Set(styles.map(style => style.id)).size).toBe(3);
-        expect(new Set(styles.map(style => style.border)).size).toBe(3);
-        expect(new Set(styles.map(style => style.background)).size).toBe(3);
         for (const style of styles) {
-          expect(style.borderWidth).toBeGreaterThan(0);
-          expect(style.border).not.toBe("rgba(0, 0, 0, 0)");
-          expect(style.background).not.toBe("rgba(0, 0, 0, 0)");
-          expect(style.text).not.toBe("");
-          if (observedColors.has(style.id)) expect(style.border).toBe(observedColors.get(style.id));
-          observedColors.set(style.id, style.border);
+          expect(style.color).toBe(sectionColor);
+          expect(style.filter).toContain("drop-shadow");
         }
         if (area === "electrical") {
           for (const label of lang === "es"
@@ -53,8 +52,8 @@ for (const lang of ["es", "en"] as const) {
         }
 
         await field.evaluate(element => element.setAttribute("data-hover-retained", "true"));
-        await chips.first().hover();
-        await chips.last().hover();
+        await tools.first().hover();
+        await tools.last().hover();
         // Stay beyond the short leave delay, sampling frames instead of a sleep.
         expect(await field.evaluate(element => new Promise<boolean>(resolve => {
           let frames = 0;
@@ -67,12 +66,13 @@ for (const lang of ["es", "en"] as const) {
           requestAnimationFrame(sample);
         }))).toBe(true);
         await expect(field).toHaveAttribute("data-hover-retained", "true");
-        await expect(field.locator("[data-tool-chip]")).toHaveCount(3);
+        await expect(field.locator("[data-floating-tool]")).toHaveCount(3);
         await expect(page).toHaveURL(/\/$/);
 
         await page.mouse.move(0, 990);
         await expect(stage.locator("[data-tool-field]")).toHaveCount(0);
       }
+      expect(sectionColors.size).toBe(7);
 
       // Keyboard preview and Escape continue to work after pointer previews.
       await stage.locator('[data-outfit="electrical"]').focus();
