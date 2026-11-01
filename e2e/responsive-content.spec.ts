@@ -54,8 +54,8 @@ test('opening content settles within a few frames with a throttled CPU and norma
 
 test('course expansion uses its full height immediately and photo dialogs avoid mobile blur', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/electrical#residential');
-  const syllabus = page.locator('[data-area-syllabus]');
+  await page.goto('/electrical#certificate');
+  const syllabus = page.locator('[data-course-syllabus="electrical"]');
   await syllabus.locator('summary').click();
   const trigger = syllabus.getByRole('button', { name: /Residential Electrical Installations/ });
   await trigger.click();
@@ -78,21 +78,21 @@ test('long specialty panels stay free of blurred hover shadows while only the se
     await expect(detail).toBeFocused();
     await expect(detail).toHaveCSS('box-shadow', 'none');
     await expect(detail).toHaveCSS('transition-duration', '0s');
-    await expect(page.locator('[data-area-learning]')).toBeVisible();
+    await expect(page.locator('[data-area-tab="projects"]')).toHaveAttribute('aria-selected', 'true');
     await expect(page.locator('[data-certifications]')).toHaveCount(0);
-    await expect(page.locator('[data-electrical-practices]')).toHaveCount(0);
+    await expect(page.locator('[data-electrical-practices]')).toHaveCount(1);
 
     await page.locator('[data-open-electrical-training]').click();
     await expect(page.locator('[data-certifications]')).toBeVisible();
-    await expect(page.locator('[data-area-learning]')).toHaveCount(1);
+    await expect(page.locator('[data-electrical-practices]')).toHaveCount(1);
     await page.locator('[data-certifications] h2').hover();
     expect(await detail.evaluate(el => el.matches(':hover'))).toBe(false);
     await expect(detail).toHaveCSS('box-shadow', 'none');
     await expect(page.locator('[data-electrical-area-content] [data-certifications]')).toHaveCount(0);
 
-    await page.locator('[data-area-tab="overview"]').click();
+    await page.locator('[data-area-tab="projects"]').click();
     await expect(page.locator('[data-certifications]')).toHaveCount(0);
-    await expect(page.locator('[data-area-learning]')).toBeVisible();
+    await expect(page.locator('[data-area-tab="projects"]')).toHaveAttribute('aria-selected', 'true');
     await expect(detail).toHaveCSS('box-shadow', 'none');
   }
 });

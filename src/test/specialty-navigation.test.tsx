@@ -3,7 +3,6 @@ import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-li
 import { MemoryRouter, useLocation, useNavigate } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
-import ElectricalAreaLearning from "@/components/electrical/ElectricalAreaLearning";
 import ElectricalTrainingCertificates from "@/components/electrical/ElectricalTrainingCertificates";
 
 function HistoryControls() {
@@ -72,38 +71,15 @@ describe("entering a specialty", () => {
 });
 
 describe("course knowledge and documented practice", () => {
-  it("shows the residential syllabus and provides actions for courses and evidence", async () => {
-    const onOpen = vi.fn();
-    render(<LanguageProvider><ElectricalAreaLearning area="residential" onOpen={onOpen} /></LanguageProvider>);
-    fireEvent.click(document.querySelector('[data-area-syllabus] summary')!);
-    await waitFor(() => expect(document.querySelectorAll('[data-electrical-module]')).toHaveLength(8));
-    expect(document.querySelectorAll('[data-related-module="true"]')).toHaveLength(3);
+  it("preserves all eight modules in the shared electrical training collection", async () => {
+    render(<LanguageProvider><ElectricalTrainingCertificates /></LanguageProvider>);
+    const main = document.querySelector('[data-certificate="electrical-conocer"]')!;
+    expect(main).toHaveTextContent('Universidad Internacional · RED CONOCER');
+    fireEvent.click(main.querySelector('[data-course-syllabus="electrical"] summary')!);
+    await waitFor(() => expect(main.querySelectorAll('[data-electrical-module]')).toHaveLength(8));
     expect(screen.getByRole("button", { name: /Final Project and Evaluation/ })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: /Residential Electrical Installations/ }));
     expect(screen.getByText("Electrical load calculations")).toBeVisible();
-    const practice = document.querySelector("[data-area-practices]")! as HTMLElement;
-    expect(within(practice).getByText("Residential Outlet Replacement — Photo Record")).toBeInTheDocument();
-    const main = document.querySelector('[data-main-electrical-training]')!;
-    const complementary = document.querySelector('[data-area-courses]')!;
-    expect(main).toHaveTextContent('Universidad Internacional · RED CONOCER');
-    expect(main.compareDocumentPosition(complementary) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(complementary).not.toHaveTextContent('Electrical Fundamentals & Industrial Electricity');
-    expect(document.querySelector('[data-complementary-course="electrical-linkedin"]')).toHaveTextContent('Completed');
-    expect(document.querySelector('[data-complementary-course="electrical-udemy-measurements"]')).toHaveTextContent('Completed');
-    fireEvent.click(screen.getAllByText("View course details")[0]);
-    expect(onOpen).toHaveBeenLastCalledWith("certificate", "electrical-linkedin");
-    fireEvent.click(screen.getByText("View practices and evidence"));
-    expect(onOpen).toHaveBeenLastCalledWith("projects");
-  });
-
-  it("keeps industrial work undocumented and the contactor exercise planned", () => {
-    const { rerender } = render(<LanguageProvider><ElectricalAreaLearning area="industrial" onOpen={() => {}} /></LanguageProvider>);
-    expect(document.querySelector("[data-area-practices]")).toHaveTextContent("No completed practices documented");
-    expect(screen.queryByText("Residential Outlet Replacement — Photo Record")).not.toBeInTheDocument();
-    rerender(<LanguageProvider><ElectricalAreaLearning area="electrical-control" onOpen={() => {}} /></LanguageProvider>);
-    const title = screen.getByText("Electrical Control — START/STOP Contactor Practice");
-    expect(title.closest("li")).toHaveTextContent("Planned");
-    expect(document.querySelector("[data-area-practices]")).toHaveTextContent("Float-switch Control — Course Practice");
   });
 
   it("publishes the supplied measurements credential without certifying the ongoing programs", () => {

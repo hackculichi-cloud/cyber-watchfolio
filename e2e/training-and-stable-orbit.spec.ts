@@ -88,5 +88,6 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await page.keyboard.press('Escape');
   await expect(conocer).toContainText('Estudiando actualmente');
   await page.goto('/electrical#residential');
-  expect(await page.locator('#overview [data-training-provider]').count()).toBeGreaterThan(0);
+  await expect(page.locator('[data-area-tab="projects"]')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-area-tab="overview"]')).toHaveCount(0);
 });

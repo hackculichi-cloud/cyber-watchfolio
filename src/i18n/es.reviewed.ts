@@ -2,7 +2,6 @@
 export const reviewedEs: Record<string, string> = {
   "My electrical tools": "Mis herramientas de electricidad",
   "My hand tools and installation materials, photographed by me.": "Mis herramientas manuales y materiales de instalación, a partir de fotografías que tomé de mi equipo.",
-  "Presentation retouched from my photographs: consistent lighting and background.": "Presentación retocada a partir de mis fotografías, con iluminación y fondo uniformes.",
   "Pliers set": "Juego de pinzas",
   "Combination pliers, long-nose pliers and diagonal cutters.": "Pinzas de electricista, de punta larga y de corte diagonal.",
   "Three orange-handled Truper pliers: combination, long nose and diagonal cutters.": "Tres pinzas Truper con mangos naranjas: de electricista, de punta larga y de corte diagonal.",
