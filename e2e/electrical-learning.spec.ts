@@ -51,7 +51,7 @@ test('specialties enter Projects and legacy summary links remain usable without 
   for (const id of ['residential', 'industrial', 'electrical-control', 'overview', 'skills']) {
     await page.goto(`/electrical#${id}`);
     await expect(page.locator('[data-area-tab="projects"]')).toHaveAttribute('aria-selected', 'true');
-    await expect(page.locator('[data-area-tab]')).toHaveCount(3);
+    await expect(page.locator('[data-area-tab]')).toHaveCount(2);
     await expect(page.locator('[data-area-tab="overview"], [data-area-learning]')).toHaveCount(0);
     await expect(page.locator('#projects')).toBeVisible();
     if (id === 'overview' || id === 'skills') await expect(page.locator('#projects h2')).toBeInViewport();

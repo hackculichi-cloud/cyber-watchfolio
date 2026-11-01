@@ -1,5 +1,8 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "A single equipment catalog shared by all electrical specialties.": "Un solo catálogo de herramientas y materiales, común a todas las especialidades de electricidad.",
+  "View tools": "Ver herramientas",
+  "Close tools": "Cerrar herramientas",
   "My electrical tools": "Mis herramientas de electricidad",
   "My hand tools and installation materials, photographed by me.": "Mis herramientas manuales y materiales de instalación, a partir de fotografías que tomé de mi equipo.",
   "Pliers set": "Juego de pinzas",

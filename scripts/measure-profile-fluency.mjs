@@ -18,7 +18,7 @@ for(let round=0;round<3;round++){
  await run('open-residential',()=>page.locator('[data-specialty="residential"]').click());
  await run('open-evidence',()=>page.locator('[data-area-tab="evidence"]').click());
  await run('open-certificates',()=>page.locator('[data-open-electrical-training]').click());
- await run('open-tools',()=>page.locator('[data-area-tab="tools"]').click());
+ await run('open-tools',()=>page.locator('[data-open-electrical-tools]').click());
  await run('return-projects',()=>page.locator('[data-area-tab="projects"]').click());
  await context.close();
 }

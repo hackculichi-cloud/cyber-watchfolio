@@ -52,12 +52,13 @@ test("phone layouts keep named tools, gallery targets and the larger header insi
     const tools = page.locator('#tools');
     await tools.scrollIntoViewIfNeeded();
     await expect(tools.locator('[data-owned-tool]')).toHaveCount(5);
+    await expect(page.locator('[data-electrical-area-content]')).toHaveCount(0);
     await expect(tools).not.toContainText('Add your');
     await expect(tools).not.toContainText('Presentación retocada');
     const illustration = tools.locator('img[data-mascot-scene="detail"]');
     await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth === 1536)).toBe(true);
     expect((await page.locator('[data-header-mascot]').boundingBox())!.width).toBe(width < 768 ? 80 : 112);
-    expect((await tools.boundingBox())!.height).toBeLessThan(width < 640 ? 1050 : 1450);
+    expect((await tools.boundingBox())!.height).toBeLessThan(width < 640 ? 1250 : 1450);
     for (const id of ['tools', 'cv', 'evidence']) {
       await page.goto(`/electrical#${id}`);
       await page.locator(`#${id}`).scrollIntoViewIfNeeded();

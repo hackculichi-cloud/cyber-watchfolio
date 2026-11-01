@@ -184,6 +184,7 @@ export const profileIdentities: ProfileIdentity[] = [
       { id: "specialties", label: "Specialties" },
       { id: "projects", label: "Projects" },
       { id: "evidence", label: "Completed work" },
+      { id: "tools", label: "Tools" },
       { id: "certificate", label: "Certifications" },
       { id: "cv", label: "CV" },
     ],
