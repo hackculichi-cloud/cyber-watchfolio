@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { BookOpen, FolderOpen, Images, Wrench } from "lucide-react";
+import { FolderOpen, Images, Wrench } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { electricalDetailHashes, isElectricalTrainingHash } from "@/data/electricalNavigation";
@@ -11,19 +11,16 @@ import MascotScene from "@/components/shared/MascotScene";
 import ElectricalOwnedTools from "./ElectricalOwnedTools";
 import ElectricalPracticeGroups from "./ElectricalPracticeGroups";
 import ElectricalEvidenceGallery from "./ElectricalEvidenceGallery";
-import ElectricalAreaLearning from "./ElectricalAreaLearning";
 
 const tabs = [
-  { id: "overview", label: "Overview", icon: BookOpen },
   { id: "projects", label: "Projects", icon: FolderOpen },
   { id: "evidence", label: "Completed work", icon: Images },
   { id: "tools", label: "Tools", icon: Wrench },
 ] as const;
 const sectionTab = (hash: string) => {
   const id = hash.slice(1);
-  if (id === "skills") return "overview";
-  if (id === "practice") return "projects";
-  return tabs.some(tab => tab.id === id) ? id : "overview";
+  if (["overview", "skills", "practice"].includes(id)) return "projects";
+  return tabs.some(tab => tab.id === id) ? id : "projects";
 };
 
 /** One area at a time; courses and original photographs are opened intentionally. */
@@ -36,11 +33,7 @@ export default function ElectricalAreaPanel({ area }: { area: string }) {
   const group = electricalPracticeGroups.find(item => item.id === groupId)!;
   const projectIds = new Set(group.categories.flatMap(item => item.projectIds));
   const photos = electricalEvidence.filter(item => projectIds.has(item.projectId));
-  const openTab = (value: string, courseId?: string) => {
-    if (value === "certificate") {
-      navigate({ hash: courseId ? `#certificate-${courseId}` : "#certificate" });
-      return;
-    }
+  const openTab = (value: string) => {
     setTab(value);
     navigate({ hash: `#${value}` }, { replace: true });
   };
@@ -53,19 +46,16 @@ export default function ElectricalAreaPanel({ area }: { area: string }) {
     const target = hash.slice(1);
     if (!electricalDetailHashes.has(target)) return;
     const frame = requestAnimationFrame(() => {
-      document.getElementById(target)?.scrollIntoView({ block: "start", behavior: "instant" });
+      document.getElementById(sectionTab(hash))?.scrollIntoView({ block: "start", behavior: "instant" });
     });
     return () => cancelAnimationFrame(frame);
   }, [hash, tab]);
 
   return <div data-electrical-area-content={area} className="mt-6 border-t border-primary/20 pt-5">
     <Tabs value={tab} onValueChange={openTab}>
-      <TabsList aria-label={`${t("Explore this area")}: ${t(group.title)}`} className="sticky top-44 z-20 grid h-auto w-full grid-cols-2 sm:top-40 gap-1 rounded-xl border border-primary/20 bg-background p-1 sm:grid-cols-4">
-        {tabs.map(item => <TabsTrigger key={item.id} value={item.id} data-area-tab={item.id} onClick={() => { if (tab === item.id && isElectricalTrainingHash(hash.slice(1))) openTab(item.id); }} className="menu-choice min-h-11 gap-2 whitespace-normal text-sm font-semibold data-[state=active]:bg-primary/15 data-[state=active]:text-primary"><item.icon className="h-4 w-4 shrink-0" aria-hidden />{t(item.label)}</TabsTrigger>)}
+      <TabsList aria-label={`${t("Explore this area")}: ${t(group.title)}`} className="sticky top-44 z-20 grid h-auto w-full grid-cols-2 sm:top-40 gap-1 rounded-xl border border-primary/20 bg-background p-1 min-[440px]:grid-cols-3">
+        {tabs.map(item => <TabsTrigger key={item.id} value={item.id} data-area-tab={item.id} onClick={() => { if (tab === item.id && isElectricalTrainingHash(hash.slice(1))) openTab(item.id); }} className={`menu-choice min-h-11 min-w-0 flex-col gap-1 whitespace-normal px-1 text-sm font-semibold sm:flex-row sm:gap-2 sm:px-3 data-[state=active]:bg-primary/15 data-[state=active]:text-primary ${item.id === "tools" ? "col-span-2 min-[440px]:col-span-1" : ""}`}><item.icon className="h-4 w-4 shrink-0" aria-hidden /><span className="max-w-full break-words">{t(item.label)}</span></TabsTrigger>)}
       </TabsList>
-      <TabsContent value="overview">
-        <ElectricalAreaLearning area={area} onOpen={openTab} />
-      </TabsContent>
       <TabsContent value="projects">
         <section id="projects" className="scroll-mt-32 px-1 py-6 sm:px-4">
           <span id="practice" className="scroll-mt-32" />

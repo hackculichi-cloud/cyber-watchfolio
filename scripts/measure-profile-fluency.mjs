@@ -16,10 +16,10 @@ for(let round=0;round<3;round++){
  await run('electrical-cold',async()=>{await page.goto(base+'/electrical');await page.locator('[data-copper-title] [data-feed-path]').first().waitFor();await page.evaluate(()=>document.fonts.ready);await page.locator('[data-profile-workspace] img').evaluate(im=>im.decode());});
  console.log('images',round,await page.locator('[data-profile-workspace] img').evaluate(el=>({width:el.clientWidth,dpr:devicePixelRatio,current:el.currentSrc}))); 
  await run('open-residential',()=>page.locator('[data-specialty="residential"]').click());
- await run('open-projects',()=>page.locator('[data-area-tab="projects"]').click());
- await run('open-certificates',()=>page.locator('[data-area-tab="certificate"]').click());
+ await run('open-evidence',()=>page.locator('[data-area-tab="evidence"]').click());
+ await run('open-certificates',()=>page.locator('[data-open-electrical-training]').click());
  await run('open-tools',()=>page.locator('[data-area-tab="tools"]').click());
- await run('return-summary',()=>page.locator('[data-area-tab="overview"]').click());
+ await run('return-projects',()=>page.locator('[data-area-tab="projects"]').click());
  await context.close();
 }
 await browser.close();

@@ -659,11 +659,6 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 [data-brand-profile="repair"] .profile-wordmark { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:.12em; }
 [data-brand-profile="customer-service"] .profile-wordmark { text-decoration:underline wavy hsl(var(--primary)/.6); text-decoration-thickness:1px; text-underline-offset:.12em; }
 
-.learning-stage + .learning-stage { border-top:1px solid hsl(var(--border)); padding-top:1.5rem; }
-.learning-stage-heading { display:flex; align-items:flex-start; gap:.85rem; }
-.learning-stage-number { display:grid; flex-shrink:0; place-items:center; width:2.4rem; height:2.4rem; border:1px solid hsl(var(--primary)/.35); border-radius:.7rem; background:hsl(var(--primary)/.09); color:hsl(var(--primary)); font:650 .8rem/1 "JetBrains Mono",ui-monospace,monospace; }
-.learning-stage [data-area-courses] { border-left:2px solid hsl(var(--border)); padding-left:1rem; }
-
 @media (max-width:767px) {
   [data-world-hero="electrical"] .hero-workspace { grid-row:1; }
   [data-world-hero="electrical"] .hero-title { grid-column:1 / -1; grid-row:2; }

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Camera, ZoomIn } from "lucide-react";
+import { ZoomIn } from "lucide-react";
 import { electricalOwnedTools, type ElectricalOwnedTool } from "@/data/electricalOwnedTools";
 import { electricalToolGroups } from "@/data/electrical";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -11,7 +11,6 @@ export default function ElectricalOwnedTools() {
   const [active, setActive] = useState<ElectricalOwnedTool | null>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   return <div data-owned-electrical-tools>
-    <p className="mb-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground"><Camera aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{t("Presentation retouched from my photographs: consistent lighting and background.")}</p>
     <ul className="grid grid-cols-2 gap-3 lg:grid-cols-3">
       {electricalOwnedTools.map(tool => <li key={tool.id} className="min-w-0">
         <button type="button" data-owned-tool={tool.id} onClick={event => { opener.current = event.currentTarget; setActive(tool); }} aria-label={`${t("Open larger preview")}: ${t(tool.title)}`} className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-border bg-background/50 text-left hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
@@ -29,7 +28,7 @@ export default function ElectricalOwnedTools() {
     </details>
     <Dialog open={!!active} onOpenChange={open => { if (!open) setActive(null); }}>
       <DialogContent className="max-w-2xl" onCloseAutoFocus={event => { event.preventDefault(); opener.current?.focus({ preventScroll: true }); }}>
-        {active && <><DialogTitle>{t(active.title)}</DialogTitle><DialogDescription>{active.brand} · {t(active.description)}</DialogDescription><SmartImage src={active.src} alt={active.alt} width={512} height={512} eager className="max-h-[60vh] aspect-square w-full rounded-lg" /><p className="text-xs text-muted-foreground">{t("Presentation retouched from my photographs: consistent lighting and background.")}</p></>}
+        {active && <><DialogTitle>{t(active.title)}</DialogTitle><DialogDescription>{active.brand} · {t(active.description)}</DialogDescription><SmartImage src={active.src} alt={active.alt} width={512} height={512} eager className="max-h-[60vh] aspect-square w-full rounded-lg" /></>}
       </DialogContent>
     </Dialog>
   </div>;

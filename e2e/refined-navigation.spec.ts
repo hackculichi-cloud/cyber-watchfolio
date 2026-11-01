@@ -25,7 +25,7 @@ test('the three electrical entries keep work local and use one shared certificat
   await expect(page.locator('[data-certifications="electrical"]')).toHaveCount(0);
   await expect(page.locator('[data-specialty-art]')).toHaveCount(3);
   for (const area of ['residential', 'industrial', 'control'] as const) {
-    await openElectricalArea(page, area, 'overview');
+    await openElectricalArea(page, area, 'projects');
     await expect(page.locator('[data-area-tab="certificate"]')).toHaveCount(0);
     await page.locator('[data-open-electrical-training]').click();
     await expect(page.locator('[data-electrical-area-content]')).toHaveCount(1);
@@ -51,7 +51,7 @@ test('a narrow phone can switch electrical panels with all controls visible and 
   await expect(page.getByRole('combobox', { name: 'Jump to section', exact: true })).toHaveValue('certificate');
   await page.goto('/electrical#residential');
   const tabs = page.getByRole('tablist');
-  for (const id of ['projects', 'evidence', 'tools', 'overview']) {
+  for (const id of ['projects', 'evidence', 'tools']) {
     await page.locator(`[data-area-tab="${id}"]`).click();
     await expect(page.locator(`[data-area-tab="${id}"]`)).toHaveAttribute('aria-selected', 'true');
     const box = (await tabs.boundingBox())!;

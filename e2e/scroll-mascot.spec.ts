@@ -9,7 +9,7 @@ test("profile mascots appear between content blocks, never as floating overlays"
   const profiles = [
     { path: "/cybersecurity", initialCount: 5, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 2 },
     { path: "/software-development", initialCount: 5, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 5 },
-    { path: "/electrical", initialCount: 2, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 5 },
+    { path: "/electrical", initialCount: 2, kinds: ["entry", "action", "detail", "closing"], sources: 4 },
     { path: "/electronics", initialCount: 4, kinds: ["entry", "practice", "detail", "closing"], sources: 4 },
     { path: "/repair", initialCount: 5, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 5 },
     { path: "/experience", initialCount: 5, kinds: ["entry", "practice", "action", "detail", "closing"], sources: 5 },
