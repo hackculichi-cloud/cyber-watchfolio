@@ -17,7 +17,7 @@ test('profile icons preview without opening menus; only arrows open compact spec
   }
 });
 
-test('the three electrical entries contain intentionally opened work and certification panels', async ({ page }) => {
+test('the three electrical entries keep work local and use one shared certification collection', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/electrical#specialties');
   await expect(page.locator('[data-electrical-area-content]')).toHaveCount(0);
@@ -25,10 +25,13 @@ test('the three electrical entries contain intentionally opened work and certifi
   await expect(page.locator('[data-certifications="electrical"]')).toHaveCount(0);
   await expect(page.locator('[data-specialty-art]')).toHaveCount(3);
   for (const area of ['residential', 'industrial', 'control'] as const) {
-    await openElectricalArea(page, area, 'certificate');
+    await openElectricalArea(page, area, 'overview');
+    await expect(page.locator('[data-area-tab="certificate"]')).toHaveCount(0);
+    await page.locator('[data-open-electrical-training]').click();
     await expect(page.locator('[data-electrical-area-content]')).toHaveCount(1);
     await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(1);
     await expect(page.locator('[data-certificate]')).toHaveCount(4);
+    await expect(page.locator('[data-electrical-area-content] [data-certificate]')).toHaveCount(0);
     await expect(page.locator('#projects [data-work]')).toHaveCount(0);
     await page.locator('[data-area-tab="projects"]').click();
     await expect(page.locator('[data-certificate]')).toHaveCount(0);
@@ -46,8 +49,9 @@ test('a narrow phone can switch electrical panels with all controls visible and 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/electrical#certificate');
   await expect(page.getByRole('combobox', { name: 'Jump to section', exact: true })).toHaveValue('certificate');
+  await page.goto('/electrical#residential');
   const tabs = page.getByRole('tablist');
-  for (const id of ['projects', 'evidence', 'certificate', 'tools', 'overview']) {
+  for (const id of ['projects', 'evidence', 'tools', 'overview']) {
     await page.locator(`[data-area-tab="${id}"]`).click();
     await expect(page.locator(`[data-area-tab="${id}"]`)).toHaveAttribute('aria-selected', 'true');
     const box = (await tabs.boundingBox())!;

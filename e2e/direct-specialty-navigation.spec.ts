@@ -44,11 +44,12 @@ test('specialty deep links and reload enter their content; electrical learning k
   await detail.locator('[data-area-syllabus] summary').click();
   await detail.locator('[data-area-syllabus]').getByRole('button', { name: /Residential Electrical Installations/ }).click();
   await expect(detail.locator('[data-area-syllabus]')).toContainText('Electrical load calculations');
-  await page.locator('[data-area-tab="certificate"]').click();
+  await page.locator('[data-open-electrical-training]').click();
   const title = page.locator('#certificate h2');
   await expect(title).toBeInViewport();
   await page.reload();
-  await expect(page.locator('[data-area-tab="certificate"]')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-certifications="electrical"]')).toHaveCount(1);
+  await expect(page.locator('[data-specialty-details-for]')).toHaveCount(0);
   await expect(title).toBeInViewport();
   await page.goto('/software-development#frontend');
   await expect(page.locator('[data-specialty-details-for="frontend"]')).toBeFocused();

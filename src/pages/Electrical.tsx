@@ -1,6 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ElectricalAreaPanel from "@/components/electrical/ElectricalAreaPanel";
+import ElectricalSharedTraining from "@/components/electrical/ElectricalSharedTraining";
 import { electricalDetailHashes } from "@/data/electricalNavigation";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -68,7 +69,7 @@ const Electrical = () => {
       <ElectricalHero />
       <ProfileSectionNav sections={profile.sections} contentKey={area} />
       <SpecialtyExplorer profile={profile.slug} activeId={area} onSelect={setArea} renderDetail={id => <ElectricalAreaPanel key={id} area={id} />} />
-
+      <ElectricalSharedTraining />
       <ElectricalCv />
     </>
   );
