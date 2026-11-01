@@ -82,13 +82,13 @@ test('long specialty panels stay free of blurred hover shadows while only the se
     await expect(page.locator('[data-certifications]')).toHaveCount(0);
     await expect(page.locator('[data-electrical-practices]')).toHaveCount(0);
 
-    await page.locator('[data-area-tab="certificate"]').click();
+    await page.locator('[data-open-electrical-training]').click();
     await expect(page.locator('[data-certifications]')).toBeVisible();
-    await expect(page.locator('[data-area-learning]')).toHaveCount(0);
+    await expect(page.locator('[data-area-learning]')).toHaveCount(1);
     await page.locator('[data-certifications] h2').hover();
-    expect(await detail.evaluate(el => el.matches(':hover'))).toBe(true);
+    expect(await detail.evaluate(el => el.matches(':hover'))).toBe(false);
     await expect(detail).toHaveCSS('box-shadow', 'none');
-    await expect(page.locator('[data-area-tab="certificate"]')).toHaveAttribute('aria-selected', 'true');
+    await expect(page.locator('[data-electrical-area-content] [data-certifications]')).toHaveCount(0);
 
     await page.locator('[data-area-tab="overview"]').click();
     await expect(page.locator('[data-certifications]')).toHaveCount(0);

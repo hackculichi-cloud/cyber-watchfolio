@@ -10,6 +10,7 @@
 
 - Keep «Sobre mí» / About out of the top desktop and mobile menus; the About page remains accessible from the footer.
 - Keep each Home outfit's three tools floating around the character on hover/focus, clear of the area buttons. Use the section's single accent for all its tools; do not replace them with a rail or individually colored cards.
+- Keep electrical courses and certificates in one shared, collapsible collection outside the three specialty tabs. Course links may open that collection at the relevant record. Present the owner's supplied equipment pictures as an expandable photo catalog; label retouched presentations and distinguish equipment used in training from documented owned tools.
 
 - Keep unpublished collections compact in every area: use one brief pending row, never grids of empty image cards or large blank panels. Preserve existing anchors and automatically show the real collection when data is published.
 - Review Spanish spelling and technical meaning across all profiles, menus and dialogs. Render plain Unicode text rather than HTML entities; preserve commands, case identifiers, filenames, domains and evidence values exactly. Keep user-facing empty-state copy about the portfolio, not data-file editing instructions.

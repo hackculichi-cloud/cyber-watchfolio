@@ -6,10 +6,20 @@ import { electricalTraining, trainingTracks } from "@/data/electrical";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import ElectricalTrainingProviders from "./ElectricalTrainingProviders";
 import DeferredDetails from "@/components/shared/DeferredDetails";
+import { useEffect } from "react";
 
 /** Each course keeps its description, syllabus and pending document together. */
-const ElectricalTrainingCertificates = () => {
+const ElectricalTrainingCertificates = ({ targetId }: { targetId?: string }) => {
   const { t } = useLanguage();
+  useEffect(() => {
+    if (!targetId) return;
+    const frame = requestAnimationFrame(() => {
+      const target = document.getElementById(targetId) ?? document.getElementById("certificate");
+      if (targetId.startsWith("certificate-")) target?.focus({ preventScroll: true });
+      target?.scrollIntoView({ block: "start", behavior: "instant" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [targetId]);
   const content = Object.fromEntries(trainingTracks.filter(track => track.anchor === "electrical").map(track => {
     const recordId = track.id === "electrical" ? "electrical-conocer" : track.id === "electrical-udemy-measurements" ? "electrical-measurements" : track.id;
     return [recordId, <div key={track.id} className="space-y-4">
