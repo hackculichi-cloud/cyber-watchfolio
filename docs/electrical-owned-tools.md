@@ -8,4 +8,6 @@ Para publicar se extrajeron las cinco celdas de 512 × 512 y se generaron deriva
 
 Las certificaciones se reúnen una sola vez fuera de Residencial, Industrial y Control. El acceso general conserva `#certificate`, `#certifications` y `#tracks`; los enlaces de cursos abren `#certificate-{id}`. La colección solo se monta al solicitarla y puede cerrarse desde arriba o abajo. Sus cursos, estados y documentos conservan la procedencia previamente documentada.
 
-Las especialidades abren directamente Proyectos y solo ofrecen Proyectos, Trabajos realizados y Herramientas. Se retiró Resumen/Overview; los enlaces antiguos `#overview` y `#skills` llevan a Proyectos. Los cursos y los temarios completos siguen en Formación y certificaciones.
+Las especialidades abren directamente Proyectos y solo ofrecen Proyectos y Trabajos realizados. Se retiró Resumen/Overview; los enlaces antiguos `#overview` y `#skills` llevan a Proyectos. Los cursos y los temarios completos siguen en Formación y certificaciones.
+
+Herramientas tiene un único apartado general con acceso desde el menú de Electricidad. El enlace existente `#tools` abre ese catálogo sin seleccionar una especialidad. El catálogo solo se monta cuando se solicita; al cerrarlo devuelve el foco a «Ver herramientas». La especialidad que estuviera abierta conserva su pestaña y sus datos, sin incluir copias del equipo compartido.

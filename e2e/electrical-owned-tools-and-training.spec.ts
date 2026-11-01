@@ -11,8 +11,11 @@ for (const lang of ["es", "en"] as const) {
       await page.goto("/electrical#residential");
       await expect(page.locator('[data-electrical-practices]')).toBeVisible();
       expect(requested).toHaveLength(0);
-      await page.locator('[data-area-tab="tools"]').click();
+      await page.locator('[data-open-electrical-tools]').click();
       const catalog = page.locator('[data-owned-electrical-tools]');
+      await expect(catalog).toHaveCount(1);
+      await expect(page.locator('[data-electrical-area-content] [data-owned-electrical-tools]')).toHaveCount(0);
+      await expect(page.locator('[data-area-tab="tools"]')).toHaveCount(0);
       await expect(catalog.locator('[data-owned-tool]')).toHaveCount(5);
       await expect(catalog).not.toContainText(lang === "es" ? "Presentación retocada" : "Presentation retouched");
       await expect(catalog).toContainText("Klein Tools");
@@ -32,7 +35,14 @@ for (const lang of ["es", "en"] as const) {
         await expect(card).toBeFocused();
         expect(await page.evaluate(() => scrollY)).toBeCloseTo(before, 0);
       }
+      await page.locator('[data-close-electrical-tools]').first().click();
+      await expect(catalog).toHaveCount(0);
+      await expect(page.locator('[data-open-electrical-tools]')).toBeFocused();
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      await page.goto('/electrical#tools');
+      await page.reload();
+      await expect(catalog).toHaveCount(1);
+      await expect(page.locator('[data-specialty-details-for]')).toHaveCount(0);
       page.off("request", track);
     }
   });
@@ -43,7 +53,13 @@ for (const lang of ["es", "en"] as const) {
       await page.setViewportSize({ width, height: 900 });
       for (const id of ["residential", "industrial", "electrical-control"]) {
         await page.goto(`/electrical#${id}`);
-        await expect(page.locator('[data-area-tab="certificate"]')).toHaveCount(0);
+        await expect(page.locator('[data-area-tab="certificate"], [data-area-tab="tools"]')).toHaveCount(0);
+        await page.locator('[data-open-electrical-tools]').click();
+        await expect(page.locator('[data-owned-electrical-tools]')).toHaveCount(1);
+        await expect(page.locator('[data-electrical-area-content] [data-owned-electrical-tools]')).toHaveCount(0);
+        await page.locator('[data-close-electrical-tools]').first().click();
+        await expect(page.locator('[data-owned-electrical-tools]')).toHaveCount(0);
+        await expect(page.locator('[data-open-electrical-tools]')).toBeFocused();
         await expect(page.locator('[data-certifications="electrical"]')).toHaveCount(0);
         await page.locator('[data-open-electrical-training]').click();
         await page.goto('/electrical#certificate-electrical-measurements');

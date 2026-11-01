@@ -51,7 +51,7 @@ test('a narrow phone can switch electrical panels with all controls visible and 
   await expect(page.getByRole('combobox', { name: 'Jump to section', exact: true })).toHaveValue('certificate');
   await page.goto('/electrical#residential');
   const tabs = page.getByRole('tablist');
-  for (const id of ['projects', 'evidence', 'tools']) {
+  for (const id of ['projects', 'evidence']) {
     await page.locator(`[data-area-tab="${id}"]`).click();
     await expect(page.locator(`[data-area-tab="${id}"]`)).toHaveAttribute('aria-selected', 'true');
     const box = (await tabs.boundingBox())!;
