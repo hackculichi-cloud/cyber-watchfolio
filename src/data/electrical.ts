@@ -125,7 +125,13 @@ export const electricalCredential: ElectricalCredential = {
   title: "Electrical Systems: Reading Drawings and Schematics",
   issuer: "LinkedIn Learning",
   status: "Completed",
+  issuedOn: "2026-10-30",
+  credentialId: "7f0b6b08ee714835933ca230548a28ca29db50bff8e0fb9ae0f7b6614018df29",
   highlights: ["Completed course on reading electrical drawings and schematics."],
+  image: {
+    src: "/certificates/linkedin-electrical-drawings-schematics.webp",
+    alt: "LinkedIn Learning completion certificate for Electrical Systems: Reading Drawings and Schematics awarded to Christian Velasco Estrada on October 30, 2026.",
+  },
 };
 
 export const electricalSkills = [
@@ -174,8 +180,14 @@ export const trainingTracks: TrainingTrack[] = [
     anchor: "electrical",
     title: "Electrical Systems: Reading Drawings and Schematics",
     status: "Completed",
-    description: "LinkedIn Learning course completed. Certificate image pending upload.",
+    description: "Completed LinkedIn Learning course on electrical drawings and schematics, with the original certificate available.",
     topics: ["Electrical diagrams"],
+    syllabusNote: "Topics visible in the supplied course screenshot.",
+    syllabus: [
+      { title: "Blueprints", topics: ["Symbols", "Plot and plan views", "One-line diagrams", "Electrical details", "Electrical schedules", "Riser diagrams and elevations", "Chapter Quiz (7 questions)"] },
+      { title: "Diagrams", topics: ["Wiring diagrams", "Schematics symbols", "Machine and motor wiring diagrams", "Components of a ladder diagram", "How ladder logic works", "A more complex diagram", "Programmable logic controllers (PLCs)", "Chapter Quiz (7 questions)"] },
+      { title: "Conclusion", topics: ["Next steps"] },
+    ],
   },
   {
     id: "electrical-udemy",

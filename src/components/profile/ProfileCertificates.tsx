@@ -14,11 +14,12 @@ function CertificateInformation({ record, downloadOriginal, course }: { record: 
   const { t, lang } = useLanguage();
   return <div data-certificate-information-content>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t(record.document)}</p>
-      {(record.awardedTo || record.instructor || record.issuedOn || record.duration || record.credentialId) && <dl data-certificate-details className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+      {(record.awardedTo || record.instructor || record.issuedOn || record.duration || record.contactHours !== undefined || record.credentialId) && <dl data-certificate-details className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
         {record.awardedTo && <div className="sm:col-span-2"><dt className="text-xs text-muted-foreground">{t("Awarded to")}</dt><dd className="mt-1 font-medium">{record.awardedTo}</dd></div>}
         {record.instructor && <div><dt className="text-xs text-muted-foreground">{t("Instructor")}</dt><dd className="mt-1">{record.instructor}</dd></div>}
         {record.issuedOn && <div><dt className="text-xs text-muted-foreground">{t("Date of completion")}</dt><dd className="mt-1"><time dateTime={record.issuedOn}>{new Intl.DateTimeFormat(lang === "es" ? "es-MX" : "en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(new Date(`${record.issuedOn}T00:00:00Z`))}</time></dd></div>}
         {record.duration && <div><dt className="text-xs text-muted-foreground">{t("Course duration")}</dt><dd className="mt-1">{t(record.duration)}</dd></div>}
+        {record.contactHours !== undefined && <div><dt className="text-xs text-muted-foreground">{t("PDUs / contact hours")}</dt><dd className="mt-1">{new Intl.NumberFormat(lang === "es" ? "es-MX" : "en-US").format(record.contactHours)}</dd></div>}
         {record.credentialId && <div className="sm:col-span-2"><dt className="text-xs text-muted-foreground">{t("Certificate ID")}</dt><dd className="mt-1 break-all font-mono text-xs leading-relaxed">{record.credentialId}</dd></div>}
       </dl>}
       <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">
@@ -41,7 +42,7 @@ const ProfileCertificates = ({ profile, courseContent, featuredId }: { profile: 
       const hasPreview = !!courseContent && (!!record.image || !record.credentialId);
       const downloadOriginal = !!record.credentialId && record.href?.endsWith(".pdf");
       return <article key={record.id} id={`certificate-${record.id}`} tabIndex={-1} data-certificate={record.id} data-certificate-provider={record.providerId} data-certificate-record={record.credentialId ? record.id : undefined} className={`certificate-card relative scroll-mt-64 rounded-xl border p-5 outline-none focus-visible:ring-2 focus-visible:ring-primary sm:p-6 ${record.id === featuredId ? "border-primary/40 bg-primary/5" : "border-border bg-surface/50"}`}>
-      {visual && record.image && profile === "electrical" && <MascotScene profile="electrical" scene="action" className="pointer-events-none absolute -top-12 right-3 z-10 w-20 sm:-top-16 sm:w-24" />}
+      {visual && record.image && record.id === records[0]?.id && profile === "electrical" && <MascotScene profile="electrical" scene="action" className="pointer-events-none absolute -top-12 right-3 z-10 w-20 sm:-top-16 sm:w-24" />}
       {featuredId && <p data-training-role={record.id === featuredId ? "main" : "complementary"} className={`mb-4 text-sm font-bold ${record.id === featuredId || record.image ? "text-primary" : "text-muted-foreground"}`}>{t(record.image ? "Original document" : record.id === featuredId ? "Main training" : "Complementary courses")}</p>}
       <div>
       {hasPreview && <CertificateMockup record={record} />}

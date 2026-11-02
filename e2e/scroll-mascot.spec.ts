@@ -175,12 +175,14 @@ test("certificate inventories distinguish missing files from unfinished courses"
   await expect(inventory.locator("article")).toHaveCount(4);
   await expect(inventory.getByText("Completed", { exact: true })).toHaveCount(2);
   await expect(inventory.getByText("Currently Studying", { exact: true })).toHaveCount(2);
-  await expect(inventory.locator("[data-certificate-original]")).toHaveCount(1);
-  await expect(inventory.locator("[data-certificate-placeholder]")).toHaveCount(3);
-  await inventory.locator('[data-certificate="electrical-linkedin"] [data-certificate-info] > summary').click();
-  await expect(inventory.getByText("Certificate confirmed; file pending upload.", { exact: true })).toBeVisible();
+  await expect(inventory.locator("[data-certificate-original]")).toHaveCount(2);
+  await expect(inventory.locator("[data-certificate-placeholder]")).toHaveCount(2);
+  const linkedin = inventory.locator('[data-certificate="electrical-linkedin"]');
+  await linkedin.locator('[data-certificate-info] > summary').click();
+  await expect(linkedin.getByText("Course completed on October 30, 2026; certificate issued by LinkedIn Learning.", { exact: true })).toBeVisible();
+  await expect(linkedin.locator('a[download]')).toHaveAttribute('href', '/certificates/linkedin-electrical-drawings-schematics.pdf');
   await selectLanguage(page, "es");
-  await expect(inventory.getByText("Certificado confirmado; archivo pendiente de subir.", { exact: true })).toBeVisible();
+  await expect(linkedin.getByText("Curso completado el 30 de octubre de 2026; certificado emitido por LinkedIn Learning.", { exact: true })).toBeVisible();
   for (const path of ["/cybersecurity", "/software-development", "/electronics", "/repair", "/experience"]) {
     await page.goto(path);
     await expect(page.locator("[data-certifications]")).toHaveCount(1);
