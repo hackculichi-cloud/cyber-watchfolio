@@ -56,7 +56,7 @@ test("phone layouts keep named tools, gallery targets and the larger header insi
     await expect(tools).not.toContainText('Add your');
     await expect(tools).not.toContainText('Presentación retocada');
     const illustration = tools.locator('img[data-mascot-scene="detail"]');
-    await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth === 1536)).toBe(true);
+    await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth === 384)).toBe(true);
     expect((await page.locator('[data-header-mascot]').boundingBox())!.width).toBe(width < 768 ? 80 : 112);
     expect((await tools.boundingBox())!.height).toBeLessThan(width < 640 ? 1250 : 1450);
     for (const id of ['tools', 'cv', 'evidence']) {

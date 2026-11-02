@@ -19,6 +19,14 @@ for (const lang of ["es", "en"] as const) {
       const records = page.locator('[data-certifications="electrical"]');
       const completed = records.locator('[data-certificate="electrical-measurements"]');
       await expect(completed).toHaveAttribute("data-certificate-record", "electrical-measurements");
+      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-measurements');
+      await expect(records.locator('[data-certificate-info][open]')).toHaveCount(0);
+      const cardBox = (await completed.boundingBox())!;
+      const imageBox = (await completed.locator('[data-certificate-original] img').boundingBox())!;
+      expect(imageBox.width / cardBox.width).toBeGreaterThan(.8);
+      const information = completed.locator('[data-certificate-info]');
+      await expect(information).not.toHaveAttribute("open", "");
+      await information.locator(":scope > summary").click();
       await expect(completed.getByText(lang === "es" ? "Completado" : "Completed", { exact: true })).toBeVisible();
       await expect(completed).toContainText("Christian Velasco Estrada");
       await expect(completed).toContainText("Irving Lopez Hernandez");
@@ -46,6 +54,7 @@ for (const lang of ["es", "en"] as const) {
       await preview.scrollIntoViewIfNeeded();
       await expect.poll(() => preview.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth)).toBe(1600);
       const opener = completed.getByRole("button", { name: new RegExp(`^${lang === "es" ? "Ampliar certificado original" : "Enlarge original certificate"}:`) });
+      await opener.click({ trial: true });
       const before = (await opener.boundingBox())!;
       const scrollBefore = await page.evaluate(() => scrollY);
       await opener.click();

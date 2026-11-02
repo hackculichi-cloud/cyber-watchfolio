@@ -27,8 +27,12 @@ const atlases = {
   practice: { full: practiceAtlas, preview: practicePreview },
   closing: { full: closingAtlas, preview: closingPreview },
 };
+const electricalPoses: Record<MascotSceneKind, string> = {
+  action: "leaning", closing: "seated", practice: "peeking", detail: "kneeling",
+};
 /** Decorative illustrations, separate from real project evidence and measurements. */
 const MascotScene = ({ profile, scene, className }: { profile: ProfileSlug; scene: MascotSceneKind; className?: string }) => {
+  if (profile === "electrical") return <Reveal className={cn("shrink-0", className)}><img src={`/images/mascot-scenes/electrical-${electricalPoses[scene]}.webp`} width={384} height={384} alt="" aria-hidden loading="lazy" decoding="async" data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} data-interactive-pose={electricalPoses[scene]} className="h-auto w-full object-contain" /></Reveal>;
   if (profile === "cybersecurity") return <Reveal from="left" className={cn("shrink-0", className)}><img src={cyberDetail} width={1024} height={1536} alt="" aria-hidden loading="lazy" decoding="async" data-masked-mascot data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;
   if (profile === "barbering") return <Reveal from="right" className={cn("shrink-0", className)}><img src={barberDetail} width={1024} height={1536} alt="" aria-hidden loading="lazy" decoding="async" data-mascot={profile} data-mascot-scene={scene} data-scene-profile={profile} className="h-auto w-full object-contain" /></Reveal>;
   if (scene === "detail") {

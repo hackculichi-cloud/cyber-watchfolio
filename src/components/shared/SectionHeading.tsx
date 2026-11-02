@@ -21,7 +21,7 @@ const SectionHeading = ({ eyebrow, title, description, id, mascot, mascotScene =
     {description && <p className="reading-copy mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">{t(description)}</p>}
   </div>;
 
-  if (mascot && children) return <div id={id} data-mascot-interlude={mascot} data-integrated-mascot className={`section-heading-grid grid scroll-mt-24 grid-cols-[minmax(0,1fr)_6.5rem] items-end gap-x-4 gap-y-5 sm:grid-cols-[minmax(0,1fr)_10rem] lg:items-center lg:gap-x-8 ${mascotWide ? "lg:grid-cols-[minmax(0,1fr)_minmax(20rem,40%)]" : "lg:grid-cols-[minmax(0,1fr)_20rem]"}`}>
+  if (mascot && children) return <div id={id} data-mascot-dock={mascotScene === "closing" && !mascotWide ? "left" : undefined} data-mascot-interlude={mascot} data-integrated-mascot className={`section-heading-grid grid scroll-mt-24 grid-cols-[minmax(0,1fr)_6.5rem] items-end gap-x-4 gap-y-5 sm:grid-cols-[minmax(0,1fr)_10rem] lg:items-center lg:gap-x-8 ${mascotWide ? "lg:grid-cols-[minmax(0,1fr)_minmax(20rem,40%)]" : "lg:grid-cols-[minmax(0,1fr)_20rem]"}`}>
     {heading}
     <MascotScene profile={mascot} scene={mascotScene} className={mascotWide ? "col-span-2 col-start-1 row-start-2 w-full max-w-sm justify-self-center lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:max-w-none lg:self-end [&_img]:max-h-96" : `col-start-2 row-start-1 w-full justify-self-end self-end lg:row-span-2 lg:self-end ${mascotScene === "closing" ? "max-w-56" : "max-w-80 [&_img]:max-h-80"}`} />
     <div data-mascot-content className="col-span-2 min-w-0 lg:col-span-1 lg:col-start-1 lg:row-start-2">{children}</div>

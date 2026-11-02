@@ -1,5 +1,9 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Diplomas and certificates": "Diplomas y certificados",
+  "Original document": "Documento original",
+  "Enlarge a document or open its information to explore the course and syllabus.": "Amplía un documento o abre su información para conocer el curso y su temario.",
+  "View course information and syllabus": "Ver información y temario",
   "Hardware firewall": "Firewall físico",
   "Computer mouse": "Ratón de computadora",
   "Electrician's pliers": "Pinzas de electricista",

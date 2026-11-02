@@ -955,3 +955,18 @@ div.dialog-content[data-state], div.dialog-overlay[data-state] { animation-durat
   .hero-actions { grid-column:1 / -1; grid-row:5; margin:0; }
   .hero-actions > a { min-height:2.75rem; }
 }
+
+/* The CV companion sits beside its card; contact companions peek over its edge. */
+.section-heading-grid[data-mascot-dock="left"] { grid-template-columns:8rem minmax(0,1fr); }
+.section-heading-grid[data-mascot-dock="left"] > div:first-child { grid-column:2; grid-row:1; }
+.section-heading-grid[data-mascot-dock="left"] > :nth-child(2) { grid-column:1; grid-row:1 / span 2; justify-self:start; align-self:end; }
+.section-heading-grid[data-mascot-dock="left"] > [data-mascot-content] { grid-column:2; grid-row:2; }
+@media (max-width:767px) {
+  .section-heading-grid[data-mascot-dock="left"] { grid-template-columns:5rem minmax(0,1fr); }
+  .section-heading-grid[data-mascot-dock="left"] > :nth-child(2) { grid-row:1; }
+  .section-heading-grid[data-mascot-dock="left"] > [data-mascot-content] { grid-column:1 / -1; grid-row:2; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .footer-contact-fox { transition:transform 180ms ease-out; }
+  [data-footer-contact]:is(:hover,:focus-within) .footer-contact-fox { transform:translateY(-4px) rotate(-2deg); }
+}

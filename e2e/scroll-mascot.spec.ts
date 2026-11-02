@@ -30,6 +30,7 @@ test("profile mascots appear between content blocks, never as floating overlays"
       if (path === "/electrical" && ["practice", "action", "detail"].includes(kind)) {
         const target = kind === "practice" ? "overview" : kind === "action" ? "certificate" : "tools";
         await page.goto(`/electrical#${target}`);
+        if (kind === "action") await page.locator('[data-certificate="electrical-measurements"] [data-certificate-info] > summary').click();
       }
       const scene = page.locator(`main [data-mascot-scene="${kind}"]`);
       await scene.scrollIntoViewIfNeeded();
@@ -104,6 +105,7 @@ test("completed Udemy electrical measurements retains ten bilingual learning obj
   const course = page.locator("#tracks article").filter({ has: page.locator('[data-course-objectives="electrical-udemy-measurements"]') });
   await expect(course.getByText("Completed", { exact: true })).toBeVisible();
   await expect(course).toContainText("UC-25442727-a627-4cdc-894e-d93da3bba021");
+  await course.locator('[data-certificate-info] > summary').click();
   const objectives = course.locator('[data-course-objectives="electrical-udemy-measurements"]');
   await objectives.locator("summary").click();
   await expect(objectives.locator("li")).toHaveCount(10);
@@ -175,6 +177,7 @@ test("certificate inventories distinguish missing files from unfinished courses"
   await expect(inventory.getByText("Currently Studying", { exact: true })).toHaveCount(2);
   await expect(inventory.locator("[data-certificate-original]")).toHaveCount(1);
   await expect(inventory.locator("[data-certificate-placeholder]")).toHaveCount(3);
+  await inventory.locator('[data-certificate="electrical-linkedin"] [data-certificate-info] > summary').click();
   await expect(inventory.getByText("Certificate confirmed; file pending upload.", { exact: true })).toBeVisible();
   await selectLanguage(page, "es");
   await expect(inventory.getByText("Certificado confirmado; archivo pendiente de subir.", { exact: true })).toBeVisible();

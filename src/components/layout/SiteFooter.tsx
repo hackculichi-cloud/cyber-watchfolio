@@ -7,6 +7,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import ContactPreview from "@/components/shared/ContactPreview";
 import HomeCharacter from "@/components/shared/HomeCharacter";
 import CulichiMascot from "@/components/shared/CulichiMascot";
+import MascotScene from "@/components/shared/MascotScene";
 
 const contactLink = "inline-flex min-h-11 items-center gap-2 rounded-lg border border-border/70 bg-background/50 px-3 py-2 text-sm text-foreground/80 transition-colors hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
@@ -14,6 +15,7 @@ const contactLink = "inline-flex min-h-11 items-center gap-2 rounded-lg border b
 const FooterContent = memo(function FooterContent({ pathname }: { pathname: string }) {
   const { t } = useLanguage();
   const mascot = profileForPath(pathname)?.slug ?? "emblem";
+  const footerProfile = profileForPath(pathname)?.slug;
   return <footer className="site-footer relative isolate overflow-hidden border-t border-border bg-[#080f1b]">
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_15%_20%,hsl(var(--primary)/0.12),transparent_60%)]" />
     <div aria-hidden className="flex h-0.5">{professionalProfiles.map(area => <span key={area.slug} data-profile={area.slug} className="flex-1 bg-primary/80" />)}</div>
@@ -24,8 +26,9 @@ const FooterContent = memo(function FooterContent({ pathname }: { pathname: stri
           <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">{t("Ideas become projects.")}<br /><span className="text-primary">{t("Let’s talk.")}</span></h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
         </div>
-        <div data-footer-contact className={`relative isolate w-fit max-w-full min-w-0 ${pathname === "/" ? "mt-10" : ""}`}>
+        <div data-footer-contact className={`relative isolate w-fit max-w-full min-w-0 ${pathname === "/" ? "mt-10" : footerProfile ? "mt-16 lg:mt-0" : ""}`}>
         {pathname === "/" && <HomeCharacter profile="customer-service" scene="service-leaning" className="absolute -top-20 right-2 z-0 h-32 w-28 overflow-hidden sm:w-32" />}
+        {footerProfile && <MascotScene profile={footerProfile} scene="practice" className="footer-contact-fox pointer-events-none absolute -top-20 right-2 z-0 h-28 w-24 overflow-hidden" />}
         <ContactPreview channel="Email" href={`mailto:${site.email}`} className="group relative z-10 inline-flex min-h-14 w-fit max-w-full items-center gap-3 rounded-xl border border-primary/40 bg-surface px-5 py-4 text-sm font-semibold text-primary transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <Mail className="h-5 w-5 shrink-0" aria-hidden /><span className="break-all">{site.email}</span><ArrowUpRight className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
         </ContactPreview>
