@@ -1,31 +1,27 @@
 import type { ProfileSlug } from "./profiles";
 
-export type MascotTool = "multimeter" | "pliers" | "oscilloscope" | "soldering-iron" | "phone" | "screwdriver" | "laptop" | "keyboard" | "router" | "security-key" | "headset" | "clipboard" | "hair-clipper" | "barber-scissors" | "detail-trimmer";
-export const toolArtwork: Record<MascotTool, { label: string; region?: [number, number, number, number]; clip?: string }> = {
-  "hair-clipper": { label: "Hair clipper" },
-  "barber-scissors": { label: "Barber scissors" },
-  "detail-trimmer": { label: "Detail trimmer" },
-  multimeter: { label: "Digital multimeter", region: [0, 0, 362, 362] },
-  pliers: { label: "Insulated pliers", region: [362, 0, 340, 362] },
-  oscilloscope: { label: "Oscilloscope", region: [705, 0, 381, 362] },
-  "soldering-iron": { label: "Soldering iron", region: [0, 362, 362, 362] },
-  phone: { label: "Smartphone", region: [380, 362, 305, 362] },
-  screwdriver: { label: "Precision screwdriver", region: [720, 362, 366, 362] },
-  laptop: { label: "Laptop", region: [0, 724, 401, 345], clip: "polygon(0 0,75% 0,85% 55%,100% 70%,100% 100%,0 100%)" },
-  keyboard: { label: "Keyboard", region: [341, 753, 399, 297], clip: "polygon(0 35%,30% 0,100% 30%,100% 100%,30% 100%,0 75%)" },
-  router: { label: "Network router", region: [727, 750, 359, 300] },
-  "security-key": { label: "USB security key", region: [0, 1086, 362, 362] },
-  headset: { label: "Headset", region: [363, 1060, 363, 388] },
-  clipboard: { label: "Service checklist", region: [730, 1060, 356, 388] },
-};
+export type MascotTool = "router" | "security-key" | "firewall" | "laptop" | "keyboard" | "mouse" | "multimeter" | "pliers" | "wire-stripper" | "oscilloscope" | "soldering-iron" | "circuit-board" | "phone" | "screwdriver" | "suction-cup" | "headset" | "clipboard" | "desk-phone" | "hair-clipper" | "barber-scissors" | "detail-trimmer";
 
-/** Illustrated costume props; these do not assert ownership of physical equipment. */
+/** Each decorative tool belongs to one profession, with artwork in that section's color. */
 export const mascotGear: Record<ProfileSlug, [MascotTool, MascotTool, MascotTool]> = {
-  cybersecurity: ["router", "security-key", "laptop"],
-  development: ["laptop", "keyboard", "phone"],
-  electrical: ["multimeter", "pliers", "screwdriver"],
-  electronics: ["oscilloscope", "soldering-iron", "multimeter"],
-  repair: ["phone", "screwdriver", "soldering-iron"],
-  "customer-service": ["headset", "clipboard", "laptop"],
+  cybersecurity: ["router", "security-key", "firewall"],
+  development: ["laptop", "keyboard", "mouse"],
+  electrical: ["multimeter", "pliers", "wire-stripper"],
+  electronics: ["oscilloscope", "soldering-iron", "circuit-board"],
+  repair: ["phone", "screwdriver", "suction-cup"],
+  "customer-service": ["headset", "clipboard", "desk-phone"],
   barbering: ["hair-clipper", "barber-scissors", "detail-trimmer"],
 };
+
+const labels: Record<MascotTool, string> = {
+  router: "Network router", "security-key": "USB security key", firewall: "Hardware firewall",
+  laptop: "Laptop", keyboard: "Keyboard", mouse: "Computer mouse",
+  multimeter: "Digital multimeter", pliers: "Electrician's pliers", "wire-stripper": "Automatic wire stripper",
+  oscilloscope: "Oscilloscope", "soldering-iron": "Soldering iron", "circuit-board": "Printed circuit board",
+  phone: "Smartphone", screwdriver: "Precision screwdriver", "suction-cup": "Screen-opening suction cup",
+  headset: "Headset", clipboard: "Service checklist", "desk-phone": "Desk phone",
+  "hair-clipper": "Hair clipper", "barber-scissors": "Barber scissors", "detail-trimmer": "Detail trimmer",
+};
+
+/** Illustrations for Home navigation; they do not assert equipment ownership. */
+export const toolArtwork = Object.fromEntries(Object.entries(mascotGear).flatMap(([profile, tools]) => tools.map(tool => [tool, { label: labels[tool], profile, src: `/images/mascot-tools/${profile}/${tool}.webp` }]))) as Record<MascotTool, { label: string; profile: ProfileSlug; src: string }>;

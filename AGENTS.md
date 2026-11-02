@@ -9,7 +9,7 @@
 # Owner presentation preferences
 
 - Keep «Sobre mí» / About out of the top desktop and mobile menus; the About page remains accessible from the footer.
-- Keep each Home outfit's three tools floating around the character on hover/focus, clear of the area buttons. Use the section's single accent for all its tools; do not replace them with a rail or individually colored cards.
+- Keep each Home outfit's three tools floating around the character on hover/focus, clear of the area buttons. Every profession has three distinct tool types used only in that profession, with the artwork itself in the section's color. Show their translated names and small images below the orbit in a reserved, stable space, while retaining the floating objects. Avoid surrounding cards and keep all seven choices reachable on phones.
 - Keep electrical tools and training in their own shared, collapsible collections outside the three specialties. Each specialty only has Projects and Completed work; enter Projects directly, without an Overview tab. Present the owner's supplied equipment pictures once in the general Tools catalog, without the retouch caption in the gallery or viewer; keep image-edit provenance in documentation and distinguish equipment used in training from documented owned tools.
 
 - Keep unpublished collections compact in every area: use one brief pending row, never grids of empty image cards or large blank panels. Preserve existing anchors and automatically show the real collection when data is published.

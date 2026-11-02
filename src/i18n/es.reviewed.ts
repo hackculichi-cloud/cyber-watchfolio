@@ -1,5 +1,12 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Hardware firewall": "Firewall físico",
+  "Computer mouse": "Ratón de computadora",
+  "Electrician's pliers": "Pinzas de electricista",
+  "Automatic wire stripper": "Pelacables automático",
+  "Printed circuit board": "Tarjeta de circuito impreso",
+  "Screen-opening suction cup": "Ventosa para pantallas",
+  "Desk phone": "Teléfono de escritorio",
   "A single equipment catalog shared by all electrical specialties.": "Un solo catálogo de herramientas y materiales, común a todas las especialidades de electricidad.",
   "View tools": "Ver herramientas",
   "Close tools": "Cerrar herramientas",

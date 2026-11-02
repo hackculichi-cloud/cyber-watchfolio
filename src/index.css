@@ -736,7 +736,7 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .home-hero [data-home-background] { object-position:65% center; opacity:.25; }
   .home-mascot-widget { max-width:22.5rem; }
   [data-home-mascot] { aspect-ratio:auto; height:12.75rem; }
-  [data-home-mascot] .mascot-orbit-guide, [data-home-mascot] [data-orbit-toggle], .home-mascot-widget [data-mascot-legend] { display:none; }
+  [data-home-mascot] .mascot-orbit-guide, [data-home-mascot] [data-orbit-toggle] { display:none; }
   /* Small objects remain above the character, clear of the two upper controls. */
   [data-home-mascot] .mascot-orbit-body, [data-home-mascot][data-selector-open="true"] .mascot-orbit-body { width:42%; max-width:8rem; top:calc(43% + 1.125rem); }
   [data-home-mascot] [data-outfit-selector], [data-home-mascot] [data-orbit-node] { animation:none; }
