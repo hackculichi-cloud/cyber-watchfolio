@@ -53,6 +53,7 @@ test("courses share their certificate card with their explanations and collapsed
   const conocer = certificates.locator('[data-certificate="electrical-conocer"]');
   await expect(conocer).toContainText("MOCKUP · Original pending");
   await expect(conocer).toContainText("Training in progress; certificate pending completion.");
+  await conocer.locator('[data-certificate-info] > summary').click();
   const syllabus = conocer.locator('[data-course-syllabus="electrical"]');
   await expect(syllabus).not.toHaveAttribute("open", "");
   await syllabus.locator("summary").click();

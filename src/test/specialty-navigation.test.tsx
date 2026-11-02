@@ -75,6 +75,7 @@ describe("course knowledge and documented practice", () => {
     render(<LanguageProvider><ElectricalTrainingCertificates /></LanguageProvider>);
     const main = document.querySelector('[data-certificate="electrical-conocer"]')!;
     expect(main).toHaveTextContent('Universidad Internacional · RED CONOCER');
+    fireEvent.click(main.querySelector('[data-certificate-info] > summary')!);
     fireEvent.click(main.querySelector('[data-course-syllabus="electrical"] summary')!);
     await waitFor(() => expect(main.querySelectorAll('[data-electrical-module]')).toHaveLength(8));
     expect(screen.getByRole("button", { name: /Final Project and Evaluation/ })).toBeInTheDocument();
@@ -85,6 +86,7 @@ describe("course knowledge and documented practice", () => {
   it("publishes the supplied measurements credential without certifying the ongoing programs", () => {
     render(<LanguageProvider><ElectricalTrainingCertificates /></LanguageProvider>);
     const completed = document.querySelector('[data-certificate="electrical-measurements"]')! as HTMLElement;
+    fireEvent.click(completed.querySelector('[data-certificate-info] > summary')!);
     expect(within(completed).getByText("Completed", { exact: true })).toBeVisible();
     expect(completed).toHaveTextContent("Christian Velasco Estrada");
     expect(completed).toHaveTextContent("Irving Lopez Hernandez");

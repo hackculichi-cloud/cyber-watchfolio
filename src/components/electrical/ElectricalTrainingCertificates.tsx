@@ -1,6 +1,5 @@
 import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import ElectricalCurriculum from "./ElectricalCurriculum";
-import MascotScene from "@/components/shared/MascotScene";
 import Tag from "@/components/shared/Tag";
 import { electricalTraining, trainingTracks } from "@/data/electrical";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -15,7 +14,11 @@ const ElectricalTrainingCertificates = ({ targetId }: { targetId?: string }) => 
     if (!targetId) return;
     const frame = requestAnimationFrame(() => {
       const target = document.getElementById(targetId) ?? document.getElementById("certificate");
-      if (targetId.startsWith("certificate-")) target?.focus({ preventScroll: true });
+      if (targetId.startsWith("certificate-")) {
+        const information = target?.querySelector<HTMLDetailsElement>("[data-certificate-info]");
+        if (information) information.open = true;
+        target?.focus({ preventScroll: true });
+      }
       target?.scrollIntoView({ block: "start", behavior: "instant" });
     });
     return () => cancelAnimationFrame(frame);
@@ -25,7 +28,6 @@ const ElectricalTrainingCertificates = ({ targetId }: { targetId?: string }) => 
     return [recordId, <div key={track.id} className="space-y-4">
       <div className="flex flex-col items-center gap-3 sm:flex-row">
         <p className="min-w-0 flex-1 text-sm leading-relaxed text-muted-foreground">{t(track.description)}</p>
-        {track.id === "electrical-udemy-measurements" && <MascotScene profile="electrical" scene="action" className="w-52 shrink-0 sm:w-60" />}
       </div>
       {track.topics.length > 0 && <div className="flex flex-wrap gap-2">{track.topics.map(topic => <Tag key={topic}>{t(topic)}</Tag>)}</div>}
       {track.id === "electrical" && <DeferredDetails data-course-syllabus={track.id}

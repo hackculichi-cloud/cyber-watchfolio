@@ -1,5 +1,16 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Diplomas and certificates": "Diplomas y certificados",
+  "Original document": "Documento original",
+  "Enlarge a document or open its information to explore the course and syllabus.": "Amplía un documento o abre su información para conocer el curso y su temario.",
+  "View course information and syllabus": "Ver información y temario",
+  "Hardware firewall": "Firewall físico",
+  "Computer mouse": "Ratón de computadora",
+  "Electrician's pliers": "Pinzas de electricista",
+  "Automatic wire stripper": "Pelacables automático",
+  "Printed circuit board": "Tarjeta de circuito impreso",
+  "Screen-opening suction cup": "Ventosa para pantallas",
+  "Desk phone": "Teléfono de escritorio",
   "A single equipment catalog shared by all electrical specialties.": "Un solo catálogo de herramientas y materiales, común a todas las especialidades de electricidad.",
   "View tools": "Ver herramientas",
   "Close tools": "Cerrar herramientas",

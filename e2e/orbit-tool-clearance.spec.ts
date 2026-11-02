@@ -79,7 +79,7 @@ for (const lang of ["es", "en"] as const) {
           const { x, y, width, height } = element.getBoundingClientRect();
           return [element.getAttribute("data-outfit")!, { x, y, width, height }];
         })));
-        await expect(page.locator("[data-mascot-legend]")).toHaveClass("sr-only");
+        await expect(page.locator("[data-mascot-legend]")).toBeVisible();
         const combinations = new Set<string>();
         for (const [index, area] of areas.entries()) {
           const mode = width >= 768 && index % 2 ? "hover" : "focus";

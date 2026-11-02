@@ -2,11 +2,10 @@ import { useLayoutEffect, useRef, useState, type CSSProperties, type RefObject }
 import type { ProfileSlug } from "@/data/profiles";
 import { mascotGear } from "@/data/mascotGear";
 import { floatingToolLayout, type ToolRect } from "@/lib/floatingToolLayout";
-import MascotGearPreview from "./MascotGearPreview";
 import MascotToolProp from "./MascotToolProp";
 
 /** Three photographs float in measured gaps instead of crossing outfit controls. */
-export default function MascotToolField({ profile, committing, id, stage }: { profile: ProfileSlug; committing: boolean; id: string; stage: RefObject<HTMLDivElement> }) {
+export default function MascotToolField({ profile, committing, stage }: { profile: ProfileSlug; committing: boolean; stage: RefObject<HTMLDivElement> }) {
   const [slots, setSlots] = useState<ToolRect[]>([]);
   const [entered, setEntered] = useState(false);
   const signature = useRef("");
@@ -41,9 +40,8 @@ export default function MascotToolField({ profile, committing, id, stage }: { pr
     return () => { cancelAnimationFrame(first); cancelAnimationFrame(next); };
   }, [slots.length]);
   return <div data-tool-field={profile} data-profile={profile} data-floating-tools data-equipping={committing} data-tools-entered={entered} className="mascot-tool-field pointer-events-none absolute inset-0 z-[5] text-primary">
-    <MascotGearPreview profile={profile} id={id} />
     {slots.map((slot, index) => <span key={mascotGear[profile][index]} data-tool-flight={mascotGear[profile][index]} data-floating-tool className="mascot-tool-flight pointer-events-auto absolute grid place-items-center" style={{ left: slot.x, top: slot.y, width: slot.width, height: slot.height, "--tool-tilt": `${[-7, 6, -3][index]}deg`, "--tool-bob": slot.width < 40 ? "1px" : "2px" } as CSSProperties}>
-      <span className="mascot-tool-float grid h-full w-full place-items-center p-[10%]"><MascotToolProp tool={mascotGear[profile][index]} contain /></span>
+      <span className="mascot-tool-float grid h-full w-full place-items-center p-[10%]"><MascotToolProp tool={mascotGear[profile][index]} /></span>
     </span>)}
   </div>;
 }

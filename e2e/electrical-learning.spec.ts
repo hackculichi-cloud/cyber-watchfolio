@@ -35,6 +35,7 @@ test('the shared training keeps the full main syllabus and complementary course 
       await expect(records.locator('[data-training-role="complementary"]')).toHaveCount(3);
       for (const id of ['electrical-linkedin', 'electrical-measurements']) await expect(records.locator(`[data-certificate="${id}"]`)).toContainText(lang === 'es' ? 'Completado' : 'Completed');
       await expect(records.locator('[data-certificate="electrical-udemy"]')).toContainText(lang === 'es' ? 'Estudiando actualmente' : 'Currently Studying');
+      await main.locator('[data-certificate-info] > summary').click();
       const syllabus = main.locator('[data-course-syllabus="electrical"]');
       await syllabus.locator('summary').click();
       await expect(syllabus.locator('[data-electrical-module]')).toHaveCount(8);

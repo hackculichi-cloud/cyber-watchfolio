@@ -14,6 +14,8 @@ for (const lang of ["es", "en"] as const) {
       await page.evaluate(() => document.fonts.ready);
       const stage = page.locator("[data-home-mascot]");
       const sectionColors = new Set<string>();
+      const distinctTools = new Set<string>();
+      const distinctImages = new Set<string>();
 
       for (const area of areas) {
         const option = stage.locator(`[data-outfit="${area}"]`);
@@ -45,10 +47,47 @@ for (const lang of ["es", "en"] as const) {
           expect(style.color).toBe(sectionColor);
           expect(style.filter).toContain("drop-shadow");
         }
+        const legend = page.locator(`[data-gear-preview="${area}"]`);
+        await expect(legend).toBeVisible();
+        await expect(legend.locator('[data-gear-item]')).toHaveCount(3);
+        const visibleLabels = await legend.locator('[data-tool-label]').allTextContents();
+        expect(visibleLabels.every(label => label.trim().length > 0)).toBe(true);
+        for (const prop of await legend.locator('[data-tool-prop]').all()) {
+          const toolId = (await prop.getAttribute('data-tool-prop'))!;
+          expect(distinctTools.has(toolId)).toBe(false);
+          distinctTools.add(toolId);
+          await expect(prop).toHaveAttribute('data-tool-profile', area);
+          const img = prop.locator('img');
+          await img.evaluate((image: HTMLImageElement) => image.decode());
+          const src = (await img.getAttribute('src'))!;
+          expect(src).toContain(`/images/mascot-tools/${area}/`);
+          expect(distinctImages.has(src)).toBe(false);
+          distinctImages.add(src);
+          const palette = await img.evaluate((image: HTMLImageElement, profile) => {
+            const canvas = document.createElement('canvas'); canvas.width=64; canvas.height=64;
+            const ctx=canvas.getContext('2d')!; ctx.drawImage(image,0,0,64,64);
+            const pixels=ctx.getImageData(0,0,64,64).data;
+            let colored=0, matching=0;
+            const ranges: Record<string,[number,number]>={ cybersecurity:[170,210],development:[90,160],electrical:[30,75],electronics:[10,55],repair:[250,305],"customer-service":[155,195],barbering:[325,360] };
+            const [low,high]=ranges[profile];
+            for(let i=0;i<pixels.length;i+=4){
+              const r=pixels[i],g=pixels[i+1],b=pixels[i+2],max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
+              if(pixels[i+3]<128 || delta<30 || max<64 || delta/max<.35) continue;
+              colored++;
+              let hue=(max===r?(g-b)/delta:max===g?(b-r)/delta+2:(r-g)/delta+4)*60;
+              if(hue<0) hue+=360;
+              if(hue>=low && hue<=high) matching++;
+            }
+            return {colored,matching};
+          }, area);
+          expect(palette.colored).toBeGreaterThan(20);
+          expect(palette.matching/palette.colored, `${area}: ${toolId} image palette`).toBeGreaterThan(.65);
+        }
         if (area === "electrical") {
           for (const label of lang === "es"
-            ? ["Multímetro digital", "Pinzas aisladas", "Destornillador de precisión"]
-            : ["Digital multimeter", "Insulated pliers", "Precision screwdriver"]) await expect(field).toContainText(label);
+            ? ["Multímetro digital", "Pinzas de electricista", "Pelacables automático"]
+            : ["Digital multimeter", "Electrician's pliers", "Automatic wire stripper"]) await expect(legend).toContainText(label);
+          await expect(legend).not.toContainText(lang === "es" ? "Destornillador" : "screwdriver");
         }
 
         await field.evaluate(element => element.setAttribute("data-hover-retained", "true"));
@@ -73,6 +112,8 @@ for (const lang of ["es", "en"] as const) {
         await expect(stage.locator("[data-tool-field]")).toHaveCount(0);
       }
       expect(sectionColors.size).toBe(7);
+      expect(distinctTools.size).toBe(21);
+      expect(distinctImages.size).toBe(21);
 
       // Keyboard preview and Escape continue to work after pointer previews.
       await stage.locator('[data-outfit="electrical"]').focus();

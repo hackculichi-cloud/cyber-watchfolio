@@ -1,5 +1,5 @@
-import { BadgeCheck, Download, FileClock, ExternalLink } from "lucide-react";
-import { certifications } from "@/data/certifications";
+import { BadgeCheck, Download, FileClock, ExternalLink, BookOpen } from "lucide-react";
+import { certifications, type CertificationRecord } from "@/data/certifications";
 import type { ProfileSlug } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import EmptyCollectionSection from "@/components/shared/EmptyCollectionSection";
@@ -8,26 +8,11 @@ import Tag from "@/components/shared/Tag";
 import type { ReactNode } from "react";
 import CertificateMockup from "./CertificateMockup";
 import TrainingProviderBadge from "./TrainingProviderBadge";
+import MascotScene from "@/components/shared/MascotScene";
 
-/** Documents are not treated as credentials until the owner confirms them. */
-const ProfileCertificates = ({ profile, courseContent, headerContent, featuredId }: { profile: ProfileSlug; courseContent?: Record<string, ReactNode>; headerContent?: ReactNode; featuredId?: string }) => {
+function CertificateInformation({ record, downloadOriginal, course }: { record: CertificationRecord; downloadOriginal: boolean; course?: ReactNode }) {
   const { t, lang } = useLanguage();
-  const records = certifications[profile] ?? [];
-  if (!records.length && !headerContent) return <EmptyCollectionSection id={profile === "electrical" ? "certificate" : "certifications"} data-certifications={profile} title="Certifications" description="No certificates provided for this area yet." />;
-  return <section id={profile === "electrical" ? "certificate" : "certifications"} className="container mx-auto scroll-mt-32 px-4 py-16" data-certifications={profile}>
-    <SectionHeading eyebrow={t("Certifications")} title={t("Certificates and pending documents")} description={t("Confirmed training and the documents still to be added. In-progress courses are not completed certifications.")} />
-    {headerContent}
-    {records.length ? <div className={`grid gap-6 ${courseContent ? "" : "md:grid-cols-2"}`}>{records.map(record => {
-      const hasPreview = !!courseContent && (!!record.image || !record.credentialId);
-      const downloadOriginal = !!record.credentialId && record.href?.endsWith(".pdf");
-      return <article key={record.id} id={`certificate-${record.id}`} tabIndex={-1} data-certificate={record.id} data-certificate-record={record.credentialId ? record.id : undefined} className={`scroll-mt-64 rounded-xl border p-5 outline-none focus-visible:ring-2 focus-visible:ring-primary sm:p-6 ${record.id === featuredId ? "border-primary/40 bg-primary/5" : "border-border bg-surface/50"}`}>
-      {featuredId && <p data-training-role={record.id === featuredId ? "main" : "complementary"} className={`mb-4 text-sm font-bold ${record.id === featuredId ? "text-primary" : "text-muted-foreground"}`}>{t(record.id === featuredId ? "Main training" : "Complementary courses")}</p>}
-      <div className={hasPreview ? "grid gap-6 lg:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)]" : ""}>
-      {hasPreview && <CertificateMockup record={record} />}
-      <div className="min-w-0">
-      <div className="flex items-start justify-between gap-3">{record.training === "Completed" ? <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden /> : <FileClock className="h-5 w-5 shrink-0 text-primary" aria-hidden />}<Tag variant={record.training === "Completed" ? "primary" : "muted"}>{t(record.training)}</Tag></div>
-      <h3 className="mt-4 text-base font-semibold">{t(record.title)}</h3>
-      {record.providerId ? <div className="mt-3"><TrainingProviderBadge id={record.providerId} /></div> : <p className="mt-2 text-xs text-primary">{t(record.provider)}</p>}
+  return <div data-certificate-information-content>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t(record.document)}</p>
       {(record.awardedTo || record.instructor || record.issuedOn || record.duration || record.credentialId) && <dl data-certificate-details className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
         {record.awardedTo && <div className="sm:col-span-2"><dt className="text-xs text-muted-foreground">{t("Awarded to")}</dt><dd className="mt-1 font-medium">{record.awardedTo}</dd></div>}
@@ -40,10 +25,40 @@ const ProfileCertificates = ({ profile, courseContent, headerContent, featuredId
       {record.href && <a href={record.href} download={downloadOriginal || undefined} target={!downloadOriginal && record.href.startsWith("/") ? "_blank" : undefined} rel={!downloadOriginal && record.href.startsWith("/") ? "noopener noreferrer" : undefined} className="inline-flex min-h-11 items-center gap-2 rounded text-sm text-primary underline focus-visible:ring-2 focus-visible:ring-primary">{t(downloadOriginal ? "Download PDF" : "View document")}{downloadOriginal ? <Download className="h-4 w-4" aria-hidden /> : <ExternalLink className="h-4 w-4" aria-hidden />}</a>}
       {record.verifyUrl && <a href={record.verifyUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded text-sm text-primary underline focus-visible:ring-2 focus-visible:ring-primary">{t("View Udemy credential")}<ExternalLink className="h-4 w-4" aria-hidden /></a>}
       </div>
-      {courseContent?.[record.id] && <div className="mt-5 border-t border-border pt-5">{courseContent[record.id]}</div>}
+      {course && <div className="mt-5 border-t border-border pt-5">{course}</div>}
+  </div>;
+}
+
+/** Documents are not treated as credentials until the owner confirms them. */
+const ProfileCertificates = ({ profile, courseContent, headerContent, featuredId }: { profile: ProfileSlug; courseContent?: Record<string, ReactNode>; headerContent?: ReactNode; featuredId?: string }) => {
+  const { t } = useLanguage();
+  const visual = !!courseContent;
+  const records = [...(certifications[profile] ?? [])].sort((a, b) => visual ? Number(!!b.image) - Number(!!a.image) : 0);
+  if (!records.length && !headerContent) return <EmptyCollectionSection id={profile === "electrical" ? "certificate" : "certifications"} data-certifications={profile} title="Certifications" description="No certificates provided for this area yet." />;
+  return <section id={profile === "electrical" ? "certificate" : "certifications"} className="container mx-auto scroll-mt-32 px-4 py-16" data-certifications={profile}>
+    <SectionHeading eyebrow={t("Certifications")} title={t(visual ? "Diplomas and certificates" : "Certificates and pending documents")} description={t(visual ? "Enlarge a document or open its information to explore the course and syllabus." : "Confirmed training and the documents still to be added. In-progress courses are not completed certifications.")} />
+    {!visual && headerContent}
+    {records.length ? <div className={`grid items-start gap-6 md:grid-cols-2 ${visual ? "mt-10" : ""}`}>{records.map(record => {
+      const hasPreview = !!courseContent && (!!record.image || !record.credentialId);
+      const downloadOriginal = !!record.credentialId && record.href?.endsWith(".pdf");
+      return <article key={record.id} id={`certificate-${record.id}`} tabIndex={-1} data-certificate={record.id} data-certificate-record={record.credentialId ? record.id : undefined} className={`relative scroll-mt-64 rounded-xl border p-5 outline-none focus-visible:ring-2 focus-visible:ring-primary sm:p-6 ${record.id === featuredId ? "border-primary/40 bg-primary/5" : "border-border bg-surface/50"}`}>
+      {visual && record.image && profile === "electrical" && <MascotScene profile="electrical" scene="action" className="pointer-events-none absolute -top-12 right-3 z-10 w-20 sm:-top-16 sm:w-24" />}
+      {featuredId && <p data-training-role={record.id === featuredId ? "main" : "complementary"} className={`mb-4 text-sm font-bold ${record.id === featuredId || record.image ? "text-primary" : "text-muted-foreground"}`}>{t(record.image ? "Original document" : record.id === featuredId ? "Main training" : "Complementary courses")}</p>}
+      <div>
+      {hasPreview && <CertificateMockup record={record} />}
+      <div className={hasPreview ? "mt-4 min-w-0" : "min-w-0"}>
+      <div className="flex items-start justify-between gap-3">{record.training === "Completed" ? <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden /> : <FileClock className="h-5 w-5 shrink-0 text-primary" aria-hidden />}<Tag variant={record.training === "Completed" ? "primary" : "muted"}>{t(record.training)}</Tag></div>
+      <h3 className={visual ? "mt-4 text-lg font-semibold" : "mt-4 text-base font-semibold"}>{t(record.title)}</h3>
+      {record.providerId && !visual ? <div className="mt-3"><TrainingProviderBadge id={record.providerId} /></div> : <p className="mt-2 text-sm text-muted-foreground">{t(record.provider)}</p>}
+      {visual && <details data-certificate-info={record.id} className="mt-5 border-t border-border pt-3 [&[open]>summary>span]:rotate-45">
+        <summary className="menu-choice flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden"><BookOpen aria-hidden className="h-4 w-4" />{t("View course information and syllabus")}<span aria-hidden className="ml-auto">+</span></summary>
+        <CertificateInformation record={record} downloadOriginal={downloadOriginal} course={courseContent?.[record.id]} />
+      </details>}
+      {!visual && <CertificateInformation record={record} downloadOriginal={downloadOriginal} course={courseContent?.[record.id]} />}
       </div>
       </div>
     </article>; })}</div> : <p className="rounded-lg border border-dashed border-border p-5 text-sm text-muted-foreground">{t("No certificates provided for this area yet.")}</p>}
+    {visual && headerContent && <div className="mt-10 border-t border-border pt-6">{headerContent}</div>}
   </section>;
 };
 export default ProfileCertificates;

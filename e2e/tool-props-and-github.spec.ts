@@ -12,7 +12,7 @@ test("illustrated tools approach the fox and equip before navigating", async ({ 
   const initial = await tool.evaluate(element => getComputedStyle(element).transform);
   await expect.poll(() => tool.evaluate(element => getComputedStyle(element).transform)).not.toBe(initial);
   await expect(tool).toHaveCSS('opacity', '1');
-  await expect(tool.locator('[data-tool-prop]')).toHaveCSS('background-image', /culichi-tool-props.*\.webp/);
+  await expect(tool.locator('[data-tool-prop] img')).toHaveAttribute('src', '/images/mascot-tools/electrical/multimeter.webp');
   await stage.locator('[data-outfit="electrical"]').click();
   await expect(page).toHaveURL(/\/electrical$/);
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electrical');

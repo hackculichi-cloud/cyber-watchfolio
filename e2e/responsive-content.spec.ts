@@ -55,6 +55,7 @@ test('opening content settles within a few frames with a throttled CPU and norma
 test('course expansion uses its full height immediately and photo dialogs avoid mobile blur', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/electrical#certificate');
+  await page.locator('[data-certificate="electrical-conocer"] [data-certificate-info] > summary').click();
   const syllabus = page.locator('[data-course-syllabus="electrical"]');
   await syllabus.locator('summary').click();
   const trigger = syllabus.getByRole('button', { name: /Residential Electrical Installations/ });

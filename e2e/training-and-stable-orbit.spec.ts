@@ -64,6 +64,7 @@ test('the fox stays in front of decorative props and all seven controls remain r
 test('electrical training links to its confirmed providers and enlarges clearly marked mockups', async ({ page }) => {
   await page.goto('/electrical#certificate');
   const providers = page.locator('[data-training-providers="electrical"]');
+  await providers.scrollIntoViewIfNeeded();
   await expect(providers.locator('[data-training-provider]')).toHaveCount(3);
   await expect(providers.locator('[data-training-provider="universidad-internacional"]')).toHaveAttribute('href', 'https://www.facebook.com/uinternacionaloficial/?locale=es_LA');
   await expect(providers.locator('[data-training-provider="udemy"]')).toHaveAttribute('href', 'https://www.udemy.com/');
