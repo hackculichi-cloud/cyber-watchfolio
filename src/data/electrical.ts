@@ -162,7 +162,7 @@ export type TrainingTrack = {
   anchor: string;
   learningObjectives?: string[];
   /** Only the sections visible in the author's supplied course screenshot. */
-  syllabus?: { title: string; topics: string[] }[];
+  syllabus?: { title: string; topics: string[]; number?: number; lessonCount?: number; durationMinutes?: number }[];
   syllabusNote?: string;
 };
 
@@ -207,9 +207,27 @@ export const trainingTracks: TrainingTrack[] = [
     id: "electrical-udemy",
     anchor: "electrical",
     title: "Basic Electrical Installations",
-    status: "Currently Studying",
-    description: "Udemy course in progress. Curriculum and certificate will be added when provided.",
-    topics: [],
+    status: "Completed",
+    description: "Completed Udemy course on basic electrical installations, with the original certificate available.",
+    topics: ["Electrical circuits", "Electrical diagrams", "Power factor", "Conductor selection"],
+    syllabusNote: "Partial syllabus from the supplied screenshot (sections 2–16). Individual lesson titles and section 1 are not shown.",
+    syllabus: [
+      { number: 2, title: "Electricity fundamentals", topics: [], lessonCount: 7, durationMinutes: 27 },
+      { number: 3, title: "Electrical circuits", topics: [], lessonCount: 5, durationMinutes: 16 },
+      { number: 4, title: "Basic electrical calculations (Ohm’s law and Watt’s law)", topics: [], lessonCount: 7, durationMinutes: 23 },
+      { number: 5, title: "Fundamentals of wiring diagrams", topics: [], lessonCount: 6, durationMinutes: 26 },
+      { number: 6, title: "Single-pole switch and single/duplex outlet diagrams", topics: [], lessonCount: 13, durationMinutes: 53 },
+      { number: 7, title: "Staircase and pass-through switch diagrams", topics: [], lessonCount: 9, durationMinutes: 36 },
+      { number: 8, title: "Fundamentals of electrical plans", topics: [], lessonCount: 8, durationMinutes: 42 },
+      { number: 9, title: "Relationship between a wiring diagram and an electrical plan", topics: [], lessonCount: 7, durationMinutes: 34 },
+      { number: 10, title: "Errors and exercises in electrical plans", topics: [], lessonCount: 10, durationMinutes: 42 },
+      { number: 11, title: "Electrical systems", topics: [], lessonCount: 8, durationMinutes: 34 },
+      { number: 12, title: "Power factor", topics: [], lessonCount: 7, durationMinutes: 22 },
+      { number: 13, title: "Feeder and branch circuits", topics: [], lessonCount: 9, durationMinutes: 33 },
+      { number: 14, title: "Selection by ampacity", topics: [], lessonCount: 6, durationMinutes: 24 },
+      { number: 15, title: "Selection by voltage drop", topics: [], lessonCount: 5, durationMinutes: 16 },
+      { number: 16, title: "Protection and protective-earth conductor selection", topics: [], lessonCount: 10, durationMinutes: 23 },
+    ],
   },
   {
     id: "electrical-udemy-measurements",

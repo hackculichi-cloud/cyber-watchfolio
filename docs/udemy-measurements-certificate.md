@@ -17,6 +17,6 @@ pdftoppm -f 1 -singlefile -scale-to 1600 -png public/certificates/udemy-medicion
 magick /tmp/udemy-mediciones-original.png -strip -define webp:lossless=true public/certificates/udemy-mediciones-electricas.webp
 ```
 
-El temario publicado transcribe los 26 temas visibles en la captura aportada y se identifica como parcial: cuatro bloques de fundamentos, instrumentos, mediciones y seguridad. Los diez objetivos previamente documentados se conservan. Universidad Internacional · RED CONOCER sigue como formación principal en progreso; Instalaciones eléctricas básicas de Udemy también sigue en progreso.
+El temario publicado transcribe los 26 temas visibles en la captura aportada y se identifica como parcial: cuatro bloques de fundamentos, instrumentos, mediciones y seguridad. Los diez objetivos previamente documentados se conservan. Universidad Internacional · RED CONOCER sigue como formación principal en progreso; Instalaciones eléctricas básicas de Udemy incorpora ahora su original de finalización del 2 de noviembre de 2026; Universidad Internacional es el único programa eléctrico que continúa en progreso.
 
 Los CV general y eléctrico en español e inglés reflejan el curso completado y enlazan al original local. Se comprobaron todas sus páginas y sus vistas previas fieles; los demás CV y los originales archivados permanecen intactos.

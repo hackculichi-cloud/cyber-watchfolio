@@ -39,7 +39,19 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
         width: 1600, height: 1237,
       },
     },
-    { id: "electrical-udemy", title: "Basic Electrical Installations", provider: "Udemy", providerId: "udemy", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
+    {
+      id: "electrical-udemy", title: "Basic Electrical Installations", provider: "Udemy", providerId: "udemy", training: "Completed",
+      document: "Course completed on November 2, 2026; certificate issued by Udemy.",
+      awardedTo: "Christian Velasco Estrada", issuedOn: "2026-11-02", instructor: "Irving Lopez Hernandez", duration: "7.5 hours",
+      credentialId: "UC-99a0711d-aef6-4471-aaf2-af4421bf0681",
+      verifyUrl: "https://ude.my/UC-99a0711d-aef6-4471-aaf2-af4421bf0681",
+      href: "/certificates/udemy-instalaciones-electricas-basicas.pdf",
+      image: {
+        src: "/certificates/udemy-instalaciones-electricas-basicas.webp",
+        alt: "Udemy completion certificate for Basic Electrical Installations awarded to Christian Velasco Estrada on November 2, 2026.",
+        width: 1600, height: 1190,
+      },
+    },
     {
       id: "electrical-measurements", title: "Electrical Measurements", provider: "Udemy", providerId: "udemy", training: "Completed",
       document: "Course completed on October 30, 2026; certificate issued by Udemy.",

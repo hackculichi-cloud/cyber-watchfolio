@@ -37,8 +37,13 @@ const ElectricalTrainingCertificates = ({ targetId }: { targetId?: string }) => 
         summary={<summary className="cursor-pointer rounded text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Documented course syllabus")}</summary>}>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t(track.syllabusNote)}</p>
         <ol className="mt-4 space-y-3">{track.syllabus.map((section, index) => <li key={section.title} data-confirmed-syllabus-section className="rounded-lg border border-border bg-background/40 p-4">
-          <h4 className="font-semibold"><span className="mr-2 font-mono text-primary">{String(index + 1).padStart(2, "0")}</span>{t(section.title)}</h4>
-          <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">{section.topics.map(topic => <li key={topic}>{t(topic)}</li>)}</ul>
+          <h4 className="font-semibold"><span data-syllabus-number className="mr-2 font-mono text-primary">{String(section.number ?? index + 1).padStart(2, "0")}</span>{t(section.title)}</h4>
+          {(section.lessonCount !== undefined || section.durationMinutes !== undefined) && <p data-syllabus-summary className="mt-2 text-xs text-muted-foreground">
+            {section.lessonCount !== undefined && t("{count} lessons").replace("{count}", String(section.lessonCount))}
+            {section.lessonCount !== undefined && section.durationMinutes !== undefined && " · "}
+            {section.durationMinutes !== undefined && `${section.durationMinutes} min`}
+          </p>}
+          {section.topics.length > 0 && <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">{section.topics.map(topic => <li key={topic}>{t(topic)}</li>)}</ul>}
         </li>)}</ol>
       </DeferredDetails>}
       {track.learningObjectives && <details data-course-objectives={track.id}>

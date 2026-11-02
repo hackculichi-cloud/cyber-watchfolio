@@ -99,7 +99,7 @@ test('electrical training links to its confirmed providers and enlarges clearly 
     }
   }
   expect(colors.size).toBe(3);
-  await expect(records.locator('[data-certificate-mockup]')).toHaveCount(2);
+  await expect(records.locator('[data-certificate-mockup]')).toHaveCount(1);
   const conocer = records.locator('[data-certificate="electrical-conocer"]');
   await expect(conocer).toContainText('Currently Studying');
   await conocer.getByRole('button', { name: /^Enlarge provisional certificate/ }).click();
