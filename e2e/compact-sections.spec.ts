@@ -58,7 +58,8 @@ test("phone layouts keep named tools, gallery targets and the larger header insi
     const illustration = tools.locator('img[data-mascot-scene="detail"]');
     await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth === 384)).toBe(true);
     expect((await page.locator('[data-header-mascot]').boundingBox())!.width).toBe(width < 768 ? 80 : 112);
-    expect((await tools.boundingBox())!.height).toBeLessThan(width < 640 ? 1250 : 1450);
+    // Phone layouts now include the full description beneath every tool photo.
+    expect((await tools.boundingBox())!.height).toBeLessThan(width < 640 ? 1600 : 1450);
     for (const id of ['tools', 'cv', 'evidence']) {
       await page.goto(`/electrical#${id}`);
       await page.locator(`#${id}`).scrollIntoViewIfNeeded();

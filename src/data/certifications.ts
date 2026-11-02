@@ -7,6 +7,7 @@ export type CertificationRecord = {
   issuedOn?: string;
   instructor?: string;
   duration?: string;
+  contactHours?: number;
   credentialId?: string;
   verifyUrl?: string;
   image?: { src: string; alt: string; width: number; height: number };
@@ -14,7 +15,18 @@ export type CertificationRecord = {
 export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>> = {
   electrical: [
     { id: "electrical-conocer", title: "Electrical Fundamentals & Industrial Electricity", provider: "Universidad Internacional · RED CONOCER", providerId: "universidad-internacional", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
-    { id: "electrical-linkedin", title: "Electrical Systems: Reading Drawings and Schematics", provider: "LinkedIn Learning", providerId: "linkedin-learning", training: "Completed", document: "Certificate confirmed; file pending upload." },
+    {
+      id: "electrical-linkedin", title: "Electrical Systems: Reading Drawings and Schematics", provider: "LinkedIn Learning", providerId: "linkedin-learning", training: "Completed",
+      document: "Course completed on October 30, 2026; certificate issued by LinkedIn Learning.",
+      awardedTo: "Christian Velasco Estrada", issuedOn: "2026-10-30", contactHours: 0.75,
+      credentialId: "7f0b6b08ee714835933ca230548a28ca29db50bff8e0fb9ae0f7b6614018df29",
+      href: "/certificates/linkedin-electrical-drawings-schematics.pdf",
+      image: {
+        src: "/certificates/linkedin-electrical-drawings-schematics.webp",
+        alt: "LinkedIn Learning completion certificate for Electrical Systems: Reading Drawings and Schematics awarded to Christian Velasco Estrada on October 30, 2026.",
+        width: 1600, height: 1237,
+      },
+    },
     { id: "electrical-udemy", title: "Basic Electrical Installations", provider: "Udemy", providerId: "udemy", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
     {
       id: "electrical-measurements", title: "Electrical Measurements", provider: "Udemy", providerId: "udemy", training: "Completed",

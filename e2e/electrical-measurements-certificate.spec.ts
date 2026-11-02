@@ -19,7 +19,8 @@ for (const lang of ["es", "en"] as const) {
       const records = page.locator('[data-certifications="electrical"]');
       const completed = records.locator('[data-certificate="electrical-measurements"]');
       await expect(completed).toHaveAttribute("data-certificate-record", "electrical-measurements");
-      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-measurements');
+      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-linkedin');
+      await expect(records.locator('[data-certificate]').nth(1)).toHaveAttribute('data-certificate', 'electrical-measurements');
       await expect(records.locator('[data-certificate-info][open]')).toHaveCount(0);
       const cardBox = (await completed.boundingBox())!;
       const imageBox = (await completed.locator('[data-certificate-original] img').boundingBox())!;
@@ -37,7 +38,7 @@ for (const lang of ["es", "en"] as const) {
       await expect(official).toHaveAttribute("href", verification);
       await expect(official).toHaveAttribute("rel", "noopener noreferrer");
       await expect(completed.locator("[data-certificate-mockup], [data-certificate-placeholder]")).toHaveCount(0);
-      await expect(records.locator("[data-certificate-mockup]")).toHaveCount(3);
+      await expect(records.locator("[data-certificate-mockup]")).toHaveCount(2);
       await expect(records.locator('[data-certificate-original="electrical-measurements"]')).toHaveCount(1);
       const pdf = completed.getByRole("link", { name: lang === "es" ? "Descargar PDF" : "Download PDF", exact: true });
       await expect(pdf).toHaveAttribute("href", originalPdf);

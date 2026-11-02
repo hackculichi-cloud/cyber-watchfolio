@@ -16,23 +16,41 @@ for (const lang of ["es", "en"] as const) {
       await expect(catalog).toHaveCount(1);
       await expect(page.locator('[data-electrical-area-content] [data-owned-electrical-tools]')).toHaveCount(0);
       await expect(page.locator('[data-area-tab="tools"]')).toHaveCount(0);
+      await expect(catalog.locator('figure[data-owned-tool-entry]')).toHaveCount(5);
       await expect(catalog.locator('[data-owned-tool]')).toHaveCount(5);
       await expect(catalog).not.toContainText(lang === "es" ? "Presentación retocada" : "Presentation retouched");
       await expect(catalog).toContainText("Klein Tools");
-      const cards = catalog.locator('[data-owned-tool]');
-      for (const card of await cards.all()) {
-        await card.scrollIntoViewIfNeeded();
-        await expect.poll(() => card.locator('img').evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
-        await expect(card.locator('img')).toHaveAttribute('srcset', /320\.webp 320w, .*\.webp 512w$/);
+      const entries = catalog.locator('figure[data-owned-tool-entry]');
+      for (const entry of await entries.all()) {
+        await entry.scrollIntoViewIfNeeded();
+        const preview = entry.locator('[data-owned-tool]');
+        const caption = entry.locator('figcaption');
+        const description = caption.locator('[data-owned-tool-description]');
+        await expect(caption).toBeVisible();
+        await expect(description).toBeVisible();
+        expect((await description.innerText()).trim().length).toBeGreaterThan(20);
+        await expect(preview.locator('figcaption, [data-owned-tool-description]')).toHaveCount(0);
+        await expect(preview).toHaveAccessibleName(new RegExp(lang === "es" ? '^Abrir vista.*:' : '^Open larger preview:'));
+        await expect.poll(() => preview.locator('img').evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+        await expect(preview.locator('img')).toHaveAttribute('srcset', /320\.webp 320w, .*\.webp 512w$/);
+        const photoBounds = (await preview.boundingBox())!;
+        const thumbnailBounds = (await preview.locator('img').boundingBox())!;
+        const descriptionBounds = (await description.boundingBox())!;
+        expect(descriptionBounds.y).toBeGreaterThanOrEqual(photoBounds.y + photoBounds.height);
+        // Establish the click target's final scroll position before testing dialog restoration.
+        await preview.click({ trial: true });
         const before = await page.evaluate(() => scrollY);
-        await card.click();
+        await preview.click();
         const dialog = page.getByRole("dialog");
         await expect(dialog).not.toContainText(lang === "es" ? "Presentación retocada" : "Presentation retouched");
+        await expect(dialog).toContainText(await description.innerText());
         const image = dialog.locator('img:not([data-language-flag])');
-        await expect(image).toHaveAttribute("src", /\/images\/electrical\/tools\/.*-retouched\.webp$/);
+        await expect(image).toHaveAttribute("src", `/images/electrical/tools/${await preview.getAttribute('data-owned-tool')}-retouched.webp`);
         await expect.poll(() => image.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth)).toBe(512);
+        const enlargedBounds = (await image.boundingBox())!;
+        expect(Math.min(enlargedBounds.width, enlargedBounds.height)).toBeGreaterThan(Math.min(thumbnailBounds.width, thumbnailBounds.height));
         await page.keyboard.press("Escape");
-        await expect(card).toBeFocused();
+        await expect(preview).toBeFocused();
         expect(await page.evaluate(() => scrollY)).toBeCloseTo(before, 0);
       }
       await page.locator('[data-close-electrical-tools]').first().click();
