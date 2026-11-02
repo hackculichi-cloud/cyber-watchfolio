@@ -63,19 +63,42 @@ test('the fox stays in front of decorative props and all seven controls remain r
 
 test('electrical training links to its confirmed providers and enlarges clearly marked mockups', async ({ page }) => {
   await page.goto('/electrical#certificate');
-  const providers = page.locator('[data-training-providers="electrical"]');
-  await providers.scrollIntoViewIfNeeded();
-  await expect(providers.locator('[data-training-provider]')).toHaveCount(3);
-  await expect(providers.locator('[data-training-provider="universidad-internacional"]')).toHaveAttribute('href', 'https://www.facebook.com/uinternacionaloficial/?locale=es_LA');
-  await expect(providers.locator('[data-training-provider="udemy"]')).toHaveAttribute('href', 'https://www.udemy.com/');
-  await expect(providers.locator('[data-training-provider="linkedin-learning"]')).toHaveAttribute('href', 'https://www.linkedin.com/learning/');
-  const logos = providers.locator('img');
-  await expect(logos).toHaveCount(2);
-  for (const logo of await logos.all()) {
-    await expect(logo).toHaveAttribute('src', /^\/images\/providers\/.*\.svg$/);
-    await expect.poll(() => logo.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
-  }
   const records = page.locator('[data-certifications="electrical"]');
+  await expect(page.locator('[data-training-providers]')).toHaveCount(0);
+  await expect(records.locator('[data-provider-logo]')).toHaveCount(4);
+  const platforms = [
+    { id: 'udemy', count: 2, href: 'https://www.udemy.com/', symbol: 'udemy.svg' },
+    { id: 'linkedin-learning', count: 1, href: 'https://www.linkedin.com/learning/', symbol: 'linkedin.svg' },
+    { id: 'universidad-internacional', count: 1, href: 'https://www.facebook.com/uinternacionaloficial/?locale=es_LA' },
+  ];
+  const colors = new Set<string>();
+  for (const platform of platforms) {
+    const cards = records.locator(`[data-certificate-provider="${platform.id}"]`);
+    await expect(cards).toHaveCount(platform.count);
+    for (const card of await cards.all()) {
+      const logo = card.locator('[data-provider-logo]');
+      await expect(logo).toHaveAttribute('href', platform.href);
+      await expect(logo).toHaveAccessibleName(/Udemy|LinkedIn Learning|Universidad Internacional/);
+      await expect(logo).toHaveAttribute('rel', 'noopener noreferrer');
+      const color = await logo.evaluate(element => getComputedStyle(element).color);
+      colors.add(color);
+      const rgb = color.match(/\d+/g)!.map(Number);
+      if (platform.id === 'udemy') expect(rgb[2]).toBeGreaterThan(rgb[0]);
+      if (platform.id === 'linkedin-learning') expect(rgb[2]).toBeGreaterThan(rgb[1]);
+      if (platform.id === 'universidad-internacional') expect(rgb[0]).toBeGreaterThan(rgb[2]);
+      if (platform.symbol) {
+        const symbol = logo.locator('[data-provider-symbol]');
+        await expect(symbol).toHaveCSS('background-color', color);
+        await expect(symbol).toHaveCSS('mask-image', new RegExp(platform.symbol));
+      }
+    }
+    if (platform.symbol) {
+      const response = await page.request.get(`/images/providers/${platform.symbol}`);
+      expect(response.ok()).toBe(true);
+      expect(await response.text()).toContain('<svg');
+    }
+  }
+  expect(colors.size).toBe(3);
   await expect(records.locator('[data-certificate-mockup]')).toHaveCount(3);
   const conocer = records.locator('[data-certificate="electrical-conocer"]');
   await expect(conocer).toContainText('Currently Studying');

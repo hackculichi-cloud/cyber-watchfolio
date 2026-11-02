@@ -107,7 +107,7 @@ const Electronics = () => {
 
       <ProfileCertificates profile={profile.slug} />
       <section id="cv" className="container mx-auto scroll-mt-32 px-4 py-10">
-        <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("CV for this profile")}><ProfileCvBlock cvIds={profile.cvIds} /></SectionHeading>
+        <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("Professional résumé")}><ProfileCvBlock cvIds={profile.cvIds} /></SectionHeading>
       </section>
     </>
   );

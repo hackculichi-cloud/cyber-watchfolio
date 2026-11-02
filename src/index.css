@@ -51,7 +51,12 @@
   width: 32px;
   height: 32px;
   flex-shrink: 0;
-  filter: brightness(0) invert(1) drop-shadow(0 0 5px hsl(var(--provider-light) / .7));
+  display:block;
+  background:currentColor;
+  mask-size:contain;
+  mask-position:center;
+  mask-repeat:no-repeat;
+  filter:drop-shadow(0 0 5px hsl(var(--provider-light) / .5));
 }
 .training-provider-logo-monogram {
   font-size: 36px;
@@ -65,7 +70,7 @@
 .training-provider-logo-school > span { display: block; }
 .training-provider-logo-learning { display: block; margin-top: 4px; font-size: 13px; font-weight: 500; letter-spacing: .12em; }
 .training-provider-logo:is(:hover, :focus-visible) .training-provider-logo-art {
-  color: hsl(0 0% 100%);
+  color: hsl(var(--provider-light));
   text-shadow: 0 0 5px hsl(var(--provider-light) / .65), 0 0 16px hsl(var(--provider-light) / .6);
 }
 .training-provider-logo:focus-visible { outline: 2px solid hsl(var(--provider-light)); }
@@ -788,10 +793,6 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .site-footer h2 { font-size:1.5rem; }
   .site-footer [data-footer-mascot] > * { width:4rem; height:4rem; }
   .site-footer [data-footer-brand] > span:first-child { font-size:1.125rem; }
-  .site-footer nav > ul:first-of-type { grid-template-columns:repeat(2,minmax(0,1fr)); margin-top:.75rem; }
-  .site-footer nav > ul:first-of-type a { min-height:2.75rem; padding:.5rem; font-size:.75rem; }
-  .site-footer nav > ul:last-child { margin-top:.75rem; }
-  .site-footer nav > ul:last-child a { display:inline-flex; min-height:2.75rem; align-items:center; }
 }
 
 @media (max-width:767px) {
@@ -969,4 +970,27 @@ div.dialog-content[data-state], div.dialog-overlay[data-state] { animation-durat
 @media (prefers-reduced-motion:no-preference) {
   .footer-contact-fox { transition:transform 180ms ease-out; }
   [data-footer-contact]:is(:hover,:focus-within) .footer-contact-fox { transform:translateY(-4px) rotate(-2deg); }
+}
+
+/* Each document carries its own institution's accent and integrated mark. */
+.certificate-card[data-certificate-provider="udemy"] { --primary:269 100% 82%; }
+.certificate-card[data-certificate-provider="linkedin-learning"] { --primary:203 100% 80%; }
+.certificate-card[data-certificate-provider="universidad-internacional"] { --primary:47 100% 78%; }
+.certificate-card[data-certificate-provider] { border-color:hsl(var(--primary)/.4); }
+.certificate-card .training-provider-logo { justify-content:flex-start; }
+
+/* Seven area symbols use balanced rows of four and three on small screens. */
+.site-footer nav > .footer-area-links {
+  display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:.75rem;
+  width:100%; max-width:28rem; margin-left:auto; margin-right:auto;
+}
+.footer-area-links > li { grid-column:span 2; }
+.footer-area-links > li:nth-child(5) { grid-column:2 / span 2; }
+.footer-area-links > li:nth-child(6) { grid-column:4 / span 2; }
+.footer-area-links > li:nth-child(7) { grid-column:6 / span 2; }
+.site-footer .footer-area-links .footer-area-link { min-height:3.5rem; padding:0; }
+.site-footer [data-footer-utilities] a { padding:0; }
+@media (min-width:1280px) {
+  .site-footer nav > .footer-area-links { grid-template-columns:repeat(7,minmax(0,1fr)); max-width:32rem; }
+  .footer-area-links > li:nth-child(n) { grid-column:auto; }
 }
