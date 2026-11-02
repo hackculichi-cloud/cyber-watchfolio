@@ -1,5 +1,6 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Professional résumé": "Currículum profesional",
   "Diplomas and certificates": "Diplomas y certificados",
   "Original document": "Documento original",
   "Enlarge a document or open its information to explore the course and syllabus.": "Amplía un documento o abre su información para conocer el curso y su temario.",

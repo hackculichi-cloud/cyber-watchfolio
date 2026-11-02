@@ -1,4 +1,3 @@
-import { FileText } from "lucide-react";
 import Tag from "@/components/shared/Tag";
 import { cvAssets, cvVariants } from "@/data/cvs";
 import CvActions from "@/components/shared/CvActions";
@@ -12,22 +11,22 @@ const ProfileCvBlock = ({ cvIds }: { cvIds: string[] }) => {
   return (
     <div data-profile-cv className="grid gap-4">
       {variants.map((cv) => (
-        <div key={cv.id} className="panel-glow flow-root">
-          {cvAssets(cv, lang).preview && <figure className="float-right mb-3 ml-4 w-16 sm:float-left sm:mb-0 sm:ml-0 sm:mr-5 sm:w-24">
-            <img src={cvAssets(cv, lang).preview} alt={`${t("First page of the downloadable CV")}: ${t(cv.title)}`} loading="lazy" decoding="async" width={794} height={1123} className="h-auto w-full rounded border border-primary/25 bg-white shadow-lg" />
-            <figcaption className="mt-2 text-center text-[10px] font-medium text-muted-foreground">PDF · {lang.toUpperCase()}</figcaption>
+        <div key={cv.id} className="cv-profile-card grid grid-cols-[4.5rem_minmax(0,1fr)] items-start gap-x-4 gap-y-3 rounded-2xl border border-primary/30 bg-card/85 p-4 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-6 sm:p-5">
+          {cvAssets(cv, lang).preview && <figure className="min-w-0 pt-1 sm:row-span-3">
+            <img src={cvAssets(cv, lang).preview} alt={`${t("First page of the downloadable CV")}: ${t(cv.title)}`} loading="lazy" decoding="async" width={794} height={1123} className="h-auto w-full -rotate-2 rounded border border-primary/40 bg-white shadow-lg" />
+            <figcaption className="mt-3 text-center text-xs font-semibold tracking-wide text-primary">PDF · {lang.toUpperCase()}</figcaption>
           </figure>}
-          <div className="min-w-0">
-          <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:gap-3">
-            <h3 className="text-sm font-semibold sm:text-base">
-              <FileText className="mr-1 inline h-4 w-4 text-primary" aria-hidden /> {t(cv.title)}
-            </h3>
-            <Tag className="hidden sm:inline-flex" variant={cv.available ? "primary" : "muted"}>{t(cv.available ? "Available" : "Coming soon")}</Tag>
+          <div className="min-w-0 sm:col-start-2">
+            <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:gap-3">
+              <h3 className="text-[15px] font-bold leading-snug tracking-tight sm:text-lg">
+                {t(cv.title)}
+              </h3>
+              <Tag className="hidden sm:inline-flex" variant={cv.available ? "primary" : "muted"}>{t(cv.available ? "Available" : "Coming soon")}</Tag>
+            </div>
           </div>
-          <p className="reading-copy mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{t(cv.description)}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <p className="reading-copy col-span-2 line-clamp-3 text-sm leading-6 text-foreground/75 sm:col-span-1 sm:col-start-2">{t(cv.description)}</p>
+          <div className="col-span-2 mt-1 flex flex-wrap gap-2 sm:col-span-1 sm:col-start-2 [&>div]:w-full sm:[&>div]:w-auto [&_a]:min-h-11 [&_a]:flex-1 [&_button]:min-h-11 [&_button]:flex-1 sm:[&_a]:flex-none sm:[&_button]:flex-none">
             <CvActions cv={cv} />
-          </div>
           </div>
         </div>
       ))}

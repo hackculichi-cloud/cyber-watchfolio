@@ -4,4 +4,3 @@ export const trainingProviders: Record<TrainingProviderId, { name: string; url: 
   "linkedin-learning": { name: "LinkedIn Learning", url: "https://www.linkedin.com/learning/", logo: "/images/providers/linkedin.svg", detail: "Electrical drawings and schematics" },
   "universidad-internacional": { name: "Universidad Internacional", url: "https://www.facebook.com/uinternacionaloficial/?locale=es_LA", monogram: "UI", detail: "Electrical training · RED CONOCER" },
 };
-export const electricalProviders: TrainingProviderId[] = ["universidad-internacional", "udemy", "linkedin-learning"];
