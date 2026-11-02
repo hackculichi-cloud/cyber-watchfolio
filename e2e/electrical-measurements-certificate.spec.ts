@@ -19,8 +19,8 @@ for (const lang of ["es", "en"] as const) {
       const records = page.locator('[data-certifications="electrical"]');
       const completed = records.locator('[data-certificate="electrical-measurements"]');
       await expect(completed).toHaveAttribute("data-certificate-record", "electrical-measurements");
-      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-linkedin');
-      await expect(records.locator('[data-certificate]').nth(1)).toHaveAttribute('data-certificate', 'electrical-measurements');
+      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-linkedin-equipment');
+      await expect(records.locator('[data-certificate]').nth(2)).toHaveAttribute('data-certificate', 'electrical-measurements');
       await expect(records.locator('[data-certificate-info][open]')).toHaveCount(0);
       const cardBox = (await completed.boundingBox())!;
       const imageBox = (await completed.locator('[data-certificate-original] img').boundingBox())!;
@@ -60,6 +60,7 @@ for (const lang of ["es", "en"] as const) {
       const scrollBefore = await page.evaluate(() => scrollY);
       await opener.click();
       const dialog = page.getByRole("dialog");
+      await expect(dialog.locator("[data-language-toggle]")).toHaveCount(0);
       const enlarged = dialog.locator('img:not([data-language-flag])');
       await expect(enlarged).toHaveAttribute("src", "/certificates/udemy-mediciones-electricas.webp");
       await expect.poll(() => enlarged.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth)).toBe(1600);

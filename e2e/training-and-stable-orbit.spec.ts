@@ -65,10 +65,10 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await page.goto('/electrical#certificate');
   const records = page.locator('[data-certifications="electrical"]');
   await expect(page.locator('[data-training-providers]')).toHaveCount(0);
-  await expect(records.locator('[data-provider-logo]')).toHaveCount(4);
+  await expect(records.locator('[data-provider-logo]')).toHaveCount(5);
   const platforms = [
     { id: 'udemy', count: 2, href: 'https://www.udemy.com/', symbol: 'udemy.svg' },
-    { id: 'linkedin-learning', count: 1, href: 'https://www.linkedin.com/learning/', symbol: 'linkedin.svg' },
+    { id: 'linkedin-learning', count: 2, href: 'https://www.linkedin.com/learning/', symbol: 'linkedin.svg' },
     { id: 'universidad-internacional', count: 1, href: 'https://www.facebook.com/uinternacionaloficial/?locale=es_LA' },
   ];
   const colors = new Set<string>();
@@ -107,8 +107,12 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await expect(dialog).toContainText('Universidad Internacional · RED CONOCER');
   await expect(dialog).toContainText('MOCKUP · Original pending');
   await expect(dialog.locator('a[download]')).toHaveCount(0);
-  await selectLanguage(dialog, "es");
+  await expect(dialog.locator('[data-language-toggle]')).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  await selectLanguage(page, "es");
+  await conocer.getByRole('button', { name: /^Ampliar certificado provisional/ }).click();
   await expect(dialog).toContainText('MOCKUP · Original pendiente');
+  await expect(dialog.locator('[data-language-toggle]')).toHaveCount(0);
   await page.keyboard.press('Escape');
   await expect(conocer).toContainText('Estudiando actualmente');
   await page.goto('/electrical#residential');

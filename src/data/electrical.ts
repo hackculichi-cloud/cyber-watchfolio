@@ -176,6 +176,20 @@ export const trainingTracks: TrainingTrack[] = [
     topics: ["Safety practices", "Residential installations", "Diagnostics", "Maintenance"],
   },
   {
+    id: "electrical-linkedin-equipment",
+    anchor: "electrical",
+    title: "Electrical Systems: Panel Boards, Frequency Drives, and Transformers",
+    status: "Completed",
+    description: "Completed LinkedIn Learning course on panelboards, frequency drives and transformers, with the original certificate available.",
+    topics: ["Transformers", "Panelboards and Switchboards", "Variable Frequency Drives", "Electrical Equipment"],
+    syllabusNote: "Topics visible in the supplied course screenshot.",
+    syllabus: [
+      { title: "Transformers", topics: ["Introduction to electrical transformers", "Dry type distribution style transformers", "Buck-boost and control transformers", "Isolation transformers", "Oil filled and substation transformers", "Transformer math/calculations", "Making transformer connections"] },
+      { title: "Panelboards and Switchboards", topics: ["Introduction to panelboards", "Panelboards and load centers", "Circuit breakers and fuses", "Switchboards", "Installation of panels and switchboard"] },
+      { title: "Variable Frequency Drives", topics: ["Introduction to VFDs", "Major components of a VFD", "VFD options", "Installation of a VFD", "Controlling a VFD and special sensors"] },
+    ],
+  },
+  {
     id: "electrical-linkedin",
     anchor: "electrical",
     title: "Electrical Systems: Reading Drawings and Schematics",

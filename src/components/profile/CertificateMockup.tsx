@@ -35,7 +35,7 @@ export default function CertificateMockup({ record }: { record: CertificationRec
       <img src={record.image.src} alt={t(record.image.alt)} width={record.image.width} height={record.image.height} loading="lazy" decoding="async" className="block h-auto w-full rounded-t-lg bg-white" />
       <span className="flex items-center justify-between gap-2 rounded-b-lg bg-background px-3 py-2 text-xs text-primary">{t("View original certificate")}<Expand className="h-4 w-4" aria-hidden /></span>
     </button>
-    <DetailModal open={open} onOpenChange={setOpen} returnFocusRef={opener} title={t(record.title)} subtitle={t("Original certificate supplied by the author")}>
+    <DetailModal open={open} onOpenChange={setOpen} returnFocusRef={opener} showLanguageSwitcher={false} title={t(record.title)} subtitle={t("Original certificate supplied by the author")}>
       <img src={record.image.src} alt={t(record.image.alt)} width={record.image.width} height={record.image.height} decoding="async" className="h-auto w-full rounded-lg bg-white" />
     </DetailModal>
   </div>;
@@ -45,6 +45,6 @@ export default function CertificateMockup({ record }: { record: CertificationRec
       <span className="flex items-center justify-between gap-2 rounded-b-lg bg-background px-3 py-2 text-xs text-primary">{t("View mockup")}<Expand className="h-4 w-4" aria-hidden /></span>
     </button>
     <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{t("Visual mockup only. The original document will replace this preview when provided.")}</p>
-    <DetailModal open={open} onOpenChange={setOpen} title={t("Provisional document preview")} subtitle={t("Visual mockup only. The original document will replace this preview when provided.")}><MockupPaper record={record} /></DetailModal>
+    <DetailModal open={open} onOpenChange={setOpen} showLanguageSwitcher={false} title={t("Provisional document preview")} subtitle={t("Visual mockup only. The original document will replace this preview when provided.")}><MockupPaper record={record} /></DetailModal>
   </div>;
 }
