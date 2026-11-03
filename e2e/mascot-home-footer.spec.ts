@@ -63,10 +63,11 @@ test("larger header, home characters and footer fit small screens without WebGL"
     const name = (await brand.boundingBox())!, portrait = (await footer.locator('[data-footer-mascot]').boundingBox())!;
     const areas = (await footer.getByRole('navigation', { name: 'Footer', exact: true }).boundingBox())!;
     const introduction = (await footer.locator('[data-footer-introduction]').boundingBox())!;
-    if (width >= 1024) expect(areas.x + areas.width).toBeLessThan(introduction.x);
-    else expect(areas.y + areas.height).toBeLessThan(introduction.y);
-    expect(portrait.x).toBeGreaterThanOrEqual(name.x + name.width);
-    expect(Math.abs((portrait.y + portrait.height / 2) - (name.y + name.height / 2))).toBeLessThan(2);
+    expect(areas.y + areas.height).toBeLessThan(introduction.y);
+    expect(portrait.y + portrait.height).toBeLessThan(name.y);
+    for (const bounds of [areas, introduction, name, portrait]) {
+      expect(Math.abs(bounds.x + bounds.width / 2 - width / 2)).toBeLessThan(2);
+    }
     await expect(footer.locator('.footer-area-icon')).toHaveCount(7);
     const menu = footer.locator('.footer-area-links');
     const menuBounds = (await menu.boundingBox())!;
@@ -75,25 +76,50 @@ test("larger header, home characters and footer fit small screens without WebGL"
       return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2, width: rect.width };
     }));
     const rows = [...new Set(centers.map(center => Math.round(center.y)))];
-    expect(rows).toHaveLength(width >= 1280 ? 1 : 2);
-    expect(rows.map(y => centers.filter(center => Math.round(center.y) === y).length)).toEqual(width >= 1280 ? [7] : [4, 3]);
+    expect(rows).toHaveLength(width >= 768 ? 1 : 3);
+    expect(rows.map(y => centers.filter(center => Math.round(center.y) === y).length)).toEqual(width >= 768 ? [7] : [3, 3, 1]);
     for (const y of rows) {
       const row = centers.filter(center => Math.round(center.y) === y);
       expect(Math.abs((row[0].x + row.at(-1)!.x) / 2 - (menuBounds.x + menuBounds.width / 2))).toBeLessThan(1);
       for (let index = 1; index < row.length; index++) {
-        expect(row[index].x - row[index - 1].x).toBeGreaterThanOrEqual(56);
+        expect(row[index].x - row[index - 1].x).toBeGreaterThanOrEqual(48);
       }
     }
     for (const link of await menu.locator('a').all()) {
       await expect(link).toHaveAccessibleName(/.+/);
-      expect((await link.innerText()).trim()).toBe('');
+      expect((await link.innerText()).trim()).not.toBe('');
     }
     const utilities = footer.locator('[data-footer-utilities]');
     for (const href of ['/about', '/cv', '/contact']) {
-      await expect(utilities.locator(`a[href="${href}"]`)).toHaveAccessibleName(/.+/);
+      const utility = utilities.locator(`a[href="${href}"]`);
+      await expect(utility).toHaveAccessibleName(/.+/);
+      expect((await utility.innerText()).trim()).not.toBe('');
     }
     await expect(footer.locator(`a[href="https://github.com/ByCulichi"]`)).toHaveAccessibleName('GitHub');
     await expect(footer.getByRole('link', { name: 'LinkedIn', exact: true })).toHaveCount(1);
+
+    const contact = footer.locator('[data-contact-grid]');
+    const channelLinks = contact.locator('a');
+    await expect(channelLinks).toHaveCount(4);
+    const channelBounds = await channelLinks.evaluateAll(links => links.map(link => {
+      const rect = link.getBoundingClientRect();
+      return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+    }));
+    expect(new Set(channelBounds.map(bounds => Math.round(bounds.y))).size).toBe(width >= 640 ? 1 : 2);
+    expect(Math.max(...channelBounds.map(bounds => bounds.height)) - Math.min(...channelBounds.map(bounds => bounds.height))).toBeLessThan(1);
+    const gridBounds = (await contact.boundingBox())!;
+    expect(Math.abs(gridBounds.x + gridBounds.width / 2 - width / 2)).toBeLessThan(2);
+    for (const [index, label] of ['Email', 'LinkedIn', 'GitHub', 'WhatsApp'].entries()) {
+      const link = channelLinks.nth(index);
+      await expect(link).toHaveAccessibleName(label);
+      await expect(link.getByText(label, { exact: true })).toBeVisible();
+      expect(channelBounds[index].width).toBeCloseTo(channelBounds[0].width, 0);
+      expect(channelBounds[index].height).toBeCloseTo(channelBounds[0].height, 0);
+    }
+    const whatsapp = contact.getByRole('link', { name: 'WhatsApp', exact: true });
+    await expect(whatsapp).toHaveAttribute('href', 'https://wa.me/523317522176');
+    await expect(whatsapp).toHaveAttribute('target', '_blank');
+    await expect(whatsapp).toHaveAttribute('rel', /noopener/);
 
     for (const link of await footer.locator('.footer-area-link').all()) {
       expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
@@ -110,4 +136,20 @@ test("larger header, home characters and footer fit small screens without WebGL"
   await expect(back.locator('svg')).toHaveCSS('transform', 'none');
   await back.click();
   await expect(page.locator("main h1")).toBeInViewport();
+});
+
+
+test("contact channels remain named in Spanish on profiles and the contact page", async ({ page }) => {
+  await page.goto('/electrical');
+  await selectLanguage(page, 'es');
+  const contact = page.locator('[data-footer-contact]');
+  await contact.scrollIntoViewIfNeeded();
+  for (const action of ['Enviar correo', 'Ver mi perfil', 'Ver mis proyectos', 'Enviar mensaje']) {
+    await expect(contact.getByText(action, { exact: true })).toBeVisible();
+  }
+  const fox = (await contact.locator('.footer-contact-fox').boundingBox())!;
+  const grid = (await contact.locator('[data-contact-grid]').boundingBox())!;
+  expect(Math.abs(fox.x + fox.width / 2 - grid.x - grid.width / 2)).toBeLessThan(2);
+  await page.goto('/contact');
+  await expect(page.locator('main a[href="https://wa.me/523317522176"]')).toContainText('+52 33 1752 2176');
 });

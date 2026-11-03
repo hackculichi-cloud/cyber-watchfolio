@@ -1,5 +1,9 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Send an email": "Enviar correo",
+  "View my profile": "Ver mi perfil",
+  "View my projects": "Ver mis proyectos",
+  "Send a message": "Enviar mensaje",
   "Electrical assistant with documented residential work and installation-board/float-switch practice. Four completed Udemy and LinkedIn Learning courses cover installations, measurements, drawings, panelboards, transformers and VFD foundations. Main training continues at Universidad Internacional · RED CONOCER.": "Ayudante electricista con trabajos residenciales y prácticas de tablero y electronivel documentados. Cuatro cursos completados de Udemy y LinkedIn Learning respaldan conocimientos de instalaciones, mediciones, planos, tableros, transformadores y variadores. Formación principal en curso en Universidad Internacional · RED CONOCER.",
   "Certificates": "Certificados",
   "{count} photos": "{count} fotos",
