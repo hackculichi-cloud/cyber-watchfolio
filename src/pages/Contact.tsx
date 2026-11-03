@@ -7,6 +7,7 @@ import Tag from "@/components/shared/Tag";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 import ContactPreview from "@/components/shared/ContactPreview";
+import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 
 const channels = [
   { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: Mail, external: false },
@@ -32,20 +33,23 @@ const Contact = () => {
       />
 
       <section className="container mx-auto px-4 py-16">
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {channels.map((c) => (
             <ContactPreview
               key={c.label}
               channel={c.label}
               href={c.href}
               external={c.external}
-              className="panel-glow flex flex-col gap-2 hover:-translate-y-1"
+              className="panel-glow flex flex-col items-center gap-2 text-center hover:-translate-y-1"
             >
               <c.icon className="h-5 w-5 text-primary" aria-hidden />
               <span className="text-sm font-semibold">{t(c.label)}</span>
               <span className="break-all text-sm text-muted-foreground">{t(c.value)}</span>
             </ContactPreview>
           ))}
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="panel-glow flex flex-col items-center gap-2 text-center hover:-translate-y-1">
+            <WhatsAppIcon className="h-5 w-5 text-green-400" aria-hidden /><span className="text-sm font-semibold">WhatsApp</span><span className="text-sm text-muted-foreground">{site.whatsappDisplay}</span>
+          </a>
         </div>
 
         <div className="panel mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
