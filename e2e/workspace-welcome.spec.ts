@@ -29,12 +29,15 @@ test('each profile has its own static workplace, footer outfit and brand color',
     const world = page.locator('[data-world]');
     await expect(world).toHaveAttribute('data-world', outfit);
     const roomLayer = await world.evaluate(el => getComputedStyle(el).backgroundImage);
-    expect(roomLayer).toContain(outfit === 'customer-service' ? 'data:image/svg+xml' : 'hero-');
+    if (outfit === 'electrical') {
+      expect(roomLayer).toBe('none');
+      await expect(page.locator('[data-world-hero="electrical"]')).toHaveCSS('background-image', /hero-electrical/);
+    } else expect(roomLayer).toContain(outfit === 'customer-service' ? 'data:image/svg+xml' : 'hero-');
     await page.locator(outfit === 'barbering' ? '#tools' : '#cv').scrollIntoViewIfNeeded();
     expect(await world.evaluate(el => getComputedStyle(el).backgroundImage)).toBe(roomLayer);
     await expect(page.locator('main')).toHaveCSS('background-image', 'none');
     await expect(page.locator('footer')).toHaveCSS('background-image', 'none');
-    await expect(world).toHaveCSS('background-repeat', 'repeat, repeat-y, repeat-y');
+    await expect(world).toHaveCSS('background-repeat', outfit === 'electrical' ? 'no-repeat' : 'repeat, repeat-y, repeat-y');
     await expect(page.locator('[data-header-brand]')).toHaveAttribute('data-brand-profile', outfit);
 
     expect(await workspace.evaluate(element => element.getAnimations({ subtree:true }).length)).toBe(0);

@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import ElectricalAreaPanel from "@/components/electrical/ElectricalAreaPanel";
 import ElectricalSharedTraining from "@/components/electrical/ElectricalSharedTraining";
 import ElectricalSharedTools from "@/components/electrical/ElectricalSharedTools";
-import { electricalDetailHashes } from "@/data/electricalNavigation";
+import { isElectricalTrainingHash, electricalDetailHashes } from "@/data/electricalNavigation";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
@@ -70,8 +70,10 @@ const Electrical = () => {
       <ElectricalHero />
       <ProfileSectionNav sections={profile.sections} contentKey={area} />
       <SpecialtyExplorer profile={profile.slug} activeId={area} onSelect={setArea} renderDetail={id => <ElectricalAreaPanel key={id} area={id} />} />
-      <ElectricalSharedTools />
-      <ElectricalSharedTraining />
+      <div data-electrical-resources className={hash === "#tools" || isElectricalTrainingHash(hash.slice(1)) ? undefined : "container mx-auto grid gap-4 px-4 py-8 sm:grid-cols-2"}>
+        <ElectricalSharedTools />
+        <ElectricalSharedTraining />
+      </div>
       <ElectricalCv />
     </>
   );

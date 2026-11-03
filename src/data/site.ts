@@ -67,5 +67,4 @@ export const navigation: NavItem[] = [
       { label: "Tools", href: "/barbering#tools", icon: Wrench },
     ],
   },
-  { label: "Contact", href: "/contact" },
 ];

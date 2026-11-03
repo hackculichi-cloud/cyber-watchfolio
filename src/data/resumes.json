@@ -143,9 +143,10 @@
         "logo": "/images/providers/linkedin.svg",
         "url": "https://www.linkedin.com/learning/",
         "title": "Electrical Systems: Reading Drawings and Schematics",
-        "body": "Completed course on electrical drawings and symbols. Certificate confirmed by the owner; original file pending upload.",
-        "status": "Completed · document pending",
-        "tone": "complete"
+        "body": "Electrical symbols, site/plan views, one-line and riser diagrams, schedules, wiring and motor diagrams, ladder logic and introductory PLC diagrams.",
+        "status": "Completed · 30 October 2026",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/linkedin-electrical-drawings-schematics.pdf"
       },
       {
         "id": "eto-basic",
@@ -173,18 +174,19 @@
         "logo": "/images/providers/udemy.svg",
         "url": "https://www.udemy.com/",
         "title": "Basic Electrical Installations",
-        "body": "Residential installations and electrical foundations. Certificate pending course completion.",
-        "status": "In progress",
-        "tone": "progress"
+        "body": "Residential circuits, Ohm’s and Watt’s laws, switch/outlet diagrams, electrical plans, power factor, feeders and branch circuits, conductor ampacity, voltage drop and protective-earth conductor selection.",
+        "status": "Completed · 2 November 2026 · 7.5 hours",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/udemy-instalaciones-electricas-basicas.pdf"
       },
       {
         "id": "electrical-measurements",
         "provider": "Udemy",
         "logo": "/images/providers/udemy.svg",
-        "url": "https://www.udemy.com/certificate/UC-25442727-a627-4cdc-894e-d93da3bba021/",
+        "url": "https://www.udemy.com/",
         "title": "Electrical Measurements",
-        "body": "Completed on 30 October 2026: 2 hours with Irving Lopez Hernandez. Multimeter use, voltage, current, resistance, continuity and safety.",
-        "status": "Completed",
+        "body": "AC/DC voltage, clamp-current measurement, resistance, de-energized continuity, protection checks and multimeter measurement categories.",
+        "status": "Completed · 30 October 2026 · 2 hours",
         "tone": "complete",
         "document": "https://culichi.lat/certificates/udemy-mediciones-electricas.pdf"
       },
@@ -216,6 +218,17 @@
         "body": "Preparing for the official exam. The exam has not yet been passed and the credential has not been obtained.",
         "status": "Exam preparation",
         "tone": "pending"
+      },
+      {
+        "id": "electrical-linkedin-equipment",
+        "provider": "LinkedIn Learning",
+        "logo": "/images/providers/linkedin.svg",
+        "url": "https://www.linkedin.com/learning/",
+        "title": "Electrical Systems: Panel Boards, Frequency Drives, and Transformers",
+        "body": "Transformer types, calculations and connections; panelboards, load centers, breakers and fuses; VFD components, installation principles, control and sensors.",
+        "status": "Completed · 2 November 2026",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/linkedin-electrical-panels-drives-transformers.pdf"
       }
     ],
     "es": [
@@ -236,9 +249,10 @@
         "logo": "/images/providers/linkedin.svg",
         "url": "https://www.linkedin.com/learning/",
         "title": "Sistemas eléctricos: lectura de planos y esquemas",
-        "body": "Curso completado de lectura de planos y simbología eléctrica. Certificado confirmado por el titular; archivo original pendiente de subir.",
-        "status": "Completado · documento pendiente",
-        "tone": "complete"
+        "body": "Simbología eléctrica, vistas en planta, diagramas unifilares y de montantes, tablas, diagramas de cableado y motores, lógica de escalera e introducción a diagramas de PLC.",
+        "status": "Completado · 30 de octubre de 2026",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/linkedin-electrical-drawings-schematics.pdf"
       },
       {
         "id": "eto-basic",
@@ -265,19 +279,20 @@
         "provider": "Udemy",
         "logo": "/images/providers/udemy.svg",
         "url": "https://www.udemy.com/",
-        "title": "Instalaciones eléctricas básicas",
-        "body": "Instalaciones residenciales y fundamentos eléctricos. Certificado pendiente de completar el curso.",
-        "status": "En curso",
-        "tone": "progress"
+        "title": "Instalaciones Eléctricas Básicas",
+        "body": "Circuitos residenciales, leyes de Ohm y Watt, diagramas de apagadores/contactos, planos eléctricos, factor de potencia, circuitos alimentadores y derivados, ampacidad, caída de tensión y conductor de puesta a tierra.",
+        "status": "Completado · 2 de noviembre de 2026 · 7.5 horas",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/udemy-instalaciones-electricas-basicas.pdf"
       },
       {
         "id": "electrical-measurements",
         "provider": "Udemy",
         "logo": "/images/providers/udemy.svg",
-        "url": "https://www.udemy.com/certificate/UC-25442727-a627-4cdc-894e-d93da3bba021/",
+        "url": "https://www.udemy.com/",
         "title": "Mediciones Eléctricas",
-        "body": "Curso de 2 horas con Irving Lopez Hernandez, completado el 30 de octubre de 2026. Multímetro, voltaje, corriente, resistencia, continuidad y seguridad.",
-        "status": "Completado",
+        "body": "Tensión CA/CC, corriente con multímetro de gancho, resistencia, continuidad sin energía, comprobaciones de protecciones y categorías de medición del multímetro.",
+        "status": "Completado · 30 de octubre de 2026 · 2 horas",
         "tone": "complete",
         "document": "https://culichi.lat/certificates/udemy-mediciones-electricas.pdf"
       },
@@ -309,6 +324,17 @@
         "body": "Preparación para el examen oficial. El examen aún no se ha aprobado y la credencial no se ha obtenido.",
         "status": "Preparación para examen",
         "tone": "pending"
+      },
+      {
+        "id": "electrical-linkedin-equipment",
+        "provider": "LinkedIn Learning",
+        "logo": "/images/providers/linkedin.svg",
+        "url": "https://www.linkedin.com/learning/",
+        "title": "Sistemas eléctricos: tableros, variadores de frecuencia y transformadores",
+        "body": "Tipos, cálculos y conexiones de transformadores; tableros, centros de carga, interruptores y fusibles; componentes de variadores de frecuencia, principios de instalación, control y sensores.",
+        "status": "Completado · 2 de noviembre de 2026",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/linkedin-electrical-panels-drives-transformers.pdf"
       }
     ]
   },
@@ -605,6 +631,7 @@
             "ids": [
               "lidetec",
               "electrical-linkedin",
+              "electrical-linkedin-equipment",
               "eto-basic",
               "electrical-conocer",
               "electrical-udemy",
@@ -927,6 +954,7 @@
             "ids": [
               "lidetec",
               "electrical-linkedin",
+              "electrical-linkedin-equipment",
               "eto-basic",
               "electrical-conocer",
               "electrical-udemy",
@@ -1680,7 +1708,7 @@
       "profile": "electrical",
       "en": {
         "role": "Electrical Assistant | Residential Maintenance & Industrial Training",
-        "summary": "I have completed documented residential outlet, switch and ceiling-light replacements, plus installation-board and float-switch course practice. I interpret electrical drawings and practice AC/DC measurement and circuit checks. My main training is ongoing at Universidad Internacional · RED CONOCER, reinforced by Udemy and LinkedIn Learning.",
+        "summary": "Electrical assistant with documented residential work and installation-board/float-switch practice. Four completed Udemy and LinkedIn Learning courses cover installations, measurements, drawings, panelboards, transformers and VFD foundations. Main training continues at Universidad Internacional · RED CONOCER.",
         "sections": [
           {
             "id": "experience",
@@ -1690,7 +1718,7 @@
             "entries": [
               {
                 "title": "Residential outlets, switch & lighting",
-                "body": "Residential work: two documented outlet-replacement cases, a switch replacement and two ceiling luminaires.",
+                "body": "Outlet and switch replacements and installation of two replacement ceiling luminaires.",
                 "status": "Completed work",
                 "tone": "complete",
                 "tags": [
@@ -1700,8 +1728,8 @@
                 ],
                 "url": "https://culichi.lat/electrical#projects",
                 "bullets": [
-                  "Recorded the initial condition, replacement, mounting and final checks with original photographs.",
-                  "Confirmed polarity and protective-earth checks; one case includes a recorded 119.3 V AC measurement."
+                  "Photographic record of the initial condition, connections, mounting and result.",
+                  "Documented 119.3 V AC reading at an outlet."
                 ]
               },
               {
@@ -1720,74 +1748,75 @@
                 ]
               }
             ],
-            "intro": "Documented residential maintenance and installation/control course practice. Industrial training is ongoing; the START/STOP exercise remains planned."
+            "intro": "Residential work and course practice supported by evidence. Industrial training is ongoing."
           },
           {
             "id": "skills",
-            "title": "Skills I can contribute",
+            "title": "Technical skills & course summary",
             "icon": "skills",
             "layout": "grid",
             "entries": [
               {
-                "title": "Residential installations",
-                "body": "Outlet, switch and luminaire replacements; training in conductors, load calculations and installation standards.",
+                "title": "Residential installations & conductors",
+                "body": "Outlet, switch and luminaire replacement; interpretation of connection diagrams. Coursework in feeders, branch circuits, ampacity, voltage drop and protective-earth conductor selection.",
                 "tags": [
-                  "Residential",
-                  "Wiring",
-                  "Lighting"
+                  "Outlets & lighting",
+                  "Conductors",
+                  "Protection"
                 ]
               },
               {
-                "title": "Measurement & diagnosis",
-                "body": "AC/DC voltage, clamp-current measurement, resistance, de-energized continuity and protection checks in training.",
+                "title": "Electrical measurements",
+                "body": "Digital multimeter use, AC/DC voltage and clamp-current measurement, resistance and de-energized continuity. Recorded 119.3 V AC in a documented residential outlet case.",
                 "tags": [
                   "Multimeter",
                   "AC/DC",
-                  "Clamp meter"
+                  "Continuity"
                 ]
               },
               {
-                "title": "Drawings & circuit foundations",
-                "body": "Electrical symbols, drawings, Ohm/Kirchhoff laws and circuit analysis applied in course exercises.",
+                "title": "Drawings & electrical calculations",
+                "body": "Electrical symbols, one-line, wiring and motor diagrams, plans and ladder diagrams. Ohm’s and Watt’s laws, circuit foundations and power factor studied in completed courses.",
                 "tags": [
                   "Drawings",
-                  "Circuits",
-                  "Diagnostics"
+                  "Calculations",
+                  "Circuits"
                 ]
               },
               {
-                "title": "Industrial systems & control",
-                "body": "Ongoing study: three-phase systems, motor starting/protection, contactors, control/power circuits, maintenance and photovoltaic foundations.",
+                "title": "Panelboards, transformers & VFDs",
+                "body": "Completed coursework on panelboards, breakers/fuses, transformer types/connections and VFD components/control. Industrial motor and contactor training continues in RED CONOCER.",
                 "tags": [
-                  "Motors",
-                  "Contactors",
-                  "Maintenance"
+                  "Panelboards",
+                  "Transformers",
+                  "VFD foundations"
                 ]
               }
             ]
           },
           {
             "id": "certifications",
-            "title": "Education & credentials",
+            "title": "Completed courses & ongoing education",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
             "ids": [
-              "electrical-conocer",
-              "electrical-linkedin",
               "electrical-udemy",
-              "electrical-measurements"
+              "electrical-measurements",
+              "electrical-linkedin",
+              "electrical-linkedin-equipment",
+              "electrical-conocer"
             ]
           }
         ],
         "highlights": [
           {
-            "value": "5",
-            "label": "Documented work & course practices"
+            "value": "4",
+            "label": "Completed courses"
           },
           {
-            "value": "AC / DC",
-            "label": "Measurement practice"
+            "value": "5",
+            "label": "Documented jobs & course practices"
           },
           {
             "value": "UI · CONOCER",
@@ -1802,7 +1831,7 @@
       },
       "es": {
         "role": "Ayudante electricista | Mantenimiento residencial y formación industrial",
-        "summary": "He realizado cambios documentados de contactos, apagador y luminarias de techo, además de prácticas de tablero de instalación y control por electronivel. Interpreto planos eléctricos y practico mediciones CA/CC y comprobaciones de circuitos. Mi formación principal está en curso en Universidad Internacional · RED CONOCER, reforzada con Udemy y LinkedIn Learning.",
+        "summary": "Ayudante electricista con trabajos residenciales y prácticas de tablero y electronivel documentados. Cuatro cursos completados de Udemy y LinkedIn Learning respaldan conocimientos de instalaciones, mediciones, planos, tableros, transformadores y variadores. Formación principal en curso en Universidad Internacional · RED CONOCER.",
         "sections": [
           {
             "id": "experience",
@@ -1812,7 +1841,7 @@
             "entries": [
               {
                 "title": "Contactos, apagador e iluminación residencial",
-                "body": "Trabajo residencial: dos casos documentados de cambio de contactos, un apagador y dos luminarias de techo.",
+                "body": "Cambios de contactos y apagador e instalación de dos luminarias de reemplazo.",
                 "status": "Trabajo realizado",
                 "tone": "complete",
                 "tags": [
@@ -1822,8 +1851,8 @@
                 ],
                 "url": "https://culichi.lat/electrical#projects",
                 "bullets": [
-                  "Registré el estado inicial, reemplazo, montaje y comprobaciones finales con fotografías originales.",
-                  "Confirmé comprobaciones de polaridad y tierra; un caso incluye una medición registrada de 119.3 V CA."
+                  "Registro fotográfico del estado inicial, conexiones, montaje y resultado.",
+                  "Lectura documentada de 119.3 V CA en un contacto."
                 ]
               },
               {
@@ -1842,74 +1871,75 @@
                 ]
               }
             ],
-            "intro": "Mantenimiento residencial documentado y prácticas de curso de instalación y control. La formación industrial sigue en curso; el ejercicio START/STOP permanece planeado."
+            "intro": "Trabajos residenciales y prácticas de curso con evidencia. Formación industrial en curso."
           },
           {
             "id": "skills",
-            "title": "Conocimientos que puedo aportar",
+            "title": "Conocimientos técnicos y resumen de formación",
             "icon": "skills",
             "layout": "grid",
             "entries": [
               {
-                "title": "Instalaciones residenciales",
-                "body": "Cambios de contactos, apagador y luminarias; formación en conductores, cálculo de cargas y normas de instalación.",
+                "title": "Instalaciones residenciales y conductores",
+                "body": "Cambio de contactos, apagador y luminarias; interpretación de diagramas de conexión. Formación en circuitos alimentadores y derivados, ampacidad, caída de tensión y conductor de puesta a tierra.",
                 "tags": [
-                  "Residencial",
-                  "Cableado",
-                  "Iluminación"
+                  "Contactos e iluminación",
+                  "Conductores",
+                  "Protecciones"
                 ]
               },
               {
-                "title": "Medición y diagnóstico",
-                "body": "Voltaje CA/CC, corriente con gancho, resistencia, continuidad sin energía y comprobación de protecciones en formación.",
+                "title": "Mediciones eléctricas",
+                "body": "Uso de multímetro digital, tensión CA/CC, corriente con gancho, resistencia y continuidad sin energía. Registro de 119.3 V CA en un caso residencial documentado.",
                 "tags": [
                   "Multímetro",
-                  "AC/DC",
-                  "Multímetro de gancho"
+                  "CA/CC",
+                  "Continuidad"
                 ]
               },
               {
-                "title": "Planos y fundamentos de circuitos",
-                "body": "Simbología, planos, leyes de Ohm/Kirchhoff y análisis de circuitos aplicados en ejercicios de curso.",
+                "title": "Planos y cálculos eléctricos",
+                "body": "Simbología, diagramas unifilares, de cableado, motores y escalera, y planos eléctricos. Leyes de Ohm y Watt, fundamentos de circuitos y factor de potencia estudiados en cursos completados.",
                 "tags": [
                   "Planos",
-                  "Circuitos",
-                  "Diagnóstico"
+                  "Cálculos",
+                  "Circuitos"
                 ]
               },
               {
-                "title": "Sistemas industriales y control",
-                "body": "Estudios en curso: sistemas trifásicos, arranque/protección de motores, contactores, mando/fuerza, mantenimiento y bases fotovoltaicas.",
+                "title": "Tableros, transformadores y variadores",
+                "body": "Curso completado sobre tableros, interruptores/fusibles, tipos y conexiones de transformadores y componentes/control de variadores. La formación en motores industriales y contactores continúa en RED CONOCER.",
                 "tags": [
-                  "Motores",
-                  "Contactores",
-                  "Mantenimiento"
+                  "Tableros",
+                  "Transformadores",
+                  "Bases de variadores"
                 ]
               }
             ]
           },
           {
             "id": "certifications",
-            "title": "Formación y constancias",
+            "title": "Cursos completados y formación en curso",
             "icon": "certifications",
             "layout": "grid",
             "source": "training",
             "ids": [
-              "electrical-conocer",
-              "electrical-linkedin",
               "electrical-udemy",
-              "electrical-measurements"
+              "electrical-measurements",
+              "electrical-linkedin",
+              "electrical-linkedin-equipment",
+              "electrical-conocer"
             ]
           }
         ],
         "highlights": [
           {
-            "value": "5",
-            "label": "Trabajos y prácticas documentados"
+            "value": "4",
+            "label": "Cursos completados"
           },
           {
-            "value": "CA / CC",
-            "label": "Práctica de medición"
+            "value": "5",
+            "label": "Trabajos y prácticas documentados"
           },
           {
             "value": "UI · CONOCER",

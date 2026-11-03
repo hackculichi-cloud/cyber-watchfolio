@@ -3,10 +3,10 @@
     "id": "general",
     "profile": "home",
     "summary": "I build responsive web interfaces and automate Excel reports with Python. My portfolio also includes three educational security investigations, documented residential electrical work and three iPhone repairs. I bring a practical approach: organize the task, document the process and present evidence of the result.",
-    "pageCount": 6,
+    "pageCount": 7,
     "pageCounts": {
-      "en": 6,
-      "es": 6
+      "en": 7,
+      "es": 7
     }
   },
   {
@@ -32,7 +32,7 @@
   {
     "id": "electrical",
     "profile": "electrical",
-    "summary": "I have completed documented residential outlet, switch and ceiling-light replacements, plus installation-board and float-switch course practice. I interpret electrical drawings and practice AC/DC measurement and circuit checks. My main training is ongoing at Universidad Internacional · RED CONOCER, reinforced by Udemy and LinkedIn Learning.",
+    "summary": "Electrical assistant with documented residential work and installation-board/float-switch practice. Four completed Udemy and LinkedIn Learning courses cover installations, measurements, drawings, panelboards, transformers and VFD foundations. Main training continues at Universidad Internacional · RED CONOCER.",
     "pageCount": 3,
     "pageCounts": {
       "en": 3,
