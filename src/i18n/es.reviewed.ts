@@ -1,5 +1,9 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Electrical assistant with documented residential work and installation-board/float-switch practice. Four completed Udemy and LinkedIn Learning courses cover installations, measurements, drawings, panelboards, transformers and VFD foundations. Main training continues at Universidad Internacional · RED CONOCER.": "Ayudante electricista con trabajos residenciales y prácticas de tablero y electronivel documentados. Cuatro cursos completados de Udemy y LinkedIn Learning respaldan conocimientos de instalaciones, mediciones, planos, tableros, transformadores y variadores. Formación principal en curso en Universidad Internacional · RED CONOCER.",
+  "Certificates": "Certificados",
+  "{count} photos": "{count} fotos",
+  "{count} completed courses": "{count} cursos completados",
   "Course completed on November 2, 2026; certificate issued by Udemy.": "Curso completado el 2 de noviembre de 2026; certificado emitido por Udemy.",
   "Udemy completion certificate for Basic Electrical Installations awarded to Christian Velasco Estrada on November 2, 2026.": "Certificado de finalización de Udemy de Instalaciones Eléctricas Básicas, otorgado a Christian Velasco Estrada el 2 de noviembre de 2026.",
   "7.5 hours": "7.5 horas",
