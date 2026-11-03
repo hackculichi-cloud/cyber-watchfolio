@@ -16,6 +16,18 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
   electrical: [
     { id: "electrical-conocer", title: "Electrical Fundamentals & Industrial Electricity", provider: "Universidad Internacional · RED CONOCER", providerId: "universidad-internacional", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
     {
+      id: "electrical-linkedin-equipment", title: "Electrical Systems: Panel Boards, Frequency Drives, and Transformers", provider: "LinkedIn Learning", providerId: "linkedin-learning", training: "Completed",
+      document: "Course completed on November 2, 2026; certificate issued by LinkedIn Learning.",
+      awardedTo: "Christian Velasco Estrada", issuedOn: "2026-11-02", contactHours: 0.25,
+      credentialId: "c817c182dd2d139f1c061815cdfb7589bae0a657e50ad8f5db1c2d3f4eb56c0c",
+      href: "/certificates/linkedin-electrical-panels-drives-transformers.pdf",
+      image: {
+        src: "/certificates/linkedin-electrical-panels-drives-transformers.webp",
+        alt: "LinkedIn Learning completion certificate for Electrical Systems: Panel Boards, Frequency Drives, and Transformers awarded to Christian Velasco Estrada on November 2, 2026.",
+        width: 1600, height: 1237,
+      },
+    },
+    {
       id: "electrical-linkedin", title: "Electrical Systems: Reading Drawings and Schematics", provider: "LinkedIn Learning", providerId: "linkedin-learning", training: "Completed",
       document: "Course completed on October 30, 2026; certificate issued by LinkedIn Learning.",
       awardedTo: "Christian Velasco Estrada", issuedOn: "2026-10-30", contactHours: 0.75,
@@ -27,7 +39,19 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
         width: 1600, height: 1237,
       },
     },
-    { id: "electrical-udemy", title: "Basic Electrical Installations", provider: "Udemy", providerId: "udemy", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
+    {
+      id: "electrical-udemy", title: "Basic Electrical Installations", provider: "Udemy", providerId: "udemy", training: "Completed",
+      document: "Course completed on November 2, 2026; certificate issued by Udemy.",
+      awardedTo: "Christian Velasco Estrada", issuedOn: "2026-11-02", instructor: "Irving Lopez Hernandez", duration: "7.5 hours",
+      credentialId: "UC-99a0711d-aef6-4471-aaf2-af4421bf0681",
+      verifyUrl: "https://ude.my/UC-99a0711d-aef6-4471-aaf2-af4421bf0681",
+      href: "/certificates/udemy-instalaciones-electricas-basicas.pdf",
+      image: {
+        src: "/certificates/udemy-instalaciones-electricas-basicas.webp",
+        alt: "Udemy completion certificate for Basic Electrical Installations awarded to Christian Velasco Estrada on November 2, 2026.",
+        width: 1600, height: 1190,
+      },
+    },
     {
       id: "electrical-measurements", title: "Electrical Measurements", provider: "Udemy", providerId: "udemy", training: "Completed",
       document: "Course completed on October 30, 2026; certificate issued by Udemy.",

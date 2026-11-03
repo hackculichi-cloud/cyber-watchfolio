@@ -22,8 +22,9 @@ El CV SOC requiere el documento real del autor. Mantenerlo como no disponible ha
 Estados confirmados por el autor:
 
 - LinkedIn Learning: Electrical Systems: Reading Drawings and Schematics, completado el 30 de octubre de 2026; PDF original local y vista ampliable incorporados. Procedencia en `docs/linkedin-electrical-certificate.md`.
+- LinkedIn Learning: Electrical Systems: Panel Boards, Frequency Drives, and Transformers, completado el 2 de noviembre de 2026; PDF original local y 17 temas de la captura aportada. Procedencia en `docs/linkedin-electrical-equipment-certificate.md`.
 - RED CONOCER: en curso. Sus módulos describen el plan de estudios, no competencias acreditadas ni módulos necesariamente terminados.
-- Udemy: Instalaciones eléctricas básicas, en curso. Incorporar el plan real cuando se proporcione y el certificado después de completarlo.
+- Udemy: Instalaciones eléctricas básicas, completado el 2 de noviembre de 2026; original local, duración impresa de 7.5 horas y temario parcial de las secciones 2–16. Procedencia en `docs/udemy-basic-installations-certificate.md`.
 
 No inventar fecha de emisión, identificador, URL de verificación, temario adicional ni equivalencia profesional.
 

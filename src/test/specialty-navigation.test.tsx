@@ -98,11 +98,14 @@ describe("course knowledge and documented practice", () => {
     expect(completed.querySelector('[data-certificate-original="electrical-measurements"] img')).toHaveAttribute("src", "/certificates/udemy-mediciones-electricas.webp");
     expect(within(completed).getByRole("link", { name: /^Download PDF$/ })).toHaveAttribute("href", "/certificates/udemy-mediciones-electricas.pdf");
     expect(within(completed).getByRole("link", { name: /^Download PDF$/ })).toHaveAttribute("download");
-    for (const id of ["electrical-conocer", "electrical-udemy"]) {
+    for (const id of ["electrical-conocer"]) {
       const ongoing = document.querySelector(`[data-certificate="${id}"]`)! as HTMLElement;
       expect(within(ongoing).getByText("Currently Studying", { exact: true })).toBeVisible();
       expect(ongoing.querySelector("time, [data-certificate-details]")).toBeNull();
     }
+    const installations = document.querySelector('[data-certificate="electrical-udemy"]')! as HTMLElement;
+    expect(within(installations).getByText("Completed", { exact: true })).toBeVisible();
+    expect(installations.querySelector('[data-certificate-original] img')).toHaveAttribute("src", "/certificates/udemy-instalaciones-electricas-basicas.webp");
     expect(document.querySelectorAll('[data-training-role="main"]')).toHaveLength(1);
     expect(document.querySelector('[data-training-role="main"]')?.closest("article")).toHaveAttribute("data-certificate", "electrical-conocer");
   });

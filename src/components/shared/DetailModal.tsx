@@ -12,9 +12,10 @@ interface DetailModalProps {
   children: ReactNode;
   profile?: ProfileSlug;
   returnFocusRef?: RefObject<HTMLElement>;
+  showLanguageSwitcher?: boolean;
 }
 
-const DetailModal = ({ open, onOpenChange, title, subtitle, children, profile, returnFocusRef }: DetailModalProps) => {
+const DetailModal = ({ open, onOpenChange, title, subtitle, children, profile, returnFocusRef, showLanguageSwitcher = true }: DetailModalProps) => {
   const { t } = useLanguage();
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -22,7 +23,7 @@ const DetailModal = ({ open, onOpenChange, title, subtitle, children, profile, r
         <DialogHeader>
           <div className="flex flex-wrap items-center gap-3 pr-6">
             <DialogTitle className="min-w-0 flex-1 text-xl font-semibold tracking-tight">{t(title)}</DialogTitle>
-            <LanguageSwitcher compact />
+            {showLanguageSwitcher && <LanguageSwitcher compact />}
           </div>
           {(
             <DialogDescription className={`${subtitle ? "" : "sr-only"} text-xs uppercase tracking-[0.16em] text-muted-foreground`}>

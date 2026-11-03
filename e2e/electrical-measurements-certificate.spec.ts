@@ -19,8 +19,8 @@ for (const lang of ["es", "en"] as const) {
       const records = page.locator('[data-certifications="electrical"]');
       const completed = records.locator('[data-certificate="electrical-measurements"]');
       await expect(completed).toHaveAttribute("data-certificate-record", "electrical-measurements");
-      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-linkedin');
-      await expect(records.locator('[data-certificate]').nth(1)).toHaveAttribute('data-certificate', 'electrical-measurements');
+      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-linkedin-equipment');
+      await expect(records.locator('[data-certificate]').nth(3)).toHaveAttribute('data-certificate', 'electrical-measurements');
       await expect(records.locator('[data-certificate-info][open]')).toHaveCount(0);
       const cardBox = (await completed.boundingBox())!;
       const imageBox = (await completed.locator('[data-certificate-original] img').boundingBox())!;
@@ -38,7 +38,7 @@ for (const lang of ["es", "en"] as const) {
       await expect(official).toHaveAttribute("href", verification);
       await expect(official).toHaveAttribute("rel", "noopener noreferrer");
       await expect(completed.locator("[data-certificate-mockup], [data-certificate-placeholder]")).toHaveCount(0);
-      await expect(records.locator("[data-certificate-mockup]")).toHaveCount(2);
+      await expect(records.locator("[data-certificate-mockup]")).toHaveCount(1);
       await expect(records.locator('[data-certificate-original="electrical-measurements"]')).toHaveCount(1);
       const pdf = completed.getByRole("link", { name: lang === "es" ? "Descargar PDF" : "Download PDF", exact: true });
       await expect(pdf).toHaveAttribute("href", originalPdf);
@@ -60,6 +60,7 @@ for (const lang of ["es", "en"] as const) {
       const scrollBefore = await page.evaluate(() => scrollY);
       await opener.click();
       const dialog = page.getByRole("dialog");
+      await expect(dialog.locator("[data-language-toggle]")).toHaveCount(0);
       const enlarged = dialog.locator('img:not([data-language-flag])');
       await expect(enlarged).toHaveAttribute("src", "/certificates/udemy-mediciones-electricas.webp");
       await expect.poll(() => enlarged.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth)).toBe(1600);
@@ -74,8 +75,8 @@ for (const lang of ["es", "en"] as const) {
       await expect(primary.locator('[data-training-role="main"]')).toBeVisible();
       await expect(primary.getByText(lang === "es" ? "Estudiando actualmente" : "Currently Studying", { exact: true })).toBeVisible();
       const basicInstallations = records.locator('[data-certificate="electrical-udemy"]');
-      await expect(basicInstallations.getByText(lang === "es" ? "Estudiando actualmente" : "Currently Studying", { exact: true })).toBeVisible();
-      await expect(basicInstallations.locator("time")).toHaveCount(0);
+      await expect(basicInstallations.getByText(lang === "es" ? "Completado" : "Completed", { exact: true })).toBeVisible();
+      await expect(basicInstallations.locator("time")).toHaveAttribute("datetime", "2026-11-02");
 
       const syllabus = completed.locator('[data-confirmed-course-syllabus="electrical-udemy-measurements"]');
       await expect(syllabus.locator("[data-confirmed-syllabus-section]")).toHaveCount(0);

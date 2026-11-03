@@ -30,7 +30,7 @@ test('the three electrical entries keep work local and use one shared certificat
     await page.locator('[data-open-electrical-training]').click();
     await expect(page.locator('[data-electrical-area-content]')).toHaveCount(1);
     await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(1);
-    await expect(page.locator('[data-certificate]')).toHaveCount(4);
+    await expect(page.locator('[data-certificate]')).toHaveCount(5);
     await expect(page.locator('[data-electrical-area-content] [data-certificate]')).toHaveCount(0);
     await expect(page.locator('#projects [data-work]')).toHaveCount(0);
     await page.locator('[data-area-tab="projects"]').click();
