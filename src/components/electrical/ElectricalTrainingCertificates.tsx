@@ -53,6 +53,6 @@ const ElectricalTrainingCertificates = ({ targetId }: { targetId?: string }) => 
       </details>}
     </div>];
   }));
-  return <div id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40"><ProfileCertificates profile="electrical" featuredId="electrical-conocer" courseContent={content} /></div>;
+  return <div id="tracks" className="scroll-mt-32 border-y border-border bg-surface/40"><ProfileCertificates compact profile="electrical" featuredId="electrical-conocer" courseContent={content} /></div>;
 };
 export default ElectricalTrainingCertificates;

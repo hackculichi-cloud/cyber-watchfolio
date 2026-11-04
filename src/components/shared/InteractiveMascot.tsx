@@ -165,6 +165,6 @@ const InteractiveMascot = ({ profile = "home", className }: {
     <span role="status" aria-live="polite" className="sr-only">
       {phase === "transforming" ? t("Changing outfit…") : ""}
     </span>
-  </div><div data-mascot-legend className="h-32 pt-6 sm:pt-2">{selected && <MascotGearPreview profile={selected} id={gearId} />}</div></div>;
+  </div><div data-mascot-legend className="h-16 pt-2">{selected && <MascotGearPreview profile={selected} id={gearId} />}</div></div>;
 };
 export default InteractiveMascot;

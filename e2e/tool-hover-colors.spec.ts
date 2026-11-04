@@ -52,7 +52,8 @@ for (const lang of ["es", "en"] as const) {
         await expect(legend.locator('[data-gear-item]')).toHaveCount(3);
         const visibleLabels = await legend.locator('[data-tool-label]').allTextContents();
         expect(visibleLabels.every(label => label.trim().length > 0)).toBe(true);
-        for (const prop of await legend.locator('[data-tool-prop]').all()) {
+        await expect(legend.locator('[data-tool-prop], img')).toHaveCount(0);
+        for (const prop of await field.locator('[data-tool-prop]').all()) {
           const toolId = (await prop.getAttribute('data-tool-prop'))!;
           expect(distinctTools.has(toolId)).toBe(false);
           distinctTools.add(toolId);

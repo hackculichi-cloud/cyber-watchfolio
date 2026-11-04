@@ -102,6 +102,7 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await expect(records.locator('[data-certificate-mockup]')).toHaveCount(1);
   const conocer = records.locator('[data-certificate="electrical-conocer"]');
   await expect(conocer).toContainText('Currently Studying');
+  await conocer.locator('[data-provisional-preview] > summary').click();
   await conocer.getByRole('button', { name: /^Enlarge provisional certificate/ }).click();
   const dialog = page.getByRole('dialog');
   await expect(dialog).toContainText('Universidad Internacional · RED CONOCER');
