@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Wrench, X } from "lucide-react";
+import { Wrench } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import MascotScene from "@/components/shared/MascotScene";
+import CollectionToolbar from "@/components/shared/CollectionToolbar";
 import ElectricalOwnedTools from "./ElectricalOwnedTools";
 import ElectricalCollectionAccess from "./ElectricalCollectionAccess";
 import { electricalOwnedTools } from "@/data/electricalOwnedTools";
@@ -30,15 +31,12 @@ export default function ElectricalSharedTools() {
     }
   }, [open]);
   const close = () => { closing.current = true; navigate({ hash: "#electrical-tools" }); };
-  const closeButton = <button type="button" data-close-electrical-tools aria-label={t("Close tools")} onClick={close} className="menu-choice inline-flex min-h-11 items-center gap-2 rounded-lg border border-border p-2.5 text-sm font-semibold sm:px-3"><X aria-hidden className="h-4 w-4" /><span className="hidden sm:inline">{t("Close")}</span></button>;
 
-  return <section ref={section} id="tools" data-shared-electrical-tools className={open ? "scroll-mt-48 border-t border-border" : `scroll-mt-48 min-w-0 ${isElectricalTrainingHash(hash.slice(1)) ? "container mx-auto px-4 py-4" : ""}`}>
-    <div className={open ? "container mx-auto px-4 py-8" : undefined}>
-      {open ? <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex min-w-0 items-center gap-3"><MascotScene profile="electrical" scene="detail" className="w-16 shrink-0 sm:w-24" /><h2 ref={heading} tabIndex={-1} className="flex items-center gap-2 text-lg font-semibold outline-none sm:text-2xl"><Wrench aria-hidden className="h-5 w-5 shrink-0 text-primary" />{t("Tools")}</h2></div>
-        {closeButton}
-      </div> : <ElectricalCollectionAccess ref={opener} kind="tools" icon={Wrench} title={t("Tools")} detail={t("{count} photos").replace("{count}", String(electricalOwnedTools.length))} label={t("View tools")} onOpen={() => navigate({ hash: "#tools" })} />}
-      {open && <div className="mt-6"><ElectricalOwnedTools /><div className="mt-5 flex justify-end">{closeButton}</div></div>}
+
+  return <section ref={section} id="tools" data-shared-electrical-tools className={open ? "collection-anchor border-t border-border" : `scroll-mt-48 min-w-0 ${isElectricalTrainingHash(hash.slice(1)) ? "container mx-auto px-4 py-4" : ""}`}>
+    <div className={open ? "container mx-auto max-w-5xl px-4 pb-5" : undefined}>
+      {open ? <CollectionToolbar title={t("Tools")} icon={Wrench} headingRef={heading} kind="tools" onClose={close}><MascotScene profile="electrical" scene="detail" className="hidden w-10 shrink-0 sm:block sm:w-12" /></CollectionToolbar> : <ElectricalCollectionAccess ref={opener} kind="tools" icon={Wrench} title={t("Tools")} detail={t("{count} photos").replace("{count}", String(electricalOwnedTools.length))} label={t("View tools")} onOpen={() => navigate({ hash: "#tools" })} />}
+      {open && <div className="mt-3"><ElectricalOwnedTools /></div>}
     </div>
   </section>;
 }

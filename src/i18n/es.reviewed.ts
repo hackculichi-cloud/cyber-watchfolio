@@ -1,5 +1,8 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Panelboards, VFDs and transformers": "Tableros, variadores y transformadores",
+  "Drawings and schematics": "Planos y esquemas",
+  "Course details": "Curso y temario",
   "Repair record": "Registro de reparación",
   "Other repair projects": "Otros proyectos de reparación",
   "Additional documented repairs will appear here.": "Aquí aparecerán más reparaciones conforme las documente.",

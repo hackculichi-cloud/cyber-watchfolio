@@ -11,18 +11,18 @@ export default function ElectricalOwnedTools() {
   const [active, setActive] = useState<ElectricalOwnedTool | null>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   return <div data-owned-electrical-tools>
-    <p className="mb-5 text-xs text-muted-foreground">{t("Tap a photo to enlarge")}</p>
-    <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-8 lg:grid-cols-3">
+    <p className="mb-3 text-center text-xs text-muted-foreground">{t("Tap a photo to enlarge")}</p>
+    <ul className="compact-tool-grid">
       {electricalOwnedTools.map(tool => <li key={tool.id} className="min-w-0">
-        <figure data-owned-tool-entry={tool.id}>
-          <button type="button" data-owned-tool={tool.id} onClick={event => { opener.current = event.currentTarget; setActive(tool); }} aria-haspopup="dialog" aria-label={`${t("Open larger preview")}: ${t(tool.title)}`} aria-describedby={`tool-description-${tool.id}`} className="group relative mx-auto block aspect-square w-full max-w-72 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background">
-            <img src={tool.thumbnail} srcSet={`${tool.thumbnail} 320w, ${tool.src} 512w`} sizes="(max-width: 639px) calc(50vw - 24px), 288px" width={512} height={512} loading="lazy" decoding="async" alt={t(tool.alt)} className="h-full w-full object-contain" />
-            <span aria-hidden className="absolute bottom-2 right-2 grid h-10 w-10 place-items-center rounded-full bg-background/85 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-focus-visible:bg-primary group-focus-visible:text-primary-foreground"><ZoomIn className="h-5 w-5" /></span>
+        <figure data-owned-tool-entry={tool.id} className="h-full rounded-xl border border-primary/20 bg-surface/60 p-3 text-center">
+          <button type="button" data-owned-tool={tool.id} onClick={event => { opener.current = event.currentTarget; setActive(tool); }} aria-haspopup="dialog" aria-label={`${t("Open larger preview")}: ${t(tool.title)}`} aria-describedby={`tool-description-${tool.id}`} className="group relative mx-auto block aspect-square w-full max-w-24 sm:max-w-32 bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background">
+            <img src={tool.thumbnail} srcSet={`${tool.thumbnail} 320w, ${tool.src} 512w`} sizes="(max-width: 639px) 96px, 128px" width={512} height={512} loading="lazy" decoding="async" alt={t(tool.alt)} className="h-full w-full object-contain" />
+            <span aria-hidden className="absolute bottom-2 right-2 grid h-8 w-8 place-items-center rounded-full bg-background/85 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-focus-visible:bg-primary group-focus-visible:text-primary-foreground"><ZoomIn className="h-4 w-4" /></span>
           </button>
-          <figcaption className="mx-auto max-w-72 pt-4">
-            <p className="text-xs font-semibold text-primary">{t(tool.brand)}</p>
-            <h3 className="mt-1 text-sm font-semibold leading-snug sm:text-base">{t(tool.title)}</h3>
-            <p id={`tool-description-${tool.id}`} data-owned-tool-description className="mt-2 text-[13px] leading-5 text-muted-foreground sm:text-sm sm:leading-6">{t(tool.description)}</p>
+          <figcaption className="mx-auto max-w-64 pt-2">
+            <p className="text-[11px] font-semibold text-primary">{t(tool.brand)}</p>
+            <h3 className="mt-1 text-xs font-semibold leading-4 sm:text-sm">{t(tool.title)}</h3>
+            <p id={`tool-description-${tool.id}`} data-owned-tool-description className="mt-1 line-clamp-2 text-xs leading-4 text-muted-foreground">{t(tool.description)}</p>
           </figcaption>
         </figure>
       </li>)}

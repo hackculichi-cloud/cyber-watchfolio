@@ -1035,3 +1035,45 @@ div.dialog-content[data-state], div.dialog-overlay[data-state] { animation-durat
   .presentation-photo-grid > figure { width:calc((100% - 2rem) / 3); }
   .presentation-photo-grid[data-photo-count="2"] > figure { width:calc((100% - 1rem) / 2); }
 }
+
+/* Compact collections keep their close action below the fixed page navigation. */
+.collection-toolbar { position:sticky; top:10rem; z-index:35; display:flex; align-items:center; justify-content:space-between; gap:.75rem; min-height:4rem; padding:.5rem 0; border-bottom:1px solid hsl(var(--primary)/.25); background:hsl(var(--background)); }
+.compact-tool-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; }
+.compact-tool-grid > li { width:calc((100% - .75rem) / 2); }
+@media (min-width:768px) { .compact-tool-grid { gap:1rem; } .compact-tool-grid > li { width:calc((100% - 2rem) / 3); } }
+@media (max-width:767px) { .collection-toolbar { top:9rem; } }
+@media (min-width:640px) and (max-width:767px) { .collection-toolbar { top:8rem; } }
+
+.compact-certificate-grid { display:flex; flex-wrap:wrap; justify-content:center; align-items:stretch; gap:.75rem; }
+.compact-certificate-grid > article { width:calc((100% - .75rem) / 2); min-width:0; }
+[data-compact-certificates] [data-training-role] { margin-bottom:.5rem; font-size:.6875rem; line-height:1rem; }
+[data-compact-certificates] [data-certificate-original] img { max-height:6rem; object-fit:contain; }
+[data-compact-certificates] [data-certificate-original] button > span { padding:.375rem; font-size:.6875rem; }
+[data-compact-certificates] [data-certificate-placeholder] > button { max-width:12rem; margin-inline:auto; }
+[data-compact-certificates] .certificate-card h3 { margin-top:.5rem; font-size:.8125rem; line-height:1.3; }
+[data-compact-certificates] .training-provider-logo { min-height:44px; padding:.25rem 0; }
+[data-compact-certificates] .training-provider-logo-art { gap:.375rem; }
+[data-compact-certificates] .training-provider-logo-name { font-size:1rem; }
+[data-compact-certificates] .training-provider-logo-school { font-size:.75rem; }
+[data-compact-certificates] .training-provider-logo-symbol { width:1.25rem; height:1.25rem; }
+[data-compact-certificates] .training-provider-logo-learning { font-size:.625rem; }
+[data-compact-certificates] [data-certificate-info] { margin-top:.5rem; padding-top:.375rem; }
+[data-compact-certificates] [data-certificate-info] > summary { gap:.375rem; padding:.25rem 0; font-size:.75rem; }
+.compact-certificate-grid > article:has([data-certificate-info][open]) { width:100%; }
+@media (min-width:1024px) {
+  .compact-certificate-grid { gap:1rem; padding-top:1.5rem; }
+  .compact-certificate-grid > article { width:calc((100% - 2rem) / 3); }
+  [data-compact-certificates] .certificate-card h3 { font-size:.9375rem; }
+}
+
+[data-compact-certificates] [data-training-role="complementary"] { display:none; }
+
+@media (min-width:1024px) { [data-compact-certificates] [data-certificate-original] img { max-height:7rem; } }
+
+.site-layout main .collection-anchor { scroll-margin-top:10rem; }
+@media (max-width:767px) { .site-layout main .collection-anchor { scroll-margin-top:9rem; } }
+@media (min-width:640px) and (max-width:767px) { .site-layout main .collection-anchor { scroll-margin-top:8rem; } }
+
+.compact-certificate-grid > article, [data-compact-certificates] [data-certificate-face], [data-compact-certificates] [data-certificate-caption] { display:flex; flex-direction:column; }
+[data-compact-certificates] [data-certificate-face], [data-compact-certificates] [data-certificate-caption] { flex:1; }
+[data-compact-certificates] [data-certificate-info] { margin-top:auto; }
