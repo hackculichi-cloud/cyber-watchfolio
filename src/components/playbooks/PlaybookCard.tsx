@@ -37,7 +37,7 @@ const PlaybookCard = ({ playbook, onOpen }: Props) => {
         ))}
       </div>
 
-      <p className="text-sm text-muted-foreground leading-relaxed">{t(playbook.objective)}</p>
+      <p className="line-clamp-2 text-sm text-muted-foreground leading-relaxed">{t(playbook.objective)}</p>
 
       <div className="mt-4 text-[10px] font-mono text-primary/70">{t(`→ view full playbook (${playbook.steps.length} steps)`)}</div>
     </button>

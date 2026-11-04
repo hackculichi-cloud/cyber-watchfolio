@@ -37,9 +37,9 @@ const ProfileCertificates = ({ profile, courseContent, featuredId }: { profile: 
   const records = [...(certifications[profile] ?? [])].sort((a, b) => visual ? Number(!!b.image) - Number(!!a.image) : 0);
   if (!records.length) return <EmptyCollectionSection id={profile === "electrical" ? "certificate" : "certifications"} data-certifications={profile} title="Certifications" description="No certificates provided for this area yet." />;
   return <section id={profile === "electrical" ? "certificate" : "certifications"} className="container mx-auto scroll-mt-32 px-4 py-16" data-certifications={profile}>
-    <SectionHeading eyebrow={t("Certifications")} title={t(visual ? "Diplomas and certificates" : "Certificates and pending documents")} description={t(visual ? "Enlarge a document or open its information to explore the course and syllabus." : "Confirmed training and the documents still to be added. In-progress courses are not completed certifications.")} />
+    <SectionHeading eyebrow={t("Certifications")} title={t("Diplomas and certificates")}  />
     {records.length ? <div className={`grid items-start gap-6 md:grid-cols-2 ${visual ? "mt-10" : ""}`}>{records.map(record => {
-      const hasPreview = !!courseContent && (!!record.image || !record.credentialId);
+      const hasPreview = !!record.image || (!!courseContent && !record.credentialId);
       const downloadOriginal = !!record.credentialId && record.href?.endsWith(".pdf");
       return <article key={record.id} id={`certificate-${record.id}`} tabIndex={-1} data-certificate={record.id} data-certificate-provider={record.providerId} data-certificate-record={record.credentialId ? record.id : undefined} className={`certificate-card relative scroll-mt-64 rounded-xl border p-5 outline-none focus-visible:ring-2 focus-visible:ring-primary sm:p-6 ${record.id === featuredId ? "border-primary/40 bg-primary/5" : "border-border bg-surface/50"}`}>
       {visual && record.image && record.id === records[0]?.id && profile === "electrical" && <MascotScene profile="electrical" scene="action" className="pointer-events-none absolute -top-12 right-3 z-10 w-20 sm:-top-16 sm:w-24" />}
@@ -50,11 +50,10 @@ const ProfileCertificates = ({ profile, courseContent, featuredId }: { profile: 
       <div className="flex items-start justify-between gap-3">{record.training === "Completed" ? <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden /> : <FileClock className="h-5 w-5 shrink-0 text-primary" aria-hidden />}<Tag variant={record.training === "Completed" ? "primary" : "muted"}>{t(record.training)}</Tag></div>
       <h3 className={visual ? "mt-4 text-lg font-semibold" : "mt-4 text-base font-semibold"}>{t(record.title)}</h3>
       {record.providerId ? <div className="mt-2"><TrainingProviderLogo id={record.providerId} /></div> : <p className="mt-2 text-sm text-muted-foreground">{t(record.provider)}</p>}
-      {visual && <details data-certificate-info={record.id} className="mt-5 border-t border-border pt-3 [&[open]>summary>span]:rotate-45">
-        <summary className="menu-choice flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden"><BookOpen aria-hidden className="h-4 w-4" />{t("View course information and syllabus")}<span aria-hidden className="ml-auto">+</span></summary>
+      <details data-certificate-info={record.id} className="mt-5 border-t border-border pt-3 [&[open]>summary>span]:rotate-45">
+        <summary className="menu-choice flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-sm font-semibold text-primary [&::-webkit-details-marker]:hidden"><BookOpen aria-hidden className="h-4 w-4" />{t(visual ? "View course information and syllabus" : "View document details")}<span aria-hidden className="ml-auto">+</span></summary>
         <CertificateInformation record={record} downloadOriginal={downloadOriginal} course={courseContent?.[record.id]} />
-      </details>}
-      {!visual && <CertificateInformation record={record} downloadOriginal={downloadOriginal} course={courseContent?.[record.id]} />}
+      </details>
       </div>
       </div>
     </article>; })}</div> : <p className="rounded-lg border border-dashed border-border p-5 text-sm text-muted-foreground">{t("No certificates provided for this area yet.")}</p>}

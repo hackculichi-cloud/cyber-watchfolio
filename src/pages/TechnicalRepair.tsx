@@ -1,6 +1,5 @@
 import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import MascotScene from "@/components/shared/MascotScene";
-import ProfileCertificates from "@/components/profile/ProfileCertificates";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Smartphone, Laptop, Gamepad2 } from "lucide-react";
@@ -55,28 +54,13 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
             <h2 className="text-2xl font-semibold md:text-3xl">{t(type)}</h2>
             <Tag variant="primary">{t(meta.status)}</Tag>
           </div>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">{t(meta.description)}</p>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {meta.scope.map((s) => (
-              <Tag key={s}>{t(s)}</Tag>
-            ))}
-          </div>
+          {type !== "Smartphones" && <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">{t(meta.description)}</p>}
+
         </div>
         {type === "Smartphones" && <MascotScene profile="repair" scene="action" className="w-24 sm:w-44" />}
       </div>
 
-      {type === "Smartphones" && (
-        <div className="mb-8 space-y-8">
-          <div>
-            <h3 className="mb-4 text-xl font-semibold">{t("Smartphone repair training")}</h3>
-            <CertificateCard />
-          </div>
-          <div className="space-y-6">
-            <h3 className="text-xl font-semibold">{t("Repairs by brand and type")}</h3>
-            <SmartphoneRepairGroups />
-          </div>
-        </div>
-      )}
+      {type === "Smartphones" && <SmartphoneRepairGroups />}
 
       {cases.length ? (
         <div className="space-y-6">
@@ -105,17 +89,13 @@ const TechnicalRepair = () => {
       />
       <ProfileHero profile={profile}>
         <Button asChild>
-          <a href="#work">{t("Repair log")}</a>
+          <a href="#smartphones">{t("View repairs")}</a>
         </Button>
         <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
-          <a href="#smartphones">{t("Smartphone repairs")}</a>
+          <a href="#certifications">{t("Certifications")}</a>
         </Button>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
-      <SpecialtyExplorer profile={profile.slug} />
-
-      <ProfileCapabilities profile={profile.slug} />
-
       <div className="border-y border-border bg-surface/40">
         <DeviceSection type="Smartphones" />
       </div>
@@ -124,28 +104,16 @@ const TechnicalRepair = () => {
         <DeviceSection type="Consoles" />
       </div>
 
-      <section id="work" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading
-          eyebrow={t("Repair log")}
-          title={t("Repair projects")}
-          description={t("Image-first repair projects with device, work performed, tools, components and results.")}
-        />
-        <WorkGrid
-          items={worksFor("repair")}
-          emptyTitle={t("Real repair photos pending")}
-          emptyDescription={t("Documented repairs and original photos will appear here when available.")}
-        />
-      </section>
+      {worksFor("repair").length ? <section id="work" className="container mx-auto scroll-mt-32 px-4 py-10"><SectionHeading title={t("Other repair projects")} /><WorkGrid items={worksFor("repair")} /></section> : <EmptyCollectionSection id="work" title="Other repair projects" description="Additional documented repairs will appear here." />}
 
       <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
           <SectionHeading
             eyebrow={t("Gallery")}
             title={t("Workshop photos")}
-            description={t("Before/after documentation of real repairs, components and workshop practice.")}
+            description={t("Original photographs of repairs, components and workshop practice.")}
           />
-          <p className="mb-6 text-sm text-muted-foreground">{t("Photos are organized inside each repair case. This optional gallery contains all 18 photos, including connector close-ups not assigned to a specific device.")}</p>
-          <WorkImageGallery title="Workshop photos" images={[...repairPhotos, ...galleryFor("repair")]} compact collapsible />
+          <details className="rounded-xl border border-border p-4"><summary className="cursor-pointer py-2 font-semibold text-primary">{t("View workshop photo collection")} ({repairPhotos.length + galleryFor("repair").length})</summary><div className="mt-4"><WorkImageGallery title="Workshop photos" images={[...repairPhotos, ...galleryFor("repair")]} presentation /></div></details>
 
         </div>
       </section>
@@ -154,7 +122,12 @@ const TechnicalRepair = () => {
         <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Equipment & tooling")}><ProfileTools groups={toolsByProfile.repair} profile={profile.slug} /></SectionHeading>
       </section>
 
-      <ProfileCertificates profile={profile.slug} />
+      <section id="certifications" className="container mx-auto scroll-mt-32 px-4 py-10">
+        <SectionHeading title={t("Smartphone repair training")} />
+        <CertificateCard />
+      </section>
+      <SpecialtyExplorer profile={profile.slug} />
+      <ProfileCapabilities profile={profile.slug} />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-10">
           <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("Professional résumé")}><ProfileCvBlock cvIds={profile.cvIds} /></SectionHeading>

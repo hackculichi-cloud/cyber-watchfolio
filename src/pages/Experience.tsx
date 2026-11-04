@@ -4,6 +4,7 @@ import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import Seo from "@/components/shared/Seo";
 import { PhoneCall, Headset, ListChecks, Handshake, Users, Wrench, GraduationCap, Truck } from "lucide-react";
+import ContentDetails from "@/components/shared/ContentDetails";
 import Tag from "@/components/shared/Tag";
 import ProfileHero from "@/components/profile/ProfileHero";
 import ProfileSectionNav from "@/components/profile/ProfileSectionNav";
@@ -26,22 +27,6 @@ const Experience = () => {
       />
       <ProfileHero profile={profile} />
       <ProfileSectionNav sections={profile.sections} />
-      <SpecialtyExplorer profile={profile.slug} />
-
-      <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug} mascotScene="action" eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
-        <div className="grid gap-4 sm:grid-cols-2">
-          {customerServiceSkills.map(skill => {
-            const Icon = skillIcons[skill.icon];
-            return <article key={skill.title} className="panel-glow">
-              <span className="glow-ring mb-4 grid h-12 w-12 place-items-center rounded-xl border border-primary/30 bg-primary/10 text-primary"><Icon className="h-6 w-6" aria-hidden /></span>
-              <h3 className="text-lg font-semibold">{t(skill.title)}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(skill.description)}</p>
-            </article>;
-          })}
-        </div>
-      </section>
-
       <section id="background" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
           <SectionHeading mascot={profile.slug} mascotScene="practice" eyebrow={t("Experience")} title={t(experienceSummary.headline)} description={t(experienceSummary.statement)} />
@@ -59,11 +44,27 @@ const Experience = () => {
                 <h3 className="mt-2 text-lg font-semibold">{t(entry.title)}</h3>
                 <p className="mt-2 text-xs font-medium text-foreground/80">{t(entry.period)}</p>
                 {entry.location && <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{t(entry.location)}</p>}
-                <p className="reading-copy mt-4 text-sm leading-relaxed text-muted-foreground">{t(entry.summary)}</p>
-                <ul className="mt-4 flex flex-wrap gap-2">{entry.highlights.map(item => <li key={item}><Tag>{t(item)}</Tag></li>)}</ul>
+                <ContentDetails title="Role details" className="mt-4"><p className="reading-copy mt-4 text-sm leading-relaxed text-muted-foreground">{t(entry.summary)}</p>
+                <ul className="mt-4 flex flex-wrap gap-2">{entry.highlights.map(item => <li key={item}><Tag>{t(item)}</Tag></li>)}</ul></ContentDetails>
               </article>
             </li>)}
           </ol>
+        </div>
+      </section>
+
+      <SpecialtyExplorer profile={profile.slug} />
+
+      <section id="skills" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading mascot={profile.slug} mascotScene="action" eyebrow={t("Skills")} title={t("Customer service skills")} description={t("Skills developed through bilingual customer service experience.")} />
+        <div className="grid gap-4 sm:grid-cols-2">
+          {customerServiceSkills.map(skill => {
+            const Icon = skillIcons[skill.icon];
+            return <article key={skill.title} className="panel-glow">
+              <span className="glow-ring mb-4 grid h-12 w-12 place-items-center rounded-xl border border-primary/30 bg-primary/10 text-primary"><Icon className="h-6 w-6" aria-hidden /></span>
+              <h3 className="text-lg font-semibold">{t(skill.title)}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(skill.description)}</p>
+            </article>;
+          })}
         </div>
       </section>
 

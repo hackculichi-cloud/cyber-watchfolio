@@ -55,7 +55,7 @@ const InvestigationCard = ({ investigation, onOpen }: Props) => {
 
       {investigation.context && <p className="mb-2 text-xs text-primary">{t(investigation.context.kind)} · {investigation.context.platform}</p>}
       <h3 className="font-display font-semibold text-foreground text-lg mb-2">{t(investigation.title)}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{t(investigation.shortDescription)}</p>
+      <p className="line-clamp-2 text-sm text-muted-foreground leading-relaxed">{t(investigation.shortDescription)}</p>
 
       <div className="mt-4 text-[10px] font-mono text-primary/70">{t("→ view full investigation")}</div>
     </button>

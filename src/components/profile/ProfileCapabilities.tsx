@@ -2,6 +2,7 @@ import { profileCapabilities, type ProfileCapability } from "@/data/profileCapab
 import type { ProfileSlug } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import SectionHeading from "@/components/shared/SectionHeading";
+import ContentDetails from "@/components/shared/ContentDetails";
 import Tag from "@/components/shared/Tag";
 import TrainingProviderBadge from "./TrainingProviderBadge";
 
@@ -14,7 +15,8 @@ export default function ProfileCapabilities({ profile, entries }: { profile: Pro
       {(entries ?? profileCapabilities[profile])?.map(item => <article key={item.title} className="glass-panel p-5">
         <Tag variant="primary">{t(item.status)}</Tag>
         <h3 className="mt-3 text-lg font-semibold">{t(item.title)}</h3>
-        <p className="reading-copy mt-3 text-base leading-7 text-foreground/95">{t(item.body)}</p>
+        <ContentDetails className="mt-4" title="Knowledge and practice details"><p className="reading-copy mt-3 text-base leading-7 text-foreground/95">{t(item.body)}</p>
+        </ContentDetails>
         {item.providers && <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-3">{item.providers.map(id => <TrainingProviderBadge key={id} id={id} />)}</div>}
       </article>)}
     </div>

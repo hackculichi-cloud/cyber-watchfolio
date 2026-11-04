@@ -2,10 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { openElectricalArea } from './support/electricalArea';
 
 async function openRepair(page: Page, id: string) {
-  for (const group of ['iPhone', id === 'sr-003' ? 'iPhone-screen' : 'iPhone-battery', id]) {
-    const tile = page.locator(`[data-repair-group="${group}"]`);
-    if (await tile.getAttribute('aria-expanded') !== 'true') await tile.click();
-  }
+  await page.locator(`[data-repair-group="${id}"]`).click();
 }
 
 for (const width of [320, 1440]) {
@@ -30,6 +27,7 @@ for (const width of [320, 1440]) {
       const dialog = page.getByRole('dialog').filter({ has: page.locator('[data-work-process]') });
       await expect(dialog).toHaveAttribute('data-profile', 'electrical');
       await expect(dialog.locator('[data-work-step]')).toHaveCount(count);
+      await dialog.locator('[data-content-details] > summary').first().click();
       await expect(dialog.locator('[data-work-protocol]')).toContainText('Lista de referencia');
       const pending = dialog.locator('[data-pending-documentation]');
       await expect(pending).not.toHaveAttribute('open', '');
@@ -40,11 +38,11 @@ for (const width of [320, 1440]) {
         await expect(dialog).toContainText('Planeado');
         await expect(dialog.locator('img:not([data-language-flag])')).toHaveCount(0);
       } else if (id === 'float-switch-course-practice') {
-        await expect(dialog.locator('[data-work-step] video')).toHaveCount(1);
+        await expect(dialog.locator('video')).toHaveCount(1);
         await expect(dialog.locator('video')).toHaveAttribute('preload', 'metadata');
         await expect(dialog.locator('video')).not.toHaveAttribute('autoplay');
       } else {
-        const photo = dialog.locator('[data-work-step]').getByRole('button', { name: /^Abrir vista ampliada:/ }).first();
+        const photo = dialog.getByRole('button', { name: /^Abrir vista ampliada:/ }).first();
         await photo.click();
         const photoDialog = page.locator('[data-photo-dialog]');
         await expect(photoDialog.locator('img')).toHaveCount(1);
@@ -69,6 +67,7 @@ for (const width of [320, 1440]) {
       const record = page.locator(`[data-repair-case="${id}"]`);
       await expect(record.locator('[data-work-step]')).toHaveCount(count);
       await expect(record.locator('figure')).toHaveCount(photos);
+      await record.locator('[data-repair-technical] > summary').click();
       await expect(record.locator('[data-step-source="confirmation"]').last()).toContainText('Confirmado por el autor');
       await expect(record.locator('[data-work-protocol]')).toContainText('Lista de referencia');
       const pending = record.locator('[data-pending-documentation]');
@@ -79,6 +78,8 @@ for (const width of [320, 1440]) {
       await expect(record).not.toContainText('119.3');
       expect(await record.evaluate(el => getComputedStyle(el).boxShadow)).toBe('none');
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      await page.keyboard.press('Escape');
+      await expect(page.locator('[data-repair-dialog]')).toHaveCount(0);
     }
     await context.close();
   });

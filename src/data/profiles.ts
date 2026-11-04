@@ -131,10 +131,10 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: Shield,
     highlights: ["SOC / Blue Team", "SIEM & log analysis", "Networking", "Linux hardening"],
     sections: [
+      { id: "investigations", label: "Investigations" },
       { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
       { id: "skills", label: "Skills" },
-      { id: "investigations", label: "Investigations" },
       { id: "playbooks", label: "Playbooks" },
       { id: "labs", label: "Labs" },
       { id: "projects", label: "Projects" },
@@ -225,9 +225,9 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: Wrench,
     highlights: ["Smartphones", "Laptops", "Consoles (planned)", "Component-level work"],
     sections: [
+      { id: "smartphones", label: "Completed work" },
       { id: "specialties", label: "Specialties" },
       { id: "overview", label: "Overview" },
-      { id: "smartphones", label: "Smartphones" },
       { id: "laptops", label: "Laptops" },
       { id: "consoles", label: "Consoles" },
       { id: "work", label: "Repair log" },
@@ -249,9 +249,9 @@ export const profileIdentities: ProfileIdentity[] = [
     icon: PhoneCall,
     highlights: ["English / Spanish", "Operations supervision", "Tier 2 support", "Technical training"],
     sections: [
+      { id: "background", label: "Experience" },
       { id: "specialties", label: "Specialties" },
       { id: "skills", label: "Skills" },
-      { id: "background", label: "Experience" },
       { id: "transferable", label: "Transferable value" },
       { id: "certifications", label: "Certifications" },
       { id: "cv", label: "CV" },

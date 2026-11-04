@@ -56,7 +56,7 @@ export default function ElectricalAreaPanel({ area }: { area: string }) {
       <TabsContent value="projects">
         <section id="projects" className="scroll-mt-32 px-1 py-6 sm:px-4">
           <span id="practice" className="scroll-mt-32" />
-          <SectionHeading eyebrow={t("Projects")} title={t("Course practice & residential work")} description={t("Choose a work type to explore its practices and original photographs.")} />
+          <SectionHeading eyebrow={t("Projects")} title={t("Course practice & residential work")} description={t("Open a job to see its photographs. Filter by work type if needed.")} />
           <ElectricalPracticeGroups key={groupId} areaId={groupId} />
         </section>
       </TabsContent>

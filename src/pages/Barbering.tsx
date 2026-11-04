@@ -1,3 +1,4 @@
+import ContentDetails from "@/components/shared/ContentDetails";
 import BarberToolImage from "@/components/barbering/BarberToolImage";
 import { GraduationCap, MapPin } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -55,8 +56,7 @@ export default function Barbering() {
         <p className="reading-copy mt-3 max-w-3xl text-base leading-relaxed text-foreground/95">{t("Haircutting is another of my practical skills. Baltra Barbería, in Guadalajara, is my school for this area.")}</p>
       </div>
 
-      <div className="mt-6">
-        <h3 className="text-base font-semibold">{t("A haircut, step by step")}</h3>
+      <ContentDetails className="mt-6" title="A haircut, step by step">
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t("A guide to the stages I will document alongside my cuts.")}</p>
         <ol className="mt-4 grid grid-cols-2 gap-2 lg:grid-cols-4">
           {stages.map((stage, index) => <li key={stage.title} className="rounded-lg border border-primary/15 bg-surface/85 p-3 sm:p-4">
@@ -65,7 +65,7 @@ export default function Barbering() {
             <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t(stage.description)}</p>
           </li>)}
         </ol>
-      </div>
+      </ContentDetails>
     </section>
 
     {barberingCuts.length ? <section id="cuts" data-barbering-cuts className="container mx-auto scroll-mt-32 px-4 py-8 sm:py-10">

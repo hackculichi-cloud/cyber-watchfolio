@@ -66,7 +66,7 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         </div>
       </SectionBlock>
 
-      <SectionBlock title={t("Executive summary")}>
+      <SectionBlock expanded title={t("Executive summary")}>
         <KeyVal label={t("What happened")} value={executiveSummary.whatHappened} />
         <KeyVal label={t("Why important")} value={executiveSummary.whyImportant} />
         <KeyVal label={t("Final verdict")} value={executiveSummary.finalVerdict} />
@@ -211,7 +211,7 @@ const InvestigationDetail = ({ data }: { data: Investigation }) => {
         )}
       </SectionBlock>
 
-      <SectionBlock title={t("Final verdict")}>
+      <SectionBlock expanded title={t("Final verdict")}>
         <KeyVal label={t("Verdict")} value={finalVerdict.verdict} />
         <KeyVal label={t("Justification")} value={finalVerdict.justification} />
       </SectionBlock>

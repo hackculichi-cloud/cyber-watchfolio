@@ -1,4 +1,5 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
+import ContentDetails from "./ContentDetails";
 import { ReactNode } from "react";
 
 interface SectionBlockProps {
@@ -6,11 +7,13 @@ interface SectionBlockProps {
   children: ReactNode;
   /** If false the block renders nothing. Use for auto-hide when data is empty. */
   show?: boolean;
+  expanded?: boolean;
 }
 
-const SectionBlock = ({ title, children, show = true }: SectionBlockProps) => {
+const SectionBlock = ({ title, children, show = true, expanded = false }: SectionBlockProps) => {
   const { t } = useLanguage();
   if (!show) return null;
+  if (!expanded) return <ContentDetails title={title}><div className="space-y-2 text-sm leading-relaxed text-muted-foreground">{children}</div></ContentDetails>;
   return (
     <section className="space-y-2">
       <h3 className="font-display text-sm font-bold text-primary uppercase tracking-wider">

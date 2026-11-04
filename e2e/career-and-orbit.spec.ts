@@ -86,6 +86,8 @@ test("both residential outlet cases use process and protocol instead of a compar
     await expect(card).not.toContainText('Residential client');
     await card.getByRole('button', { name: 'View project', exact: true }).last().click();
     const detail = page.getByRole('dialog');
+    await expect(detail.locator('[data-photo-gallery]')).toBeVisible();
+    await detail.locator('[data-content-details] > summary').first().click();
     await expect(detail.locator('[data-documented-steps]')).toBeVisible();
     await expect(detail.locator('[data-work-protocol]')).toContainText('Reference checklist');
     await expect(detail.getByRole('heading', { name: 'Before / After', exact: true })).toHaveCount(0);

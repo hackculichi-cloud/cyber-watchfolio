@@ -23,7 +23,7 @@ for (const dpr of [1, 3]) {
       await record.getByRole("button", { name: "View project", exact: true }).last().click();
       const detail = page.getByRole("dialog");
       await expect(detail.locator('[data-work-step]')).toHaveCount(5);
-      const firstPhoto = detail.locator('[data-work-step] [data-photo-gallery] img').first();
+      const firstPhoto = detail.locator('[data-photo-gallery] img').first();
       await firstPhoto.scrollIntoViewIfNeeded();
       await expect.poll(() => firstPhoto.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
       const originalPhoto = "/images/electrical/outlet-october-2026/01.jpeg";
@@ -53,10 +53,7 @@ for (const dpr of [1, 3]) {
     page.on("request", request => requests.add(new URL(request.url()).pathname));
     try {
       await page.goto("/repair#smartphones");
-      for (const group of ["iPhone", "iPhone-battery", "sr-001"]) {
-        const tile = page.locator(`[data-repair-group="${group}"]`);
-        if (await tile.getAttribute("aria-expanded") !== "true") await tile.click();
-      }
+      await page.locator('[data-repair-group="sr-001"]').click();
       const record = page.locator('[data-repair-case="sr-001"]');
       await expect(record.locator('[data-work-step]')).toHaveCount(5);
       const thumbnail = record.locator('[data-photo-gallery] img').first();

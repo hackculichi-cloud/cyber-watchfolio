@@ -1,3 +1,4 @@
+import ContentDetails from "@/components/shared/ContentDetails";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
@@ -25,13 +26,14 @@ const About = () => {
       />
 
       <section className="container mx-auto grid gap-12 px-4 py-16 lg:grid-cols-[1.3fr_1fr]">
-        <div className="space-y-6 text-sm leading-relaxed text-muted-foreground">
+        <ContentDetails title="My background" className="self-start"><div className="space-y-6 text-sm leading-relaxed text-muted-foreground">
           <p>{t("My professional direction is clear: information technology, cybersecurity and software development. I focus on fundamentals first — networking, Linux, system hardening and secure practices — and then apply them in labs and personal projects that I document publicly.")}</p>
           <p>{t("Alongside that path I am completing complementary technical training in residential electrical maintenance, general electronics and smartphone repair. These fields sharpen the same underlying ability: diagnosing a system methodically, isolating the fault and repairing it without guesswork.")}</p>
           <p>{t("Before technology became my focus, I spent seven years in bilingual customer service. That experience shaped how I work today — communicating clearly under pressure, supporting people who are frustrated, and translating technical detail into language anyone can act on.")}</p>
           <p>{t("I am currently building experience and looking for opportunities where I can contribute, keep learning and grow into a security and development professional.")}</p>
         </div>
 
+        </ContentDetails>
         <aside className="space-y-4">
           <div className="panel">
             <p className="eyebrow">{t("Focus")}</p>
