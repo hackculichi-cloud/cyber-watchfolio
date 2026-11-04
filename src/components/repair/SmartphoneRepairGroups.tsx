@@ -1,88 +1,55 @@
-import { useState, type ReactNode } from "react";
-import { BatteryCharging, PanelsTopLeft, ChevronDown } from "lucide-react";
+import { useRef, useState } from "react";
+import { ArrowUpRight, Images } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import Tag from "@/components/shared/Tag";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+import SmartImage from "@/components/shared/SmartImage";
+import { photoPreview } from "@/lib/photoPreview";
 import SmartphoneRepairCard from "./SmartphoneRepairCard";
-import { smartphoneRepairs, plannedSmartphoneRepairs, type SmartphoneBrand, type SmartphoneRepairType } from "@/data/smartphoneRepair";
+import { smartphoneRepairs, plannedSmartphoneRepairs, type SmartphoneRepair } from "@/data/smartphoneRepair";
 
-const DeviceTile = ({ label, group, visual, selected, onSelect, documented = 0, planned = 0 }: { label: string; group: string; visual: ReactNode; selected: boolean; onSelect: () => void; documented?: number; planned?: number }) => {
-  const { t } = useLanguage();
-  return (
-    <button type="button" data-repair-group={group} aria-expanded={selected} aria-controls={selected ? `repair-panel-${group}` : undefined} onClick={onSelect}
-      className={`group overflow-hidden rounded-xl border text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${selected ? "border-primary bg-primary/10" : "border-border bg-surface/60 hover:border-primary/60 hover:bg-primary/5"}`}>
-      <span className="flex h-40 items-center justify-center bg-gradient-to-b from-primary/10 to-transparent px-3 sm:h-48">{visual}</span>
-      <span className={`flex min-h-24 flex-col items-center justify-center gap-2 border-t border-border px-3 py-3 ${selected ? "bg-primary/15" : "bg-surface-2/40"}`}>
-        <span className="flex items-center justify-center gap-2 font-semibold">{t(label)}<ChevronDown className={`h-4 w-4 shrink-0 ${selected ? "rotate-180" : ""}`} aria-hidden /></span>
-        <span className="flex flex-wrap justify-center gap-1.5">
-          {documented > 0 && <Tag variant="primary">{t("Documented: {count}").replace("{count}", String(documented))}</Tag>}
-          {planned > 0 && <Tag>{t("Planned: {count}").replace("{count}", String(planned))}</Tag>}
-        </span>
-      </span>
-    </button>
-  );
+// Covers come from the owner's assigned case photos; an internal view is not a claimed final result.
+const covers: Record<string, string> = {
+  "sr-001": "/images/repair/repair-photo-11.jpg",
+  "sr-002": "/images/repair/repair-photo-12.jpg",
+  "sr-003": "/images/repair/repair-photo-10.jpg",
 };
 
-const modelImages: Record<string, string> = {
-  "sr-001": "iphone-12-pro", "sr-002": "iphone-14-pro", "sr-003": "iphone-xr",
-  "planned-s21-ultra-screen": "galaxy-s21-ultra", "planned-a35-battery": "galaxy-a35",
-};
-const brands: SmartphoneBrand[] = ["iPhone", "Samsung"];
-const repairTypes: { type: SmartphoneRepairType; label: string; key: string; icon: typeof BatteryCharging }[] = [
-  { type: "Screen replacement", label: "Display / Screen", key: "screen", icon: PanelsTopLeft },
-  { type: "Battery replacement", label: "Battery", key: "battery", icon: BatteryCharging },
-];
-const DeviceImage = ({ id }: { id: string }) => <img src={`/images/devices/${modelImages[id]}.svg`} alt="" aria-hidden className="h-full w-full max-w-64 object-contain" />;
-
-/** Visual brand → repair type → model selectors, with one full-width detail panel. */
-const SmartphoneRepairGroups = () => {
+/** Real jobs are visible immediately. One selection opens photos, with technical details optional. */
+export default function SmartphoneRepairGroups() {
   const { t } = useLanguage();
-  const [brand, setBrand] = useState<SmartphoneBrand | null>(null);
-  const [typeKey, setTypeKey] = useState<string | null>(null);
-  const [deviceId, setDeviceId] = useState<string | null>(null);
-  const documented = smartphoneRepairs.filter(repair => repair.brand === brand);
-  const planned = plannedSmartphoneRepairs.filter(repair => repair.brand === brand);
-  const type = repairTypes.find(item => item.key === typeKey);
-  const cases = documented.filter(repair => repair.repairType === type?.type);
-  const plans = planned.filter(repair => repair.repairType === type?.type);
-  const selectedRepair = cases.find(repair => repair.id === deviceId);
-  const selectedPlan = plans.find(repair => repair.id === deviceId);
-  return (
-    <div id="smartphone-repair-groups" className="space-y-6">
-      <div className="grid max-w-3xl grid-cols-2 gap-3 sm:gap-5">
-        {brands.map(item => <DeviceTile key={item} label={item} group={item} selected={brand === item}
-          documented={smartphoneRepairs.filter(repair => repair.brand === item).length}
-          planned={plannedSmartphoneRepairs.filter(repair => repair.brand === item).length}
-          onSelect={() => { setBrand(brand === item ? null : item); setTypeKey(null); setDeviceId(null); }}
-          visual={<span className="relative flex h-full w-full justify-center">
-            <DeviceImage id={item === "iPhone" ? "sr-002" : "planned-s21-ultra-screen"} />
-            <img src={`/images/devices/${item === "iPhone" ? "apple" : "samsung"}-logo.svg`} alt="" aria-hidden className={`absolute left-2 top-3 object-contain ${item === "iPhone" ? "h-6 w-6" : "h-6 w-20"}`} />
-          </span>} />)}
-      </div>
-      {brand && <div id={`repair-panel-${brand}`} className="space-y-5 rounded-xl border border-primary/20 bg-surface/30 p-3 sm:p-5">
-        <h4 className="text-lg font-semibold">{brand}</h4>
-        <div className="grid max-w-2xl grid-cols-2 gap-3 sm:gap-4">
-          {repairTypes.map(({ type: category, label, key, icon: Icon }) => <DeviceTile key={key} label={label} group={`${brand}-${key}`} selected={typeKey === key}
-            documented={documented.filter(repair => repair.repairType === category).length}
-            planned={planned.filter(repair => repair.repairType === category).length}
-            onSelect={() => { setTypeKey(typeKey === key ? null : key); setDeviceId(null); }} visual={<Icon className="h-16 w-16 text-primary" strokeWidth={1.2} aria-hidden />} />)}
-        </div>
-        {type && <div id={`repair-panel-${brand}-${typeKey}`} className="space-y-5">
-          <h5 className="text-base font-semibold text-primary">{t(type.label)}</h5>
-          <div className="grid max-w-4xl grid-cols-2 gap-3 lg:grid-cols-3">
-            {cases.map(repair => <DeviceTile key={repair.id} label={repair.device} group={repair.id} documented={1} selected={deviceId === repair.id}
-              onSelect={() => setDeviceId(deviceId === repair.id ? null : repair.id)} visual={<DeviceImage id={repair.id} />} />)}
-            {plans.map(plan => <DeviceTile key={plan.id} label={plan.device} group={plan.id} planned={1} selected={deviceId === plan.id}
-              onSelect={() => setDeviceId(deviceId === plan.id ? null : plan.id)} visual={<DeviceImage id={plan.id} />} />)}
-          </div>
-          {selectedRepair && <div id={`repair-panel-${selectedRepair.id}`}><SmartphoneRepairCard key={selectedRepair.id} repair={selectedRepair} /></div>}
-          {selectedPlan && <div id={`repair-panel-${selectedPlan.id}`} className="rounded-lg border border-border p-4">
-            <p className="font-medium">{selectedPlan.device} · {t("Planned")}</p>
-            <p className="mt-2 text-sm text-muted-foreground">{t("Upcoming repair. Results and photographic evidence will be added after the work is completed.")}</p>
-          </div>}
-          {!cases.length && !plans.length && <p className="text-sm text-muted-foreground">{t("No repairs recorded in this category yet.")}</p>}
-        </div>}
-      </div>}
+  const [selected, setSelected] = useState<SmartphoneRepair | null>(null);
+  const [filter, setFilter] = useState("All repairs");
+  const trigger = useRef<HTMLButtonElement | null>(null);
+  const cases = smartphoneRepairs.filter(repair => filter === "All repairs" || repair.repairType === filter);
+  return <div id="smartphone-repair-groups" className="space-y-6">
+    <div role="group" aria-label={t("Filter repairs")} className="flex flex-wrap justify-center gap-2">
+      {[["All repairs", "All"], ["Battery replacement", "Battery"], ["Screen replacement", "Screen"]].map(([value, label]) => <button key={value} type="button" aria-pressed={filter === value} onClick={() => setFilter(value)} className={`min-h-11 rounded-full border px-4 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${filter === value ? "border-primary bg-primary/10 text-primary" : "border-border bg-background text-muted-foreground hover:border-primary/50"}`}>{t(label)}</button>)}
     </div>
-  );
-};
-export default SmartphoneRepairGroups;
+    <div data-repair-showcase className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {cases.map(repair => {
+        const cover = repair.photos?.find(photo => photo.src === covers[repair.id]) ?? repair.photos?.[0];
+        return <button key={repair.id} type="button" data-repair-group={repair.id} onClick={event => { trigger.current = event.currentTarget; setSelected(repair); }} aria-label={`${t("View repair")}: ${repair.device}`} className="group overflow-hidden rounded-2xl border border-border bg-surface text-left transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          {cover?.src && <SmartImage {...photoPreview(cover.src, "(min-width:1024px) 380px, (min-width:640px) 44vw, 90vw")} alt={cover.alt} className="aspect-[4/3] w-full" />}
+          <span className="flex flex-col items-center gap-2 p-5 text-center">
+            <span className="text-lg font-semibold">{repair.device}</span>
+            <span className="text-sm text-primary">{t(repair.repairType)}</span>
+            <span className="mt-1 flex w-full items-center justify-between border-t border-border pt-3 text-xs text-muted-foreground"><span className="inline-flex items-center gap-1.5"><Images className="h-4 w-4" aria-hidden />{t("{count} photos").replace("{count}", String(repair.photos?.length ?? 0))}</span><span className="inline-flex items-center gap-1.5 font-semibold text-foreground">{t("View repair")}<ArrowUpRight className="h-4 w-4" aria-hidden /></span></span>
+          </span>
+        </button>;
+      })}
+    </div>
+    {plannedSmartphoneRepairs.length > 0 && <details className="mx-auto max-w-3xl rounded-xl border border-border px-4 text-sm text-muted-foreground">
+      <summary className="cursor-pointer py-4 font-medium">{t("Upcoming repairs")} ({plannedSmartphoneRepairs.length})</summary>
+      <ul className="space-y-3 pb-4">{plannedSmartphoneRepairs.map(plan => <li key={plan.id} data-planned-repair={plan.id}><span className="font-medium text-foreground">{plan.device}</span> · {t(plan.repairType)} · {t("Planned")}</li>)}</ul>
+    </details>}
+    <Dialog open={!!selected} onOpenChange={open => !open && setSelected(null)}>
+      <DialogContent data-repair-dialog className="max-h-[92dvh] max-w-5xl overflow-y-auto p-4 sm:p-6" onCloseAutoFocus={event => { event.preventDefault(); trigger.current?.focus({ preventScroll: true }); }}>
+        {selected && <>
+          <div className="flex items-start gap-3 pr-10"><div className="min-w-0 flex-1"><DialogTitle>{selected.device}</DialogTitle><DialogDescription className="mt-2">{t(selected.repairType)}</DialogDescription></div><LanguageSwitcher compact /></div>
+          <SmartphoneRepairCard repair={selected} />
+        </>}
+      </DialogContent>
+    </Dialog>
+  </div>;
+}

@@ -37,11 +37,11 @@ const WorkCard = ({ item, onOpen }: { item: WorkItem; onOpen: (id: string) => vo
             <Calendar className="h-3 w-3" aria-hidden /> {t(item.date)}
           </p>
         )}
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
+        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
 
         {(item.skills?.length || item.technologies?.length || item.tools?.length) && (
           <div className="mt-4 flex flex-wrap gap-1.5">
-            {(item.skills ?? item.technologies ?? item.tools ?? []).slice(0, 5).map((x) => (
+            {(item.skills ?? item.technologies ?? item.tools ?? []).slice(0, 2).map((x) => (
               <Tag key={x}>{t(x)}</Tag>
             ))}
           </div>

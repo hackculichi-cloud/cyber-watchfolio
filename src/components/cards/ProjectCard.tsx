@@ -1,8 +1,9 @@
 import { useRef, useState, type MouseEvent } from "react";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { ExternalLink, Github, Code2, Workflow, Maximize2, Check } from "lucide-react";
+import { ExternalLink, Github, Code2, Workflow, Maximize2 } from "lucide-react";
 import type { SoftwareProject } from "@/data/softwareProjects";
 import { screenshotsForProject } from "@/data/softwareScreenshots";
+import ContentDetails from "@/components/shared/ContentDetails";
 import Tag from "@/components/shared/Tag";
 import DetailModal from "@/components/shared/DetailModal";
 
@@ -29,11 +30,11 @@ const ProjectCard = ({ project }: { project: SoftwareProject }) => {
           <h3 className="flex items-center gap-3 text-xl font-bold">{project.category === "Automation" ? <Workflow className="h-6 w-6 shrink-0 text-primary" aria-hidden /> : <Code2 className="h-6 w-6 shrink-0 text-primary" aria-hidden />}{t(project.name)}</h3>
           <Tag variant="primary">{t(project.status)}</Tag>
         </header>
-        <p className="reading-copy text-base leading-relaxed text-foreground/85">{t(project.description)}</p>
-        <div className="mt-4 flex flex-wrap gap-1.5">{project.stack.map(s => <Tag key={s}>{t(s)}</Tag>)}</div>
-        {project.features && <ul className="mt-5 space-y-3 text-sm leading-relaxed text-foreground/90">{project.features.map(feature => <li key={feature} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden /><span>{t(feature)}</span></li>)}</ul>}
+        <p className="reading-copy line-clamp-2 text-sm leading-relaxed text-foreground/85">{t(project.description)}</p>
+        <div className="mt-4 flex flex-wrap gap-1.5">{project.stack.slice(0, 3).map(s => <Tag key={s}>{t(s)}</Tag>)}</div>
+
         <div className="mt-auto pt-5">
-          {!!screenshots.length && <button type="button" onClick={openProject} className="mb-3 inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2 font-semibold text-primary hover:bg-primary/20 focus-visible:ring-2 focus-visible:ring-primary"><Maximize2 className="h-4 w-4" aria-hidden />{t("Explore project")}</button>}
+          <button type="button" onClick={openProject} className="mb-3 inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2 font-semibold text-primary hover:bg-primary/20 focus-visible:ring-2 focus-visible:ring-primary"><Maximize2 className="h-4 w-4" aria-hidden />{t("Explore project")}</button>
           <div className="border-t border-border pt-2">{links}</div>
         </div>
       </div>
@@ -46,10 +47,12 @@ const ProjectCard = ({ project }: { project: SoftwareProject }) => {
           <figcaption className="mt-2 text-center text-xs leading-relaxed text-muted-foreground">{t("Actual interface captured from a local repository build.")}</figcaption>
         </figure>
       </>}
+      {links}
+      <ContentDetails title="Implementation details">
       <p className="reading-copy text-base leading-relaxed">{t(project.scope ?? project.description)}</p>
       {project.features && <div><h3 className="mb-3 font-semibold">{t("What I built")}</h3><ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">{project.features.map(feature => <li key={feature}>{t(feature)}</li>)}</ul></div>}
       <div className="flex flex-wrap gap-2">{project.stack.map(item => <Tag key={item}>{item}</Tag>)}</div>
-      {links}
+      </ContentDetails>
       {project.previousRepo && <a href={project.previousRepo} target="_blank" rel="noreferrer noopener" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground underline underline-offset-4">{t("Previous version on GitHub")}<ExternalLink className="h-3 w-3" aria-hidden /></a>}
     </DetailModal>
   </>;

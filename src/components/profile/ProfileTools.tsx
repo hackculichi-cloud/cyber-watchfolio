@@ -3,7 +3,7 @@ import Tag from "@/components/shared/Tag";
 import type { ToolGroup } from "@/data/tools";
 import type { ProfileSlug } from "@/data/profiles";
 import { toolPhotos, type ToolPhoto } from "@/data/toolPhotos";
-import { Camera, Gauge, Wrench, ShieldCheck, Cpu, Flame, ZoomIn, MoveHorizontal } from "lucide-react";
+import { Camera, Gauge, Wrench, ShieldCheck, Cpu, Flame, ZoomIn } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import SmartImage from "@/components/shared/SmartImage";
@@ -15,11 +15,10 @@ const ProfileTools = ({ groups, profile }: { groups: ToolGroup[]; profile?: Prof
   const physicalTools = profile && ["electrical", "electronics", "repair"].includes(profile);
 
   if (physicalTools) return <div data-tool-catalog={profile}>
-    <p className="mb-2 flex items-center justify-between gap-2 text-xs text-muted-foreground sm:hidden">{t("Swipe to browse equipment")}<MoveHorizontal className="h-4 w-4 text-primary" aria-hidden /></p>
-    <div tabIndex={0} role="region" aria-label={t("Equipment catalog")} className="tool-wall flex snap-x snap-mandatory scroll-p-3 gap-3 overflow-x-auto rounded-xl border border-primary/20 p-3 [scrollbar-width:thin] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:p-5">
+    <div tabIndex={0} role="region" aria-label={t("Equipment catalog")} className="tool-wall grid grid-cols-1 gap-4 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:grid-cols-3">
       {publishedGroups.map(group => {
         const Icon = /Measurement|Diagnostics/.test(group.title) ? Gauge : /safety|Safety/.test(group.title) ? ShieldCheck : /Rework|Workshop/.test(group.title) ? Flame : /Prototyping/.test(group.title) ? Cpu : Wrench;
-        return <div key={group.title} className="w-52 min-w-0 shrink-0 snap-start sm:w-auto">
+        return <div key={group.title} className="min-w-0">
           <h3 className="mb-3 text-xs font-semibold text-primary">{t(group.title)}</h3>
           <ul className="grid gap-2">
             {group.items.map(tool => {
@@ -29,7 +28,7 @@ const ProfileTools = ({ groups, profile }: { groups: ToolGroup[]; profile?: Prof
                 <span className="min-w-0 text-xs leading-relaxed [overflow-wrap:anywhere]">{t(tool)}{photo?.model && <span className="reading-copy block text-muted-foreground">{t(photo.model)}</span>}</span>
                 {photo && <ZoomIn className="ml-auto h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />}
               </>;
-              return <li key={tool}>{photo ? <button type="button" onClick={() => setActive(photo)} aria-label={`${t("Open larger preview")}: ${t(tool)}`} className="flex min-h-16 w-full items-center gap-2 rounded-lg border border-border bg-background/85 p-2 text-left hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:gap-3">{content}</button> : <div className="flex min-h-16 items-center gap-2 rounded-lg border border-border/70 bg-background/85 p-2 sm:gap-3">{content}</div>}</li>;
+              return <li key={tool}>{photo ? <button type="button" onClick={() => setActive(photo)} aria-label={`${t("Open larger preview")}: ${t(tool)}`} className="flex min-h-16 w-full items-center gap-2 rounded-lg border border-border bg-background/85 p-2 text-left hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:gap-3">{content}</button> : <div className="flex min-h-16 items-center gap-3 rounded-lg border border-border/70 bg-background/85 p-2 sm:gap-3">{content}</div>}</li>;
             })}
           </ul>
         </div>;

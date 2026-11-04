@@ -11,7 +11,7 @@ const timingLabels = {
 } as const;
 
 /** One evidence-led process for electrical work and hands-on repairs. */
-export default function WorkProcess({ documentedSteps, protocol, documentationNeeded, video }: WorkProcessRecord & { video?: ReactNode }) {
+export default function WorkProcess({ documentedSteps, protocol, documentationNeeded, video, showImages = true }: WorkProcessRecord & { video?: ReactNode; showImages?: boolean }) {
   const { t } = useLanguage();
   if (!documentedSteps?.length && !protocol?.length && !documentationNeeded?.length) return null;
   return <div data-work-process className="space-y-6">
@@ -28,7 +28,7 @@ export default function WorkProcess({ documentedSteps, protocol, documentationNe
               <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><Icon className="h-3.5 w-3.5 text-primary" aria-hidden />{t(hasPhotos ? "Photo evidence" : step.video ? "Video evidence" : step.confirmed ? "Confirmed by the author" : "No photo attached")}</span>
             </div>
             <p className="mb-3 mt-2 text-sm leading-relaxed text-muted-foreground">{t(step.description)}</p>
-            {hasPhotos && <WorkImageGallery images={step.images!} title={step.title} compact />}
+            {hasPhotos && showImages && <WorkImageGallery images={step.images!} title={step.title} compact />}
             {step.video && video}
           </li>;
         })}

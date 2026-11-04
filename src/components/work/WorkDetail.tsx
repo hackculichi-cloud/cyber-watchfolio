@@ -2,10 +2,8 @@ import { useState } from "react";
 import { ExternalLink, Github, FileText } from "lucide-react";
 import type { WorkItem } from "@/data/works";
 import Tag from "@/components/shared/Tag";
-import PlaceholderImage from "@/components/shared/PlaceholderImage";
-import BeforeAfter from "@/components/shared/BeforeAfter";
 import WorkImageGallery from "@/components/shared/WorkImageGallery";
-import SmartImage from "@/components/shared/SmartImage";
+import ContentDetails from "@/components/shared/ContentDetails";
 import WorkProcess from "./WorkProcess";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
@@ -30,6 +28,9 @@ const List = ({ title, items }: { title: string; items?: string[] }) => {
 const WorkDetail = ({ item }: { item: WorkItem }) => {
   const { t } = useLanguage();
   const [videoError, setVideoError] = useState(false);
+  const media = [...(item.documentedSteps?.flatMap(step => step.images ?? []) ?? []), ...(item.images ?? []), ...(item.before ? [item.before] : []), ...(item.after ? [item.after] : [])];
+  if (item.cover?.src) media.push(item.cover);
+  const photos = media.filter((photo, index) => photo.src && media.findIndex(other => other.src === photo.src) === index);
   const recordedVideo = item.video && (
         <section className="space-y-3">
           <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t(item.video.title)}</h4>
@@ -55,20 +56,11 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
       );
   return (
     <div className="reading-copy space-y-8">
-      {item.cover?.src ? (
-        <SmartImage src={item.cover.src} alt={t(item.cover.alt)} eager className="aspect-[16/10] w-full rounded-lg border border-border" />
-      ) : (
-        <PlaceholderImage className="aspect-[16/9] w-full" label={t("Project image pending")} />
-      )}
-
-      <div className="flex flex-wrap gap-1.5">
-        <Tag variant="primary">{t(item.category)}</Tag>
-        <Tag>{t(item.status)}</Tag>
-        {item.difficulty && <Tag variant="accent">{t(item.difficulty)}</Tag>}
-        {item.date && <Tag>{t(item.date)}</Tag>}
-        {item.environment && <Tag>{t(item.environment)}</Tag>}
-      </div>
-
+      <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
+      {photos.length > 0 && <WorkImageGallery images={photos} title={item.title} presentation />}
+      {recordedVideo}
+      <ContentDetails title="Technical details and checks">
+      <div className="flex flex-wrap gap-2"><Tag variant="primary">{t(item.status)}</Tag>{item.date && <Tag>{t(item.date)}</Tag>}{item.environment && <Tag>{t(item.environment)}</Tag>}{item.difficulty && <Tag>{t(item.difficulty)}</Tag>}</div>
       <p className="text-sm leading-relaxed text-muted-foreground">{t(item.summary)}</p>
 
       {item.objective && (
@@ -93,27 +85,13 @@ const WorkDetail = ({ item }: { item: WorkItem }) => {
           {item.procedure.map((step, index) => <li key={index}>{t(step)}</li>)}
         </ol>
       </section> : null}
-      <WorkProcess documentedSteps={item.documentedSteps} protocol={item.protocol} documentationNeeded={item.documentationNeeded} video={recordedVideo} />
+      <WorkProcess documentedSteps={item.documentedSteps} protocol={item.protocol} documentationNeeded={item.documentationNeeded} showImages={false} />
       {item.technicalExplanation && <section className="space-y-2">
         <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Technical explanation")}</h4>
         <p className="text-sm leading-relaxed text-muted-foreground">{t(item.technicalExplanation)}</p>
       </section>}
 
-      {(item.before || item.after) && (
-        <div>
-          <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Before / After")}</h4>
-          <BeforeAfter before={item.before} after={item.after} />
-        </div>
-      )}
-
-      {item.images?.length ? (
-        <div>
-          <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary">{t("Gallery")}</h4>
-          <WorkImageGallery images={item.images} title={item.title} compact collapsible />
-        </div>
-      ) : null}
-
-      {!item.documentedSteps?.some(step => step.video) && recordedVideo}
+      </ContentDetails>
 
       {(item.repo || item.demo || item.writeup) && (
         <div className="flex flex-wrap items-center gap-5 border-t border-border pt-5 text-sm">

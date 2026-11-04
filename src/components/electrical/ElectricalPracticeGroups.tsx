@@ -9,39 +9,40 @@ import "./ElectricalPracticeGroups.css";
 const PracticeTile = ({ id, label, icon: Icon, active, onClick, count }: { id: string; label: string; icon: LucideIcon; active: boolean; onClick: () => void; count: number }) => {
   const { t } = useLanguage();
   return <button type="button" data-electrical-group={id} aria-expanded={active} aria-controls={active ? `electrical-panel-${id}` : undefined} onClick={onClick}
-    className={`group overflow-hidden rounded-xl border text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${active ? "border-primary bg-primary/10" : "border-border bg-surface/60 hover:border-primary/60"}`}>
-    <span className="flex h-32 items-center justify-center bg-gradient-to-b from-primary/10 to-transparent sm:h-40"><Icon className="h-16 w-16 text-primary sm:h-20 sm:w-20" strokeWidth={1.2} aria-hidden /></span>
-    <span className="flex min-h-24 flex-col items-center justify-center gap-2 border-t border-border px-3 py-3">
+    className={`group rounded-xl border px-3 py-2 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${active ? "border-primary bg-primary/10" : "border-border bg-surface/60 hover:border-primary/60"}`}>
+    <span className="flex justify-center"><Icon className="h-6 w-6 text-primary" strokeWidth={1.2} aria-hidden /></span>
+    <span className="flex min-h-16 flex-col items-center justify-center gap-1">
       <span className="flex items-center justify-center gap-2 font-semibold">{t(label)}<ChevronDown className={`h-4 w-4 shrink-0 ${active ? "rotate-180" : ""}`} aria-hidden /></span>
       <span className="text-xs text-muted-foreground">{count ? t("Recorded practices: {count}").replace("{count}", String(count)) : t("Evidence pending")}</span>
     </span>
   </button>;
 };
 
-/** Area → work type → real cases; collapsed by default, like the repair browser. */
+/** Show completed cases on entry; work types act as optional filters. */
 const ElectricalPracticeGroups = ({ areaId }: { areaId?: string }) => {
   const { t } = useLanguage();
   const [area, setArea] = useState<string | null>(null);
-  const [category, setCategory] = useState<string | null>(null);
+  const [category, setCategory] = useState<string | null>("all");
   const group = electricalPracticeGroups.find(item => item.id === (areaId ?? area));
   const selected = group?.categories.find(item => item.id === category);
-  const items = electricalProjects.filter(item => selected?.projectIds.includes(item.id));
+  const items = electricalProjects.filter(item => category === "all" ? group?.categories.some(entry => entry.projectIds.includes(item.id)) && item.status === "Completed" : selected?.projectIds.includes(item.id));
   return <div data-electrical-practices className="space-y-6">
     {!areaId && <div className="electrical-choice-row">
       {electricalPracticeGroups.map(item => <PracticeTile key={item.id} id={item.id} label={item.title} icon={item.icon} active={area === item.id}
         count={item.categories.flatMap(c => c.projectIds).filter(id => electricalProjects.some(p => p.id === id && p.status === "Completed")).length}
-        onClick={() => { setArea(area === item.id ? null : item.id); setCategory(null); }} />)}
+        onClick={() => { setArea(area === item.id ? null : item.id); setCategory("all"); }} />)}
     </div>}
     {group && <div id={`electrical-panel-${group.id}`} className="space-y-5 border-t border-primary/25 pt-6">
       <h3 className="text-center text-xl font-semibold">{t(group.title)}</h3>
       <div data-electrical-category-choices className="electrical-choice-row">
+        <button type="button" onClick={() => setCategory("all")} aria-pressed={category === "all"} className="min-h-11 rounded-xl border border-primary/40 px-4 text-sm font-semibold text-primary">{t("All completed work")}</button>
         {group.categories.map(item => <PracticeTile key={item.id} id={`${group.id}-${item.id}`} label={item.title} icon={item.icon} active={category === item.id}
           count={item.projectIds.filter(id => electricalProjects.some(p => p.id === id && p.status === "Completed")).length}
-          onClick={() => setCategory(category === item.id ? null : item.id)} />)}
+          onClick={() => setCategory(category === item.id ? "all" : item.id)} />)}
       </div>
       <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">{selected && `${t(selected.title)}. ${t("Recorded practices: {count}").replace("{count}", String(items.filter(item => item.status === "Completed").length))}`}</p>
-      {selected && <div key={`${group.id}-${selected.id}`} id={`electrical-panel-${group.id}-${selected.id}`} data-electrical-results role="region" aria-labelledby={`electrical-result-title-${group.id}-${selected.id}`} className="electrical-practice-results space-y-4">
-        <h4 id={`electrical-result-title-${group.id}-${selected.id}`} className="text-center text-lg font-semibold text-primary">{t(selected.title)}</h4>
+      {(selected || category === "all") && <div key={`${group.id}-${selected?.id ?? "all"}`} id={`electrical-panel-${group.id}-${selected?.id ?? "all"}`} data-electrical-results role="region" aria-labelledby={`electrical-result-title-${group.id}-${selected?.id ?? "all"}`} className="electrical-practice-results space-y-4">
+        <h4 id={`electrical-result-title-${group.id}-${selected?.id ?? "all"}`} className="text-center text-lg font-semibold text-primary">{t(selected?.title ?? "All completed work")}</h4>
         <WorkGrid items={items} centered emptyTitle="Evidence pending" emptyDescription="No completed practices documented in this category yet. Training topics are listed with their courses and certificates." />
       </div>}
     </div>}

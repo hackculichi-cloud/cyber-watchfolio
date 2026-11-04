@@ -66,7 +66,9 @@ test('featured projects open actual local desktop and mobile captures with sourc
   await expect(trigger).toBeFocused();
   await projects.getByRole('button', { name: 'Explorar los 10 proyectos', exact: true }).click();
   await expect(projects.locator('article')).toHaveCount(10);
-  await expect(projects.locator('[data-software-project="journey"]')).toContainText('HTML semántico');
+  await projects.locator('[data-software-project="journey"]').getByRole('button', { name: 'Explorar proyecto', exact: true }).click();
+  await page.getByRole('dialog').locator('[data-content-details] > summary').click();
+  await expect(page.getByRole('dialog')).toContainText('HTML semántico');
 });
 
 for (const width of [320, 390]) test(`software fits ${width}px and reduced motion disables title playback`, async ({ page }) => {

@@ -62,6 +62,19 @@ const Cybersecurity = () => {
         </Button>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
+      <section id="investigations" className="container mx-auto scroll-mt-32 px-4 py-16">
+        <SectionHeading mascot={profile.slug} mascotScene="action"
+          eyebrow={t("Investigations")}
+          title={t("Incident investigations")}
+          description={t("Each case follows the same structure: summary, detection, analysis, evidence, outcome and lessons learned.")}
+        />
+        <div className="grid gap-4 md:grid-cols-2">
+          {investigations.map((inc) => (
+            <InvestigationCard key={inc.id} investigation={inc} onOpen={() => { incidentTrigger.current = document.activeElement as HTMLElement; setIncidentId(inc.id); }} />
+          ))}
+        </div>
+      </section>
+
       <SpecialtyExplorer profile={profile.slug} />
 
       <ProfileCapabilities profile={profile.slug} />
@@ -81,19 +94,6 @@ const Cybersecurity = () => {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section id="investigations" className="container mx-auto scroll-mt-32 px-4 py-16">
-        <SectionHeading mascot={profile.slug} mascotScene="action"
-          eyebrow={t("Investigations")}
-          title={t("Incident investigations")}
-          description={t("Each case follows the same structure: summary, detection, analysis, evidence, outcome and lessons learned.")}
-        />
-        <div className="grid gap-4 md:grid-cols-2">
-          {investigations.map((inc) => (
-            <InvestigationCard key={inc.id} investigation={inc} onOpen={() => { incidentTrigger.current = document.activeElement as HTMLElement; setIncidentId(inc.id); }} />
-          ))}
         </div>
       </section>
 

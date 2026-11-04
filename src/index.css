@@ -1020,3 +1020,18 @@ div.dialog-content[data-state], div.dialog-overlay[data-state] { animation-durat
 }
 [data-world="electrical"] .world-content :is(.panel,.panel-glow,.glass-panel) { background:hsl(var(--card)); box-shadow:none; }
 [data-world="electrical"] .site-footer { background-color:hsl(var(--background)); }
+
+/* Progressive disclosure keeps presentations readable without deleting the full record. */
+.content-details[open] > summary > svg { transform:rotate(180deg); }
+[data-repair-dialog] > button:last-child { display:grid; min-width:44px; min-height:44px; place-items:center; top:.25rem; right:.25rem; }
+[data-photo-dialog] > button:last-child { display:grid; min-width:44px; min-height:44px; place-items:center; top:.25rem; right:.25rem; }
+
+.presentation-photo-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; }
+.presentation-photo-grid > figure { width:calc((100% - .75rem) / 2); }
+.presentation-photo-grid > figure > figcaption { min-height:3rem; }
+.presentation-photo-grid[data-photo-count="1"] > figure { width:100%; max-width:32rem; }
+@media (min-width:640px) {
+  .presentation-photo-grid { gap:1rem; }
+  .presentation-photo-grid > figure { width:calc((100% - 2rem) / 3); }
+  .presentation-photo-grid[data-photo-count="2"] > figure { width:calc((100% - 1rem) / 2); }
+}

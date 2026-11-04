@@ -33,7 +33,7 @@ const PlaybookDetail = ({ data }: { data: Playbook }) => {
   const { t } = useLanguage();
   return (
     <>
-      <SectionBlock title={t("objective")}>
+      <SectionBlock expanded title={t("objective")}>
         <p>{t(data.objective)}</p>
       </SectionBlock>
 

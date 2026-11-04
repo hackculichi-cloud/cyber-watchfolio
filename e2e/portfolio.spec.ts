@@ -13,6 +13,7 @@ test("language switches while a SOC investigation is open, preserving React upda
   await expect(dialog.getByText("Educational exercise", { exact: false })).toBeVisible();
   await selectLanguage(page, "es");
   await expect(dialog.getByRole("heading", { name: "Intento de acceso no autorizado por VPN", exact: true })).toBeVisible();
+  await dialog.locator('summary').filter({ hasText: "Evidencias recopiladas" }).click();
   await expect(dialog.getByText("12 fallos de autenticación VPN para j.perez desde 203.0.113.44", { exact: true })).toBeVisible();
   await expect(dialog.getByRole("button", { name: "Cerrar", exact: true })).toBeVisible();
   await selectLanguage(page, "en");
@@ -34,7 +35,8 @@ test("all SOC cases and playbooks have translated details", async ({ page }) => 
       const dialog = page.getByRole("dialog");
       await expect(dialog).toBeVisible();
       if (section === "investigations") await expect(dialog.getByText("Ejercicio educativo · LetsDefend", { exact: true })).toBeVisible();
-      await expect(dialog.getByRole("heading", { name: /Pasos de investigación|Procedimiento de investigación/ })).toBeVisible();
+      await dialog.locator("details > summary").filter({ hasText: /Pasos de investigación|Procedimiento de investigación/ }).click();
+      await dialog.locator("details > summary").filter({ hasText: /MITRE ATT&CK/ }).click();
       await expect(dialog.getByRole("columnheader", { name: "Táctica", exact: true })).toBeVisible();
       await page.keyboard.press("Escape");
       await expect(dialog).not.toBeVisible();

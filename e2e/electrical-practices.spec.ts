@@ -23,9 +23,8 @@ test("electrical cases stay grouped, preserve original photos and keep protocol 
   await expect(detail).toContainText("circuit energized");
   await expect(detail.getByRole("heading", { name: "Before / After", exact: true })).toHaveCount(0);
   await expect(detail.locator('img[src*="/images/repair/"]')).toHaveCount(0);
-  const expand = detail.getByRole("button", { name: /^View more photos:/ });
-  await expect(expand).toHaveAttribute("aria-expanded", "false");
-  await expand.click();
+  await expect(detail.locator("[data-content-details]")).not.toHaveAttribute("open", "");
+  await detail.locator("[data-content-details] > summary").first().click();
   const sources = await detail.locator('img[src*="outlet-october-2026/"]').evaluateAll(imgs => [...new Set(imgs.map(img => img.getAttribute("src")))]);
   expect(sources).toHaveLength(16);
   for (const src of sources) {

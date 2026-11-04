@@ -13,7 +13,7 @@ const CertificateCard = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div id="repair-certification" className="panel-glow grid gap-6 md:grid-cols-[minmax(0,320px)_1fr]">
+    <div id="repair-certification" className="panel-glow grid gap-6 items-start md:grid-cols-2">
       {trainingProvider.image ? <button
         type="button"
         onClick={() => setOpen(true)}
@@ -27,7 +27,7 @@ const CertificateCard = () => {
           loading="lazy"
           decoding="async"
           style={{ rotate: `${trainingProvider.imageRotation}deg` }}
-          className="h-full max-h-72 w-full object-contain transition-transform duration-500 group-hover:scale-105"
+          className="aspect-[4/3] max-h-96 w-full object-contain transition-transform duration-500 group-hover:scale-105"
         />
         <span className="absolute inset-0 grid place-items-center bg-background/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <ZoomIn className="h-5 w-5 text-primary" aria-hidden />
@@ -47,6 +47,21 @@ const CertificateCard = () => {
           </div>
         </div>
 
+        <Tag variant="accent">{t("Certificate of participation")}</Tag>
+
+        <div className="flex flex-wrap gap-3">
+          {trainingProvider.image && <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>}
+          <Button asChild variant="outline">
+            <a href={trainingProvider.website} target="_blank" rel="noopener noreferrer">
+              {t("Visit LIDETEC website")}<ExternalLink className="h-4 w-4" aria-hidden />
+              <span className="sr-only">{t(" (opens in a new tab)")}</span>
+            </a>
+          </Button>
+        </div>
+      </div>
+
+      <details id="repair-training" className="md:col-span-2 rounded-xl border border-border p-4">
+        <summary className="min-h-11 cursor-pointer font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>
         <dl className="grid gap-3 sm:grid-cols-2">
           {[
             { k: "Institution", v: `${trainingProvider.name} — ${trainingProvider.fullName}` },
@@ -61,35 +76,12 @@ const CertificateCard = () => {
           ))}
         </dl>
 
-        <Tag variant="accent">{t("Certificate of participation")}</Tag>
-
-        <div className="flex flex-wrap gap-3">
-          {trainingProvider.image && <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>}
-          <Button asChild variant="outline">
-            <a href={trainingProvider.website} target="_blank" rel="noopener noreferrer">
-              {t("Visit LIDETEC website")}<ExternalLink className="h-4 w-4" aria-hidden />
-              <span className="sr-only">{t(" (opens in a new tab)")}</span>
-            </a>
-          </Button>
-        </div>
-      </div>
-
-      <div className="md:col-span-2">
-        <details id="repair-training" className="panel-glow mt-6">
-          <summary className="cursor-pointer rounded text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>
-          <p className="my-4 text-sm text-muted-foreground">{t("Topics studied in the LIDETEC course. Practical repair evidence is documented separately below.")}</p>
-          <TrainingCurriculum modules={trainingModules} />
-        </details>
+        <div className="mt-5"><TrainingCurriculum modules={trainingModules} /></div>
         <div id="repair-training-skills" className="mt-6 space-y-4">
-          <h4 className="text-lg font-semibold">{t("Skills developed in training")}</h4>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {smartphoneSkills.map(group => <div key={group.group} className="rounded-lg border border-border bg-surface-2/40 p-4">
-              <h5 className="mb-3 text-sm font-semibold text-primary">{t(group.group)}</h5>
-              <ul className="flex flex-wrap gap-2">{group.items.map(skill => <li key={skill}><Tag>{t(skill)}</Tag></li>)}</ul>
-            </div>)}
-          </div>
+          <h4 className="text-base font-semibold">{t("Skills developed in training")}</h4>
+          <div className="grid gap-4 sm:grid-cols-2">{smartphoneSkills.map(group => <div key={group.group} className="rounded-lg border border-border p-4"><h5 className="mb-3 text-sm font-semibold text-primary">{t(group.group)}</h5><ul className="flex flex-wrap gap-2">{group.items.map(skill => <li key={skill}><Tag>{t(skill)}</Tag></li>)}</ul></div>)}</div>
         </div>
-      </div>
+      </details>
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-3xl">
