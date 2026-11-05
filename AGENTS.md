@@ -8,6 +8,9 @@
 
 # Owner presentation preferences
 
+- Welcome first-time Home visitors with a brief electrical Culichi animation: articulated measuring/probe motion, a practice-circuit reading and then a friendly wave with «¡Bienvenidos!». Keep Skip and Enter actions reachable, avoid automatic sound, allow replay, and leave deep links/professional routes uninterrupted. Show a static greeting for reduced-motion users. Treat all welcome artwork/readings as decorative illustration, separate from real project evidence.
+
+
 - Across all pages, favor a presentation the owner can show to a client: real work and original visuals first, brief summaries, and clearly named optional details. Keep full technical explanations, evidence limitations, employment history and syllabuses accessible through disclosures and the existing CVs. Do not invent photos, results or credentials to fill gaps.
 - Smartphone repairs must show the three documented jobs directly, without a brand/type/model navigation chain. One selection opens a photo-led case; retain every owner-assigned photo, original enlargement, keyboard navigation, focus restoration and a collapsed technical record. Keep planned Samsung work separate from completed repairs. Training belongs in its own certificate destination.
 - On every profile, show tools within the viewport rather than requiring sideways browsing. Certificates lead with supplied previews when available and retain honest status labels; put document details and syllabuses behind disclosures. Preserve the current CV documents and uploaded originals when only the presentation changes.
