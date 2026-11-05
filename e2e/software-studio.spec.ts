@@ -14,11 +14,11 @@ test('software lettering follows the route and Home previews without moving navi
   await expect(page.locator(`${brand} [data-copper-wordmark]`)).toBeVisible();
   await page.goto('/');
   const nav = page.getByRole('navigation', { name: 'Main', exact: true });
-  const home = nav.getByRole('link', { name: 'Home', exact: true });
-  const before = await home.boundingBox();
+  const firstArea = nav.getByRole('link', { name: 'Cybersecurity', exact: true });
+  const before = await firstArea.boundingBox();
   await nav.getByRole('link', { name: 'Software Development', exact: true }).focus();
   await expect(page.locator(`${brand} [data-code-wordmark]`)).toBeVisible();
-  const after = await home.boundingBox();
+  const after = await firstArea.boundingBox();
   expect(Math.abs(after!.x - before!.x)).toBeLessThan(1);
   await nav.getByRole("link", { name: "Residential & Industrial Electrical Maintenance", exact: true }).hover();
   await expect(page.locator(`${brand} [data-copper-wordmark]`)).toBeVisible();

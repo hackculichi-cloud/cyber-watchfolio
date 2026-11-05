@@ -29,7 +29,7 @@ export default function ElectricalSharedTraining() {
   const close = () => { closing.current = true; navigate({ hash: "#electrical-training" }); };
 
   return <div id="electrical-training" data-shared-electrical-training className={`scroll-mt-48 [&_[data-certificate]]:scroll-mt-48 [&_#certificate]:scroll-mt-48 ${open ? "border-t border-border" : hash === "#tools" ? "container mx-auto px-4 py-4" : "min-w-0"}`}>
-    {open ? <div className="container mx-auto max-w-5xl px-4 pb-4">
+    {open ? <div className="container mx-auto max-w-6xl px-4 pb-4">
       <CollectionToolbar title={t("Certificates")} icon={Award} headingRef={heading} kind="training" onClose={close} />
       <Suspense fallback={<p role="status" className="px-4 py-8">{t("Loading page")}</p>}><Certificates targetId={hash.slice(1)} /></Suspense>
     </div> : <section id="certificate" className="h-full scroll-mt-48">

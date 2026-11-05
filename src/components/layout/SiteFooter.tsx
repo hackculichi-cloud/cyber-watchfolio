@@ -32,19 +32,18 @@ const FooterContent = memo(function FooterContent({ pathname }: { pathname: stri
           {footerProfile && <div className="pointer-events-none absolute -top-20 left-1/2 z-0 h-20 w-24 -translate-x-1/2 overflow-hidden"><MascotScene profile={footerProfile} scene="practice" className="footer-contact-fox h-full w-full overflow-hidden" /></div>}
           <div data-contact-grid data-channel-count={site.whatsapp ? 4 : 3} className="footer-contact-grid relative z-10">
             <ContactPreview channel="Email" href={`mailto:${site.email}`} ariaLabel="Email" className={`${contactLink} footer-contact-email`}>
-              <Mail className="h-6 w-6" aria-hidden /><span className="text-base font-semibold">{t("Email")}</span><span className="text-xs text-muted-foreground">{t("Send an email")}</span>
+              <Mail className="h-6 w-6" aria-hidden /><span className="text-base font-semibold">{t("Email")}</span><span data-contact-value className="max-w-full text-xs text-muted-foreground [overflow-wrap:anywhere]">{site.email.split("@")[0]}<wbr />@{site.email.split("@")[1]}</span>
             </ContactPreview>
             <ContactPreview channel="LinkedIn" href={site.linkedin} external ariaLabel="LinkedIn" className={`${contactLink} footer-contact-linkedin`}>
-              <Linkedin className="h-6 w-6" aria-hidden /><span className="text-base font-semibold">LinkedIn</span><span className="text-xs text-muted-foreground">{t("View my profile")}</span>
+              <Linkedin className="h-6 w-6" aria-hidden /><span className="text-base font-semibold">LinkedIn</span><span data-contact-value className="max-w-full text-xs text-muted-foreground [overflow-wrap:anywhere]">{site.linkedinUsername}</span>
             </ContactPreview>
             <ContactPreview channel="GitHub" href={site.github} external ariaLabel="GitHub" className={`${contactLink} footer-contact-github`}>
-              <Github className="h-6 w-6" aria-hidden /><span className="text-base font-semibold">GitHub</span><span className="text-xs text-muted-foreground">{t("View my projects")}</span>
+              <Github className="h-6 w-6" aria-hidden /><span className="text-base font-semibold">GitHub</span><span data-contact-value className="max-w-full text-xs text-muted-foreground [overflow-wrap:anywhere]">{site.githubUsername}</span>
             </ContactPreview>
             {site.whatsapp && <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className={`${contactLink} footer-contact-whatsapp`}>
-              <WhatsAppIcon className="h-6 w-6" aria-hidden /><span className="text-base font-semibold">WhatsApp</span><span className="text-xs text-muted-foreground">{t("Send a message")}</span>
+              <WhatsAppIcon className="h-6 w-6" aria-hidden /><span className="text-base font-semibold">WhatsApp</span><span data-contact-value className="max-w-full text-xs text-muted-foreground [overflow-wrap:anywhere]">{site.whatsappDisplay}</span>
             </a>}
           </div>
-          <p className="mt-5 break-all text-sm text-muted-foreground">{site.email}</p>
         </div>
       </div>
       <div className="flex flex-col items-center gap-8 py-10 text-center">
