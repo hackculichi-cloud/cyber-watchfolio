@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-for (const width of [320, 390, 768, 1440]) test(`compact tools and certificates keep a visible close action at ${width}px`, async ({ page }) => {
+for (const width of [320, 390, 768, 1440]) test(`image-led tools and certificates keep a visible close action at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height: width < 768 ? 844 : 900 });
   await page.addInitScript(() => localStorage.setItem('portfolio-lang', 'es'));
   await page.goto('/electrical');
@@ -8,8 +8,13 @@ for (const width of [320, 390, 768, 1440]) test(`compact tools and certificates 
   const catalog = page.locator('[data-owned-electrical-tools]');
   const entries = catalog.locator('[data-owned-tool-entry]');
   await expect(entries).toHaveCount(5);
-  const grid = (await catalog.locator('ul').first().boundingBox())!;
-  expect(grid.height).toBeLessThan(width >= 768 ? 580 : 750);
+  await expect(entries.first().locator('[data-owned-tool]')).toBeInViewport();
+  for (const entry of await entries.all()) {
+    const picture = (await entry.locator('[data-owned-tool]').boundingBox())!;
+    expect(picture.width / (await entry.boundingBox())!.width).toBeGreaterThan(.8);
+    expect(await entry.evaluate(el => getComputedStyle(el).borderWidth)).toBe('0px');
+    await expect(entry.locator('[data-owned-tool-description]')).not.toHaveCSS('-webkit-line-clamp', '2');
+  }
   const centers = await entries.evaluateAll(elements => elements.map(el => {
     const rect = el.getBoundingClientRect();
     return { x:rect.x + rect.width / 2, y:Math.round(rect.y) };
@@ -28,12 +33,20 @@ for (const width of [320, 390, 768, 1440]) test(`compact tools and certificates 
   await closeTools.click();
   await expect(page.locator('[data-open-electrical-tools]')).toBeFocused();
   await page.locator('[data-open-electrical-training]').click();
-  const cards = page.locator('[data-compact-certificates] [data-certificate]');
+  const cards = page.locator('[data-certifications="electrical"] [data-certificate]');
   await expect(cards).toHaveCount(5);
   const rows = await cards.evaluateAll(elements => elements.map(el => Math.round(el.getBoundingClientRect().top)));
-  expect(new Set(rows).size).toBe(width >= 1024 ? 2 : 3); // Two columns on phones, three on a wide desktop; both have a centered final row.
-  if(width >= 1024) expect(rows.slice(0, 3).every(y => y === rows[0])).toBe(true);
-  else expect(rows[0]).toBe(rows[1]);
+  expect(new Set(rows).size).toBe(width >= 768 ? 3 : 5); // Full-width mobile previews; two large previews per row from tablet widths.
+  if(width >= 768) expect(rows[0]).toBe(rows[1]);
+  for (const card of await cards.all()) {
+    const image = card.locator('[data-certificate-original] img');
+    if (await image.count()) {
+      const bounds = (await image.boundingBox())!;
+      expect(bounds.width / (await card.boundingBox())!.width).toBeGreaterThan(.8);
+      expect(bounds.height).toBeGreaterThan(120);
+      await expect(image).toHaveCSS('max-height', 'none');
+    }
+  }
   const last = cards.last();
   await last.scrollIntoViewIfNeeded();
   const closeTraining = page.locator('[data-close-electrical-training]');
@@ -44,7 +57,7 @@ for (const width of [320, 390, 768, 1440]) test(`compact tools and certificates 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test('course information opens at full width while originals still enlarge independently', async ({ page }) => {
+test('original-sized previews enlarge independently and keep course information optional', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 900 });
   await page.goto('/electrical#certificate');
   const record = page.locator('[data-certificate="electrical-measurements"]');
@@ -55,7 +68,6 @@ test('course information opens at full width while originals still enlarge indep
   await expect(original).toBeFocused();
   const info = record.locator('[data-certificate-info]');
   await info.locator(':scope > summary').click();
-  const container = (await page.locator('[data-compact-certificates]').boundingBox())!;
-  expect((await record.boundingBox())!.width).toBeCloseTo(container.width, 0);
+  await expect(info).toHaveAttribute('open', '');
   await expect(info.getByText('Irving Lopez Hernandez', { exact:true })).toBeVisible();
 });

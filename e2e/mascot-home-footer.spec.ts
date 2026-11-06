@@ -115,6 +115,11 @@ test("larger header, home characters and footer fit small screens without WebGL"
       await expect(link.getByText(label, { exact: true })).toBeVisible();
       expect(channelBounds[index].width).toBeCloseTo(channelBounds[0].width, 0);
       expect(channelBounds[index].height).toBeCloseTo(channelBounds[0].height, 0);
+      const value = link.locator('[data-contact-value]');
+      await expect(value).toHaveText(['christian@culichi.lat', '@culichi', '@ByCulichi', '+52 33 1752 2176'][index]);
+      const valueBounds = (await value.boundingBox())!;
+      expect(valueBounds.x).toBeGreaterThanOrEqual(channelBounds[index].x);
+      expect(valueBounds.x + valueBounds.width).toBeLessThanOrEqual(channelBounds[index].x + channelBounds[index].width + 1);
     }
     const whatsapp = contact.getByRole('link', { name: 'WhatsApp', exact: true });
     await expect(whatsapp).toHaveAttribute('href', 'https://wa.me/523317522176');
@@ -144,12 +149,18 @@ test("contact channels remain named in Spanish on profiles and the contact page"
   await selectLanguage(page, 'es');
   const contact = page.locator('[data-footer-contact]');
   await contact.scrollIntoViewIfNeeded();
+  for (const [channel, value] of [['Correo electrónico', 'christian@culichi.lat'], ['LinkedIn', '@culichi'], ['GitHub', '@ByCulichi'], ['WhatsApp', '+52 33 1752 2176']]) {
+    await expect(contact.getByRole('link', { name: channel, exact: true }).locator('[data-contact-value]')).toHaveText(value);
+  }
+  await expect(contact.getByText('christian@culichi.lat', { exact: true })).toHaveCount(1);
   for (const action of ['Enviar correo', 'Ver mi perfil', 'Ver mis proyectos', 'Enviar mensaje']) {
-    await expect(contact.getByText(action, { exact: true })).toBeVisible();
+    await expect(contact.getByText(action, { exact: true })).toHaveCount(0);
   }
   const fox = (await contact.locator('.footer-contact-fox').boundingBox())!;
   const grid = (await contact.locator('[data-contact-grid]').boundingBox())!;
   expect(Math.abs(fox.x + fox.width / 2 - grid.x - grid.width / 2)).toBeLessThan(2);
   await page.goto('/contact');
+  await expect(page.locator('main').getByText('@ByCulichi', { exact: true })).toBeVisible();
+  await expect(page.locator('main').getByText('@culichi', { exact: true })).toBeVisible();
   await expect(page.locator('main a[href="https://wa.me/523317522176"]')).toContainText('+52 33 1752 2176');
 });

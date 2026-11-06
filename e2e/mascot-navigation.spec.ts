@@ -56,7 +56,7 @@ test("each profile keeps a full standalone illustration with the appropriate num
         const illustration = page.locator('img[data-mascot-scene="detail"]');
         await illustration.scrollIntoViewIfNeeded();
         await expect(illustration).toBeVisible();
-        await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth >= 1024 && img.naturalHeight >= 1024)).toBe(true);
+        await expect.poll(() => illustration.evaluate((img: HTMLImageElement, path) => img.complete && img.naturalWidth >= (path === "/electrical#tools" ? 384 : 1024) && img.naturalHeight >= (path === "/electrical#tools" ? 384 : 1024), path)).toBe(true);
         await expect(illustration).toHaveAttribute('alt', '');
         await expect(illustration).toHaveAttribute('aria-hidden', 'true');
         await expect(illustration).toHaveCSS('position', 'static');

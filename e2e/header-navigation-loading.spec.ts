@@ -1,8 +1,12 @@
 import { expect, test } from "@playwright/test";
 
-test("header omits About, CV and Contact while preserving footer access and Home styling", async ({ page }) => {
+test("header contains only professional areas while retaining brand, footer and lower Home access", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
+  const menu = page.locator('header nav > ul');
+  await expect(menu.getByRole('link', { name: 'Home', exact: true })).toHaveCount(0);
+  await expect(menu.locator(':scope > li')).toHaveCount(7);
+  await expect(page.locator("header a[href='/']")).toHaveCount(1);
   await expect(page.locator("header a[href='/about']")).toHaveCount(0);
   await expect(page.locator("header a[href='/cv']")).toHaveCount(0);
   await expect(page.locator("header a[href='/contact']")).toHaveCount(0);
@@ -12,12 +16,15 @@ test("header omits About, CV and Contact while preserving footer access and Home
   await expect(page.locator("footer a[href='/cv']")).toHaveAccessibleName("CV");
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole("button", { name: "Open menu", exact: true }).click();
+  await expect(page.locator("#mobile-navigation a[href='/']")).toHaveCount(0);
+  await expect(page.locator("#mobile-navigation > ul > li")).toHaveCount(7);
   await expect(page.locator("#mobile-navigation a[href='/about']")).toHaveCount(0);
   await expect(page.locator("#mobile-navigation a[href='/cv']")).toHaveCount(0);
   await expect(page.locator("#mobile-navigation a[href='/contact']")).toHaveCount(0);
   await expect(page.locator("#mobile-navigation [data-language-toggle]:visible")).toHaveCount(1);
   await page.getByRole("button", { name: "Close menu", exact: true }).click();
   await expect(page.locator("[data-mobile-quicknav] a[href='/cv']")).toBeVisible();
+  await expect(page.locator("[data-mobile-quicknav] a[href='/']")).toBeVisible();
   await page.locator("footer a[href='/cv']").click();
   await expect(page).toHaveURL(/\/cv$/);
   await expect(page.locator("main h1")).toHaveText("Curriculum Vitae");

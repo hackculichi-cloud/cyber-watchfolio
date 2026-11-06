@@ -37,12 +37,12 @@ test('network lettering matches the route, mask artwork and Home preview without
   await page.keyboard.press('Escape');
   await page.goto('/');
   const nav = page.getByRole('navigation', { name: 'Main', exact: true });
-  const home = nav.getByRole('link', { name: 'Home', exact: true });
-  const before = (await home.boundingBox())!;
+  const firstArea = nav.getByRole('link', { name: 'Cybersecurity', exact: true });
+  const before = (await firstArea.boundingBox())!;
   await nav.getByRole('link', { name: 'Cybersecurity', exact: true }).hover();
   await expect(page.locator('header [data-network-wordmark]')).toBeVisible();
   await expect(page.locator('.profile-menu-panel')).toHaveCount(0);
-  expect(Math.abs((await home.boundingBox())!.x - before.x)).toBeLessThan(1);
+  expect(Math.abs((await firstArea.boundingBox())!.x - before.x)).toBeLessThan(1);
 });
 
 for (const width of [320, 390, 1440]) test(`unpublished collections are compact and honest at ${width}px`, async ({ page }) => {
@@ -85,7 +85,10 @@ test('Spanish copy is clean across profiles and SOC reports preserve exact evide
     const trigger = page.locator(`#${section} button`).first();
     await trigger.click();
     const dialog = page.getByRole('dialog');
-    await expect(dialog.getByRole('heading', { name: /Pasos de investigación|Procedimiento de investigación/ })).toBeVisible();
+    const procedure = dialog.locator('details > summary').filter({ hasText: /Pasos de investigación|Procedimiento de investigación/ });
+    await expect(procedure).toBeVisible();
+    await procedure.click();
+    await expect(procedure.locator('..')).toHaveAttribute('open', '');
     expect(await dialog.innerText()).not.toMatch(/&[a-z]+;|pasos_de|procedimiento_de|logotipos|austeridad|timetamp/);
     if (section === 'investigations') await expect(dialog).toContainText('203.0.113.44');
     await page.keyboard.press('Escape');

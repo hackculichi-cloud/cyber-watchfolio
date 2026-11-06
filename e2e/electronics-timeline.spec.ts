@@ -74,13 +74,13 @@ test('PCB branding fits the desktop menu and previews on Home without opening a 
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Main', exact: true });
-    const home = nav.getByRole('link', { name: 'Home', exact: true });
-    const before = (await home.boundingBox())!;
+    const firstArea = nav.getByRole('link', { name: 'Cybersecurity', exact: true });
+    const before = (await firstArea.boundingBox())!;
     await nav.getByRole('link', { name: 'Electronics', exact: true }).hover();
     await expect(page.locator('header [data-pcb-wordmark]')).toBeVisible();
     await expect(page.locator('.profile-menu-panel')).toHaveCount(0);
     const brand = (await page.locator('[data-header-brand]').boundingBox())!;
-    const after = (await home.boundingBox())!;
+    const after = (await firstArea.boundingBox())!;
     expect(Math.abs(before.x - after.x)).toBeLessThan(1);
     expect(brand.x + brand.width).toBeLessThanOrEqual(after.x);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

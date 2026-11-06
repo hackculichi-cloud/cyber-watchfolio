@@ -1,5 +1,17 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Replay welcome": "Repetir bienvenida",
+  "Culichi welcomes you": "Culichi te da la bienvenida",
+  "Culichi measures a practice circuit, then welcomes you to his portfolio.": "Culichi realiza una medición en un circuito de práctica y después te da la bienvenida a su portafolio.",
+  "The workshop": "El taller",
+  "Skip welcome": "Saltar bienvenida",
+  "Enter portfolio": "Entrar al portafolio",
+  "A moment in the workshop…": "Un momento en el taller…",
+  "Everything starts with curiosity": "Todo empieza con curiosidad",
+  "Making a connection.": "Haciendo una conexión.",
+  "Welcome!": "¡Bienvenidos!",
+  "A measurement, a little curiosity…": "Una medición, un poco de curiosidad…",
+  "I’m Culichi. Come see what I build.": "Soy Culichi. Pasa, te muestro lo que hago.",
   "Panelboards, VFDs and transformers": "Tableros, variadores y transformadores",
   "Drawings and schematics": "Planos y esquemas",
   "Course details": "Curso y temario",

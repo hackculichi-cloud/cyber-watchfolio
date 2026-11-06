@@ -11,8 +11,8 @@ import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 
 const channels = [
   { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: Mail, external: false },
-  { label: "GitHub", value: site.githubHandle, href: site.github, icon: Github, external: true },
-  { label: "LinkedIn", value: site.linkedinHandle, href: site.linkedin, icon: Linkedin, external: true },
+  { label: "GitHub", value: site.githubUsername, href: site.github, icon: Github, external: true },
+  { label: "LinkedIn", value: site.linkedinUsername, href: site.linkedin, icon: Linkedin, external: true },
 ] as const;
 
 const Contact = () => {

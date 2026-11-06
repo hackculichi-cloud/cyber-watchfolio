@@ -52,7 +52,8 @@ test('a compact two-column skill overview can reveal every skill and return to t
   expect(a.y).toBeCloseTo(b.y, 0);
   expect(b.x).toBeGreaterThan(a.x + a.width);
   expect((await grid.boundingBox())!.height).toBeLessThan(1400);
-  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(4500);
+  // Allow one 44px replay control while keeping the overview itself compact.
+  expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThan(4560);
   await expect(cards.first().locator('li').first()).toBeHidden();
   const expand = page.getByRole('button', { name: 'Show skill details', exact: true });
   await expand.click();

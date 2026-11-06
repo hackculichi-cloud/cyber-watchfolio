@@ -15,8 +15,10 @@ export const site = {
   whatsappDisplay: "+52 33 1752 2176",
   github: "https://github.com/ByCulichi",
   githubHandle: "github.com/ByCulichi",
+  githubUsername: "@ByCulichi",
   linkedin: "https://www.linkedin.com/in/culichi/?locale=es_ES",
   linkedinHandle: "linkedin.com/in/culichi",
+  linkedinUsername: "@culichi",
   url: "https://culichi.lat",
   languages: ["English", "Spanish"],
 };
@@ -26,7 +28,6 @@ const shortLabels: Record<string, string> = { residential: "Residential", indust
 const specialtyLinks = (profile: ProfileSlug, path: string): NavItem[] => specialtiesFor(profile).map(item => ({ label: item.title, shortLabel: shortLabels[item.id], href: `${path}#${item.id}`, icon: item.icon, description: item.summary, status: item.status }));
 
 export const navigation: NavItem[] = [
-  { label: "Home", href: "/" },
   {
     label: "Cybersecurity",
     href: "/cybersecurity",

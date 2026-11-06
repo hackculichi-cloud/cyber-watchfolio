@@ -1,3 +1,4 @@
+import FoxWelcome from "@/components/welcome/FoxWelcome";
 import HomeCharacter from "@/components/shared/HomeCharacter";
 import homeBackground from "@/assets/culichi-home-background.webp";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -55,10 +56,11 @@ const Home = () => {
               </Button>
             </div>
 
-            <div data-home-email className="animate-fade-in-up delay-400 mt-8 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            <div data-home-email className="animate-fade-in-up delay-400 mt-8 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
               <ContactPreview channel="Email" href={`mailto:${site.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-primary">
                 <Mail className="h-4 w-4" /> {t(site.email)}
               </ContactPreview>
+              <FoxWelcome />
             </div>
           </div>
           <div data-home-mascot-zone className="min-w-0 lg:justify-self-end lg:w-full">
