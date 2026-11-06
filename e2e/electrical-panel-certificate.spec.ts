@@ -24,11 +24,11 @@ for (const lang of ["es", "en"] as const) {
       await page.reload();
       const records = page.locator('[data-certifications="electrical"]');
       const completed = records.locator('[data-certificate="electrical-linkedin-equipment"]');
-      await expect(records.locator('[data-certificate]')).toHaveCount(5);
-      await expect(records.locator('[data-certificate]').first()).toHaveAttribute("data-certificate", "electrical-linkedin-equipment");
-      await expect(records.locator('[data-certificate-original]')).toHaveCount(4);
+      await expect(records.locator('[data-certificate]')).toHaveCount(6);
+      await expect(records.locator('[data-certificate]').first()).toHaveAttribute("data-certificate", "electrical-conductors");
+      await expect(records.locator('[data-certificate-original]')).toHaveCount(5);
       await expect(records.locator('[data-certificate-placeholder]')).toHaveCount(1);
-      await expect(records.getByText(lang === "es" ? "Completado" : "Completed", { exact: true })).toHaveCount(4);
+      await expect(records.getByText(lang === "es" ? "Completado" : "Completed", { exact: true })).toHaveCount(5);
       await expect(records.getByText(lang === "es" ? "Estudiando actualmente" : "Currently Studying", { exact: true })).toHaveCount(1);
       await expect(completed).toHaveAttribute("data-certificate-record", "electrical-linkedin-equipment");
       await expect(completed.locator('[data-certificate-placeholder]')).toHaveCount(0);

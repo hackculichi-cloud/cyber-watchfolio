@@ -27,12 +27,21 @@ test('the three electrical entries keep work local and use one shared certificat
   for (const area of ['residential', 'industrial', 'control'] as const) {
     await openElectricalArea(page, area, 'projects');
     await expect(page.locator('[data-area-tab="certificate"]')).toHaveCount(0);
+    const expectedWork = {
+      residential: ['residential-outlet-october-2026', 'residential-outlet-switch-replacement', 'residential-two-luminaire-replacement', 'residential-training-board'],
+      industrial: [],
+      control: ['float-switch-course-practice'],
+    }[area];
+    const work = page.locator('#projects [data-work]');
+    await expect(work).toHaveCount(expectedWork.length);
+    expect(await work.evaluateAll(elements => elements.map(element => element.getAttribute('data-work')).sort())).toEqual([...expectedWork].sort());
     await page.locator('[data-open-electrical-training]').click();
     await expect(page.locator('[data-electrical-area-content]')).toHaveCount(1);
     await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(1);
-    await expect(page.locator('[data-certificate]')).toHaveCount(5);
+    await expect(page.locator('[data-certificate]')).toHaveCount(6);
     await expect(page.locator('[data-electrical-area-content] [data-certificate]')).toHaveCount(0);
-    await expect(page.locator('#projects [data-work]')).toHaveCount(0);
+    await expect(work).toHaveCount(expectedWork.length);
+    expect(await work.evaluateAll(elements => elements.map(element => element.getAttribute('data-work')).sort())).toEqual([...expectedWork].sort());
     await page.locator('[data-area-tab="projects"]').click();
     await expect(page.locator('[data-certificate]')).toHaveCount(0);
     if (area === 'residential') {

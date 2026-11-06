@@ -16,6 +16,19 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
   electrical: [
     { id: "electrical-conocer", title: "Electrical Fundamentals & Industrial Electricity", provider: "Universidad Internacional · RED CONOCER", providerId: "universidad-internacional", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
     {
+      id: "electrical-conductors", title: "Electrical Conductor Calculations and Selection", provider: "Udemy", providerId: "udemy", training: "Completed",
+      document: "Course completed on November 5, 2026; certificate issued by Udemy.",
+      awardedTo: "Christian Velasco Estrada", issuedOn: "2026-11-05", instructor: "Irving Lopez Hernandez", duration: "5 hours",
+      credentialId: "UC-710efac5-b526-4e8e-a83d-b6d15ac64306",
+      verifyUrl: "https://ude.my/UC-710efac5-b526-4e8e-a83d-b6d15ac64306",
+      href: "/certificates/udemy-calculo-seleccion-conductores.pdf",
+      image: {
+        src: "/certificates/udemy-calculo-seleccion-conductores.webp",
+        alt: "Udemy completion certificate for Electrical Conductor Calculations and Selection awarded to Christian Velasco Estrada on November 5, 2026.",
+        width: 1600, height: 1190,
+      },
+    },
+    {
       id: "electrical-linkedin-equipment", title: "Electrical Systems: Panel Boards, Frequency Drives, and Transformers", provider: "LinkedIn Learning", providerId: "linkedin-learning", training: "Completed",
       document: "Course completed on November 2, 2026; certificate issued by LinkedIn Learning.",
       awardedTo: "Christian Velasco Estrada", issuedOn: "2026-11-02", contactHours: 0.25,

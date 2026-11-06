@@ -172,10 +172,10 @@ test("outfit selector supports keyboard, touch and reduced motion", async ({ pag
 test("certificate inventories distinguish missing files from unfinished courses", async ({ page }) => {
   await page.goto("/electrical#certificate");
   const inventory = page.locator('[data-certifications="electrical"]');
-  await expect(inventory.locator("article")).toHaveCount(5);
-  await expect(inventory.getByText("Completed", { exact: true })).toHaveCount(4);
+  await expect(inventory.locator("article")).toHaveCount(6);
+  await expect(inventory.getByText("Completed", { exact: true })).toHaveCount(5);
   await expect(inventory.getByText("Currently Studying", { exact: true })).toHaveCount(1);
-  await expect(inventory.locator("[data-certificate-original]")).toHaveCount(4);
+  await expect(inventory.locator("[data-certificate-original]")).toHaveCount(5);
   await expect(inventory.locator("[data-certificate-placeholder]")).toHaveCount(1);
   const linkedin = inventory.locator('[data-certificate="electrical-linkedin"]');
   await linkedin.locator('[data-certificate-info] > summary').click();
@@ -185,7 +185,8 @@ test("certificate inventories distinguish missing files from unfinished courses"
   await expect(linkedin.getByText("Curso completado el 30 de octubre de 2026; certificado emitido por LinkedIn Learning.", { exact: true })).toBeVisible();
   for (const path of ["/cybersecurity", "/software-development", "/electronics", "/repair", "/experience"]) {
     await page.goto(path);
-    await expect(page.locator("[data-certifications]")).toHaveCount(1);
+    if (path === "/repair") await expect(page.locator("#repair-certification")).toBeVisible();
+    else await expect(page.locator("[data-certifications]")).toHaveCount(1);
   }
 });
 
