@@ -119,12 +119,13 @@ test('practice categories and results are centered and selecting or closing them
     await page.goto('/electrical#projects');
     await page.evaluate(() => document.fonts.ready);
     const choices = page.locator('[data-electrical-category-choices]');
-    await expect(choices.locator('button')).toHaveCount(3);
+    await expect(choices.locator('button')).toHaveCount(4);
     const bounds = (await choices.boundingBox())!;
-    const tiles = await choices.locator('button').evaluateAll(elements => elements.map(el => { const box = el.getBoundingClientRect(); return { x: box.x, y: box.y, width: box.width }; }));
-    const last = tiles.at(-1)!;
-    if (width < 640) expect(Math.abs(last.x + last.width / 2 - bounds.x - bounds.width / 2)).toBeLessThan(1);
-    else expect(Math.abs((tiles[0].x + last.x + last.width) / 2 - bounds.x - bounds.width / 2)).toBeLessThan(1);
+    const filters = await choices.locator('button').evaluateAll(elements => elements.map(el => { const box = el.getBoundingClientRect(); return { left: box.left, right: box.right, y: Math.round(box.top) }; }));
+    for (const y of new Set(filters.map(filter => filter.y))) {
+      const row = filters.filter(filter => filter.y === y);
+      expect(Math.abs((Math.min(...row.map(filter => filter.left)) + Math.max(...row.map(filter => filter.right))) / 2 - bounds.x - bounds.width / 2)).toBeLessThan(2);
+    }
     await page.evaluate(() => document.addEventListener('click', event => {
       const button = (event.target as Element).closest('[data-electrical-group]');
       if (button) (window as typeof window & { categoryPoint: { scroll: number; top: number } }).categoryPoint = { scroll: scrollY, top: button.getBoundingClientRect().top };

@@ -182,8 +182,7 @@ export const profileIdentities: ProfileIdentity[] = [
     highlights: ["Float-switch practice", "Residential work", "Wiring & panels", "Measurements"],
     sections: [
       { id: "specialties", label: "Specialties" },
-      { id: "projects", label: "Projects" },
-      { id: "evidence", label: "Completed work" },
+      { id: "projects", label: "Work & practice" },
       { id: "tools", label: "Tools" },
       { id: "certificate", label: "Certifications" },
       { id: "cv", label: "CV" },

@@ -1,0 +1,261 @@
+{
+  "caseId": "residential-outlet-november-2026",
+  "archive": "New folder (2).zip",
+  "receivedOn": "2026-11-06",
+  "recordDateNote": "November 5 is present in the source filenames; the date of the work was not separately confirmed.",
+  "photos": [
+    {
+      "number": 1,
+      "src": "/images/electrical/outlet-practice-november-2026/01.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.27 PM.jpeg",
+      "bytes": 49419,
+      "sha256": "3a2fc8f5eb51caf4ce2815cf7d19619d5e3100e652425e08c59f5678379305ef",
+      "width": 738,
+      "height": 1600
+    },
+    {
+      "number": 2,
+      "src": "/images/electrical/outlet-practice-november-2026/02.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.27 PM (1).jpeg",
+      "bytes": 54291,
+      "sha256": "8b755409f12fe91bb8690a61c90df4826d666cd5f7f364f90d3eb08b0f3755d8",
+      "width": 738,
+      "height": 1600
+    },
+    {
+      "number": 3,
+      "src": "/images/electrical/outlet-practice-november-2026/03.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.25 PM (1).jpeg",
+      "bytes": 52067,
+      "sha256": "7bbd88581bddf058b507db4ce549833deac6c112319e3964c2b5d62378d7e9f1",
+      "width": 740,
+      "height": 1600
+    },
+    {
+      "number": 4,
+      "src": "/images/electrical/outlet-practice-november-2026/04.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.25 PM (2).jpeg",
+      "bytes": 46269,
+      "sha256": "4c108b95cf6774d2c81ebce7c43f700961fbbd7b0b5b0e7d84fc78cf1b979093",
+      "width": 738,
+      "height": 1600
+    },
+    {
+      "number": 5,
+      "src": "/images/electrical/outlet-practice-november-2026/05.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.25 PM.jpeg",
+      "bytes": 85755,
+      "sha256": "023e78b7beb4a61ca5deb2c541d1ee0d2c9efff31e01fdef19932554a4625773",
+      "width": 738,
+      "height": 1600
+    },
+    {
+      "number": 6,
+      "src": "/images/electrical/outlet-practice-november-2026/06.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.26 PM.jpeg",
+      "bytes": 63445,
+      "sha256": "fa9db8934d4ae7b9f0159581ec908572c85675f405854e38c32ef28fc5194875",
+      "width": 738,
+      "height": 1600
+    },
+    {
+      "number": 7,
+      "src": "/images/electrical/outlet-practice-november-2026/07.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.24 PM (2).jpeg",
+      "bytes": 32469,
+      "sha256": "4cc2592efd0211e19a949a5ff5ce4c6dde3bdd72863c128ab803e956a10efc9f",
+      "width": 738,
+      "height": 1600
+    },
+    {
+      "number": 8,
+      "src": "/images/electrical/outlet-practice-november-2026/08.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.24 PM (1).jpeg",
+      "bytes": 27722,
+      "sha256": "508eaf4dd63857cffd6d535e9f4ab58c585918eaba907d35b411d1f53bbbbda6",
+      "width": 738,
+      "height": 1600
+    },
+    {
+      "number": 9,
+      "src": "/images/electrical/outlet-practice-november-2026/09.jpeg",
+      "source": "WhatsApp Image 2026-11-05 at 9.38.24 PM.jpeg",
+      "bytes": 62853,
+      "sha256": "e1c20ac59b2b062e3879697e25c265e37ce6ecf4eb805a5a09e307c8fd170aba",
+      "width": 738,
+      "height": 1600
+    }
+  ],
+  "previouslyPublished": [
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.08 PM (1).jpeg",
+      "existing": "/images/repair/repair-photo-01.jpg",
+      "sha256": "ed6a0e981b1aa26affb9f1263a67214871e195a295e994e0d155b08582aff546"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.08 PM.jpeg",
+      "existing": "/images/repair/repair-photo-02.jpg",
+      "sha256": "cd2271878513fa39e1328b65ad0f4f44d4a41541e245179ee5a8943bfc153522"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (1).jpeg",
+      "existing": "/images/repair/repair-photo-03.jpg",
+      "sha256": "da701a30106b03bc4fa8820ade8ca0899ff0debe54b7d5266d1fb0bbfeadbbbe"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (10).jpeg",
+      "existing": "/images/repair/repair-photo-04.jpg",
+      "sha256": "8202654666f05bab75d9065a467d83e797b9eb7a418f5ecce02e43759613668c"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (11).jpeg",
+      "existing": "/images/repair/repair-photo-05.jpg",
+      "sha256": "30299fa37712229b08234c7579f5adbbf666cf0184477904761c4c383a59aad8"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (2).jpeg",
+      "existing": "/images/repair/repair-photo-06.jpg",
+      "sha256": "86b91544731285c3b82a93ec0afe5dc9a1cc412946e2f8e1a752b78aa16009f8"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (3).jpeg",
+      "existing": "/images/repair/repair-photo-07.jpg",
+      "sha256": "119994fe42b80ab340c15aeb76cde59cd57d5452b25dc5e3f2fc17c8a4227b77"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (4).jpeg",
+      "existing": "/images/repair/repair-photo-08.jpg",
+      "sha256": "44c0ef8c4277f12c773e3238f42ce454d8336a16fc20ae667607e37dc40948fd"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (5).jpeg",
+      "existing": "/images/repair/repair-photo-09.jpg",
+      "sha256": "db28efedb07f10b2f60cc951f889486da74a7a20e50d11d7ed49ceb33ed8695b"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (6).jpeg",
+      "existing": "/images/repair/repair-photo-10.jpg",
+      "sha256": "a763b8f913a991f1f4bd800b53103aa93a607f00a75ec97d4c1f114b16b7f6de"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (7).jpeg",
+      "existing": "/images/repair/repair-photo-11.jpg",
+      "sha256": "02ee3430b5ecb40eb5a0563c92d58ebb9eea1dc3acabdbb06fc0841ee68a9477"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (8).jpeg",
+      "existing": "/images/repair/repair-photo-12.jpg",
+      "sha256": "0ffbe6527830946a65b5928eb9f5e35e16ca5604a61985ee1d6979f5f982e6d9"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM (9).jpeg",
+      "existing": "/images/repair/repair-photo-13.jpg",
+      "sha256": "1496c4138c63fe398c5188831473fe29d6b6c9f15b8dc95ce91834dc690d9e35"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.09 PM.jpeg",
+      "existing": "/images/repair/repair-photo-14.jpg",
+      "sha256": "cf8d0bf4f9b1794ddbc1752cba15820d45ab203074194cb5f7aad208dc52d7aa"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.10 PM (1).jpeg",
+      "existing": "/images/repair/repair-photo-15.jpg",
+      "sha256": "c88d9a14907aedff45f2b7d3bfa567f48794ff9745fff5f28b092756014a03cf"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.10 PM (2).jpeg",
+      "existing": "/images/repair/repair-photo-16.jpg",
+      "sha256": "84a1c375b94cf2af31ef1a7825944d3966c62a13b12e4b6b44350bd1c05d2bdd"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.10 PM (3).jpeg",
+      "existing": "/images/repair/repair-photo-17.jpg",
+      "sha256": "97ea5f99a7db6e1c40864f38e372b1218b2a38dbd99513d57a9c912858b1c8a1"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-13 at 8.25.10 PM.jpeg",
+      "existing": "/images/repair/repair-photo-18.jpg",
+      "sha256": "3ea68e20a87c4447b85288537f0e1a99549304882b0f4819888d8f6c79a1be20"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.34 PM (1).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/01.jpeg",
+      "sha256": "2aaaed0381bd9ae12b20522a75e93f09fa72b61d51b78154dd0fa4b71cdf700d"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.34 PM.jpeg",
+      "existing": "/images/electrical/outlet-october-2026/02.jpeg",
+      "sha256": "88ff24860608cd3dbb847b2a6e255cf646e636e67d28134ad83517dccdf46c53"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.35 PM (1).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/03.jpeg",
+      "sha256": "0fa31fe4a14576adcfde60b9dac1a1b1282373224d75dca173a478280dd8c6b3"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.35 PM (2).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/04.jpeg",
+      "sha256": "3d137143eecf722ba9b738b11a1e4ddd839eeef1a457621d8e370b716487efbf"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.35 PM (3).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/05.jpeg",
+      "sha256": "39a06e914bddd708a902a577a119b954d5ad8c3f858d2f7661f12c6f2a7fa5ab"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.35 PM (4).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/06.jpeg",
+      "sha256": "73932eb97735689be71c5caee7adcea1a12654eea9d2de7f1fc96205613d0ba0"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.35 PM (5).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/07.jpeg",
+      "sha256": "990d437d559c29d41bc616970b5bb5bfcea839423fbe221de801ce941f913144"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.35 PM (6).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/08.jpeg",
+      "sha256": "b2515ae39ec4b12172e564511a5687ef942397574c9284ac49a1e72c407a4f7b"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.35 PM.jpeg",
+      "existing": "/images/electrical/outlet-october-2026/09.jpeg",
+      "sha256": "bca474e0d2e04f49fdab9c79e98cbcbd035a2b5b23622cf8790e55733d4a2164"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.36 PM (1).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/10.jpeg",
+      "sha256": "4cd6d8b5317311acd883b008332483d2e8f2faf5030f0b7068e10fbc3bf93e31"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.36 PM (2).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/11.jpeg",
+      "sha256": "2c4417cdf75ec5aeff8305213475e303833e52e6c42a1437afa57880f6eb95f9"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.36 PM (3).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/12.jpeg",
+      "sha256": "b5d36a2bddca32b7c14045c1d80d7c4e81c1f79efbd075177334b7268dd139f0"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.36 PM (4).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/13.jpeg",
+      "sha256": "0ceee579c60276416b095c1d3bef19c42eda937ed2ac9250a6f64d164a3bb899"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.36 PM (5).jpeg",
+      "existing": "/images/electrical/outlet-october-2026/14.jpeg",
+      "sha256": "577a5f9fd82d3bc63a3c05bc04faf4805b1f8d50975fe7570bf1bddf152a4383"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.36 PM.jpeg",
+      "existing": "/images/electrical/outlet-october-2026/15.jpeg",
+      "sha256": "6dfdcbab434fcc35f7e5308d04a943c52615db04763618c55f3b98226ccebd11"
+    },
+    {
+      "source": "WhatsApp Image 2026-10-14 at 11.12.37 PM.jpeg",
+      "existing": "/images/electrical/outlet-october-2026/16.jpeg",
+      "sha256": "351ed11509258c0b17a05888afc4c4e1c8fd2b28a90f3befb3b64a9a621dccf9"
+    }
+  ]
+}

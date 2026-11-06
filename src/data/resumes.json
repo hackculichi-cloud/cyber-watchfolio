@@ -477,8 +477,8 @@
               },
               {
                 "title": "Residential outlets, switch & lighting",
-                "body": "Residential work: two documented outlet-replacement cases, a switch replacement and two ceiling luminaires.",
-                "status": "Completed work",
+                "body": "Two residential outlet-replacement jobs, a switch and two ceiling luminaires; one additional documented outlet practice.",
+                "status": "Work & documented practice",
                 "tone": "complete",
                 "tags": [
                   "Residential",
@@ -487,8 +487,8 @@
                 ],
                 "url": "https://culichi.lat/electrical#projects",
                 "bullets": [
-                  "Recorded the initial condition, replacement, mounting and final checks with original photographs.",
-                  "Confirmed polarity and protective-earth checks; one case includes a recorded 119.3 V AC measurement."
+                  "Recorded the initial condition, replacement, mounting and checks with original photographs, including nine from the additional practice.",
+                  "Original outlet case: confirmed polarity/earth checks and 119.3 V AC. The additional practice separately records 122.0 V AC."
                 ]
               },
               {
@@ -801,8 +801,8 @@
               },
               {
                 "title": "Contactos, apagador e iluminación residencial",
-                "body": "Trabajo residencial: dos casos documentados de cambio de contactos, un apagador y dos luminarias de techo.",
-                "status": "Trabajo realizado",
+                "body": "Dos trabajos de cambio de contactos, un apagador y dos luminarias de techo; una práctica adicional de contacto documentada.",
+                "status": "Trabajo y práctica documentados",
                 "tone": "complete",
                 "tags": [
                   "Residencial",
@@ -811,8 +811,8 @@
                 ],
                 "url": "https://culichi.lat/electrical#projects",
                 "bullets": [
-                  "Registré el estado inicial, reemplazo, montaje y comprobaciones finales con fotografías originales.",
-                  "Confirmé comprobaciones de polaridad y tierra; un caso incluye una medición registrada de 119.3 V CA."
+                  "Registré el estado inicial, reemplazo, montaje y comprobaciones con fotos originales, incluidas nueve de la práctica adicional.",
+                  "Caso original: comprobaciones confirmadas de polaridad/tierra y 119.3 V CA. La práctica adicional registra por separado 122.0 V CA."
                 ]
               },
               {
@@ -1742,8 +1742,8 @@
             "entries": [
               {
                 "title": "Residential outlets, switch & lighting",
-                "body": "Outlet and switch replacements and installation of two replacement ceiling luminaires.",
-                "status": "Completed work",
+                "body": "Outlet and switch work, two replacement ceiling luminaires and an additional outlet-replacement practice.",
+                "status": "Work & documented practice",
                 "tone": "complete",
                 "tags": [
                   "Residential",
@@ -1752,8 +1752,8 @@
                 ],
                 "url": "https://culichi.lat/electrical#projects",
                 "bullets": [
-                  "Photographic record of the initial condition, connections, mounting and result.",
-                  "Documented 119.3 V AC reading at an outlet."
+                  "Original photographs document the work, including nine from the additional outlet practice.",
+                  "Separate outlet cases record 119.3 V AC and 122.0 V AC."
                 ]
               },
               {
@@ -1791,7 +1791,7 @@
               },
               {
                 "title": "Electrical measurements",
-                "body": "Digital multimeter use, AC/DC voltage and clamp-current measurement, resistance and de-energized continuity. Recorded 119.3 V AC in a documented residential outlet case.",
+                "body": "Digital multimeter use, AC/DC voltage and clamp-current measurement, resistance and de-energized continuity. Separate outlet cases record 119.3 V AC and 122.0 V AC.",
                 "tags": [
                   "Multimeter",
                   "AC/DC",
@@ -1840,7 +1840,7 @@
             "label": "Completed courses"
           },
           {
-            "value": "5",
+            "value": "6",
             "label": "Documented jobs & course practices"
           },
           {
@@ -1866,8 +1866,8 @@
             "entries": [
               {
                 "title": "Contactos, apagador e iluminación residencial",
-                "body": "Cambios de contactos y apagador e instalación de dos luminarias de reemplazo.",
-                "status": "Trabajo realizado",
+                "body": "Trabajos de contactos y apagador, dos luminarias de reemplazo y una práctica adicional de cambio de contacto.",
+                "status": "Trabajo y práctica documentados",
                 "tone": "complete",
                 "tags": [
                   "Residencial",
@@ -1876,8 +1876,8 @@
                 ],
                 "url": "https://culichi.lat/electrical#projects",
                 "bullets": [
-                  "Registro fotográfico del estado inicial, conexiones, montaje y resultado.",
-                  "Lectura documentada de 119.3 V CA en un contacto."
+                  "Fotografías originales documentan el trabajo, incluidas nueve de la práctica adicional de contacto.",
+                  "Casos separados de contactos registran 119.3 V CA y 122.0 V CA."
                 ]
               },
               {
@@ -1915,7 +1915,7 @@
               },
               {
                 "title": "Mediciones eléctricas",
-                "body": "Uso de multímetro digital, tensión CA/CC, corriente con gancho, resistencia y continuidad sin energía. Registro de 119.3 V CA en un caso residencial documentado.",
+                "body": "Uso de multímetro digital, tensión CA/CC, corriente con gancho, resistencia y continuidad sin energía. Casos separados de contactos registran 119.3 V CA y 122.0 V CA.",
                 "tags": [
                   "Multímetro",
                   "CA/CC",
@@ -1964,7 +1964,7 @@
             "label": "Cursos completados"
           },
           {
-            "value": "5",
+            "value": "6",
             "label": "Trabajos y prácticas documentados"
           },
           {

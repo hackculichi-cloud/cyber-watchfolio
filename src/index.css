@@ -704,9 +704,9 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
 @keyframes language-flag-in { from { opacity:0; transform:translateY(6px) rotate(-8deg); } to { opacity:1; transform:translateY(0) rotate(0); } }
 @media (prefers-reduced-motion: reduce) { .language-flag-in { animation:none; } }
 
-/* Keep the area tabs available without hiding the selected content behind navigation. */
-.site-layout [data-electrical-area-content] [id] { scroll-margin-top:17rem; }
-@media (max-width:639px) { .site-layout [data-electrical-area-content] [id] { scroll-margin-top:23rem; } }
+/* Work collections only need clearance for the two shared navigation bars. */
+.site-layout [data-electrical-area-content] [id] { scroll-margin-top:12rem; }
+@media (max-width:767px) { .site-layout [data-electrical-area-content] [id] { scroll-margin-top:10rem; } }
 
 /* Phone layouts are a compact overview; detailed work stays available on demand. */
 @media (max-width:767px) {

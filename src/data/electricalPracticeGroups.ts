@@ -3,7 +3,7 @@ import { Home, Factory, ToggleLeft, Plug, Lightbulb, LayoutDashboard, Waves, Cog
 /** Explicit case membership keeps photos and contexts together as the portfolio grows. */
 export const electricalPracticeGroups = [
   { id: "residential", title: "Residential", icon: Home, categories: [
-    { id: "outlets", title: "Outlets & switches", icon: Plug, projectIds: ["residential-outlet-october-2026", "residential-outlet-switch-replacement"] },
+    { id: "outlets", title: "Outlets & switches", icon: Plug, projectIds: ["residential-outlet-november-2026", "residential-outlet-october-2026", "residential-outlet-switch-replacement"] },
     { id: "lighting", title: "Lighting", icon: Lightbulb, projectIds: ["residential-two-luminaire-replacement"] },
     { id: "training-boards", title: "Training boards", icon: LayoutDashboard, projectIds: ["residential-training-board"] },
   ] },

@@ -47,6 +47,23 @@ const contactPhotos = [
   contactPhoto(16, "Completed replacement outlet with its wall plate."),
 ];
 
+const novemberOutletPhoto = (number: number, caption: string) => ({
+  src: `/images/electrical/outlet-practice-november-2026/${String(number).padStart(2, "0")}.jpeg`,
+  alt: caption,
+  caption,
+});
+const novemberOutletPhotos = [
+  novemberOutletPhoto(1, "Original single outlet with its worn wall plate."),
+  novemberOutletPhoto(2, "Removed outlet and conductors outside the device box."),
+  novemberOutletPhoto(3, "Open device box and conductors with red identification tape."),
+  novemberOutletPhoto(4, "Wider view of the open box and conductors during replacement."),
+  novemberOutletPhoto(5, "Rear connections of the replacement outlet before mounting."),
+  novemberOutletPhoto(6, "Replacement outlet secured to the box before fitting the wall plate."),
+  novemberOutletPhoto(7, "Completed replacement outlet with its white wall plate."),
+  novemberOutletPhoto(8, "Plug-in outlet tester connected to the completed replacement."),
+  novemberOutletPhoto(9, "Digital multimeter displaying 122.0 V AC at the replacement outlet."),
+];
+
 /** Checklist for documenting residential work; never substituted for the actual service record. */
 const residentialProtocol = [
   "Identify the circuit and record the outlet rating, conductor size/material and circuit protection before choosing a replacement.",
@@ -79,6 +96,26 @@ export const outletPhotoPractice: WorkItem = {
 };
 
 const electricalProjectEntries: WorkItem[] = [
+  {
+    id: "residential-outlet-november-2026", profile: "electrical",
+    title: "Outlet Replacement — Documented Practice",
+    summary: "Outlet replacement with nine photographs of the original device, connections, mounting and a 122.0 V AC reading.",
+    category: "Residential", status: "Completed",
+    skills: ["Device replacement", "Photographic documentation", "Voltage measurement"],
+    tools: ["Digital multimeter", "Plug-in outlet tester"],
+    objective: "Document the outlet replacement from the original device to the finished wall plate and recorded instrument checks.",
+    did: ["Replaced the outlet and documented the removed device, exposed conductors and replacement connections.", "Photographed the mounted replacement, a plug-in tester and the multimeter reading."],
+    results: ["The replacement outlet is shown mounted with a white wall plate.", "The multimeter photograph records 122.0 V AC at the replacement outlet."],
+    protocol: residentialProtocol,
+    documentationNeeded: [{ timing: "Original record", title: "Practice details", description: "The work date, replacement model and conductor dimensions were not supplied with these photographs." }],
+    documentedSteps: [
+      { title: "Original device and removal", description: "Recorded the original outlet and worn plate, then the removed device with its conductors outside the box.", images: novemberOutletPhotos.slice(0, 2) },
+      { title: "Box and replacement connections", description: "Recorded the open box, conductor identification tape and the rear connections of the replacement outlet.", images: novemberOutletPhotos.slice(2, 5) },
+      { title: "Mounting and finished plate", description: "Recorded the replacement secured to the box and the completed white wall plate.", images: novemberOutletPhotos.slice(5, 7) },
+      { title: "Recorded instrument checks", description: "Recorded a plug-in outlet tester and a multimeter displaying 122.0 V AC at the replacement outlet.", images: novemberOutletPhotos.slice(7) },
+    ],
+    cover: novemberOutletPhotos[6], images: novemberOutletPhotos,
+  },
   outletPhotoPractice,
   {
     id: "start-stop-contactor-planned",

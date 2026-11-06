@@ -62,9 +62,9 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await page.goto('/electrical#certificate');
   const records = page.locator('[data-certifications="electrical"]');
   await expect(page.locator('[data-training-providers]')).toHaveCount(0);
-  await expect(records.locator('[data-provider-logo]')).toHaveCount(5);
+  await expect(records.locator('[data-provider-logo]')).toHaveCount(6);
   const platforms = [
-    { id: 'udemy', count: 2, href: 'https://www.udemy.com/', symbol: 'udemy.svg' },
+    { id: 'udemy', count: 3, href: 'https://www.udemy.com/', symbol: 'udemy.svg' },
     { id: 'linkedin-learning', count: 2, href: 'https://www.linkedin.com/learning/', symbol: 'linkedin.svg' },
     { id: 'universidad-internacional', count: 1, href: 'https://www.facebook.com/uinternacionaloficial/?locale=es_LA' },
   ];
@@ -113,6 +113,6 @@ test('electrical training links to its confirmed providers and enlarges clearly 
   await page.keyboard.press('Escape');
   await expect(conocer).toContainText('Estudiando actualmente');
   await page.goto('/electrical#residential');
-  await expect(page.locator('[data-area-tab="projects"]')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-electrical-area-content] #projects')).toBeVisible();
   await expect(page.locator('[data-area-tab="overview"]')).toHaveCount(0);
 });

@@ -22,7 +22,7 @@ for (const width of [320, 1440]) {
     ] as const) {
       await openElectricalArea(page, area);
       const choice = page.locator(`[data-electrical-group="${area}-${group}"]`);
-      if (await choice.getAttribute('aria-expanded') !== 'true') await choice.click();
+      if (await choice.getAttribute('aria-pressed') !== 'true') await choice.click();
       await page.locator(`[data-work="${id}"]`).getByRole('button', { name: 'Ver proyecto', exact: true }).last().click();
       const dialog = page.getByRole('dialog').filter({ has: page.locator('[data-work-process]') });
       await expect(dialog).toHaveAttribute('data-profile', 'electrical');

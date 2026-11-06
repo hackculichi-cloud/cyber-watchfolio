@@ -93,7 +93,7 @@ for (const lang of ["es", "en"] as const) {
         await page.locator('[data-close-electrical-training]').click();
         await expect(page.locator('[data-certifications="electrical"]')).toHaveCount(0);
         await expect(page.locator('[data-open-electrical-training]')).toBeFocused();
-        await expect(page.locator('[data-area-tab="projects"]')).toHaveAttribute('aria-selected', 'true');
+        await expect(page.locator('[data-electrical-area-content] #projects')).toBeVisible();
         await expect(page.locator('[data-area-tab="overview"]')).toHaveCount(0);
       }
       for (const alias of ["certificate", "certifications", "tracks"]) {

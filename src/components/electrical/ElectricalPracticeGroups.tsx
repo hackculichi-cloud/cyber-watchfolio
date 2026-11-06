@@ -1,51 +1,42 @@
-import { useState } from "react";
-import { ChevronDown, type LucideIcon } from "lucide-react";
+import { useId, useState } from "react";
 import { electricalPracticeGroups } from "@/data/electricalPracticeGroups";
 import { electricalProjects } from "@/data/electricalProjects";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import WorkGrid from "@/components/work/WorkGrid";
 import "./ElectricalPracticeGroups.css";
 
-const PracticeTile = ({ id, label, icon: Icon, active, onClick, count }: { id: string; label: string; icon: LucideIcon; active: boolean; onClick: () => void; count: number }) => {
-  const { t } = useLanguage();
-  return <button type="button" data-electrical-group={id} aria-expanded={active} aria-controls={active ? `electrical-panel-${id}` : undefined} onClick={onClick}
-    className={`group rounded-xl border px-3 py-2 text-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${active ? "border-primary bg-primary/10" : "border-border bg-surface/60 hover:border-primary/60"}`}>
-    <span className="flex justify-center"><Icon className="h-6 w-6 text-primary" strokeWidth={1.2} aria-hidden /></span>
-    <span className="flex min-h-16 flex-col items-center justify-center gap-1">
-      <span className="flex items-center justify-center gap-2 font-semibold">{t(label)}<ChevronDown className={`h-4 w-4 shrink-0 ${active ? "rotate-180" : ""}`} aria-hidden /></span>
-      <span className="text-xs text-muted-foreground">{count ? t("Recorded practices: {count}").replace("{count}", String(count)) : t("Evidence pending")}</span>
-    </span>
-  </button>;
-};
-
-/** Show completed cases on entry; work types act as optional filters. */
+/** Completed cases appear immediately, with one optional row of type filters. */
 const ElectricalPracticeGroups = ({ areaId }: { areaId?: string }) => {
   const { t } = useLanguage();
-  const [area, setArea] = useState<string | null>(null);
-  const [category, setCategory] = useState<string | null>("all");
-  const group = electricalPracticeGroups.find(item => item.id === (areaId ?? area));
-  const selected = group?.categories.find(item => item.id === category);
-  const items = electricalProjects.filter(item => category === "all" ? group?.categories.some(entry => entry.projectIds.includes(item.id)) && item.status === "Completed" : selected?.projectIds.includes(item.id));
-  return <div data-electrical-practices className="space-y-6">
-    {!areaId && <div className="electrical-choice-row">
-      {electricalPracticeGroups.map(item => <PracticeTile key={item.id} id={item.id} label={item.title} icon={item.icon} active={area === item.id}
-        count={item.categories.flatMap(c => c.projectIds).filter(id => electricalProjects.some(p => p.id === id && p.status === "Completed")).length}
-        onClick={() => { setArea(area === item.id ? null : item.id); setCategory("all"); }} />)}
-    </div>}
-    {group && <div id={`electrical-panel-${group.id}`} className="space-y-5 border-t border-primary/25 pt-6">
-      <h3 className="text-center text-xl font-semibold">{t(group.title)}</h3>
-      <div data-electrical-category-choices className="electrical-choice-row">
-        <button type="button" onClick={() => setCategory("all")} aria-pressed={category === "all"} className="min-h-11 rounded-xl border border-primary/40 px-4 text-sm font-semibold text-primary">{t("All completed work")}</button>
-        {group.categories.map(item => <PracticeTile key={item.id} id={`${group.id}-${item.id}`} label={item.title} icon={item.icon} active={category === item.id}
-          count={item.projectIds.filter(id => electricalProjects.some(p => p.id === id && p.status === "Completed")).length}
-          onClick={() => setCategory(category === item.id ? "all" : item.id)} />)}
-      </div>
-      <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">{selected && `${t(selected.title)}. ${t("Recorded practices: {count}").replace("{count}", String(items.filter(item => item.status === "Completed").length))}`}</p>
-      {(selected || category === "all") && <div key={`${group.id}-${selected?.id ?? "all"}`} id={`electrical-panel-${group.id}-${selected?.id ?? "all"}`} data-electrical-results role="region" aria-labelledby={`electrical-result-title-${group.id}-${selected?.id ?? "all"}`} className="electrical-practice-results space-y-4">
-        <h4 id={`electrical-result-title-${group.id}-${selected?.id ?? "all"}`} className="text-center text-lg font-semibold text-primary">{t(selected?.title ?? "All completed work")}</h4>
-        <WorkGrid items={items} centered emptyTitle="Evidence pending" emptyDescription="No completed practices documented in this category yet. Training topics are listed with their courses and certificates." />
-      </div>}
-    </div>}
+  const resultsId = useId();
+  const [category, setCategory] = useState("all");
+  const group = electricalPracticeGroups.find(item => item.id === (areaId ?? "residential"));
+  if (!group) return null;
+  const selected = group.categories.find(item => item.id === category);
+  const items = electricalProjects.filter(item => category === "all"
+    ? group.categories.some(entry => entry.projectIds.includes(item.id)) && item.status === "Completed"
+    : selected?.projectIds.includes(item.id));
+
+  return <div data-electrical-practices className="space-y-5">
+    <div data-electrical-category-choices role="group" aria-label={t("Filter by work type")} className="electrical-work-filters">
+      <button type="button" data-electrical-all-filter aria-pressed={category === "all"} aria-controls={resultsId} onClick={() => setCategory("all")}>
+        {t("All")}
+      </button>
+      {group.categories.map(item => {
+        const count = item.projectIds.filter(id => electricalProjects.some(project => project.id === id && project.status === "Completed")).length;
+        return <button key={item.id} type="button" data-electrical-group={`${group.id}-${item.id}`} aria-pressed={category === item.id} aria-controls={resultsId} onClick={() => setCategory(item.id)}>
+          <item.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span>{t(item.title)}</span>
+          {count > 0 && <span aria-hidden="true" className="text-xs opacity-70">{count}</span>}
+        </button>;
+      })}
+    </div>
+    <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+      {t("Recorded practices: {count}").replace("{count}", String(items.filter(item => item.status === "Completed").length))}
+    </p>
+    <div key={`${group.id}-${category}`} id={resultsId} data-electrical-results role="region" aria-label={t(selected?.title ?? "Work & practice")} className="electrical-practice-results">
+      <WorkGrid items={items} centered filterable={false} emptyTitle="Evidence pending" emptyDescription="No completed practices documented in this category yet. Training topics are listed with their courses and certificates." />
+    </div>
   </div>;
 };
 export default ElectricalPracticeGroups;

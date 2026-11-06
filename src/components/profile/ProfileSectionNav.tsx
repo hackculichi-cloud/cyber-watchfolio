@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ChevronsUpDown } from "lucide-react";
 import { profileForPath, type ProfileSection } from "@/data/profiles";
 import { cn } from "@/lib/utils";
+import { electricalDetailHashes } from "@/data/electricalNavigation";
 
 /** Sticky in-page navigation for a profile page. Scroll-spy driven, keyboard accessible. */
 const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[]; contentKey?: string | null }) => {
@@ -13,7 +14,7 @@ const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[
   const selectId = useId();
   const navigate = useNavigate();
   const { hash, pathname } = useLocation();
-  // Electricity already exposes one area/tab at a time; the other long profiles use this overview.
+  // Electricity already exposes one specialty collection at a time.
   const compactProfile = !!profileForPath(pathname) && profileForPath(pathname)?.slug !== "electrical";
 
   useLayoutEffect(() => {
@@ -40,13 +41,14 @@ const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[
   }, [compactProfile, sections, hash, showAll]);
 
   useEffect(() => {
-    const target = hash.slice(1);
+    const legacyTarget = hash.slice(1);
+    const target = profileForPath(pathname)?.slug === "electrical" && electricalDetailHashes.has(legacyTarget) ? "projects" : legacyTarget;
     if (sections.some(section => section.id === target)) setActive(target);
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          .sort((a, b) => a.target.contains(b.target) ? 1 : b.target.contains(a.target) ? -1 : a.boundingClientRect.top - b.boundingClientRect.top)[0];
         if (visible) setActive(visible.target.id);
       },
       { rootMargin: "-25% 0px -60% 0px", threshold: 0 },
@@ -57,7 +59,7 @@ const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, [sections, hash, contentKey]);
+  }, [sections, hash, pathname, contentKey]);
 
   return (
     <nav

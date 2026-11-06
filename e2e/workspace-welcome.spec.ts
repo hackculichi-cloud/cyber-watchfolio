@@ -52,8 +52,11 @@ test('each profile has its own static workplace, footer outfit and brand color',
   }
   expect(colors.size).toBe(7);
   await page.goto('/electrical#evidence');
-  await expect(page.getByRole('navigation', { name:'Profile sections' }).getByRole('link', {name:'Completed work', exact:true})).toHaveAttribute('href', '#evidence');
-  await expect(page.locator('#evidence')).toContainText('Work & practical experience');
+  const sections = page.getByRole('navigation', { name:'Profile sections' });
+  await expect(sections.getByRole('link', {name:'Work & practice', exact:true})).toHaveAttribute('href', '#projects');
+  await expect(sections.locator('a[href="#evidence"]')).toHaveCount(0);
+  await expect(page.locator('#projects').getByRole('heading', {name:'Work & practice', exact:true})).toBeVisible();
+  await expect(page.locator('#projects [data-work]')).toHaveCount(5);
 });
 
 test('complete workspace illustrations enlarge without leaving the profile', async ({ page }) => {

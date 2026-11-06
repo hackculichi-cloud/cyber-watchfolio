@@ -1,0 +1,15 @@
+# Electricidad: una colección de trabajos y prácticas
+
+La navegación de Electricidad reúne Proyectos y Trabajos realizados en un solo destino, «Trabajos y prácticas». Cada especialidad muestra sus casos terminados directamente. Las pestañas duplicadas y el archivo paralelo de las mismas fotografías se retiran; cada caso conserva todas sus imágenes, ampliación, información técnica y estado real. Los enlaces anteriores `#projects`, `#evidence`, `#practice`, `#overview` y `#skills` siguen abriendo la colección de casos.
+
+Una única fila de filtros por tipo sustituye las tarjetas de categoría, el título repetido «Todos los trabajos realizados» y el segundo filtro por contexto. En teléfono se dispone en dos columnas simétricas. Los trabajos permanecen centrados, incluidos los de una última fila incompleta. Los registros planeados siguen separados y aparecen al elegir su tipo correspondiente.
+
+También se retira el espacio de desplazamiento reservado para las antiguas pestañas. Los enlaces llegan debajo de la navegación compartida y el menú marca la colección visible, sin seleccionar su sección contenedora por encima de ella.
+
+La práctica [de cambio de contacto](electrical-outlet-november-practice.md) añade nueve fotografías nuevas sin repetir las 34 ya publicadas que también venían en el ZIP. Sus imágenes se muestran una sola vez por caso. Al cerrar la fotografía se recupera el foco dentro de la galería y, al cerrar el trabajo, en el botón de su tarjeta.
+
+El título de cobre mantiene su circuito y su corriente finita. El destello pasa de forma gradual y superpuesta entre las letras, el último destello se desvanece y el foco enciende suavemente. El dibujo queda aislado y contenido dentro del título, con espacio para el foco. Al abrir fotos o documentos se oculta el foco decorativo y se pausa la corriente. Se mantienen pausa manual, pausa fuera de pantalla y reducción de movimiento.
+
+Los CV eléctrico y general en español e inglés registran la nueva práctica por separado, con sus nueve fotos y lectura de 122.0 V CA. El registro anterior conserva 119.3 V CA. El total es seis trabajos/prácticas documentados y cinco cursos completados. Los cuatro PDF y sus vistas previas fieles se regeneran conservando tres páginas por idioma para Electricidad y siete para General; las demás versiones y los originales archivados permanecen intactos.
+
+Validación: producción y TypeScript correctos; lint sin errores con ocho advertencias previas de Fast Refresh; 32 pruebas unitarias y 51 casos únicos de navegador aprobados entre la selección inicial y las repeticiones focalizadas. La última ejecución de 18 casos confirma navegación, menú móvil, enlaces anteriores, galerías, teclado/foco y título con el ajuste final de desplazamiento. Se revisan fotografías originales mediante SHA-256, separación de casos, 320/390/768/1440 px, ambos idiomas, movimiento reducido y pausa. Se inspeccionan las 20 páginas de los CV y capturas móviles/de escritorio de colección, ficha, foto ampliada y título. Artefactos públicos y formato correctos.

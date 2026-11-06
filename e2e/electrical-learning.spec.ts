@@ -46,12 +46,11 @@ test('the shared training keeps the full main syllabus and complementary course 
   }
 });
 
-test('specialties enter Projects and legacy summary links remain usable without restoring Overview', async ({ page }) => {
+test('specialties enter one work collection and legacy summary links remain usable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 900 });
   for (const id of ['residential', 'industrial', 'electrical-control', 'overview', 'skills']) {
     await page.goto(`/electrical#${id}`);
-    await expect(page.locator('[data-area-tab="projects"]')).toHaveAttribute('aria-selected', 'true');
-    await expect(page.locator('[data-area-tab]')).toHaveCount(2);
+    await expect(page.locator('[data-area-tab]')).toHaveCount(0);
     await expect(page.locator('[data-area-tab="overview"], [data-area-learning]')).toHaveCount(0);
     await expect(page.locator('#projects')).toBeVisible();
     if (id === 'overview' || id === 'skills') await expect(page.locator('#projects h2')).toBeInViewport();
