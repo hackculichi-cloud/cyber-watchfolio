@@ -5,12 +5,10 @@ import { professionalProfiles, type ProfileSlug } from "@/data/profiles";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import MascotMorph from "./MascotMorph";
 import MascotToolField from "./MascotToolField";
-import MascotGearPreview from "./MascotGearPreview";
 import type { MascotIntent } from "@/lib/mascotIntent";
 import { cn } from "@/lib/utils";
-import { Pause, Play } from "lucide-react";
 type MascotPhase = "standby" | "ready" | "transforming";
-// The orbit adapts when a new discipline is added.
+// Fixed positions adapt when a new discipline is added.
 const positions = professionalProfiles.map((_, i) => {
     const angle = (-150 + i * 360 / professionalProfiles.length) * Math.PI / 180;
     return [50 + 35 * Math.cos(angle), 50 + 35 * Math.sin(angle)];
@@ -29,16 +27,11 @@ const InteractiveMascot = ({ profile = "home", className }: {
     const closeTimer = useRef<ReturnType<typeof setTimeout>>();
     const locked = useRef(false);
     const skipFocusOpen = useRef(false);
-    const [reduced, setReduced] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
     const [phase, setPhase] = useState<MascotPhase>("standby");
     const [open, setOpen] = useState(true);
-    const [motionPaused, setMotionPaused] = useState(true);
-    const [inView, setInView] = useState(false);
-    const [keyboardFocus, setKeyboardFocus] = useState(false);
     const [preview, setPreview] = useState<ProfileSlug | null>(null);
     const [target, setTarget] = useState<ProfileSlug | null>(null);
     const selected = target ?? preview;
-    const gearId = `${id}-gear`;
     useEffect(() => {
         const phone = window.matchMedia("(max-width: 767px)");
         const showChoices = () => { if (phone.matches && !locked.current) setOpen(true); };
@@ -57,20 +50,9 @@ const InteractiveMascot = ({ profile = "home", className }: {
         return () => window.removeEventListener("culichi:area-intent", intent);
     }, []);
     useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: .1 });
-        if (root.current) observer.observe(root.current);
-        return () => observer.disconnect();
-    }, []);
-    useEffect(() => {
         window.dispatchEvent(new CustomEvent("culichi:outfit-preview", { detail: { profile: target ?? preview, committing: phase === "transforming" } }));
     }, [preview, target, phase]);
     useEffect(() => () => { window.dispatchEvent(new CustomEvent("culichi:outfit-preview", { detail: { profile: null } })); }, []);
-    useEffect(() => {
-        const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-        const change = () => setReduced(query.matches);
-        query.addEventListener("change", change);
-        return () => query.removeEventListener("change", change);
-    }, []);
     useEffect(() => () => { clearTimeout(closeTimer.current); }, []);
     useEffect(() => {
         if (!open)
@@ -121,11 +103,7 @@ const InteractiveMascot = ({ profile = "home", className }: {
         closeTimer.current = setTimeout(() => {
             if (!widget.current?.matches(":hover") && !widget.current?.contains(document.activeElement) && !locked.current) { setPreview(null); setPhase("standby"); }
         }, 200);
-    }}><div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-motion-paused={motionPaused || reduced || !inView || keyboardFocus || !!preview || phase === "transforming"} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className="mascot-selector mascot-orbit relative aspect-square w-full" onFocusCapture={event => { clearTimeout(closeTimer.current); if (event.target.matches(":focus-visible")) setKeyboardFocus(true); }} onPointerDownCapture={event => {
-        setKeyboardFocus(false);
-        // Touch freezes the choices immediately so the next selection stays put.
-        if (event.pointerType === "touch" && !(event.target as Element).closest("[data-orbit-toggle]")) setMotionPaused(true);
-    }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node)) { setKeyboardFocus(false); if (!locked.current && !widget.current?.matches(":hover")) { setPreview(null); setPhase("standby"); } }
+    }}><div ref={root} data-interactive-mascot={profile} data-selector-open={open} data-phase={phase} data-mascot-renderer="illustration" data-preview-outfit={preview ?? undefined} data-home-mascot={profile === "home" || undefined} className="mascot-selector mascot-orbit relative aspect-square w-full" onFocusCapture={() => { clearTimeout(closeTimer.current); }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node)) { if (!locked.current && !widget.current?.matches(":hover")) { setPreview(null); setPhase("standby"); } }
     }} onKeyDown={event => { if (event.key === "Escape" && !locked.current) {
         event.preventDefault();
         event.stopPropagation();
@@ -153,18 +131,15 @@ const InteractiveMascot = ({ profile = "home", className }: {
     } }} className="absolute left-1/2 top-1/2 z-30 aspect-square w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-full [clip-path:circle(50%)] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" />
     {selected && <MascotToolField key={selected} profile={selected} committing={phase === "transforming"} stage={root} />}
     {open && <nav id={id} className="z-10" aria-label={t("Choose Culichi's outfit")} data-outfit-selector>
-      {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onPointerDown={() => preloadProfile(area.href)} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current && !widget.current?.matches(":hover")) setPreview(null); }} aria-disabled={phase === "transforming"} aria-describedby={selected === area.slug ? gearId : undefined} data-profile={area.slug} data-outfit={area.slug} data-active={selected === area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center text-[11px] leading-tight text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
+      {professionalProfiles.map((area, i) => <Link key={area.slug} to={area.href} onPointerDown={() => preloadProfile(area.href)} onClick={event => choose(event, area.slug, area.href)} onPointerEnter={event => { if (event.pointerType === "mouse") prepare(area.slug); }} onFocus={() => prepare(area.slug)} onBlur={() => { if (!locked.current && !widget.current?.matches(":hover")) setPreview(null); }} aria-disabled={phase === "transforming"} data-profile={area.slug} data-outfit={area.slug} data-active={selected === area.slug} aria-current={profile === area.slug ? "page" : undefined} className="mascot-outfit absolute z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-center text-[11px] leading-tight text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-xs" style={{ left: `${positions[i][0]}%`, top: `${positions[i][1]}%` }}>
         <span data-orbit-node className="relative grid h-20 w-20 place-items-center">
           <span className={cn("mascot-neon-orb flex h-20 w-20 flex-col items-center justify-center gap-1 rounded-full border border-primary/80 bg-background/95", profile === area.slug && "bg-primary/20 ring-2 ring-primary/40")}><area.icon className="h-6 w-6 shrink-0" aria-hidden/><span className="mascot-orbit-label">{t(area.shortTitle ?? area.title)}</span></span>
         </span>
       </Link>)}
     </nav>}
-    {open && !reduced && <button type="button" data-orbit-toggle aria-pressed={motionPaused} aria-label={t(motionPaused ? "Resume orbital motion" : "Pause orbital motion")} onClick={() => setMotionPaused(value => !value)} className="absolute bottom-0 right-0 z-30 grid h-11 w-11 place-items-center rounded-full border border-primary/25 bg-background/90 text-primary outline-none hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-primary">
-      {motionPaused ? <Play className="h-4 w-4" aria-hidden /> : <Pause className="h-4 w-4" aria-hidden />}
-    </button>}
     <span role="status" aria-live="polite" className="sr-only">
       {phase === "transforming" ? t("Changing outfit…") : ""}
     </span>
-  </div><div data-mascot-legend className="h-16 pt-2">{selected && <MascotGearPreview profile={selected} id={gearId} />}</div></div>;
+  </div></div>;
 };
 export default InteractiveMascot;

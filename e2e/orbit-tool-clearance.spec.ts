@@ -67,7 +67,7 @@ for (const lang of ["es", "en"] as const) {
         await page.setViewportSize({ width, height });
         await page.goto("/");
         await page.evaluate(() => document.fonts.ready);
-        // Finish the short introduction without waiting for paused orbital animations.
+        // Finish finite page-entry effects before sampling fixed area controls.
         await page.locator("[data-home-introduction]").evaluate(async element => {
           await Promise.all(element.getAnimations({ subtree: true }).filter(animation => animation.playState === "running" && Number.isFinite(animation.effect?.getTiming().iterations)).map(animation => animation.finished));
         });
@@ -79,7 +79,7 @@ for (const lang of ["es", "en"] as const) {
           const { x, y, width, height } = element.getBoundingClientRect();
           return [element.getAttribute("data-outfit")!, { x, y, width, height }];
         })));
-        await expect(page.locator("[data-mascot-legend]")).toBeVisible();
+        await expect(page.locator("[data-mascot-legend], [data-gear-preview]")).toHaveCount(0);
         const combinations = new Set<string>();
         for (const [index, area] of areas.entries()) {
           const mode = width >= 768 && index % 2 ? "hover" : "focus";
@@ -98,7 +98,7 @@ for (const lang of ["es", "en"] as const) {
             for (const slug of areas) for (const key of ["x", "y", "width", "height"] as const) expect(Math.abs(sample.circles[slug][key] - positions[slug][key]), `${width}px ${area}: ${slug}.${key}`).toBeLessThan(1);
           }
           if (reduced) expect(last.animations).toBe(0);
-          await expect(page.locator(`[data-home-mascot] [data-outfit="${area}"]`)).toHaveAttribute("aria-describedby", await page.locator(`[data-gear-preview="${area}"]`).getAttribute("id") ?? "");
+          await expect(page.locator(`[data-home-mascot] [data-outfit="${area}"]`)).not.toHaveAttribute("aria-describedby");
         }
         expect(combinations.size).toBe(7);
       }

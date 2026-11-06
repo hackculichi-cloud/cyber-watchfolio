@@ -73,7 +73,7 @@ test('home previews the barber outfit and its own tools and can enter the area',
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'barbering');
   await expect(stage.locator('[data-tool-field="barbering"] [data-tool-prop="hair-clipper"]')).toBeVisible();
   await expect(stage.locator('[data-tool-field="barbering"] [data-tool-prop="barber-scissors"]')).toBeVisible();
-  await expect(page.locator('[data-gear-preview="barbering"]')).toContainText('Hair clipper');
+  await expect(page.locator('[data-gear-preview], [data-mascot-legend]')).toHaveCount(0);
   await expect(page.locator('[data-personal-skills-card="barbering"]')).toContainText('Baltra Barbería');
   await page.keyboard.press('Escape');
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'emblem');
