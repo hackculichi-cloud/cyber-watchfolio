@@ -24,7 +24,7 @@ const ElectricalHero = memo(function ElectricalHero() {
   return (
       <ProfileHero profile={profile}>
         <Button asChild>
-          <a href="#projects">{t("View projects")}</a>
+          <a href="#projects">{t("View work and practice")}</a>
         </Button>
         <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
           <a href="#certificate">{t("Certifications")}</a>

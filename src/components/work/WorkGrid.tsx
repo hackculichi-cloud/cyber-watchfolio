@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { WorkItem } from "@/data/works";
 import WorkCard from "@/components/work/WorkCard";
 import WorkDetail from "@/components/work/WorkDetail";
@@ -14,6 +14,8 @@ interface WorkGridProps {
   emptyDescription?: string;
   /** Center small collections without stretching a lone card across the page. */
   centered?: boolean;
+  /** Disable when the parent already provides a work-type filter. */
+  filterable?: boolean;
 }
 
 /**
@@ -25,10 +27,16 @@ const WorkGrid = ({
   emptyTitle = "Real projects coming soon",
   emptyDescription = "Documented work and original photos will appear here when available.",
   centered = false,
+  filterable = true,
 }: WorkGridProps) => {
   const { t } = useLanguage();
   const [category, setCategory] = useState("All");
   const [openId, setOpenId] = useState<string | null>(null);
+  const opener = useRef<HTMLElement | null>(null);
+  const openWork = (id: string) => {
+    opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setOpenId(id);
+  };
 
   const categories = useMemo(
     () => ["All", ...Array.from(new Set(items.map((i) => i.category)))],
@@ -41,7 +49,7 @@ const WorkGrid = ({
 
   return (
     <>
-      {categories.length > 2 && (
+      {filterable && categories.length > 2 && (
         <div className="mb-6 flex flex-wrap gap-2">
           {categories.map((c) => (
             <Button
@@ -66,12 +74,13 @@ const WorkGrid = ({
 
       <div className={centered ? "flex flex-wrap items-stretch justify-center gap-5" : "grid gap-5 sm:grid-cols-2 lg:grid-cols-3"}>
         {filtered.map((item) => (
-          centered ? <div key={item.id} className="w-full min-w-0 max-w-sm flex-[1_1_16rem]"><WorkCard item={item} onOpen={setOpenId} /></div> : <WorkCard key={item.id} item={item} onOpen={setOpenId} />
+          centered ? <div key={item.id} className="w-full min-w-0 max-w-sm flex-[1_1_16rem]"><WorkCard item={item} onOpen={openWork} /></div> : <WorkCard key={item.id} item={item} onOpen={openWork} />
         ))}
       </div>
 
       <DetailModal
         profile={current?.profile}
+        returnFocusRef={opener}
         open={Boolean(current)}
         onOpenChange={(o) => !o && setOpenId(null)}
         title={t(current?.title)}

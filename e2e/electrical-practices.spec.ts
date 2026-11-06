@@ -6,10 +6,10 @@ import { expect, test } from "@playwright/test";
 test("electrical cases stay grouped, preserve original photos and keep protocol and intervention facts distinct", async ({ page, request }) => {
   await page.goto("/electrical#projects");
   const groups = page.locator("[data-electrical-practices]");
-  await expect(groups.locator("article")).toHaveCount(0);
+  await expect(groups.locator("article")).toHaveCount(5);
   await openElectricalArea(page, "residential");
   await groups.locator('[data-electrical-group="residential-outlets"]').click();
-  await expect(groups.locator("article")).toHaveCount(2);
+  await expect(groups.locator("article")).toHaveCount(3);
   const record = groups.locator('[data-work="residential-outlet-october-2026"]');
   await expect(record).not.toContainText("Electrical review required");
   await expect(record).toContainText("Residential");

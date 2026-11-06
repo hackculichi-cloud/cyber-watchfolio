@@ -1,21 +1,42 @@
-.electrical-choice-row {
+.electrical-work-filters {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: .75rem;
-  max-width: 56rem;
-  margin-inline: auto;
+  gap: .5rem;
 }
 
-.electrical-choice-row > button {
-  flex: 0 1 calc((100% - .75rem) / 2);
-  max-width: 18rem;
+.electrical-work-filters > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 44px;
+  max-width: 100%;
+  padding: .5rem .85rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: .6rem;
+  background: hsl(var(--background));
+  color: hsl(var(--muted-foreground));
+  font-size: .8rem;
+  line-height: 1.3;
+  transition: background-color 150ms, border-color 150ms;
 }
 
-@media (min-width: 640px) {
-  .electrical-choice-row > button {
-    flex-basis: calc((100% - 1.5rem) / 3);
-  }
+.electrical-work-filters > button[aria-pressed="true"] {
+  border-color: hsl(var(--primary) / .5);
+  background: hsl(var(--primary) / .12);
+  color: hsl(var(--primary));
+}
+.electrical-work-filters > button:hover { border-color: hsl(var(--primary) / .6); }
+.electrical-work-filters > button:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 3px;
+}
+
+@media (max-width: 639px) {
+  .electrical-work-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .electrical-work-filters > button { min-height: 48px; padding: .5rem; gap: .35rem; font-size: .75rem; }
+  .electrical-work-filters > button span { min-width: 0; overflow-wrap: anywhere; }
 }
 
 /* Replacing results must not make the browser anchor to a different case. */
