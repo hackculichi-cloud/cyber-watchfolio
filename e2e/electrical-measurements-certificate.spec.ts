@@ -19,8 +19,8 @@ for (const lang of ["es", "en"] as const) {
       const records = page.locator('[data-certifications="electrical"]');
       const completed = records.locator('[data-certificate="electrical-measurements"]');
       await expect(completed).toHaveAttribute("data-certificate-record", "electrical-measurements");
-      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-linkedin-equipment');
-      await expect(records.locator('[data-certificate]').nth(3)).toHaveAttribute('data-certificate', 'electrical-measurements');
+      await expect(records.locator('[data-certificate]').first()).toHaveAttribute('data-certificate', 'electrical-conductors');
+      await expect(records.locator('[data-certificate]').last()).toHaveAttribute('data-certificate', 'electrical-conocer');
       await expect(records.locator('[data-certificate-info][open]')).toHaveCount(0);
       const cardBox = (await completed.boundingBox())!;
       const imageBox = (await completed.locator('[data-certificate-original] img').boundingBox())!;

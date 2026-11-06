@@ -34,9 +34,9 @@ for (const width of [320, 390, 768, 1440]) test(`image-led tools and certificate
   await expect(page.locator('[data-open-electrical-tools]')).toBeFocused();
   await page.locator('[data-open-electrical-training]').click();
   const cards = page.locator('[data-certifications="electrical"] [data-certificate]');
-  await expect(cards).toHaveCount(5);
+  await expect(cards).toHaveCount(6);
   const rows = await cards.evaluateAll(elements => elements.map(el => Math.round(el.getBoundingClientRect().top)));
-  expect(new Set(rows).size).toBe(width >= 768 ? 3 : 5); // Full-width mobile previews; two large previews per row from tablet widths.
+  expect(new Set(rows).size).toBe(width >= 768 ? 3 : 6); // Full-width mobile previews; two large previews per row from tablet widths.
   if(width >= 768) expect(rows[0]).toBe(rows[1]);
   for (const card of await cards.all()) {
     const image = card.locator('[data-certificate-original] img');

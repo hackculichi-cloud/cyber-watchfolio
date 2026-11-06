@@ -78,14 +78,16 @@ describe("specialty and CV publishing integrity", () => {
     const electrical = resumes.resumes.find(resume => resume.id === "electrical")!;
     expect(electrical.es.targetRoles).toContain("Ayudante electricista");
     expect(electrical.es.targetRoles.join(" ")).not.toMatch(/ingeniero|certificado/i);
-    expect(electrical.es.sections.find(section => section.source === "training")?.ids?.[0]).toBe("electrical-udemy");
+    expect(electrical.es.sections.find(section => section.source === "training")?.ids?.[0]).toBe("electrical-conductors");
     expect(resumes.training.es.find(record => record.id === "electrical-conocer")?.tone).toBe("progress");
     for (const lang of ["es", "en"] as const) {
       const ids = electrical[lang].sections.find(section => section.source === "training")!.ids!;
       const completed = ids.map(id => resumes.training[lang].find(record => record.id === id)!).filter(record => record.tone === "complete");
-      expect(completed).toHaveLength(4);
+      expect(completed).toHaveLength(5);
       for (const course of completed) expect(course.document).toMatch(/^https:\/\/culichi\.lat\/certificates\/.+\.pdf$/);
       expect(ids).toContain("electrical-linkedin-equipment");
+      expect(ids).toContain("electrical-conductors");
+      expect(resumes.training[lang].find(record => record.id === "electrical-conductors")?.document).toBe("https://culichi.lat/certificates/udemy-calculo-seleccion-conductores.pdf");
     }
   });
   it("translates specialty descriptions and keeps future electronics training planned", () => {

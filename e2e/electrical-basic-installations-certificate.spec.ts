@@ -21,10 +21,10 @@ for (const lang of ["es", "en"] as const) {
       await page.goto("/electrical#certificate");
       await page.reload();
       const gallery = page.locator('[data-certifications="electrical"]');
-      await expect(gallery.locator('[data-certificate]')).toHaveCount(5);
-      await expect(gallery.locator('[data-certificate-original]')).toHaveCount(4);
+      await expect(gallery.locator('[data-certificate]')).toHaveCount(6);
+      await expect(gallery.locator('[data-certificate-original]')).toHaveCount(5);
       await expect(gallery.locator('[data-certificate-mockup]')).toHaveCount(1);
-      await expect(gallery.getByText(lang === "es" ? "Completado" : "Completed", { exact: true })).toHaveCount(4);
+      await expect(gallery.getByText(lang === "es" ? "Completado" : "Completed", { exact: true })).toHaveCount(5);
       await expect(gallery.getByText(lang === "es" ? "Estudiando actualmente" : "Currently Studying", { exact: true })).toHaveCount(1);
       const card = gallery.locator('[data-certificate="electrical-udemy"]');
       await expect(card.locator('[data-certificate-placeholder]')).toHaveCount(0);

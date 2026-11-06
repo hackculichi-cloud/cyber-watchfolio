@@ -14,7 +14,7 @@ for (const lang of ['es','en'] as const) {
       const tools=page.locator('[data-open-electrical-tools]');
       const training=page.locator('[data-open-electrical-training]');
       await expect(tools).toContainText(lang==='es'?'5 fotos':'5 photos');
-      await expect(training).toContainText(lang==='es'?'4 cursos completados':'4 completed courses');
+      await expect(training).toContainText(lang==='es'?'5 cursos completados':'5 completed courses');
       for(const entry of [tools,training]) {
         expect((await entry.innerText()).split(/\s+/).length).toBeLessThan(9);
         expect((await entry.boundingBox())!.height).toBeGreaterThanOrEqual(100);
@@ -28,7 +28,7 @@ for (const lang of ['es','en'] as const) {
       await page.locator('[data-close-electrical-tools]').first().click();
       await expect(tools).toBeFocused();
       await training.click();
-      await expect(page.locator('[data-certificate-original]')).toHaveCount(4);
+      await expect(page.locator('[data-certificate-original]')).toHaveCount(5);
       await page.locator('[data-close-electrical-training]').click();
       await expect(training).toBeFocused();
       await expect(page.locator('header a[href="/contact"],header a[href="/cv"]')).toHaveCount(0);

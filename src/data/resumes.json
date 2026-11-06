@@ -169,6 +169,17 @@
         "tone": "progress"
       },
       {
+        "id": "electrical-conductors",
+        "provider": "Udemy",
+        "logo": "/images/providers/udemy.svg",
+        "url": "https://www.udemy.com/",
+        "title": "Electrical Conductor Calculations and Selection",
+        "body": "Coursework in power factor, feeders and branch circuits, VA/m² loads, ampacity, voltage drop, protection and grounding conductors, conduit sizing and correction/adjustment factors through comprehensive cases.",
+        "status": "Completed · 5 November 2026 · 5 hours",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/udemy-calculo-seleccion-conductores.pdf"
+      },
+      {
         "id": "electrical-udemy",
         "provider": "Udemy",
         "logo": "/images/providers/udemy.svg",
@@ -273,6 +284,17 @@
         "body": "Programa principal en curso: fundamentos eléctricos; materiales; instalaciones residenciales; control; motores industriales; mantenimiento y diagnóstico; energías renovables; proyecto final. Relaciono los temas con prácticas de tablero, electronivel y trabajos residenciales.",
         "status": "En curso",
         "tone": "progress"
+      },
+      {
+        "id": "electrical-conductors",
+        "provider": "Udemy",
+        "logo": "/images/providers/udemy.svg",
+        "url": "https://www.udemy.com/",
+        "title": "Electricidad: cálculo y selección de conductores eléctricos",
+        "body": "Formación en factor de potencia, alimentadores y circuitos derivados, cargas por VA/m², ampacidad, caída de tensión, protecciones y conductores de tierra, cálculo de canalización y factores de corrección/ajuste mediante casos integrales.",
+        "status": "Completado · 5 de noviembre de 2026 · 5 horas",
+        "tone": "complete",
+        "document": "https://culichi.lat/certificates/udemy-calculo-seleccion-conductores.pdf"
       },
       {
         "id": "electrical-udemy",
@@ -634,6 +656,7 @@
               "electrical-linkedin-equipment",
               "eto-basic",
               "electrical-conocer",
+              "electrical-conductors",
               "electrical-udemy",
               "electrical-measurements",
               "academlo",
@@ -957,6 +980,7 @@
               "electrical-linkedin-equipment",
               "eto-basic",
               "electrical-conocer",
+              "electrical-conductors",
               "electrical-udemy",
               "electrical-measurements",
               "academlo",
@@ -1708,7 +1732,7 @@
       "profile": "electrical",
       "en": {
         "role": "Electrical Assistant | Residential Maintenance & Industrial Training",
-        "summary": "Electrical assistant with documented residential work and installation-board/float-switch practice. Four completed Udemy and LinkedIn Learning courses cover installations, measurements, drawings, panelboards, transformers and VFD foundations. Main training continues at Universidad Internacional · RED CONOCER.",
+        "summary": "Electrical assistant with documented residential work and installation-board/float-switch practice. Five completed Udemy and LinkedIn Learning courses cover installations, conductor selection, measurements, drawings, panelboards, transformers and VFD foundations. Main training continues at Universidad Internacional · RED CONOCER.",
         "sections": [
           {
             "id": "experience",
@@ -1758,7 +1782,7 @@
             "entries": [
               {
                 "title": "Residential installations & conductors",
-                "body": "Outlet, switch and luminaire replacement; interpretation of connection diagrams. Coursework in feeders, branch circuits, ampacity, voltage drop and protective-earth conductor selection.",
+                "body": "Outlet, switch and luminaire replacement; connection diagrams. Completed coursework in feeder/branch circuits, conductor ampacity, voltage drop, protection and grounding conductor selection.",
                 "tags": [
                   "Outlets & lighting",
                   "Conductors",
@@ -1776,7 +1800,7 @@
               },
               {
                 "title": "Drawings & electrical calculations",
-                "body": "Electrical symbols, one-line, wiring and motor diagrams, plans and ladder diagrams. Ohm’s and Watt’s laws, circuit foundations and power factor studied in completed courses.",
+                "body": "Electrical symbols, one-line, wiring, motor and ladder diagrams. Coursework in Ohm’s/Watt’s laws, power factor, VA/m² loads and branch-circuit counts; conduit sizing with correction/adjustment factors in comprehensive cases.",
                 "tags": [
                   "Drawings",
                   "Calculations",
@@ -1801,6 +1825,7 @@
             "layout": "grid",
             "source": "training",
             "ids": [
+              "electrical-conductors",
               "electrical-udemy",
               "electrical-measurements",
               "electrical-linkedin",
@@ -1811,7 +1836,7 @@
         ],
         "highlights": [
           {
-            "value": "4",
+            "value": "5",
             "label": "Completed courses"
           },
           {
@@ -1831,7 +1856,7 @@
       },
       "es": {
         "role": "Ayudante electricista | Mantenimiento residencial y formación industrial",
-        "summary": "Ayudante electricista con trabajos residenciales y prácticas de tablero y electronivel documentados. Cuatro cursos completados de Udemy y LinkedIn Learning respaldan conocimientos de instalaciones, mediciones, planos, tableros, transformadores y variadores. Formación principal en curso en Universidad Internacional · RED CONOCER.",
+        "summary": "Ayudante electricista con trabajos residenciales y prácticas de tablero y electronivel documentados. Cinco cursos completados de Udemy y LinkedIn Learning respaldan conocimientos de instalaciones, selección de conductores, mediciones, planos, tableros, transformadores y variadores. Formación principal en curso en Universidad Internacional · RED CONOCER.",
         "sections": [
           {
             "id": "experience",
@@ -1881,7 +1906,7 @@
             "entries": [
               {
                 "title": "Instalaciones residenciales y conductores",
-                "body": "Cambio de contactos, apagador y luminarias; interpretación de diagramas de conexión. Formación en circuitos alimentadores y derivados, ampacidad, caída de tensión y conductor de puesta a tierra.",
+                "body": "Cambio de contactos, apagador y luminarias; diagramas de conexión. Cursos completados sobre alimentadores y derivados, ampacidad, caída de tensión, protecciones y selección del conductor de puesta a tierra.",
                 "tags": [
                   "Contactos e iluminación",
                   "Conductores",
@@ -1899,7 +1924,7 @@
               },
               {
                 "title": "Planos y cálculos eléctricos",
-                "body": "Simbología, diagramas unifilares, de cableado, motores y escalera, y planos eléctricos. Leyes de Ohm y Watt, fundamentos de circuitos y factor de potencia estudiados en cursos completados.",
+                "body": "Simbología y diagramas unifilares, de cableado, motores y escalera. Formación en leyes de Ohm/Watt, factor de potencia, cargas VA/m² y número de circuitos derivados; cálculo de canalización con factores de corrección/ajuste en casos integrales.",
                 "tags": [
                   "Planos",
                   "Cálculos",
@@ -1924,6 +1949,7 @@
             "layout": "grid",
             "source": "training",
             "ids": [
+              "electrical-conductors",
               "electrical-udemy",
               "electrical-measurements",
               "electrical-linkedin",
@@ -1934,7 +1960,7 @@
         ],
         "highlights": [
           {
-            "value": "4",
+            "value": "5",
             "label": "Cursos completados"
           },
           {
