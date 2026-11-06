@@ -1,6 +1,8 @@
 # Compact tools and certificates
 
-The Home outfit selector keeps its three distinct, color-matched floating tools. Its lower legend now contains only compact translated names, with no repeated tool pictures. The reserved legend is 64 px tall instead of 128 px; hovering and keyboard previews keep the hero stable.
+The Home outfit selector keeps its three distinct, color-matched floating tools on hover/focus. The current presentation has fixed area links, no play/pause control and no lower tool-name legend or reserved legend space; see [static Home](static-home.md).
+
+The collection changes below document the earlier compact iteration. The owner subsequently restored the large photographs and certificate previews described in [image-led collections](image-led-contact-restoration.md).
 
 Electrical equipment uses a symmetric card grid: two columns on phones, three from 768 px, with incomplete rows centered. Pictures are smaller, with brand, title and a two-line description underneath. Full descriptions and original photos remain available in the enlarged viewer, with focus and page-position restoration.
 

@@ -9,17 +9,14 @@ test('previewing the top menus does not move the hero or reset the intervening o
   await page.locator('main').evaluate(async element => { await Promise.all(element.getAnimations().map(animation => animation.finished)); });
   const hero = page.locator('main > section').first();
   const original = (await hero.boundingBox())!;
-  const legend = page.locator('[data-mascot-legend]');
-  const originalLegend = (await legend.boundingBox())!;
+  await expect(page.locator('[data-mascot-legend], [data-gear-preview]')).toHaveCount(0);
   for (const [href, outfit] of [['/electrical', 'electrical'], ['/software-development', 'development'], ['/repair', 'repair']]) {
     await page.locator(`header nav a[href="${href}"]`).hover();
     await expect(page.locator('[data-home-mascot]')).toHaveAttribute('data-preview-outfit', outfit);
     await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', outfit);
     const current = (await hero.boundingBox())!;
-    const currentLegend = (await legend.boundingBox())!;
     expect(current.y).toBeCloseTo(original.y, 1);
     expect(current.height).toBeCloseTo(original.height, 1);
-    expect(currentLegend.height).toBeCloseTo(originalLegend.height, 1);
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
     await expect(page).toHaveURL(/\/$/);
   }

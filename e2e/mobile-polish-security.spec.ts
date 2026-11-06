@@ -63,33 +63,16 @@ test("phone shortcuts and native section jump work without covering the last foo
   await context.close();
 });
 
-test("orbit moves with upright labels, pauses manually and respects reduced motion", async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
+test("area choices remain fixed without playback controls in both motion preferences", async ({ page }) => {
   await page.goto('/');
   const stage = page.locator('[data-home-mascot]');
-  await stage.scrollIntoViewIfNeeded();
-  await page.mouse.move(0, 0);
-  const orbit = stage.locator('[data-outfit-selector]');
-  await expect(orbit).toHaveCSS('animation-name', 'outfit-orbit');
-  await expect(stage.locator('[data-orbit-node]').first()).toHaveCSS('animation-name', 'outfit-counter-orbit');
-  await expect(orbit).toHaveCSS('animation-play-state', 'paused');
-  await stage.getByRole('button', { name: 'Resume orbital motion', exact: true }).click();
-  await page.mouse.move(0, 0);
-  const initial = await orbit.evaluate(el => getComputedStyle(el).transform);
-  await expect.poll(() => orbit.evaluate(el => getComputedStyle(el).transform)).not.toBe(initial);
-  await stage.getByRole('button', { name: 'Pause orbital motion', exact: true }).click();
-  await page.mouse.move(0, 0);
-  await expect(orbit).toHaveCSS('animation-play-state', 'paused');
-  const paused = await orbit.evaluate(el => getComputedStyle(el).transform);
-  await page.waitForTimeout(250);
-  expect(await orbit.evaluate(el => getComputedStyle(el).transform)).toBe(paused);
-  await stage.getByRole('button', { name: 'Resume orbital motion', exact: true }).click();
-  await page.mouse.move(0, 0);
-  await expect(orbit).toHaveCSS('animation-play-state', 'running');
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(orbit).toHaveCSS('animation-name', 'none');
-  await expect(stage.locator('[data-orbit-toggle]')).toHaveCount(0);
-  await expect(stage.locator('[data-outfit]')).toHaveCount(7);
+  for (const reducedMotion of ['no-preference', 'reduce'] as const) {
+    await page.emulateMedia({ reducedMotion });
+    await expect(stage.locator('[data-outfit-selector]')).toHaveCSS('animation-name', 'none');
+    await expect(stage.locator('[data-orbit-node]').first()).toHaveCSS('animation-name', 'none');
+    await expect(stage.locator('[data-orbit-toggle]')).toHaveCount(0);
+    await expect(stage.locator('[data-outfit]')).toHaveCount(7);
+  }
 });
 
 test("fixed phone targets stay inside the screen and accept a direct touch", async ({ browser }) => {

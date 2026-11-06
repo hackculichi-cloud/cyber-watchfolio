@@ -576,9 +576,7 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .mascot-tool-field .mascot-tool-flight { transform:none; opacity:1; transition-property:none; }
   .mascot-tool-field .mascot-tool-float { animation:none; }
 }
-@keyframes gear-appear { from{opacity:0;transform:translateY(8px) scale(.4)} to{opacity:1;transform:none} }
 @media (prefers-reduced-motion:no-preference) {
-  .mascot-gear-preview { animation:gear-appear 220ms ease-out both; }
   .area-nav-icon { transition:box-shadow 180ms,background-color 180ms; }
 }
 .header-mascot-frame { background:radial-gradient(ellipse,hsl(var(--primary)/.1),transparent 70%); }
@@ -678,20 +676,9 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .reading-copy { line-height:1.75; }
 }
 
-/* Slow CSS-only orbit; text counter-rotates to stay upright. */
+/* Area links stay at fixed coordinates, independent of motion preferences. */
 [data-outfit-selector] { position:absolute; inset:0; pointer-events:none; }
 [data-outfit] { pointer-events:auto; }
-@media (prefers-reduced-motion:no-preference) {
-  [data-outfit-selector] { animation:outfit-orbit 96s linear infinite; }
-  [data-orbit-node] { animation:outfit-counter-orbit 96s linear infinite; }
-}
-[data-motion-paused="true"] [data-outfit-selector],
-[data-motion-paused="true"] [data-orbit-node] { animation-play-state:paused; }
-@media (hover:hover) and (pointer:fine) {
-  .mascot-orbit:hover [data-outfit-selector], .mascot-orbit:hover [data-orbit-node] { animation-play-state:paused; }
-}
-@keyframes outfit-orbit { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-@keyframes outfit-counter-orbit { from{transform:rotate(0)} to{transform:rotate(-360deg)} }
 
 /* One language control shows the active flag with a glimpse of the other choice. */
 .language-switch-control {
@@ -741,10 +728,9 @@ a:hover .area-nav-icon, a:focus-visible .area-nav-icon, a[aria-current="page"] .
   .home-hero [data-home-background] { object-position:65% center; opacity:.25; }
   .home-mascot-widget { max-width:22.5rem; }
   [data-home-mascot] { aspect-ratio:auto; height:12.75rem; }
-  [data-home-mascot] .mascot-orbit-guide, [data-home-mascot] [data-orbit-toggle] { display:none; }
+  [data-home-mascot] .mascot-orbit-guide { display:none; }
   /* Small objects remain above the character, clear of the two upper controls. */
   [data-home-mascot] .mascot-orbit-body, [data-home-mascot][data-selector-open="true"] .mascot-orbit-body { width:42%; max-width:8rem; top:calc(43% + 1.125rem); }
-  [data-home-mascot] [data-outfit-selector], [data-home-mascot] [data-orbit-node] { animation:none; }
   [data-home-mascot] .mascot-outfit, [data-home-mascot] [data-orbit-node], [data-home-mascot] .mascot-neon-orb { width:82px; height:58px; border-radius:.75rem; }
   [data-home-mascot] .mascot-neon-orb { gap:3px; padding:3px; box-shadow:0 0 12px hsl(var(--primary)/.17),inset 0 0 10px hsl(var(--primary)/.08); }
   [data-home-mascot] .mascot-neon-orb > svg { width:18px; height:18px; }

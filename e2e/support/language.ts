@@ -1,4 +1,4 @@
 export const englishStorageState = {
   cookies: [],
-  origins: [{ origin: "http://127.0.0.1:4173", localStorage: [{ name: "portfolio-lang", value: "en" }, { name: "culichi-welcome-seen", value: "1" }] }],
+  origins: [{ origin: "http://127.0.0.1:4173", localStorage: [{ name: "portfolio-lang", value: "en" }] }],
 };

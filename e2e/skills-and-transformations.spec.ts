@@ -33,14 +33,13 @@ test("outfit focus reveals matching tools, transforms both figures and restores 
   const morph = stage.locator('[data-morph-to]');
   await stage.locator('[data-outfit="electrical"]').focus();
   await expect(stage.locator('[data-tool-field="electrical"] [data-tool-prop]')).toHaveCount(3);
-  const gear = page.locator('[data-gear-preview="electrical"]').first();
-  await expect(gear).toContainText('Digital multimeter');
-  await expect(gear).toContainText("Electrician's pliers");
+  await expect(page.locator('[data-gear-preview], [data-mascot-legend]')).toHaveCount(0);
+  await expect(stage.locator('[data-tool-field="electrical"] [data-tool-prop="multimeter"]')).toHaveCount(1);
   await expect(morph.locator('.mascot-current')).toHaveCSS('animation-name', 'mascot-quick-appear');
   await expect(page.locator('[data-header-mascot]')).toHaveAttribute('data-header-mascot', 'electrical');
   await stage.locator('[data-outfit="repair"]').focus();
   await expect(stage.locator('[data-tool-field="electrical"]')).toHaveCount(0);
-  await expect(page.locator('[data-gear-preview="repair"]')).toContainText('Precision screwdriver');
+  await expect(stage.locator('[data-tool-field="repair"] [data-tool-prop]')).toHaveCount(3);
   await expect(morph).toHaveAttribute('data-morph-to', 'repair');
   await page.keyboard.press('Escape');
   await expect(page.locator('[data-gear-preview]')).toHaveCount(0);

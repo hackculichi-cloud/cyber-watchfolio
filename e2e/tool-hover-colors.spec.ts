@@ -47,12 +47,7 @@ for (const lang of ["es", "en"] as const) {
           expect(style.color).toBe(sectionColor);
           expect(style.filter).toContain("drop-shadow");
         }
-        const legend = page.locator(`[data-gear-preview="${area}"]`);
-        await expect(legend).toBeVisible();
-        await expect(legend.locator('[data-gear-item]')).toHaveCount(3);
-        const visibleLabels = await legend.locator('[data-tool-label]').allTextContents();
-        expect(visibleLabels.every(label => label.trim().length > 0)).toBe(true);
-        await expect(legend.locator('[data-tool-prop], img')).toHaveCount(0);
+        await expect(page.locator('[data-gear-preview], [data-mascot-legend]')).toHaveCount(0);
         for (const prop of await field.locator('[data-tool-prop]').all()) {
           const toolId = (await prop.getAttribute('data-tool-prop'))!;
           expect(distinctTools.has(toolId)).toBe(false);
@@ -83,12 +78,6 @@ for (const lang of ["es", "en"] as const) {
           }, area);
           expect(palette.colored).toBeGreaterThan(20);
           expect(palette.matching/palette.colored, `${area}: ${toolId} image palette`).toBeGreaterThan(.65);
-        }
-        if (area === "electrical") {
-          for (const label of lang === "es"
-            ? ["Multímetro digital", "Pinzas de electricista", "Pelacables automático"]
-            : ["Digital multimeter", "Electrician's pliers", "Automatic wire stripper"]) await expect(legend).toContainText(label);
-          await expect(legend).not.toContainText(lang === "es" ? "Destornillador" : "screwdriver");
         }
 
         await field.evaluate(element => element.setAttribute("data-hover-retained", "true"));
