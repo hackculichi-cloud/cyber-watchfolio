@@ -22,7 +22,7 @@ export default function ElectricalAreaPanel({ area }: { area: string }) {
     <section id="projects" className="scroll-mt-48 px-1 py-4 sm:px-4">
       <span id="practice" aria-hidden="true" className="block scroll-mt-48" />
       <span id="evidence" aria-hidden="true" className="block scroll-mt-48" />
-      <div className="text-center [&_p]:mx-auto"><SectionHeading title={t("Work & practice")} description={t("Choose a job to see its photographs.")} /></div>
+      <SectionHeading title={t("Work & practice")} description={t("Choose a job to see its photographs.")} />
       <ElectricalPracticeGroups key={groupId} areaId={groupId} />
     </section>
   </div>;

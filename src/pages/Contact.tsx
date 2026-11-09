@@ -40,15 +40,15 @@ const Contact = () => {
               channel={c.label}
               href={c.href}
               external={c.external}
-              className="panel-glow flex flex-col items-center gap-2 text-center hover:-translate-y-1"
+              className="panel-glow flex flex-col items-start gap-2 text-left hover:-translate-y-1"
             >
-              <c.icon className="h-5 w-5 text-primary" aria-hidden />
+              <c.icon className="h-5 w-5 self-center text-primary" aria-hidden />
               <span className="text-sm font-semibold">{t(c.label)}</span>
               <span className="break-all text-sm text-muted-foreground">{t(c.value)}</span>
             </ContactPreview>
           ))}
-          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="panel-glow flex flex-col items-center gap-2 text-center hover:-translate-y-1">
-            <WhatsAppIcon className="h-5 w-5 text-green-400" aria-hidden /><span className="text-sm font-semibold">WhatsApp</span><span className="text-sm text-muted-foreground">{site.whatsappDisplay}</span>
+          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="panel-glow flex flex-col items-start gap-2 text-left hover:-translate-y-1">
+            <WhatsAppIcon className="h-5 w-5 self-center text-green-400" aria-hidden /><span className="text-sm font-semibold">WhatsApp</span><span className="text-sm text-muted-foreground">{site.whatsappDisplay}</span>
           </a>
         </div>
 

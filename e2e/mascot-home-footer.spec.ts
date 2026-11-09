@@ -63,10 +63,17 @@ test("larger header, home characters and footer fit small screens without WebGL"
     const name = (await brand.boundingBox())!, portrait = (await footer.locator('[data-footer-mascot]').boundingBox())!;
     const areas = (await footer.getByRole('navigation', { name: 'Footer', exact: true }).boundingBox())!;
     const introduction = (await footer.locator('[data-footer-introduction]').boundingBox())!;
-    expect(areas.y + areas.height).toBeLessThan(introduction.y);
-    expect(portrait.y + portrait.height).toBeLessThan(name.y);
+    if (width >= 1024) {
+      expect(introduction.x + introduction.width).toBeLessThanOrEqual(areas.x + 1);
+      expect(Math.max(areas.y, introduction.y)).toBeLessThan(Math.min(areas.y + areas.height, introduction.y + introduction.height));
+    } else {
+      expect(areas.y + areas.height).toBeLessThan(introduction.y);
+      expect(portrait.y + portrait.height).toBeLessThan(name.y);
+    }
+    expect(Math.abs(portrait.x + portrait.width / 2 - introduction.x - introduction.width / 2)).toBeLessThan(2);
     for (const bounds of [areas, introduction, name, portrait]) {
-      expect(Math.abs(bounds.x + bounds.width / 2 - width / 2)).toBeLessThan(2);
+      expect(bounds.x).toBeGreaterThanOrEqual(0);
+      expect(bounds.x + bounds.width).toBeLessThanOrEqual(width + 1);
     }
     await expect(footer.locator('.footer-area-icon')).toHaveCount(7);
     const menu = footer.locator('.footer-area-links');
@@ -108,7 +115,13 @@ test("larger header, home characters and footer fit small screens without WebGL"
     expect(new Set(channelBounds.map(bounds => Math.round(bounds.y))).size).toBe(width >= 640 ? 1 : 2);
     expect(Math.max(...channelBounds.map(bounds => bounds.height)) - Math.min(...channelBounds.map(bounds => bounds.height))).toBeLessThan(1);
     const gridBounds = (await contact.boundingBox())!;
-    expect(Math.abs(gridBounds.x + gridBounds.width / 2 - width / 2)).toBeLessThan(2);
+    const contactFrame = (await footer.locator('[data-footer-contact]').boundingBox())!;
+    const contactCopy = (await footer.locator('[data-footer-cta] > div').first().boundingBox())!;
+    if (width >= 1024) expect(contactCopy.x + contactCopy.width).toBeLessThanOrEqual(contactFrame.x + 1);
+    else expect(contactCopy.y + contactCopy.height).toBeLessThanOrEqual(contactFrame.y);
+    expect(Math.abs(gridBounds.x + gridBounds.width / 2 - contactFrame.x - contactFrame.width / 2)).toBeLessThan(2);
+    expect(gridBounds.x).toBeGreaterThanOrEqual(0);
+    expect(gridBounds.x + gridBounds.width).toBeLessThanOrEqual(width + 1);
     for (const [index, label] of ['Email', 'LinkedIn', 'GitHub', 'WhatsApp'].entries()) {
       const link = channelLinks.nth(index);
       await expect(link).toHaveAccessibleName(label);
