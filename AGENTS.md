@@ -8,6 +8,8 @@
 
 # Owner presentation preferences
 
+- Treat easy use on phones, tablets and computers, together with security, as release requirements. Keep primary touch targets at least 44 px, support touch and keyboard without requiring hover, preserve visible close/back actions and avoid horizontal overflow. Validate responsive flows and security checks; distinguish viewport/device emulation from tests on real hardware or other browser engines.
+
 - Use natural left alignment for headings, paragraphs, account details and descriptive card text. Keep photographs, illustrations and visual icon groups centered within balanced layouts; do not center every text block or stack the whole desktop footer into one narrow column. New outlet and phone-repair practices announced on November 9 remain pending their ZIP images; publish them only after the owner supplies the material.
 
 - Open Home directly with no welcome presentation, replay button or first-visit interruption. Keep the seven area links at fixed positions with no play/pause control. Omit the tool-name legend and its reserved space below the fox; keep the area labels, real navigation and hover/focus outfit/tool previews.

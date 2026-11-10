@@ -21,8 +21,8 @@ const DetailModal = ({ open, onOpenChange, title, subtitle, children, profile, r
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent onCloseAutoFocus={event => { if (returnFocusRef?.current) { event.preventDefault(); returnFocusRef.current.focus({ preventScroll: true }); } }} data-profile={profile} className="max-h-[90vh] max-w-4xl overflow-y-auto border-primary/25 bg-background sm:backdrop-blur-sm">
         <DialogHeader>
-          <div className="flex flex-wrap items-center gap-3 pr-6">
-            <DialogTitle className="min-w-0 flex-1 text-xl font-semibold tracking-tight">{t(title)}</DialogTitle>
+          <div className="flex flex-wrap items-center gap-3 pr-10">
+            <DialogTitle className="min-w-0 flex-1 pr-0 text-xl font-semibold tracking-tight">{t(title)}</DialogTitle>
             {showLanguageSwitcher && <LanguageSwitcher compact />}
           </div>
           {(
