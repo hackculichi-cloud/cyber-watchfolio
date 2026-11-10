@@ -13,7 +13,17 @@ const TrainingCurriculum = ({ modules }: { modules: TrainingModule[] }) => {
   const topicsId = useId();
 
   return (
-    <div>
+    <div className="space-y-6">
+      <Button
+        variant="outline"
+        className="min-h-11"
+        onClick={() => setOpen(v => !v)}
+        aria-expanded={open}
+        aria-controls={topicsId}
+      >
+        {t(open ? "Hide training details" : "View training details")}
+        <ChevronDown className={cn("ml-2 h-4 w-4 transition-transform", open && "rotate-180")} aria-hidden />
+      </Button>
       <ol id={topicsId} className="relative space-y-4 border-l border-primary/25 pl-6">
         {modules.map((m) => (
           <li key={m.day} className="relative">
@@ -24,24 +34,14 @@ const TrainingCurriculum = ({ modules }: { modules: TrainingModule[] }) => {
                 <h3 className="text-base font-semibold">{t(m.title)}</h3>
               </div>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(m.summary)}</p>
-              {open && <ul className="mt-4 flex flex-wrap gap-1.5">
-                {m.topics.map((entry) => <li key={entry}><Tag>{t(entry)}</Tag></li>)}
+              {open && <ul data-training-topics={m.day} className="mt-4 grid gap-x-6 gap-y-2 text-sm leading-relaxed text-muted-foreground sm:grid-cols-2">
+                {m.topics.map(entry => <li key={entry} className="flex gap-2"><span className="text-primary" aria-hidden>·</span><span>{t(entry)}</span></li>)}
               </ul>}
             </div>
           </li>
         ))}
       </ol>
 
-      <Button
-        variant="outline"
-        className="mt-6"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-controls={topicsId}
-      >
-        {t(open ? "Hide training details" : "View training details")}
-        <ChevronDown className={cn("ml-2 h-4 w-4 transition-transform", open && "rotate-180")} aria-hidden />
-      </Button>
     </div>
   );
 };

@@ -65,8 +65,13 @@ test('related courses reuse real credentials across repair and electronics witho
     const electronics = page.locator('[data-related-training="electronics"]');
     await expect(electronics.locator('[data-related-course]')).toHaveCount(3);
     await expect(electronics.locator('[data-related-course="lidetec"]')).toContainText('Course participation');
-    await expect(electronics.locator('[data-related-course="electrical-linkedin"]')).toHaveAttribute('href', '/electrical#certificate-electrical-linkedin');
-    await electronics.locator('[data-related-course="lidetec"]').click();
+    await expect(electronics.locator('[data-related-course="electrical-linkedin"] a[href="/electrical#certificate-electrical-linkedin"]')).toBeVisible();
+    await expect(electronics.locator('[data-related-course="electrical-measurements"] [data-certificate-original] img')).toHaveAttribute('src', '/certificates/udemy-mediciones-electricas.webp');
+    const lidetec = electronics.locator('[data-related-course="lidetec"]');
+    await lidetec.getByRole('button', { name: 'View certificate', exact: true }).click();
+    await expect(page.getByRole('dialog').locator('img')).toHaveAttribute('src', preview);
+    await page.keyboard.press('Escape');
+    await lidetec.locator('a[href="/repair#certifications"]').click();
     await expect(page.locator('[data-certificate-original="lidetec"] img')).toHaveAttribute('src', preview);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }

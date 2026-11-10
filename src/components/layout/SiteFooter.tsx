@@ -25,7 +25,6 @@ const FooterContent = memo(function FooterContent({ pathname }: { pathname: stri
         <div className="max-w-xl text-left">
           <p className="eyebrow">{t("Let’s connect")}</p>
           <h2 className="mt-3 text-3xl font-bold leading-[1.1] tracking-[-.035em] sm:text-4xl">{t("Ideas become projects.")}<br /><span className="text-primary">{t("Let’s talk.")}</span></h2>
-          <p className="mt-4 max-w-xl text-[15px] leading-7 text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
         </div>
         <div data-footer-contact className={`relative isolate mx-auto w-full max-w-3xl ${pathname === "/" || footerProfile ? "mt-24" : "mt-8"}`}>
           {pathname === "/" && <HomeCharacter profile="customer-service" scene="service-leaning" className="pointer-events-none absolute -top-24 left-1/2 z-0 h-24 w-28 -translate-x-1/2 overflow-hidden sm:w-28" />}
@@ -60,7 +59,6 @@ const FooterContent = memo(function FooterContent({ pathname }: { pathname: stri
             <span data-footer-brand className="w-full min-w-0"><span className="block text-xl font-bold tracking-[-.025em] sm:text-2xl">{site.shortName}</span><span className="mt-1 block text-sm font-medium text-primary">aka Culichi</span></span>
             <span data-footer-mascot={mascot} className="shrink-0"><CulichiMascot variant={mascot} portrait decorative className="h-24 w-24 sm:h-28 sm:w-28" /></span>
           </Link>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
         </div>
       </div>
       <div data-footer-bottom className="flex flex-col items-start justify-between gap-4 border-t border-border/70 py-6 text-xs text-muted-foreground md:flex-row md:flex-wrap md:items-center">

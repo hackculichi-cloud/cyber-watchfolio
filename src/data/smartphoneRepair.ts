@@ -32,78 +32,88 @@ export const trainingProvider = {
   document: "Constancia (certificate of participation)",
   image: "/images/repair/cert-lidetec.jpg",
   imageRotation: 180,
+  format: "Saturday sessions (days 1–3)",
 };
 
 /** Syllabus supplied by the course participant; topics are training, not claimed expertise. */
 export const trainingModules: TrainingModule[] = [
   {
-    "day": "Day 01",
+    "day": "Monday",
     "title": "Tools, Service Records & Fundamentals",
     "summary": "Repair workshop tools, service records, component recognition and basic measurements.",
     "topics": [
+      "Welcome to the professional repair course",
       "Repair workshop tools and business setup",
       "Technical service forms and repair notes",
-      "Smartphone parts and internal architecture",
+      "Recognizing smartphone parts",
+      "What is inside a smartphone?",
       "Multimeter use: speakers, earpieces, buzzers and batteries",
       "Logic board handling and short-circuit prevention"
     ]
   },
   {
-    "day": "Day 02",
+    "day": "Tuesday",
     "title": "Disassembly, Diagnostics & Component Recovery",
     "summary": "Assembly practice, common faults, battery service and diagnostics of displays, microphones and flex cables.",
     "topics": [
       "Smartphone assembly and disassembly practice",
       "Common smartphone faults and repair approaches",
-      "Battery calibration and rehabilitation concepts",
+      "Battery calibration and rehabilitation practice",
       "Water damage and sulfation",
       "Membrane-mounted and universal microphone installation",
       "Logic board inspection and maintenance",
       "Display diagnosis, recovery and replacement",
-      "Microphone recovery",
+      "Vulcanized microphone recovery",
       "Interconnection flex cable recovery"
     ]
   },
   {
-    "day": "Day 03",
+    "day": "Wednesday",
     "title": "Hardware Faults, Soldering & Charging Systems",
     "summary": "Camera, audio, charging and touch faults, battery adaptation and soldering practice.",
     "topics": [
-      "Camera and audio jack troubleshooting",
+      "Common smartphone faults",
+      "Camera troubleshooting",
+      "Audio jack troubleshooting",
       "Charging filter troubleshooting",
       "Battery adaptation concepts",
-      "Touch system and battery holder repair",
+      "Touchscreen troubleshooting",
+      "Battery holder repair",
       "Soldering iron use and soldering practice",
-      "RF connector practice",
+      "Radio-frequency conductor ports (practice)",
       "Charging port jumper concepts across device brands"
     ]
   },
   {
-    "day": "Day 04",
+    "day": "Thursday",
     "title": "Hot Air, Components & Microsoldering",
     "summary": "Hot air handling, component removal and installation, charging ports, connectors and introductory microsoldering.",
     "topics": [
-      "Correct use of the hot air station",
+      "Correct use of the hot-air gun",
       "Removal and installation of diodes, resistors, capacitors and coils",
       "Hands-on practice with course materials",
-      "Charging port and volume button installation",
+      "Charging port installation",
+      "Volume button installation",
       "Introduction to microsoldering",
-      "Connector repair and shielding"
+      "Connector repair",
+      "Use of shielding"
     ]
   },
   {
-    "day": "Day 05",
+    "day": "Friday",
     "title": "Software Diagnostics & Device Recovery",
     "summary": "Software fundamentals, operating system faults, firmware servicing and recovery concepts covered in the course.",
     "topics": [
       "Rear housing and device components",
       "Heat-assisted fault-recovery concepts",
-      "Firmware flashing and unlocking fundamentals",
-      "Smartphone software and operating system diagnostics",
+      "Firmware flashing (flexeo): fundamentals",
+      "Device unlocking: fundamentals",
+      "Smartphone software fundamentals",
+      "Recognizing operating-system faults",
       "UnlockTool setup and software servicing (coursework)",
-      "Android screen lock and Google account recovery concepts",
-      "Factory reset, connectivity settings and malware troubleshooting",
-      "NCK and server-based unlocking concepts"
+      "Android recovery concepts: pattern and Google account access, factory reset, connectivity settings and malware troubleshooting",
+      "NCK unlocking concepts",
+      "Server-based unlocking concepts"
     ]
   }
 ];
