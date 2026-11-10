@@ -5,6 +5,7 @@ import CertificateDocumentPreview from "@/components/profile/CertificateDocument
 import TrainingCurriculum from "./TrainingCurriculum";
 import { trainingProvider, trainingModules, smartphoneSkills } from "@/data/smartphoneRepair";
 import { certifications } from "@/data/certifications";
+import LidetecBrand from "@/components/profile/LidetecBrand";
 
 const certificate = certifications.repair!.find(record => record.id === "lidetec")!;
 
@@ -16,7 +17,7 @@ const CertificateCard = () => {
       <CertificateDocumentPreview record={certificate} label="View certificate" />
       <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
         <a data-repair-school href={trainingProvider.website} target="_blank" rel="noopener noreferrer" aria-label={t("Visit LIDETEC website")} className="lidetec-neon inline-flex min-h-11 flex-col justify-center rounded-lg px-2 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-          <span className="text-2xl font-bold tracking-[.12em]">{trainingProvider.name}</span><span className="text-xs">{trainingProvider.fullName}</span>
+          <LidetecBrand />
         </a>
         <div className="flex flex-wrap items-center gap-3"><Tag variant="accent">{t("Certificate of participation")}</Tag><a href={certificate.href} download className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary"><Download className="h-4 w-4" aria-hidden />{t("Download PDF")}</a></div>
       </div>
@@ -26,6 +27,7 @@ const CertificateCard = () => {
           { k: "Document", v: trainingProvider.document },
           { k: "Issued", v: `${trainingProvider.location}, ${trainingProvider.certificateDate}` },
           { k: "Instructor", v: trainingProvider.instructor },
+          { k: "Course format", v: trainingProvider.format },
         ].map(row => <div key={row.k}><dt className="text-xs text-muted-foreground">{t(row.k)}</dt><dd className="mt-1">{t(row.v)}</dd></div>)}</dl>
         <p className="mt-4 text-sm text-muted-foreground">{t("Digitized from the supplied photograph.")}</p>
         <a href={certificate.sourcePhoto} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-2 rounded text-sm text-primary underline focus-visible:ring-2 focus-visible:ring-primary">{t("View supplied photograph")}<ExternalLink className="h-4 w-4" aria-hidden /></a>

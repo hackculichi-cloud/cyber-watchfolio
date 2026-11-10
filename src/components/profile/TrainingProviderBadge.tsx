@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { trainingProviders, type TrainingProviderId } from "@/data/trainingProviders";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import LidetecBrand from "./LidetecBrand";
 
 export function ProviderMark({ id, className = "h-9 w-9" }: { id: TrainingProviderId; className?: string }) {
   const provider = trainingProviders[id];
@@ -15,7 +16,7 @@ export function TrainingProviderLogo({ id }: { id: TrainingProviderId }) {
   const provider = trainingProviders[id];
   const label = `${provider.name} · ${t(provider.detail)}`;
   return <a data-training-provider={id} data-provider-logo href={provider.url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label} className="training-provider-logo">
-    <span aria-hidden className="training-provider-logo-art">
+    {id === "lidetec" ? <LidetecBrand /> : <span aria-hidden className="training-provider-logo-art">
       {provider.logo
         ? <span data-provider-symbol className="training-provider-logo-symbol" style={{ maskImage: `url(${provider.logo})`, WebkitMaskImage: `url(${provider.logo})` }} />
         : <span className="training-provider-logo-monogram">{provider.monogram}</span>}
@@ -24,7 +25,7 @@ export function TrainingProviderLogo({ id }: { id: TrainingProviderId }) {
         : id === "linkedin-learning"
           ? <span className="training-provider-logo-name">LinkedIn<span className="training-provider-logo-learning">Learning</span></span>
           : <span className="training-provider-logo-name">{provider.name}</span>}
-    </span>
+    </span>}
   </a>;
 }
 

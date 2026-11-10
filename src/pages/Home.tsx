@@ -114,7 +114,6 @@ const Home = () => {
           <HomeCharacter profile="repair" scene="repair-peeking" className="absolute right-0 top-6 z-0 w-32 sm:w-36" />
           <div className="relative z-10 mr-16 rounded-xl border border-primary/25 bg-background p-5 sm:mr-24 sm:p-8">
             <h2 className="text-xl font-semibold">{t("Open to IT, cybersecurity and development opportunities")}</h2>
-            <p className="mt-2 max-w-xl text-sm text-muted-foreground">{t("Available for junior roles, internships and collaborative technical projects.")}</p>
             <Button asChild size="lg" className="group mt-6"><Link to="/contact">{t("Get in touch ")}<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" /></Link></Button>
           </div>
         </Reveal>

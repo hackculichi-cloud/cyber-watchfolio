@@ -12,7 +12,7 @@ export default function CertificateDocumentPreview({ record, label }: { record: 
   if (!record.image) return null;
   const image = record.image;
   return <div data-certificate-original={record.id} data-digitized-document={record.digitized || undefined}>
-    <button ref={opener} type="button" onClick={() => setOpen(true)} aria-label={label ? t(label) : `${t("Enlarge original certificate")}: ${t(record.title)}`} className="block w-full rounded-lg border border-primary/30 bg-white text-left outline-none focus-visible:ring-2 focus-visible:ring-primary">
+    <button ref={opener} type="button" onClick={() => setOpen(true)} aria-label={label ? t(label) : record.digitized ? t("View certificate") : `${t("Enlarge original certificate")}: ${t(record.title)}`} className="block w-full rounded-lg border border-primary/30 bg-white text-left outline-none focus-visible:ring-2 focus-visible:ring-primary">
       <img src={image.src} alt={t(image.alt)} width={image.width} height={image.height} loading="lazy" decoding="async" className="block h-auto w-full rounded-t-lg bg-white" />
       <span className="flex min-h-11 items-center justify-between gap-2 rounded-b-lg bg-background px-3 py-2 text-xs text-primary">{t(record.digitized ? "View certificate" : "View original certificate")}<Expand className="h-4 w-4" aria-hidden /></span>
     </button>

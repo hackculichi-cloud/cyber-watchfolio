@@ -100,7 +100,8 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
   ],
   repair: [
     {
-      id: "lidetec", title: "Smartphone Repair", provider: "LIDETEC", training: "Course participation", document: "Participation certificate available.",
+      id: "lidetec", title: "Smartphone Repair", provider: "LIDETEC", providerId: "lidetec", training: "Course participation", document: "Participation certificate available.",
+      awardedTo: "VELASCO ESTRADA CHRISTIAN ARMANDO", issuedOn: "2026-08-01", instructor: "Francisco Eduardo Villaseñor",
       href: "/certificates/lidetec-reparacion-celulares.pdf", digitized: true, sourcePhoto: "/images/repair/cert-lidetec.jpg",
       image: { src: "/certificates/lidetec-reparacion-celulares.webp", width: 1600, height: 940, alt: "Digitized LIDETEC smartphone repair participation certificate, with the original text and signature." },
       supports: { electronics: { href: "/repair#certifications", summary: "Component identification, multimeter use, soldering and board-handling coursework from my LIDETEC repair course." } },
