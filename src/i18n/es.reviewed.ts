@@ -1,5 +1,15 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "Digitized participation certificate": "Constancia de participación digitalizada",
+  "Digitized from the supplied photograph.": "Digitalización de la fotografía proporcionada.",
+  "View supplied photograph": "Ver fotografía proporcionada",
+  "Digitized LIDETEC smartphone repair participation certificate, with the original text and signature.": "Constancia digitalizada de reparación de celulares de LIDETEC, con el texto y la firma originales.",
+  "Related courses": "Cursos relacionados",
+  "View course": "Ver curso",
+  "Smartphone Repair": "Reparación de celulares",
+  "Electrical symbols, wiring diagrams and schematics complement my circuit-reading studies.": "La simbología eléctrica y los diagramas de cableado y esquemas complementan mis estudios de lectura de circuitos.",
+  "Voltage, resistance, continuity and instrument-safety coursework that complements my electronics studies.": "Formación en voltaje, resistencia, continuidad y seguridad de instrumentos que complementa mis estudios de electrónica.",
+  "Component identification, multimeter use, soldering and board-handling coursework from my LIDETEC repair course.": "Formación en identificación de componentes, multímetro, soldadura y manejo de tarjetas del curso de reparación de LIDETEC.",
   "Mobile Device Support & Repair CV": "CV de soporte y reparación de dispositivos móviles",
   "Technical support and repair candidate with seven years of bilingual customer service, Tier 2 support at TTEC and incident/escalation follow-up at TCS. Documented iPhone battery and display replacements; LIDETEC participation certificate and Basic Electronics studies at ETO in progress.": "Candidato de soporte técnico y reparación con siete años de atención bilingüe, soporte nivel 2 en TTEC y seguimiento de incidentes/escalaciones en TCS. Cambios de batería y pantalla de iPhone documentados; constancia de participación de LIDETEC y Electrónica Básica en ETO en curso.",
   "Professional technical support": "Experiencia profesional en soporte técnico",

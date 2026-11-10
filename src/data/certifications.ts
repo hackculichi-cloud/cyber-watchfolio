@@ -10,6 +10,9 @@ export type CertificationRecord = {
   contactHours?: number;
   credentialId?: string;
   verifyUrl?: string;
+  digitized?: boolean;
+  sourcePhoto?: string;
+  supports?: Partial<Record<ProfileSlug, { href: string; summary: string }>>;
   image?: { src: string; alt: string; width: number; height: number };
 };
 export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>> = {
@@ -42,6 +45,7 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
     },
     {
       id: "electrical-linkedin", title: "Electrical Systems: Reading Drawings and Schematics", provider: "LinkedIn Learning", providerId: "linkedin-learning", training: "Completed",
+      supports: { electronics: { href: "/electrical#certificate-electrical-linkedin", summary: "Electrical symbols, wiring diagrams and schematics complement my circuit-reading studies." } },
       document: "Course completed on October 30, 2026; certificate issued by LinkedIn Learning.",
       awardedTo: "Christian Velasco Estrada", issuedOn: "2026-10-30", contactHours: 0.75,
       credentialId: "7f0b6b08ee714835933ca230548a28ca29db50bff8e0fb9ae0f7b6614018df29",
@@ -67,6 +71,10 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
     },
     {
       id: "electrical-measurements", title: "Electrical Measurements", provider: "Udemy", providerId: "udemy", training: "Completed",
+      supports: {
+        repair: { href: "/electrical#certificate-electrical-measurements", summary: "Multimeter, voltage, resistance and continuity coursework that complements device diagnostics." },
+        electronics: { href: "/electrical#certificate-electrical-measurements", summary: "Voltage, resistance, continuity and instrument-safety coursework that complements my electronics studies." },
+      },
       document: "Course completed on October 30, 2026; certificate issued by Udemy.",
       awardedTo: "Christian Velasco Estrada", issuedOn: "2026-10-30", instructor: "Irving Lopez Hernandez", duration: "2 hours",
       credentialId: "UC-25442727-a627-4cdc-894e-d93da3bba021",
@@ -80,7 +88,7 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
     },
   ],
   electronics: [
-    { id: "eto-basic", title: "Basic Electronics", provider: "Escuela Tecnológica de Occidente", training: "Currently Studying", document: "Training in progress; certificate pending completion." },
+    { id: "eto-basic", title: "Basic Electronics", provider: "Escuela Tecnológica de Occidente", training: "Currently Studying", document: "Training in progress; certificate pending completion.", supports: { repair: { href: "/electronics#basic-electronics", summary: "Components, measurement and circuit diagnosis in an ongoing electronics program." } } },
   ],
   cybersecurity: [
     { id: "aws-preparation", title: "AWS Certified Cloud Practitioner", provider: "Amazon Web Services", training: "In preparation", document: "Preparing for the certification exam. Exam not passed; credential not yet obtained." },
@@ -91,6 +99,22 @@ export const certifications: Partial<Record<ProfileSlug, CertificationRecord[]>>
     { id: "academlo", title: "Frontend / Backend / Full Stack", provider: "Academlo", training: "Incomplete studies", document: "Incomplete studies; no graduation certificate claimed." },
   ],
   repair: [
-    { id: "lidetec", title: "Smartphone Repair", provider: "LIDETEC", training: "Course participation", document: "Participation certificate available.", href: "#repair-certification" },
+    {
+      id: "lidetec", title: "Smartphone Repair", provider: "LIDETEC", training: "Course participation", document: "Participation certificate available.",
+      href: "/certificates/lidetec-reparacion-celulares.pdf", digitized: true, sourcePhoto: "/images/repair/cert-lidetec.jpg",
+      image: { src: "/certificates/lidetec-reparacion-celulares.webp", width: 1600, height: 940, alt: "Digitized LIDETEC smartphone repair participation certificate, with the original text and signature." },
+      supports: { electronics: { href: "/repair#certifications", summary: "Component identification, multimeter use, soldering and board-handling coursework from my LIDETEC repair course." } },
+    },
   ],
 };
+
+/** A course keeps one credential record and can support explicitly related areas. */
+export function relatedTrainingFor(profile: ProfileSlug) {
+  const seen = new Set<string>();
+  return Object.values(certifications).flatMap(records => records.flatMap(record => {
+    const relation = record.supports?.[profile];
+    if (!relation || seen.has(record.id)) return [];
+    seen.add(record.id);
+    return [{ record, ...relation }];
+  }));
+}

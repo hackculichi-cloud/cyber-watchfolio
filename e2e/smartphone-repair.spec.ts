@@ -90,7 +90,7 @@ test('certificate and syllabus stay in their own destination; the full workshop 
   await expect(image).toHaveCSS('max-height', 'none');
   await expect(certificate.locator('[data-repair-school]')).toContainText('LIDETEC');
   await certificate.getByRole('button', { name: 'View certificate', exact: true }).first().click();
-  await expect(page.getByRole('dialog').locator('img')).toHaveAttribute('src', '/images/repair/cert-lidetec.jpg');
+  await expect(page.getByRole('dialog').locator('img')).toHaveAttribute('src', '/certificates/lidetec-reparacion-celulares.webp');
   await page.keyboard.press('Escape');
   await expect(curriculum.locator('ol > li')).toHaveCount(5);
   await curriculum.getByRole('button', { name: 'View training details', exact: true }).click();

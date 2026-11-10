@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",
     "test:e2e": "playwright test",
     "generate:cvs": "node scripts/generate-profile-cvs.mjs",
+    "generate:lidetec": "node scripts/generate-lidetec-scan.mjs",
     "security:audit": "npm audit --audit-level=moderate",
     "security:artifacts": "node scripts/check-public-artifacts.mjs"
   },

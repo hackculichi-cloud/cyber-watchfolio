@@ -35,7 +35,7 @@ for (const width of [320, 820, 1440]) {
       await expect(career.locator('[data-support-role="tcs-operations"]')).toContainText('SLA');
       await expect(career).toContainText(lang === 'es' ? '7 años' : '7 years');
       const training = page.locator('[data-repair-development]');
-      await expect(training.locator('a[href="/electronics#basic-electronics"]')).toContainText(lang === 'es' ? 'En progreso' : 'In progress');
+      await expect(training.locator('a[href="/electronics#basic-electronics"]')).toContainText(lang === 'es' ? 'Estudiando actualmente' : 'Currently Studying');
       await expect(training.locator('a[href="/electrical#certificate-electrical-measurements"]')).toContainText(lang === 'es' ? 'Completado' : 'Completed');
       await expect(training).toContainText(lang === 'es' ? 'Objetivos de desarrollo' : 'Development goals');
       await expect(training).toContainText(lang === 'es' ? 'Tengo disposición' : 'I am willing');
