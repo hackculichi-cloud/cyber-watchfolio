@@ -13,10 +13,12 @@ const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
   const photos = repair.photos ?? [repair.before, repair.during, repair.after, ...(repair.evidence ?? [])].filter((image) => image !== undefined);
 
   const facts: { label: string; value?: string | string[] }[] = [
+    { label: "Device model", value: repair.device },
     { label: "Repair record", value: repair.ref },
     { label: "Date", value: repair.date },
-    { label: "Issue", value: repair.issue },
-    { label: "Diagnosis", value: repair.diagnosis },
+    { label: "Issue", value: repair.issue ?? "Reported symptom not documented." },
+    { label: "Initial inspection", value: repair.initialInspection ?? "Initial inspection details pending documentation." },
+    { label: "Diagnosis", value: repair.diagnosis ?? "Diagnosis details pending documentation." },
     { label: "Work performed", value: repair.work },
     { label: "Tools", value: repair.tools },
     { label: "Components", value: repair.components },
@@ -27,7 +29,12 @@ const SmartphoneRepairCard = ({ repair }: { repair: SmartphoneRepair }) => {
 
   return (
     <article data-repair-case={repair.id} className="space-y-5">
-      <p className="text-center text-sm text-muted-foreground">{t("Work completed with post-repair checks confirmed.")}</p>
+      <div data-repair-outcome className="rounded-xl border border-primary/25 bg-primary/5 p-4 text-left">
+        <h3 className="font-semibold text-primary">{t("Result")}</h3>
+        {repair.result && <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(repair.result)}</p>}
+        {repair.components?.length ? <p className="mt-2 text-sm">{repair.components.map(component=>t(component)).join(" · ")}</p> : null}
+        {repair.tests?.length ? <p className="mt-3 text-xs leading-relaxed text-muted-foreground"><span className="font-semibold text-foreground">{t("Post-repair checks performed")}: </span>{repair.tests.map(check=>t(check)).join(" · ")}</p> : null}
+      </div>
       <WorkImageGallery images={photos} title={repair.device} presentation />
       <details data-repair-technical className="rounded-xl border border-border p-4">
         <summary className="min-h-11 cursor-pointer font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Technical details and checks")}</summary>

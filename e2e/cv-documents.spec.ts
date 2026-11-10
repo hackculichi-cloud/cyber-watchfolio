@@ -14,7 +14,7 @@ for (const cv of manifests) {
       const pages = cv.pageCounts[lang];
       const next = dialog.getByRole('button', { name: lang === 'es' ? 'Página siguiente' : 'Next page', exact: true });
       const previous = dialog.getByRole('button', { name: lang === 'es' ? 'Página anterior' : 'Previous page', exact: true });
-      while (!(await previous.isDisabled())) await previous.click();
+      if (pages > 1) while (!(await previous.isDisabled())) await previous.click();
       const download = dialog.locator('a[download]');
       const file = `/cv/christian-velasco-${cv.id}-${lang}.pdf`;
       await expect(download).toHaveAttribute('href', file);
@@ -22,13 +22,19 @@ for (const cv of manifests) {
       expect(response.ok()).toBe(true);
       expect((await response.body()).subarray(0, 5).toString()).toBe('%PDF-');
       for (let index = 1; index <= pages; index++) {
-        await expect(dialog.locator('[data-cv-page]')).toHaveText(lang === 'es' ? `Página ${index} de ${pages}` : `Page ${index} of ${pages}`);
+        if (pages > 1) await expect(dialog.locator('[data-cv-page]')).toHaveText(lang === 'es' ? `Página ${index} de ${pages}` : `Page ${index} of ${pages}`);
+        else await expect(dialog.locator('[data-cv-page]')).toHaveCount(0);
         await expect(image).toHaveAttribute('src', `/cv/previews/christian-velasco-${cv.id}-${lang}${index > 1 ? `-page-${index}` : ''}.png`);
         await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
         if (index < pages) await next.click();
       }
-      await expect(next).toBeDisabled();
-      await expect(previous).toBeEnabled();
+      if (pages > 1) {
+        await expect(next).toBeDisabled();
+        await expect(previous).toBeEnabled();
+      } else {
+        await expect(next).toHaveCount(0);
+        await expect(previous).toHaveCount(0);
+      }
       expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
     }
     await dialog.getByRole('button', { name: 'Acercar', exact: true }).click();
@@ -43,7 +49,8 @@ for (const cv of manifests) {
       await viewport.evaluate(el => { el.scrollLeft = 100; });
       await expect.poll(() => viewport.evaluate(el => el.scrollLeft)).toBe(100);
     }
-    await dialog.getByRole('button', { name: 'Página anterior', exact: true }).click();
+    if (cv.pageCounts.es > 1) await dialog.getByRole('button', { name: 'Página anterior', exact: true }).click();
+    else await dialog.getByRole('button', { name: 'Ajustar al ancho', exact: true }).click();
     await expect(dialog.locator('output:not([data-cv-page])')).toHaveText('100%');
     await page.keyboard.press('Escape');
     await expect(dialog).not.toBeVisible();

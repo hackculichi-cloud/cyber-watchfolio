@@ -11,7 +11,7 @@ const titles: Record<string, string> = {
   general: "General CV — experience, projects & training",
   cybersecurity: "Cybersecurity / IT CV", software: "Software Development CV",
   electrical: "Residential & Industrial Electrical Maintenance CV", electronics: "Electronics CV",
-  repair: "Technical Repair CV", "customer-service": "Call Center & Customer Service CV",
+  repair: "Mobile Device Support & Repair CV", "customer-service": "Call Center & Customer Service CV",
 };
 const generatedCvVariants: CvVariant[] = manifests.map(resume => {
   const assets = (lang: Lang) => ({ file: `/cv/christian-velasco-${resume.id}-${lang}.pdf`, preview: `/cv/previews/christian-velasco-${resume.id}-${lang}.png`, previews: Array.from({ length: resume.pageCounts[lang] }, (_, index) => `/cv/previews/christian-velasco-${resume.id}-${lang}${index ? `-page-${index + 1}` : ""}.png`) });

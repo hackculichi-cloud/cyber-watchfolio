@@ -47,7 +47,7 @@ for (const width of [320, 390, 1440]) {
       await expect(record.getByText(/test measurements are not documented/)).toBeVisible();
       await expect(record.locator('[data-work-step]')).toHaveCount(id === 'sr-003' ? 3 : 5);
       await expect(record.locator('figure')).toHaveCount(count); // No duplicate photo grids in the written process.
-      if (id === 'sr-002') await expect(record.getByText('Aftermarket self-programming battery', { exact: true })).toBeVisible();
+      if (id === 'sr-002') await expect(technical.getByText('Aftermarket self-programming battery', { exact: true })).toBeVisible();
       expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
       await page.keyboard.press('Escape');
       await expect(dialog).toHaveCount(0);
@@ -70,8 +70,8 @@ test('short filters never mix planned jobs with completed evidence; translations
   await expect(dialog.getByText('Cambio de pantalla', { exact: true })).toBeVisible();
   await expect(dialog.getByText('Detalles técnicos y comprobaciones', { exact: true })).toBeVisible();
   await page.keyboard.press('Escape');
-  const plans = page.locator('#smartphone-repair-groups details');
-  await plans.locator('summary').click();
+  const plans = page.locator('#smartphone-repair-groups > details');
+  await plans.locator(':scope > summary').click();
   await expect(plans.locator('[data-planned-repair]')).toHaveCount(1);
   await expect(plans.locator('[data-reported-repair]')).toHaveCount(3);
   await expect(plans).toContainText('iPhone 13');

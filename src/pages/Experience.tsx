@@ -12,6 +12,7 @@ import { profileBySlug } from "@/data/profiles";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { experienceEntries, experienceSummary, transferableImpact, customerServiceSkills } from "@/data/experience";
 import { site } from "@/data/site";
+import { Link } from "react-router-dom";
 
 const profile = profileBySlug("customer-service");
 const skillIcons = { phone: PhoneCall, support: Headset, problem: ListChecks, conflict: Handshake, operations: Users, technical: Wrench, training: GraduationCap, logistics: Truck };
@@ -70,11 +71,12 @@ const Experience = () => {
 
       <section id="transferable" className="container mx-auto scroll-mt-32 px-4 py-16">
         <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Transferable value")} title={t("How customer service strengthens my technical work")}>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {transferableImpact.map((item) => (
             <div key={item.area} className="panel-glow hover:-translate-y-1">
               <h3 className="text-sm font-semibold text-primary">{t(item.area)}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(item.detail)}</p>
+              {item.area === "Device support & repair" && <Link to="/repair#smartphones" className="mt-3 inline-flex min-h-11 items-center rounded text-sm font-semibold text-primary underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-primary">{t("View documented repairs")}</Link>}
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import { PhoneCall, Cpu, Shield, Code2, Wrench, Zap, Scissors, type LucideIcon } from "lucide-react";
+import { repairProfessionalSummary } from "./repairCareer";
 
 /** Slugs used for the per-profile visual identity (see `[data-profile]` in index.css). */
 export type ProfileSlug = "cybersecurity" | "development" | "electrical" | "electronics" | "repair" | "customer-service" | "barbering";
@@ -66,7 +67,7 @@ export const professionalProfiles: ProfileCardData[] = [
     slug: "repair",
     title: "Technical Repair",
     summary:
-      "LIDETEC phone-repair training: diagnosis, disassembly, measurement, soldering and software foundations, with documented iPhone battery and display replacements.",
+      "Tier 2 mobile-device support, bilingual customer service and documented iPhone repairs, supported by LIDETEC coursework and ongoing electronics studies.",
     href: "/repair",
     icon: Wrench,
     emphasis: "secondary",
@@ -220,10 +221,11 @@ export const profileIdentities: ProfileIdentity[] = [
     eyebrow: "Practical profile",
     status: "In training",
     description:
-      "I combine LIDETEC service, diagnosis and board-repair training with completed iPhone 12 Pro and 14 Pro battery replacements and an iPhone XR display replacement. Each case includes its own real photographs and final checks.",
+      repairProfessionalSummary,
     icon: Wrench,
     highlights: ["Smartphones", "Laptops", "Consoles (planned)", "Component-level work"],
     sections: [
+      { id: "support-experience", label: "Professional technical support" },
       { id: "certifications", label: "Training & syllabus" },
       { id: "smartphones", label: "Completed work" },
       { id: "specialties", label: "Specialties" },

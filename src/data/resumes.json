@@ -2193,186 +2193,141 @@
       "id": "repair",
       "profile": "repair",
       "en": {
-        "role": "Smartphone Repair Assistant | Battery & Display Replacement",
-        "summary": "I have completed three documented iPhone repairs: batteries on the 12 Pro and 14 Pro, and a display on the XR. I record each case and confirm post-repair functional checks. My LIDETEC participation certificate supports practical coursework in diagnosis, disassembly, measurement and repair; I am also studying Basic Electronics at ETO.",
+        "role": "Mobile Device Support and Repair Technician",
+        "summary": "Technical support and repair candidate with seven years of bilingual customer service, Tier 2 support at TTEC and incident/escalation follow-up at TCS. Documented iPhone battery and display replacements; LIDETEC participation certificate and Basic Electronics studies at ETO in progress.",
         "sections": [
           {
             "id": "experience",
-            "title": "Hands-on repair experience",
+            "title": "Relevant professional experience",
             "icon": "experience",
-            "layout": "grid",
+            "layout": "timeline",
+            "source": "career",
+            "ids": [
+              "ttec-tier2",
+              "tcs-operations",
+              "tcs-support"
+            ]
+          },
+          {
+            "id": "repairs",
+            "title": "Documented iPhone repairs",
+            "icon": "work",
+            "layout": "list",
             "entries": [
               {
-                "title": "iPhone 12 Pro",
-                "body": "Completed battery replacement.",
-                "status": "Completed",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              },
-              {
-                "title": "iPhone 14 Pro",
-                "body": "Completed aftermarket self-programming battery replacement.",
-                "status": "Completed",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              },
-              {
-                "title": "iPhone XR",
-                "body": "Completed display replacement.",
-                "status": "Completed",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
+                "title": "Battery and display replacement · photographic evidence",
+                "body": "Owner-confirmed post-repair checks: power, charging, touch, cameras, audio, Face ID and battery settings.",
+                "bullets": [
+                  "iPhone 12 Pro: battery replacement.",
+                  "iPhone 14 Pro: aftermarket self-programming battery.",
+                  "iPhone XR: display replacement."
+                ],
+                "url": "https://culichi.lat/repair#smartphones",
+                "linkLabel": "View cases and original photographs"
               }
-            ],
-            "intro": "Three completed repairs with original photographs. Confirmed final checks: power, charging, touch, cameras, audio, Face ID and battery settings."
+            ]
           },
           {
             "id": "skills",
-            "title": "Skills I can contribute",
+            "title": "Hardware, software & diagnostics",
             "icon": "skills",
-            "layout": "grid",
+            "layout": "list",
             "entries": [
               {
-                "title": "Intake & disassembly",
-                "body": "Service records, assembly recognition, tool selection and controlled disassembly/reassembly.",
-                "tags": [
-                  "Service records",
-                  "Precision tools"
-                ]
-              },
-              {
-                "title": "Device diagnosis",
-                "body": "Course practice: batteries, speakers, earpieces, charging/audio/touch/flex faults and inspection of boards and liquid-damaged devices.",
-                "tags": [
-                  "Multimeter",
-                  "Diagnostics",
-                  "Boards"
-                ]
-              },
-              {
-                "title": "Replacement & rework",
-                "body": "Documented battery/display replacements; course soldering, hot air, charging ports, buttons and connectors.",
-                "tags": [
-                  "Batteries",
-                  "Displays",
-                  "Soldering"
-                ]
-              },
-              {
-                "title": "Final checks & software",
-                "body": "Confirmed power, charging, touch, cameras, audio, Face ID and battery-setting checks; course foundations of OS fault recognition and restoration.",
-                "tags": [
-                  "Functional checks",
-                  "Documentation"
-                ]
+                "title": "Troubleshooting & technical records",
+                "body": "Hardware/software support and root-cause analysis; coursework in multimeter use, service records, disassembly/reassembly and board care; soldering and hot-air practice."
               }
             ]
           },
           {
             "id": "certifications",
-            "title": "Education & credentials",
+            "title": "Education & course certificates",
             "icon": "certifications",
-            "layout": "grid",
+            "layout": "list",
             "source": "training",
             "ids": [
               "lidetec",
-              "eto-basic"
+              "eto-basic",
+              "electrical-measurements"
+            ],
+            "entrySummaries": {
+              "lidetec": "Participation certificate · 1 August 2026.",
+              "eto-basic": "Components, measurement and circuit diagnosis.",
+              "electrical-measurements": "Multimeter, voltage, resistance and continuity."
+            }
+          },
+          {
+            "id": "languages",
+            "title": "Languages & customer service",
+            "icon": "experience",
+            "layout": "list",
+            "entries": [
+              {
+                "title": "Spanish & English",
+                "body": "User communication, technical guidance, problem solving and escalation follow-up."
+              }
+            ]
+          },
+          {
+            "id": "development",
+            "title": "Professional development",
+            "icon": "education",
+            "layout": "list",
+            "entries": [
+              {
+                "title": "Apple training goals",
+                "body": "Willing to pursue Apple training and certifications; goals: Apple diagnostics, macOS support and safe device-service procedures."
+              }
             ]
           }
         ],
-        "highlights": [
-          {
-            "value": "3",
-            "label": "Documented repairs"
-          },
-          {
-            "value": "Battery / screen",
-            "label": "Completed interventions"
-          },
-          {
-            "value": "LIDETEC",
-            "label": "Course participation"
-          }
-        ],
-        "targetRoles": [
-          "Smartphone repair assistant",
-          "Battery and display replacement",
-          "Smartphone technician in training"
-        ]
+        "highlights": [],
+        "targetRoles": []
       },
       "es": {
-        "role": "Auxiliar de reparación de celulares | Baterías y pantallas",
-        "summary": "He realizado tres reparaciones de iPhone documentadas: baterías de 12 Pro y 14 Pro y pantalla de XR. Registro cada caso y confirmo las comprobaciones funcionales posteriores. Mi constancia de participación de LIDETEC respalda formación práctica en diagnóstico, desensamble, medición y reparación; también estudio Electrónica Básica en ETO.",
+        "role": "Técnico de Soporte y Reparación de Dispositivos Móviles",
+        "summary": "Candidato de soporte técnico y reparación con siete años de atención bilingüe, soporte nivel 2 en TTEC y seguimiento de incidentes/escalaciones en TCS. Cambios de batería y pantalla de iPhone documentados; constancia de participación de LIDETEC y Electrónica Básica en ETO en curso.",
         "sections": [
           {
             "id": "experience",
-            "title": "Experiencia práctica en reparación",
+            "title": "Experiencia laboral relevante",
             "icon": "experience",
-            "layout": "grid",
+            "layout": "timeline",
+            "source": "career",
+            "ids": [
+              "ttec-tier2",
+              "tcs-operations",
+              "tcs-support"
+            ]
+          },
+          {
+            "id": "repairs",
+            "title": "Reparaciones de iPhone documentadas",
+            "icon": "work",
+            "layout": "list",
             "entries": [
               {
-                "title": "iPhone 12 Pro",
-                "body": "Cambio de batería realizado.",
-                "status": "Realizado",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              },
-              {
-                "title": "iPhone 14 Pro",
-                "body": "Cambio realizado de batería aftermarket autoprogramable.",
-                "status": "Realizado",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
-              },
-              {
-                "title": "iPhone XR",
-                "body": "Cambio de pantalla realizado.",
-                "status": "Realizado",
-                "tone": "complete",
-                "url": "https://culichi.lat/repair"
+                "title": "Baterías y pantallas · evidencia fotográfica",
+                "body": "Pruebas posteriores confirmadas por el titular: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes.",
+                "bullets": [
+                  "iPhone 12 Pro: cambio de batería.",
+                  "iPhone 14 Pro: batería aftermarket autoprogramable.",
+                  "iPhone XR: cambio de pantalla."
+                ],
+                "url": "https://culichi.lat/repair#smartphones",
+                "linkLabel": "Ver casos y fotografías originales"
               }
-            ],
-            "intro": "Tres reparaciones realizadas con fotografías originales. Pruebas finales confirmadas: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes."
+            ]
           },
           {
             "id": "skills",
-            "title": "Conocimientos que puedo aportar",
+            "title": "Hardware, software y diagnóstico",
             "icon": "skills",
-            "layout": "grid",
+            "layout": "list",
             "entries": [
               {
-                "title": "Recepción y desensamble",
-                "body": "Fichas de servicio, reconocimiento de ensambles, selección de herramientas y desensamble/ensamble controlado.",
-                "tags": [
-                  "Fichas de servicio",
-                  "Herramientas de precisión"
-                ]
-              },
-              {
-                "title": "Diagnóstico de equipos",
-                "body": "Prácticas de curso: baterías, bocinas, auriculares, fallas de carga/audio/touch/flex e inspección de tarjetas y equipos con humedad.",
-                "tags": [
-                  "Multímetro",
-                  "Diagnóstico",
-                  "Tarjetas"
-                ]
-              },
-              {
-                "title": "Reemplazo y retrabajo",
-                "body": "Cambios documentados de batería/pantalla; prácticas de soldadura, aire caliente, centros de carga, botones y conectores.",
-                "tags": [
-                  "Baterías",
-                  "Pantallas",
-                  "Soldadura"
-                ]
-              },
-              {
-                "title": "Pruebas finales y software",
-                "body": "Pruebas confirmadas de encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes; bases de curso sobre fallas del sistema operativo y restauración.",
-                "tags": [
-                  "Pruebas funcionales",
-                  "Documentación"
-                ]
+                "title": "Diagnóstico y documentación técnica",
+                "body": "Soporte de hardware/software y análisis de causa raíz; formación en multímetro, fichas de servicio, desensamble/ensamble y cuidado de tarjetas; prácticas de soldadura y aire caliente."
               }
             ]
           },
@@ -2380,33 +2335,46 @@
             "id": "certifications",
             "title": "Formación y constancias",
             "icon": "certifications",
-            "layout": "grid",
+            "layout": "list",
             "source": "training",
             "ids": [
               "lidetec",
-              "eto-basic"
+              "eto-basic",
+              "electrical-measurements"
+            ],
+            "entrySummaries": {
+              "lidetec": "Constancia de participación · 1 de agosto de 2026.",
+              "eto-basic": "Componentes, medición y diagnóstico de circuitos.",
+              "electrical-measurements": "Multímetro, voltaje, resistencia y continuidad."
+            }
+          },
+          {
+            "id": "languages",
+            "title": "Idiomas y atención al cliente",
+            "icon": "experience",
+            "layout": "list",
+            "entries": [
+              {
+                "title": "Español e inglés",
+                "body": "Comunicación con usuarios, orientación técnica, solución de problemas y seguimiento de escalaciones."
+              }
+            ]
+          },
+          {
+            "id": "development",
+            "title": "Desarrollo profesional",
+            "icon": "education",
+            "layout": "list",
+            "entries": [
+              {
+                "title": "Objetivos de formación Apple",
+                "body": "Disposición para cursar formación y certificaciones Apple; objetivos: diagnóstico Apple, soporte macOS y procedimientos seguros de servicio técnico."
+              }
             ]
           }
         ],
-        "highlights": [
-          {
-            "value": "3",
-            "label": "Reparaciones documentadas"
-          },
-          {
-            "value": "Batería / pantalla",
-            "label": "Intervenciones realizadas"
-          },
-          {
-            "value": "LIDETEC",
-            "label": "Participación en curso"
-          }
-        ],
-        "targetRoles": [
-          "Auxiliar de reparación de celulares",
-          "Cambio de baterías y pantallas",
-          "Técnico de celulares en formación"
-        ]
+        "highlights": [],
+        "targetRoles": []
       }
     },
     {
@@ -2624,5 +2592,12 @@
       }
     }
   ],
-  "displayName": "Christian Velasco"
+  "displayName": "Christian Velasco",
+  "careerIds": [
+    "tcs-operations",
+    "tcs-support",
+    "alorica-logistics",
+    "ttec-tier2",
+    "tp-support"
+  ]
 }

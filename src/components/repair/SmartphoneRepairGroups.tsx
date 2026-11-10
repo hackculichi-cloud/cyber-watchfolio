@@ -39,9 +39,14 @@ export default function SmartphoneRepairGroups() {
         </button>;
       })}
     </div>
-    {plannedSmartphoneRepairs.length > 0 && <details className="mx-auto max-w-3xl rounded-xl border border-border px-4 text-sm text-muted-foreground">
+    {(plannedSmartphoneRepairs.length > 0 || completedRepairsAwaitingPhotos.length > 0) && <details className="mx-auto max-w-3xl rounded-xl border border-border px-4 text-sm text-muted-foreground">
       <summary className="cursor-pointer py-4 font-medium">{t("Additional repairs")} ({plannedSmartphoneRepairs.length + completedRepairsAwaitingPhotos.length})</summary>
-      <ul className="space-y-3 pb-4">{completedRepairsAwaitingPhotos.map(repair => <li key={repair.id} data-reported-repair={repair.id}><span className="font-medium text-foreground">{repair.device}</span> · {t(repair.repairType)}<span className="mt-1 block text-xs text-primary">{t("Completed · photos pending")}</span></li>)}</ul>
+      <ul className="space-y-3 pb-4">{completedRepairsAwaitingPhotos.map(repair => <li key={repair.id} data-reported-repair={repair.id} className="rounded-lg border border-border p-3"><span className="font-medium text-foreground">{repair.device}</span> · {t(repair.repairType)}<span className="mt-1 block text-xs text-primary">{t(repair.followUp ? "Screen replaced · follow-up pending" : "Completed · photos pending")}</span>
+        {repair.followUp && <div data-repair-follow-up className="mt-3 space-y-3 text-sm leading-relaxed">
+          <p>{t(repair.followUp.result)}</p>
+          <details><summary className="min-h-11 cursor-pointer py-2 font-semibold text-primary">{t("Intervention and pending checks")}</summary><dl className="space-y-3 pb-2">{[["Work performed", repair.followUp.intervention], ["Diagnosis", repair.followUp.diagnosis], ["Pending documentation", repair.followUp.pending]].map(([label,value])=><div key={label}><dt className="text-xs font-semibold text-primary">{t(label)}</dt><dd className="mt-1">{t(value)}</dd></div>)}</dl></details>
+        </div>}
+      </li>)}</ul>
       <ul className="space-y-3 pb-4">{plannedSmartphoneRepairs.map(plan => <li key={plan.id} data-planned-repair={plan.id}><span className="font-medium text-foreground">{plan.device}</span> · {t(plan.repairType)} · {t("Planned")}</li>)}</ul>
     </details>}
     <Dialog open={!!selected} onOpenChange={open => !open && setSelected(null)}>

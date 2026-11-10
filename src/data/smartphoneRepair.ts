@@ -177,6 +177,7 @@ export type SmartphoneRepair = WorkProcessRecord & {
   brand: SmartphoneBrand;
   repairType: SmartphoneRepairType;
   issue?: string;
+  initialInspection?: string;
   diagnosis?: string;
   work?: string[];
   tools?: string[];
@@ -279,7 +280,14 @@ export const smartphoneRepairs: SmartphoneRepair[] = confirmedSmartphoneRepairs.
 /** User-confirmed future work. Never included in completed repair counts. */
 /** Completed as reported by the owner; photos and case records have not arrived yet. */
 export const completedRepairsAwaitingPhotos = [
-  { id: "reported-s21-ultra-screen", device: "Samsung Galaxy S21 Ultra", repairType: "Screen replacement" },
+  { id: "reported-s21-ultra-screen", device: "Samsung Galaxy S21 Ultra", repairType: "Screen replacement",
+    followUp: {
+      intervention: "Screen replacement performed.",
+      diagnosis: "A visual behavior noticed during post-repair checks was identified as an interface feature.",
+      result: "A flash fault was reported; its resolution is not confirmed. The overall functional result remains unconfirmed.",
+      pending: "Photographs, the flash diagnosis and resolution, and a detailed post-repair check record are pending.",
+    },
+  },
   { id: "reported-a35-battery", device: "Samsung Galaxy A35", repairType: "Battery replacement" },
   { id: "reported-iphone13-battery", device: "iPhone 13", repairType: "Battery replacement" },
 ];

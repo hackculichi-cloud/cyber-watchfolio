@@ -2,7 +2,7 @@ import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import MascotScene from "@/components/shared/MascotScene";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { Smartphone, Laptop, Gamepad2 } from "lucide-react";
+import { Smartphone, Laptop, Gamepad2, Download, BriefcaseBusiness, Mail } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
@@ -27,7 +27,10 @@ import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
 import { site } from "@/data/site";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import { cvVariants, cvAssets } from "@/data/cvs";
+import RepairCareerBridge from "@/components/repair/RepairCareerBridge";
+import RepairDevelopment from "@/components/repair/RepairDevelopment";
 
 const profile = profileBySlug("repair");
 
@@ -81,7 +84,8 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
 };
 
 const TechnicalRepair = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const repairCv = cvVariants.find(cv => cv.id === "repair")!;
   const { hash } = useLocation();
   const [otherOpen, setOtherOpen] = useState(false);
   useEffect(() => { if (["#other-repairs", "#laptops", "#consoles", "#work"].includes(hash)) setOtherOpen(true); }, [hash]);
@@ -93,17 +97,21 @@ const TechnicalRepair = () => {
         path="/repair"
       />
       <ProfileHero profile={profile}>
-        <Button asChild>
-          <a href="#smartphones">{t("View repairs")}</a>
+        <Button asChild className="min-h-11">
+          <a href="#smartphones">{t("View documented repairs")}</a>
         </Button>
-        <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
-          <a href="#certifications">{t("Certifications")}</a>
+        <Button asChild variant="outline" className="min-h-11 bg-background/40 backdrop-blur-sm">
+          <a data-repair-cv-download href={cvAssets(repairCv, lang).file} download><Download className="h-4 w-4" aria-hidden />{t("Download repair CV")}</a>
         </Button>
+        <Button asChild variant="outline" className="min-h-11"><Link to="/experience#background"><BriefcaseBusiness className="h-4 w-4" aria-hidden />{t("View professional experience")}</Link></Button>
+        <Button asChild variant="outline" className="min-h-11"><Link to="/contact"><Mail className="h-4 w-4" aria-hidden />{t("Contact me")}</Link></Button>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
+      <RepairCareerBridge />
       <section id="certifications" className="container mx-auto scroll-mt-32 px-4 py-10">
         <SectionHeading title={t("Smartphone repair training")} />
         <CertificateCard />
+        <RepairDevelopment />
       </section>
       <div className="border-y border-border bg-surface/40">
         <DeviceSection type="Smartphones" />

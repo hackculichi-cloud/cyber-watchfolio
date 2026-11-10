@@ -25,7 +25,7 @@ const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[
     const selected = nodes.find(node => node.id === hash.slice(1) || (target && node.contains(target)))?.id ?? nodes[0]?.id;
     for (const node of nodes) {
       node.dataset.mobileProfileSection = "true";
-      const repairIntroduction = pathname === "/repair" && ["certifications", "smartphones"].includes(selected ?? "") && ["certifications", "smartphones", "other-repairs"].includes(node.id);
+      const repairIntroduction = pathname === "/repair" && ["support-experience", "certifications", "smartphones"].includes(selected ?? "") && ["support-experience", "certifications", "smartphones", "other-repairs"].includes(node.id);
       node.dataset.mobileProfileActive = String(showAll || node.id === selected || repairIntroduction);
     }
     const phone = window.matchMedia("(max-width: 767px)");
