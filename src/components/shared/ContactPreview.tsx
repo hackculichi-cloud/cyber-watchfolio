@@ -1,39 +1,49 @@
-import { useId, useState, type ReactNode } from "react";
+import { useId, useRef, useState, type ReactNode } from "react";
 import { ExternalLink, Github, Linkedin, Mail, Send } from "lucide-react";
 import { site } from "@/data/site";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Portal } from "@radix-ui/react-hover-card";
 import SmartImage from "./SmartImage";
+import WhatsAppIcon from "./WhatsAppIcon";
 
-type Channel = "Email" | "GitHub" | "LinkedIn";
+type Channel = "Email" | "GitHub" | "LinkedIn" | "WhatsApp";
 type Props = { channel: Channel; href: string; external?: boolean; className?: string; ariaLabel?: string; children: ReactNode };
 
 const ContactPreview = ({ channel, href, external, className, ariaLabel, children }: Props) => {
   const id = useId();
   const [open, setOpen] = useState(false);
+  const dismissed = useRef(false);
   const { lang, t } = useLanguage();
   const spanish = lang === "es";
-  const Icon = channel === "Email" ? Mail : channel === "GitHub" ? Github : Linkedin;
+  const Icon = channel === "Email" ? Mail : channel === "GitHub" ? Github : channel === "WhatsApp" ? WhatsAppIcon : Linkedin;
   return (
-    <HoverCard open={open} onOpenChange={setOpen} openDelay={150} closeDelay={150}>
+    <HoverCard open={open} onOpenChange={value => { if (!value || !dismissed.current) setOpen(value); }} openDelay={150} closeDelay={150}>
       <HoverCardTrigger asChild>
         <a href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer noopener" : undefined} aria-label={t(ariaLabel)}
-          onFocus={() => setOpen(true)} onBlur={() => setOpen(false)}
-          onKeyDown={(event) => { if (event.key === "Escape") setOpen(false); }}
+          onPointerEnter={() => { dismissed.current = false; }} onPointerLeave={() => { dismissed.current = false; }}
+          onFocus={() => { dismissed.current = false; setOpen(true); }} onBlur={() => { dismissed.current = false; setOpen(false); }}
+          onKeyDown={(event) => { if (event.key === "Escape") { dismissed.current = true; setOpen(false); } }}
           aria-describedby={open ? id : undefined} className={className}>
           {children}
         </a>
       </HoverCardTrigger>
       <Portal>
         <HoverCardContent id={id} role="tooltip" data-contact-preview={channel} sideOffset={10} collisionPadding={16}
+          onEscapeKeyDown={() => { dismissed.current = true; setOpen(false); }}
           className="z-[60] w-[min(16rem,calc(100vw-2rem))] overflow-hidden rounded-lg border-primary/30 p-0 shadow-xl">
           <div className="flex items-center gap-1.5 border-b border-border bg-secondary/60 px-3 py-1.5 text-[11px] text-muted-foreground">
             <Icon className="h-3 w-3 shrink-0 text-primary" />
-            <span className="min-w-0 flex-1 truncate">{t(channel === "Email" ? site.email : channel === "GitHub" ? "github.com/ByCulichi" : "linkedin.com/in/culichi")}</span>
+            <span className="min-w-0 flex-1 truncate">{channel === "WhatsApp" ? site.whatsappDisplay : t(channel === "Email" ? site.email : channel === "GitHub" ? "github.com/ByCulichi" : "linkedin.com/in/culichi")}</span>
             <ExternalLink className="h-2.5 w-2.5 shrink-0" />
           </div>
-          {channel === "Email" ? (
+          {channel === "WhatsApp" ? (
+            <div className="space-y-3 bg-green-950/20 p-3">
+              <div><p className="text-sm font-semibold">{site.shortName}</p><p className="mt-1 text-xs text-muted-foreground">{t("WhatsApp contact preview")}</p></div>
+              <p className="rounded-xl rounded-bl-none border border-green-400/25 bg-green-400/10 p-3 text-xs">{t(spanish ? "Hola Christian," : "Hi Christian,")}</p>
+              <p className="flex items-center gap-2 text-xs text-green-300"><ExternalLink className="h-3 w-3" aria-hidden />{t("Open WhatsApp")}</p>
+            </div>
+          ) : channel === "Email" ? (
             <div className="space-y-2 p-3">
               <p className="text-xs font-semibold">{t(spanish ? "Nuevo mensaje" : "New message")}</p>
               <div className="border-b border-border pb-1.5 text-[11px]"><span className="text-muted-foreground">{t(spanish ? "Para: " : "To: ")}</span>{t(site.email)}</div>

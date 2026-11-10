@@ -1,4 +1,18 @@
-# Revisión de seguridad — 28 de octubre de 2026
+# Revisión de seguridad — 10 de noviembre de 2026
+
+La auditoría completa vuelve a reportar **0 avisos conocidos**, frente a nueve entradas moderadas propagadas por dos avisos de herramientas de desarrollo: glob y minimatch. La auditoría de producción también reporta cero. Se actualiza sucrase de 3.35.0 a 3.35.1, eliminando glob de esa cadena, y se aplica un override limitado a `@typescript-eslint/typescript-estree` para usar minimatch 11.0.5. Las versiones de ejecución de la aplicación no cambian.
+
+El salto acotado de minimatch conserva la función nombrada y las opciones usadas por el consumidor; se compararon 81 patrones representativos con la versión anterior. Sus requisitos Node 20 o >=22 encajan en los del proyecto y CI utiliza Node 24. Se comprobaron instalación limpia con `npm ci --ignore-scripts`, TypeScript/build, lint sin errores (ocho advertencias previas), 32 pruebas unitarias y 43 casos de navegador. El override debe revisarse cuando el consumidor incorpore una dependencia corregida compatible por sí mismo.
+
+Se verificaron los encabezados HTTPS/CSP del dominio publicado y del CV descargable: HSTS, bloqueo de incrustación, restricciones de scripts/conexiones, nosniff y políticas de permisos/referencia. Las pruebas locales de producción confirman el bloqueo efectivo de scripts/eventos inline, iframe externo, formularios y fetch fuera del origen; entradas maliciosas de URL e idioma permanecen inertes. Se conserva la política existente, sin atribuirle correcciones nuevas.
+
+La revisión acotada de publicación no detectó rutas privadas, claves, source maps o symlinks, ni coincidencias con los patrones de credenciales comprobados. Se inspeccionaron 21 PDF sin acciones activas de JavaScript, lanzamiento o envío detectadas y 348 imágenes sin metadatos GPS detectados. Esto no equivale a un análisis antivirus ni a revisar todo el historial Git o las cuentas de infraestructura.
+
+La compatibilidad táctil y sus límites están en [device-usability-review.md](device-usability-review.md). No se garantiza seguridad absoluta; los avisos conocidos pueden cambiar y las cuentas GitHub/Vercel, DNS y WAF quedan fuera de esta revisión del código. GitHub Actions seguía sin iniciar por bloqueo de facturación en la consulta anterior; se informará el estado del nuevo commit en el PR.
+
+---
+
+# Historial: revisión de seguridad — 28 de octubre de 2026
 
 ## Resultado
 

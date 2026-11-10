@@ -2,7 +2,7 @@ import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import MascotScene from "@/components/shared/MascotScene";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { Smartphone, Laptop, Gamepad2 } from "lucide-react";
+import { Smartphone, Laptop, Gamepad2, Download, BriefcaseBusiness, Mail } from "lucide-react";
 import Seo from "@/components/shared/Seo";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Tag from "@/components/shared/Tag";
@@ -26,6 +26,11 @@ import { profileBySlug } from "@/data/profiles";
 import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
 import { site } from "@/data/site";
+import { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
+import { cvVariants, cvAssets } from "@/data/cvs";
+import RepairCareerBridge from "@/components/repair/RepairCareerBridge";
+import RepairDevelopment from "@/components/repair/RepairDevelopment";
 
 const profile = profileBySlug("repair");
 
@@ -79,7 +84,11 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
 };
 
 const TechnicalRepair = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const repairCv = cvVariants.find(cv => cv.id === "repair")!;
+  const { hash } = useLocation();
+  const [otherOpen, setOtherOpen] = useState(false);
+  useEffect(() => { if (["#other-repairs", "#laptops", "#consoles", "#work"].includes(hash)) setOtherOpen(true); }, [hash]);
   return (
     <>
       <Seo
@@ -88,23 +97,34 @@ const TechnicalRepair = () => {
         path="/repair"
       />
       <ProfileHero profile={profile}>
-        <Button asChild>
-          <a href="#smartphones">{t("View repairs")}</a>
+        <Button asChild className="min-h-11">
+          <a href="#smartphones">{t("View documented repairs")}</a>
         </Button>
-        <Button asChild variant="outline" className="bg-background/40 backdrop-blur-sm">
-          <a href="#certifications">{t("Certifications")}</a>
+        <Button asChild variant="outline" className="min-h-11 bg-background/40 backdrop-blur-sm">
+          <a data-repair-cv-download href={cvAssets(repairCv, lang).file} download><Download className="h-4 w-4" aria-hidden />{t("Download repair CV")}</a>
         </Button>
+        <Button asChild variant="outline" className="min-h-11"><Link to="/experience#background"><BriefcaseBusiness className="h-4 w-4" aria-hidden />{t("View professional experience")}</Link></Button>
+        <Button asChild variant="outline" className="min-h-11"><Link to="/contact"><Mail className="h-4 w-4" aria-hidden />{t("Contact me")}</Link></Button>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
+      <RepairCareerBridge />
+      <section id="certifications" className="container mx-auto scroll-mt-32 px-4 py-10">
+        <SectionHeading title={t("Smartphone repair training")} />
+        <CertificateCard />
+        <RepairDevelopment />
+      </section>
       <div className="border-y border-border bg-surface/40">
         <DeviceSection type="Smartphones" />
       </div>
+      <details id="other-repairs" data-other-repair-categories open={otherOpen} onToggle={event => setOtherOpen(event.currentTarget.open)} className="container mx-auto my-6 scroll-mt-40 rounded-xl border border-primary/25 px-4">
+      <summary className="min-h-11 cursor-pointer py-4 font-semibold text-primary">{t("Other repair areas")}</summary>
       <DeviceSection type="Laptops" />
       <div className="border-y border-border bg-surface/40">
         <DeviceSection type="Consoles" />
       </div>
 
       {worksFor("repair").length ? <section id="work" className="container mx-auto scroll-mt-32 px-4 py-10"><SectionHeading title={t("Other repair projects")} /><WorkGrid items={worksFor("repair")} /></section> : <EmptyCollectionSection id="work" title="Other repair projects" description="Additional documented repairs will appear here." />}
+      </details>
 
       <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
@@ -122,10 +142,6 @@ const TechnicalRepair = () => {
         <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Equipment & tooling")}><ProfileTools groups={toolsByProfile.repair} profile={profile.slug} /></SectionHeading>
       </section>
 
-      <section id="certifications" className="container mx-auto scroll-mt-32 px-4 py-10">
-        <SectionHeading title={t("Smartphone repair training")} />
-        <CertificateCard />
-      </section>
       <SpecialtyExplorer profile={profile.slug} />
       <ProfileCapabilities profile={profile.slug} />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">

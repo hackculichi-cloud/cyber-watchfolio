@@ -78,7 +78,7 @@ test('mobile profiles show a chosen content block, retain deep links and can rev
     const before = await page.evaluate(() => document.documentElement.scrollHeight);
     const firstSection = slug === 'barbering' ? '#training' : '#specialties';
     const destination = slug === 'barbering' ? 'tools' : 'cv';
-    await expect(page.locator('[data-mobile-profile-section]:visible')).toHaveCount(1);
+    await expect(page.locator('[data-mobile-profile-section]:visible')).toHaveCount(slug === 'repair' ? 4 : 1);
     const jump = page.getByRole('combobox', { name: 'Jump to section', exact: true });
     await jump.selectOption(destination);
     await expect(page.locator(`#${destination}`)).toBeVisible();

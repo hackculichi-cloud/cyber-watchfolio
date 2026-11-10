@@ -25,7 +25,8 @@ const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[
     const selected = nodes.find(node => node.id === hash.slice(1) || (target && node.contains(target)))?.id ?? nodes[0]?.id;
     for (const node of nodes) {
       node.dataset.mobileProfileSection = "true";
-      node.dataset.mobileProfileActive = String(showAll || node.id === selected);
+      const repairIntroduction = pathname === "/repair" && ["support-experience", "certifications", "smartphones"].includes(selected ?? "") && ["support-experience", "certifications", "smartphones", "other-repairs"].includes(node.id);
+      node.dataset.mobileProfileActive = String(showAll || node.id === selected || repairIntroduction);
     }
     const phone = window.matchMedia("(max-width: 767px)");
     const syncSelection = () => { if (phone.matches && selected) setActive(selected); };
@@ -38,7 +39,7 @@ const ProfileSectionNav = ({ sections, contentKey }: { sections: ProfileSection[
         delete node.dataset.mobileProfileActive;
       }
     };
-  }, [compactProfile, sections, hash, showAll]);
+  }, [compactProfile, sections, hash, pathname, showAll]);
 
   useEffect(() => {
     const legacyTarget = hash.slice(1);

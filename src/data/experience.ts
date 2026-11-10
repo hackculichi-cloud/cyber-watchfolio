@@ -22,6 +22,10 @@ export const experienceSummary = {
 
 export const transferableImpact = [
   {
+    area: "Device support & repair",
+    detail: "My mobile-device support experience at TTEC and incident follow-up at TCS inform how I communicate, investigate and document technical problems. My separate hands-on evidence includes iPhone battery and display replacements and LIDETEC repair coursework.",
+  },
+  {
     area: "IT & Technical Support",
     detail: "At TTEC I provided Tier 2 mobile-device support and root-cause analysis for hardware and software incidents. At TCS I monitored technical queues involving network issues and service outages.",
   },

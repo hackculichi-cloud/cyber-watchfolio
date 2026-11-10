@@ -1,105 +1,45 @@
 import { useLanguage } from "@/i18n/LanguageProvider";
-import { useState } from "react";
-import { Award, ExternalLink, ZoomIn } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { Download, ExternalLink } from "lucide-react";
 import Tag from "@/components/shared/Tag";
+import CertificateDocumentPreview from "@/components/profile/CertificateDocumentPreview";
 import TrainingCurriculum from "./TrainingCurriculum";
 import { trainingProvider, trainingModules, smartphoneSkills } from "@/data/smartphoneRepair";
+import { certifications } from "@/data/certifications";
 
-/** Certificate preview card with a lightbox viewer. Only certificate-visible data is shown. */
+const certificate = certifications.repair!.find(record => record.id === "lidetec")!;
+
+/** The faithful document scan leads; course knowledge stays visible before cases. */
 const CertificateCard = () => {
   const { t } = useLanguage();
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div id="repair-certification" className="panel-glow grid gap-6 items-start md:grid-cols-2">
-      {trainingProvider.image ? <button
-        type="button"
-        onClick={() => setOpen(true)}
-        style={{ padding: 0 }}
-        className="group relative overflow-hidden rounded-lg border border-border"
-        aria-label={t("View certificate")}
-      >
-        <img
-          src={trainingProvider.image}
-          alt={t(`${trainingProvider.course} certificate issued by ${trainingProvider.name}`)}
-          loading="lazy"
-          decoding="async"
-          style={{ rotate: `${trainingProvider.imageRotation}deg` }}
-          className="aspect-[4/3] max-h-96 w-full object-contain transition-transform duration-500 group-hover:scale-105"
-        />
-        <span className="absolute inset-0 grid place-items-center bg-background/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <ZoomIn className="h-5 w-5 text-primary" aria-hidden />
-        </span>
-      </button> : <div className="grid min-h-48 place-items-center rounded-lg border border-border p-6 text-center text-sm text-muted-foreground">{t("Certificate photo pending upload")}</div>}
-
-      <div className="space-y-4">
-        <div className="flex items-center gap-3">
-          <span className="glow-ring grid h-10 w-10 place-items-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
-            <Award className="h-5 w-5" aria-hidden />
-          </span>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-              {t(trainingProvider.name)}
-            </p>
-            <h3 className="text-base font-semibold">{t(trainingProvider.course)}</h3>
-          </div>
-        </div>
-
-        <Tag variant="accent">{t("Certificate of participation")}</Tag>
-
-        <div className="flex flex-wrap gap-3">
-          {trainingProvider.image && <Button variant="outline" onClick={() => setOpen(true)}>{t("View certificate")}</Button>}
-          <Button asChild variant="outline">
-            <a href={trainingProvider.website} target="_blank" rel="noopener noreferrer">
-              {t("Visit LIDETEC website")}<ExternalLink className="h-4 w-4" aria-hidden />
-              <span className="sr-only">{t(" (opens in a new tab)")}</span>
-            </a>
-          </Button>
-        </div>
+  return <div id="repair-certification" className="space-y-10">
+    <article data-repair-certificate className="certificate-card mx-auto max-w-4xl rounded-xl border border-primary/35 bg-surface/60 p-4 sm:p-6">
+      <CertificateDocumentPreview record={certificate} label="View certificate" />
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+        <a data-repair-school href={trainingProvider.website} target="_blank" rel="noopener noreferrer" aria-label={t("Visit LIDETEC website")} className="lidetec-neon inline-flex min-h-11 flex-col justify-center rounded-lg px-2 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <span className="text-2xl font-bold tracking-[.12em]">{trainingProvider.name}</span><span className="text-xs">{trainingProvider.fullName}</span>
+        </a>
+        <div className="flex flex-wrap items-center gap-3"><Tag variant="accent">{t("Certificate of participation")}</Tag><a href={certificate.href} download className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 text-sm font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary"><Download className="h-4 w-4" aria-hidden />{t("Download PDF")}</a></div>
       </div>
-
-      <details id="repair-training" className="md:col-span-2 rounded-xl border border-border p-4">
-        <summary className="min-h-11 cursor-pointer font-semibold text-primary focus-visible:ring-2 focus-visible:ring-primary">{t("Course syllabus")}</summary>
-        <dl className="grid gap-3 sm:grid-cols-2">
-          {[
-            { k: "Institution", v: `${trainingProvider.name} — ${trainingProvider.fullName}` },
-            { k: "Document", v: trainingProvider.document },
-            { k: "Issued", v: `${trainingProvider.location}, ${trainingProvider.certificateDate}` },
-            { k: "Instructor", v: trainingProvider.instructor },
-          ].map((row) => (
-            <div key={row.k} className="rounded-lg border border-border bg-surface-2/40 p-3">
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{t(row.k)}</dt>
-              <dd className="mt-1 text-sm text-foreground/90">{t(row.v)}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <div className="mt-5"><TrainingCurriculum modules={trainingModules} /></div>
-        <div id="repair-training-skills" className="mt-6 space-y-4">
-          <h4 className="text-base font-semibold">{t("Skills developed in training")}</h4>
-          <div className="grid gap-4 sm:grid-cols-2">{smartphoneSkills.map(group => <div key={group.group} className="rounded-lg border border-border p-4"><h5 className="mb-3 text-sm font-semibold text-primary">{t(group.group)}</h5><ul className="flex flex-wrap gap-2">{group.items.map(skill => <li key={skill}><Tag>{t(skill)}</Tag></li>)}</ul></div>)}</div>
-        </div>
+      <details className="mt-4 border-t border-border pt-3"><summary className="min-h-11 cursor-pointer py-2 text-sm font-semibold text-primary">{t("View document details")}</summary>
+        <dl className="mt-3 grid gap-4 text-sm sm:grid-cols-2">{[
+          { k: "Institution", v: `${trainingProvider.name} — ${trainingProvider.fullName}` },
+          { k: "Document", v: trainingProvider.document },
+          { k: "Issued", v: `${trainingProvider.location}, ${trainingProvider.certificateDate}` },
+          { k: "Instructor", v: trainingProvider.instructor },
+        ].map(row => <div key={row.k}><dt className="text-xs text-muted-foreground">{t(row.k)}</dt><dd className="mt-1">{t(row.v)}</dd></div>)}</dl>
+        <p className="mt-4 text-sm text-muted-foreground">{t("Digitized from the supplied photograph.")}</p>
+        <a href={certificate.sourcePhoto} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex min-h-11 items-center gap-2 rounded text-sm text-primary underline focus-visible:ring-2 focus-visible:ring-primary">{t("View supplied photograph")}<ExternalLink className="h-4 w-4" aria-hidden /></a>
+        <a href={trainingProvider.website} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm text-primary underline">{t("Visit LIDETEC website")}<ExternalLink className="h-4 w-4" aria-hidden /></a>
       </details>
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-3xl">
-          <DialogTitle className="text-base">
-            {t(trainingProvider.course)} — {t(trainingProvider.name)}
-          </DialogTitle>
-          <DialogDescription className="sr-only">{t("Certificate of participation issued by ")}{t(trainingProvider.name)}
-          </DialogDescription>
-          {trainingProvider.image && <img
-            src={trainingProvider.image}
-            alt={t(`${trainingProvider.course} certificate issued by ${trainingProvider.name}`)}
-            style={{ rotate: `${trainingProvider.imageRotation}deg` }}
-            className="max-h-[75vh] w-full rounded-lg border border-border object-contain"
-          />}
-        </DialogContent>
-      </Dialog>
-    </div>
-  );
+    </article>
+    <section id="repair-training" className="scroll-mt-40" aria-labelledby="repair-training-title">
+      <h3 id="repair-training-title" className="mb-5 text-xl font-semibold sm:text-2xl">{t("What I learned in this course")}</h3>
+      <TrainingCurriculum modules={trainingModules} />
+      <details id="repair-training-skills" className="mt-6 rounded-xl border border-primary/25 p-4">
+        <summary className="min-h-11 cursor-pointer py-2 font-semibold text-primary">{t("Skills developed in training")}</summary>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">{smartphoneSkills.map(group => <div key={group.group} className="rounded-lg border border-border p-4"><h4 className="mb-3 text-sm font-semibold text-primary">{t(group.group)}</h4><ul className="flex flex-wrap gap-2">{group.items.map(skill => <li key={skill}><Tag>{t(skill)}</Tag></li>)}</ul></div>)}</div>
+      </details>
+    </section>
+  </div>;
 };
-
 export default CertificateCard;

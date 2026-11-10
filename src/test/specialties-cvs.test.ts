@@ -5,6 +5,7 @@ import { profileIdentities } from "@/data/profiles";
 import { specialtiesFor } from "@/data/specialties";
 import { translate } from "@/i18n/translate";
 import resumes from "@/data/resumes.json";
+import { experienceEntries } from "@/data/experience";
 import { cvSections } from "../../scripts/cv-layout.mjs";
 
 describe("specialty and CV publishing integrity", () => {
@@ -33,13 +34,15 @@ describe("specialty and CV publishing integrity", () => {
       ids.add(cv!.id);
       for (const lang of ["es", "en"] as const) {
         const pages = cv!.localized![lang].previews;
-        expect(pages.length).toBeGreaterThanOrEqual(2);
+        if (cv!.id === "repair") expect(pages).toHaveLength(1);
+        else expect(pages.length).toBeGreaterThanOrEqual(2);
         expect(new Set(pages).size).toBe(pages.length);
-        expect(pages[pages.length - 1]).toContain(`-page-${pages.length}.png`);
+        expect(pages[pages.length - 1]).toContain(pages.length > 1 ? `-page-${pages.length}.png` : `-${lang}.png`);
       }
     }
   });
-  it("keeps service employment only in its own CV and gives technical CVs relevant practical experience", () => {
+  it("limits shared employment to customer service and selected relevant repair roles", () => {
+    expect(resumes.careerIds).toEqual(experienceEntries.map(entry => entry.id));
     for (const lang of ["es", "en"] as const) {
       expect(resumes.career[lang]).toHaveLength(5);
       for (const resume of resumes.resumes) {
@@ -49,6 +52,12 @@ describe("specialty and CV publishing integrity", () => {
           expect(sections.filter(section => section.source === "career")).toHaveLength(1);
           expect(cvSections(resumes, resume, lang).find(section => section.source === "career")?.entries).toEqual(resumes.career[lang]);
           expect(resume[lang].highlights[0].value).toBe("7");
+        } else if (resume.id === "repair") {
+          const career = cvSections(resumes, resume, lang).find(section => section.source === "career");
+          expect(career?.ids).toEqual(["ttec-tier2", "tcs-operations", "tcs-support"]);
+          expect(career?.entries).toEqual([3, 0, 1].map(index => resumes.career[lang][index]));
+          expect(JSON.stringify(career)).not.toMatch(/Alorica|Teleperformance/);
+          expect(resume[lang].sections.map(section => section.id)).toEqual(["experience", "repairs", "skills", "certifications", "languages", "development"]);
         } else {
           expect(sections.some(section => section.source === "career")).toBe(false);
           expect(sections.find(section => section.id === "experience")?.entries?.length).toBeGreaterThan(0);
@@ -69,9 +78,16 @@ describe("specialty and CV publishing integrity", () => {
     const resume = { ...original, es: { ...original.es, sections: [...original.es.sections, { id: "unrelated", title: "Unrelated history", icon: "experience", layout: "timeline", source: "career" }] } };
     expect(() => cvSections(resumes, resume, "es")).toThrow(/only in its own CV/);
   });
+  it("rejects unrelated or unknown employment in the targeted repair CV", () => {
+    const original = resumes.resumes.find(item => item.id === "repair")!;
+    for (const id of ["alorica-logistics", "unknown-job"]) {
+      const resume = { ...original, en: { ...original.en, sections: [{ id: "experience", title: "Experience", icon: "experience", layout: "timeline", source: "career", ids: [id] }] } };
+      expect(() => cvSections(resumes, resume, "en")).toThrow(/repair/i);
+    }
+  });
   it("targets relevant roles in both languages and leads applications with evidenced work", () => {
     for (const resume of resumes.resumes) for (const lang of ["es", "en"] as const) {
-      expect(resume[lang].targetRoles).toHaveLength(3);
+      expect(resume[lang].targetRoles).toHaveLength(resume.id === "repair" ? 0 : 3);
       expect(resume[lang].sections[0].id).toBe(resume.id === "general" ? "projects" : "experience");
       expect(translate(resume.en.summary, "es")).toBe(resume.es.summary);
     }

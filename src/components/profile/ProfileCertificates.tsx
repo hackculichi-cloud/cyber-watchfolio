@@ -9,6 +9,7 @@ import type { ReactNode } from "react";
 import CertificateMockup from "./CertificateMockup";
 import { TrainingProviderLogo } from "./TrainingProviderBadge";
 import MascotScene from "@/components/shared/MascotScene";
+import RelatedTraining from "./RelatedTraining";
 
 function CertificateInformation({ record, downloadOriginal, course }: { record: CertificationRecord; downloadOriginal: boolean; course?: ReactNode }) {
   const { t, lang } = useLanguage();
@@ -57,6 +58,7 @@ const ProfileCertificates = ({ profile, courseContent, featuredId }: { profile: 
       </div>
       </div>
     </article>; })}</div> : <p className="rounded-lg border border-dashed border-border p-5 text-sm text-muted-foreground">{t("No certificates provided for this area yet.")}</p>}
+    <RelatedTraining profile={profile} />
   </section>;
 };
 export default ProfileCertificates;

@@ -54,7 +54,7 @@ const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { prof
   }, [active]);
   return <section id="specialties" className="container mx-auto scroll-mt-32 px-4 py-12">
     {timeline && <span id="tracks" className="block scroll-mt-32" />}
-    <div className={profile === "electrical" ? "text-center [&_.eyebrow]:justify-center [&_p]:mx-auto" : undefined}><SectionHeading eyebrow={timeline ? t("Main training") : undefined} title={t(timeline ? "My electronics learning path" : "My specialties")} description={timeline ? t("Seven courses, in this order. Basic Electronics is in progress; the next six have not started yet.") : undefined} /></div>
+    <div><SectionHeading eyebrow={timeline ? t("Main training") : undefined} title={t(timeline ? "My electronics learning path" : "My specialties")} description={timeline ? t("Seven courses, in this order. Basic Electronics is in progress; the next six have not started yet.") : undefined} /></div>
     {timeline && <div className="mb-5"><InstitutionLink profile="electronics" /></div>}
     <ChoiceList data-electronics-timeline={timeline ? "" : undefined} className={timeline ? "specialty-grid electronics-training-timeline" : `specialty-grid grid grid-cols-1 gap-3 sm:grid-cols-2 ${profile === "electrical" ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
       {items.map((item, index) => { const art = specialtyArtwork[item.id]; return <ChoiceItem key={item.id} id={item.id} data-specialty-anchor data-training-stage={timeline ? index + 1 : undefined} className="scroll-mt-32">
@@ -70,12 +70,12 @@ const SpecialtyExplorer = ({ profile, activeId, onSelect, renderDetail }: { prof
             <span className="min-w-0"><span className="specialty-card-title block font-semibold">{t(item.title)}</span><Tag variant={item.status === "Upcoming" ? "muted" : "primary"}>{t(item.status)}</Tag></span>
             <ChevronDown className={`h-4 w-4 shrink-0 text-primary ${active === item.id ? "rotate-180" : ""}`} aria-hidden="true" />
             {item.status !== "Upcoming" && <span className="training-current-summary text-sm leading-relaxed text-muted-foreground">{t(item.summary)}<span className="mt-2 block font-semibold text-primary">{t("View syllabus & skills")}</span></span>}
-          </span> : <span className={`specialty-card-copy flex flex-1 flex-col gap-3 p-5 ${profile === "electrical" ? "items-center text-center" : "items-start text-left"}`}>
-            <span data-specialty-logo={item.id} aria-hidden className={`relative grid place-items-center border border-primary/40 bg-primary/10 text-primary ${profile === "electrical" ? "h-20 w-20 rounded-full shadow-[0_0_22px_hsl(var(--primary)/.12)]" : "h-14 w-14 rounded-xl"}`}>
+          </span> : <span className="specialty-card-copy flex flex-1 flex-col items-start gap-3 p-5 text-left">
+            <span data-specialty-logo={item.id} aria-hidden className={`relative grid place-items-center border border-primary/40 bg-primary/10 text-primary ${profile === "electrical" ? "h-20 w-20 self-center rounded-full shadow-[0_0_22px_hsl(var(--primary)/.12)]" : "h-14 w-14 rounded-xl"}`}>
               <item.icon className={profile === "electrical" ? "h-9 w-9" : "h-7 w-7"} />
               {profile === "electrical" && <span className="absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full border border-primary/50 bg-background"><Zap className="h-4 w-4" /></span>}
             </span>
-            <span className={`specialty-card-title flex w-full items-center gap-2 font-semibold ${profile === "electrical" ? "justify-center" : "justify-between"}`}>{t(item.title)}<ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${active === item.id ? "rotate-180" : ""}`} aria-hidden /></span>
+            <span className="specialty-card-title flex w-full items-center justify-between gap-2 font-semibold">{t(item.title)}<ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${active === item.id ? "rotate-180" : ""}`} aria-hidden /></span>
             <Tag variant={item.status.includes("Planned") || item.status === "Upcoming" ? "muted" : "primary"}>{t(item.status)}</Tag>
             <span className="specialty-card-summary line-clamp-3 text-xs leading-relaxed text-muted-foreground">{t(item.summary)}</span>
           </span>}
