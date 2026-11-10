@@ -277,7 +277,12 @@ const confirmedSmartphoneRepairs: SmartphoneRepair[] = [
 export const smartphoneRepairs: SmartphoneRepair[] = confirmedSmartphoneRepairs.map(repair => ({ ...repair, ...workProcessFor(repair.id, repair.photos) }));
 
 /** User-confirmed future work. Never included in completed repair counts. */
-export const plannedSmartphoneRepairs: { id: string; brand: SmartphoneBrand; device: string; repairType: SmartphoneRepairType }[] = [
-  { id: "planned-s21-ultra-screen", brand: "Samsung", device: "Samsung Galaxy S21 Ultra", repairType: "Screen replacement" },
-  { id: "planned-a35-battery", brand: "Samsung", device: "Samsung Galaxy A35", repairType: "Battery replacement" },
+/** Completed as reported by the owner; photos and case records have not arrived yet. */
+export const completedRepairsAwaitingPhotos = [
+  { id: "reported-s21-ultra-screen", device: "Samsung Galaxy S21 Ultra", repairType: "Screen replacement" },
+  { id: "reported-a35-battery", device: "Samsung Galaxy A35", repairType: "Battery replacement" },
+  { id: "reported-iphone13-battery", device: "iPhone 13", repairType: "Battery replacement" },
+];
+export const plannedSmartphoneRepairs = [
+  { id: "planned-iphonex-restoration", brand: "iPhone", device: "iPhone X", repairType: "Battery, screen and back cover replacement" },
 ];

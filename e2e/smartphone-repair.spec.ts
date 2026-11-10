@@ -1,6 +1,22 @@
 import { test, expect } from "@playwright/test";
 import { selectLanguage } from "./support/selectLanguage";
 
+test('empty repair areas stay in one dropdown and their deep links remain usable', async ({ page }) => {
+  for (const width of [320,820,1440]) {
+    await page.setViewportSize({width,height:900});
+    await page.goto('/repair');
+    const other=page.locator('[data-other-repair-categories]');
+    await expect(other).not.toHaveAttribute('open','');
+    await expect(page.locator('#laptops')).toBeHidden();
+    await other.locator(':scope > summary').click();
+    for (const id of ['laptops','consoles','work']) await expect(page.locator(`#${id}`)).toBeVisible();
+    await page.goto('/repair#laptops');
+    await expect(other).toHaveAttribute('open','');
+    await expect(page.locator('#laptops')).toBeVisible();
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  }
+});
+
 for (const width of [320, 390, 1440]) {
   test(`clients reach each real repair in one selection, with photos before optional text at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -56,7 +72,10 @@ test('short filters never mix planned jobs with completed evidence; translations
   await page.keyboard.press('Escape');
   const plans = page.locator('#smartphone-repair-groups details');
   await plans.locator('summary').click();
-  await expect(plans.locator('[data-planned-repair]')).toHaveCount(2);
+  await expect(plans.locator('[data-planned-repair]')).toHaveCount(1);
+  await expect(plans.locator('[data-reported-repair]')).toHaveCount(3);
+  await expect(plans).toContainText('iPhone 13');
+  await expect(plans).toContainText('iPhone X');
   await expect(plans).toContainText('Planeado');
   await expect(plans.locator('img')).toHaveCount(0);
 });
@@ -65,11 +84,14 @@ test('certificate and syllabus stay in their own destination; the full workshop 
   await page.goto('/repair#certifications');
   const certificate = page.locator('#repair-certification');
   const curriculum = certificate.locator('#repair-training');
-  await expect(curriculum).not.toHaveAttribute('open', '');
+  await expect(curriculum).toBeVisible();
+  expect((await certificate.boundingBox())!.y).toBeLessThan((await page.locator('#smartphones').boundingBox())!.y);
+  const image = certificate.locator('[data-repair-certificate] img');
+  await expect(image).toHaveCSS('max-height', 'none');
+  await expect(certificate.locator('[data-repair-school]')).toContainText('LIDETEC');
   await certificate.getByRole('button', { name: 'View certificate', exact: true }).first().click();
   await expect(page.getByRole('dialog').locator('img')).toHaveAttribute('src', '/images/repair/cert-lidetec.jpg');
   await page.keyboard.press('Escape');
-  await curriculum.locator('summary').click();
   await expect(curriculum.locator('ol > li')).toHaveCount(5);
   await curriculum.getByRole('button', { name: 'View training details', exact: true }).click();
   await expect(curriculum.getByText('UnlockTool setup and software servicing (coursework)', { exact: true })).toBeVisible();

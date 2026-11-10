@@ -40,9 +40,9 @@ const FooterContent = memo(function FooterContent({ pathname }: { pathname: stri
             <ContactPreview channel="GitHub" href={site.github} external ariaLabel="GitHub" className={`${contactLink} footer-contact-github`}>
               <Github className="h-6 w-6 self-center" aria-hidden /><span className="text-base font-semibold">GitHub</span><span data-contact-value className="max-w-full text-xs text-muted-foreground [overflow-wrap:anywhere]">{site.githubUsername}</span>
             </ContactPreview>
-            {site.whatsapp && <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className={`${contactLink} footer-contact-whatsapp`}>
+            {site.whatsapp && <ContactPreview channel="WhatsApp" href={site.whatsapp} external ariaLabel="WhatsApp" className={`${contactLink} footer-contact-whatsapp`}>
               <WhatsAppIcon className="h-6 w-6 self-center" aria-hidden /><span className="text-base font-semibold">WhatsApp</span><span data-contact-value className="max-w-full text-xs text-muted-foreground [overflow-wrap:anywhere]">{site.whatsappDisplay}</span>
-            </a>}
+            </ContactPreview>}
           </div>
         </div>
       </div>
@@ -54,7 +54,6 @@ const FooterContent = memo(function FooterContent({ pathname }: { pathname: stri
               <span className="footer-area-icon grid h-14 w-14 shrink-0 place-items-center rounded-full border border-primary/40 bg-primary/10 text-primary"><area.icon className="h-6 w-6" aria-hidden /></span><span className="footer-area-label text-xs font-medium leading-snug">{t(area.shortTitle ?? area.title)}</span>
             </Link>
           </li>)}</ul>
-          <ul data-footer-utilities className="mt-6 flex items-center justify-start gap-4 text-muted-foreground">{([["About", "/about", UserRound], ["CV", "/cv", FileText], ["Contact", "/contact", Mail]] as const).map(([label, href, Icon]) => <li key={href}><Link to={href} aria-label={t(label)} title={t(label)} className="flex min-h-14 min-w-20 flex-col items-center justify-center gap-2 rounded-xl border border-border/70 bg-background/30 text-foreground/80 hover:border-primary/60 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"><Icon className="h-5 w-5" aria-hidden /><span className="text-xs font-medium">{t(label)}</span></Link></li>)}</ul>
         </nav>
         <div data-footer-introduction className="mx-auto w-full max-w-md text-left lg:col-start-1 lg:row-start-1 lg:mx-0">
           <Link to="/" data-footer-identity className="flex w-full flex-col-reverse items-center justify-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
@@ -64,8 +63,9 @@ const FooterContent = memo(function FooterContent({ pathname }: { pathname: stri
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">{t("Learning, building and solving across technology and technical trades.")}</p>
         </div>
       </div>
-      <div className="flex flex-col items-start justify-between gap-4 border-t border-border/70 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
+      <div data-footer-bottom className="flex flex-col items-start justify-between gap-4 border-t border-border/70 py-6 text-xs text-muted-foreground md:flex-row md:flex-wrap md:items-center">
         <p>© {new Date().getFullYear()} {site.shortName} <span className="text-primary/70">/ aka Culichi</span></p>
+        <ul data-footer-utilities className="flex flex-wrap items-center gap-2">{([["About", "/about", UserRound], ["CV", "/cv", FileText], ["Contact", "/contact", Mail]] as const).map(([label, href, Icon]) => <li key={href}><Link to={href} className="inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-foreground/80 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"><Icon className="h-4 w-4" aria-hidden /><span>{t(label)}</span></Link></li>)}</ul>
         <a href="#main" className="footer-top-link group relative inline-flex min-h-11 items-center gap-3 overflow-hidden rounded-full border border-primary/35 bg-primary/5 py-1.5 pl-4 pr-1.5 font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
           <span aria-hidden className="footer-top-signal h-1.5 w-1.5 rounded-full bg-primary" />
           <span>{t("Back to top")}</span>

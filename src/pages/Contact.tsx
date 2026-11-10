@@ -47,9 +47,9 @@ const Contact = () => {
               <span className="break-all text-sm text-muted-foreground">{t(c.value)}</span>
             </ContactPreview>
           ))}
-          <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="panel-glow flex flex-col items-start gap-2 text-left hover:-translate-y-1">
+          <ContactPreview channel="WhatsApp" href={site.whatsapp} external ariaLabel="WhatsApp" className="panel-glow flex flex-col items-start gap-2 text-left">
             <WhatsAppIcon className="h-5 w-5 self-center text-green-400" aria-hidden /><span className="text-sm font-semibold">WhatsApp</span><span className="text-sm text-muted-foreground">{site.whatsappDisplay}</span>
-          </a>
+          </ContactPreview>
         </div>
 
         <div className="panel mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

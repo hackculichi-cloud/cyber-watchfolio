@@ -26,6 +26,8 @@ import { profileBySlug } from "@/data/profiles";
 import { galleryFor } from "@/data/gallery";
 import { toolsByProfile } from "@/data/tools";
 import { site } from "@/data/site";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const profile = profileBySlug("repair");
 
@@ -80,6 +82,9 @@ const DeviceSection = ({ type }: { type: RepairDeviceType }) => {
 
 const TechnicalRepair = () => {
   const { t } = useLanguage();
+  const { hash } = useLocation();
+  const [otherOpen, setOtherOpen] = useState(false);
+  useEffect(() => { if (["#other-repairs", "#laptops", "#consoles", "#work"].includes(hash)) setOtherOpen(true); }, [hash]);
   return (
     <>
       <Seo
@@ -96,15 +101,22 @@ const TechnicalRepair = () => {
         </Button>
       </ProfileHero>
       <ProfileSectionNav sections={profile.sections} />
+      <section id="certifications" className="container mx-auto scroll-mt-32 px-4 py-10">
+        <SectionHeading title={t("Smartphone repair training")} />
+        <CertificateCard />
+      </section>
       <div className="border-y border-border bg-surface/40">
         <DeviceSection type="Smartphones" />
       </div>
+      <details id="other-repairs" data-other-repair-categories open={otherOpen} onToggle={event => setOtherOpen(event.currentTarget.open)} className="container mx-auto my-6 scroll-mt-40 rounded-xl border border-primary/25 px-4">
+      <summary className="min-h-11 cursor-pointer py-4 font-semibold text-primary">{t("Other repair areas")}</summary>
       <DeviceSection type="Laptops" />
       <div className="border-y border-border bg-surface/40">
         <DeviceSection type="Consoles" />
       </div>
 
       {worksFor("repair").length ? <section id="work" className="container mx-auto scroll-mt-32 px-4 py-10"><SectionHeading title={t("Other repair projects")} /><WorkGrid items={worksFor("repair")} /></section> : <EmptyCollectionSection id="work" title="Other repair projects" description="Additional documented repairs will appear here." />}
+      </details>
 
       <section id="gallery" className="scroll-mt-32 border-y border-border bg-surface/40">
         <div className="container mx-auto px-4 py-16">
@@ -122,10 +134,6 @@ const TechnicalRepair = () => {
         <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Equipment & tooling")}><ProfileTools groups={toolsByProfile.repair} profile={profile.slug} /></SectionHeading>
       </section>
 
-      <section id="certifications" className="container mx-auto scroll-mt-32 px-4 py-10">
-        <SectionHeading title={t("Smartphone repair training")} />
-        <CertificateCard />
-      </section>
       <SpecialtyExplorer profile={profile.slug} />
       <ProfileCapabilities profile={profile.slug} />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">

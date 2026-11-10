@@ -1,5 +1,14 @@
 /** Reviewed additions and corrections. Source text remains canonical and unchanged. */
 export const reviewedEs: Record<string, string> = {
+  "LIDETEC course participation and documented iPhone repairs. Additional Samsung and iPhone 13 repairs are completed, with photographs pending.": "Participación en el curso de LIDETEC y reparaciones de iPhone documentadas. Los trabajos adicionales de Samsung y iPhone 13 ya están realizados, con fotografías pendientes.",
+  "I replaced batteries in an iPhone 12 Pro and iPhone 14 Pro (aftermarket self-programming battery), and the display in an iPhone XR. Their documented checks include power, charging, touch, cameras, audio, Face ID and battery settings. The two Samsung repairs and iPhone 13 battery replacement are completed, with photographs pending. The iPhone X work is planned.": "Reemplacé baterías de un iPhone 12 Pro y un iPhone 14 Pro (batería aftermarket autoprogramable), y la pantalla de un iPhone XR. Sus comprobaciones documentadas incluyen encendido, carga, touch, cámaras, audio, Face ID y Ajustes de batería. Las dos reparaciones de Samsung y la batería del iPhone 13 ya están realizadas, con fotografías pendientes. El trabajo del iPhone X está planeado.",
+  "Other repair areas": "Otras áreas de reparación",
+  "Additional repairs": "Más reparaciones",
+  "Completed · photos pending": "Realizado · fotografías pendientes",
+  "Battery, screen and back cover replacement": "Cambio de batería, pantalla y tapa trasera",
+  "Training & syllabus": "Formación y temario",
+  "WhatsApp contact preview": "Vista previa del contacto de WhatsApp",
+  "Open WhatsApp": "Abrir WhatsApp",
   "Original single outlet with its worn wall plate.": "Contacto sencillo original con su placa desgastada.",
   "Removed outlet and conductors outside the device box.": "Contacto retirado y conductores fuera de la caja.",
   "Open device box and conductors with red identification tape.": "Caja abierta y conductores con cinta roja de identificación.",

@@ -8,6 +8,9 @@
 
 # Owner presentation preferences
 
+- Keep the footer fox stationary while contact previews open, close or receive hover/focus. Give WhatsApp the same local preview behavior as the other contact channels, preserving direct external navigation on touch. Place About, CV and Contact in the footer's bottom information strip rather than beneath the professional areas. Use restrained neon borders/glow on icons and contact cards across the shared footer, without flashing or moving the character.
+- Lead Repair with its large original LIDETEC certificate and a neon school wordmark, then the visible course syllabus/knowledge summaries, followed by documented practices. Keep full topic lists and document details optional, original enlargement and participation status truthful. On phones, keep the training introduction and practices available together rather than hiding the practices behind the initial section selection.
+
 - Treat easy use on phones, tablets and computers, together with security, as release requirements. Keep primary touch targets at least 44 px, support touch and keyboard without requiring hover, preserve visible close/back actions and avoid horizontal overflow. Validate responsive flows and security checks; distinguish viewport/device emulation from tests on real hardware or other browser engines.
 
 - Use natural left alignment for headings, paragraphs, account details and descriptive card text. Keep photographs, illustrations and visual icon groups centered within balanced layouts; do not center every text block or stack the whole desktop footer into one narrow column. New outlet and phone-repair practices announced on November 9 remain pending their ZIP images; publish them only after the owner supplies the material.
@@ -16,7 +19,7 @@
 
 
 - Across all pages, favor a presentation the owner can show to a client: real work and original visuals first, brief summaries, and clearly named optional details. Keep full technical explanations, evidence limitations, employment history and syllabuses accessible through disclosures and the existing CVs. Do not invent photos, results or credentials to fill gaps.
-- Smartphone repairs must show the three documented jobs directly, without a brand/type/model navigation chain. One selection opens a photo-led case; retain every owner-assigned photo, original enlargement, keyboard navigation, focus restoration and a collapsed technical record. Keep planned Samsung work separate from completed repairs. Training belongs in its own certificate destination.
+- Smartphone repairs must show the three photo-documented jobs directly, without a brand/type/model navigation chain. One selection opens a photo-led case; retain every owner-assigned photo, original enlargement, keyboard navigation, focus restoration and a collapsed technical record. The two Samsung jobs and iPhone 13 battery replacement are owner-confirmed completed with photos pending; keep their brief records separate from the photographed showcase. The iPhone X battery/screen/back-cover job is planned. Collapse Laptops, Consoles and Other repair projects into one optional dropdown, preserving deep links.
 - On every profile, show tools within the viewport rather than requiring sideways browsing. Certificates lead with supplied previews when available and retain honest status labels; put document details and syllabuses behind disclosures. Preserve the current CV documents and uploaded originals when only the presentation changes.
 
 
