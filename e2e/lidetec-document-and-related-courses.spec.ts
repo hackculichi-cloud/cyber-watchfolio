@@ -14,17 +14,16 @@ for (const lang of ['en', 'es'] as const) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto('/repair#certifications');
       await page.reload();
-      const card = page.locator('[data-repair-certificate]');
+      const card = page.locator('#repair-certification [data-certificate="lidetec"]');
+      const udemy = page.locator('[data-related-training="repair"] [data-certificate="electrical-measurements"]');
       const sheet = card.locator('[data-certificate-original="lidetec"]');
       await expect(sheet).toHaveAttribute('data-digitized-document', 'true');
       const image = sheet.locator('img');
       await expect(image).toHaveAttribute('src', preview);
       await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth)).toBe(1600);
       await expect(image).toHaveCSS('rotate', 'none');
-      expect((await image.boundingBox())!.width / (await card.boundingBox())!.width).toBeGreaterThan(.85);
-      const download = card.getByRole('link', { name: lang === 'es' ? 'Descargar PDF' : 'Download PDF', exact: true });
-      await expect(download).toHaveAttribute('href', pdf);
-      await expect(download).toHaveAttribute('download', '');
+      expect((await image.boundingBox())!.width).toBe((await udemy.locator('[data-certificate-original] img').boundingBox())!.width);
+      await expect(card.locator('[data-certificate-info]')).not.toHaveAttribute('open', '');
       const opener = sheet.getByRole('button', { name: lang === 'es' ? 'Ver constancia' : 'View certificate', exact: true });
       await opener.focus();
       await page.keyboard.press('Enter');
@@ -38,9 +37,17 @@ for (const lang of ['en', 'es'] as const) {
       await page.keyboard.press('Escape');
       await expect(dialog).toHaveCount(0);
       await expect(opener).toBeFocused();
-      await card.locator('details > summary').click();
+      await card.locator('[data-certificate-info] > summary').click();
+      const download = card.getByRole('link', { name: lang === 'es' ? 'Descargar PDF' : 'Download PDF', exact: true });
+      await expect(download).toHaveAttribute('href', pdf);
+      await expect(download).toHaveAttribute('download', '');
+      await expect(download).toBeVisible();
       await expect(card.locator(`a[href="${original}"]`)).toBeVisible();
       await expect(card).toContainText('Francisco Eduardo Villaseñor');
+      // Main and supporting documents use the same shared card and document controls.
+      expect(await card.getAttribute('class')).toBe(await udemy.getAttribute('class'));
+      await expect(card.locator('[data-training-provider="lidetec"] [data-lidetec-seal]')).toHaveCount(1);
+      await expect(page.getByRole('heading', { name: lang === 'es' ? 'Qué conozco y cómo lo aplico' : 'What I know and how I apply it', exact: true })).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
     const document = await request.get(pdf);

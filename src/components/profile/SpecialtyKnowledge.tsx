@@ -16,7 +16,7 @@ export default function SpecialtyKnowledge({ profile, specialty }: { profile: Pr
   const entries = profileCapabilities[profile]?.filter((_, index) => capabilityIndices[specialty]?.includes(index));
   if (!entries?.length) return null;
   return <section data-specialty-knowledge className="my-6 border-t border-primary/20 pt-5">
-    <h4 className="text-lg font-bold">{t("What I know and how I apply it")}</h4>
+    <h4 className="text-lg font-bold">{t(profile === "repair" ? "Skills developed in training" : "What I know and how I apply it")}</h4>
     <ContentDetails title="Knowledge and practice details" className="mt-4"><div className="mt-4 grid gap-4 md:grid-cols-2">{entries.map(entry => <div key={entry.title} className="rounded-xl border border-border bg-background/70 p-4">
       <h5 className="font-semibold text-foreground">{t(entry.title)}</h5>
       <p className="reading-copy mt-2 text-base text-foreground/90">{t(entry.body)}</p>

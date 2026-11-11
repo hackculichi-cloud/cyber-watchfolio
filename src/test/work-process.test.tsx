@@ -48,6 +48,9 @@ describe("evidence-led work records", () => {
       expect(new Set(staged).size).toBe(staged.length);
       expect(staged.some(src => /photo-(04|16)\.jpg$/.test(src!))).toBe(false);
     }
+    const iphone14 = smartphoneRepairs.find(repair => repair.id === "sr-002")!;
+    expect(iphone14.photos).toHaveLength(4);
+    expect(smartphoneRepairs.flatMap(repair => repair.photos ?? []).some(photo => photo.src === "/images/repair/repair-photo-03.jpg")).toBe(false);
     const secondOutlet = electricalProjects.find(item => item.id === "residential-outlet-switch-replacement")!;
     expect(secondOutlet.results?.join(" ") ?? "").not.toContain("119.3");
     expect(electricalProjects.find(item => item.video)?.documentedSteps?.filter(step => step.video)).toHaveLength(1);

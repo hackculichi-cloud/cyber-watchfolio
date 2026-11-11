@@ -240,7 +240,7 @@ const confirmedSmartphoneRepairs: SmartphoneRepair[] = [
     "ref": "SMARTPHONE REPAIR #002",
     "device": "iPhone 14 Pro",
     "brand": "iPhone",
-    "photos": repairPhotos.filter((photo) => ["/images/repair/repair-photo-03.jpg", "/images/repair/repair-photo-06.jpg", "/images/repair/repair-photo-07.jpg", "/images/repair/repair-photo-08.jpg", "/images/repair/repair-photo-12.jpg"].includes(photo.src ?? "")),
+    "photos": repairPhotos.filter((photo) => ["/images/repair/repair-photo-06.jpg", "/images/repair/repair-photo-07.jpg", "/images/repair/repair-photo-08.jpg", "/images/repair/repair-photo-12.jpg"].includes(photo.src ?? "")),
     "repairType": "Battery replacement",
     "work": [
       "Battery replacement performed by the portfolio owner"

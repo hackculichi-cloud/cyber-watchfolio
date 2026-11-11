@@ -1,0 +1,9 @@
+# Presentación de Reparación
+
+La corrección del titular retira `repair-photo-03.jpg` del iPhone 14 Pro: no pertenece a ese trabajo. La galería queda con cuatro fotos. Se actualizan los índices del proceso y se retira el paso que se apoyaba únicamente en la imagen descartada. El JPEG original permanece intacto en el archivo general del taller, sin asignación a otro equipo. `repair-photo-sources.json` conserva su hash y registra la corrección; las demás asignaciones no cambian.
+
+LIDETEC utiliza la misma tarjeta de documento que Udemy y Electricidad: vista del certificado completa, proveedor real, estado de participación y detalles/PDF opcionales. Conserva la digitalización fiel, el documento original, el sello real y los 44 temas. El temario sustituye la sección redundante «Qué conozco y cómo lo aplico»; `#overview` sigue apuntando a la formación para conservar enlaces anteriores.
+
+La identidad de Reparación se aplica al título principal y a Culichi en la cabecera. Las ilustraciones son decorativas: sus proporciones, poses y anclajes se distinguen del registro fotográfico de los trabajos. Los documentos y CV existentes no se regeneran por estos cambios de presentación.
+
+Validación: compilación/TypeScript, 42 pruebas unitarias y 50 pruebas de navegador aprobadas. Se compararon las dimensiones reales de las tarjetas LIDETEC/Udemy, el hash de la foto original del certificado, el PDF, los 44 temas, las cuatro fotos restantes del iPhone 14 y los casos anteriores. Se verificaron español/inglés, tamaños de 320/820/1440 px, separación de ilustraciones y contenido, teclado, devolución del foco, estabilidad del pie y controles de seguridad. Las pruebas de navegador usan Chromium y tamaños emulados, no hardware real ni Safari. ESLint: cero errores y ocho advertencias de Fast Refresh existentes; revisión de artefactos públicos correcta.

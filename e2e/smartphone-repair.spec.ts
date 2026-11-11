@@ -24,12 +24,13 @@ for (const width of [320, 390, 1440]) {
     const showcase = page.locator('[data-repair-showcase]');
     await expect(showcase.getByRole('button')).toHaveCount(4);
     await expect(page.locator('[data-repair-group="iPhone"]')).toHaveCount(0);
-    for (const [id, count] of [['sr-001', 9], ['sr-002', 5], ['sr-003', 2]] as const) {
+    for (const [id, count] of [['sr-001', 9], ['sr-002', 4], ['sr-003', 2]] as const) {
       const trigger = showcase.locator(`[data-repair-group="${id}"]`);
       await trigger.click();
       const dialog = page.locator('[data-repair-dialog]');
       const record = dialog.locator(`[data-repair-case="${id}"]`);
       const photos = record.locator('[data-photo-gallery]');
+      if (id === 'sr-002') await expect(photos.locator('img[src="/images/repair/repair-photo-03.jpg"]')).toHaveCount(0);
       await expect(photos.locator('figure')).toHaveCount(count);
       const technical = record.locator('[data-repair-technical]');
       await expect(technical).not.toHaveAttribute('open', '');
@@ -45,7 +46,7 @@ for (const width of [320, 390, 1440]) {
       await technical.locator(':scope > summary').click();
       await expect(record.getByText('Face ID', { exact: true })).toBeVisible();
       await expect(record.getByText(/test measurements are not documented/)).toBeVisible();
-      await expect(record.locator('[data-work-step]')).toHaveCount(id === 'sr-003' ? 3 : 5);
+      await expect(record.locator('[data-work-step]')).toHaveCount(id === 'sr-003' ? 3 : id === 'sr-002' ? 4 : 5);
       await expect(record.locator('figure')).toHaveCount(count); // No duplicate photo grids in the written process.
       if (id === 'sr-002') await expect(technical.getByText('Aftermarket self-programming battery', { exact: true })).toBeVisible();
       expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
@@ -86,9 +87,9 @@ test('certificate and syllabus stay in their own destination; the full workshop 
   const curriculum = certificate.locator('#repair-training');
   await expect(curriculum).toBeVisible();
   expect((await certificate.boundingBox())!.y).toBeLessThan((await page.locator('#smartphones').boundingBox())!.y);
-  const image = certificate.locator('[data-repair-certificate] img');
+  const image = certificate.locator('[data-certificate="lidetec"] [data-certificate-original] img');
   await expect(image).toHaveCSS('max-height', 'none');
-  await expect(certificate.locator('[data-repair-school]')).toContainText('LIDETEC');
+  await expect(certificate.locator('[data-training-provider="lidetec"]')).toContainText('LIDETEC');
   await certificate.getByRole('button', { name: 'View certificate', exact: true }).first().click();
   await expect(page.getByRole('dialog').locator('img')).toHaveAttribute('src', '/certificates/lidetec-reparacion-celulares.webp');
   await page.keyboard.press('Escape');

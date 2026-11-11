@@ -5,7 +5,7 @@ for (const lang of ['en', 'es'] as const) {
     await page.addInitScript(language => localStorage.setItem('portfolio-lang', language), lang);
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/repair#certifications');
-    const school = page.locator('[data-repair-school]');
+    const school = page.locator('#repair-certification [data-training-provider="lidetec"]');
     await expect(school.locator('[data-lidetec-seal]')).toBeVisible();
     await expect(school.locator('image')).toHaveAttribute('href', '/certificates/lidetec-reparacion-celulares.webp');
     const curriculum = page.locator('#repair-training');
