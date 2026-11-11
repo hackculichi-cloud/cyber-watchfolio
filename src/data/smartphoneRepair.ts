@@ -1,6 +1,7 @@
 import type { WorkImage, WorkProcessRecord } from "./works";
 import { repairPhotos } from "./repairPhotos";
 import { workProcessFor } from "./workProcesses";
+import { iphone13BatteryRepair } from "./iphone13BatteryRepair";
 
 /** ---------------------------------------------------------------
  * Smartphone repair profile data.
@@ -211,6 +212,7 @@ export type SmartphoneRepair = WorkProcessRecord & {
  * "pending" in the UI — never invent content here.
  */
 const confirmedSmartphoneRepairs: SmartphoneRepair[] = [
+  iphone13BatteryRepair,
   {
     "id": "sr-001",
     "ref": "SMARTPHONE REPAIR #001",
@@ -299,7 +301,6 @@ export const completedRepairsAwaitingPhotos = [
     },
   },
   { id: "reported-a35-battery", device: "Samsung Galaxy A35", repairType: "Battery replacement" },
-  { id: "reported-iphone13-battery", device: "iPhone 13", repairType: "Battery replacement" },
 ];
 export const plannedSmartphoneRepairs = [
   { id: "planned-iphonex-restoration", brand: "iPhone", device: "iPhone X", repairType: "Battery, screen and back cover replacement" },

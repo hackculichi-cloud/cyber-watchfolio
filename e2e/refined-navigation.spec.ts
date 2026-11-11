@@ -28,7 +28,7 @@ test('the three electrical entries keep work local and use one shared certificat
     await openElectricalArea(page, area, 'projects');
     await expect(page.locator('[data-area-tab], [role="tablist"]')).toHaveCount(0);
     const expectedWork = {
-      residential: ['residential-outlet-november-2026', 'residential-outlet-october-2026', 'residential-outlet-switch-replacement', 'residential-two-luminaire-replacement', 'residential-training-board'],
+      residential: ['residential-outlet-switch-white-plate', 'residential-outlet-november-2026', 'residential-outlet-october-2026', 'residential-outlet-switch-replacement', 'residential-two-luminaire-replacement', 'residential-training-board'],
       industrial: [],
       control: ['float-switch-course-practice'],
     }[area];
@@ -61,7 +61,7 @@ test('a narrow phone filters the single work collection with visible unclipped c
   await expect(page.getByRole('combobox', { name: 'Jump to section', exact: true })).toHaveValue('certificate');
   await page.goto('/electrical#residential');
   await expect(page.locator('[data-area-tab], [role="tablist"]')).toHaveCount(0);
-  await expect(page.locator('#projects [data-work]')).toHaveCount(5);
+  await expect(page.locator('#projects [data-work]')).toHaveCount(6);
   for (const id of ['outlets', 'lighting', 'training-boards']) {
     const choice = page.locator(`[data-electrical-group="residential-${id}"]`);
     await choice.click();

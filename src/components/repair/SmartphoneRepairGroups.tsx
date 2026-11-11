@@ -13,6 +13,7 @@ const covers: Record<string, string> = {
   "sr-001": "/images/repair/repair-photo-11.jpg",
   "sr-002": "/images/repair/repair-photo-12.jpg",
   "sr-003": "/images/repair/repair-photo-10.jpg",
+  "sr-004": "/images/repair/iphone-13-battery/07.jpeg",
 };
 
 /** Real jobs are visible immediately. One selection opens photos, with technical details optional. */
@@ -26,11 +27,11 @@ export default function SmartphoneRepairGroups() {
     <div role="group" aria-label={t("Filter repairs")} className="flex flex-wrap justify-center gap-2">
       {[["All repairs", "All"], ["Battery replacement", "Battery"], ["Screen replacement", "Screen"]].map(([value, label]) => <button key={value} type="button" aria-pressed={filter === value} onClick={() => setFilter(value)} className={`min-h-11 rounded-full border px-4 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${filter === value ? "border-primary bg-primary/10 text-primary" : "border-border bg-background text-muted-foreground hover:border-primary/50"}`}>{t(label)}</button>)}
     </div>
-    <div data-repair-showcase className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div data-repair-showcase className={`grid gap-5 ${cases.length === 4 ? "sm:grid-cols-2 xl:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
       {cases.map(repair => {
         const cover = repair.photos?.find(photo => photo.src === covers[repair.id]) ?? repair.photos?.[0];
         return <button key={repair.id} type="button" data-repair-group={repair.id} onClick={event => { trigger.current = event.currentTarget; setSelected(repair); }} aria-label={`${t("View repair")}: ${repair.device}`} className="group overflow-hidden rounded-2xl border border-border bg-surface text-left transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-          {cover?.src && <SmartImage {...photoPreview(cover.src, "(min-width:1024px) 380px, (min-width:640px) 44vw, 90vw")} alt={cover.alt} className="aspect-[4/3] w-full" />}
+          {cover?.src && <SmartImage {...photoPreview(cover.src, "(min-width:1024px) 380px, (min-width:640px) 44vw, 90vw")} alt={t(cover.alt)} className="aspect-[4/3] w-full" />}
           <span className="flex flex-col items-center gap-2 p-5 text-center">
             <span className="text-lg font-semibold">{repair.device}</span>
             <span className="text-sm text-primary">{t(repair.repairType)}</span>

@@ -8,16 +8,16 @@ test("the workshop archive keeps all photos behind a disclosure and enlarges the
   const archive = gallery.locator('details');
   const photos = gallery.locator('[data-photo-gallery] img');
   await expect(archive).not.toHaveAttribute('open', '');
-  await expect(photos).toHaveCount(18);
+  await expect(photos).toHaveCount(29);
   await expect(photos.first()).toBeHidden();
   await archive.locator(':scope > summary').click();
   const opener = gallery.getByRole('button', { name: /^Open larger preview:/ }).last();
   await opener.click();
   const dialog = page.getByRole('dialog');
-  await expect(dialog.locator('img:not([data-language-flag])')).toHaveAttribute('src', '/images/repair/repair-photo-18.jpg');
-  await expect(dialog.getByRole('status')).toHaveText('Photo 18 of 18');
+  await expect(dialog.locator('img:not([data-language-flag])')).toHaveAttribute('src', '/images/repair/iphone-13-battery/11.jpeg');
+  await expect(dialog.getByRole('status')).toHaveText('Photo 29 of 29');
   await page.keyboard.press('ArrowLeft');
-  await expect(dialog.locator('img:not([data-language-flag])')).toHaveAttribute('src', '/images/repair/repair-photo-17.jpg');
+  await expect(dialog.locator('img:not([data-language-flag])')).toHaveAttribute('src', '/images/repair/iphone-13-battery/10.jpeg');
   await page.keyboard.press('Escape');
   await expect(opener).toBeFocused();
   await archive.locator(':scope > summary').click();
@@ -70,7 +70,7 @@ test("phone layouts keep named tools, gallery targets and the larger header insi
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
     // The old evidence link opens the same photo-led case list, without a duplicate archive.
-    await expect(page.locator('#projects [data-work]')).toHaveCount(5);
+    await expect(page.locator('#projects [data-work]')).toHaveCount(6);
     await expect(page.locator('#projects [data-photo-gallery]')).toHaveCount(0);
     await expect(page.locator('[data-area-tab]')).toHaveCount(0);
     await context.close();

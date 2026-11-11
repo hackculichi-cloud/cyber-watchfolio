@@ -64,6 +64,25 @@ const novemberOutletPhotos = [
   novemberOutletPhoto(9, "Digital multimeter displaying 122.0 V AC at the replacement outlet."),
 ];
 
+const whitePlatePhoto = (number: number, caption: string) => ({
+  src: `/images/electrical/outlet-switch-white-plate/${String(number).padStart(2, "0")}.jpeg`, alt: caption, caption,
+});
+const whitePlatePhotos = [
+  whitePlatePhoto(1, "Removed outlet and switch assembly with its conductors still attached."),
+  whitePlatePhoto(2, "Wall opening and exposed conductors beside the washbasin."),
+  whitePlatePhoto(3, "Closer view of the conductors before the replacement was connected."),
+  whitePlatePhoto(4, "Additional view of the wall opening and conductors."),
+  whitePlatePhoto(5, "Rear terminal connections on the replacement outlet and switch assembly."),
+  whitePlatePhoto(6, "Another view of the replacement assembly connections before mounting."),
+  whitePlatePhoto(7, "Replacement outlet and switch mounted with the white wall plate."),
+  whitePlatePhoto(8, "Close-up of the completed white outlet and switch assembly."),
+  whitePlatePhoto(9, "Plug-in outlet tester connected to the replacement assembly."),
+  whitePlatePhoto(10, "Voltage detector near the outlet with its green indicator illuminated."),
+  whitePlatePhoto(11, "Digital multimeter displaying 124.4 V AC at the replacement outlet."),
+  whitePlatePhoto(12, "Voltage detector near the outlet with its red indicator illuminated."),
+  whitePlatePhoto(13, "Removed beige assembly compared with the mounted white replacement."),
+];
+
 /** Checklist for documenting residential work; never substituted for the actual service record. */
 const residentialProtocol = [
   "Identify the circuit and record the outlet rating, conductor size/material and circuit protection before choosing a replacement.",
@@ -96,6 +115,26 @@ export const outletPhotoPractice: WorkItem = {
 };
 
 const electricalProjectEntries: WorkItem[] = [
+  {
+    id: "residential-outlet-switch-white-plate", profile: "electrical",
+    title: "Outlet and Switch Replacement — White Wall Plate",
+    summary: "Residential outlet and switch replacement documented with thirteen photographs and a recorded reading of 124.4 V AC.",
+    category: "Residential", status: "Completed",
+    skills: ["Device replacement", "Photographic documentation", "Voltage measurement"],
+    tools: ["Digital multimeter", "Plug-in outlet tester", "Non-contact voltage detector"],
+    objective: "Document the outlet and switch replacement, terminal connections, mounting and recorded instrument checks.",
+    did: ["Replaced the outlet and switch assembly and documented its connections and mounting.", "Photographed the installed assembly, a plug-in tester, voltage detector indications and a multimeter reading."],
+    results: ["The replacement outlet and switch are shown mounted with a white wall plate.", "The multimeter photograph records 124.4 V AC at this outlet."],
+    documentedSteps: [
+      { title: "Removed assembly and conductors", description: "The photographs show the removed device and the conductors at the wall opening.", images: whitePlatePhotos.slice(0, 4) },
+      { title: "Replacement connections", description: "Rear views record the terminal connections before the replacement assembly was mounted.", images: whitePlatePhotos.slice(4, 6) },
+      { title: "Mounting and comparison", description: "The replacement is shown mounted, with a separate comparison of the removed beige assembly and the white replacement.", images: [whitePlatePhotos[6], whitePlatePhotos[7], whitePlatePhotos[12]] },
+      { title: "Recorded instrument checks", description: "Photographs record a plug-in tester, voltage-detector indications and a 124.4 V AC multimeter reading. Polarity and protective-earth results have not been supplied for this case.", images: whitePlatePhotos.slice(8, 12) },
+    ],
+    documentationNeeded: [{ timing: "Original record", title: "Service and device details", description: "The work date, device ratings, conductor specifications and circuit-isolation and protective-earth records have not been supplied." }],
+    protocol: residentialProtocol,
+    cover: whitePlatePhotos[7], images: whitePlatePhotos,
+  },
   {
     id: "residential-outlet-november-2026", profile: "electrical",
     title: "Outlet Replacement — Documented Practice",

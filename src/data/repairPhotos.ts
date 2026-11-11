@@ -1,4 +1,5 @@
 import type { WorkImage } from "./works";
+import { iphone13BatteryPhotos } from "./iphone13BatteryRepair";
 
 /** Exact photos supplied in the user ZIP. Device groups confirmed by the owner; connector close-ups 4 and 16 remain unassigned. */
 export const repairPhotos: WorkImage[] = [
@@ -91,5 +92,6 @@ export const repairPhotos: WorkImage[] = [
     "src": "/images/repair/repair-photo-18.jpg",
     "alt": "Rear view of the device with three cameras",
     "caption": "Rear view of the device with three cameras"
-  }
+  },
+  ...iphone13BatteryPhotos,
 ];

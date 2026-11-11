@@ -56,7 +56,7 @@ test('each profile has its own static workplace, footer outfit and brand color',
   await expect(sections.getByRole('link', {name:'Work & practice', exact:true})).toHaveAttribute('href', '#projects');
   await expect(sections.locator('a[href="#evidence"]')).toHaveCount(0);
   await expect(page.locator('#projects').getByRole('heading', {name:'Work & practice', exact:true})).toBeVisible();
-  await expect(page.locator('#projects [data-work]')).toHaveCount(5);
+  await expect(page.locator('#projects [data-work]')).toHaveCount(6);
 });
 
 test('complete workspace illustrations enlarge without leaving the profile', async ({ page }) => {

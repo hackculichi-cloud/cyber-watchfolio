@@ -80,7 +80,7 @@ test('long specialty panels stay free of blurred hover shadows while resources o
     await expect(detail).toHaveCSS('box-shadow', 'none');
     await expect(detail).toHaveCSS('transition-duration', '0s');
     await expect(page.locator('[data-area-tab], [role="tablist"]')).toHaveCount(0);
-    await expect(page.locator('#projects [data-work]')).toHaveCount(5);
+    await expect(page.locator('#projects [data-work]')).toHaveCount(6);
     await expect(page.locator('[data-certifications]')).toHaveCount(0);
     await expect(page.locator('[data-electrical-practices]')).toHaveCount(1);
 
@@ -95,7 +95,7 @@ test('long specialty panels stay free of blurred hover shadows while resources o
     await page.locator('[data-close-electrical-training]').click();
     await expect(page.locator('[data-certifications]')).toHaveCount(0);
     await expect(page.locator('[data-open-electrical-training]')).toBeFocused();
-    await expect(page.locator('#projects [data-work]')).toHaveCount(5);
+    await expect(page.locator('#projects [data-work]')).toHaveCount(6);
     await expect(detail).toHaveCSS('box-shadow', 'none');
   }
 });
