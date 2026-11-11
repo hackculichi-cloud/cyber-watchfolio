@@ -1,7 +1,7 @@
 // Local evidence derivatives only. Originals and enlarged evidence stay unchanged.
 // Requires ImageMagick 7 (`magick`); no image service or runtime dependency.
 import { execFile } from "node:child_process";
-import { mkdir, readdir, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
@@ -10,7 +10,9 @@ const run = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const publicRoot = join(root, "public");
 const outputRoot = join(publicRoot, "images/previews");
-const manifest = {};
+const only = process.argv.find(value => value.startsWith("--only="))?.slice(7).split(",");
+const manifestPath = join(root, "src/data/photoPreviews.json");
+const manifest = only ? JSON.parse(await readFile(manifestPath, "utf8")) : {};
 
 async function filesIn(directory) {
   const files = [];
@@ -25,11 +27,12 @@ async function filesIn(directory) {
 }
 
 const electrical = await filesIn(join(publicRoot, "images/electrical"));
-const repair = (await filesIn(join(publicRoot, "images/repair"))).filter(path => /^repair-photo-\d+\.jpg$/i.test(path.split(sep).at(-1)));
+const repair = await filesIn(join(publicRoot, "images/repair"));
 const portfolio = (await readdir(join(publicRoot, "media/portfolio")))
   .filter(name => /^(?:float-switch-practice|residential-|ceiling-light-|two-ceiling-lights-).+\.png$/.test(name))
   .map(name => join(publicRoot, "media/portfolio", name));
-const inputs = [...electrical, ...repair, ...portfolio].sort();
+const inputs = [...electrical, ...repair, ...portfolio].sort().filter(path => !only || only.some(prefix => `/${relative(publicRoot, path).split(sep).join("/")}`.startsWith(prefix)));
+if (only && !inputs.length) throw new Error("No photographs matched --only");
 let originalBytes = 0;
 const derivativeBytes = { 320: 0, 768: 0 };
 
@@ -59,5 +62,5 @@ for (const input of inputs) {
   originalBytes += (await stat(input)).size;
 }
 
-await writeFile(join(root, "src/data/photoPreviews.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(JSON.stringify({ photographs: inputs.length, originalBytes, derivativeBytes }, null, 2));

@@ -1742,7 +1742,7 @@
             "entries": [
               {
                 "title": "Residential outlets, switch & lighting",
-                "body": "Outlet and switch work, two replacement ceiling luminaires and an additional outlet-replacement practice.",
+                "body": "Residential outlet and switch work, including a new white-plate assembly, and two replacement ceiling luminaires.",
                 "status": "Work & documented practice",
                 "tone": "complete",
                 "tags": [
@@ -1752,8 +1752,8 @@
                 ],
                 "url": "https://culichi.lat/electrical#projects",
                 "bullets": [
-                  "Original photographs document the work, including nine from the additional outlet practice.",
-                  "Separate outlet cases record 119.3 V AC and 122.0 V AC."
+                  "Original photographs document the work, including nine from the earlier outlet practice and thirteen from the new outlet/switch work.",
+                  "Separate outlet cases record 119.3, 122.0 and 124.4 V AC."
                 ]
               },
               {
@@ -1866,7 +1866,7 @@
             "entries": [
               {
                 "title": "Contactos, apagador e iluminación residencial",
-                "body": "Trabajos de contactos y apagador, dos luminarias de reemplazo y una práctica adicional de cambio de contacto.",
+                "body": "Trabajos residenciales de contactos y apagadores, incluido un nuevo conjunto con placa blanca, y dos luminarias de reemplazo.",
                 "status": "Trabajo y práctica documentados",
                 "tone": "complete",
                 "tags": [
@@ -1876,8 +1876,8 @@
                 ],
                 "url": "https://culichi.lat/electrical#projects",
                 "bullets": [
-                  "Fotografías originales documentan el trabajo, incluidas nueve de la práctica adicional de contacto.",
-                  "Casos separados de contactos registran 119.3 V CA y 122.0 V CA."
+                  "Fotografías originales documentan el trabajo, incluidas nueve de la práctica anterior de contacto y trece del nuevo conjunto de contacto y apagador.",
+                  "Casos separados de contactos registran 119.3, 122.0 y 124.4 V CA."
                 ]
               },
               {
@@ -2216,11 +2216,12 @@
             "entries": [
               {
                 "title": "Battery and display replacement · photographic evidence",
-                "body": "Owner-confirmed post-repair checks: power, charging, touch, cameras, audio, Face ID and battery settings.",
+                "body": "12 Pro, 14 Pro and XR: owner-confirmed power, charging, touch, cameras, audio, Face ID and battery-setting checks. iPhone 13: final test record pending.",
                 "bullets": [
                   "iPhone 12 Pro: battery replacement.",
                   "iPhone 14 Pro: aftermarket self-programming battery.",
-                  "iPhone XR: display replacement."
+                  "iPhone XR: display replacement.",
+                  "iPhone 13: battery replacement documented with eleven original photographs."
                 ],
                 "url": "https://culichi.lat/repair#smartphones",
                 "linkLabel": "View cases and original photographs"
@@ -2308,11 +2309,12 @@
             "entries": [
               {
                 "title": "Baterías y pantallas · evidencia fotográfica",
-                "body": "Pruebas posteriores confirmadas por el titular: encendido, carga, touch, cámaras, audio, Face ID y batería en Ajustes.",
+                "body": "12 Pro, 14 Pro y XR: comprobaciones de encendido, carga, touch, cámaras, audio, Face ID y batería confirmadas. iPhone 13: pruebas finales sin registrar.",
                 "bullets": [
                   "iPhone 12 Pro: cambio de batería.",
                   "iPhone 14 Pro: batería aftermarket autoprogramable.",
-                  "iPhone XR: cambio de pantalla."
+                  "iPhone XR: cambio de pantalla.",
+                  "iPhone 13: cambio de batería documentado con once fotografías originales."
                 ],
                 "url": "https://culichi.lat/repair#smartphones",
                 "linkLabel": "Ver casos y fotografías originales"

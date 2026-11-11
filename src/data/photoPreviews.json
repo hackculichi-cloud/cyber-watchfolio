@@ -228,5 +228,125 @@
     "srcSet": "/images/previews/media/portfolio/two-ceiling-lights-completed-320.webp 320w, /images/previews/media/portfolio/two-ceiling-lights-completed-768.webp 768w",
     "width": 1600,
     "height": 1200
+  },
+  "/images/electrical/outlet-switch-white-plate/01.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/01-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/01-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/02.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/02-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/02-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/03.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/03-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/03-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/04.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/04-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/04-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/05.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/05-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/05-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/06.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/06-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/06-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/07.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/07-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/07-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/08.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/08-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/08-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/09.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/09-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/09-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/10.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/10-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/10-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/11.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/11-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/11-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/12.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/12-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/12-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/electrical/outlet-switch-white-plate/13.jpeg": {
+    "srcSet": "/images/previews/images/electrical/outlet-switch-white-plate/13-320.webp 240w, /images/previews/images/electrical/outlet-switch-white-plate/13-768.webp 576w",
+    "width": 960,
+    "height": 1280
+  },
+  "/images/repair/iphone-13-battery/01.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/01-320.webp 180w, /images/previews/images/repair/iphone-13-battery/01-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/02.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/02-320.webp 180w, /images/previews/images/repair/iphone-13-battery/02-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/03.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/03-320.webp 180w, /images/previews/images/repair/iphone-13-battery/03-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/04.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/04-320.webp 320w, /images/previews/images/repair/iphone-13-battery/04-768.webp 768w",
+    "width": 1600,
+    "height": 900
+  },
+  "/images/repair/iphone-13-battery/05.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/05-320.webp 180w, /images/previews/images/repair/iphone-13-battery/05-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/06.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/06-320.webp 180w, /images/previews/images/repair/iphone-13-battery/06-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/07.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/07-320.webp 180w, /images/previews/images/repair/iphone-13-battery/07-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/08.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/08-320.webp 180w, /images/previews/images/repair/iphone-13-battery/08-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/09.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/09-320.webp 180w, /images/previews/images/repair/iphone-13-battery/09-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/10.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/10-320.webp 180w, /images/previews/images/repair/iphone-13-battery/10-768.webp 432w",
+    "width": 900,
+    "height": 1600
+  },
+  "/images/repair/iphone-13-battery/11.jpeg": {
+    "srcSet": "/images/previews/images/repair/iphone-13-battery/11-320.webp 180w, /images/previews/images/repair/iphone-13-battery/11-768.webp 432w",
+    "width": 900,
+    "height": 1600
   }
 }

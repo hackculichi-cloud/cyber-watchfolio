@@ -1,0 +1,222 @@
+{
+  "archive": "trabajos.zip",
+  "archiveSha256": "f06d701aa089d8f4b36343af662f5665ee00140ff17068fd0fdb2d5423f9637a",
+  "photos": [
+    {
+      "case": "sr-004",
+      "photo": 1,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.25 PM.jpeg",
+      "asset": "/images/repair/iphone-13-battery/01.jpeg",
+      "sha256": "7225cedc823d6772a1faa2fd3439931491a2d5d21c67b0ecb9e6f31cff577001",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 2,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.26 PM (1).jpeg",
+      "asset": "/images/repair/iphone-13-battery/02.jpeg",
+      "sha256": "fa070ec8dfe882fa0fadfa759ca7d5ee3b42695b552dd97f1de46bb788e2876e",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 3,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.26 PM (2).jpeg",
+      "asset": "/images/repair/iphone-13-battery/03.jpeg",
+      "sha256": "28fc8452d746e531710b00d74503a026d9844ddfdcdc011df2d2e33b07e5f044",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 4,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.26 PM.jpeg",
+      "asset": "/images/repair/iphone-13-battery/04.jpeg",
+      "sha256": "c964561957f13fdb81f54229fd505ea3eb6e0183050b2712c67c2e12233a61c3",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "case": "sr-004",
+      "photo": 5,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.27 PM (1).jpeg",
+      "asset": "/images/repair/iphone-13-battery/05.jpeg",
+      "sha256": "a3c6c88af629c5e80ba7048c441ea6e8e89cd9231f2732c43ddd802680a8d53e",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 6,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.27 PM (2).jpeg",
+      "asset": "/images/repair/iphone-13-battery/06.jpeg",
+      "sha256": "33dfca9044035f0be97809cc57232c18fb83aa62b6c597807a818e918a9ce7ad",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 7,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.27 PM (3).jpeg",
+      "asset": "/images/repair/iphone-13-battery/07.jpeg",
+      "sha256": "34cd381cad00acdcf11e5a3336ed0fa1fcc6c966d3fdd6f9c695654316287ede",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 8,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.27 PM (4).jpeg",
+      "asset": "/images/repair/iphone-13-battery/08.jpeg",
+      "sha256": "84b3e654acf5c9a1e686abe439d851ea95ea84fb45eb2ffe8fc269475cedd7ea",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 9,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.27 PM.jpeg",
+      "asset": "/images/repair/iphone-13-battery/09.jpeg",
+      "sha256": "7c969a9b5c201e86d92480c68c36383790118d72d334f9f5969067fe9f933075",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 10,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.28 PM (1).jpeg",
+      "asset": "/images/repair/iphone-13-battery/10.jpeg",
+      "sha256": "a939d803c34fe0c179284e9d7a5054853133a331246f26c92c3d134db94ca24f",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "sr-004",
+      "photo": 11,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.28 PM.jpeg",
+      "asset": "/images/repair/iphone-13-battery/11.jpeg",
+      "sha256": "1ea6d12a95c0bafe43cc5402863dbcd3283e822bab291ed67b216595f6a42bdf",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 1,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.28 PM (2).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/01.jpeg",
+      "sha256": "75303148005b89740b422e2ca6a8bb4dc044ccbfef4ab676e519635983d831d8",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 2,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.28 PM (3).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/02.jpeg",
+      "sha256": "9e6ff30c241e0a696d245c1ff89bab96d88c5c201b381f44f1c82b469d713951",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 3,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.28 PM (4).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/03.jpeg",
+      "sha256": "70abebc22b362087cbae9c046770f945267bd0eb5fe6b9ecac718879dcaee3d9",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 4,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.29 PM.jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/04.jpeg",
+      "sha256": "7e30657bfbc8e7bd76549f7b64dcdc932a9d3991d70ee1b52fac229ded632372",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 5,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.29 PM (1).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/05.jpeg",
+      "sha256": "4ec80a41ef13adf753888e8e6b8b56d585912b9a85232cb82a73f3a1be4ee055",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 6,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.29 PM (2).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/06.jpeg",
+      "sha256": "454c8c395505372b9280a2c73c708d860e61a3cdd1031d6fd8d3f8651c4d18fc",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 7,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.29 PM (3).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/07.jpeg",
+      "sha256": "dcb95783d0f75034b56cbd3253f01515f1819ad1dec2dcae32c453c98b64decc",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 8,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.29 PM (4).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/08.jpeg",
+      "sha256": "3f69aeef93817c21d5783789c3e447cbe28ef682d026c84e6cdbdfddf9f853e9",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 9,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.29 PM (5).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/09.jpeg",
+      "sha256": "807281bca55009586c35cd1ee29feea1a1d2976457ab4bbddd095a6873cfa3ec",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 10,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.30 PM (1).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/10.jpeg",
+      "sha256": "b67e2bed01343ae44f66bb92c00dff5e3f8be4bca1e9a4d951ccfa1d2aca4118",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 11,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.30 PM (2).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/11.jpeg",
+      "sha256": "fe84870a43c431de9eb84944d157e10dd3ab4123b699b5a9823ac3b86d1e593a",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 12,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.30 PM.jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/12.jpeg",
+      "sha256": "4e7c94da80e2fd54f146bdb08b8a99afaaaa06814bd1c6ded6a6fe28a7a01b3d",
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "case": "residential-outlet-switch-white-plate",
+      "photo": 13,
+      "original": "New folder/WhatsApp Image 2026-11-10 at 11.51.30 PM (3).jpeg",
+      "asset": "/images/electrical/outlet-switch-white-plate/13.jpeg",
+      "sha256": "eb0f1a56c99757781eeb6343c5f91199495202c6d26c704b05ec1617b7910957",
+      "width": 960,
+      "height": 1280
+    }
+  ]
+}

@@ -78,7 +78,7 @@ export const profileCapabilities: Partial<Record<ProfileSlug, ProfileCapability[
     {
       "title": "Completed iPhone interventions",
       "status": "Documented practice",
-      "body": "I replaced batteries in an iPhone 12 Pro and iPhone 14 Pro (aftermarket self-programming battery), and the display in an iPhone XR. Their documented checks include power, charging, touch, cameras, audio, Face ID and battery settings. The two Samsung repairs and iPhone 13 battery replacement are completed, with photographs pending. The iPhone X work is planned."
+      "body": "Documented battery replacements: iPhone 12 Pro, 14 Pro and 13; display replacement: iPhone XR. Final checks are confirmed for the 12 Pro, 14 Pro and XR; the iPhone 13 test record is pending. Samsung work awaits photographs, with the S21 Ultra flash follow-up still unconfirmed. The iPhone X work is planned."
     }
   ],
   "cybersecurity": [

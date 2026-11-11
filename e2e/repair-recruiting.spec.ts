@@ -41,7 +41,7 @@ for (const width of [320, 820, 1440]) {
       await expect(training).toContainText(lang === 'es' ? 'Tengo disposición' : 'I am willing');
       await hero.locator('a[href="#smartphones"]').click();
       await expect(page.locator('[data-repair-showcase]')).toBeVisible();
-      await expect(page.locator('[data-repair-showcase] button')).toHaveCount(3);
+      await expect(page.locator('[data-repair-showcase] button')).toHaveCount(4);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
     await page.locator('[data-world-hero="repair"] a[href="/experience#background"]').click();

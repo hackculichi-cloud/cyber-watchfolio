@@ -43,14 +43,14 @@ for (const lang of ["es", "en"] as const) for (const width of [320, 390, 1440]) 
     if (width < 640) await expect(page.locator(".profile-section-nav select")).toHaveValue("projects");
     else await expect(page.locator(".profile-section-nav a[href='#projects']")).toHaveAttribute("aria-current", "true");
     await expect(page.locator("[data-area-tab], [role=tablist]")).toHaveCount(0);
-    await expect(collection.locator("[data-work]")).toHaveCount(5);
+    await expect(collection.locator("[data-work]")).toHaveCount(6);
     await expect(collection.locator("[data-photo-gallery]")).toHaveCount(0);
     const filters = collection.locator("[data-electrical-category-choices]");
     await expect(filters.locator("button")).toHaveCount(4);
     await expect(collection.locator("button[aria-pressed]")).toHaveCount(4);
     await expect(collection.getByText(lang === "es" ? "Todos los trabajos realizados" : "All completed work", { exact: true })).toHaveCount(0);
     await filters.locator('[data-electrical-group="residential-outlets"]').click();
-    await expect(collection.locator("[data-work]")).toHaveCount(3);
+    await expect(collection.locator("[data-work]")).toHaveCount(4);
     const card = collection.locator(`[data-work="${caseId}"]`);
     const opener = card.locator("button").first();
     await expect(opener.locator("img")).toHaveAttribute("src", `${photoDirectory}07.jpeg`);
@@ -82,10 +82,10 @@ for (const lang of ["es", "en"] as const) for (const width of [320, 390, 1440]) 
     await expect(opener).toBeFocused();
     await page.goto("/electrical#evidence");
     // A same-page legacy link keeps the active filter; a direct reload starts with all cases.
-    await expect(page.locator("#projects [data-work]")).toHaveCount(3);
+    await expect(page.locator("#projects [data-work]")).toHaveCount(4);
     await expect(page.locator('[data-electrical-group="residential-outlets"]')).toHaveAttribute("aria-pressed", "true");
     await page.reload();
-    await expect(page.locator("#projects [data-work]")).toHaveCount(5);
+    await expect(page.locator("#projects [data-work]")).toHaveCount(6);
     if (width < 640) await expect(page.locator(".profile-section-nav select")).toHaveValue("projects");
     else await expect(page.locator(".profile-section-nav a[href='#projects']")).toHaveAttribute("aria-current", "true");
     await expect(page.locator("[data-photo-gallery]")).toHaveCount(0);

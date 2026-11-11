@@ -22,7 +22,7 @@ for (const width of [320, 390, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/repair');
     const showcase = page.locator('[data-repair-showcase]');
-    await expect(showcase.getByRole('button')).toHaveCount(3);
+    await expect(showcase.getByRole('button')).toHaveCount(4);
     await expect(page.locator('[data-repair-group="iPhone"]')).toHaveCount(0);
     for (const [id, count] of [['sr-001', 9], ['sr-002', 5], ['sr-003', 2]] as const) {
       const trigger = showcase.locator(`[data-repair-group="${id}"]`);
@@ -61,7 +61,7 @@ test('short filters never mix planned jobs with completed evidence; translations
   await page.goto('/repair#smartphones');
   const filters = page.getByRole('group', { name: 'Filter repairs' });
   await filters.getByRole('button', { name: 'Battery', exact: true }).click();
-  await expect(page.locator('[data-repair-showcase] button')).toHaveCount(2);
+  await expect(page.locator('[data-repair-showcase] button')).toHaveCount(3);
   await filters.getByRole('button', { name: 'Screen', exact: true }).click();
   await expect(page.locator('[data-repair-showcase] button')).toHaveCount(1);
   await page.locator('[data-repair-group="sr-003"]').click();
@@ -73,8 +73,8 @@ test('short filters never mix planned jobs with completed evidence; translations
   const plans = page.locator('#smartphone-repair-groups > details');
   await plans.locator(':scope > summary').click();
   await expect(plans.locator('[data-planned-repair]')).toHaveCount(1);
-  await expect(plans.locator('[data-reported-repair]')).toHaveCount(3);
-  await expect(plans).toContainText('iPhone 13');
+  await expect(plans.locator('[data-reported-repair]')).toHaveCount(2);
+  await expect(plans).not.toContainText('iPhone 13');
   await expect(plans).toContainText('iPhone X');
   await expect(plans).toContainText('Planeado');
   await expect(plans.locator('img')).toHaveCount(0);
@@ -98,11 +98,12 @@ test('certificate and syllabus stay in their own destination; the full workshop 
   await page.goto('/repair#gallery');
   await page.locator('#gallery details > summary').click();
   const gallery = page.locator('#gallery [data-photo-gallery]');
-  await expect(gallery.locator('figure')).toHaveCount(18);
+  await expect(gallery.locator('figure')).toHaveCount(29);
   await gallery.locator('button').first().click();
   const viewer = page.locator('[data-photo-dialog]');
-  for (let index = 1; index <= 18; index++) {
-    await expect(viewer.locator('img')).toHaveAttribute('src', `/images/repair/repair-photo-${String(index).padStart(2, '0')}.jpg`);
-    if (index < 18) await page.keyboard.press('ArrowRight');
+  const archive = [...Array.from({ length: 18 }, (_, index) => `/images/repair/repair-photo-${String(index + 1).padStart(2, '0')}.jpg`), ...Array.from({ length: 11 }, (_, index) => `/images/repair/iphone-13-battery/${String(index + 1).padStart(2, '0')}.jpeg`)];
+  for (const [index, source] of archive.entries()) {
+    await expect(viewer.locator('img')).toHaveAttribute('src', source);
+    if (index < archive.length - 1) await page.keyboard.press('ArrowRight');
   }
 });
