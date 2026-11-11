@@ -1,0 +1,49 @@
+.repair-lettering {
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  min-width:0;
+  max-width:100%;
+  margin:0;
+  color:#eee9ff;
+  font-family:"Manrope",ui-sans-serif,system-ui,sans-serif;
+  font-weight:800;
+  line-height:1.22;
+  letter-spacing:-.045em;
+}
+.repair-lettering--hero { font-size:clamp(1.85rem,4vw,3.25rem); }
+.repair-lettering-name { position:relative; display:inline-block; min-width:0; padding:.12em .18em .2em; }
+.repair-lettering-ink {
+  color:#eee9ff;
+  background:linear-gradient(180deg,#fff 12%,#ded5fa 46%,#c0a9ec 50%,#f2ebff 61%,#dbc7ff 100%);
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 20px #a78bfa18;
+}
+.repair-lettering-corner { position:absolute; width:.27em; height:.27em; border-color:#ac8ce7; border-style:solid; border-width:0; pointer-events:none; }
+.repair-lettering-corner--start { left:0; top:0; border-left-width:1px; border-top-width:1px; border-top-left-radius:.08em; }
+.repair-lettering-corner--end { right:0; bottom:.13em; border-right-width:1px; border-bottom-width:1px; border-bottom-right-radius:.08em; }
+.repair-lettering-flex { position:absolute; bottom:0; left:.2em; right:.2em; height:.13em; display:flex; align-items:flex-start; gap:.065em; pointer-events:none; }
+.repair-lettering-flex > i { display:block; width:.08em; height:.12em; flex-shrink:0; border-radius:0 0 1px 1px; background:#dbb57b; }
+.repair-lettering-flex > span { height:1px; flex:1; margin-left:.12em; background:linear-gradient(90deg,#ab88e1b3,transparent); }
+.repair-lettering-device { display:block; flex-shrink:0; width:1em; height:1.34em; overflow:visible; fill:none; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.5; }
+.repair-lettering-body { fill:#191824; stroke:#8c82a9; }
+.repair-lettering-screen { fill:#171525; fill-opacity:.92; stroke:#c5a8fa; }
+.repair-lettering-detail { stroke:#8b7ba8; }
+.repair-lettering-contact { stroke:#e5bb7b; stroke-width:2; }
+.repair-lettering-probe { stroke:#cab0ff; stroke-width:1.8; }
+.repair-lettering--brand { display:inline-flex; width:8.8rem; flex-shrink:0; font-size:.96em; vertical-align:middle; }
+.repair-lettering--brand .repair-lettering-name { padding:.07em .15em .16em; }
+.repair-lettering--brand .repair-lettering-flex { bottom:-.02em; }
+@media (max-width:767px) {
+  .repair-lettering--brand { width:7rem; }
+  .repair-lettering--hero { gap:.5rem; }
+}
+@media (forced-colors:active) {
+  .repair-lettering-ink { background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; text-shadow:none; }
+  .repair-lettering-corner { border-color:CanvasText; }
+  .repair-lettering-flex > i,.repair-lettering-flex > span { background:CanvasText; }
+  .repair-lettering-device { fill:none; }
+  .repair-lettering-device path { stroke:CanvasText; fill:none; }
+}

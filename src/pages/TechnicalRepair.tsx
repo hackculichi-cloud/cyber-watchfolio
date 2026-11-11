@@ -1,4 +1,3 @@
-import ProfileCapabilities from "@/components/profile/ProfileCapabilities";
 import MascotScene from "@/components/shared/MascotScene";
 import SpecialtyExplorer from "@/components/profile/SpecialtyExplorer";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -109,7 +108,10 @@ const TechnicalRepair = () => {
       <ProfileSectionNav sections={profile.sections} />
       <RepairCareerBridge />
       <section id="certifications" className="container mx-auto scroll-mt-32 px-4 py-10">
-        <SectionHeading title={t("Smartphone repair training")} />
+        <div className="mb-8 flex items-end gap-4">
+          <MascotScene profile="repair" scene="action" pose="document" className="pointer-events-none w-20 shrink-0 sm:w-28" />
+          <h2 className="pb-2 text-2xl font-semibold md:text-3xl">{t("Smartphone repair training")}</h2>
+        </div>
         <CertificateCard />
         <RepairDevelopment />
       </section>
@@ -139,14 +141,13 @@ const TechnicalRepair = () => {
       </section>
 
       <section id="tools" className="container mx-auto scroll-mt-32 px-4 py-10">
-        <SectionHeading mascot={profile.slug} mascotScene="detail" eyebrow={t("Tools")} title={t("Equipment & tooling")}><ProfileTools groups={toolsByProfile.repair} profile={profile.slug} /></SectionHeading>
+        <SectionHeading mascot={profile.slug} mascotScene="detail" mascotPlacement="left" eyebrow={t("Tools")} title={t("Equipment & tooling")}><ProfileTools groups={toolsByProfile.repair} profile={profile.slug} /></SectionHeading>
       </section>
 
       <SpecialtyExplorer profile={profile.slug} />
-      <ProfileCapabilities profile={profile.slug} />
       <section id="cv" className="scroll-mt-32 border-t border-border bg-surface/40">
         <div className="container mx-auto px-4 py-10">
-          <SectionHeading mascot={profile.slug} eyebrow={t("CV")} title={t("Professional résumé")}><ProfileCvBlock cvIds={profile.cvIds} /></SectionHeading>
+          <SectionHeading mascot={profile.slug} mascotPlacement="right" eyebrow={t("CV")} title={t("Professional résumé")}><ProfileCvBlock cvIds={profile.cvIds} /></SectionHeading>
         </div>
       </section>
     </>

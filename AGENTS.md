@@ -8,6 +8,8 @@
 
 # Owner presentation preferences
 
+- On Repair, present Liceo/LIDETEC with the same document card as Udemy and Electricity, with the full syllabus directly below. Omit the separate «What I know and how I apply it» overview; retain the knowledge in training disclosures and CVs. The owner corrected the first iPhone 14 Pro photo (`repair-photo-03.jpg`): it does not belong to that case. Keep the original unassigned in the workshop archive and do not infer another model. Prefer taller, slender repair foxes, varied content anchors and a repair-specific Culichi/title identity.
+
 - Keep the footer fox stationary while contact previews open, close or receive hover/focus. Give WhatsApp the same local preview behavior as the other contact channels, preserving direct external navigation on touch. Place About, CV and Contact in the footer's bottom information strip rather than beneath the professional areas. Use restrained neon borders/glow on icons and contact cards across the shared footer, without flashing or moving the character.
 - Lead Repair with its large original LIDETEC certificate and a neon school wordmark, then the visible course syllabus/knowledge summaries, followed by documented practices. Keep full topic lists and document details optional, original enlargement and participation status truthful. On phones, keep the training introduction and practices available together rather than hiding the practices behind the initial section selection.
 

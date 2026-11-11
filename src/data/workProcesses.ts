@@ -284,29 +284,22 @@ const records: Record<string, ProcessTemplate> = {
         "title": "Replacement-part record",
         "description": "The supplied photograph records battery packaging at the workstation. The owner identifies the installed part as an aftermarket self-programming battery; its brand is not confirmed.",
         "photoIndexes": [
-          1
+          0
         ]
       },
       {
         "title": "Device opened in the repair fixture",
         "description": "The photographs show the opened device in the workstation fixture. Specific disconnection and electrostatic precautions have not been documented.",
         "photoIndexes": [
-          2,
-          3
-        ]
-      },
-      {
-        "title": "Battery intervention",
-        "description": "The workstation photograph accompanies the battery replacement confirmed by the owner. Exact tools and installation measurements have not been recorded.",
-        "photoIndexes": [
-          0
+          1,
+          2
         ]
       },
       {
         "title": "Reassembly and power-on record",
         "description": "The photograph shows the reassembled device powered on at its lock screen. This image alone does not establish every functional test result.",
         "photoIndexes": [
-          4
+          3
         ]
       },
       {

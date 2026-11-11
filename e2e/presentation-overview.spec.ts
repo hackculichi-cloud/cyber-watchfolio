@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 for (const width of [390, 1440]) test(`knowledge, certificates and equipment stay scannable and reachable at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height: 900 });
-  for (const route of ['/cybersecurity', '/software-development', '/electronics', '/repair']) {
+  for (const route of ['/cybersecurity', '/software-development', '/electronics']) {
     await page.goto(`${route}#overview`);
     const overview = page.locator('[data-profile-capabilities]');
     const disclosure = overview.locator('[data-content-details]').first();
@@ -20,6 +20,9 @@ for (const width of [390, 1440]) test(`knowledge, certificates and equipment sta
       await expect(information.locator('[data-certificate-information-content]')).toBeVisible();
     }
   }
+  await page.goto('/repair#overview');
+  await expect(page.locator('[data-profile-capabilities]')).toHaveCount(0);
+  await expect(page.locator('#repair-training')).toBeVisible();
   for (const route of ['/electronics', '/repair']) {
     await page.goto(`${route}#tools`);
     const equipment = page.getByRole('region', { name: 'Equipment catalog' });

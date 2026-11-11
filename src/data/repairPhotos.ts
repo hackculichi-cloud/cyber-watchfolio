@@ -1,7 +1,7 @@
 import type { WorkImage } from "./works";
 import { iphone13BatteryPhotos } from "./iphone13BatteryRepair";
 
-/** Exact photos supplied in the user ZIP. Device groups confirmed by the owner; connector close-ups 4 and 16 remain unassigned. */
+/** Exact photos supplied in the user ZIP. Device groups follow owner corrections; photos 3, 4 and 16 remain unassigned in this workshop archive. */
 export const repairPhotos: WorkImage[] = [
   {
     "src": "/images/repair/repair-photo-01.jpg",

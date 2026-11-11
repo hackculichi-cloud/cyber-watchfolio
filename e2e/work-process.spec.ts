@@ -62,7 +62,7 @@ for (const width of [320, 1440]) {
     await context.addInitScript(() => localStorage.setItem('portfolio-lang', 'es'));
     const page = await context.newPage();
     await page.goto('/repair#smartphones');
-    for (const [id, count, photos] of [['sr-001', 5, 9], ['sr-002', 5, 5], ['sr-003', 3, 2]] as const) {
+    for (const [id, count, photos] of [['sr-001', 5, 9], ['sr-002', 4, 4], ['sr-003', 3, 2]] as const) {
       await openRepair(page, id);
       const record = page.locator(`[data-repair-case="${id}"]`);
       await expect(record.locator('[data-work-step]')).toHaveCount(count);
